@@ -577,8 +577,8 @@ COMPONENTS = [
   <table class="w-full">
     <thead class="bg-neutral-2">
       <tr>
-        <th aria-sort="ascending" class="text-start h-control px-control border-b border-neutral-6"><button class="inline-flex items-center gap-2xs border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer">Name<i class="icon icon-sm ph-bold ph-caret-up"></i></button></th>
-        <th aria-sort="none" class="text-end h-control px-control border-b border-neutral-6"><button class="inline-flex items-center gap-2xs border-0 bg-transparent fg-neutral-11 hover:fg-neutral-12 text-base font-medium cursor-pointer">Seats<i class="icon icon-sm ph-bold ph-caret-up-down"></i></button></th>
+        <th aria-sort="ascending" class="text-start h-control px-control border-b border-neutral-6"><button class="inline-flex items-center gap-gutter-half border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer">Name<i class="icon icon-sm ph-bold ph-caret-up"></i></button></th>
+        <th aria-sort="none" class="text-end h-control px-control border-b border-neutral-6"><button class="inline-flex items-center gap-gutter-half border-0 bg-transparent fg-neutral-11 hover:fg-neutral-12 text-base font-medium cursor-pointer">Seats<i class="icon icon-sm ph-bold ph-caret-up-down"></i></button></th>
       </tr>
     </thead>
     <tbody>

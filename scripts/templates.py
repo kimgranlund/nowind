@@ -1068,6 +1068,122 @@ def type_audit():
     return findings, unclassified
 
 
+def parse_tree(html_):
+    """A light element tree: nodes with tag, attrs, classes, direct text, parent and children."""
+    VOID = {"input", "img", "br", "hr", "meta", "link", "source", "wbr", "col"}
+
+    class Node:
+        def __init__(self, tag, attrs, parent):
+            self.tag, self.attrs, self.parent = tag, attrs, parent
+            self.toks = (attrs.get("class") or "").split()
+            self.text, self.kids = "", []
+        def ancestors(self):
+            n = self.parent
+            while n: yield n; n = n.parent
+        def alltext(self):
+            return self.text + "".join(k.alltext() for k in self.kids)
+
+    nodes = []
+
+    class P(HTMLParser):
+        def __init__(self): super().__init__(); self.cur = None
+        def handle_starttag(self, tag, attrs):
+            n = Node(tag, {k: (v or "") for k, v in attrs}, self.cur); nodes.append(n)
+            if self.cur: self.cur.kids.append(n)
+            if tag not in VOID: self.cur = n
+        def handle_data(self, d):
+            if self.cur: self.cur.text += d
+        def handle_endtag(self, tag):
+            n = self.cur
+            while n and n.tag != tag: n = n.parent
+            if n: self.cur = n.parent
+    P().feed(html_)
+    return nodes
+
+
+def geometry_audit():
+    """Check every part in the examples against the geometry contract (geometryContract in
+    theme/theme.geometry.manifest.json): each part gets a kind, and its height, padding, gap and corner classes must be
+    the kind's. Returns a list of (where, kind, problem, element)."""
+    H = lambda t: re.fullmatch(r"h-(control|nested|full|header)|size-(control|nested)|min-h-.+", t)
+    PAD = lambda t: re.fullmatch(r"p[xytbse]?-[a-z0-9]+", t)
+    GAP = lambda t: re.fullmatch(r"gap-[a-z0-9-]+", t) and not t.startswith(("gap-x-", "gap-y-"))
+    RAD = lambda t: re.fullmatch(r"rounded(-[a-z]+)?", t) and not re.fullmatch(r"rounded-[se]-.+|rounded-[tblr]+-.+", t)
+
+    def is_ctrl(n):
+        return n.tag in ("button", "select", "summary") or n.attrs.get("role") in ("tab", "option", "menuitem") or (n.tag == "a" and bool({"h-control", "h-nested", "size-control", "size-nested", "h-full"} & set(n.toks)))
+
+    def kind(n):
+        t, toks, role = n.tag, set(n.toks), n.attrs.get("role", "")
+        if any(a.tag == "kbd" for a in n.ancestors()): return None
+        if "scope" in toks or any("scope" in a.toks for a in n.ancestors()): return None
+        if t == "kbd": return "keycap"
+        if "border-2" in toks and "h-control" in toks and role in ("group", "toolbar"): return "control box"
+        if is_ctrl(n) and {"p-0", "border-0"} <= toks: return None  # a bare slot (select, selectedcontent) inside a field box: the box owns the geometry
+        if is_ctrl(n) and any(a.tag in ("th", "td") for a in n.ancestors()) and not toks & {"h-control", "h-nested", "size-control", "size-nested"}: return "control in a cell"
+        if is_ctrl(n):
+            if "h-full" in toks: return "item in a control box"
+            if toks & {"h-nested", "size-nested"}: return "small control"
+            if t == "summary" and not toks & {"h-control", "size-control"}: return None  # a disclosure row, not a control
+            if role == "tab" or "border-b-2" in toks: return "tab"
+            return "control"
+        if "cursor-text" in toks: return "field box"
+        if "rounded-full" in toks and n.alltext().strip() and not toks & {"size-nested", "size-control"}: return "badge"
+        if "rounded-full" in toks and toks & {"size-nested", "size-control"}: return "round marker"
+        if "popover" in n.attrs or ("absolute" in toks and "rounded-md" in toks): return "tooltip" if "bg-neutral-12" in toks else "popover"
+        if t == "dialog" or role == "dialog": return "dialog"
+        if role in ("status", "alert"):
+            if "bg-neutral-12" in toks: return "toast"
+            return "alert" if any(re.fullmatch(r"bg-[a-z]+-3", x) for x in toks) else None
+        if t == "label" and "rounded-sm" in toks and "border" in toks: return "option card"
+        if "border" in toks and "rounded-md" in toks and any(PAD(x) for x in toks) and not role: return "card"
+        return None
+
+    # kind: (allowed height, allowed padding, allowed gap, allowed corner); None means any, "" means none allowed
+    RULES = {
+        "control": ({"h-control", "size-control"}, {"px-control"}, {"gap-gutter"}, {"rounded-sm", "rounded-full", "rounded-none"}),
+        "tab": ({"h-control"}, {"px-control"}, {"gap-gutter"}, {"rounded-none", "rounded-t-sm"}),
+        "control in a cell": (None, set(), {"gap-gutter-half"}, set()),
+        "field box": ({"h-control"}, {"px-control"}, {"gap-gutter"}, {"rounded-sm"}),
+        "small control": ({"h-nested", "size-nested"}, {"px-nested"}, {"gap-gutter-half"}, {"rounded-inner", "rounded-xs", "rounded-full"}),
+        "item in a control box": ({"h-full"}, {"px-nested"}, {"gap-gutter-half"}, {"rounded-inner"}),
+        "control box": ({"h-control"}, set(), set(), {"rounded-sm"}),
+        "badge": ({"h-nested"}, {"px-nested"}, {"gap-gutter-half"}, {"rounded-full"}),
+        "round marker": ({"size-nested", "size-control"}, {"p-0"}, None, {"rounded-full"}),
+        "keycap": ({"h-nested"}, {"px-2xs"}, set(), {"rounded-xs"}),
+        "card": (None, {"p-md", "p-0"}, None, {"rounded-md"}),
+        "option card": (None, {"p-sm"}, {"gap-sm"}, {"rounded-sm"}),
+        "popover": (None, {"p-inset"}, None, {"rounded-md"}),
+        "tooltip": (None, {"py-2xs", "px-xs"}, None, {"rounded-sm"}),
+        "alert": (None, {"py-xs", "ps-xs", "pe-sm", "p-xs"}, {"gap-gutter", "gap-3xs"}, {"rounded-md"}),
+        "toast": (None, {"p-2xs", "p-xs"}, {"gap-gutter"}, {"rounded-md"}),
+        "dialog": (None, {"p-lg", "p-inset"}, {"gap-md"}, {"rounded-lg", "rounded-md"}),
+    }
+    REQUIRED = {"control": "h", "tab": "h", "field box": "h", "small control": "h", "item in a control box": "h", "control box": "h", "keycap": "h", "round marker": "h", "card": "r", "popover": "r", "tooltip": "r", "alert": "r", "toast": "r", "dialog": "r", "badge": "r", "option card": "r"}
+    out = []
+    for where, html_ in example_sources():
+        for n in parse_tree(html_):
+            k = kind(n)
+            if not k: continue
+            hs, ps, gs, rs = RULES[k]
+            label = f"<{n.tag} class=\"{' '.join(n.toks)[:90]}\">"
+            if k == "control" and any("border-2" in a.toks and a.toks for a in n.ancestors()):
+                rs = rs | {"rounded-inner"}  # an item in a 2px-inset box nests its corner
+            fams = [("height", H, hs), ("padding", PAD, ps), ("gap", GAP, gs), ("corner", RAD, rs)]
+            for name, test, allowed in fams:
+                have = [t for t in n.toks if test(t)]
+                if allowed is None: continue
+                bad = [t for t in have if t not in allowed]
+                if bad: out.append((where, k, f"{name} {' '.join(bad)} (contract: {' or '.join(sorted(allowed)) or 'none'})", label))
+            req = REQUIRED.get(k, "")
+            if "h" in req and not any(H(t) for t in n.toks) and k != "badge":
+                if not (k == "badge" and n.has_btn if hasattr(n, "has_btn") else False):
+                    out.append((where, k, f"no height class (contract: {' or '.join(sorted(hs))})", label))
+            if "r" in req and not any(RAD(t) for t in n.toks):
+                out.append((where, k, f"no corner class (contract: {' or '.join(sorted(rs))})", label))
+    return out
+
+
 def lint_examples():
     """Examples use regular (primitive) classes only. Returns one line per semantic class found in a component snippet
     or in a block of the showcase, except the showcase blocks marked data-semantic-demo."""
@@ -1215,6 +1331,15 @@ def main():
         f.write(json.dumps(comp, indent=2, ensure_ascii=False) + "\n")
     print("wrote components.manifest.json", len(comp["components"]), "components")
 
+if "--geometry-report" in sys.argv:
+    import collections
+    g = geometry_audit()
+    print(f"{len(g)} geometry findings\n")
+    for (k, prob), c in collections.Counter((f[1], f[2].split(" (")[0]) for f in g).most_common():
+        print(f"  {c:3}  {k:22} {prob}")
+    print()
+    for f in g: print(f"OFF  {f[0]}: {f[1]}: {f[2]}  {f[3]}")
+    sys.exit(0)
 if "--type-report" in sys.argv:
     findings, unclassified = type_audit()
     import collections

@@ -1126,7 +1126,7 @@
         "fg-neutral-12",
         "font-medium",
         "font-mono",
-        "gap-2xs",
+        "gap-gutter-half",
         "h-control",
         "hover:fg-neutral-12",
         "icon",
