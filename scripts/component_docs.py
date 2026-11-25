@@ -76,10 +76,10 @@ COMPONENTS = [
     {
         "slug": "toast", "name": "Toast", "icon": "ph-bell-ringing", "group": "Status",
         "summary": "A brief confirmation on the inverse colors, with an optional action.",
-        "html": """<div class="flex items-center gap-sm p-sm pl-md w-fit rounded-lg bg-neutral-12 shadow-lg" role="status">
+        "html": """<div class="flex flex-wrap items-center gap-x-sm gap-y-2xs p-sm pl-md w-fit rounded-lg bg-neutral-12 shadow-lg" role="status">
   <i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-check-circle fg-neutral-1"></i>
   <span class="text-sm fg-neutral-1">Invite sent</span>
-  <button class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent fg-accent-1-8 text-base font-medium cursor-pointer">Undo</button>
+  <span class="ml-auto flex items-center gap-2xs"><button class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent fg-accent-1-8 text-base font-medium cursor-pointer">Undo</button></span>
 </div>""",
         "use": ["Confirm an action that already happened, with Undo when it can be reversed."],
         "avoid": ["Errors the person must fix; use an alert near the problem."],
@@ -275,10 +275,11 @@ COMPONENTS = [
     },
     {
         "slug": "select", "name": "Select", "icon": "ph-list-dashes", "group": "Forms",
-        "summary": "A native select. <code>select-base</code> turns on the customizable select, so the picker takes the theme.",
+        "summary": "A native select. <code>select-base</code> turns on the customizable select, so the picker takes the theme; a <code>&lt;button&gt;</code> holding <code>&lt;selectedcontent&gt;</code> lets a long value end in an ellipsis instead of wrapping.",
         "html": f"""<div class="flex flex-col gap-2xs max-w-form">
   <label for="doc-tz" class="text-sm font-medium">Time zone</label>
   <select id="doc-tz" class="select-base {FIELD}">
+    <button class="grow min-w-0 p-0 border-0 bg-transparent text-left"><selectedcontent class="block truncate"></selectedcontent></button>
     <option>Europe/Helsinki (UTC+2)</option>
     <option>Europe/London (UTC+0)</option>
     <option>America/New_York (UTC−5)</option>
@@ -342,11 +343,11 @@ COMPONENTS = [
         "slug": "pagination", "name": "Pagination", "icon": "ph-dots-three", "group": "Navigation",
         "summary": "Moves through pages of results. The current page is styled by <code>aria-current</code>.",
         "html": """<nav aria-label="Pagination" class="inline-flex items-center gap-3xs">
-  <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 no-underline transition-colors" aria-label="Previous"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-caret-left"></i></a>
+  <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 no-underline transition-colors" aria-label="Previous"><i class="inline-flex items-center justify-center shrink-0 text-base leading-none ph ph-caret-left"></i></a>
   <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums transition-colors">2</a>
   <a href="#" aria-current="page" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums transition-colors">3</a>
   <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums transition-colors">4</a>
-  <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 no-underline transition-colors" aria-label="Next"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-caret-right"></i></a>
+  <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 no-underline transition-colors" aria-label="Next"><i class="inline-flex items-center justify-center shrink-0 text-base leading-none ph ph-caret-right"></i></a>
 </nav>""",
         "use": ["Long lists where people jump to a page; show the total near it."],
         "avoid": ["Feeds people scroll through; load more instead."],
@@ -355,7 +356,7 @@ COMPONENTS = [
         "slug": "menu", "name": "Popover menu", "icon": "ph-list", "group": "Overlays",
         "summary": "A menu that opens with <code>popovertarget</code> and sits against its button with <code>anchor-bottom</code>. No script.",
         "html": f"""<div class="group inline-block">
-<button class="{BTN_SECONDARY}" popovertarget="doc-sort"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-sort-ascending"></i><span>Sort</span><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-caret-down transition group-open:rotate-180" aria-hidden="true"></i></button>
+<button class="{BTN_SECONDARY}" popovertarget="doc-sort"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-sort-ascending"></i><span>Sort</span><i class="inline-flex items-center justify-center shrink-0 text-base leading-none ph ph-caret-down transition group-open:rotate-180" aria-hidden="true"></i></button>
 <div id="doc-sort" popover class="anchor-bottom w-fit p-3xs rounded-lg bg-neutral-1 border border-neutral-6 shadow-lg">
   <div class="flex flex-col" role="listbox" aria-label="Sort by">
     <a href="#" class="{MENU_ITEM}" role="option" aria-selected="true"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-clock"></i><span class="grow">Last edited</span></a>
@@ -388,11 +389,11 @@ COMPONENTS = [
         "summary": "Sections that open and close, built from <code>&lt;details&gt;</code>.",
         "html": """<div class="max-w-form">
   <details class="group border-b border-neutral-6" open>
-    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-base font-semibold hover:fg-accent-1-11 transition-colors">Do I need a build step?<i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-caret-down fg-neutral-11 transition group-open:rotate-180" aria-hidden="true"></i></summary>
+    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-base font-semibold hover:fg-accent-1-11 transition-colors">Do I need a build step?<i class="inline-flex items-center justify-center shrink-0 text-base leading-none ph ph-caret-down fg-neutral-11 transition group-open:rotate-180" aria-hidden="true"></i></summary>
     <p class="text-sm fg-neutral-11 pb-sm">No. Link one stylesheet; every class already exists.</p>
   </details>
   <details class="group border-b border-neutral-6">
-    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-base font-semibold hover:fg-accent-1-11 transition-colors">Does it work in a CMS?<i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-caret-down fg-neutral-11 transition group-open:rotate-180" aria-hidden="true"></i></summary>
+    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-base font-semibold hover:fg-accent-1-11 transition-colors">Does it work in a CMS?<i class="inline-flex items-center justify-center shrink-0 text-base leading-none ph ph-caret-down fg-neutral-11 transition group-open:rotate-180" aria-hidden="true"></i></summary>
     <p class="text-sm fg-neutral-11 pb-sm">Yes. Any class works in any HTML.</p>
   </details>
 </div>""",

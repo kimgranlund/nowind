@@ -247,12 +247,16 @@
         "fg-accent-1-8",
         "fg-neutral-1",
         "flex",
+        "flex-wrap",
         "font-medium",
-        "gap-sm",
+        "gap-2xs",
+        "gap-x-sm",
+        "gap-y-2xs",
         "inline-flex",
         "items-center",
         "justify-center",
         "leading-none",
+        "ml-auto",
         "p-sm",
         "pl-md",
         "px-2xs",
@@ -352,7 +356,7 @@
       "name": "Select",
       "group": "Forms",
       "page": "site/docs/c-select.html",
-      "summary": "A native select. select-base turns on the customizable select, so the picker takes the theme.",
+      "summary": "A native select. select-base turns on the customizable select, so the picker takes the theme; a <button> holding <selectedcontent> lets a long value end in an ellipsis instead of wrapping.",
       "use": [
         "Five or more options; fewer fit a segmented control or radios."
       ],
@@ -364,21 +368,29 @@
       ],
       "classes": [
         "bg-neutral-1",
+        "bg-transparent",
+        "block",
         "border",
+        "border-0",
         "flex",
         "flex-col",
         "font-medium",
         "gap-2xs",
+        "grow",
         "hover:border-neutral-8",
         "invalid:border-danger-7",
         "max-w-form",
+        "min-w-0",
+        "p-0",
         "px-sm",
         "py-xs",
         "rounded-sm",
         "select-base",
         "text-base",
+        "text-left",
         "text-sm",
         "transition-colors",
+        "truncate",
         "w-full"
       ]
     },
@@ -706,7 +718,6 @@
         "shrink-0",
         "tabular-nums",
         "text-base",
-        "text-xl",
         "transition-colors"
       ]
     },
@@ -918,7 +929,6 @@
         "shrink-0",
         "text-base",
         "text-sm",
-        "text-xl",
         "transition",
         "transition-colors"
       ]

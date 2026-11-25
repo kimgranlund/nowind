@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- **Docs for the system:** new Colour, Type and space, States and variants, and Materials pages, their tables read from the manifests (state-variant counts from `nowind.css`). The docs home's figures come from the manifests too. The README covers the lens, backdrops, fields, native controls, default transitions and the new files.
+- **Single-line controls never wrap:** the reset keeps buttons, selects and inputs on one line. In `select-base`, a `<button>` holding `<selectedcontent>` lets a long value end in an ellipsis before the caret; `select-base` no longer zeroes its block padding. Toasts move their actions to a second line instead of squeezing the message. New `basis-0`.
+- **Carets are always the small icon size:** `caret`, the select's picker icon and every caret in the examples (checked by the examples lint).
 - **Showcase form to the field standard:** every field is a slot box with a leading icon for the kind of value, a bare input, `focus-within:` and `has-invalid:` on the box, units in a suffix, a themed select, and a counted bio. New `has-checked:` state variant lets a choice card follow its checked radio. `select-base` puts its caret at the end of the field.
 - **Manifests:** `components.manifest.json` lists every component as data (page, group, summary, use, avoid, classes). `nowind.manifest.json` counts state and group variants and describes rotation, the open-popover group and the contrast classes; the materials manifest describes the lens.
 - **Transitions by default:** the reset gives every interactive element (links, buttons, summaries, fields, labels and the button, tab, option, menuitem and switch roles) a transition on its colours, opacity, shadow and transforms, at the motion duration and easing; reduced motion cuts it. The examples lint requires a transition class on any other element that changes with state.

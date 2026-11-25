@@ -46,6 +46,7 @@
     "neutral": {
       "file": "colors-semantic/neutral.css",
       "family": "slate",
+      "use": "Everything that isn't an accent or a status: page and surfaces, component fills, borders and text",
       "steps": "--neutral-1..12 → --colors-slate-1..12; --neutral-a1..a12 → --colors-slate-a1..a12",
       "contrast": "light-dark(var(--neutral-contrast-white), var(--neutral-contrast-black))"
     },

@@ -154,7 +154,7 @@ After Massimo, a region picks a material and each part says what it is. The mate
 | `material-flat` | No paint (the default) |
 | `material-physical` | Lit faces, a bevel, a cast shadow; pressed buttons sink |
 | `material-frosted` | Cards, buttons and overlays become frosted glass: blurred backdrop, sheen, lit rim |
-| `material-glass` | The same as clear glass: a thinner face and a sharper sheen |
+| `material-glass` | Clear glass after Apple's Liquid Glass: an 18% face, almost no blur, light catching the rim as two thin crescents |
 | `material-outline` | No fills: every part draws one line |
 
 Parts: `relief-raised` (buttons), `relief-raised-solid` (primary buttons), `relief-field` (inputs), `relief-recessed` (tracks, wells), `relief-etched`, `relief-ground` (cards), `relief-overlay` (popovers, dialogs). The nearest material wins, so regions nest.
@@ -165,6 +165,25 @@ Parts: `relief-raised` (buttons), `relief-raised-solid` (primary buttons), `reli
   <button class="relief-raised-solid …">Invite</button>
 </div>
 ```
+
+**The lens.** Add `lens` to a glass part and its backdrop refracts: the edge bends like rounded glass, the body magnifies slightly, and the rim fringes. It needs the `#nowind-lens` SVG filter in the page and `data-lens="on"` on `<html>`; this site's `site.js` draws a filter per element at its size and corner radius and sets the attribute in Chromium, the only engine that applies an SVG filter behind an element. Elsewhere glass keeps its blur.
+
+**Backdrops.** `bg-dots` paints a dot grid in `currentColor` (set it with `fg-*`), spaced by `bg-dots-sm`, `-md` or `-lg`. Glass needs something behind it to bend.
+
+### Fields
+
+A field with an icon, prefix, suffix or trailing action is a box around a bare input. The box takes the border, focus and error states; the slots run leading icon, prefix, input, suffix, trailing. The icon names the kind of value, and units go in the suffix, never in the value.
+
+```html
+<div class="flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8
+            focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 transition">
+  <i class="ph ph-scales fg-neutral-11"></i>
+  <input id="weight" inputmode="decimal" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent" value="72.5">
+  <span class="fg-neutral-11">kg</span>
+</div>
+```
+
+The reset themes the native controls that have no base appearance: the file input's button looks like a secondary button, `progress` is an accent bar, and `meter` turns success, warning or danger from its `low`, `high` and `optimum`. Text fields show focus by turning their border accent, not with a ring. `field-sizing-content` sizes a field to what's typed in it (textareas grow by default; `field-sizing-fixed` stops it).
 
 ### Form marks
 
@@ -182,7 +201,7 @@ After Affine: `gap-grid` is the column gutter (2M), `p-grid-inset` pads a placed
 
 ### Motion
 
-Hover states animate when an element has a transition class. `transition-colors` (and `transition`, `transition-opacity`, `transition-shadow`, `transition-transform`) use Affine's single state change: 160ms on Apple's standard ease. Swap in one of Massimo's springs for movement: `duration-snappy ease-snappy` for a toggle, `duration-smooth ease-smooth` for a sliding sheet, `ease-bouncy` for playful moments. The springs are real spring curves sampled into CSS `linear()`. The reset turns all motion off for people who ask for reduced motion.
+Every interactive element (links, buttons, summaries, fields, labels and the button, tab, option, menuitem and switch roles) transitions its colours, opacity, shadow and transforms by default. Anything else that changes with state names a transition class. `transition-colors` (and `transition`, `transition-opacity`, `transition-shadow`, `transition-transform`) use Affine's single state change: 160ms on Apple's standard ease. Swap in one of Massimo's springs for movement: `duration-snappy ease-snappy` for a toggle, `duration-smooth ease-smooth` for a sliding sheet, `ease-bouncy` for playful moments. The springs are real spring curves sampled into CSS `linear()`. The reset turns all motion off for people who ask for reduced motion.
 
 ### Popovers, select and animation
 
@@ -197,7 +216,7 @@ Hover states animate when an element has a transition class. `transition-colors`
 
 ### Variants
 
-- **Hover**: only on devices that can hover, as Tailwind v4. Text, background and border colors of the role tokens (not raw palette steps), opacity and cursor: `hover:bg-component`, `hover:fg`, `hover:border-strong`, `hover:opacity-100`.
+- **Hover**: only on devices that can hover, as Tailwind v4. Text, background and border colors of the role tokens and of the raw steps of neutral, accent-1 to accent-4 and danger, opacity and cursor: `hover:bg-component`, `hover:bg-neutral-4`, `hover:border-strong`, `hover:opacity-100`.
 - **Breakpoints**: `sm:` 640px, `md:` 768px, `lg:` 1024px, `xl:` 1280px, `2xl:` 1536px (the `--breakpoint-*` tokens), for layout: display, grid columns and spans, flex direction, wrap and basis, alignment, text alignment, widths (`md:w-1/3`) and gaps (`md:gap-lg`). Margins, color and type have no breakpoint variants; padding, position, `top-*`, overflow and heights do.
 
 ```html
@@ -207,20 +226,20 @@ Hover states animate when an element has a transition class. `transition-colors`
 </div>
 ```
 
-- **States** (Tailwind v4 names), colors only: `active:`, `focus-visible:` and `focus-within:` (borders), `selected:` (`aria-selected="true"`), `current:`, `pressed:`, `expanded:`, `open:` (details and popovers), `invalid:` (also `:user-invalid`) and `disabled:` (also `aria-disabled`, with opacity and cursor). They cover the neutral and accent roles and the raw steps of neutral, accent-1 to accent-4 and danger; `invalid:` and `has-invalid:` cover neutral and danger. Markup drives the look:
+- **States** (Tailwind v4 names), colors only: `active:`, `focus-visible:` and `focus-within:` (borders), `selected:` (`aria-selected="true"`), `current:`, `pressed:`, `expanded:`, `open:` (details and popovers), `invalid:` (also `:user-invalid`), `has-invalid:` and `has-checked:` (a wrapper holding an invalid or checked input) and `disabled:` (also `aria-disabled`, with opacity and cursor). They cover the neutral and accent roles and the raw steps of neutral, accent-1 to accent-4 and danger; `invalid:` and `has-invalid:` cover neutral and danger. Markup drives the look:
 
 ```html
 <button role="tab" aria-selected="true"
         class="border-b-2 border-transparent selected:border-accent-1-strong fg-weak selected:fg">Profile</button>
 ```
 
-- **Groups:** put `group` on a parent and `group-hover:`, `group-focus-within:` or `group-open:` on a child to change its opacity, visibility or text role, as a tooltip does.
+- **Groups:** put `group` on a parent and `group-hover:`, `group-focus-within:` or `group-open:` on a child to change its opacity, visibility, rotation or text role. `group-open:` also matches a group holding an open popover, so a caret turns when its menu opens: `<i class="ph ph-caret-down transition group-open:rotate-180">`.
 
 There is no `dark:` variant. Dark mode needs no variant: every color token switches by itself.
 
 ### Light and dark
 
-The page follows the OS setting. Force a mode on any element and everything inside it follows:
+The page follows the OS setting. The site's band has a toggle that sets `data-color-mode` and remembers it. Force a mode on any element and everything inside it follows:
 
 ```html
 <html data-color-mode="dark">
@@ -267,7 +286,8 @@ index.html                     redirects to site/, the GitHub Pages landing page
 AGENTS.md                      how to change Nowind: generated files, script order, rules, naming
 theme.css                      imports the theme groups below
 nowind.css                     reset and utility classes (generated)
-nowind.manifest.json           class counts, groups, variants, changes from Prewind
+nowind.manifest.json           class counts, groups, variants, changes from Prewind (generated)
+components.manifest.json       every component as data: page, group, summary, use, avoid, classes (generated)
 classes.md                     every class and its declarations (generated)
 dist/
   nowind.bundle.css            theme + reset + utilities in one file (generated)
@@ -298,7 +318,9 @@ scripts/
   component_docs.py            the component pages' content: snippet, summary, use and avoid
 site/specimen.html             every token, the reset and every class, live
 site/utilities.html            a demo built only from classes
-site/docs/                     docs site: home, guide, reference, classes, changelog and a page per component (generated by scripts/templates.py)
+site/docs/                     docs site: home, guide, colour, type and space, states and variants, materials, reference, classes, changelog and a page per component (generated by scripts/templates.py)
+site/site.js                   the one script every page loads: ⌘K search, the light/dark toggle, the glass lens
+site/search.json               the search index: every page, block heading, component and class (generated)
 site/components.html           buttons, badges, alerts, forms, cards, tables, navigation and a dialog, built only from classes
 ```
 

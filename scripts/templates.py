@@ -14,7 +14,9 @@ E = html.escape
 GROUP_ORDER = list(dict.fromkeys(c["group"] for c in COMPONENTS))
 BY_GROUP = sorted(COMPONENTS, key=lambda c: GROUP_ORDER.index(c["group"]))
 SECTIONS = [
-    ("Docs", [("docs/docs-home.html", "Overview"), ("docs/guide.html", "Guide"), ("docs/reference.html", "Reference"),
+    ("Docs", [("docs/docs-home.html", "Overview"), ("docs/guide.html", "Guide"), ("docs/colour.html", "Colour"),
+              ("docs/type-space.html", "Type and space"), ("docs/states.html", "States and variants"),
+              ("docs/materials.html", "Materials"), ("docs/reference.html", "Reference"),
               ("docs/changelog.html", "Changelog"), ("docs/index.html", "Templates")]),
     ("Components", [("docs/components-index.html", "All components"), ("components.html", "Showcase")] +
                    [(f"docs/c-{c['slug']}.html", c["name"]) for c in BY_GROUP]),
@@ -24,7 +26,8 @@ SECTIONS = [
 HAND_PAGES = ["index.html", "components.html", "specimen.html", "utilities.html"]
 ORDER = [path for _, pages in SECTIONS for path, _ in pages]
 LABELS = {path: label for _, pages in SECTIONS for path, label in pages}
-TITLES = {"docs/docs-home.html": "Overview", "docs/guide.html": "Lay out a docs page", "docs/reference.html": "Page grid and shell",
+TITLES = {"docs/colour.html": "Colour", "docs/type-space.html": "Type and space", "docs/states.html": "States and variants",
+          "docs/materials.html": "Materials", "docs/docs-home.html": "Overview", "docs/guide.html": "Lay out a docs page", "docs/reference.html": "Page grid and shell",
           "docs/changelog.html": "Changelog", "docs/index.html": "About these templates", "docs/components-index.html": "Components",
           "components.html": "Showcase", "specimen.html": "Specimen", "utilities.html": "Utilities demo",
           "docs/classes.html": "Classes", "docs/semantic.html": "Semantic classes"}
@@ -729,6 +732,130 @@ def classes_page(semantic=False):
     return doc_page(fname, title_, art, toc_items, wide=True).replace("</body>", CLASS_FILTER + "</body>", 1)
 
 
+
+# ---------------------------------------------------------------- system pages, read from the manifests
+def _m(name):
+    return json.load(open(os.path.join(ROOT, name)))
+
+def _plain(t):
+    return E(t)
+
+def colour_page():
+    cm = _m("theme/theme.colors.manifest.json")
+    nm = _m("nowind.manifest.json")
+    ramps = []
+    for name, pal in cm["palettes"].items():
+        sw = "".join(f'<span class="block py-sm rounded-xs bg-{name}-{n}" title="--{name}-{n}"></span>' for n in range(1, 13))
+        light = "contrast-white" in pal["contrast"] and "light-dark" not in pal["contrast"]
+        ramps.append(f"""<div class="flex flex-col gap-3xs">
+            <div class="flex flex-wrap items-baseline justify-between gap-xs"><span class="text-subtitle"><code>{name}</code> · {E(pal['family'])}</span><span class="text-caption fg-weak">{E(pal['use'])}</span></div>
+            <div class="grid grid-cols-12 gap-3xs" aria-hidden="true">{sw}</div>
+            <span class="text-caption fg-weak">Text on its solid: {"light in both modes" if light else "light, then dark"} (<code>fg-{name}-contrast</code>)</span>
+          </div>""")
+    rows = []
+    for g in cm["roles"]:
+        for t in g["tokens"]:
+            neutral, accent = t.get("neutral", ""), t.get("accent", "")
+            rows.append([f"<code>{E(neutral)}</code>", f"<code>{E(accent)}</code>", str(t.get("step", "")), E(t.get("use", ""))])
+    toc = [("palettes", "Palettes"), ("roles", "Roles"), ("classes", "Class names"), ("solid", "Text on a solid"), ("modes", "Light and dark")]
+    art = "\n        ".join([
+        page_head("Docs", "Colour",
+                  "Two layers: palettes of twelve steps, and roles that name what a step is for. Use roles where the meaning matters (a page background, a hover fill, an error border) and steps where you want a specific value. Every value is a <code>light-dark()</code> pair, so both modes come from one class."),
+        section("palettes", "Palettes", p(f"{len(cm['palettes'])} palettes, each a radix-hct family of twelve steps (1–2 backgrounds, 3–5 component fills, 6–8 borders, 9–10 solids, 11–12 text) and twelve alpha steps for transparency."), *ramps),
+        section("roles", "Roles", p("A role is a step chosen for a use. Moving a role moves every part that uses it, and nothing that names a step."),
+                table(["Neutral", "Per palette", "Step", "Use"], rows)),
+        section("classes", "Class names", p(_plain(nm["categories"]["colors"]))),
+        section("solid", "Text on a solid", p("Text on a step-9 fill takes that palette's contrast colour: <code>fg-accent-1-contrast</code> in primitives, <code>fg-on-solid-accent-1</code> as a role. The accents and every status take light text in both modes; neutral is light, then dark."),
+                code("solid.html", "HTML", '<button class="py-xs px-sm rounded-sm border border-transparent bg-accent-1-9 hover:bg-accent-1-10 fg-accent-1-contrast">Save</button>')),
+        section("modes", "Light and dark", p("Colours follow the reader's system setting. <code>.light</code> and <code>.dark</code> (or <code>data-color-mode</code>) force a scheme on any subtree. The toggle in this site's band sets <code>data-color-mode</code> on the root and remembers it; a script in the head applies it before the page paints. There is no <code>dark:</code> variant.")),
+    ])
+    return doc_page("colour.html", "Colour", art)
+
+def type_space_page():
+    ty = _m("theme/theme.typography.manifest.json")
+    tr = _m("theme/theme.type-roles.manifest.json")
+    sp = _m("theme/theme.space.manifest.json")
+    sizes = [[f'<code>text-{t["token"][7:]}</code>', f'<span class="text-{t["token"][7:]}">Aa</span>', f'{t["minPx"]}–{t["maxPx"]}px', str(t["lineHeight"])] for t in ty["sizes"]]
+    roles = [[f'<code>text-{r["role"][2:]}</code>', f'<code>{E(r["size"])}</code>', str(r.get("weight", "")), E(r.get("use", ""))] for r in tr["roles"]]
+    space = [[f'<code>{t["token"][8:]}</code>', f'<code>p-{t["token"][8:]}</code> · <code>gap-{t["token"][8:]}</code>', f'{t["multiplier"]} × F', f'{t["minPx"]}–{t["maxPx"]}px'] for t in sp["sizes"]]
+    faces = ul([f'<code>{E(f["token"])}</code>: {E(f["use"])}' for f in ty["faces"]])
+    toc = [("sizes", "Type sizes"), ("roles", "Type roles"), ("faces", "Faces"), ("space", "Space")]
+    art = "\n        ".join([
+        page_head("Docs", "Type and space",
+                  "One fluid scale for each: sizes grow with the viewport between a phone and a wide screen, and every space step is a multiple of the base size, F. Sizes are the primitives; roles name a size, weight and face for a use."),
+        section("sizes", "Type sizes", p("Each <code>text-*</code> class sets the size and its line height, as Tailwind v4 does. Sizes are measured at the smallest and largest viewport."),
+                table(["Class", "Sample", "Size", "Line height"], sizes)),
+        section("roles", "Type roles", p(f"{len(tr['roles'])} roles, each a size with its weight, face and leading, for a use. A role is semantic; in examples, write the size and weight instead."),
+                table(["Class", "Size", "Weight", "Use"], roles)),
+        section("faces", "Faces", faces),
+        section("space", "Space", p("Space steps are a multiple of F, the base size: fluid at the page's root, and 1em inside a <code>.scope</code> or a tier, so a region with its own font size spaces itself to match. Every padding, margin and gap class takes these steps."),
+                table(["Step", "Classes", "Value", "Size"], space)),
+    ])
+    return doc_page("type-space.html", "Type and space", art)
+
+STATE_DOCS = [
+    ("hover:", ":hover, on devices that can hover", "colour roles and the raw steps of neutral, accent-1 to accent-4 and danger; opacity; cursor"),
+    ("active:", ":active", "neutral and accent colours"),
+    ("focus-visible:", ":focus-visible", "neutral and accent border colours"),
+    ("focus-within:", ":focus-within", "neutral and accent border colours (a field box)"),
+    ("selected:", '[aria-selected="true"]', "neutral and accent colours"),
+    ("current:", '[aria-current], not "false"', "neutral and accent colours"),
+    ("pressed:", '[aria-pressed="true"]', "neutral and accent colours"),
+    ("expanded:", '[aria-expanded="true"]', "neutral and accent colours"),
+    ("open:", "[open], :popover-open", "neutral and accent colours"),
+    ("invalid:", '[aria-invalid="true"], :user-invalid', "neutral and danger text and border colours"),
+    ("has-invalid:", "holds an invalid element", "neutral and danger text and border colours"),
+    ("has-checked:", "holds a checked radio or checkbox", "neutral and accent colours (a choice card)"),
+    ("disabled:", ':disabled, [aria-disabled="true"]', "neutral colours, opacity, cursor"),
+]
+GROUP_DOCS = [
+    ("group-hover:", "the .group is hovered"),
+    ("group-focus-within:", "something in the .group has focus"),
+    ("group-open:", 'the .group is [open], :popover-open, aria-expanded="true", or holds an open popover'),
+]
+
+def states_page():
+    css = open(os.path.join(ROOT, "nowind.css")).read()
+    def count(prefix):
+        return len(set(re.findall(r"\." + re.escape(prefix[:-1]) + r"\\:([a-z0-9-]+)", css)))
+    nm = _m("nowind.manifest.json")
+    rows = [[f"<code>{v}</code>", f"<code>{E(sel)}</code>", E(what), str(count(v))] for v, sel, what in STATE_DOCS]
+    grows = [[f"<code>{v}</code>", E(when), str(count(v))] for v, when in GROUP_DOCS]
+    toc = [("states", "State variants"), ("groups", "Group variants"), ("breakpoints", "Breakpoints"), ("motion", "Transitions and focus"), ("indicators", "Indicators")]
+    art = "\n        ".join([
+        page_head("Docs", "States and variants",
+                  "A variant applies a class only in a state: <code>hover:bg-neutral-4</code>, <code>selected:border-accent-1-8</code>, <code>md:flex</code>. Each variant covers a fixed set of classes, mostly colours, so the stylesheet stays one file. The markup drives the look: set the ARIA attribute and the class follows."),
+        section("states", "State variants", table(["Variant", "Matches", "Applies to", "Classes"], rows),
+                code("tab.html", "HTML", '<button role="tab" aria-selected="true" class="py-xs px-sm border-b-2 border-transparent selected:border-accent-1-8 fg-neutral-11 selected:fg-neutral-12">Profile</button>')),
+        section("groups", "Group variants", p("Put <code>group</code> on a parent; a child reacts to its state. These cover opacity, visibility, rotation and the text roles."),
+                table(["Variant", "When", "Classes"], grows)),
+        section("breakpoints", "Breakpoints", p(_plain(nm["variants"]["responsive"]))),
+        section("motion", "Transitions and focus",
+                p("Every interactive element (links, buttons, summaries, fields, labels, and the button, tab, option, menuitem and switch roles) transitions its colours, opacity, shadow and transforms by default, at the motion duration and easing. Reduced motion cuts it. Anything else that changes with state names <code>transition</code>."),
+                p("Focus: buttons, links and checkable controls get a 2px accent ring on <code>:focus-visible</code>. Text fields get no ring; their border turns accent, and a field box shows its input's focus with <code>focus-within:</code>.")),
+        section("indicators", "Indicators", p("An indicator follows the state it shows. A caret turns over when its disclosure or menu opens: put <code>group</code> on the <code>details</code> or on the wrapper holding the button and its popover."),
+                code("caret.html", "HTML", '<details class="group">\n  <summary class="flex items-center justify-between list-none">\n    Shipping <i class="ph ph-caret-down text-base transition group-open:rotate-180"></i>\n  </summary>\n  …\n</details>')),
+    ])
+    return doc_page("states.html", "States and variants", art)
+
+def materials_page():
+    mm = _m("theme/theme.materials.manifest.json")
+    rows = [[f"<code>material-{k}</code>", E(v)] for k, v in mm["materials"].items()]
+    toc = [("materials", "Materials"), ("reliefs", "Parts"), ("glass", "Glass and the lens"), ("backdrops", "Backdrops")]
+    art = "\n        ".join([
+        page_head("Docs", "Materials",
+                  "A material is how a region is painted: flat, lit, frosted, clear glass or outlined. It never changes a length, so switching material moves nothing. Set it once on a region; every part inside paints itself by what it is."),
+        section("materials", "Materials", table(["Class", "What it does"], rows)),
+        section("reliefs", "Parts", p(_plain(mm["usage"])),
+                code("material.html", "HTML", '<div class="material-frosted relief-ground p-md rounded-lg">\n  <input class="relief-field …">\n  <button class="relief-raised-solid …">Invite</button>\n</div>')),
+        section("glass", "Glass and the lens", p(_plain(mm["materials"]["glass"])), p(_plain(mm["glass"]["lens"])),
+                code("lens.html", "HTML", '<div class="material-glass relief-ground lens rounded-lg">…</div>\n<!-- the page provides the filter and sets data-lens="on" on <html> where the engine can draw it;\n     on this site, site.js does both -->'),
+                callout("note", "Only Chromium applies an SVG filter behind an element. Elsewhere glass keeps its blur, so text over it must read without the lens.")),
+        section("backdrops", "Backdrops", p("Glass needs something behind it to bend. <code>bg-dots</code> paints a dot grid in <code>currentColor</code>, spaced by <code>bg-dots-sm</code>, <code>-md</code> or <code>-lg</code>: the showcase sets its materials on one."),
+                code("dots.html", "HTML", '<div class="bg-neutral-2 fg-accent-1-9 bg-dots bg-dots-md">…</div>')),
+    ])
+    return doc_page("materials.html", "Materials", art)
+
 # ---------------------------------------------------------------- component docs
 def classes_of(snippet):
     """The utility classes a snippet uses, sorted (Phosphor's icon classes left out)."""
@@ -802,6 +929,8 @@ def lint_examples():
             role = re.search(r'role="(\w+)"', m.group(2) + m.group(4))
             if tag in ("a", "button", "summary", "input", "select", "textarea", "label") or (role and role.group(1) in ("button", "tab", "option", "menuitem", "switch")):
                 continue
+            if any(re.fullmatch(r"ph-caret-[a-z-]+", t) for t in toks) and "text-base" not in toks:
+                out.append(f"{where}: a caret isn't the small icon size. Fix: give it text-base.")
             if any(variant.match(t) for t in toks) and not any(t.startswith("transition") for t in toks):
                 out.append(f"{where}: <{tag}> changes with state but has no transition class. Fix: add transition.")
         for cls in re.findall(r'class="([^"]+)"', html_):
@@ -827,7 +956,8 @@ def lint_examples():
 def main():
     os.makedirs(OUT, exist_ok=True)
     files = {"guide.html": guide(), "reference.html": reference(), "changelog.html": changelog(),
-             "docs-home.html": docs_home(), "index.html": index(), "components-index.html": components_index(), "classes.html": classes_page(), "semantic.html": classes_page(True)}
+             "docs-home.html": docs_home(), "index.html": index(), "components-index.html": components_index(), "classes.html": classes_page(), "semantic.html": classes_page(True),
+             "colour.html": colour_page(), "type-space.html": type_space_page(), "states.html": states_page(), "materials.html": materials_page()}
     files.update({f"c-{c['slug']}.html": component_page(c) for c in COMPONENTS})
     for name, text in files.items():
         text = text.replace("<code>--", '<code class="whitespace-nowrap">--')

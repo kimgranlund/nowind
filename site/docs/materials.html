@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en" class="scroll-pt-header">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Materials · Nowind</title>
+<link rel="icon" href="data:,">
+<script>try{var m=localStorage.getItem("nowind-color-mode");if(m)document.documentElement.dataset.colorMode=m}catch(e){}</script>
+<link rel="stylesheet" href="../../theme.css">
+<link rel="stylesheet" href="../../nowind.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
+</head>
+<body class="bg fg">
+<header class="sticky top-0 z-30 bg-inverse fg-inverse">
+  <div class="flex items-center gap-lg h-header px-grid">
+    <a href="../index.html" class="inline-flex items-center gap-gutter-half no-underline fg-inverse"><i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-inverse-weak">0.8.0</span></a>
+    <nav aria-label="Sections" class="hidden md:flex items-center gap-lg"><a href="docs-home.html" aria-current="true" class="inline-flex items-center h-header border-b-2 border-accent-1 no-underline fg-inverse text-title-sm">Docs</a><a href="components-index.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Components</a><a href="../specimen.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Specimen</a><a href="classes.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Classes</a></nav>
+    <button type="button" data-theme-toggle class="inline-flex items-center justify-center size-nested ml-auto rounded-nested border border-transparent bg-transparent fg-inverse-weak hover:fg-inverse cursor-pointer transition-colors" aria-label="Switch to dark mode"><i class="icon ph ph-moon"></i></button>
+    <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center size-nested no-underline fg-inverse-weak hover:fg-inverse transition-colors" aria-label="Nowind on GitHub"><i class="icon ph ph-github-logo"></i></a>
+  </div>
+</header>
+<div class="flex items-center gap-xs px-grid py-2xs border-b-2 border-strong bg">
+  <button type="button" popovertarget="site-map" class="inline-flex items-center gap-gutter-half min-w-0 h-control px-control rounded-control border hover:bg-component-weak bg text-title-sm cursor-pointer transition-colors" aria-label="Site map: Docs"><span class="fg-weak">Docs</span><span class="fg-subtle">/</span><span class="truncate">Materials</span><i class="icon caret fg-weak" aria-hidden="true"></i></button>
+  <button type="button" data-search-open class="inline-flex items-center gap-gutter grow min-w-0 max-w-form h-control px-control rounded-control border hover:border-strong bg-strong fg-subtle text-control-md cursor-text transition-colors" aria-label="Search the site"><i class="icon ph ph-magnifying-glass"></i><span class="grow truncate text-left">Search pages, components and classes</span><kbd class="hidden sm:inline text-mono-sm">⌘K</kbd></button>
+  <span class="flex-1 hidden lg:block"></span>
+  <span class="hidden sm:flex items-center gap-3xs"><a href="states.html" class="inline-flex items-center justify-center size-control rounded-sm border hover:bg-component-weak no-underline fg transition-colors" aria-label="Previous: States and variants"><i class="icon ph ph-arrow-left"></i></a><a href="reference.html" class="inline-flex items-center justify-center size-control rounded-sm border hover:bg-component-weak no-underline fg transition-colors" aria-label="Next: Page grid and shell"><i class="icon ph ph-arrow-right"></i></a></span>
+</div>
+<div id="site-map" popover class="anchor-bottom w-full max-w-measure max-h-below-header overflow-y-auto p-surface rounded-lg bg fg border shadow-lg">
+  <nav aria-label="Site map" class="grid grid-cols-1 md:grid-cols-4 gap-group">
+    <div class=" flex flex-col gap-2xs min-w-0"><span class="text-kicker fg-weak">Docs</span><ul role="list" class="grid grid-cols-1"><li><a href="docs-home.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Overview</a></li><li><a href="guide.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Guide</a></li><li><a href="colour.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Colour</a></li><li><a href="type-space.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Type and space</a></li><li><a href="states.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">States and variants</a></li><li><a href="materials.html" aria-current="page" class="block py-3xs no-underline text-body-sm fg font-semibold transition-colors">Materials</a></li><li><a href="reference.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Reference</a></li><li><a href="changelog.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Changelog</a></li><li><a href="index.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Templates</a></li></ul></div>
+    <div class="md:col-span-2 flex flex-col gap-2xs min-w-0"><span class="text-kicker fg-weak">Components</span><ul role="list" class="grid grid-cols-2 gap-x-md"><li><a href="components-index.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">All components</a></li><li><a href="../components.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Showcase</a></li></ul><div class="grid grid-cols-2 gap-x-md gap-y-sm pt-2xs"><div class="flex flex-col gap-sm min-w-0"><div class="flex flex-col gap-3xs min-w-0"><span class="text-label fg-subtle">Actions</span><ul role="list" class="grid grid-cols-1"><li><a href="c-button.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Button</a></li><li><a href="c-icon-button.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Icon button</a></li><li><a href="c-segmented.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Segmented control</a></li></ul></div><div class="flex flex-col gap-3xs min-w-0"><span class="text-label fg-subtle">Status</span><ul role="list" class="grid grid-cols-1"><li><a href="c-badge.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Badge</a></li><li><a href="c-alert.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Alert</a></li><li><a href="c-toast.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Toast</a></li></ul></div><div class="flex flex-col gap-3xs min-w-0"><span class="text-label fg-subtle">Forms</span><ul role="list" class="grid grid-cols-1"><li><a href="c-text-field.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Text field</a></li><li><a href="c-select.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Select</a></li><li><a href="c-form-controls.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Checkbox, radio and switch</a></li><li><a href="c-combobox.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Combobox</a></li><li><a href="c-date-range.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Date range</a></li></ul></div><div class="flex flex-col gap-3xs min-w-0"><span class="text-label fg-subtle">Layout</span><ul role="list" class="grid grid-cols-1"><li><a href="c-card.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Card</a></li><li><a href="c-media-card.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Media card</a></li></ul></div></div><div class="flex flex-col gap-sm min-w-0"><div class="flex flex-col gap-3xs min-w-0"><span class="text-label fg-subtle">Navigation</span><ul role="list" class="grid grid-cols-1"><li><a href="c-tabs.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Tabs</a></li><li><a href="c-breadcrumbs.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Breadcrumbs</a></li><li><a href="c-pagination.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Pagination</a></li></ul></div><div class="flex flex-col gap-3xs min-w-0"><span class="text-label fg-subtle">Overlays</span><ul role="list" class="grid grid-cols-1"><li><a href="c-menu.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Popover menu</a></li><li><a href="c-dialog.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Dialog</a></li><li><a href="c-tooltip.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Tooltip</a></li></ul></div><div class="flex flex-col gap-3xs min-w-0"><span class="text-label fg-subtle">Disclosure</span><ul role="list" class="grid grid-cols-1"><li><a href="c-accordion.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Accordion</a></li></ul></div><div class="flex flex-col gap-3xs min-w-0"><span class="text-label fg-subtle">Data display</span><ul role="list" class="grid grid-cols-1"><li><a href="c-avatar.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Avatar and group</a></li><li><a href="c-progress.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Progress bar</a></li><li><a href="c-table.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Table</a></li><li><a href="c-sortable-table.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Sortable table</a></li></ul></div><div class="flex flex-col gap-3xs min-w-0"><span class="text-label fg-subtle">Feedback</span><ul role="list" class="grid grid-cols-1"><li><a href="c-empty-state.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Empty state</a></li><li><a href="c-loading.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Spinner and skeleton</a></li></ul></div></div></div></div>
+    <div class="flex flex-col gap-group"><div class=" flex flex-col gap-2xs min-w-0"><span class="text-kicker fg-weak">Specimen</span><ul role="list" class="grid grid-cols-1"><li><a href="../specimen.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Tokens</a></li><li><a href="../utilities.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Utilities demo</a></li></ul></div><div class=" flex flex-col gap-2xs min-w-0"><span class="text-kicker fg-weak">Classes</span><ul role="list" class="grid grid-cols-1"><li><a href="classes.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Regular</a></li><li><a href="semantic.html" class="block py-3xs no-underline text-body-sm fg-weak hover:fg transition-colors">Semantic</a></li></ul></div></div>
+  </nav>
+</div>
+<main id="content" class="tier-content px-grid">
+  <div class="grid grid-cols-12 gap-x-grid">
+        <header class="col-span-12 flex flex-col gap-field pt-page pb-xl">
+            <span class="text-kicker fg-weak">Docs</span>
+            <h1 class="text-display-sm text-balance">Materials</h1>
+            <p class="text-body-md fg-weak max-w-measure">A material is how a region is painted: flat, lit, frosted, clear glass or outlined. It never changes a length, so switching material moves nothing. Set it once on a region; every part inside paints itself by what it is.</p>
+          </header>
+        <section id="materials" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Materials</h2></div>
+          <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
+          <div class="border border-weak">
+            <table class="w-full text-body-md">
+              <thead class="bg-strong"><tr><th scope="col" class="text-left px-sm py-xs border-b text-label fg-weak">Class</th><th scope="col" class="text-left px-sm py-xs border-b text-label fg-weak">What it does</th></tr></thead>
+              <tbody>
+                <tr><td class="text-left align-top px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">material-flat</code></td><td class="text-left align-top px-sm py-xs break-words border-b border-weak">No paint: the default. Overlays still cast.</td></tr>
+                <tr><td class="text-left align-top px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">material-physical</code></td><td class="text-left align-top px-sm py-xs break-words border-b border-weak">Lit: face shading, a bevel (lit top, shaded bottom, half-pixel ring) and the raised cast; pressed sinks to a recess; fields and wells are recessed; cards cast at the popup level.</td></tr>
+                <tr><td class="text-left align-top px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">material-frosted</code></td><td class="text-left align-top px-sm py-xs break-words border-b border-weak">Lit, and raised parts, cards and overlays are frosted glass: a 56% face over an 8px blur, a specular sheen, a lit rim and the cast.</td></tr>
+                <tr><td class="text-left align-top px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">material-glass</code></td><td class="text-left align-top px-sm py-xs break-words border-b border-weak">Lit, and raised parts, cards and overlays are clear glass after Apple&#x27;s Liquid Glass: an 18% face over a 0.5px blur, no gloss band, and the light catching the rim as two thin crescents on opposite corners. Add lens for refraction.</td></tr>
+                <tr><td class="text-left align-top px-sm py-xs break-words"><code class="whitespace-normal break-all">material-outline</code></td><td class="text-left align-top px-sm py-xs break-words">No fills but state: every part draws one 1px line in the muted text color; overlays stay opaque.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          </div>
+        </section>
+        <section id="reliefs" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Parts</h2></div>
+          <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
+          <p class="text-body-md max-w-measure">Set a material on a region with material-physical, material-frosted, material-glass or material-outline (material-flat resets it). Parts say what they are with relief-raised (buttons), relief-raised-solid (primary buttons), relief-recessed (tracks, wells), relief-field (inputs), relief-etched, relief-ground (cards) and relief-overlay (popovers, dialogs). The nearest material wins: the classes are @scope rules that stop at a nested material.</p>
+          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
+              <span class="text-mono-sm fg-weak truncate">material.html</span><span class="text-kicker fg-subtle">HTML</span>
+            </figcaption>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;material-frosted relief-ground p-md rounded-lg&quot;&gt;
+  &lt;input class=&quot;relief-field …&quot;&gt;
+  &lt;button class=&quot;relief-raised-solid …&quot;&gt;Invite&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+          </figure>
+          </div>
+        </section>
+        <section id="glass" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Glass and the lens</h2></div>
+          <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
+          <p class="text-body-md max-w-measure">Lit, and raised parts, cards and overlays are clear glass after Apple&#x27;s Liquid Glass: an 18% face over a 0.5px blur, no gloss band, and the light catching the rim as two thin crescents on opposite corners. Add lens for refraction.</p>
+          <p class="text-body-md max-w-measure">The lens class refracts the backdrop of a glass part through an SVG displacement filter: site/site.js draws a map per element at its size and corner radius (a rounded-edge bend along the rim, a slight overall magnification, an R/G/B fringe) and sets data-lens=&quot;on&quot; on the root in Chromium, the only engine that applies an SVG filter in backdrop-filter. Elsewhere glass keeps its blur. A page outside this site supplies the filter itself.</p>
+          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
+              <span class="text-mono-sm fg-weak truncate">lens.html</span><span class="text-kicker fg-subtle">HTML</span>
+            </figcaption>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;material-glass relief-ground lens rounded-lg&quot;&gt;…&lt;/div&gt;
+&lt;!-- the page provides the filter and sets data-lens=&quot;on&quot; on &lt;html&gt; where the engine can draw it;
+     on this site, site.js does both --&gt;</code></pre>
+          </figure>
+          <aside role="note" class="flex gap-gutter p-surface border-l-4 border-info bg-component-info-weak">
+            <i class="icon ph ph-info fg-info-weak"></i>
+            <div class="flex flex-col gap-3xs min-w-0">
+              <span class="text-label fg-info">Note</span>
+              <p class="text-body-md">Only Chromium applies an SVG filter behind an element. Elsewhere glass keeps its blur, so text over it must read without the lens.</p>
+            </div>
+          </aside>
+          </div>
+        </section>
+        <section id="backdrops" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Backdrops</h2></div>
+          <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
+          <p class="text-body-md max-w-measure">Glass needs something behind it to bend. <code>bg-dots</code> paints a dot grid in <code>currentColor</code>, spaced by <code>bg-dots-sm</code>, <code>-md</code> or <code>-lg</code>: the showcase sets its materials on one.</p>
+          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
+              <span class="text-mono-sm fg-weak truncate">dots.html</span><span class="text-kicker fg-subtle">HTML</span>
+            </figcaption>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;bg-neutral-2 fg-accent-1-9 bg-dots bg-dots-md&quot;&gt;…&lt;/div&gt;</code></pre>
+          </figure>
+          </div>
+        </section>
+        <nav aria-label="Previous and next page" class="col-span-12 grid grid-cols-1 md:grid-cols-2 gap-grid py-page border-t border-strong">
+          <a href="states.html" class="flex flex-col gap-3xs p-surface border border-weak hover:border-strong no-underline transition-colors">
+            <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><i class="icon icon-sm ph-bold ph-arrow-left"></i><span>Previous</span></span>
+            <span class="text-subtitle fg-accent-1-weak">States and variants</span>
+          </a>
+          <a href="reference.html" class="flex flex-col md:items-end gap-3xs p-surface border border-weak hover:border-strong no-underline md:text-right transition-colors">
+            <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><span>Next</span><i class="icon icon-sm ph-bold ph-arrow-right"></i></span>
+            <span class="text-subtitle fg-accent-1-weak">Page grid and shell</span>
+          </a>
+        </nav>
+  </div>
+</main>
+<footer class="flex flex-col md:flex-row md:items-center justify-between gap-field px-grid py-surface border-t-2 border-strong text-caption fg-weak">
+  <span>Nowind 0.8.0. Every page here is built from Nowind utility classes only.</span>
+  <span class="flex flex-wrap gap-row">
+    <a href="changelog.html" class="no-underline fg-weak hover:fg transition-colors">Changelog</a>
+    <a href="index.html" class="no-underline fg-weak hover:fg transition-colors">About these templates</a>
+    <a href="https://github.com/kimgranlund/nowind" class="no-underline fg-weak hover:fg transition-colors">GitHub</a>
+  </span>
+</footer>
+<svg width="0" height="0" class="absolute" aria-hidden="true" focusable="false"><filter id="nowind-lens" x="0" y="0" width="1" height="1" filterUnits="objectBoundingBox" primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB"><feImage href="data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 100 100&#x27; preserveAspectRatio=&#x27;none&#x27;%3E%3Cdefs%3E%3ClinearGradient id=&#x27;r&#x27;%3E%3Cstop offset=&#x27;0&#x27; stop-color=&#x27;#f00&#x27;/%3E%3Cstop offset=&#x27;1&#x27; stop-color=&#x27;#000&#x27;/%3E%3C/linearGradient%3E%3ClinearGradient id=&#x27;g&#x27; x2=&#x27;0&#x27; y2=&#x27;1&#x27;%3E%3Cstop offset=&#x27;0&#x27; stop-color=&#x27;#0f0&#x27;/%3E%3Cstop offset=&#x27;1&#x27; stop-color=&#x27;#000&#x27;/%3E%3C/linearGradient%3E%3Cfilter id=&#x27;b&#x27; x=&#x27;-20%&#x27; y=&#x27;-20%&#x27; width=&#x27;140%&#x27; height=&#x27;140%&#x27;%3E%3CfeGaussianBlur stdDeviation=&#x27;7&#x27;/%3E%3C/filter%3E%3C/defs%3E%3Crect width=&#x27;100&#x27; height=&#x27;100&#x27; fill=&#x27;url(#r)&#x27;/%3E%3Crect width=&#x27;100&#x27; height=&#x27;100&#x27; fill=&#x27;url(#g)&#x27; style=&#x27;mix-blend-mode:screen&#x27;/%3E%3Crect x=&#x27;16&#x27; y=&#x27;16&#x27; width=&#x27;68&#x27; height=&#x27;68&#x27; rx=&#x27;8&#x27; fill=&#x27;#808000&#x27; filter=&#x27;url(#b)&#x27;/%3E%3C/svg%3E" x="0" y="0" width="1" height="1" preserveAspectRatio="none" result="map"/><feDisplacementMap in="SourceGraphic" in2="map" scale="0.13" xChannelSelector="R" yChannelSelector="G" result="dr"/><feDisplacementMap in="SourceGraphic" in2="map" scale="0.1365" xChannelSelector="R" yChannelSelector="G" result="dg"/><feDisplacementMap in="SourceGraphic" in2="map" scale="0.143" xChannelSelector="R" yChannelSelector="G" result="db"/><feColorMatrix in="dr" values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" result="cr"/><feColorMatrix in="dg" values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0" result="cg"/><feColorMatrix in="db" values="0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0" result="cb"/><feBlend in="cr" in2="cg" mode="screen" result="rg"/><feBlend in="rg" in2="cb" mode="screen" result="rgb"/><feGaussianBlur in="rgb" stdDeviation="0.004"/></filter></svg>
+<script src="../site.js" defer></script>
+</body>
+</html>
