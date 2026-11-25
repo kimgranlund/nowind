@@ -21,7 +21,7 @@
     "group": 174,
     "responsive": 940,
     "container": 333,
-    "bytes": 303070
+    "bytes": 303065
   },
   "naming": "property-value, as Prewind and Tailwind: p-md, gap-lg, bg-solid-accent-1. Colour classes take the token name without --; text-color roles are the token name alone (fg-weak, fg-accent-1).",
   "variants": {
