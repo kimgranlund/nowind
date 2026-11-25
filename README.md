@@ -230,6 +230,7 @@ scripts/
   utilities.mjs                generates nowind.css from the theme tokens
   bundle.mjs                   inlines theme.css's imports and nowind.css into dist/
   check.mjs                    checks the rules in AGENTS.md; --self-test proves it catches breaks
+  serve.mjs                    dev server on port 8765 with caching off
 specimen.html                  every token, the reset and every class, live
 utilities.html                 a demo built only from classes
 components.html                buttons, badges, alerts, forms, cards, tables, navigation and a dialog, built only from classes
@@ -267,10 +268,10 @@ The scripts need Node 18 or later and have no dependencies. People who use Nowin
 
 ## Specimen
 
-`specimen.html` reads the tokens, reset rules and classes straight from the stylesheets, so it stays current. It needs a local server, because browsers block reading stylesheets from `file://`:
+`specimen.html` reads the tokens, reset rules and classes straight from the stylesheets, so it stays current. It needs a local server, because browsers block reading stylesheets from `file://`. The dev server turns caching off, so an edited stylesheet and everything it imports reload fresh:
 
 ```bash
-python3 -m http.server 8765
+node scripts/serve.mjs
 ```
 
 Then open http://localhost:8765/specimen.html, or http://localhost:8765/components.html for common interface parts built only from utility classes.

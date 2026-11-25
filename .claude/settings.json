@@ -5,7 +5,8 @@
       "Bash(node scripts/shadows.mjs)",
       "Bash(node scripts/utilities.mjs)",
       "Bash(node scripts/bundle.mjs)",
-      "Bash(node scripts/check.mjs:*)"
+      "Bash(node scripts/check.mjs:*)",
+      "Bash(node scripts/serve.mjs:*)"
     ],
     "deny": [
       "Edit(./nowind.css)",

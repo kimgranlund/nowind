@@ -44,7 +44,7 @@ node scripts/check.mjs       # before every commit
 
 `scripts/check.mjs` enforces the rules below: no comments and no `color-mix()` in Nowind's CSS, every token a manifest names exists, and every generated file matches what the scripts write. `node scripts/check.mjs --self-test` breaks a copy four ways and confirms each is caught.
 
-Then check the result in `specimen.html` through a local server (`python3 -m http.server 8765`); browsers block reading stylesheets from `file://`. The `specimen` entry in `.claude/launch.json` starts it.
+Then check the result in `specimen.html` through the dev server (`node scripts/serve.mjs`, port 8765); browsers block reading stylesheets from `file://`, and the server turns caching off so an edited stylesheet and its imports reload fresh. The `specimen` entry in `.claude/launch.json` starts it.
 
 ## Rules
 
