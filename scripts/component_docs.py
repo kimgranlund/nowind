@@ -93,6 +93,11 @@ COMPONENTS = [
     <input id="doc-email" type="email" class="{FIELD}" value="ada@" aria-invalid="true" aria-describedby="doc-email-error">
     <span id="doc-email-error" class="text-caption fg-danger-weak">Enter a complete email address.</span>
   </div>
+  <div class="flex flex-col gap-field">
+    <label for="doc-photo" class="text-label">Photo</label>
+    <input id="doc-photo" type="file" accept="image/*">
+    <span class="text-caption fg-weak">PNG or JPEG, up to 5 MB. The reset themes the button.</span>
+  </div>
 </div>""",
         "use": ["<code>gap-field</code> between label, control and help; <code>gap-group</code> between fields."],
         "avoid": ["A placeholder instead of a label."],
@@ -235,14 +240,24 @@ COMPONENTS = [
     },
     {
         "slug": "progress", "name": "Progress bar", "icon": "ph-chart-bar-horizontal", "group": "Data display",
-        "summary": "A track and a fill sized with a fraction class.",
-        "html": """<div class="flex flex-col gap-field max-w-form">
-  <div class="flex justify-between text-label"><span>Storage</span><span class="fg-weak tabular-nums">6.4 of 10 GB</span></div>
-  <div class="rounded-full bg-component overflow-hidden" role="progressbar" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100" aria-label="Storage used">
-    <div class="w-2/3 py-3xs rounded-full bg-solid-accent-1"></div>
+        "summary": "Native <code>progress</code> and <code>meter</code>, themed by the reset, or a track and a fill sized with a fraction class.",
+        "html": """<div class="flex flex-col gap-group max-w-form">
+  <div class="flex flex-col gap-field">
+    <div class="flex justify-between text-label"><label for="doc-upload">Uploading</label><span class="fg-weak tabular-nums">64%</span></div>
+    <progress id="doc-upload" value="64" max="100">64%</progress>
+  </div>
+  <div class="flex flex-col gap-field">
+    <div class="flex justify-between text-label"><label for="doc-disk">Disk</label><span class="fg-weak tabular-nums">9.1 of 10 GB</span></div>
+    <meter id="doc-disk" value="9.1" min="0" max="10" low="6" high="8.5" optimum="2">9.1 of 10 GB</meter>
+  </div>
+  <div class="flex flex-col gap-field">
+    <div class="flex justify-between text-label"><span>Storage</span><span class="fg-weak tabular-nums">6.4 of 10 GB</span></div>
+    <div class="rounded-full bg-component overflow-hidden" role="progressbar" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100" aria-label="Storage used">
+      <div class="w-2/3 py-3xs rounded-full bg-solid-accent-1"></div>
+    </div>
   </div>
 </div>""",
-        "use": ["Always print the value next to the bar."],
+        "use": ["Always print the value next to the bar.", "<code>progress</code> for a task under way; <code>meter</code> for a level within a range, which turns warning or danger past its <code>high</code> and <code>low</code>."],
         "avoid": ["A bar for something that isn't a share of a whole."],
     },
     {

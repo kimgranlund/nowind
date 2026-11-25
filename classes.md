@@ -1211,7 +1211,7 @@ Variants: `hover:` on the 162 role-colour, opacity and cursor classes (inside `@
 
 ## Layout and misc
 
-241 classes.
+243 classes.
 
 | Class | Declarations |
 |---|---|
@@ -1381,6 +1381,8 @@ Variants: `hover:` on the 162 role-colour, opacity and cursor classes (inside `@
 | `.resize-none` | `resize: none` |
 | `.resize` | `resize: both` |
 | `.resize-y` | `resize: vertical` |
+| `.field-sizing-content` | `field-sizing: content` |
+| `.field-sizing-fixed` | `field-sizing: fixed` |
 | `.resize-x` | `resize: horizontal` |
 | `.w-0` | `width: 0` |
 | `.w-auto` | `width: auto` |

@@ -215,6 +215,8 @@ add("pointer-events-auto", "pointer-events: auto");
 add("resize-none", "resize: none");
 add("resize", "resize: both");
 add("resize-y", "resize: vertical");
+add("field-sizing-content", "field-sizing: content");
+add("field-sizing-fixed", "field-sizing: fixed");
 add("resize-x", "resize: horizontal");
 for (const [d, p, u] of [["w", "width", "vw"], ["h", "height", "vh"]]) {
   add(`${d}-0`, `${p}: 0`);
@@ -476,6 +478,20 @@ const reset = `@layer reset {
   }
   :where(textarea) { field-sizing: content; resize: vertical; }
   :where(textarea:not([rows])) { min-block-size: 6lh; }
+  :where(input[type="file"]) { max-inline-size: 100%; color: var(--fg-weak); }
+  :where(input[type="file"])::file-selector-button { font: inherit; font-weight: var(--title-sm--font-weight); color: var(--fg); block-size: var(--control-height); padding-inline: var(--control-padding); margin-inline-end: var(--gutter); border: var(--border-width) solid var(--border); border-radius: var(--radius-control); background: var(--component-weak); cursor: pointer; transition: background-color var(--motion-duration) var(--motion-easing); }
+  :where(input[type="file"])::file-selector-button:hover { background: var(--component); }
+  :where(progress, meter) { appearance: none; display: inline-block; inline-size: 100%; block-size: calc(var(--space-3xs) * 2); border: 0; border-radius: 9999px; background: var(--component-strong); overflow: hidden; vertical-align: middle; }
+  :where(progress)::-webkit-progress-bar { background: var(--component-strong); border-radius: 9999px; }
+  :where(progress)::-webkit-progress-value { background: var(--solid-accent-1); border-radius: 9999px; transition: inline-size var(--motion-duration) var(--motion-easing); }
+  :where(progress)::-moz-progress-bar { background: var(--solid-accent-1); border-radius: 9999px; }
+  :where(meter)::-webkit-meter-bar { block-size: 100%; border: 0; border-radius: 9999px; background: var(--component-strong); }
+  :where(meter)::-webkit-meter-optimum-value { background: var(--solid-success); border-radius: 9999px; }
+  :where(meter)::-webkit-meter-suboptimum-value { background: var(--solid-warning); border-radius: 9999px; }
+  :where(meter)::-webkit-meter-even-less-good-value { background: var(--solid-danger); border-radius: 9999px; }
+  :where(meter:-moz-meter-optimum)::-moz-meter-bar { background: var(--solid-success); border-radius: 9999px; }
+  :where(meter:-moz-meter-sub-optimum)::-moz-meter-bar { background: var(--solid-warning); border-radius: 9999px; }
+  :where(meter:-moz-meter-sub-sub-optimum)::-moz-meter-bar { background: var(--solid-danger); border-radius: 9999px; }
   :where(button, [role="button"], label[for], select, summary) { cursor: pointer; }
   :where(:disabled) { cursor: not-allowed; }
 
@@ -508,6 +524,12 @@ const reset = `@layer reset {
     :where(input[type="checkbox"][role="switch"])::before { background: CanvasText; }
     :where(input[type="checkbox"][role="switch"]):checked::before { background: HighlightText; }
     :where(input[type="range"]) { forced-color-adjust: none; }
+    :where(progress, meter) { forced-color-adjust: none; background: Canvas; outline: 1px solid CanvasText; }
+    :where(progress)::-webkit-progress-value { background: Highlight; }
+    :where(progress)::-moz-progress-bar { background: Highlight; }
+    :where(meter)::-webkit-meter-optimum-value, :where(meter)::-webkit-meter-suboptimum-value, :where(meter)::-webkit-meter-even-less-good-value { background: Highlight; }
+    :where(meter)::-moz-meter-bar { background: Highlight; }
+    :where(input[type="file"])::file-selector-button { border-color: ButtonText; }
     :where(input[type="range"])::-webkit-slider-runnable-track { background: CanvasText; }
     :where(input[type="range"])::-moz-range-track { background: CanvasText; }
     :where(input[type="range"])::-webkit-slider-thumb { background: Canvas; border-color: CanvasText; }
@@ -704,7 +726,7 @@ const manifest = {
     "No m-full / p-full: margin and padding percentages are of the width, not a full size.",
     "Margins and padding x/y use logical properties (margin-inline, padding-block).",
     "text-{size} also sets the matching line height, as Tailwind v4.",
-    "The reset keeps link underlines and adds a 2026 baseline: :where() selectors (no specificity), interpolate-size, text-size-adjust, font-synthesis none, headings set from the type roles (h1 heading-xl … h6 title-sm), text-wrap balance/pretty, field-sizing content, accent and caret colours, :focus-visible ring, :target scroll margin, [hidden] enforced, role=list, tabular table figures, ::backdrop and ::selection from tokens, and reduced-motion handling, and a forced-colors (Windows High Contrast) block: controls and overlays keep an outline, selected, pressed and current items a Highlight outline, and checkboxes, radios, switches and sliders are redrawn in system colors. Focus: buttons, links and checkable controls get a 2px accent ring on :focus-visible; text fields (text-like inputs, textarea, select) get no ring and turn their border accent instead, with a Highlight outline in forced colours.",
+    "The reset keeps link underlines and adds a 2026 baseline: :where() selectors (no specificity), interpolate-size, text-size-adjust, font-synthesis none, headings set from the type roles (h1 heading-xl … h6 title-sm), text-wrap balance/pretty, field-sizing content, accent and caret colours, :focus-visible ring, :target scroll margin, [hidden] enforced, role=list, tabular table figures, ::backdrop and ::selection from tokens, and reduced-motion handling, and a forced-colors (Windows High Contrast) block: controls and overlays keep an outline, selected, pressed and current items a Highlight outline, and checkboxes, radios, switches and sliders are redrawn in system colors. Focus: buttons, links and checkable controls get a 2px accent ring on :focus-visible; text fields (text-like inputs, textarea, select) get no ring and turn their border accent instead, with a Highlight outline in forced colours. Native controls without a base appearance are themed in the reset: the file input's button looks like a secondary button, progress is an accent bar on a component track, and meter turns success, warning or danger from its low, high and optimum attributes; each gets system colours in forced colours. field-sizing-content and field-sizing-fixed size a field to its content or not (textareas grow by default).",
     "No outline-{colour} classes, no text-/border- classes for alpha steps, and no class that pairs a role with another property (no bg-fg-*, text-bg-*, bg-border-*). Text-color roles are named by their token alone: fg, fg-weak, fg-accent-1-weak.",
     "Tailwind v4 names where v4 renamed v3 ones: rounded-xs/sm, shadow-xs/sm, backdrop-blur-xs/sm; h-screen is 100vh with h-dvh/svh/lvh separate; a 2xl breakpoint; aliases max-w-prose and font-sans.",
     "Added: grid display, text-start/end, justify-evenly, items-baseline, tabular-nums, text-balance/pretty, w-fit, h-control, kicker and type-role classes.",

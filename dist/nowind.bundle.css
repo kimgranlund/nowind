@@ -1952,6 +1952,20 @@
   }
   :where(textarea) { field-sizing: content; resize: vertical; }
   :where(textarea:not([rows])) { min-block-size: 6lh; }
+  :where(input[type="file"]) { max-inline-size: 100%; color: var(--fg-weak); }
+  :where(input[type="file"])::file-selector-button { font: inherit; font-weight: var(--title-sm--font-weight); color: var(--fg); block-size: var(--control-height); padding-inline: var(--control-padding); margin-inline-end: var(--gutter); border: var(--border-width) solid var(--border); border-radius: var(--radius-control); background: var(--component-weak); cursor: pointer; transition: background-color var(--motion-duration) var(--motion-easing); }
+  :where(input[type="file"])::file-selector-button:hover { background: var(--component); }
+  :where(progress, meter) { appearance: none; display: inline-block; inline-size: 100%; block-size: calc(var(--space-3xs) * 2); border: 0; border-radius: 9999px; background: var(--component-strong); overflow: hidden; vertical-align: middle; }
+  :where(progress)::-webkit-progress-bar { background: var(--component-strong); border-radius: 9999px; }
+  :where(progress)::-webkit-progress-value { background: var(--solid-accent-1); border-radius: 9999px; transition: inline-size var(--motion-duration) var(--motion-easing); }
+  :where(progress)::-moz-progress-bar { background: var(--solid-accent-1); border-radius: 9999px; }
+  :where(meter)::-webkit-meter-bar { block-size: 100%; border: 0; border-radius: 9999px; background: var(--component-strong); }
+  :where(meter)::-webkit-meter-optimum-value { background: var(--solid-success); border-radius: 9999px; }
+  :where(meter)::-webkit-meter-suboptimum-value { background: var(--solid-warning); border-radius: 9999px; }
+  :where(meter)::-webkit-meter-even-less-good-value { background: var(--solid-danger); border-radius: 9999px; }
+  :where(meter:-moz-meter-optimum)::-moz-meter-bar { background: var(--solid-success); border-radius: 9999px; }
+  :where(meter:-moz-meter-sub-optimum)::-moz-meter-bar { background: var(--solid-warning); border-radius: 9999px; }
+  :where(meter:-moz-meter-sub-sub-optimum)::-moz-meter-bar { background: var(--solid-danger); border-radius: 9999px; }
   :where(button, [role="button"], label[for], select, summary) { cursor: pointer; }
   :where(:disabled) { cursor: not-allowed; }
 
@@ -1984,6 +1998,12 @@
     :where(input[type="checkbox"][role="switch"])::before { background: CanvasText; }
     :where(input[type="checkbox"][role="switch"]):checked::before { background: HighlightText; }
     :where(input[type="range"]) { forced-color-adjust: none; }
+    :where(progress, meter) { forced-color-adjust: none; background: Canvas; outline: 1px solid CanvasText; }
+    :where(progress)::-webkit-progress-value { background: Highlight; }
+    :where(progress)::-moz-progress-bar { background: Highlight; }
+    :where(meter)::-webkit-meter-optimum-value, :where(meter)::-webkit-meter-suboptimum-value, :where(meter)::-webkit-meter-even-less-good-value { background: Highlight; }
+    :where(meter)::-moz-meter-bar { background: Highlight; }
+    :where(input[type="file"])::file-selector-button { border-color: ButtonText; }
     :where(input[type="range"])::-webkit-slider-runnable-track { background: CanvasText; }
     :where(input[type="range"])::-moz-range-track { background: CanvasText; }
     :where(input[type="range"])::-webkit-slider-thumb { background: Canvas; border-color: CanvasText; }
@@ -3196,6 +3216,8 @@
   .resize-none { resize: none; }
   .resize { resize: both; }
   .resize-y { resize: vertical; }
+  .field-sizing-content { field-sizing: content; }
+  .field-sizing-fixed { field-sizing: fixed; }
   .resize-x { resize: horizontal; }
   .w-0 { width: 0; }
   .w-auto { width: auto; }
