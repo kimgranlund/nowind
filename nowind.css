@@ -145,6 +145,7 @@
   :where(a:not([class]):hover) { color: var(--fg-accent-1); }
 
   :where(:focus-visible) { outline: 2px solid var(--border-accent-1-strong); outline-offset: 2px; }
+  :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"]), textarea, select):focus-visible { outline: none; border-color: var(--border-accent-1-strong); }
   :where(:target) { scroll-margin-block: 5ex; }
   :where([hidden]:not([hidden="until-found"])) { display: none !important; }
 
@@ -161,6 +162,7 @@
 
   @media (forced-colors: active) {
     :where(button, [role="button"], [role="tab"], summary, [popover], dialog) { outline: 1px solid ButtonText; outline-offset: -1px; }
+    :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"]), textarea, select):focus-visible { outline: 2px solid Highlight; outline-offset: 0; }
     :where([aria-selected="true"], [aria-pressed="true"], [aria-current]:not([aria-current="false"])) { outline: 2px solid Highlight; outline-offset: -2px; }
     :where(input[type="checkbox"], input[type="radio"]) { forced-color-adjust: none; border-color: CanvasText; background: Canvas; }
     :where(input[type="checkbox"], input[type="radio"]):is(:checked, :indeterminate) { border-color: Highlight; background: Highlight; }

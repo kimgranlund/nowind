@@ -12,12 +12,12 @@
     <div class="flex flex-col max-h-below-header">
       <div class="flex items-center gap-gutter px-control border-b">
         <i class="icon ph ph-magnifying-glass fg-weak"></i>
-        <input type="search" role="combobox" aria-expanded="true" aria-controls="search-results" aria-autocomplete="list"
+        <input type="text" role="combobox" aria-expanded="true" aria-controls="search-results" aria-autocomplete="list"
           placeholder="Search pages, components and classes" aria-label="Search"
           class="grow min-w-0 h-control bg-transparent border-0 fg text-control-md">
         <kbd class="text-mono-sm fg-weak">Esc</kbd>
       </div>
-      <ul id="search-results" role="listbox" aria-label="Results" class="flex flex-col min-h-0 overflow-y-auto py-3xs"></ul>
+      <ul id="search-results" role="listbox" aria-label="Results" class="list-none pl-0 flex flex-col min-h-0 overflow-y-auto"></ul>
       <p class="px-control py-2xs border-t text-caption fg-weak" aria-live="polite"></p>
     </div>`;
   document.body.append(dialog);

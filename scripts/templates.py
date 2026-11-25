@@ -751,7 +751,7 @@ def main():
     # The search index: every page, every block heading, every class. Rows are [title, url, kind, detail], urls relative to site/.
     rows = [[TITLES.get(pp, label), pp, "Page", sec] for sec, pages in SECTIONS for pp, label in pages]
     for c in COMPONENTS:
-        rows.append([c["name"], f"docs/c-{c['slug']}.html", "Component", c["summary"]])
+        rows.append([c["name"], f"docs/c-{c['slug']}.html", "Component", html.unescape(re.sub(r"<[^>]+>", "", c["summary"]))])
     for name, text in files.items():
         path = os.path.normpath(os.path.join("docs", name)).replace(os.sep, "/")
         page = TITLES.get(path, path)

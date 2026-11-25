@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Focus:** text fields (text-like inputs, textarea, select) no longer get the focus ring; their border turns accent instead. Buttons, links and checkable controls keep the ring, and in forced colours a focused field gets a Highlight outline.
 - **One page template:** every page (docs, component pages, the showcase, the specimen, the utilities demo, the landing page) shares one frame after Vignelli's Unigrid: an inverse band with the four sections, a row of the current section's pages under a heavy rule, and blocks with their label in three of twelve columns. The docs sidebar, phone menu and on-page contents are gone.
 - **Search:** press ⌘K, Ctrl+K or `/` on any page to search every page, block heading, component and class. `site/search.json` is written with the pages.
 - **Class lists:** roles named after `accent-1` to `accent-4` (`bg-accent-1`, `bg-component-accent-4`) now list as semantic, not regular.
