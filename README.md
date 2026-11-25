@@ -5,17 +5,19 @@ Prewind-style utility classes over a themeable token system, in plain CSS. No bu
 - **Colors**: Radix 12-step scales regenerated in HCT, mapped to semantic roles for a neutral, four brand accents (accent-1 to accent-4) and four statuses (danger, warning, success, info), light and dark through `light-dark()`.
 - **Type and space**: fluid Utopia scales with Tailwind/Prewind names (`text-lg`, `p-md`), plus semantic type roles after Massimo (`text-heading-md`, `text-body-md`) and a kicker.
 - **Geometry**: control sizes, radii and container spacing built from one input, the scope's font size, after Affine UI.
-- **Utilities**: about 800 classes, with hover and breakpoint variants, in `nowind.css`.
+- **Utilities**: Prewind-style classes with Tailwind v4 names where they overlap, plus hover and breakpoint variants, in `nowind.css`. Every class is listed in [classes.md](classes.md); the counts are in [nowind.manifest.json](nowind.manifest.json).
 
 ## Setup
 
-Link one file:
+Link one file from the CDN:
 
 ```html
-<link rel="stylesheet" href="dist/nowind.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@main/dist/nowind.min.css">
 ```
 
-`dist/nowind.min.css` is the whole system in one request: the theme with every import inlined, the reset and the utilities (184 KiB, 29 KiB gzipped). `dist/nowind.bundle.css` is the same, unminified.
+For a site that must not change under you, pin a commit or tag instead of `@main`, for example `@3b47c06`. Or copy `dist/nowind.min.css` into your project and link it locally.
+
+`nowind.min.css` is the whole system in one request: the theme with every import inlined, the reset and the utilities. `dist/nowind.bundle.css` is the same, unminified.
 
 While working on Nowind itself, link the source files instead, so edits show without rebuilding:
 
@@ -71,7 +73,7 @@ Work global first, as in Prewind:
 
 ### Class names
 
-Classes follow `property-value`. Color classes take the token name without `--`.
+Classes follow `property-value`. Color classes take the token name without `--`. The table shows examples; [classes.md](classes.md) lists every class with its declarations.
 
 | Group | Examples |
 |---|---|
@@ -147,6 +149,7 @@ AGENTS.md                      how to change Nowind: generated files, script ord
 theme.css                      imports the theme groups below
 nowind.css                     reset and utility classes (generated)
 nowind.manifest.json           class counts, groups, variants, changes from Prewind
+classes.md                     every class and its declarations (generated)
 dist/
   nowind.bundle.css            theme + reset + utilities in one file (generated)
   nowind.min.css               the same, minified (generated)
@@ -164,6 +167,7 @@ scripts/
   utopia.mjs                   generates the fluid type and space scales
   utilities.mjs                generates nowind.css from the theme tokens
   bundle.mjs                   inlines theme.css's imports and nowind.css into dist/
+  check.mjs                    checks the rules in AGENTS.md; --self-test proves it catches breaks
 specimen.html                  every token, the reset and every class, live
 utilities.html                 a demo built only from classes
 ```

@@ -80,7 +80,7 @@
   "rebrand": {
     "steps": [
       "In colors-semantic/<palette>.css, change the @import and every --colors-<family>-* reference to the new family.",
-      "Re-check <palette>-contrast-white and -black against families[].solidLabel in the radix-hct-colors manifest.json (not copied into colors-raw/).",
+      "Set --{palette}-contrast from library.solidLabel.families in this manifest: light in both modes → var(--{palette}-contrast-white); dark in both → var(--{palette}-contrast-black); light then dark → light-dark(var(--{palette}-contrast-white), var(--{palette}-contrast-black)).",
       "To add a palette, copy a palette file in colors-semantic/, rename the prefix and family, set its contrast from solidLabel, import it in theme.colors.css, and copy one palette's companion and role block in theme.colors.css with the new name. Then run node scripts/utilities.mjs and node scripts/bundle.mjs."
     ],
     "handCopied": [
@@ -324,5 +324,140 @@
     "rule": "Four brand accents replace the old primary. accent-1 is the main one: the reset uses it for links, the focus ring, accent-color, caret and ::selection. Each accent has the full role set: --bg-accent-N, --component-accent-N-weak, --border-accent-N, --solid-accent-N, --on-solid-accent-N, --fg-accent-N-weak, --accent-N-surface …",
     "steps": "Palette steps read --accent-N-{1..12} and --accent-N-a{1..12}.",
     "neutral": "Neutral stays slate, the library's pairing for indigo (accent-1)."
+  },
+  "library": {
+    "name": "radix-hct-colors",
+    "copiedFrom": "radix-hct-colors/tokens/colors (Radix 12-step scales regenerated in HCT, sRGB)",
+    "copiedTo": "colors-raw/",
+    "note": "The library's own manifest.json is not copied; the one fact from it Nowind needs, each family's solidLabel, is recorded below.",
+    "solidLabel": {
+      "meaning": "The text colour on step 9 of each family, per mode: light = --{palette}-contrast-white, dark = --{palette}-contrast-black.",
+      "families": {
+        "gray": {
+          "light": "light",
+          "dark": "dark"
+        },
+        "mauve": {
+          "light": "light",
+          "dark": "dark"
+        },
+        "slate": {
+          "light": "light",
+          "dark": "dark"
+        },
+        "sage": {
+          "light": "light",
+          "dark": "dark"
+        },
+        "olive": {
+          "light": "light",
+          "dark": "dark"
+        },
+        "sand": {
+          "light": "light",
+          "dark": "dark"
+        },
+        "tomato": {
+          "light": "light",
+          "dark": "light"
+        },
+        "red": {
+          "light": "light",
+          "dark": "light"
+        },
+        "ruby": {
+          "light": "light",
+          "dark": "light"
+        },
+        "crimson": {
+          "light": "light",
+          "dark": "light"
+        },
+        "pink": {
+          "light": "light",
+          "dark": "light"
+        },
+        "plum": {
+          "light": "light",
+          "dark": "light"
+        },
+        "purple": {
+          "light": "light",
+          "dark": "light"
+        },
+        "violet": {
+          "light": "light",
+          "dark": "light"
+        },
+        "iris": {
+          "light": "light",
+          "dark": "light"
+        },
+        "indigo": {
+          "light": "light",
+          "dark": "light"
+        },
+        "blue": {
+          "light": "light",
+          "dark": "light"
+        },
+        "cyan": {
+          "light": "light",
+          "dark": "light"
+        },
+        "teal": {
+          "light": "light",
+          "dark": "light"
+        },
+        "jade": {
+          "light": "light",
+          "dark": "light"
+        },
+        "green": {
+          "light": "light",
+          "dark": "light"
+        },
+        "grass": {
+          "light": "light",
+          "dark": "light"
+        },
+        "bronze": {
+          "light": "light",
+          "dark": "light"
+        },
+        "gold": {
+          "light": "light",
+          "dark": "light"
+        },
+        "brown": {
+          "light": "light",
+          "dark": "light"
+        },
+        "orange": {
+          "light": "light",
+          "dark": "light"
+        },
+        "amber": {
+          "light": "dark",
+          "dark": "dark"
+        },
+        "yellow": {
+          "light": "dark",
+          "dark": "dark"
+        },
+        "lime": {
+          "light": "dark",
+          "dark": "dark"
+        },
+        "mint": {
+          "light": "dark",
+          "dark": "dark"
+        },
+        "sky": {
+          "light": "dark",
+          "dark": "dark"
+        }
+      }
+    }
   }
 }

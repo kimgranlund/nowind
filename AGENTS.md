@@ -18,10 +18,15 @@ Read `README.md` for what Nowind is and how people use it. This file says how to
 | `nowind.css` | Reset and utility classes | no, `scripts/utilities.mjs` |
 | `dist/` | One-file bundle and its minified copy | no, `scripts/bundle.mjs` |
 | `theme/*.manifest.json`, `nowind.manifest.json` | What each token or class is, how it is derived, what to use it for | see below |
+| `classes.md` | Every class and its declarations | no, `scripts/utilities.mjs` |
 | `specimen.html` | Every token, the reset and every class, read live from the stylesheets | yes |
 | `utilities.html` | Demo page built only from classes | yes |
 
-Manifests: `theme.typography.manifest.json`, `theme.space.manifest.json` and `nowind.manifest.json` are written by their scripts; change the script, not the file. The colour, geometry and type-roles manifests are hand-written; update them in the same change as their CSS.
+Manifests: [`theme/theme.typography.manifest.json`](theme/theme.typography.manifest.json), [`theme/theme.space.manifest.json`](theme/theme.space.manifest.json) and [`nowind.manifest.json`](nowind.manifest.json) are written by their scripts; change the script, not the file. These are hand-written; update them in the same change as their CSS:
+
+- [`theme/theme.colors.manifest.json`](theme/theme.colors.manifest.json): palettes, families, contrast, roles, and each library family's `solidLabel`.
+- [`theme/theme.geometry.manifest.json`](theme/theme.geometry.manifest.json): `--F` inputs, derived lengths, radius, container, breakpoints.
+- [`theme/theme.type-roles.manifest.json`](theme/theme.type-roles.manifest.json): every type role, its size, line-height factor and Massimo source.
 
 ## After a change
 
@@ -31,16 +36,19 @@ Run the scripts in this order, as far down as the change reaches:
 node scripts/utopia.mjs      # only if the type or space scale changed
 node scripts/utilities.mjs   # after any token change, so classes follow
 node scripts/bundle.mjs      # always last
+node scripts/check.mjs       # before every commit
 ```
+
+`scripts/check.mjs` enforces the rules below: no comments and no `color-mix()` in Nowind's CSS, every token a manifest names exists, and every generated file matches what the scripts write. `node scripts/check.mjs --self-test` breaks a copy four ways and confirms each is caught.
 
 Then check the result in `specimen.html` through a local server (`python3 -m http.server 8765`); browsers block reading stylesheets from `file://`. The `specimen` entry in `.claude/launch.json` starts it.
 
 ## Rules
 
-- **No comments in the CSS.** Notes, reasons and formulas go in the manifests.
+- **No comments in the CSS.** Notes, reasons and formulas go in the manifests. (checked)
 - **Every theme value uses a token.** Utilities read tokens; tokens read other tokens or a palette.
 - **Colours are `light-dark()`.** Never add a separate dark theme or a `dark:` variant.
-- **No `color-mix()`.** Use the alpha steps (`--{palette}-a{1..12}`) for transparency.
+- **No `color-mix()`.** Use the alpha steps (`--{palette}-a{1..12}`) for transparency. (checked)
 - **Text on a solid uses `--on-solid-{palette}`**, set per palette from the library's `solidLabel`; amber takes dark text in both modes, the accents take light text in both.
 - **Layers:** `reset, styles, nowind`. The reset wraps every selector in `:where()`.
 - **Contrast is out of scope.** Don't add contrast checks.
@@ -56,11 +64,21 @@ Then check the result in `specimen.html` through a local server (`python3 -m htt
 
 ## Adding a palette
 
-1. Copy a file in `theme/colors-semantic/`, rename the prefix and the family, and set `--{name}-contrast` from the family's `solidLabel` in the radix-hct-colors `manifest.json`.
+1. Copy a file in `theme/colors-semantic/`, rename the prefix and the family, and set `--{name}-contrast` from the family's `solidLabel`, recorded under `library.solidLabel.families` in [`theme/theme.colors.manifest.json`](theme/theme.colors.manifest.json): light in both modes → `var(--{name}-contrast-white)`, dark in both → `var(--{name}-contrast-black)`, light then dark → `light-dark(var(--{name}-contrast-white), var(--{name}-contrast-black))`.
 2. Import it in `theme/theme.colors.css` and copy one palette's companion and role block with the new name.
 3. Add it to `palettes` in `theme/theme.colors.manifest.json`.
-4. Run `node scripts/utilities.mjs` and `node scripts/bundle.mjs`. The specimen finds it by itself.
+4. Run `node scripts/utilities.mjs`, `node scripts/bundle.mjs` and `node scripts/check.mjs`. The specimen finds it by itself.
+
+## Adding a type role
+
+1. In `theme/theme.type-roles.css`, add `--{role}` pointing at a size (`var(--text-lg)`), and its companions: `--{role}--line-height`, `--{role}--font-weight`, `--{role}--font-family`, plus `--{role}--letter-spacing`, `--font-variant-numeric`, `--text-transform` or `--font-style` when the role needs them. Line height follows `calc(var(--{role}) * (1 + k/2) - 3k px)`; the manifest lists each k.
+2. Add the role to `roles` in [`theme/theme.type-roles.manifest.json`](theme/theme.type-roles.manifest.json).
+3. Run `node scripts/utilities.mjs`, `node scripts/bundle.mjs` and `node scripts/check.mjs`. The generator finds any `--{role}--font-family` and writes `text-{role}`.
+
+## Changing faces, weights, tracking or leading
+
+These live in the CSS template inside `scripts/utopia.mjs`, not in `theme/theme.typography.css`, which that script overwrites. Edit the template, then run all four scripts in order.
 
 ## Git
 
-The repository is `github.com/kimgranlund/nowind`, branch `main`. Commit generated files (`nowind.css`, `dist/`, the generated manifests) with the change that produced them.
+The repository is `github.com/kimgranlund/nowind`, branch `main`. Commit generated files (`nowind.css`, `classes.md`, `dist/`, the generated manifests) with the change that produced them, after `node scripts/check.mjs` passes.
