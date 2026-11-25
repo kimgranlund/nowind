@@ -286,7 +286,7 @@ COMPONENTS = [
       <i class="icon ph ph-palette fg-neutral-11" aria-hidden="true"></i>
       <span class="fg-neutral-11" aria-hidden="true">#</span>
       <input id="doc-hex" type="text" class="{BARE} tabular-nums" spellcheck="false" maxlength="6" value="0090FF">
-      <input type="color" class="p-3xs rounded-xs border border-transparent p-0 bg-transparent cursor-pointer" value="#0090ff" aria-label="Pick a colour">
+      <input type="color" class="size-nested p-0 rounded-xs border-0 bg-transparent cursor-pointer" value="#0090ff" aria-label="Pick a colour">
     </div>
   </div>
   <div class="flex flex-col gap-2xs">
@@ -326,15 +326,15 @@ COMPONENTS = [
   </div>
   <div class="flex flex-col gap-2xs">
     <label for="doc-id" class="text-sm font-medium">Account ID</label>
-    <div class="{BOX} bg-neutral-2">
+    <div class="{BOX.replace("bg-neutral-1", "bg-neutral-2")}">
       <i class="icon ph ph-identification-card fg-neutral-11" aria-hidden="true"></i>
-      <input id="doc-id" class="{BARE} fg-neutral-11 tabular-nums" value="AC-20481" readonly>
+      <input id="doc-id" class="{BARE.replace("fg-neutral-12", "fg-neutral-11")} tabular-nums" value="AC-20481" readonly>
       <i class="icon ph ph-lock-simple fg-neutral-8" aria-hidden="true"></i>
     </div>
   </div>
   <div class="flex flex-col gap-2xs">
     <label for="doc-seat" class="text-sm font-medium fg-neutral-11">Seat</label>
-    <div class="{BOX} bg-neutral-3 opacity-50 cursor-not-allowed">
+    <div class="{BOX.replace("bg-neutral-1", "bg-neutral-3").replace("cursor-text", "cursor-not-allowed")} opacity-50">
       <i class="icon ph ph-armchair fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-seat" class="{BARE}" value="14C" disabled>
     </div>
@@ -614,7 +614,7 @@ COMPONENTS = [
     <span class="text-xs font-mono uppercase tracking-widest fg-accent-2-11">Case study</span>
     <h3 class="text-base font-semibold">Rebuilding a design system in a week</h3>
     <div class="flex items-center gap-xs pt-2xs">
-      <span class="inline-flex items-center justify-center p-3xs rounded-full bg-accent-3-9 fg-accent-3-contrast text-sm font-medium">GH</span>
+      <span class="inline-flex items-center justify-center size-nested shrink-0 rounded-full bg-accent-3-9 fg-accent-3-contrast text-sm font-medium">GH</span>
       <span class="text-sm fg-neutral-11">Grace Hopper · 6 min read</span>
     </div>
   </div>

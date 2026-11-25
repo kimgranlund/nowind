@@ -961,6 +961,8 @@ def lint_examples():
     """Examples use regular (primitive) classes only. Returns one line per semantic class found in a component snippet
     or in a block of the showcase, except the showcase blocks marked data-semantic-demo."""
     cat = {k: t for t, rows in read_classes() for k, _ in rows}
+    props = {k: {d.split(":")[0].strip() for d in v.strip("`").split(";") if ":" in d and not d.strip().startswith("--")} for _, rows in read_classes() for k, v in rows}
+    MODIFIERS = {"icon-sm", "icon-md", "icon-lg"}  # size modifiers meant to override the icon box's glyph size
     variant = re.compile(r"^(hover|active|focus-visible|focus-within|selected|current|pressed|expanded|open|invalid|has-invalid|has-checked|disabled|group-hover|group-open|group-focus-within):")
     def bad(html_, where):
         out = []
@@ -969,6 +971,16 @@ def lint_examples():
         for m in re.finditer(r'<(\w+)\b([^>]*?)\sclass="([^"]*)"([^>]*)>', html_):
             tag, toks = m.group(1), m.group(3).split()
             role = re.search(r'role="(\w+)"', m.group(2) + m.group(4))
+            seen = {}
+            for t in toks:
+                if ":" in t or t in MODIFIERS:
+                    continue
+                for pr in props.get(t, ()):
+                    if pr in seen and seen[pr] != t:
+                        out.append(f"{where}: {seen[pr]} and {t} both set {pr}; which wins depends on stylesheet order. Fix: keep one.")
+                    seen[pr] = t
+            if "rounded-full" in toks and any(re.fullmatch(r"p-(3xs|2xs|xs|sm)", t) for t in toks) and re.match(r"[^<]*[A-Za-z0-9+]", html_[m.end():]) and not re.match(r"\s*<", html_[m.end():]):
+                out.append(f"{where}: a round <{tag}> holding text is sized by padding, so it is an oval. Fix: size-nested or size-control (and shrink-0).")
             if tag in ("button", "a") and re.match(r"\s*<i\b[^>]*></i>\s*</" + tag + ">", html_[m.end():]) and (any(t.startswith(("px-", "py-", "h-")) and not (t == "h-full" and "aspect-square" in toks) for t in toks) or not any(re.fullmatch(r"p-[a-z0-9]+|size-[a-z0-9]+|aspect-square", t) for t in toks)):
                 out.append(f"{where}: an icon-only <{tag}> isn't square. Fix: size-control or size-nested (or one padding on all sides), no px-/py-.")
             if (tag in ("button", "select") or "cursor-text" in toks or (role and role.group(1) in ("tab", "option", "menuitem"))) and any(t in ("py-xs", "py-3xs") for t in toks) and any(re.fullmatch(r"p[xse]-.+", t) for t in toks):

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- **Round markers are circles:** stepper numbers, avatars and initials are `size-nested` or `size-control` with `shrink-0`; padded, they took their width from the text and came out oval.
+- **No conflicting classes in the examples:** the lint now rejects two classes that set the same property on one element (the colour picker had `p-3xs` and `p-0`; the read-only and disabled fields stacked a second background, colour and cursor on the field's own). Self-test: fourteen breaks.
 - **Avatars:** each is `size-control shrink-0`, one control height square whatever the initials (they were padded, so they varied in width and shrank in a tight row); the showcase group keeps its avatars together and wraps the caption below them instead of one word per line.
 - **Command palette geometry:** the palette is `rounded-md p-inset border` holding `rounded-sm` items, the menu's nesting; the search row is an `h-control px-control` row at the same inset, so its icon lines up with every item's icon; group labels sit on the item text edge (`px-control`). `esc` and every shortcut are one keycap (`h-nested px-2xs rounded-xs border`), which `px-control` places at the icon padding from the end.
 - **Toasts, rebuilt:** fixed slots (icon, a text column of title, detail and actions, dismiss) with `items-start`, so the icon and dismiss stay on the title's line however the text wraps and every toast in a stack lays out the same; even `p-xs` padding, a light action button on the dark face, a readable dismiss (`fg-neutral-8`) whose corner nests (`rounded-inner`). A one-line toast keeps its action inline. The toast page shows both.
