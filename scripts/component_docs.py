@@ -225,10 +225,10 @@ COMPONENTS = [
         "slug": "avatar", "name": "Avatar and group", "icon": "ph-user-circle", "group": "Data display",
         "summary": "Initials on an accent solid, one control height square; a group overlaps them.",
         "html": """<div class="flex items-center">
-  <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-border-page bg-solid-accent-1 text-on-solid-accent-1 text-label">AL</span>
-  <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-border-page bg-solid-accent-2 text-on-solid-accent-2 text-label -ml-2xs">GH</span>
-  <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-border-page bg-solid-accent-3 text-on-solid-accent-3 text-label -ml-2xs">KJ</span>
-  <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-border-page bg-component text-fg-weak text-label -ml-2xs">+5</span>
+  <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-neutral-1 bg-solid-accent-1 text-on-solid-accent-1 text-label">AL</span>
+  <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-neutral-1 bg-solid-accent-2 text-on-solid-accent-2 text-label -ml-2xs">GH</span>
+  <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-neutral-1 bg-solid-accent-3 text-on-solid-accent-3 text-label -ml-2xs">KJ</span>
+  <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-neutral-1 bg-component text-fg-weak text-label -ml-2xs">+5</span>
 </div>""",
         "use": ["A border in the page color separates overlapping avatars."],
         "avoid": ["More than five in a row; end with a count."],

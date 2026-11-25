@@ -75,7 +75,7 @@ Work global first, as in Prewind:
 
 ### Class names
 
-Classes follow `property-value`. Color classes take the token name without `--`, and each property takes only its own roles: `text-` the `fg-*` and `on-solid-*` tokens, `bg-` the `bg-*`, `component-*` and `solid-*` tokens, `border-` the `border-*` tokens. Raw palette steps (`bg-accent-1-3`) and alpha steps (`bg-neutral-a4`) are background-only; text and borders always use a role. `border-border-page` draws a border in the page color, for overlapping avatars. The table shows examples; [classes.md](classes.md) lists every class with its declarations.
+Classes follow `property-value`. Color classes take the token name without `--`, and each property takes only its own roles: `text-` the `fg-*` and `on-solid-*` tokens, `bg-` the `bg-*`, `component-*` and `solid-*` tokens, `border-` the `border-*` tokens. Raw palette steps (`bg-accent-1-3`, `text-danger-11`) work with all three; alpha steps only with `bg-`. The table shows examples; [classes.md](classes.md) lists every class with its declarations.
 
 | Group | Examples |
 |---|---|
