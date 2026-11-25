@@ -33,7 +33,7 @@ const box = { "": ["{p}"], t: ["{p}-top"], r: ["{p}-right"], b: ["{p}-bottom"], 
 // Spacing
 for (const [pre, prop] of [["p", "padding"], ["m", "margin"]]) {
   for (const [side, ps] of Object.entries(box)) {
-    for (const s of ["0", ...SPACE]) add(`${pre}${side}-${s}`, ps.map((p) => `${p.replace("{p}", prop)}: ${sv(s)}`).join("; "));
+    for (const s of ["0", ...SPACE]) add(`${pre}${side}-${s}`, ps.map((p) => `${p.replace("{p}", prop)}: ${sv(s)}`).join("; ") + (pre === "p" && side === "" ? `; --_inset: ${s === "0" ? "0px" : sv(s)}` : ""));
   }
 }
 for (const [side, ps] of Object.entries(box)) {
@@ -148,19 +148,26 @@ add("bg-clip-text", "-webkit-background-clip: text; background-clip: text");
 
 // Borders, radius, outline, shadow
 for (const [suf, w] of [["", "var(--border-width)"], ["-0", "0"], ["-2", "2px"], ["-4", "4px"]]) {
-  add(`border${suf}`, `border-width: ${w}; border-style: solid`);
+  add(`border${suf}`, `border-width: ${w}; border-style: solid; --_bw: ${w === "0" ? "0px" : w}`);
   for (const [s, p] of [["t", "top"], ["r", "right"], ["b", "bottom"], ["l", "left"], ["x", "inline"], ["y", "block"]]) add(`border-${s}${suf}`, `border-${p}-width: ${w}; border-${p}-style: solid`);
 }
 for (const s of ["solid", "dashed", "dotted", "none"]) add(`border-${s}`, `border-style: ${s}`);
-add("rounded-none", "border-radius: 0");
-add("rounded-xs", "border-radius: var(--radius-nested)");
-add("rounded-sm", "border-radius: var(--radius-control)");
-add("rounded", "border-radius: var(--radius-control)");
-add("rounded-control", "border-radius: var(--radius-control)");
-add("rounded-nested", "border-radius: var(--radius-nested)");
-add("rounded-lg", "border-radius: var(--radius-surface)");
-add("rounded-xl", "border-radius: var(--radius-dialog)");
-add("rounded-full", "border-radius: 9999px");
+// Radii nest (after Affine UI): each step is one margin from the next and the inset (margin − border) pads between
+// levels, so rounded-md p-inset holds rounded-sm items concentrically, and likewise one step down anywhere. Each
+// rounded-* class also hands its children the radius that runs parallel inside its own padding and border (--_nest),
+// which rounded-inner reads for any other pairing. The reset sets --_inset and --_bw to 0 on every element, so they never leak from an ancestor.
+const nest = (cls, r) => add(cls, `border-radius: ${r}; --_nest: max(0px, calc(${r} - var(--_inset) - var(--_bw)))`);
+nest("rounded-none", "0px");
+nest("rounded-xs", "var(--radius-xs)");
+nest("rounded-sm", "var(--radius-sm)");
+nest("rounded", "var(--radius-sm)");
+nest("rounded-control", "var(--radius-control)");
+nest("rounded-nested", "var(--radius-nested)");
+nest("rounded-md", "var(--radius-md)");
+nest("rounded-lg", "var(--radius-lg)");
+nest("rounded-xl", "var(--radius-xl)");
+nest("rounded-full", "9999px");
+add("rounded-inner", "border-radius: var(--_nest, var(--radius-sm))");
 add("outline", "outline-width: var(--border-width); outline-style: solid");
 add("outline-2", "outline-width: 2px; outline-style: solid");
 add("outline-0", "outline-width: 0");
@@ -273,8 +280,9 @@ const LEVEL_PAD = {
   region: "var(--region-padding)",
   page: "var(--page-margin)",
 };
+LEVEL_PAD.inset = "var(--inset)";
 for (const [lv, v] of Object.entries(LEVEL_PAD)) {
-  add(`p-${lv}`, `padding: ${v}`);
+  add(`p-${lv}`, `padding: ${v}; --_inset: ${v}`);
   add(`px-${lv}`, `padding-inline: ${v}`);
   add(`py-${lv}`, `padding-block: ${v}`);
   add(`pt-${lv}`, `padding-top: ${v}`);
@@ -353,7 +361,7 @@ const geometryCss = read("theme/theme.geometry.css");
 const BREAKPOINTS = [...geometryCss.matchAll(/--breakpoint-([\w]+):\s*(\d+)px/g)].map((m) => [m[1], Number(m[2])]);
 
 const reset = `@layer reset {
-  :where(*, *::before, *::after) { box-sizing: border-box; border-color: var(--border); }
+  :where(*, *::before, *::after) { box-sizing: border-box; border-color: var(--border); --_inset: 0px; --_bw: 0px; }
   :where(button, select, input) { white-space: nowrap; }
   :where(a, button, summary, input, select, textarea, label, [role="button"], [role="tab"], [role="option"], [role="menuitem"], [role="switch"]) { transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, translate, scale, rotate; transition-duration: var(--motion-duration); transition-timing-function: var(--motion-easing); }
   :where(*) { margin: 0; }

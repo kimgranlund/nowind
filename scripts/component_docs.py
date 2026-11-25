@@ -10,7 +10,7 @@ BARE = "grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12"
 KBD = "inline-flex items-center py-3xs px-2xs rounded-xs border fg-neutral-11 text-sm font-mono"
 NESTED_SELECT = "select-base py-3xs px-2xs rounded-xs border border-transparent bg-transparent hover:bg-neutral-3 fg-neutral-12 text-base cursor-pointer"
 NESTED_ICON = "inline-flex items-center justify-center p-3xs rounded-xs border border-transparent bg-transparent hover:bg-neutral-3 pressed:bg-neutral-4 fg-neutral-11 hover:fg-neutral-12 cursor-pointer transition-colors"
-CARD = "p-md rounded-lg bg-neutral-1 border border-neutral-6"
+CARD = "p-md rounded-md bg-neutral-1 border border-neutral-6"
 MENU_ITEM = "flex items-center gap-xs py-xs px-sm border border-transparent rounded-sm no-underline fg-neutral-12 hover:bg-neutral-3 selected:bg-accent-1-3 selected:fg-accent-1-11 transition-colors"
 
 COMPONENTS = [
@@ -40,7 +40,7 @@ COMPONENTS = [
     {
         "slug": "segmented", "name": "Segmented control", "icon": "ph-squares-four", "group": "Actions",
         "summary": "A set of mutually exclusive options. The pressed segment is styled by <code>aria-pressed</code>, not by a class.",
-        "html": """<div class="inline-flex items-center gap-3xs p-3xs rounded bg-neutral-3" role="group" aria-label="Range">
+        "html": """<div class="inline-flex items-center gap-3xs p-inset rounded-sm border border-transparent bg-neutral-3" role="group" aria-label="Range">
   <button aria-pressed="true" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer transition-colors"><span>Day</span></button>
   <button aria-pressed="false" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer transition-colors"><span>Week</span></button>
   <button aria-pressed="false" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer transition-colors"><span>Month</span></button>
@@ -63,7 +63,7 @@ COMPONENTS = [
     {
         "slug": "alert", "name": "Alert", "icon": "ph-warning-circle", "group": "Status",
         "summary": "A message about the page or a task, tinted by its status.",
-        "html": """<div class="flex gap-xs p-md rounded-lg bg-warning-3 border border-warning-6" role="status">
+        "html": """<div class="flex gap-xs p-md rounded-md bg-warning-3 border border-warning-6" role="status">
   <i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-warning fg-warning-11"></i>
   <div class="flex flex-col gap-3xs">
     <span class="text-base font-semibold fg-warning-12">Your trial ends in 3 days</span>
@@ -76,7 +76,7 @@ COMPONENTS = [
     {
         "slug": "toast", "name": "Toast", "icon": "ph-bell-ringing", "group": "Status",
         "summary": "A brief confirmation on the inverse colors, with an optional action.",
-        "html": """<div class="flex flex-wrap items-center gap-x-sm gap-y-2xs p-sm pl-md w-fit rounded-lg bg-neutral-12 shadow-lg" role="status">
+        "html": """<div class="flex flex-wrap items-center gap-x-sm gap-y-2xs p-sm pl-md w-fit rounded-md bg-neutral-12 shadow-lg" role="status">
   <i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-check-circle fg-neutral-1"></i>
   <span class="text-sm fg-neutral-1">Invite sent</span>
   <span class="ml-auto flex items-center gap-2xs"><button class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent fg-accent-1-8 text-base font-medium cursor-pointer">Undo</button></span>
@@ -357,7 +357,7 @@ COMPONENTS = [
         "summary": "A menu that opens with <code>popovertarget</code> and sits against its button with <code>anchor-bottom</code>. No script.",
         "html": f"""<div class="group inline-block">
 <button class="{BTN_SECONDARY}" popovertarget="doc-sort"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-sort-ascending"></i><span>Sort</span><i class="inline-flex items-center justify-center shrink-0 text-base leading-none ph ph-caret-down transition group-open:rotate-180" aria-hidden="true"></i></button>
-<div id="doc-sort" popover class="anchor-bottom w-fit p-3xs rounded-lg bg-neutral-1 border border-neutral-6 shadow-lg">
+<div id="doc-sort" popover class="anchor-bottom w-fit p-inset rounded-md bg-neutral-1 border border-neutral-6 shadow-lg">
   <div class="flex flex-col" role="listbox" aria-label="Sort by">
     <a href="#" class="{MENU_ITEM}" role="option" aria-selected="true"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-clock"></i><span class="grow">Last edited</span></a>
     <a href="#" class="{MENU_ITEM}" role="option" aria-selected="false"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-text-aa"></i><span class="grow">Name</span></a>
@@ -371,7 +371,7 @@ COMPONENTS = [
         "slug": "dialog", "name": "Dialog", "icon": "ph-app-window", "group": "Overlays",
         "summary": "A modal <code>&lt;dialog&gt;</code> opened with the <code>command</code> attribute; the reset dims the page behind it.",
         "html": f"""<button class="{BTN_SECONDARY}" commandfor="doc-dialog" command="show-modal"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-trash"></i><span>Delete project…</span></button>
-<dialog id="doc-dialog" class="m-auto p-lg rounded-xl bg-neutral-1 border-0 shadow-xl max-w-form w-full" aria-labelledby="doc-dialog-title">
+<dialog id="doc-dialog" class="m-auto p-lg rounded-lg bg-neutral-1 border-0 shadow-xl max-w-form w-full" aria-labelledby="doc-dialog-title">
   <div class="flex flex-col gap-md">
     <h3 id="doc-dialog-title" class="text-base font-semibold">Delete project?</h3>
     <p class="text-sm fg-neutral-11">This removes the project for everyone. You can't undo this.</p>
@@ -437,7 +437,7 @@ COMPONENTS = [
     {
         "slug": "table", "name": "Table", "icon": "ph-table", "group": "Data display",
         "summary": "Rows of records in a surface that scrolls sideways on narrow screens.",
-        "html": """<div class="rounded-lg bg-neutral-1 border border-neutral-6 overflow-x-auto">
+        "html": """<div class="rounded-md bg-neutral-1 border border-neutral-6 overflow-x-auto">
   <table class="w-full text-sm">
     <thead class="bg-neutral-2">
       <tr><th class="text-left px-md py-xs text-sm font-medium fg-neutral-11 border-b border-neutral-6">Invoice</th><th class="text-left px-md py-xs text-sm font-medium fg-neutral-11 border-b border-neutral-6">Status</th><th class="text-right px-md py-xs text-sm font-medium fg-neutral-11 border-b border-neutral-6">Amount</th></tr>
@@ -454,7 +454,7 @@ COMPONENTS = [
     {
         "slug": "empty-state", "name": "Empty state", "icon": "ph-folder-open", "group": "Feedback",
         "summary": "What a view shows before it has content, with the action that fills it.",
-        "html": f"""<div class="flex flex-col items-center justify-center text-center gap-xs p-2xl rounded-lg border-2 border-dashed">
+        "html": f"""<div class="flex flex-col items-center justify-center text-center gap-xs p-2xl rounded-md border-2 border-dashed">
   <span class="inline-flex items-center justify-center p-xs rounded-full bg-neutral-3 fg-neutral-11"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-folder-open"></i></span>
   <h3 class="text-base font-semibold">No projects yet</h3>
   <p class="text-sm fg-neutral-11 max-w-text">Create a project to collect designs, notes and feedback in one place.</p>
@@ -502,7 +502,7 @@ COMPONENTS = [
     {
         "slug": "sortable-table", "name": "Sortable table", "icon": "ph-sort-ascending", "group": "Data display",
         "summary": "Column headers hold buttons; <code>aria-sort</code> on the header says which column sorts the rows and in which order.",
-        "html": """<div class="rounded-lg bg-neutral-1 border border-neutral-6 overflow-x-auto">
+        "html": """<div class="rounded-md bg-neutral-1 border border-neutral-6 overflow-x-auto">
   <table class="w-full text-sm">
     <thead class="bg-neutral-2">
       <tr>

@@ -94,6 +94,11 @@
   --radius-nested: max(0px, calc(var(--radius-control) - var(--margin)));
   --radius-surface: calc(var(--radius-control) + var(--corner-factor) * var(--margin));
   --radius-dialog: calc(var(--radius-control) + 2 * var(--corner-factor) * var(--margin));
+  --radius-xs: var(--radius-nested);
+  --radius-sm: var(--radius-control);
+  --radius-md: var(--radius-surface);
+  --radius-lg: var(--radius-dialog);
+  --radius-xl: calc(var(--radius-control) + 3 * var(--corner-factor) * var(--margin));
   --container-padding: var(--page-margin);
 
   --grid-gutter: calc(var(--grid-gutter-factor) * var(--margin));

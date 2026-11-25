@@ -102,7 +102,7 @@ def site_map(path):
     groups = "".join(f'<div class="flex flex-col gap-sm min-w-0">{"".join(group(g) for g in st)}</div>' for st in stacks)
     components = (f'<div class="md:col-span-2 flex flex-col gap-2xs min-w-0"><span class="text-kicker fg-weak">Components</span>'
                   f'{links(lead, two=True)}<div class="grid grid-cols-2 gap-x-md gap-y-sm pt-2xs">{groups}</div></div>')
-    return f"""<div id="site-map" popover class="anchor-bottom w-full max-w-measure max-h-below-header overflow-y-auto p-surface rounded-lg bg fg border shadow-lg">
+    return f"""<div id="site-map" popover class="anchor-bottom w-full max-w-measure max-h-below-header overflow-y-auto p-surface rounded-md bg fg border shadow-lg">
   <nav aria-label="Site map" class="grid grid-cols-1 md:grid-cols-4 gap-group">
     {col("Docs", sec["Docs"])}
     {components}
@@ -170,13 +170,13 @@ def prev_next(path):
             <span class="text-subtitle fg-accent-1-weak">{TITLES.get(prev, LABELS[prev])}</span>
           </a>""")
     else:
-        cells.append('          <span class="hidden md:block"></span>')
+        cells.append('          <span></span>')
     if nxt:
-        cells.append(f"""          <a href="{rel(nxt, path)}" class="flex flex-col md:items-end gap-3xs p-surface border border-weak hover:border-strong no-underline md:text-right transition-colors">
+        cells.append(f"""          <a href="{rel(nxt, path)}" class="flex flex-col items-end gap-3xs p-surface border border-weak hover:border-strong no-underline text-right transition-colors">
             <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><span>Next</span><i class="icon icon-sm ph-bold ph-arrow-right"></i></span>
             <span class="text-subtitle fg-accent-1-weak">{TITLES.get(nxt, LABELS[nxt])}</span>
           </a>""")
-    return '<nav aria-label="Previous and next page" class="col-span-12 grid grid-cols-1 md:grid-cols-2 gap-grid py-page border-t border-strong">\n' + "\n".join(cells) + "\n        </nav>\n"
+    return '<nav aria-label="Previous and next page" class="col-span-12 grid grid-cols-2 gap-grid py-page border-t border-strong">\n' + "\n".join(cells) + "\n        </nav>\n"
 
 CALLOUT = {
     "note": ("info", "ph-info", "Note"),
@@ -204,13 +204,16 @@ def code(filename, lang, src):
 
 def table(headers, rows, align=None):
     align = align or ["left"] * len(headers)
-    ths = "".join(f'<th scope="col" class="text-{a} px-sm py-xs border-b text-label fg-weak">{h}</th>' for h, a in zip(headers, align))
+    ths = "".join(f'<th scope="col" class="text-{a} px-2xs md:px-sm py-xs border-b text-label fg-weak">{h}</th>' for h, a in zip(headers, align))
     trs = []
     for n, r in enumerate(rows):
         last = n == len(rows) - 1
         b = "" if last else " border-b border-weak"
-        r = [c.replace("<code>", '<code class="whitespace-normal break-all">') for c in r]
-        tds = "".join(f'<td class="text-{a} align-top px-sm py-xs break-words{b}">{c}</td>' for c, a in zip(r, align))
+        # A class name in the first column breaks only after a hyphen, colon, slash or dot, never mid-word; code in the
+        # other columns may break anywhere, so a wide table still fits a phone.
+        joint = lambda c: re.sub(r"<code>(.*?)</code>", lambda m: '<code class="whitespace-normal">' + re.sub(r"([-:/.])(?=[^<>]*?(?:<|$))", r"\1<wbr>", m.group(1)) + "</code>", c)
+        r = [joint(c) if k == 0 else c.replace("<code>", '<code class="whitespace-normal break-all">') for k, c in enumerate(r)]
+        tds = "".join(f'<td class="text-{a} align-top px-2xs md:px-sm py-xs break-words{b}">{c}</td>' for c, a in zip(r, align))
         trs.append(f"                <tr>{tds}</tr>")
     return f"""<div class="border border-weak">
             <table class="w-full text-body-md">
@@ -335,6 +338,21 @@ def guide():
     return doc_page("guide.html", "Lay out a docs page", art, toc_items)
 
 
+def radius_section():
+    gm = json.load(open(os.path.join(ROOT, "theme", "theme.geometry.manifest.json")))
+    def find(o):
+        if isinstance(o, dict):
+            for v in o.values():
+                if isinstance(v, list) and any(isinstance(x, dict) and x.get("token") == "--radius-md" for x in v):
+                    return v
+                r = find(v)
+                if r is not None:
+                    return r
+    rows = [[f"<code>rounded-{x['token'][9:]}</code>", E(x["formula"]), E(x["use"])] for x in find(gm) if x.get("token", "").startswith("--radius-") and len(x["token"]) <= 11]
+    return section("radius", "Radius and nesting", p(E(gm["nesting"])), table(["Class", "Value", "Use"], rows),
+                   code("nest.html", "HTML", '<div popover class="rounded-md p-inset border …">\n  <a class="rounded-sm …">Rename</a>   <!-- concentric: md − inset − border = sm -->\n</div>\n<div class="rounded-lg p-sm border">\n  <div class="rounded-inner …">…</div>   <!-- any other padding -->\n</div>'))
+
+
 def reference():
     toc_items = [("grid", "Page grid"), ("shell", "Shell lengths"), ("levels", "Container levels"),
                  ("tiers", "Tiers"), ("breakpoints", "Breakpoints")]
@@ -391,6 +409,7 @@ def reference():
             code("tier.html", "HTML", """
 <article class="tier-content flex flex-col gap-section py-page max-w-measure">…</article>"""),
         ),
+        radius_section(),
         section("breakpoints", "Breakpoints",
             table(["Prefix", "Min width", "In these templates"], [
                 ["<code>sm:</code>", "640px", "Previous and next appear; the search field shows ⌘K"],
@@ -847,9 +866,9 @@ def materials_page():
                   "A material is how a region is painted: flat, lit, frosted, clear glass or outlined. It never changes a length, so switching material moves nothing. Set it once on a region; every part inside paints itself by what it is."),
         section("materials", "Materials", table(["Class", "What it does"], rows)),
         section("reliefs", "Parts", p(_plain(mm["usage"])),
-                code("material.html", "HTML", '<div class="material-frosted relief-ground p-md rounded-lg">\n  <input class="relief-field …">\n  <button class="relief-raised-solid …">Invite</button>\n</div>')),
+                code("material.html", "HTML", '<div class="material-frosted relief-ground p-md rounded-md">\n  <input class="relief-field …">\n  <button class="relief-raised-solid …">Invite</button>\n</div>')),
         section("glass", "Glass and the lens", p(_plain(mm["materials"]["glass"])), p(_plain(mm["glass"]["lens"])),
-                code("lens.html", "HTML", '<div class="material-glass relief-ground lens rounded-lg">…</div>\n<!-- the page provides the filter and sets data-lens="on" on <html> where the engine can draw it;\n     on this site, site.js does both -->'),
+                code("lens.html", "HTML", '<div class="material-glass relief-ground lens rounded-md">…</div>\n<!-- the page provides the filter and sets data-lens="on" on <html> where the engine can draw it;\n     on this site, site.js does both -->'),
                 callout("note", "Only Chromium applies an SVG filter behind an element. Elsewhere glass keeps its blur, so text over it must read without the lens.")),
         section("backdrops", "Backdrops", p("Glass needs something behind it to bend. <code>bg-dots</code> paints a dot grid in <code>currentColor</code>, spaced by <code>bg-dots-sm</code>, <code>-md</code> or <code>-lg</code>: the showcase sets its materials on one."),
                 code("dots.html", "HTML", '<div class="bg-neutral-2 fg-accent-1-9 bg-dots bg-dots-md">…</div>')),
@@ -871,7 +890,7 @@ def component_page(c):
     chips = " ".join(f'<a href="{class_page_of(k.split(":")[-1])}#{class_id(k.split(":")[-1])}" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">{E(k)}</a>' for k in classes_of(all_html))
     def example(sid, label, html_, summary=None):
         return section(sid, label, *([p(summary)] if summary else []),
-            f"""<div class="tier-product p-surface rounded-lg border border-weak bg-strong">
+            f"""<div class="tier-product p-surface rounded-md border border-weak bg-strong">
 {html_}
           </div>""",
             code(f"{c['slug']}-{sid}.html" if sid != "example" else f"{c['slug']}.html", "HTML", html_))

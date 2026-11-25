@@ -345,12 +345,37 @@
     {
       "token": "--radius-surface",
       "formula": "control + margin",
-      "use": "A card; class rounded-lg."
+      "use": "A card, popover, toast; class rounded-md."
     },
     {
       "token": "--radius-dialog",
       "formula": "control + 2 × margin",
-      "use": "A dialog; class rounded-xl."
+      "use": "A dialog; class rounded-lg."
+    },
+    {
+      "token": "--radius-xs",
+      "formula": "radius-nested (control − margin)",
+      "use": "A part inside a control or an item inside a popup; class rounded-xs."
+    },
+    {
+      "token": "--radius-sm",
+      "formula": "radius-control",
+      "use": "A control; class rounded-sm."
+    },
+    {
+      "token": "--radius-md",
+      "formula": "radius-surface (control + margin)",
+      "use": "A card, popover or toast; class rounded-md."
+    },
+    {
+      "token": "--radius-lg",
+      "formula": "radius-dialog (control + 2 × margin)",
+      "use": "A dialog; class rounded-lg."
+    },
+    {
+      "token": "--radius-xl",
+      "formula": "control + 3 × margin",
+      "use": "A sheet or hero panel; class rounded-xl."
     }
   ],
   "container": [
@@ -517,5 +542,6 @@
         "at16": "4px"
       }
     ]
-  }
+  },
+  "nesting": "After Affine UI, one unit runs the whole scale: each radius step is one margin (M) from the next (xs = control − M, sm = control, md = control + M, lg = control + 2M, xl = control + 3M), and the padding between levels is the inset (I = M − border). So a bordered container padded p-inset holds items one radius step down, concentrically: (r + M) − (M − B) − B = r. Pairs: rounded-md p-inset holds rounded-sm; rounded-lg p-inset holds rounded-md; rounded-sm p-inset holds rounded-xs. Any other padding uses rounded-inner (the parent's radius minus its padding and border)."
 }

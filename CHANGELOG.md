@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- **Docs pages:** previous and next sit side by side at every width; table cells pad less on a phone; a class name in a table breaks only at a hyphen or colon, never mid-word.
+- **Radii nest, after Affine UI:** one unit runs the radius scale: `rounded-xs` (control − margin), `rounded-sm` (control), new `rounded-md` (control + margin), `rounded-lg` (+2 margins) and `rounded-xl` (+3). New `p-inset` (margin − border) pads between levels, so `rounded-md p-inset border` holds `rounded-sm` items concentrically. New `rounded-inner` gives any item the parent's radius minus its padding and border. Breaking: `rounded-lg` was the card radius and is now the dialog's; cards are `rounded-md`, dialogs `rounded-lg`.
 - **Docs for the system:** new Colour, Type and space, States and variants, and Materials pages, their tables read from the manifests (state-variant counts from `nowind.css`). The docs home's figures come from the manifests too. The README covers the lens, backdrops, fields, native controls, default transitions and the new files.
 - **Single-line controls never wrap:** the reset keeps buttons, selects and inputs on one line. In `select-base`, a `<button>` holding `<selectedcontent>` lets a long value end in an ellipsis before the caret; `select-base` no longer zeroes its block padding. Toasts move their actions to a second line instead of squeezing the message. New `basis-0`.
 - **Carets are always the small icon size:** `caret`, the select's picker icon and every caret in the examples (checked by the examples lint).

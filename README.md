@@ -170,6 +170,18 @@ Parts: `relief-raised` (buttons), `relief-raised-solid` (primary buttons), `reli
 
 **Backdrops.** `bg-dots` paints a dot grid in `currentColor` (set it with `fg-*`), spaced by `bg-dots-sm`, `-md` or `-lg`. Glass needs something behind it to bend.
 
+### Radius and nesting
+
+After Affine UI, one unit runs the radius scale: each step is one margin (M) from the next. `rounded-xs` (control − M), `rounded-sm` (control), `rounded-md` (control + M: cards, popovers), `rounded-lg` (+2M: dialogs), `rounded-xl` (+3M). The padding between levels is the inset, `p-inset` (M − border), so a bordered container padded `p-inset` holds items one step down with parallel curves:
+
+```html
+<div popover class="rounded-md p-inset border">
+  <a class="rounded-sm …">Rename</a>
+</div>
+```
+
+For any other padding, `rounded-inner` takes the parent's radius minus its padding and border.
+
 ### Fields
 
 A field with an icon, prefix, suffix or trailing action is a box around a bare input. The box takes the border, focus and error states; the slots run leading icon, prefix, input, suffix, trailing. The icon names the kind of value, and units go in the suffix, never in the value.

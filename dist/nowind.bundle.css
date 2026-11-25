@@ -1473,6 +1473,11 @@
   --radius-nested: max(0px, calc(var(--radius-control) - var(--margin)));
   --radius-surface: calc(var(--radius-control) + var(--corner-factor) * var(--margin));
   --radius-dialog: calc(var(--radius-control) + 2 * var(--corner-factor) * var(--margin));
+  --radius-xs: var(--radius-nested);
+  --radius-sm: var(--radius-control);
+  --radius-md: var(--radius-surface);
+  --radius-lg: var(--radius-dialog);
+  --radius-xl: calc(var(--radius-control) + 3 * var(--corner-factor) * var(--margin));
   --container-padding: var(--page-margin);
 
   --grid-gutter: calc(var(--grid-gutter-factor) * var(--margin));
@@ -1815,7 +1820,7 @@
 }
 
 @layer reset {
-  :where(*, *::before, *::after) { box-sizing: border-box; border-color: var(--border); }
+  :where(*, *::before, *::after) { box-sizing: border-box; border-color: var(--border); --_inset: 0px; --_bw: 0px; }
   :where(button, select, input) { white-space: nowrap; }
   :where(a, button, summary, input, select, textarea, label, [role="button"], [role="tab"], [role="option"], [role="menuitem"], [role="switch"]) { transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, translate, scale, rotate; transition-duration: var(--motion-duration); transition-timing-function: var(--motion-easing); }
   :where(*) { margin: 0; }
@@ -2023,17 +2028,17 @@
 }
 
 @layer nowind {
-  .p-0 { padding: 0; }
-  .p-3xs { padding: var(--space-3xs); }
-  .p-2xs { padding: var(--space-2xs); }
-  .p-xs { padding: var(--space-xs); }
-  .p-sm { padding: var(--space-sm); }
-  .p-md { padding: var(--space-md); }
-  .p-lg { padding: var(--space-lg); }
-  .p-xl { padding: var(--space-xl); }
-  .p-2xl { padding: var(--space-2xl); }
-  .p-3xl { padding: var(--space-3xl); }
-  .p-4xl { padding: var(--space-4xl); }
+  .p-0 { padding: 0; --_inset: 0px; }
+  .p-3xs { padding: var(--space-3xs); --_inset: var(--space-3xs); }
+  .p-2xs { padding: var(--space-2xs); --_inset: var(--space-2xs); }
+  .p-xs { padding: var(--space-xs); --_inset: var(--space-xs); }
+  .p-sm { padding: var(--space-sm); --_inset: var(--space-sm); }
+  .p-md { padding: var(--space-md); --_inset: var(--space-md); }
+  .p-lg { padding: var(--space-lg); --_inset: var(--space-lg); }
+  .p-xl { padding: var(--space-xl); --_inset: var(--space-xl); }
+  .p-2xl { padding: var(--space-2xl); --_inset: var(--space-2xl); }
+  .p-3xl { padding: var(--space-3xl); --_inset: var(--space-3xl); }
+  .p-4xl { padding: var(--space-4xl); --_inset: var(--space-4xl); }
   .pt-0 { padding-top: 0; }
   .pt-3xs { padding-top: var(--space-3xs); }
   .pt-2xs { padding-top: var(--space-2xs); }
@@ -3112,28 +3117,28 @@
   .bg-local { background-attachment: local; }
   .bg-scroll { background-attachment: scroll; }
   .bg-clip-text { -webkit-background-clip: text; background-clip: text; }
-  .border { border-width: var(--border-width); border-style: solid; }
+  .border { border-width: var(--border-width); border-style: solid; --_bw: var(--border-width); }
   .border-t { border-top-width: var(--border-width); border-top-style: solid; }
   .border-r { border-right-width: var(--border-width); border-right-style: solid; }
   .border-b { border-bottom-width: var(--border-width); border-bottom-style: solid; }
   .border-l { border-left-width: var(--border-width); border-left-style: solid; }
   .border-x { border-inline-width: var(--border-width); border-inline-style: solid; }
   .border-y { border-block-width: var(--border-width); border-block-style: solid; }
-  .border-0 { border-width: 0; border-style: solid; }
+  .border-0 { border-width: 0; border-style: solid; --_bw: 0px; }
   .border-t-0 { border-top-width: 0; border-top-style: solid; }
   .border-r-0 { border-right-width: 0; border-right-style: solid; }
   .border-b-0 { border-bottom-width: 0; border-bottom-style: solid; }
   .border-l-0 { border-left-width: 0; border-left-style: solid; }
   .border-x-0 { border-inline-width: 0; border-inline-style: solid; }
   .border-y-0 { border-block-width: 0; border-block-style: solid; }
-  .border-2 { border-width: 2px; border-style: solid; }
+  .border-2 { border-width: 2px; border-style: solid; --_bw: 2px; }
   .border-t-2 { border-top-width: 2px; border-top-style: solid; }
   .border-r-2 { border-right-width: 2px; border-right-style: solid; }
   .border-b-2 { border-bottom-width: 2px; border-bottom-style: solid; }
   .border-l-2 { border-left-width: 2px; border-left-style: solid; }
   .border-x-2 { border-inline-width: 2px; border-inline-style: solid; }
   .border-y-2 { border-block-width: 2px; border-block-style: solid; }
-  .border-4 { border-width: 4px; border-style: solid; }
+  .border-4 { border-width: 4px; border-style: solid; --_bw: 4px; }
   .border-t-4 { border-top-width: 4px; border-top-style: solid; }
   .border-r-4 { border-right-width: 4px; border-right-style: solid; }
   .border-b-4 { border-bottom-width: 4px; border-bottom-style: solid; }
@@ -3144,15 +3149,17 @@
   .border-dashed { border-style: dashed; }
   .border-dotted { border-style: dotted; }
   .border-none { border-style: none; }
-  .rounded-none { border-radius: 0; }
-  .rounded-xs { border-radius: var(--radius-nested); }
-  .rounded-sm { border-radius: var(--radius-control); }
-  .rounded { border-radius: var(--radius-control); }
-  .rounded-control { border-radius: var(--radius-control); }
-  .rounded-nested { border-radius: var(--radius-nested); }
-  .rounded-lg { border-radius: var(--radius-surface); }
-  .rounded-xl { border-radius: var(--radius-dialog); }
-  .rounded-full { border-radius: 9999px; }
+  .rounded-none { border-radius: 0px; --_nest: max(0px, calc(0px - var(--_inset) - var(--_bw))); }
+  .rounded-xs { border-radius: var(--radius-xs); --_nest: max(0px, calc(var(--radius-xs) - var(--_inset) - var(--_bw))); }
+  .rounded-sm { border-radius: var(--radius-sm); --_nest: max(0px, calc(var(--radius-sm) - var(--_inset) - var(--_bw))); }
+  .rounded { border-radius: var(--radius-sm); --_nest: max(0px, calc(var(--radius-sm) - var(--_inset) - var(--_bw))); }
+  .rounded-control { border-radius: var(--radius-control); --_nest: max(0px, calc(var(--radius-control) - var(--_inset) - var(--_bw))); }
+  .rounded-nested { border-radius: var(--radius-nested); --_nest: max(0px, calc(var(--radius-nested) - var(--_inset) - var(--_bw))); }
+  .rounded-md { border-radius: var(--radius-md); --_nest: max(0px, calc(var(--radius-md) - var(--_inset) - var(--_bw))); }
+  .rounded-lg { border-radius: var(--radius-lg); --_nest: max(0px, calc(var(--radius-lg) - var(--_inset) - var(--_bw))); }
+  .rounded-xl { border-radius: var(--radius-xl); --_nest: max(0px, calc(var(--radius-xl) - var(--_inset) - var(--_bw))); }
+  .rounded-full { border-radius: 9999px; --_nest: max(0px, calc(9999px - var(--_inset) - var(--_bw))); }
+  .rounded-inner { border-radius: var(--_nest, var(--radius-sm)); }
   .outline { outline-width: var(--border-width); outline-style: solid; }
   .outline-2 { outline-width: 2px; outline-style: solid; }
   .outline-0 { outline-width: 0; }
@@ -3309,26 +3316,31 @@
   .px-control { padding-inline: var(--control-padding); }
   .px-nested { padding-inline: var(--nested-padding); }
   .gap-gutter { gap: var(--gutter); }
-  .p-surface { padding: calc(var(--surface-padding) - var(--border-width)); }
+  .p-surface { padding: calc(var(--surface-padding) - var(--border-width)); --_inset: calc(var(--surface-padding) - var(--border-width)); }
   .px-surface { padding-inline: calc(var(--surface-padding) - var(--border-width)); }
   .py-surface { padding-block: calc(var(--surface-padding) - var(--border-width)); }
   .pt-surface { padding-top: calc(var(--surface-padding) - var(--border-width)); }
   .pb-surface { padding-bottom: calc(var(--surface-padding) - var(--border-width)); }
-  .p-dialog { padding: calc(var(--dialog-padding) - var(--border-width)); }
+  .p-dialog { padding: calc(var(--dialog-padding) - var(--border-width)); --_inset: calc(var(--dialog-padding) - var(--border-width)); }
   .px-dialog { padding-inline: calc(var(--dialog-padding) - var(--border-width)); }
   .py-dialog { padding-block: calc(var(--dialog-padding) - var(--border-width)); }
   .pt-dialog { padding-top: calc(var(--dialog-padding) - var(--border-width)); }
   .pb-dialog { padding-bottom: calc(var(--dialog-padding) - var(--border-width)); }
-  .p-region { padding: var(--region-padding); }
+  .p-region { padding: var(--region-padding); --_inset: var(--region-padding); }
   .px-region { padding-inline: var(--region-padding); }
   .py-region { padding-block: var(--region-padding); }
   .pt-region { padding-top: var(--region-padding); }
   .pb-region { padding-bottom: var(--region-padding); }
-  .p-page { padding: var(--page-margin); }
+  .p-page { padding: var(--page-margin); --_inset: var(--page-margin); }
   .px-page { padding-inline: var(--page-margin); }
   .py-page { padding-block: var(--page-margin); }
   .pt-page { padding-top: var(--page-margin); }
   .pb-page { padding-bottom: var(--page-margin); }
+  .p-inset { padding: var(--inset); --_inset: var(--inset); }
+  .px-inset { padding-inline: var(--inset); }
+  .py-inset { padding-block: var(--inset); }
+  .pt-inset { padding-top: var(--inset); }
+  .pb-inset { padding-bottom: var(--inset); }
   .gap-field { gap: var(--field-gap); }
   .gap-row { gap: var(--row-gap); }
   .gap-group { gap: var(--group-gap); }
@@ -6261,17 +6273,17 @@
   .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:visible { visibility: visible; }
   .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:invisible { visibility: hidden; }
   @media (min-width: 640px) {
-    .sm\:p-0 { padding: 0; }
-    .sm\:p-3xs { padding: var(--space-3xs); }
-    .sm\:p-2xs { padding: var(--space-2xs); }
-    .sm\:p-xs { padding: var(--space-xs); }
-    .sm\:p-sm { padding: var(--space-sm); }
-    .sm\:p-md { padding: var(--space-md); }
-    .sm\:p-lg { padding: var(--space-lg); }
-    .sm\:p-xl { padding: var(--space-xl); }
-    .sm\:p-2xl { padding: var(--space-2xl); }
-    .sm\:p-3xl { padding: var(--space-3xl); }
-    .sm\:p-4xl { padding: var(--space-4xl); }
+    .sm\:p-0 { padding: 0; --_inset: 0px; }
+    .sm\:p-3xs { padding: var(--space-3xs); --_inset: var(--space-3xs); }
+    .sm\:p-2xs { padding: var(--space-2xs); --_inset: var(--space-2xs); }
+    .sm\:p-xs { padding: var(--space-xs); --_inset: var(--space-xs); }
+    .sm\:p-sm { padding: var(--space-sm); --_inset: var(--space-sm); }
+    .sm\:p-md { padding: var(--space-md); --_inset: var(--space-md); }
+    .sm\:p-lg { padding: var(--space-lg); --_inset: var(--space-lg); }
+    .sm\:p-xl { padding: var(--space-xl); --_inset: var(--space-xl); }
+    .sm\:p-2xl { padding: var(--space-2xl); --_inset: var(--space-2xl); }
+    .sm\:p-3xl { padding: var(--space-3xl); --_inset: var(--space-3xl); }
+    .sm\:p-4xl { padding: var(--space-4xl); --_inset: var(--space-4xl); }
     .sm\:pt-0 { padding-top: 0; }
     .sm\:pt-3xs { padding-top: var(--space-3xs); }
     .sm\:pt-2xs { padding-top: var(--space-2xs); }
@@ -6469,26 +6481,31 @@
     .sm\:px-control { padding-inline: var(--control-padding); }
     .sm\:px-nested { padding-inline: var(--nested-padding); }
     .sm\:gap-gutter { gap: var(--gutter); }
-    .sm\:p-surface { padding: calc(var(--surface-padding) - var(--border-width)); }
+    .sm\:p-surface { padding: calc(var(--surface-padding) - var(--border-width)); --_inset: calc(var(--surface-padding) - var(--border-width)); }
     .sm\:px-surface { padding-inline: calc(var(--surface-padding) - var(--border-width)); }
     .sm\:py-surface { padding-block: calc(var(--surface-padding) - var(--border-width)); }
     .sm\:pt-surface { padding-top: calc(var(--surface-padding) - var(--border-width)); }
     .sm\:pb-surface { padding-bottom: calc(var(--surface-padding) - var(--border-width)); }
-    .sm\:p-dialog { padding: calc(var(--dialog-padding) - var(--border-width)); }
+    .sm\:p-dialog { padding: calc(var(--dialog-padding) - var(--border-width)); --_inset: calc(var(--dialog-padding) - var(--border-width)); }
     .sm\:px-dialog { padding-inline: calc(var(--dialog-padding) - var(--border-width)); }
     .sm\:py-dialog { padding-block: calc(var(--dialog-padding) - var(--border-width)); }
     .sm\:pt-dialog { padding-top: calc(var(--dialog-padding) - var(--border-width)); }
     .sm\:pb-dialog { padding-bottom: calc(var(--dialog-padding) - var(--border-width)); }
-    .sm\:p-region { padding: var(--region-padding); }
+    .sm\:p-region { padding: var(--region-padding); --_inset: var(--region-padding); }
     .sm\:px-region { padding-inline: var(--region-padding); }
     .sm\:py-region { padding-block: var(--region-padding); }
     .sm\:pt-region { padding-top: var(--region-padding); }
     .sm\:pb-region { padding-bottom: var(--region-padding); }
-    .sm\:p-page { padding: var(--page-margin); }
+    .sm\:p-page { padding: var(--page-margin); --_inset: var(--page-margin); }
     .sm\:px-page { padding-inline: var(--page-margin); }
     .sm\:py-page { padding-block: var(--page-margin); }
     .sm\:pt-page { padding-top: var(--page-margin); }
     .sm\:pb-page { padding-bottom: var(--page-margin); }
+    .sm\:p-inset { padding: var(--inset); --_inset: var(--inset); }
+    .sm\:px-inset { padding-inline: var(--inset); }
+    .sm\:py-inset { padding-block: var(--inset); }
+    .sm\:pt-inset { padding-top: var(--inset); }
+    .sm\:pb-inset { padding-bottom: var(--inset); }
     .sm\:gap-field { gap: var(--field-gap); }
     .sm\:gap-row { gap: var(--row-gap); }
     .sm\:gap-group { gap: var(--group-gap); }
@@ -6506,17 +6523,17 @@
     .sm\:gap-gutter-half { gap: calc(var(--gutter) / 2); }
   }
   @media (min-width: 768px) {
-    .md\:p-0 { padding: 0; }
-    .md\:p-3xs { padding: var(--space-3xs); }
-    .md\:p-2xs { padding: var(--space-2xs); }
-    .md\:p-xs { padding: var(--space-xs); }
-    .md\:p-sm { padding: var(--space-sm); }
-    .md\:p-md { padding: var(--space-md); }
-    .md\:p-lg { padding: var(--space-lg); }
-    .md\:p-xl { padding: var(--space-xl); }
-    .md\:p-2xl { padding: var(--space-2xl); }
-    .md\:p-3xl { padding: var(--space-3xl); }
-    .md\:p-4xl { padding: var(--space-4xl); }
+    .md\:p-0 { padding: 0; --_inset: 0px; }
+    .md\:p-3xs { padding: var(--space-3xs); --_inset: var(--space-3xs); }
+    .md\:p-2xs { padding: var(--space-2xs); --_inset: var(--space-2xs); }
+    .md\:p-xs { padding: var(--space-xs); --_inset: var(--space-xs); }
+    .md\:p-sm { padding: var(--space-sm); --_inset: var(--space-sm); }
+    .md\:p-md { padding: var(--space-md); --_inset: var(--space-md); }
+    .md\:p-lg { padding: var(--space-lg); --_inset: var(--space-lg); }
+    .md\:p-xl { padding: var(--space-xl); --_inset: var(--space-xl); }
+    .md\:p-2xl { padding: var(--space-2xl); --_inset: var(--space-2xl); }
+    .md\:p-3xl { padding: var(--space-3xl); --_inset: var(--space-3xl); }
+    .md\:p-4xl { padding: var(--space-4xl); --_inset: var(--space-4xl); }
     .md\:pt-0 { padding-top: 0; }
     .md\:pt-3xs { padding-top: var(--space-3xs); }
     .md\:pt-2xs { padding-top: var(--space-2xs); }
@@ -6714,26 +6731,31 @@
     .md\:px-control { padding-inline: var(--control-padding); }
     .md\:px-nested { padding-inline: var(--nested-padding); }
     .md\:gap-gutter { gap: var(--gutter); }
-    .md\:p-surface { padding: calc(var(--surface-padding) - var(--border-width)); }
+    .md\:p-surface { padding: calc(var(--surface-padding) - var(--border-width)); --_inset: calc(var(--surface-padding) - var(--border-width)); }
     .md\:px-surface { padding-inline: calc(var(--surface-padding) - var(--border-width)); }
     .md\:py-surface { padding-block: calc(var(--surface-padding) - var(--border-width)); }
     .md\:pt-surface { padding-top: calc(var(--surface-padding) - var(--border-width)); }
     .md\:pb-surface { padding-bottom: calc(var(--surface-padding) - var(--border-width)); }
-    .md\:p-dialog { padding: calc(var(--dialog-padding) - var(--border-width)); }
+    .md\:p-dialog { padding: calc(var(--dialog-padding) - var(--border-width)); --_inset: calc(var(--dialog-padding) - var(--border-width)); }
     .md\:px-dialog { padding-inline: calc(var(--dialog-padding) - var(--border-width)); }
     .md\:py-dialog { padding-block: calc(var(--dialog-padding) - var(--border-width)); }
     .md\:pt-dialog { padding-top: calc(var(--dialog-padding) - var(--border-width)); }
     .md\:pb-dialog { padding-bottom: calc(var(--dialog-padding) - var(--border-width)); }
-    .md\:p-region { padding: var(--region-padding); }
+    .md\:p-region { padding: var(--region-padding); --_inset: var(--region-padding); }
     .md\:px-region { padding-inline: var(--region-padding); }
     .md\:py-region { padding-block: var(--region-padding); }
     .md\:pt-region { padding-top: var(--region-padding); }
     .md\:pb-region { padding-bottom: var(--region-padding); }
-    .md\:p-page { padding: var(--page-margin); }
+    .md\:p-page { padding: var(--page-margin); --_inset: var(--page-margin); }
     .md\:px-page { padding-inline: var(--page-margin); }
     .md\:py-page { padding-block: var(--page-margin); }
     .md\:pt-page { padding-top: var(--page-margin); }
     .md\:pb-page { padding-bottom: var(--page-margin); }
+    .md\:p-inset { padding: var(--inset); --_inset: var(--inset); }
+    .md\:px-inset { padding-inline: var(--inset); }
+    .md\:py-inset { padding-block: var(--inset); }
+    .md\:pt-inset { padding-top: var(--inset); }
+    .md\:pb-inset { padding-bottom: var(--inset); }
     .md\:gap-field { gap: var(--field-gap); }
     .md\:gap-row { gap: var(--row-gap); }
     .md\:gap-group { gap: var(--group-gap); }
@@ -6751,17 +6773,17 @@
     .md\:gap-gutter-half { gap: calc(var(--gutter) / 2); }
   }
   @media (min-width: 1024px) {
-    .lg\:p-0 { padding: 0; }
-    .lg\:p-3xs { padding: var(--space-3xs); }
-    .lg\:p-2xs { padding: var(--space-2xs); }
-    .lg\:p-xs { padding: var(--space-xs); }
-    .lg\:p-sm { padding: var(--space-sm); }
-    .lg\:p-md { padding: var(--space-md); }
-    .lg\:p-lg { padding: var(--space-lg); }
-    .lg\:p-xl { padding: var(--space-xl); }
-    .lg\:p-2xl { padding: var(--space-2xl); }
-    .lg\:p-3xl { padding: var(--space-3xl); }
-    .lg\:p-4xl { padding: var(--space-4xl); }
+    .lg\:p-0 { padding: 0; --_inset: 0px; }
+    .lg\:p-3xs { padding: var(--space-3xs); --_inset: var(--space-3xs); }
+    .lg\:p-2xs { padding: var(--space-2xs); --_inset: var(--space-2xs); }
+    .lg\:p-xs { padding: var(--space-xs); --_inset: var(--space-xs); }
+    .lg\:p-sm { padding: var(--space-sm); --_inset: var(--space-sm); }
+    .lg\:p-md { padding: var(--space-md); --_inset: var(--space-md); }
+    .lg\:p-lg { padding: var(--space-lg); --_inset: var(--space-lg); }
+    .lg\:p-xl { padding: var(--space-xl); --_inset: var(--space-xl); }
+    .lg\:p-2xl { padding: var(--space-2xl); --_inset: var(--space-2xl); }
+    .lg\:p-3xl { padding: var(--space-3xl); --_inset: var(--space-3xl); }
+    .lg\:p-4xl { padding: var(--space-4xl); --_inset: var(--space-4xl); }
     .lg\:pt-0 { padding-top: 0; }
     .lg\:pt-3xs { padding-top: var(--space-3xs); }
     .lg\:pt-2xs { padding-top: var(--space-2xs); }
@@ -6959,26 +6981,31 @@
     .lg\:px-control { padding-inline: var(--control-padding); }
     .lg\:px-nested { padding-inline: var(--nested-padding); }
     .lg\:gap-gutter { gap: var(--gutter); }
-    .lg\:p-surface { padding: calc(var(--surface-padding) - var(--border-width)); }
+    .lg\:p-surface { padding: calc(var(--surface-padding) - var(--border-width)); --_inset: calc(var(--surface-padding) - var(--border-width)); }
     .lg\:px-surface { padding-inline: calc(var(--surface-padding) - var(--border-width)); }
     .lg\:py-surface { padding-block: calc(var(--surface-padding) - var(--border-width)); }
     .lg\:pt-surface { padding-top: calc(var(--surface-padding) - var(--border-width)); }
     .lg\:pb-surface { padding-bottom: calc(var(--surface-padding) - var(--border-width)); }
-    .lg\:p-dialog { padding: calc(var(--dialog-padding) - var(--border-width)); }
+    .lg\:p-dialog { padding: calc(var(--dialog-padding) - var(--border-width)); --_inset: calc(var(--dialog-padding) - var(--border-width)); }
     .lg\:px-dialog { padding-inline: calc(var(--dialog-padding) - var(--border-width)); }
     .lg\:py-dialog { padding-block: calc(var(--dialog-padding) - var(--border-width)); }
     .lg\:pt-dialog { padding-top: calc(var(--dialog-padding) - var(--border-width)); }
     .lg\:pb-dialog { padding-bottom: calc(var(--dialog-padding) - var(--border-width)); }
-    .lg\:p-region { padding: var(--region-padding); }
+    .lg\:p-region { padding: var(--region-padding); --_inset: var(--region-padding); }
     .lg\:px-region { padding-inline: var(--region-padding); }
     .lg\:py-region { padding-block: var(--region-padding); }
     .lg\:pt-region { padding-top: var(--region-padding); }
     .lg\:pb-region { padding-bottom: var(--region-padding); }
-    .lg\:p-page { padding: var(--page-margin); }
+    .lg\:p-page { padding: var(--page-margin); --_inset: var(--page-margin); }
     .lg\:px-page { padding-inline: var(--page-margin); }
     .lg\:py-page { padding-block: var(--page-margin); }
     .lg\:pt-page { padding-top: var(--page-margin); }
     .lg\:pb-page { padding-bottom: var(--page-margin); }
+    .lg\:p-inset { padding: var(--inset); --_inset: var(--inset); }
+    .lg\:px-inset { padding-inline: var(--inset); }
+    .lg\:py-inset { padding-block: var(--inset); }
+    .lg\:pt-inset { padding-top: var(--inset); }
+    .lg\:pb-inset { padding-bottom: var(--inset); }
     .lg\:gap-field { gap: var(--field-gap); }
     .lg\:gap-row { gap: var(--row-gap); }
     .lg\:gap-group { gap: var(--group-gap); }
@@ -6996,17 +7023,17 @@
     .lg\:gap-gutter-half { gap: calc(var(--gutter) / 2); }
   }
   @media (min-width: 1280px) {
-    .xl\:p-0 { padding: 0; }
-    .xl\:p-3xs { padding: var(--space-3xs); }
-    .xl\:p-2xs { padding: var(--space-2xs); }
-    .xl\:p-xs { padding: var(--space-xs); }
-    .xl\:p-sm { padding: var(--space-sm); }
-    .xl\:p-md { padding: var(--space-md); }
-    .xl\:p-lg { padding: var(--space-lg); }
-    .xl\:p-xl { padding: var(--space-xl); }
-    .xl\:p-2xl { padding: var(--space-2xl); }
-    .xl\:p-3xl { padding: var(--space-3xl); }
-    .xl\:p-4xl { padding: var(--space-4xl); }
+    .xl\:p-0 { padding: 0; --_inset: 0px; }
+    .xl\:p-3xs { padding: var(--space-3xs); --_inset: var(--space-3xs); }
+    .xl\:p-2xs { padding: var(--space-2xs); --_inset: var(--space-2xs); }
+    .xl\:p-xs { padding: var(--space-xs); --_inset: var(--space-xs); }
+    .xl\:p-sm { padding: var(--space-sm); --_inset: var(--space-sm); }
+    .xl\:p-md { padding: var(--space-md); --_inset: var(--space-md); }
+    .xl\:p-lg { padding: var(--space-lg); --_inset: var(--space-lg); }
+    .xl\:p-xl { padding: var(--space-xl); --_inset: var(--space-xl); }
+    .xl\:p-2xl { padding: var(--space-2xl); --_inset: var(--space-2xl); }
+    .xl\:p-3xl { padding: var(--space-3xl); --_inset: var(--space-3xl); }
+    .xl\:p-4xl { padding: var(--space-4xl); --_inset: var(--space-4xl); }
     .xl\:pt-0 { padding-top: 0; }
     .xl\:pt-3xs { padding-top: var(--space-3xs); }
     .xl\:pt-2xs { padding-top: var(--space-2xs); }
@@ -7204,26 +7231,31 @@
     .xl\:px-control { padding-inline: var(--control-padding); }
     .xl\:px-nested { padding-inline: var(--nested-padding); }
     .xl\:gap-gutter { gap: var(--gutter); }
-    .xl\:p-surface { padding: calc(var(--surface-padding) - var(--border-width)); }
+    .xl\:p-surface { padding: calc(var(--surface-padding) - var(--border-width)); --_inset: calc(var(--surface-padding) - var(--border-width)); }
     .xl\:px-surface { padding-inline: calc(var(--surface-padding) - var(--border-width)); }
     .xl\:py-surface { padding-block: calc(var(--surface-padding) - var(--border-width)); }
     .xl\:pt-surface { padding-top: calc(var(--surface-padding) - var(--border-width)); }
     .xl\:pb-surface { padding-bottom: calc(var(--surface-padding) - var(--border-width)); }
-    .xl\:p-dialog { padding: calc(var(--dialog-padding) - var(--border-width)); }
+    .xl\:p-dialog { padding: calc(var(--dialog-padding) - var(--border-width)); --_inset: calc(var(--dialog-padding) - var(--border-width)); }
     .xl\:px-dialog { padding-inline: calc(var(--dialog-padding) - var(--border-width)); }
     .xl\:py-dialog { padding-block: calc(var(--dialog-padding) - var(--border-width)); }
     .xl\:pt-dialog { padding-top: calc(var(--dialog-padding) - var(--border-width)); }
     .xl\:pb-dialog { padding-bottom: calc(var(--dialog-padding) - var(--border-width)); }
-    .xl\:p-region { padding: var(--region-padding); }
+    .xl\:p-region { padding: var(--region-padding); --_inset: var(--region-padding); }
     .xl\:px-region { padding-inline: var(--region-padding); }
     .xl\:py-region { padding-block: var(--region-padding); }
     .xl\:pt-region { padding-top: var(--region-padding); }
     .xl\:pb-region { padding-bottom: var(--region-padding); }
-    .xl\:p-page { padding: var(--page-margin); }
+    .xl\:p-page { padding: var(--page-margin); --_inset: var(--page-margin); }
     .xl\:px-page { padding-inline: var(--page-margin); }
     .xl\:py-page { padding-block: var(--page-margin); }
     .xl\:pt-page { padding-top: var(--page-margin); }
     .xl\:pb-page { padding-bottom: var(--page-margin); }
+    .xl\:p-inset { padding: var(--inset); --_inset: var(--inset); }
+    .xl\:px-inset { padding-inline: var(--inset); }
+    .xl\:py-inset { padding-block: var(--inset); }
+    .xl\:pt-inset { padding-top: var(--inset); }
+    .xl\:pb-inset { padding-bottom: var(--inset); }
     .xl\:gap-field { gap: var(--field-gap); }
     .xl\:gap-row { gap: var(--row-gap); }
     .xl\:gap-group { gap: var(--group-gap); }
@@ -7241,17 +7273,17 @@
     .xl\:gap-gutter-half { gap: calc(var(--gutter) / 2); }
   }
   @media (min-width: 1536px) {
-    .\32 xl\:p-0 { padding: 0; }
-    .\32 xl\:p-3xs { padding: var(--space-3xs); }
-    .\32 xl\:p-2xs { padding: var(--space-2xs); }
-    .\32 xl\:p-xs { padding: var(--space-xs); }
-    .\32 xl\:p-sm { padding: var(--space-sm); }
-    .\32 xl\:p-md { padding: var(--space-md); }
-    .\32 xl\:p-lg { padding: var(--space-lg); }
-    .\32 xl\:p-xl { padding: var(--space-xl); }
-    .\32 xl\:p-2xl { padding: var(--space-2xl); }
-    .\32 xl\:p-3xl { padding: var(--space-3xl); }
-    .\32 xl\:p-4xl { padding: var(--space-4xl); }
+    .\32 xl\:p-0 { padding: 0; --_inset: 0px; }
+    .\32 xl\:p-3xs { padding: var(--space-3xs); --_inset: var(--space-3xs); }
+    .\32 xl\:p-2xs { padding: var(--space-2xs); --_inset: var(--space-2xs); }
+    .\32 xl\:p-xs { padding: var(--space-xs); --_inset: var(--space-xs); }
+    .\32 xl\:p-sm { padding: var(--space-sm); --_inset: var(--space-sm); }
+    .\32 xl\:p-md { padding: var(--space-md); --_inset: var(--space-md); }
+    .\32 xl\:p-lg { padding: var(--space-lg); --_inset: var(--space-lg); }
+    .\32 xl\:p-xl { padding: var(--space-xl); --_inset: var(--space-xl); }
+    .\32 xl\:p-2xl { padding: var(--space-2xl); --_inset: var(--space-2xl); }
+    .\32 xl\:p-3xl { padding: var(--space-3xl); --_inset: var(--space-3xl); }
+    .\32 xl\:p-4xl { padding: var(--space-4xl); --_inset: var(--space-4xl); }
     .\32 xl\:pt-0 { padding-top: 0; }
     .\32 xl\:pt-3xs { padding-top: var(--space-3xs); }
     .\32 xl\:pt-2xs { padding-top: var(--space-2xs); }
@@ -7449,26 +7481,31 @@
     .\32 xl\:px-control { padding-inline: var(--control-padding); }
     .\32 xl\:px-nested { padding-inline: var(--nested-padding); }
     .\32 xl\:gap-gutter { gap: var(--gutter); }
-    .\32 xl\:p-surface { padding: calc(var(--surface-padding) - var(--border-width)); }
+    .\32 xl\:p-surface { padding: calc(var(--surface-padding) - var(--border-width)); --_inset: calc(var(--surface-padding) - var(--border-width)); }
     .\32 xl\:px-surface { padding-inline: calc(var(--surface-padding) - var(--border-width)); }
     .\32 xl\:py-surface { padding-block: calc(var(--surface-padding) - var(--border-width)); }
     .\32 xl\:pt-surface { padding-top: calc(var(--surface-padding) - var(--border-width)); }
     .\32 xl\:pb-surface { padding-bottom: calc(var(--surface-padding) - var(--border-width)); }
-    .\32 xl\:p-dialog { padding: calc(var(--dialog-padding) - var(--border-width)); }
+    .\32 xl\:p-dialog { padding: calc(var(--dialog-padding) - var(--border-width)); --_inset: calc(var(--dialog-padding) - var(--border-width)); }
     .\32 xl\:px-dialog { padding-inline: calc(var(--dialog-padding) - var(--border-width)); }
     .\32 xl\:py-dialog { padding-block: calc(var(--dialog-padding) - var(--border-width)); }
     .\32 xl\:pt-dialog { padding-top: calc(var(--dialog-padding) - var(--border-width)); }
     .\32 xl\:pb-dialog { padding-bottom: calc(var(--dialog-padding) - var(--border-width)); }
-    .\32 xl\:p-region { padding: var(--region-padding); }
+    .\32 xl\:p-region { padding: var(--region-padding); --_inset: var(--region-padding); }
     .\32 xl\:px-region { padding-inline: var(--region-padding); }
     .\32 xl\:py-region { padding-block: var(--region-padding); }
     .\32 xl\:pt-region { padding-top: var(--region-padding); }
     .\32 xl\:pb-region { padding-bottom: var(--region-padding); }
-    .\32 xl\:p-page { padding: var(--page-margin); }
+    .\32 xl\:p-page { padding: var(--page-margin); --_inset: var(--page-margin); }
     .\32 xl\:px-page { padding-inline: var(--page-margin); }
     .\32 xl\:py-page { padding-block: var(--page-margin); }
     .\32 xl\:pt-page { padding-top: var(--page-margin); }
     .\32 xl\:pb-page { padding-bottom: var(--page-margin); }
+    .\32 xl\:p-inset { padding: var(--inset); --_inset: var(--inset); }
+    .\32 xl\:px-inset { padding-inline: var(--inset); }
+    .\32 xl\:py-inset { padding-block: var(--inset); }
+    .\32 xl\:pt-inset { padding-top: var(--inset); }
+    .\32 xl\:pb-inset { padding-bottom: var(--inset); }
     .\32 xl\:gap-field { gap: var(--field-gap); }
     .\32 xl\:gap-row { gap: var(--row-gap); }
     .\32 xl\:gap-group { gap: var(--group-gap); }
