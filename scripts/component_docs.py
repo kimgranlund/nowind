@@ -378,7 +378,7 @@ COMPONENTS = [
         "html": f"""<article class="flex flex-col gap-2xs {CARD} shadow-sm max-w-form">
   <span class="text-xs font-mono uppercase tracking-widest fg-accent-1-11">Guide</span>
   <h3 class="text-base font-semibold">Designing with fluid type</h3>
-  <p class="text-sm fg-neutral-11">Sizes that grow with the screen, without a single media query.</p>
+  <p class="text-base fg-neutral-11">Sizes that grow with the screen, without a single media query.</p>
   <div class="flex gap-sm pt-xs"><button class="{BTN_SECONDARY}"><span>Read</span></button></div>
 </article>""",
         "use": ["<code>p-md</code> for padding, the same on every card."],
@@ -528,7 +528,7 @@ COMPONENTS = [
         "html": f"""<div class="flex flex-col items-center justify-center text-center gap-xs p-2xl rounded-md border-2 border-dashed">
   <span class="inline-flex items-center justify-center p-xs rounded-full bg-neutral-3 fg-neutral-11"><i class="icon ph ph-folder-open"></i></span>
   <h3 class="text-base font-semibold">No projects yet</h3>
-  <p class="text-sm fg-neutral-11 max-w-text">Create a project to collect designs, notes and feedback in one place.</p>
+  <p class="text-base fg-neutral-11 max-w-text">Create a project to collect designs, notes and feedback in one place.</p>
   <button class="{BTN_PRIMARY} mt-xs"><i class="icon ph ph-plus"></i><span>New project</span></button>
 </div>""",
         "use": ["Say what will appear here and how to start."],
@@ -538,7 +538,7 @@ COMPONENTS = [
         "slug": "loading", "name": "Spinner and skeleton", "icon": "ph-circle-notch", "group": "Feedback",
         "summary": "<code>animate-spin</code> for a short wait, <code>animate-pulse</code> placeholders for content that's on its way.",
         "html": """<div class="flex flex-col gap-md max-w-form">
-  <div class="flex items-center gap-sm"><i class="icon ph-bold ph-circle-notch animate-spin fg-accent-1-11" aria-hidden="true"></i><span class="text-sm fg-neutral-11">Saving changes…</span></div>
+  <div class="flex items-center gap-sm"><i class="icon icon-sm ph-bold ph-circle-notch animate-spin fg-accent-1-11" aria-hidden="true"></i><span class="text-sm fg-neutral-11">Saving changes…</span></div>
   <div class="flex items-center gap-sm animate-pulse" aria-hidden="true">
     <span class="p-xs rounded-full bg-neutral-4"></span>
     <span class="flex flex-col gap-2xs grow"><span class="w-1/2 py-2xs rounded-full bg-neutral-4"></span><span class="w-3/4 py-2xs rounded-full bg-neutral-4"></span></span>

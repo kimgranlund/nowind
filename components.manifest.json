@@ -590,7 +590,6 @@
         "shadow-sm",
         "state",
         "text-base",
-        "text-sm",
         "text-xs",
         "tracking-widest",
         "uppercase"
@@ -1158,8 +1157,7 @@
         "rounded-sm",
         "state",
         "text-base",
-        "text-center",
-        "text-sm"
+        "text-center"
       ]
     },
     {
@@ -1190,6 +1188,7 @@
         "gap-sm",
         "grow",
         "icon",
+        "icon-sm",
         "items-center",
         "max-w-form",
         "p-xs",
