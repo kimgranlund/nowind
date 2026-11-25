@@ -38,7 +38,7 @@ function fluid(minPx, maxPx) {
   const lo = Math.min(minPx, maxPx);
   const hi = Math.max(minPx, maxPx);
   const sign = slope < 0 ? "-" : "+";
-  const css = `clamp(${rem(lo)}, ${rem(intercept)} ${sign} ${round(Math.abs(slope) * 100)}vw, ${rem(hi)})`;
+  const css = `clamp(${rem(lo)}, ${rem(intercept)} ${sign} ${round(Math.abs(slope) * 100)} * var(--vw), ${rem(hi)})`;
   return { css, min: round(minPx, 2), max: round(maxPx, 2) };
 }
 
@@ -82,6 +82,13 @@ ${text.map((t) => `  --text-${t.name}--line-height: ${t.lineHeight};`).join("\n"
   --kicker-weight: var(--font-weight-medium);
   --kicker-tracking: var(--tracking-widest);
   --kicker-transform: uppercase;
+  --vw: 1vw;
+}
+
+@supports (width: calc(1rem / 1px * 1px)) {
+  :root {
+    --vw: calc(1vw * (1rem / ${cfg.rem}px));
+  }
 }
 
 :root, .scope, .tier-product, .tier-content, .tier-brand {
@@ -132,7 +139,7 @@ const typeManifest = {
   leading: ["--leading-none: 1", "--leading-tight: 1.25", "--leading-snug: 1.375", "--leading-normal: 1.5", "--leading-relaxed: 1.625"],
   notes: [
     "Sizes are viewport-fluid. Inside a tier each step grows by the tier's text step (--tier-text: 2px content, 4px brand) times the scale's mean ratio to that step's power, so the whole scale grows with the tier's body size. A .scope with its own font-size does not resize them.",
-    "Font sizes in rem respect the user's browser font size; the vw part does not scale with zoom, so keep maxBase / minBase under about 2.5 (WCAG 1.4.4).",
+    "The vw part is --vw: 1vw scaled by the root size over 16px (calc(1vw * (1rem / 16px)), CSS typed arithmetic), so the whole clamp scales with the root font size: a 12px root gives exactly 0.75 of every size at 16px, at any width. Browsers without typed arithmetic keep plain 1vw, where the vw part does not follow the root or zoom; keep maxBase / minBase under about 2.5 (WCAG 1.4.4).",
   ],
 };
 
