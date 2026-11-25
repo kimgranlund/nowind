@@ -15,10 +15,10 @@
     "rule": "Put your own global CSS in @layer styles. Unlayered CSS beats every utility."
   },
   "counts": {
-    "classes": 1543,
+    "classes": 1556,
     "hover": 293,
     "responsive": 205,
-    "bytes": 127271
+    "bytes": 128707
   },
   "naming": "property-value, as Prewind and Tailwind: p-md, gap-lg, text-fg-weak, bg-solid-accent-1. Colour classes take the token name without --.",
   "variants": {
@@ -47,6 +47,8 @@
     "shadows": "shadow-xs, shadow-sm (and bare shadow), shadow-lg, shadow-none. Tailwind v4 names.",
     "borders": "border, border-0, -2, -4, with sides t r b l x y; border-solid/dashed/dotted/none",
     "layout": "container, display, flex, position, inset, z-",
+    "controls": "h-control, h-nested (an .icon inside it shrinks by the two borders so it fits), size-control, size-nested, min-w-control, min-w-nested, px-control and px-nested (padding steps in by one margin on a side whose first or last child is .icon; wrap the label in a <span>), gap-gutter, gap-gutter-half",
+    "icons": "icon (an S-square box, glyph --icon-md), icon-sm, icon-md, icon-lg. Glyphs: Phosphor web font (<i class=\"icon ph ph-floppy-disk\">; ph-bold at sm, ph-light at lg) or an inline <svg> inside .icon.",
     "sizing": "w-, h-, min-/max- with 0, full, screen (100vw/100vh), fit; h-dvh, h-svh, h-lvh and min-/max- versions; max-w-text (alias max-w-prose), max-w-form, max-w-container, h-control"
   },
   "changesFromPrewind": [

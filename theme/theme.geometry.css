@@ -9,6 +9,7 @@
   --gutter-factor: 1;
   --row-gap-factor: 2;
   --row-gap-floor: 4px;
+  --icon-md-blend: 0.5;
   --field-gap-factor: 1;
   --group-gap-factor: 0.5;
   --surface-factor: 1;
@@ -38,6 +39,15 @@
   --row-gap: max(calc(var(--row-gap-factor) * var(--margin)), var(--row-gap-floor));
   --control-height: calc(var(--slot) + 2 * var(--margin));
   --text-edge: calc(2 * var(--margin));
+  --nested-height: var(--slot);
+  --control-padding: calc(var(--text-edge) - var(--border-width));
+  --control-icon-padding: calc(var(--control-padding) - var(--margin));
+  --nested-padding: var(--margin);
+  --nested-icon-padding: max(0px, calc(var(--nested-padding) - var(--margin)));
+  --icon-box: var(--slot);
+  --icon-sm: var(--F);
+  --icon-md: calc(var(--F) + var(--icon-md-blend) * (var(--slot) - var(--F)));
+  --icon-lg: var(--slot);
 
   --tier-inner: max(1, calc(var(--tier) / 2));
   --field-gap: calc(var(--field-gap-factor) * var(--margin));

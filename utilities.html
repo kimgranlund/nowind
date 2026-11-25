@@ -7,6 +7,9 @@
 <link rel="icon" href="data:,">
 <link rel="stylesheet" href="theme.css">
 <link rel="stylesheet" href="nowind.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/light/style.css">
 </head>
 <body>
 <main class="container py-2xl">
@@ -21,6 +24,24 @@
       <div id="box1" class="flex-1 p-md rounded-lg bg-component-weak border border-border-weak">flex flex-col</div>
       <div class="flex-1 p-md rounded-lg bg-component-weak border border-border-weak">md:flex-row</div>
       <div id="box3" class="flex-1 hidden lg:block p-md rounded-lg bg-component-weak border border-border-weak">hidden lg:block</div>
+    </div>
+  </section>
+
+  <section class="mb-2xl">
+    <h2 class="text-heading-md mb-xs">Buttons and icons</h2>
+    <p class="text-caption text-fg-weak mb-sm max-w-text">After Affine UI: the button is one control height tall; a side with text pads by the text edge, a side whose first or last child is an <code>.icon</code> pads one margin less, so the icon box sits one margin from the edge. Wrap the label in a span. An icon alone makes a square.</p>
+    <div class="flex flex-wrap items-center gap-sm mb-sm">
+      <button id="b-text" class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border border-border bg-component-weak hover:bg-component text-title-sm cursor-pointer"><span>Save</span></button>
+      <button id="b-start" class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border border-border bg-component-weak hover:bg-component text-title-sm cursor-pointer"><i class="icon ph ph-floppy-disk"></i><span>Save</span></button>
+      <button id="b-end" class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border border-border bg-component-weak hover:bg-component text-title-sm cursor-pointer"><span>Next</span><i class="icon ph ph-arrow-right"></i></button>
+      <button id="b-only" class="inline-flex items-center justify-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component cursor-pointer" aria-label="Add"><i class="icon ph ph-plus"></i></button>
+      <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border border-transparent bg-solid-accent-1 hover:bg-solid-accent-1-strong text-on-solid-accent-1 text-title-sm cursor-pointer"><i class="icon ph ph-paper-plane-tilt"></i><span>Send</span></button>
+      <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border border-transparent bg-solid-danger hover:bg-solid-danger-strong text-on-solid-danger text-title-sm cursor-pointer"><i class="icon ph ph-trash"></i><span>Delete</span></button>
+    </div>
+    <div class="flex flex-wrap items-center gap-sm mb-sm">
+      <button id="b-sm" class="inline-flex items-center justify-center h-nested px-nested gap-gutter-half rounded-xs border border-border bg-component-weak hover:bg-component text-label cursor-pointer"><i class="icon icon-sm ph-bold ph-funnel"></i><span>Filter</span></button>
+      <button id="b-sm-only" class="inline-flex items-center justify-center h-nested px-nested rounded-xs border border-transparent hover:bg-component cursor-pointer" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
+      <span class="inline-flex items-center gap-2xs text-fg-weak"><i class="icon icon-sm ph-bold ph-star"></i><i class="icon ph ph-star"></i><i class="icon icon-lg ph-light ph-star"></i> icon-sm bold · icon regular · icon-lg light</span>
     </div>
   </section>
 

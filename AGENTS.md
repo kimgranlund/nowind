@@ -60,6 +60,7 @@ Then check the result in `specimen.html` through a local server (`python3 -m htt
 - **Type:** `--text-{xs…6xl}` and `--text-{size}--line-height` (Tailwind v4). Roles are `--{role}` with `--{role}--{property}` companions, outside `--text-*`, so they never clash with sizes.
 - **Space:** `--space-{3xs…4xl}` (Prewind).
 - **Classes:** `property-value`; colour classes take the token name without `--` (`bg-solid-accent-1`, `text-fg-weak`). Tailwind v4 names where Tailwind has the same thing: `rounded-xs/sm`, `shadow-xs/sm`, `h-dvh`, `2xl:`.
+- **Controls and icons:** utilities only (`h-control`, `px-control`, `gap-gutter`, `icon`, …), after Affine UI's button and icon geometry. The icon-edge padding is a `:has(> .icon:first-child)` rule in the generator, so labels must be wrapped in a `<span>`. Glyphs come from Phosphor's web font, linked by the page, not bundled.
 - **Variants:** `hover:` for role-token colours, opacity and cursor, inside `@media (hover: hover)`; `sm:` to `2xl:` for layout only. No other variants.
 
 ## Adding a palette

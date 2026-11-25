@@ -87,6 +87,38 @@ Classes follow `property-value`. Color classes take the token name without `--`.
 | Layout | `container`, `flex`, `flex-col`, `items-center`, `justify-between`, `grid`, `hidden`, `relative`, `z-10` |
 | Sizing | `w-full`, `w-fit`, `h-control`, `max-w-text` (or `max-w-prose`), `max-w-form`, `min-h-screen`, `min-h-dvh` |
 
+### Buttons and icons
+
+Nowind has no button component; a button is a stack of utilities. The geometry follows Affine UI: one control height tall, text padded by the text edge, and a side that holds an icon padded one margin less, so the icon's box sits one margin from the edge. An icon alone makes a square.
+
+Icons use [Phosphor](https://phosphoricons.com)'s web font. Link the weights you use:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/light/style.css">
+```
+
+```html
+<button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm
+               border border-border bg-component-weak hover:bg-component text-title-sm">
+  <i class="icon ph ph-floppy-disk"></i><span>Save</span>
+</button>
+
+<button class="inline-flex items-center justify-center h-control px-control rounded-sm border border-border" aria-label="Add">
+  <i class="icon ph ph-plus"></i>
+</button>
+
+<button class="inline-flex items-center justify-center h-nested px-nested gap-gutter-half rounded-xs border border-border text-label">
+  <i class="icon icon-sm ph-bold ph-funnel"></i><span>Filter</span>
+</button>
+```
+
+- **Wrap the label in a `<span>`.** `px-control` and `px-nested` find an icon edge with `:has(> .icon:first-child)` and `:last-child`, and CSS cannot see bare text.
+- **Icon sizes** follow Affine's weights: `icon icon-sm` with `ph-bold`, `icon` with `ph` (regular), `icon icon-lg` with `ph-light`. The box is always one slot square.
+- An inline `<svg>` inside `.icon` also works; it takes the glyph size and `currentColor`.
+- Classes: `h-control`, `h-nested`, `size-control`, `size-nested`, `min-w-control`, `px-control`, `px-nested`, `gap-gutter`, `gap-gutter-half`, `icon`, `icon-sm`, `icon-md`, `icon-lg`.
+
 ### Variants
 
 - **Hover**: only on devices that can hover, as Tailwind v4. Text and background colors of the role tokens (not raw palette steps), opacity and cursor only: `hover:bg-component`, `hover:text-fg`, `hover:opacity-100`.

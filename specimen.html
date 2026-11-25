@@ -409,13 +409,14 @@ function buildUtilities() {
       if (!r.selectorText || !/nowind\.css$/.test(r.parentStyleSheet?.href || "")) continue;
       if (inMedia) { responsive++; continue; }
       if (r.selectorText.includes(":hover")) { hover++; continue; }
-      if (!r.selectorText.startsWith(".")) continue;
+      if (!r.selectorText.startsWith(".") || /[\s>]|:where|:has/.test(r.selectorText)) continue;
       base.push([r.selectorText.slice(1).replace(/\\/g, ""), r.style.cssText]);
     }
   };
   for (const sh of document.styleSheets) { try { if (/nowind\.css$/.test(sh.href || "")) walk(sh.cssRules, false); } catch {} }
 
   const GROUPS = [
+    ["Controls and icons", (c) => /^(icon|h-control|h-nested|size-control|size-nested|min-w-control|min-w-nested|px-control|px-nested|gap-gutter)/.test(c), "misc"],
     ["Type", (c, d) => /font-size/.test(d), "type"],
     ["Text color", (c, d) => /^color:/.test(d), "color"],
     ["Background color", (c, d) => /^background-color:/.test(d), "bg"],

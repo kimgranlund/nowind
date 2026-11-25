@@ -185,6 +185,22 @@ add("max-w-prose", "max-width: var(--max-w-text)");
 add("max-w-form", "max-width: var(--max-w-form)");
 add("max-w-container", "max-width: var(--container-max)");
 add("h-control", "height: var(--control-height)");
+
+// Controls and icons (after Affine UI's button and icon): heights, square sizes, padding that steps in by one margin on a
+// side that holds an icon (the :has() rules below), the gutter gap, and an S-square icon box with its glyph size.
+add("h-nested", "height: var(--nested-height)");
+add("size-control", "width: var(--control-height); height: var(--control-height)");
+add("size-nested", "width: var(--nested-height); height: var(--nested-height)");
+add("min-w-control", "min-width: var(--control-height)");
+add("min-w-nested", "min-width: var(--nested-height)");
+add("px-control", "padding-inline: var(--control-padding)");
+add("px-nested", "padding-inline: var(--nested-padding)");
+add("gap-gutter", "gap: var(--gutter)");
+add("gap-gutter-half", "gap: calc(var(--gutter) / 2)");
+add("icon", "display: inline-flex; align-items: center; justify-content: center; flex: none; width: var(--icon-box); height: var(--icon-box); font-size: var(--icon-md); line-height: 1");
+add("icon-sm", "font-size: var(--icon-sm)");
+add("icon-md", "font-size: var(--icon-md)");
+add("icon-lg", "font-size: var(--icon-lg)");
 for (const s of ["none", "text", "all", "auto"]) add(`select-${s}`, `user-select: ${s}`);
 for (const a of ["baseline", "top", "middle", "bottom", "text-top", "text-bottom"]) add(`align-${a}`, `vertical-align: ${a}`);
 add("visible", "visibility: visible");
@@ -303,6 +319,12 @@ out.push("@layer reset, styles, nowind;\n");
 out.push(reset);
 out.push("@layer nowind {");
 for (const [c, d] of D) out.push(rule(c, d));
+out.push("  .icon > svg { width: 1em; height: 1em; fill: currentColor; }");
+out.push("  .h-nested > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }");
+for (const [cls, pad] of [["px-control", "--control-icon-padding"], ["px-nested", "--nested-icon-padding"]]) {
+  out.push(`  .${cls}:where(:has(> .icon:first-child)) { padding-inline-start: var(${pad}); }`);
+  out.push(`  .${cls}:where(:has(> .icon:last-child)) { padding-inline-end: var(${pad}); }`);
+}
 out.push("  @media (hover: hover) {");
 for (const c of HOVER) out.push(`    .${esc(`hover:${c}`)}:hover { ${D.get(c)}; }`);
 out.push("  }");
@@ -348,6 +370,8 @@ const manifest = {
     shadows: "shadow-xs, shadow-sm (and bare shadow), shadow-lg, shadow-none. Tailwind v4 names.",
     borders: "border, border-0, -2, -4, with sides t r b l x y; border-solid/dashed/dotted/none",
     layout: "container, display, flex, position, inset, z-",
+    controls: "h-control, h-nested (an .icon inside it shrinks by the two borders so it fits), size-control, size-nested, min-w-control, min-w-nested, px-control and px-nested (padding steps in by one margin on a side whose first or last child is .icon; wrap the label in a <span>), gap-gutter, gap-gutter-half",
+    icons: "icon (an S-square box, glyph --icon-md), icon-sm, icon-md, icon-lg. Glyphs: Phosphor web font (<i class=\"icon ph ph-floppy-disk\">; ph-bold at sm, ph-light at lg) or an inline <svg> inside .icon.",
     sizing: "w-, h-, min-/max- with 0, full, screen (100vw/100vh), fit; h-dvh, h-svh, h-lvh and min-/max- versions; max-w-text (alias max-w-prose), max-w-form, max-w-container, h-control",
   },
   changesFromPrewind: [
@@ -366,6 +390,7 @@ writeFileSync(join(root, "nowind.manifest.json"), JSON.stringify(manifest, null,
 
 // ---- classes.md: every base class and its declarations, for readers without a local server ----
 const GROUPS = [
+  ["Controls and icons", (c) => /^(icon|h-control|h-nested|size-control|size-nested|min-w-control|min-w-nested|px-control|px-nested|gap-gutter)/.test(c)],
   ["Type", (c, d) => /font-size/.test(d)],
   ["Text color", (c, d) => /^color:/.test(d)],
   ["Background color", (c, d) => /^background-color:/.test(d)],

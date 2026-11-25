@@ -116,6 +116,11 @@
       "token": "--max-w-form",
       "value": "32rem",
       "use": "Form width for .max-w-form."
+    },
+    {
+      "token": "--icon-md-blend",
+      "value": "0.5",
+      "use": "How far the md glyph sits from F toward the slot."
     }
   ],
   "control": [
@@ -167,6 +172,36 @@
       "at14": "10px",
       "at16": "14px",
       "use": "Outer edge to text where no icon sits."
+    },
+    {
+      "token": "--nested-height",
+      "formula": "slot",
+      "at16": "24px",
+      "use": "Height of a small control and of a control nested in another."
+    },
+    {
+      "token": "--control-padding",
+      "formula": "text edge − border (2M − B)",
+      "at16": "13px",
+      "use": "Inline padding of a control on a side with text; class px-control."
+    },
+    {
+      "token": "--control-icon-padding",
+      "formula": "control padding − margin (M − B)",
+      "at16": "6px",
+      "use": "Inline padding on a side that holds an icon, so the icon's box sits one margin from the outer edge."
+    },
+    {
+      "token": "--nested-padding",
+      "formula": "margin",
+      "at16": "7px",
+      "use": "Inline padding of a small control; class px-nested."
+    },
+    {
+      "token": "--nested-icon-padding",
+      "formula": "nested padding − margin, at least 0",
+      "at16": "0px",
+      "use": "Inline padding of a small control on an icon side."
     }
   ],
   "levels": [
@@ -252,5 +287,34 @@
       "--breakpoint-2xl": "1536px"
     },
     "rule": "Tailwind v4 names and values. CSS can't read a custom property inside @media, so scripts/utilities.mjs reads these values when it writes the sm: … 2xl: variants."
+  },
+  "icons": {
+    "rule": "After Affine UI's <ui-icon>: an S-square box with the glyph centred. Phosphor's weights follow the size: ph-bold at sm, ph (regular) at md, ph-light at lg.",
+    "tokens": [
+      {
+        "token": "--icon-box",
+        "formula": "slot",
+        "at16": "24px",
+        "use": "The icon's box; class icon."
+      },
+      {
+        "token": "--icon-sm",
+        "formula": "F",
+        "at16": "16px",
+        "use": "Small glyph; class icon-sm."
+      },
+      {
+        "token": "--icon-md",
+        "formula": "F + blend × (slot − F)",
+        "at16": "20px",
+        "use": "Default glyph; class icon."
+      },
+      {
+        "token": "--icon-lg",
+        "formula": "slot",
+        "at16": "24px",
+        "use": "Large glyph; class icon-lg."
+      }
+    ]
   }
 }
