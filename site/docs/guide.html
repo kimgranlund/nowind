@@ -75,11 +75,11 @@
 &lt;/main&gt;</code></pre>
           </figure>
           <p class="text-body-md max-w-measure">The band is <code>h-header</code> tall and follows the base size, so it grows with the type from a phone to a wide screen. <code>scroll-pt-header</code> on <code>html</code> keeps a linked block clear of it.</p>
-          <aside role="note" class="flex gap-gutter p-surface border-s-4 border-info bg-component-info-weak">
-            <i class="icon ph ph-info fg-info-weak"></i>
+          <aside role="note" class="flex gap-gutter p-md border-s-4 border-info-7 bg-info-3">
+            <i class="icon ph ph-info fg-info-11"></i>
             <div class="flex flex-col gap-3xs min-w-0">
-              <span class="text-label fg-info">Note</span>
-              <p class="text-body-md">Keep one scroller: the page. Don't make <code>main</code> a scroll box; browsers paint very tall nested scrollers badly, and in-page links, find and the back button work against the window.</p>
+              <span class="text-sm font-medium fg-info-12">Note</span>
+              <p class="text-base">Keep one scroller: the page. Don't make <code>main</code> a scroll box; browsers paint very tall nested scrollers badly, and in-page links, find and the back button work against the window.</p>
             </div>
           </aside>
           </div>
@@ -93,7 +93,7 @@
               <span class="text-mono-sm fg-weak truncate">block.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
             </figcaption>
             <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;section class=&quot;col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong&quot;&gt;
-  &lt;div class=&quot;col-span-12 md:col-span-3&quot;&gt;&lt;h2 class=&quot;text-subtitle&quot;&gt;Example&lt;/h2&gt;&lt;/div&gt;
+  &lt;div class=&quot;col-span-12 md:col-span-3&quot;&gt;&lt;h2 class=&quot;text-heading-md&quot;&gt;Example&lt;/h2&gt;&lt;/div&gt;
   &lt;div class=&quot;col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group&quot;&gt;…&lt;/div&gt;
 &lt;/section&gt;</code></pre>
           </figure>
@@ -112,11 +112,11 @@
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">The reading column</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-measure">Prose stops at <code>max-w-measure</code>, 44 times the base size. The article is a <code>tier-content</code> region, so its section gaps and page padding are one and a half times the product rhythm and its measure grows with the tier's larger base size.</p>
-          <aside role="note" class="flex gap-gutter p-surface border-s-4 border-success bg-component-success-weak">
-            <i class="icon ph ph-check-circle fg-success-weak"></i>
+          <aside role="note" class="flex gap-gutter p-md border-s-4 border-success-7 bg-success-3">
+            <i class="icon ph ph-check-circle fg-success-11"></i>
             <div class="flex flex-col gap-3xs min-w-0">
-              <span class="text-label fg-success">Tip</span>
-              <p class="text-body-md">Put the tier on <code>main</code> only. The band and the section row stay in the product tier, so they look the same on every page.</p>
+              <span class="text-sm font-medium fg-success-12">Tip</span>
+              <p class="text-base">Put the tier on <code>main</code> only. The band and the section row stay in the product tier, so they look the same on every page.</p>
             </div>
           </aside>
           </div>
@@ -143,11 +143,11 @@
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Callouts, code and tables</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-measure">A callout is a coloured rule on the left, a word and a sentence. The colour codes the kind and the word says it, so the meaning never depends on colour alone.</p>
-          <aside role="note" class="flex gap-gutter p-surface border-s-4 border-warning bg-component-warning-weak">
-            <i class="icon ph ph-warning fg-warning-weak"></i>
+          <aside role="note" class="flex gap-gutter p-md border-s-4 border-warning-7 bg-warning-3">
+            <i class="icon ph ph-warning fg-warning-11"></i>
             <div class="flex flex-col gap-3xs min-w-0">
-              <span class="text-label fg-warning">Warning</span>
-              <p class="text-body-md">A callout interrupts the reader. Use at most one per section.</p>
+              <span class="text-sm font-medium fg-warning-12">Warning</span>
+              <p class="text-base">A callout interrupts the reader. Use at most one per section.</p>
             </div>
           </aside>
           <p class="text-body-md max-w-measure">A code block is a figure: the file name and language in a caption, the code in a <code>pre</code> that scrolls sideways rather than wrapping. Tables wrap their cells instead of scrolling, so the code block is the only thing on the page that scrolls sideways.</p>
@@ -155,11 +155,11 @@
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">callout.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
             </figcaption>
-            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;aside role=&quot;note&quot; class=&quot;flex gap-gutter p-surface border-s-4 border-info bg-component-info-weak&quot;&gt;
-  &lt;i class=&quot;icon ph ph-info fg-info-weak&quot;&gt;&lt;/i&gt;
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;aside role=&quot;note&quot; class=&quot;flex gap-gutter p-md border-s-4 border-info-7 bg-info-3&quot;&gt;
+  &lt;i class=&quot;icon ph ph-info fg-info-11&quot;&gt;&lt;/i&gt;
   &lt;div class=&quot;flex flex-col gap-3xs&quot;&gt;
-    &lt;span class=&quot;text-label fg-info&quot;&gt;Note&lt;/span&gt;
-    &lt;p class=&quot;text-body-md&quot;&gt;One sentence the reader must not miss.&lt;/p&gt;
+    &lt;span class=&quot;text-sm font-medium fg-info-12&quot;&gt;Note&lt;/span&gt;
+    &lt;p class=&quot;text-base&quot;&gt;One sentence the reader must not miss.&lt;/p&gt;
   &lt;/div&gt;
 &lt;/aside&gt;</code></pre>
           </figure>
@@ -169,11 +169,11 @@
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Search</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-measure">Press ⌘K or Ctrl+K, or <code>/</code>, on any page to search every page, block heading, component and class. The index, <code>search.json</code>, is written with the pages, so it never falls behind.</p>
-          <aside role="note" class="flex gap-gutter p-surface border-s-4 border-info bg-component-info-weak">
-            <i class="icon ph ph-info fg-info-weak"></i>
+          <aside role="note" class="flex gap-gutter p-md border-s-4 border-info-7 bg-info-3">
+            <i class="icon ph ph-info fg-info-11"></i>
             <div class="flex flex-col gap-3xs min-w-0">
-              <span class="text-label fg-info">Note</span>
-              <p class="text-body-md">The search script is the only script every page loads. Without it the band, the section row and every link still work.</p>
+              <span class="text-sm font-medium fg-info-12">Note</span>
+              <p class="text-base">The search script is the only script every page loads. Without it the band, the section row and every link still work.</p>
             </div>
           </aside>
           </div>

@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Callouts in primitives:** the docs' callouts and the callout sample are `p-md border-s-4 border-{palette}-7 bg-{palette}-3` with `fg-{palette}-11` icons, `text-sm font-medium fg-{palette}-12` labels and `text-base` text, in place of role classes; the block sample's heading is `text-heading-md`, as the pages use.
 - **One corner for alerts:** one-line alerts are `rounded-md`, like titled alerts and toasts.
 - **Pressed segments are white in both modes, flat:** `pressed:bg-white pressed:fg-black` with no shadow. New `bg-white`, `bg-black`, `fg-white` and `fg-black` (the neutral contrast ends, the same in light and dark), with state variants.
 - **Unread dot:** a `block` span, so its padding draws a circle; inline, it took the line's height and drew a tall pill.

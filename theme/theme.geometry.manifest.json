@@ -569,5 +569,162 @@
     ],
     "source": "Phosphor Icons (MIT), caret-down-bold and check-bold, inlined as SVG data URIs so Nowind loads nothing extra",
     "use": "Masks for the drawn indicators: the caret class, the select's picker icon and the selected option's checkmark. Each is painted in currentColor at --icon-sm."
+  },
+  "geometryContract": {
+    "description": "Which height, padding, gap and corner each kind of part in an example takes, so every part of one kind is built the same way. The rows read the Affine geometry above: control height 4n − 26, margin M, inset M − border, radii one M apart. A lint and a rendered pass (?audit=geometry) will check the examples against it; 'open' rows wait for the owner. Every row is written in regular (primitive) classes, the ones examples use: control lengths, space steps, radius steps and rounded-inner.",
+    "kinds": [
+      {
+        "kind": "control",
+        "identify": "button, select, field box, tab, menu item, option",
+        "height": "h-control (icon only: size-control)",
+        "padding": "px-control (steps in at an icon edge)",
+        "gap": "gap-gutter",
+        "corner": "rounded-sm (tabs: none)",
+        "status": "decided",
+        "current": "135 parts; all on h-control px-control gap-gutter"
+      },
+      {
+        "kind": "cell",
+        "identify": "td, th",
+        "height": "h-control",
+        "padding": "px-control",
+        "gap": "none",
+        "corner": "none",
+        "status": "decided",
+        "current": "33, all on the contract"
+      },
+      {
+        "kind": "small control",
+        "identify": "a button or link inside a toolbar, field, toast or alert",
+        "height": "h-nested (icon only: size-nested)",
+        "padding": "px-nested",
+        "gap": "gap-gutter-half",
+        "corner": "rounded-inner at a surface's padding; rounded-xs one inset inside a control",
+        "status": "decided",
+        "current": "20: 15 rounded-inner, 5 rounded-xs"
+      },
+      {
+        "kind": "control box",
+        "identify": "segmented control, toolbar",
+        "height": "h-control",
+        "padding": "border-2 border-transparent (a 2px inset), no padding",
+        "gap": "none: items touch; a divider between groups",
+        "corner": "rounded-sm; items h-full rounded-inner (icon items aspect-square)",
+        "status": "decided",
+        "current": "9 boxes, 27 items, all on the contract"
+      },
+      {
+        "kind": "badge",
+        "identify": "status pill, tag, label",
+        "height": "h-nested, or no fixed height when it holds a remove button",
+        "padding": "px-nested",
+        "gap": "gap-gutter-half",
+        "corner": "rounded-full",
+        "status": "decided",
+        "current": "21, all on the contract"
+      },
+      {
+        "kind": "round marker",
+        "identify": "count, avatar, step number, timeline icon",
+        "height": "size-nested or size-control, with shrink-0",
+        "padding": "none",
+        "gap": "none",
+        "corner": "rounded-full",
+        "status": "decided",
+        "current": "31"
+      },
+      {
+        "kind": "keycap",
+        "identify": "kbd",
+        "height": "h-nested, min-w-nested",
+        "padding": "px-2xs",
+        "gap": "none",
+        "corner": "rounded-xs",
+        "status": "open",
+        "current": "12 at px-2xs",
+        "question": "Keycaps pad px-2xs (half a space step) where other small parts pad px-nested (one margin). Keep px-2xs, or move to px-nested?"
+      },
+      {
+        "kind": "card",
+        "identify": "a bordered surface holding content",
+        "height": "content height",
+        "padding": "p-md",
+        "gap": "gap-xs to gap-md inside",
+        "corner": "rounded-md",
+        "status": "decided",
+        "current": "21 on p-md rounded-md"
+      },
+      {
+        "kind": "option card",
+        "identify": "a selectable card: a label wrapping a radio or checkbox",
+        "height": "content height",
+        "padding": "p-sm",
+        "gap": "gap-sm",
+        "corner": "rounded-sm",
+        "status": "open",
+        "current": "2 plan pickers at p-sm rounded-sm",
+        "question": "Selectable option cards are p-sm rounded-sm, a step tighter than cards. Keep them tighter, or match cards (p-md rounded-md)?"
+      },
+      {
+        "kind": "popover",
+        "identify": "menu, listbox, command palette",
+        "height": "content height",
+        "padding": "p-inset",
+        "gap": "none: items touch",
+        "corner": "rounded-md, holding rounded-sm items",
+        "status": "decided",
+        "current": "3"
+      },
+      {
+        "kind": "tooltip",
+        "identify": "a short label popover",
+        "height": "content height",
+        "padding": "p-sm",
+        "gap": "none",
+        "corner": "rounded-sm",
+        "status": "open",
+        "current": "1 at p-sm rounded-sm",
+        "question": "The tooltip pads p-sm with rounded-sm. Keep, or tighten to py-2xs px-xs for a one-line label?"
+      },
+      {
+        "kind": "alert",
+        "identify": "status or alert surface",
+        "height": "one line: h-control-like (py-xs); titled: content",
+        "padding": "one line: py-xs ps-xs pe-sm; titled: p-xs",
+        "gap": "one line: gap-xs; titled: gap-3xs between lines",
+        "corner": "rounded-md",
+        "status": "open",
+        "current": "4 one-line at gap-xs, 4 titled at gap-3xs",
+        "question": "One-line alerts space icon and text gap-xs, toasts gap-gutter. Match the toast (gap-gutter), or keep gap-xs?"
+      },
+      {
+        "kind": "toast",
+        "identify": "inverse status surface",
+        "height": "one line: content; detailed: content",
+        "padding": "one line: p-2xs; detailed: p-xs",
+        "gap": "gap-gutter",
+        "corner": "rounded-md",
+        "status": "decided",
+        "current": "7, all on the contract"
+      },
+      {
+        "kind": "dialog",
+        "identify": "dialog",
+        "height": "content height",
+        "padding": "p-lg",
+        "gap": "gap-md; footer buttons gap-xs",
+        "corner": "rounded-lg",
+        "status": "decided",
+        "current": "3"
+      }
+    ],
+    "rules": [
+      "Nesting: an element at a container's padding takes rounded-inner, the container's radius less that padding and border; rounded-xs is the radius one inset inside a control.",
+      "Even insets: a part at a container's end sits the same distance from every edge it faces.",
+      "No text closer than the container's padding to its edge; label text sits in a span so px-control and px-nested can find the icon edges.",
+      "Side by side, controls share a height; a box holding controls is a control tall.",
+      "Markers with aspect-square, size-* and rounded-full render as true squares and circles.",
+      "A clipping box (overflow-hidden) never hides its content at any width."
+    ]
   }
 }

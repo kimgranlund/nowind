@@ -203,11 +203,11 @@ CALLOUT = {
 
 def callout(kind, body_html):
     pal, icon, label = CALLOUT[kind]
-    return f"""<aside role="note" class="flex gap-gutter p-surface border-s-4 border-{pal} bg-component-{pal}-weak">
-            <i class="icon ph {icon} fg-{pal}-weak"></i>
+    return f"""<aside role="note" class="flex gap-gutter p-md border-s-4 border-{pal}-7 bg-{pal}-3">
+            <i class="icon ph {icon} fg-{pal}-11"></i>
             <div class="flex flex-col gap-3xs min-w-0">
-              <span class="text-label fg-{pal}">{label}</span>
-              <p class="text-body-md">{body_html}</p>
+              <span class="text-sm font-medium fg-{pal}-12">{label}</span>
+              <p class="text-base">{body_html}</p>
             </div>
           </aside>"""
 
@@ -312,7 +312,7 @@ def guide():
             p("Every block hangs from a label column: its label in the first three of twelve columns, its content in the other nine. A component's example, a palette and a release in the changelog all have this one shape. Below 768px the label sits above the content."),
             code("block.html", "HTML", """
 <section class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
-  <div class="col-span-12 md:col-span-3"><h2 class="text-subtitle">Example</h2></div>
+  <div class="col-span-12 md:col-span-3"><h2 class="text-heading-md">Example</h2></div>
   <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">…</div>
 </section>"""),
             table(["Width", "Sections", "Label"], [
@@ -339,11 +339,11 @@ def guide():
             callout("warning", "A callout interrupts the reader. Use at most one per section."),
             p("A code block is a figure: the file name and language in a caption, the code in a <code>pre</code> that scrolls sideways rather than wrapping. Tables wrap their cells instead of scrolling, so the code block is the only thing on the page that scrolls sideways."),
             code("callout.html", "HTML", """
-<aside role="note" class="flex gap-gutter p-surface border-s-4 border-info bg-component-info-weak">
-  <i class="icon ph ph-info fg-info-weak"></i>
+<aside role="note" class="flex gap-gutter p-md border-s-4 border-info-7 bg-info-3">
+  <i class="icon ph ph-info fg-info-11"></i>
   <div class="flex flex-col gap-3xs">
-    <span class="text-label fg-info">Note</span>
-    <p class="text-body-md">One sentence the reader must not miss.</p>
+    <span class="text-sm font-medium fg-info-12">Note</span>
+    <p class="text-base">One sentence the reader must not miss.</p>
   </div>
 </aside>"""),
         ),
@@ -583,7 +583,7 @@ def index():
         ["Main grid", "<code>tier-content px-grid</code>, inner <code>grid grid-cols-12 gap-x-grid</code>"],
         ["Page head", "<code>col-span-12 flex flex-col gap-field pt-page pb-xl</code>; title <code>text-display-sm</code>"],
         ["Block", "<code>col-span-12 grid grid-cols-12 gap-x-grid pt-sm pb-xl border-t border-strong</code>; label <code>md:col-span-3</code>, content <code>md:col-span-9</code>"],
-        ["Callout", "<code>flex gap-gutter p-surface border-l-4 border-info bg-component-info-weak</code>"],
+        ["Callout", "<code>flex gap-gutter p-md border-s-4 border-info-7 bg-info-3</code>"],
         ["Code block", "<code>figure</code> with <code>border bg-strong</code>; <code>pre</code> with <code>p-surface overflow-x-auto whitespace-pre text-mono-sm</code>"],
         ["Table", "Box <code>border</code>, no scrolling; <code>th</code> <code>px-sm py-xs text-label</code>; <code>td</code> <code>px-sm py-xs border-b break-words</code>, code in cells <code>whitespace-normal break-all</code>"],
         ["Previous and next", "<code>grid grid-cols-1 md:grid-cols-2 gap-grid</code>; each <code>p-surface border hover:border-strong</code>"],
