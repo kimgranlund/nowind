@@ -438,6 +438,14 @@
         "current": "39 text-sm, 26 inherit (markers and avatars)"
       },
       {
+        "kind": "count",
+        "identify": "a round number badge: size-nested rounded-full tabular-nums",
+        "size": "text-xs font-medium tabular-nums",
+        "icon": "none",
+        "status": "decided",
+        "current": "text-xs"
+      },
+      {
         "kind": "keycap",
         "identify": "kbd",
         "size": "text-sm font-mono",

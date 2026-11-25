@@ -981,7 +981,7 @@ def type_audit():
     text-* class, else the nearest ancestor's, else text-base) must be the kind's size. Returns (findings, unclassified)."""
     VOID = {"input", "img", "br", "hr", "meta", "link", "source", "wbr", "col"}
     WANT = {"inline": set(), "navigation": {"base"}, "control": {"base"}, "option label": {"base"}, "cell": {"base"}, "header": {"sm"}, "label": {"sm"}, "supporting": {"sm"},
-            "body": {"base"}, "title": {"base"}, "dialog title": {"lg"}, "badge": {"sm"}, "keycap": {"sm"}, "kicker": {"xs"}, "figure": {"3xl"}}
+            "body": {"base"}, "title": {"base"}, "dialog title": {"lg"}, "badge": {"sm"}, "count": {"xs"}, "keycap": {"sm"}, "kicker": {"xs"}, "figure": {"3xl"}}
 
     class Node:
         def __init__(self, tag, attrs, parent):
@@ -1018,6 +1018,7 @@ def type_audit():
         if n.tag == "label" and n.has(lambda k: k.tag == "input" and k.attrs.get("type") in ("checkbox", "radio")): return "option label"
         if n.tag in ("label", "legend", "dt") and not n.text.strip(): return None  # a wrapper: its text children carry the kinds
         if n.tag in ("label", "legend", "dt") or (n.tag == "dl" and n.own): return "label"
+        if "rounded-full" in n.toks and "size-nested" in n.toks and "tabular-nums" in n.toks: return "count"
         if "rounded-full" in n.toks and n.alltext().strip(): return "badge"
         if n.tag in ("h1", "h2", "h3", "h4"):
             return "dialog title" if any(a.tag == "dialog" or a.attrs.get("role") == "dialog" for a in n.ancestors()) else "title"
@@ -1120,6 +1121,7 @@ def lint_examples():
             def __init__(self): super().__init__(); self.stack = [[]]; self.bad = 0
             def handle_starttag(self, tag, attrs):
                 cls = (dict(attrs).get("class") or "").split()
+                if tag not in ("a", "button", "select", "input", "summary"): cls = [c for c in cls if c not in ("h-nested", "size-nested")]  # a badge or marker at the small size is not a control
                 self.stack[-1].append(cls)
                 if tag not in ("input", "img", "br", "hr", "meta", "link", "source", "wbr", "col"): self.stack.append([])
             def handle_endtag(self, tag):

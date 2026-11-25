@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- **Nested parts, one geometry:** badges, the actions inside alerts and toasts, and toolbar items are all the small control: `h-nested` with `px-nested` (which steps in at an icon), and the alert's secondary action is a soft tint (`bg-danger-a3`) instead of bare text. A count badge and the stepper's numbers are 1:1 circles (`size-nested`, `text-xs`), with a count row in the size contract. The toolbar and segmented containers take the secondary buttons' light tint (`bg-neutral-a2`).
+- **Badges share one geometry:** every badge is `h-nested`, `rounded-full` and bordered (transparent on solid fills), padded `px-2xs`, or `ps-3xs pe-2xs` with a leading icon; a count is `min-w-nested` so it stays round. Outlined and solid badges were different heights, and the Beta tag a different shape.
 - **Secondary buttons, softer:** a light translucent neutral tint (`bg-neutral-a2`) with no visible border (`border border-transparent`, so the height is unchanged) in place of a grey fill and a mid-grey border; the state layer gives hover and press. The file input's button matches.
 - **Site map links work on the showcase:** the showcase's demo script, which moves `aria-current` on click, caught every link in a `role="list"` list, the site map's included, and cancelled the navigation. It now acts only on placeholder links (`href="#"`) inside the page's main content.
 - **Site map links:** each link is as wide as its label with the nested corner (`w-fit rounded-xs`), so a hover is a small wash rather than a full-column pill, and the current page is marked with an accent tint instead of the same grey as a hover.

@@ -38,7 +38,7 @@ COMPONENTS = [
         "examples": [
             {"id": "toolbar", "label": "In a toolbar",
              "summary": "The toolbar is built like the segmented control: <code>h-control rounded-sm border-2 border-transparent</code>, a 2px inset, with <code>h-full rounded-inner</code> items (<code>aspect-square</code> for an icon) that touch, and a divider between groups. On its own, beside full-size buttons, it looks undersized and square.",
-             "html": """<div class="inline-flex h-control rounded-sm border-2 border-transparent bg-neutral-3" role="toolbar" aria-label="Table tools">
+             "html": """<div class="inline-flex h-control rounded-sm border-2 border-transparent bg-neutral-a2" role="toolbar" aria-label="Table tools">
   <button class="inline-flex items-center h-full px-nested gap-gutter-half rounded-inner state border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon icon-sm ph-bold ph-funnel"></i><span>Filter</span></button>
   <button class="inline-flex items-center h-full px-nested gap-gutter-half rounded-inner state border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon icon-sm ph-bold ph-sort-ascending"></i><span>Sort</span></button>
   <span class="mx-3xs my-2xs border-s border-neutral-6" aria-hidden="true"></span>
@@ -51,7 +51,7 @@ COMPONENTS = [
     {
         "slug": "segmented", "name": "Segmented control", "icon": "ph-squares-four", "group": "Actions",
         "summary": "A set of mutually exclusive options. The pressed segment is styled by <code>aria-pressed</code>, not by a class.",
-        "html": """<div class="inline-flex items-center h-control rounded-sm border-2 border-transparent bg-neutral-3" role="group" aria-label="Range">
+        "html": """<div class="inline-flex items-center h-control rounded-sm border-2 border-transparent bg-neutral-a2" role="group" aria-label="Range">
   <button aria-pressed="true" class="inline-flex items-center h-full px-nested rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer"><span>Day</span></button>
   <button aria-pressed="false" class="inline-flex items-center h-full px-nested rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer"><span>Week</span></button>
   <button aria-pressed="false" class="inline-flex items-center h-full px-nested rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer"><span>Month</span></button>
@@ -59,7 +59,7 @@ COMPONENTS = [
         "examples": [
             {"id": "icons", "label": "Icons",
              "summary": "Icon segments are <code>h-full aspect-square</code> squares in the same box, so they fill it edge to edge less the 2px inset.",
-             "html": """<div class="inline-flex items-center h-control rounded-sm border-2 border-transparent bg-neutral-3" role="group" aria-label="Alignment">
+             "html": """<div class="inline-flex items-center h-control rounded-sm border-2 border-transparent bg-neutral-a2" role="group" aria-label="Alignment">
   <button class="inline-flex items-center justify-center h-full aspect-square rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 cursor-pointer" aria-label="Align start" aria-pressed="true"><i class="icon ph ph-text-align-left"></i></button>
   <button class="inline-flex items-center justify-center h-full aspect-square rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 cursor-pointer" aria-label="Align center" aria-pressed="false"><i class="icon ph ph-text-align-center"></i></button>
   <button class="inline-flex items-center justify-center h-full aspect-square rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 cursor-pointer" aria-label="Align end" aria-pressed="false"><i class="icon ph ph-text-align-right"></i></button>
@@ -72,10 +72,10 @@ COMPONENTS = [
         "slug": "badge", "name": "Badge", "icon": "ph-tag", "group": "Status",
         "summary": "A short label for a status or category, at the nested control size.",
         "html": """<div class="flex flex-wrap items-center gap-2xs">
-  <span class="inline-flex items-center py-3xs px-2xs gap-3xs rounded-full bg-neutral-3 border border-neutral-6 fg-neutral-11 text-sm font-medium">Draft</span>
-  <span class="inline-flex items-center py-3xs ps-3xs pe-2xs gap-3xs rounded-full bg-success-3 border border-success-6 fg-success-11 text-sm font-medium"><i class="icon icon-sm ph-bold ph-check"></i><span>Paid</span></span>
-  <span class="inline-flex items-center py-3xs ps-3xs pe-2xs gap-3xs rounded-full bg-warning-3 border border-warning-6 fg-warning-11 text-sm font-medium"><i class="icon icon-sm ph-bold ph-clock"></i><span>Pending</span></span>
-  <span class="inline-flex items-center py-3xs px-2xs rounded-full bg-info-9 fg-info-contrast text-sm font-medium">New</span>
+  <span class="inline-flex items-center h-nested px-nested rounded-full border gap-gutter-half bg-neutral-3 border-neutral-6 fg-neutral-11 text-sm font-medium">Draft</span>
+  <span class="inline-flex items-center h-nested px-nested rounded-full border gap-gutter-half bg-success-3 border-success-6 fg-success-11 text-sm font-medium"><i class="icon icon-sm ph-bold ph-check"></i><span>Paid</span></span>
+  <span class="inline-flex items-center h-nested px-nested rounded-full border gap-gutter-half bg-warning-3 border-warning-6 fg-warning-11 text-sm font-medium"><i class="icon icon-sm ph-bold ph-clock"></i><span>Pending</span></span>
+  <span class="inline-flex items-center h-nested px-nested rounded-full border border-transparent bg-info-9 fg-info-contrast text-sm font-medium">New</span>
 </div>""",
         "use": ["Pair a status color with its word, never color alone."],
         "avoid": ["A badge as a button; badges aren't interactive."],
@@ -113,7 +113,7 @@ COMPONENTS = [
   <span class="text-sm fg-danger-11">The build stopped at step 4 of 6.</span>
   <div class="flex gap-2xs pt-2xs">
     <button class="inline-flex items-center h-nested px-nested rounded-inner state border-0 bg-danger-9 fg-danger-contrast text-base font-medium cursor-pointer"><span>View logs</span></button>
-    <button class="inline-flex items-center h-nested px-nested rounded-inner state border-0 bg-transparent fg-danger-11 text-base font-medium cursor-pointer"><span>Dismiss</span></button>
+    <button class="inline-flex items-center h-nested px-nested rounded-inner state border-0 bg-danger-a3 fg-danger-11 text-base font-medium cursor-pointer"><span>Dismiss</span></button>
   </div>
 </div>"""},
         ],
