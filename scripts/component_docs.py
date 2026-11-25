@@ -2,12 +2,12 @@
 rendered live and shown as code, with when to use it and when not to. Utility classes only."""
 
 BTN = "inline-flex items-center justify-center py-xs px-sm gap-xs rounded-sm"
-BTN_PRIMARY = f"{BTN} border border-transparent bg-accent-1-9 hover:bg-accent-1-10 active:bg-accent-1-10 fg-accent-1-contrast text-sm font-medium cursor-pointer transition-colors"
-BTN_SECONDARY = f"{BTN} border bg-neutral-3 hover:bg-neutral-4 active:bg-neutral-5 fg-neutral-12 text-sm font-medium cursor-pointer transition-colors"
+BTN_PRIMARY = f"{BTN} border border-transparent bg-accent-1-9 hover:bg-accent-1-10 active:bg-accent-1-10 fg-accent-1-contrast text-base font-medium cursor-pointer transition-colors"
+BTN_SECONDARY = f"{BTN} border bg-neutral-3 hover:bg-neutral-4 active:bg-neutral-5 fg-neutral-12 text-base font-medium cursor-pointer transition-colors"
 FIELD = "py-xs px-sm rounded-sm border hover:border-neutral-8 aria-invalid:border-danger-7 bg-neutral-1 text-base w-full transition-colors"
 BOX = "flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors"
 BARE = "grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12"
-KBD = "inline-flex items-center py-3xs px-2xs rounded-xs border fg-neutral-11 text-sm font-mono"
+KBD = "inline-flex items-center py-3xs px-2xs rounded-xs border fg-neutral-11 text-base font-mono"
 NESTED_SELECT = "select-base py-3xs px-2xs rounded-xs border border-transparent bg-transparent hover:bg-neutral-3 fg-neutral-12 text-base cursor-pointer"
 NESTED_ICON = "inline-flex items-center justify-center p-3xs rounded-xs border border-transparent bg-transparent hover:bg-neutral-3 aria-pressed:bg-neutral-4 fg-neutral-11 hover:fg-neutral-12 cursor-pointer transition-colors"
 CARD = "p-md rounded-lg bg-neutral-1 border border-neutral-6"
@@ -20,8 +20,8 @@ COMPONENTS = [
         "html": f"""<div class="flex flex-wrap items-center gap-sm">
   <button class="{BTN_PRIMARY}"><span>Save changes</span></button>
   <button class="{BTN_SECONDARY}"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-download-simple"></i><span>Export</span></button>
-  <button class="{BTN} border border-transparent bg-transparent hover:bg-neutral-3 fg-neutral-12 text-sm font-medium cursor-pointer transition-colors"><span>Cancel</span></button>
-  <button class="{BTN} border border-transparent bg-danger-9 hover:bg-danger-10 fg-danger-contrast text-sm font-medium cursor-pointer transition-colors"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-trash"></i><span>Delete</span></button>
+  <button class="{BTN} border border-transparent bg-transparent hover:bg-neutral-3 fg-neutral-12 text-base font-medium cursor-pointer transition-colors"><span>Cancel</span></button>
+  <button class="{BTN} border border-transparent bg-danger-9 hover:bg-danger-10 fg-danger-contrast text-base font-medium cursor-pointer transition-colors"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-trash"></i><span>Delete</span></button>
 </div>""",
         "use": ["One primary button per view, for the action most people take.", "Wrap the label in a <code>&lt;span&gt;</code>, and put the icon in its own <code>&lt;i&gt;</code> beside it."],
         "avoid": ["A button for navigation; use a link styled the same way.", "Two primary buttons side by side; make the second secondary."],
@@ -41,9 +41,9 @@ COMPONENTS = [
         "slug": "segmented", "name": "Segmented control", "icon": "ph-squares-four", "group": "Actions",
         "summary": "A set of mutually exclusive options. The pressed segment is styled by <code>aria-pressed</code>, not by a class.",
         "html": """<div class="inline-flex items-center gap-3xs p-3xs rounded bg-neutral-3" role="group" aria-label="Range">
-  <button aria-pressed="true" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 aria-pressed:bg-neutral-1 fg-neutral-11 aria-pressed:fg-neutral-12 text-sm font-medium cursor-pointer transition-colors"><span>Day</span></button>
-  <button aria-pressed="false" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 aria-pressed:bg-neutral-1 fg-neutral-11 aria-pressed:fg-neutral-12 text-sm font-medium cursor-pointer transition-colors"><span>Week</span></button>
-  <button aria-pressed="false" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 aria-pressed:bg-neutral-1 fg-neutral-11 aria-pressed:fg-neutral-12 text-sm font-medium cursor-pointer transition-colors"><span>Month</span></button>
+  <button aria-pressed="true" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 aria-pressed:bg-neutral-1 fg-neutral-11 aria-pressed:fg-neutral-12 text-base font-medium cursor-pointer transition-colors"><span>Day</span></button>
+  <button aria-pressed="false" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 aria-pressed:bg-neutral-1 fg-neutral-11 aria-pressed:fg-neutral-12 text-base font-medium cursor-pointer transition-colors"><span>Week</span></button>
+  <button aria-pressed="false" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 aria-pressed:bg-neutral-1 fg-neutral-11 aria-pressed:fg-neutral-12 text-base font-medium cursor-pointer transition-colors"><span>Month</span></button>
 </div>""",
         "use": ["Two to five short options that change a view in place."],
         "avoid": ["Options that navigate to another page; use tabs."],
@@ -79,7 +79,7 @@ COMPONENTS = [
         "html": """<div class="flex items-center gap-sm p-sm pl-md w-fit rounded-lg bg-neutral-12 shadow-lg" role="status">
   <i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-check-circle fg-neutral-1"></i>
   <span class="text-sm fg-neutral-1">Invite sent</span>
-  <button class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent fg-accent-1-8 text-sm font-medium cursor-pointer">Undo</button>
+  <button class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent fg-accent-1-8 text-base font-medium cursor-pointer">Undo</button>
 </div>""",
         "use": ["Confirm an action that already happened, with Undo when it can be reversed."],
         "avoid": ["Errors the person must fix; use an alert near the problem."],
@@ -316,9 +316,9 @@ COMPONENTS = [
         "slug": "tabs", "name": "Tabs", "icon": "ph-tabs", "group": "Navigation",
         "summary": "Switches between views of the same thing. The selected tab is styled by <code>aria-selected</code>.",
         "html": """<div class="flex gap-md border-b border-neutral-6 overflow-x-auto" role="tablist">
-  <button role="tab" aria-selected="true" class="inline-flex items-center gap-xs py-xs px-sm border border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-sm font-medium cursor-pointer transition-colors rounded-none"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-user"></i><span>Profile</span></button>
-  <button role="tab" aria-selected="false" class="inline-flex items-center gap-xs py-xs px-sm border border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-sm font-medium cursor-pointer transition-colors rounded-none"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-credit-card"></i><span>Billing</span></button>
-  <button role="tab" aria-selected="false" class="inline-flex items-center gap-xs py-xs px-sm border border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-sm font-medium cursor-pointer transition-colors rounded-none"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-users"></i><span>Members</span></button>
+  <button role="tab" aria-selected="true" class="inline-flex items-center gap-xs py-xs px-sm border border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer transition-colors rounded-none"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-user"></i><span>Profile</span></button>
+  <button role="tab" aria-selected="false" class="inline-flex items-center gap-xs py-xs px-sm border border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer transition-colors rounded-none"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-credit-card"></i><span>Billing</span></button>
+  <button role="tab" aria-selected="false" class="inline-flex items-center gap-xs py-xs px-sm border border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer transition-colors rounded-none"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-users"></i><span>Members</span></button>
 </div>""",
         "use": ["Moving <code>aria-selected</code> is all the script a tab needs for its look."],
         "avoid": ["More than six tabs; use a sidebar."],
@@ -343,9 +343,9 @@ COMPONENTS = [
         "summary": "Moves through pages of results. The current page is styled by <code>aria-current</code>.",
         "html": """<nav aria-label="Pagination" class="inline-flex items-center gap-3xs">
   <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 no-underline transition-colors" aria-label="Previous"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-caret-left"></i></a>
-  <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 aria-current:bg-accent-1-9 aria-current:fg-accent-1-contrast no-underline text-sm font-medium tabular-nums transition-colors">2</a>
-  <a href="#" aria-current="page" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 aria-current:bg-accent-1-9 aria-current:fg-accent-1-contrast no-underline text-sm font-medium tabular-nums transition-colors">3</a>
-  <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 aria-current:bg-accent-1-9 aria-current:fg-accent-1-contrast no-underline text-sm font-medium tabular-nums transition-colors">4</a>
+  <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 aria-current:bg-accent-1-9 aria-current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums transition-colors">2</a>
+  <a href="#" aria-current="page" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 aria-current:bg-accent-1-9 aria-current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums transition-colors">3</a>
+  <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 aria-current:bg-accent-1-9 aria-current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums transition-colors">4</a>
   <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 no-underline transition-colors" aria-label="Next"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-caret-right"></i></a>
 </nav>""",
         "use": ["Long lists where people jump to a page; show the total near it."],
@@ -374,7 +374,7 @@ COMPONENTS = [
     <p class="text-sm fg-neutral-11">This removes the project for everyone. You can't undo this.</p>
     <div class="flex justify-end gap-sm">
       <button class="{BTN_SECONDARY}" commandfor="doc-dialog" command="close"><span>Cancel</span></button>
-      <button class="{BTN} border border-transparent bg-danger-9 hover:bg-danger-10 fg-danger-contrast text-sm font-medium cursor-pointer transition-colors" commandfor="doc-dialog" command="close"><span>Delete</span></button>
+      <button class="{BTN} border border-transparent bg-danger-9 hover:bg-danger-10 fg-danger-contrast text-base font-medium cursor-pointer transition-colors" commandfor="doc-dialog" command="close"><span>Delete</span></button>
     </div>
   </div>
 </dialog>""",
@@ -503,8 +503,8 @@ COMPONENTS = [
   <table class="w-full text-sm">
     <thead class="bg-neutral-2">
       <tr>
-        <th aria-sort="ascending" class="text-left px-md py-xs border-b border-neutral-6"><button class="inline-flex items-center gap-2xs border-0 bg-transparent fg-neutral-12 text-sm font-medium cursor-pointer">Name<i class="inline-flex items-center justify-center shrink-0 text-base leading-none ph-bold ph-caret-up"></i></button></th>
-        <th aria-sort="none" class="text-right px-md py-xs border-b border-neutral-6"><button class="inline-flex items-center gap-2xs border-0 bg-transparent fg-neutral-11 hover:fg-neutral-12 text-sm font-medium cursor-pointer transition-colors">Seats<i class="inline-flex items-center justify-center shrink-0 text-base leading-none ph-bold ph-caret-up-down"></i></button></th>
+        <th aria-sort="ascending" class="text-left px-md py-xs border-b border-neutral-6"><button class="inline-flex items-center gap-2xs border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer">Name<i class="inline-flex items-center justify-center shrink-0 text-base leading-none ph-bold ph-caret-up"></i></button></th>
+        <th aria-sort="none" class="text-right px-md py-xs border-b border-neutral-6"><button class="inline-flex items-center gap-2xs border-0 bg-transparent fg-neutral-11 hover:fg-neutral-12 text-base font-medium cursor-pointer transition-colors">Seats<i class="inline-flex items-center justify-center shrink-0 text-base leading-none ph-bold ph-caret-up-down"></i></button></th>
       </tr>
     </thead>
     <tbody>
