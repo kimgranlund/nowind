@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- **Timeline:** the rail runs unbroken from one marker to the next (the item gap moved from the row to the text), at 2px.
+- **Control gaps:** buttons, fields, selects, menu items and toolbar items space their icon and label by the control gap, `gap-gutter` (one margin, 7px at 16) or `gap-gutter-half` when nested, in place of `gap-xs` (12px); both count as regular classes now. `px-control` and `px-nested` also drop to the icon padding at a trailing icon (a field's warning icon had the text padding). The examples lint enforces the gap (self-test: twelve breaks).
 - **Badges:** icon and label sit `gap-3xs` apart (they were `gap-2xs`, which with the icon box's own side space read as a wide gap).
 - **Segmented controls, tight:** the box is `h-control rounded-sm border-2 border-transparent` (a 2px inset, its background showing through the border) and the segments are `h-full rounded-inner` (`aspect-square` for icons), so they fill a control's height and their corners follow the box exactly.
 - **Display settings panel:** the header bar's tier, size and light/dark buttons are now one settings button that opens a panel: theme (light, dark, system), base size (12 to 18px) and tier, each a segmented control. The panel is `scope text-chrome`, a fixed 14px (`--text-chrome`), so its controls stay 30px whatever the root size or tier. New: `text-chrome` and `anchor-bottom-end`.

@@ -615,6 +615,7 @@ out.push("  .h-nested > .icon { width: calc(var(--nested-height) - 2 * var(--bor
 for (const [cls, pad] of [["px-control", "--control-icon-padding"], ["px-nested", "--nested-icon-padding"]]) {
   out.push(`  .${cls}:where(:has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(${pad}); }`);
   out.push(`  .${cls}:where(:has(> :is(.icon, .h-nested, .size-nested):last-child)) { padding-inline-end: var(${pad}); }`);
+  out.push(`  .${cls}:where(:has(> :is(.icon, .h-nested, .size-nested):last-child)) { padding-inline-end: var(${pad}); }`);
 }
 // ---- Materials (after massimo-v4): a region's material paints the reliefs inside it. The nearest material wins:
 // each block is an @scope that stops at a nested material region. Flat is the default and paints nothing but casts.

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Checks the rules AGENTS.md states. Usage:
 //   node scripts/check.mjs              check this repository
-//   node scripts/check.mjs --self-test  break a copy eleven ways and confirm each check fails
+//   node scripts/check.mjs --self-test  break a copy twelve ways and confirm each check fails
 import { readFileSync, readdirSync, statSync, cpSync, mkdtempSync, rmSync, writeFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join, relative } from "node:path";
@@ -156,6 +156,7 @@ if (process.argv.includes("--self-test")) {
     ["hand-edited generated file", "nowind.css", (s) => s + "\n.hand-edit { color: red; }\n"],
     ["file AGENTS.md doesn't name", "site/unlisted.html", () => "<!doctype html>\n"],
     ["small control beside full-size ones", "site/components.html", (s) => s.replace(/(<button class="inline-flex items-center justify-center size-control rounded-sm state border bg-neutral-3 fg-neutral-12 cursor-pointer" aria-label="Settings">.*?<\/button>)/, '$1<button class="size-nested" aria-label="X"><i class="icon icon-sm ph ph-x"></i></button>')],
+    ["control gap from the space scale", "site/components.html", (s) => s.replace(/(md:col-span-9 min-w-0 flex flex-col gap-group">[\s\S]*?class="[^"]*?h-control px-control )gap-gutter\b/, "$1gap-xs")],
     ["control sized by padding", "site/components.html", (s) => s.replace(/(md:col-span-9 min-w-0 flex flex-col gap-group">[\s\S]*?<button class="[^"]*?)\bh-control px-control\b/, "$1py-xs px-sm")],
     ["text padding at an icon edge", "site/components.html", (s) => s.replace(/(md:col-span-9 min-w-0 flex flex-col gap-group">[\s\S]*?class="[^"]*?)\bps-xs pe-sm\b/, "$1px-sm")],
     ["hover tint in place of state", "site/components.html", (s) => s.replace(/(md:col-span-9 min-w-0 flex flex-col gap-group">[\s\S]*?class="[^"]*?)\bstate\b/, "$1hover:bg-neutral-4")],

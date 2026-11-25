@@ -1,17 +1,17 @@
 """Component docs data for scripts/templates.py: one entry per component, each a single HTML snippet that is both
 rendered live and shown as code, with when to use it and when not to. Utility classes only."""
 
-BTN = "inline-flex items-center justify-center h-control px-control gap-xs rounded-sm"
+BTN = "inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm"
 BTN_PRIMARY = f"{BTN} state border border-transparent bg-accent-1-9 fg-accent-1-contrast text-base font-medium cursor-pointer"
 BTN_SECONDARY = f"{BTN} state border bg-neutral-3 fg-neutral-12 text-base font-medium cursor-pointer"
 FIELD = "h-control px-control rounded-sm border hover:border-neutral-8 invalid:border-danger-7 bg-neutral-1 text-base w-full"
-BOX = "flex items-center gap-xs h-control px-control rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition"
+BOX = "flex items-center gap-gutter h-control px-control rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition"
 BARE = "grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12"
 KBD = "inline-flex items-center py-3xs px-2xs rounded-xs border fg-neutral-11 text-sm font-mono"
 NESTED_SELECT = "select-base h-nested px-nested rounded-xs state border border-transparent bg-transparent fg-neutral-12 text-base cursor-pointer"
 NESTED_ICON = "inline-flex items-center justify-center size-nested rounded-xs state border border-transparent bg-transparent fg-neutral-11 hover:fg-neutral-12 cursor-pointer"
 CARD = "p-md rounded-md bg-neutral-1 border border-neutral-6"
-MENU_ITEM = "flex items-center gap-xs h-control px-control border border-transparent rounded-sm no-underline fg-neutral-12 hover:bg-neutral-3 selected:bg-accent-1-3 selected:fg-accent-1-11"
+MENU_ITEM = "flex items-center gap-gutter h-control px-control border border-transparent rounded-sm no-underline fg-neutral-12 hover:bg-neutral-3 selected:bg-accent-1-3 selected:fg-accent-1-11"
 
 
 
@@ -32,15 +32,15 @@ COMPONENTS = [
         "slug": "icon-button", "name": "Icon button", "icon": "ph-plus-circle", "group": "Actions",
         "summary": "A button with only an icon. <code>size-control</code> makes it square and the same height as a text button; <code>size-nested</code> is the small size for inside a toolbar or field.",
         "html": f"""<div class="flex items-center gap-sm">
-  <button class="inline-flex items-center justify-center size-control gap-xs rounded-sm state border bg-neutral-3 fg-neutral-12 cursor-pointer" aria-label="Settings"><i class="icon ph ph-gear"></i></button>
-  <button class="inline-flex items-center justify-center size-control gap-xs rounded-full state border border-transparent bg-accent-1-9 fg-accent-1-contrast cursor-pointer" aria-label="Add"><i class="icon ph-bold ph-plus"></i></button>
+  <button class="inline-flex items-center justify-center size-control gap-gutter rounded-sm state border bg-neutral-3 fg-neutral-12 cursor-pointer" aria-label="Settings"><i class="icon ph ph-gear"></i></button>
+  <button class="inline-flex items-center justify-center size-control gap-gutter rounded-full state border border-transparent bg-accent-1-9 fg-accent-1-contrast cursor-pointer" aria-label="Add"><i class="icon ph-bold ph-plus"></i></button>
 </div>""",
         "examples": [
             {"id": "toolbar", "label": "In a toolbar",
              "summary": "The small size (<code>h-nested</code>, <code>size-nested</code>, <code>rounded-xs</code>) belongs inside a container padded <code>p-inset</code>: the bar is then a control's height and the corners nest. On its own, beside full-size buttons, it looks undersized and square.",
              "html": """<div class="inline-flex items-center gap-3xs p-inset rounded-sm border bg-neutral-1" role="toolbar" aria-label="Table tools">
-  <button class="inline-flex items-center h-nested px-nested gap-3xs rounded-xs state border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon icon-sm ph-bold ph-funnel"></i><span>Filter</span></button>
-  <button class="inline-flex items-center h-nested px-nested gap-3xs rounded-xs state border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon icon-sm ph-bold ph-sort-ascending"></i><span>Sort</span></button>
+  <button class="inline-flex items-center h-nested px-nested gap-gutter-half rounded-xs state border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon icon-sm ph-bold ph-funnel"></i><span>Filter</span></button>
+  <button class="inline-flex items-center h-nested px-nested gap-gutter-half rounded-xs state border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon icon-sm ph-bold ph-sort-ascending"></i><span>Sort</span></button>
   <span class="self-stretch border-s border-neutral-6" aria-hidden="true"></span>
   <button class="inline-flex items-center justify-center size-nested rounded-xs state border-0 bg-transparent fg-neutral-11 cursor-pointer" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
 </div>"""},
@@ -364,9 +364,9 @@ COMPONENTS = [
         "slug": "tabs", "name": "Tabs", "icon": "ph-tabs", "group": "Navigation",
         "summary": "Switches between views of the same thing. The selected tab is styled by <code>aria-selected</code>.",
         "html": """<div class="flex gap-md border-b border-neutral-6 overflow-x-auto" role="tablist">
-  <button role="tab" aria-selected="true" class="inline-flex items-center gap-xs h-control px-control border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none"><i class="icon ph ph-user"></i><span>Profile</span></button>
-  <button role="tab" aria-selected="false" class="inline-flex items-center gap-xs h-control px-control border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none"><i class="icon ph ph-credit-card"></i><span>Billing</span></button>
-  <button role="tab" aria-selected="false" class="inline-flex items-center gap-xs h-control px-control border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none"><i class="icon ph ph-users"></i><span>Members</span></button>
+  <button role="tab" aria-selected="true" class="inline-flex items-center gap-gutter h-control px-control border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none"><i class="icon ph ph-user"></i><span>Profile</span></button>
+  <button role="tab" aria-selected="false" class="inline-flex items-center gap-gutter h-control px-control border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none"><i class="icon ph ph-credit-card"></i><span>Billing</span></button>
+  <button role="tab" aria-selected="false" class="inline-flex items-center gap-gutter h-control px-control border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none"><i class="icon ph ph-users"></i><span>Members</span></button>
 </div>""",
         "use": ["Moving <code>aria-selected</code> is all the script a tab needs for its look."],
         "avoid": ["More than six tabs; use a sidebar."],
