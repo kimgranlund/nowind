@@ -32,8 +32,15 @@
   --breakpoint-2xl: 1536px;
 }
 
-:root, .scope {
+:root {
+  --F: var(--text-base);
+}
+
+.scope {
   --F: 1em;
+}
+
+:root, .scope {
   --slot: calc(var(--slot-slope) * var(--F) + var(--slot-offset));
   --q: calc(var(--q-slope) * var(--F) + var(--q-offset));
   --margin: max(calc(var(--mg) * (var(--slot) - var(--F) + var(--margin-offset))), var(--border-width));

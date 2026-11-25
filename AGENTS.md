@@ -12,7 +12,7 @@ Read `README.md` for what Nowind is and how people use it. This file says how to
 | `theme/theme.colors.css` | Colour usage roles for every palette, Radix companions, shadows | yes |
 | `theme/colors-semantic/*.css` | One file per palette: steps, alpha steps, contrast | yes |
 | `theme/colors-raw/` | The radix-hct-colors library | no, copied in |
-| `theme/theme.geometry.css` | `--F` geometry, radius, container, breakpoints | yes |
+| `theme/theme.geometry.css` | `--F` geometry, radius, container, breakpoints. At the root `--F` is `var(--text-base)`, so geometry is fluid; `.scope` sets `--F: 1em` | yes |
 | `theme/theme.type-roles.css` | Semantic type roles (`--heading-md`, `--heading-md--line-height`, …) | yes |
 | `theme/theme.shadows.css` | Compound shadows (casts and recesses) after Massimo | no, `scripts/shadows.mjs` |
 | `theme/theme.typography.css`, `theme/theme.space.css` | Fluid Utopia scales, faces, weights, leading, tracking | no, `scripts/utopia.mjs` |
