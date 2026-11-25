@@ -11,11 +11,13 @@ E = html.escape
 
 # ---------------------------------------------------------------- site map
 # Every page of the site in four sections, docs and hand-written alike. Paths are relative to site/.
+GROUP_ORDER = list(dict.fromkeys(c["group"] for c in COMPONENTS))
+BY_GROUP = sorted(COMPONENTS, key=lambda c: GROUP_ORDER.index(c["group"]))
 SECTIONS = [
     ("Docs", [("docs/docs-home.html", "Overview"), ("docs/guide.html", "Guide"), ("docs/reference.html", "Reference"),
               ("docs/changelog.html", "Changelog"), ("docs/index.html", "Templates")]),
     ("Components", [("docs/components-index.html", "All components"), ("components.html", "Showcase")] +
-                   [(f"docs/c-{c['slug']}.html", c["name"]) for c in COMPONENTS]),
+                   [(f"docs/c-{c['slug']}.html", c["name"]) for c in BY_GROUP]),
     ("Specimen", [("specimen.html", "Tokens"), ("utilities.html", "Utilities demo")]),
     ("Classes", [("docs/classes.html", "Regular"), ("docs/semantic.html", "Semantic")]),
 ]
@@ -64,10 +66,25 @@ def site_map(path):
     def col(name, pages, two=False, span=""):
         return f'<div class="{span} flex flex-col gap-2xs min-w-0"><span class="text-kicker fg-weak">{name}</span>{links(pages, two)}</div>'
     sec = dict(SECTIONS)
+    lead = [pp for pp in sec["Components"] if not pp[0].startswith("docs/c-")]
+    def group(g):
+        return (f'<div class="flex flex-col gap-3xs min-w-0"><span class="text-label fg-subtle">{g}</span>'
+                f'{links([(f"docs/c-{c['slug']}.html", c["name"]) for c in BY_GROUP if c["group"] == g])}</div>')
+    sizes = [sum(c["group"] == g for c in COMPONENTS) + 1 for g in GROUP_ORDER]
+    half, run, cut = sum(sizes) / 2, 0, len(GROUP_ORDER)
+    for i, n in enumerate(sizes):
+        if run + n / 2 > half:
+            cut = i
+            break
+        run += n
+    stacks = [GROUP_ORDER[:cut], GROUP_ORDER[cut:]]
+    groups = "".join(f'<div class="flex flex-col gap-sm min-w-0">{"".join(group(g) for g in st)}</div>' for st in stacks)
+    components = (f'<div class="md:col-span-2 flex flex-col gap-2xs min-w-0"><span class="text-kicker fg-weak">Components</span>'
+                  f'{links(lead, two=True)}<div class="grid grid-cols-2 gap-x-md gap-y-sm pt-2xs">{groups}</div></div>')
     return f"""<div id="site-map" popover class="anchor-bottom w-full max-w-measure max-h-below-header overflow-y-auto p-surface rounded-lg bg fg border shadow-lg">
   <nav aria-label="Site map" class="grid grid-cols-1 md:grid-cols-4 gap-group">
     {col("Docs", sec["Docs"])}
-    {col("Components", sec["Components"], two=True, span="md:col-span-2")}
+    {components}
     <div class="flex flex-col gap-group">{col("Specimen", sec["Specimen"])}{col("Classes", sec["Classes"])}</div>
   </nav>
 </div>
