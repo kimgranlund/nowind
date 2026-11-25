@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.8.0 (2026-11-25)
 
 - **Group variants:** `group` on a parent, `group-hover:`, `group-focus-within:` and `group-open:` on a child (opacity, visibility and `fg-*`), for tooltips and reveal-on-hover.
 - **Offsets:** `top-full`, `bottom-full`, `left-full`, `right-full`.
