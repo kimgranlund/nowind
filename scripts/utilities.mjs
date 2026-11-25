@@ -28,7 +28,7 @@ const SPACE = props(read("theme/theme.space.css")).map((p) => p.slice(8));
 const D = new Map();
 const add = (cls, decl) => D.set(cls, decl);
 const sv = (s) => (s === "0" ? "0" : `var(--space-${s})`);
-const box = { "": ["{p}"], t: ["{p}-top"], r: ["{p}-right"], b: ["{p}-bottom"], l: ["{p}-left"], x: ["{p}-inline"], y: ["{p}-block"] };
+const box = { "": ["{p}"], t: ["{p}-top"], r: ["{p}-right"], b: ["{p}-bottom"], l: ["{p}-left"], x: ["{p}-inline"], y: ["{p}-block"], s: ["{p}-inline-start"], e: ["{p}-inline-end"] };
 
 // Spacing
 for (const [pre, prop] of [["p", "padding"], ["m", "margin"]]) {
@@ -76,6 +76,10 @@ add("inset-0", "inset: 0");
 for (const p of ["top", "right", "bottom", "left"]) {
   add(`${p}-0`, `${p}: 0`);
   add(`${p}-full`, `${p}: 100%`);
+}
+for (const [p, prop] of [["start", "inset-inline-start"], ["end", "inset-inline-end"]]) {
+  add(`${p}-0`, `${prop}: 0`);
+  add(`${p}-full`, `${prop}: 100%`);
 }
 for (let z = 0; z <= 100; z += 10) add(`z-${z}`, `z-index: ${z}`);
 
@@ -149,7 +153,7 @@ add("bg-clip-text", "-webkit-background-clip: text; background-clip: text");
 // Borders, radius, outline, shadow
 for (const [suf, w] of [["", "var(--border-width)"], ["-0", "0"], ["-2", "2px"], ["-4", "4px"]]) {
   add(`border${suf}`, `border-width: ${w}; --_bw: ${w === "0" ? "0px" : w}`);
-  for (const [s, p] of [["t", "top"], ["r", "right"], ["b", "bottom"], ["l", "left"], ["x", "inline"], ["y", "block"]]) add(`border-${s}${suf}`, `border-${p}-width: ${w}`);
+  for (const [s, p] of [["t", "top"], ["r", "right"], ["b", "bottom"], ["l", "left"], ["x", "inline"], ["y", "block"], ["s", "inline-start"], ["e", "inline-end"]]) add(`border-${s}${suf}`, `border-${p}-width: ${w}`);
 }
 for (const s of ["solid", "dashed", "dotted", "none"]) add(`border-${s}`, `border-style: ${s}`);
 // Radii nest (after Affine UI): each step is one margin from the next and the inset (margin − border) pads between
@@ -165,6 +169,10 @@ nest("rounded-lg", "var(--radius-lg)");
 nest("rounded-xl", "var(--radius-xl)");
 nest("rounded-full", "9999px");
 add("rounded-inner", "border-radius: var(--_nest, var(--radius-sm))");
+for (const [n, r] of [["none", "0px"], ["xs", "var(--radius-xs)"], ["sm", "var(--radius-sm)"], ["md", "var(--radius-md)"], ["lg", "var(--radius-lg)"], ["xl", "var(--radius-xl)"], ["full", "9999px"]]) {
+  add(`rounded-s-${n}`, `border-start-start-radius: ${r}; border-end-start-radius: ${r}`);
+  add(`rounded-e-${n}`, `border-start-end-radius: ${r}; border-end-end-radius: ${r}`);
+}
 add("outline", "outline-width: var(--border-width); outline-style: solid");
 add("outline-2", "outline-width: 2px; outline-style: solid");
 add("outline-0", "outline-width: 0");
@@ -736,7 +744,7 @@ const manifest = {
     faces: "font-body (alias font-sans), font-heading, font-mono, font-control",
     leading: "leading-none, tight, snug, normal, relaxed",
     tracking: "tracking-tight, normal, wide, widest",
-    radius: "rounded-none, rounded-xs (control − margin), rounded-sm (control), rounded-md (control + margin: cards, popovers), rounded-lg (+2 margins: dialogs), rounded-xl (+3), rounded-full. One name per value. After Affine, one margin per step and p-inset (margin − border) between levels, so rounded-md p-inset border holds rounded-sm items concentrically. rounded-inner gives any item its parent's radius minus the parent's padding and border.",
+    radius: "rounded-none, rounded-xs (control − margin), rounded-sm (control), rounded-md (control + margin: cards, popovers), rounded-lg (+2 margins: dialogs), rounded-xl (+3), rounded-full. One name per value. rounded-s-* and rounded-e-* round one inline side (logical). After Affine, one margin per step and p-inset (margin − border) between levels, so rounded-md p-inset border holds rounded-sm items concentrically. rounded-inner gives any item its parent's radius minus the parent's padding and border.",
     shadows: "shadow-xs, shadow-sm (and bare shadow), shadow-md, shadow-lg, shadow-xl, shadow-none; inset-shadow-xs, inset-shadow-sm, inset-shadow-none. Compound shadows after Massimo (theme.shadows.css); a cast and a recess on one element compose, as in Tailwind v4.",
     borders: "border, border-0, -2, -4, with sides t r b l x y; border-solid/dashed/dotted/none",
     layout: "container, display, grid-cols-1…12, col-span-1…12 and -full, flex, basis-0, basis fractions, position, inset, z-",

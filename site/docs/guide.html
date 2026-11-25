@@ -16,13 +16,13 @@
   <div class="flex items-center gap-lg h-header px-grid">
     <a href="../index.html" class="inline-flex items-center gap-gutter-half no-underline fg-inverse"><i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-inverse-weak">0.8.0</span></a>
     <nav aria-label="Sections" class="hidden md:flex items-center gap-lg"><a href="docs-home.html" aria-current="true" class="inline-flex items-center h-header border-b-2 border-accent-1 no-underline fg-inverse text-title-sm">Docs</a><a href="components-index.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Components</a><a href="../specimen.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Specimen</a><a href="classes.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Classes</a></nav>
-    <button type="button" data-theme-toggle class="inline-flex items-center justify-center size-nested ml-auto rounded-xs border border-transparent bg-transparent fg-inverse-weak hover:fg-inverse cursor-pointer transition-colors" aria-label="Switch to dark mode"><i class="icon ph ph-moon"></i></button>
+    <button type="button" data-theme-toggle class="inline-flex items-center justify-center size-nested ms-auto rounded-xs border border-transparent bg-transparent fg-inverse-weak hover:fg-inverse cursor-pointer transition-colors" aria-label="Switch to dark mode"><i class="icon ph ph-moon"></i></button>
     <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center size-nested no-underline fg-inverse-weak hover:fg-inverse transition-colors" aria-label="Nowind on GitHub"><i class="icon ph ph-github-logo"></i></a>
   </div>
 </header>
 <div class="flex items-center gap-xs px-grid py-2xs border-b-2 border-strong bg">
   <button type="button" popovertarget="site-map" class="inline-flex items-center gap-gutter-half min-w-0 h-control px-control rounded-sm border hover:bg-component-weak bg text-title-sm cursor-pointer transition-colors" aria-label="Site map: Docs"><span class="fg-weak">Docs</span><span class="fg-subtle">/</span><span class="truncate">Guide</span><i class="icon caret fg-weak" aria-hidden="true"></i></button>
-  <button type="button" data-search-open class="inline-flex items-center gap-gutter grow min-w-0 max-w-form h-control px-control rounded-sm border hover:border-strong bg-strong fg-subtle text-control-md cursor-text transition-colors" aria-label="Search the site"><i class="icon ph ph-magnifying-glass"></i><span class="grow truncate text-left">Search pages, components and classes</span><kbd class="hidden sm:inline text-mono-sm">⌘K</kbd></button>
+  <button type="button" data-search-open class="inline-flex items-center gap-gutter grow min-w-0 max-w-form h-control px-control rounded-sm border hover:border-strong bg-strong fg-subtle text-control-md cursor-text transition-colors" aria-label="Search the site"><i class="icon ph ph-magnifying-glass"></i><span class="grow truncate text-start">Search pages, components and classes</span><kbd class="hidden sm:inline text-mono-sm">⌘K</kbd></button>
   <span class="flex-1 hidden lg:block"></span>
   <span class="hidden sm:flex items-center gap-3xs"><a href="docs-home.html" class="inline-flex items-center justify-center size-control rounded-sm border hover:bg-component-weak no-underline fg transition-colors" aria-label="Previous: Overview"><i class="icon ph ph-arrow-left"></i></a><a href="colour.html" class="inline-flex items-center justify-center size-control rounded-sm border hover:bg-component-weak no-underline fg transition-colors" aria-label="Next: Colour"><i class="icon ph ph-arrow-right"></i></a></span>
 </div>
@@ -59,7 +59,7 @@
 &lt;/main&gt;</code></pre>
           </figure>
           <p class="text-body-md max-w-measure">The band is <code>h-header</code> tall and follows the base size, so it grows with the type from a phone to a wide screen. <code>scroll-pt-header</code> on <code>html</code> keeps a linked block clear of it.</p>
-          <aside role="note" class="flex gap-gutter p-surface border-l-4 border-info bg-component-info-weak">
+          <aside role="note" class="flex gap-gutter p-surface border-s-4 border-info bg-component-info-weak">
             <i class="icon ph ph-info fg-info-weak"></i>
             <div class="flex flex-col gap-3xs min-w-0">
               <span class="text-label fg-info">Note</span>
@@ -83,10 +83,10 @@
           </figure>
           <div class="border border-weak">
             <table class="w-full text-body-md">
-              <thead class="bg-strong"><tr><th scope="col" class="text-left px-2xs md:px-sm py-xs border-b text-label fg-weak">Width</th><th scope="col" class="text-left px-2xs md:px-sm py-xs border-b text-label fg-weak">Sections</th><th scope="col" class="text-left px-2xs md:px-sm py-xs border-b text-label fg-weak">Label</th></tr></thead>
+              <thead class="bg-strong"><tr><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Width</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Sections</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Label</th></tr></thead>
               <tbody>
-                <tr><td class="text-left align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Under 768px</td><td class="text-left align-top px-2xs md:px-sm py-xs break-words border-b border-weak">In the site map</td><td class="text-left align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Above the content</td></tr>
-                <tr><td class="text-left align-top px-2xs md:px-sm py-xs break-words">768px (<code class="whitespace-normal">md:<wbr></code>) and up</td><td class="text-left align-top px-2xs md:px-sm py-xs break-words">In the band</td><td class="text-left align-top px-2xs md:px-sm py-xs break-words">Columns 1–3, content 4–12</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Under 768px</td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">In the site map</td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Above the content</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words">768px (<code class="whitespace-normal">md:<wbr></code>) and up</td><td class="text-start align-top px-2xs md:px-sm py-xs break-words">In the band</td><td class="text-start align-top px-2xs md:px-sm py-xs break-words">Columns 1–3, content 4–12</td></tr>
               </tbody>
             </table>
           </div>
@@ -96,7 +96,7 @@
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">The reading column</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-measure">Prose stops at <code>max-w-measure</code>, 44 times the base size. The article is a <code>tier-content</code> region, so its section gaps and page padding are one and a half times the product rhythm and its measure grows with the tier's larger base size.</p>
-          <aside role="note" class="flex gap-gutter p-surface border-l-4 border-success bg-component-success-weak">
+          <aside role="note" class="flex gap-gutter p-surface border-s-4 border-success bg-component-success-weak">
             <i class="icon ph ph-check-circle fg-success-weak"></i>
             <div class="flex flex-col gap-3xs min-w-0">
               <span class="text-label fg-success">Tip</span>
@@ -111,12 +111,12 @@
           <p class="text-body-md max-w-measure">A docs page needs four sizes and no more. Contrast between them is the hierarchy, so they sit far apart: a display size for the page title, a heading size for sections, the base size for reading and controls, and a small size for labels and code.</p>
           <div class="border border-weak">
             <table class="w-full text-body-md">
-              <thead class="bg-strong"><tr><th scope="col" class="text-left px-2xs md:px-sm py-xs border-b text-label fg-weak">Size</th><th scope="col" class="text-left px-2xs md:px-sm py-xs border-b text-label fg-weak">Classes</th><th scope="col" class="text-left px-2xs md:px-sm py-xs border-b text-label fg-weak">Used for</th></tr></thead>
+              <thead class="bg-strong"><tr><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Size</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Classes</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Used for</th></tr></thead>
               <tbody>
-                <tr><td class="text-left align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Display</td><td class="text-left align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">text-display-sm</code></td><td class="text-left align-top px-2xs md:px-sm py-xs break-words border-b border-weak">The page title, once per page</td></tr>
-                <tr><td class="text-left align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Heading</td><td class="text-left align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">text-heading-md</code></td><td class="text-left align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Section headings, each under a rule</td></tr>
-                <tr><td class="text-left align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Base</td><td class="text-left align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">text-body-md</code>, <code class="whitespace-normal break-all">text-subtitle</code>, <code class="whitespace-normal break-all">text-title-sm</code></td><td class="text-left align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Prose, subheadings, navigation and buttons</td></tr>
-                <tr><td class="text-left align-top px-2xs md:px-sm py-xs break-words">Small</td><td class="text-left align-top px-2xs md:px-sm py-xs break-words"><code class="whitespace-normal break-all">text-caption</code>, <code class="whitespace-normal break-all">text-label</code>, <code class="whitespace-normal break-all">text-kicker</code>, <code class="whitespace-normal break-all">text-mono-sm</code></td><td class="text-left align-top px-2xs md:px-sm py-xs break-words">Metadata, table heads, kickers and code</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Display</td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">text-display-sm</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">The page title, once per page</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Heading</td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">text-heading-md</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Section headings, each under a rule</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Base</td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">text-body-md</code>, <code class="whitespace-normal break-all">text-subtitle</code>, <code class="whitespace-normal break-all">text-title-sm</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Prose, subheadings, navigation and buttons</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words">Small</td><td class="text-start align-top px-2xs md:px-sm py-xs break-words"><code class="whitespace-normal break-all">text-caption</code>, <code class="whitespace-normal break-all">text-label</code>, <code class="whitespace-normal break-all">text-kicker</code>, <code class="whitespace-normal break-all">text-mono-sm</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words">Metadata, table heads, kickers and code</td></tr>
               </tbody>
             </table>
           </div>
@@ -127,7 +127,7 @@
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Callouts, code and tables</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-measure">A callout is a coloured rule on the left, a word and a sentence. The colour codes the kind and the word says it, so the meaning never depends on colour alone.</p>
-          <aside role="note" class="flex gap-gutter p-surface border-l-4 border-warning bg-component-warning-weak">
+          <aside role="note" class="flex gap-gutter p-surface border-s-4 border-warning bg-component-warning-weak">
             <i class="icon ph ph-warning fg-warning-weak"></i>
             <div class="flex flex-col gap-3xs min-w-0">
               <span class="text-label fg-warning">Warning</span>
@@ -139,7 +139,7 @@
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">callout.html</span><span class="text-kicker fg-subtle">HTML</span>
             </figcaption>
-            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;aside role=&quot;note&quot; class=&quot;flex gap-gutter p-surface border-l-4 border-info bg-component-info-weak&quot;&gt;
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;aside role=&quot;note&quot; class=&quot;flex gap-gutter p-surface border-s-4 border-info bg-component-info-weak&quot;&gt;
   &lt;i class=&quot;icon ph ph-info fg-info-weak&quot;&gt;&lt;/i&gt;
   &lt;div class=&quot;flex flex-col gap-3xs&quot;&gt;
     &lt;span class=&quot;text-label fg-info&quot;&gt;Note&lt;/span&gt;
@@ -153,7 +153,7 @@
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Search</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-measure">Press ⌘K or Ctrl+K, or <code>/</code>, on any page to search every page, block heading, component and class. The index, <code>search.json</code>, is written with the pages, so it never falls behind.</p>
-          <aside role="note" class="flex gap-gutter p-surface border-l-4 border-info bg-component-info-weak">
+          <aside role="note" class="flex gap-gutter p-surface border-s-4 border-info bg-component-info-weak">
             <i class="icon ph ph-info fg-info-weak"></i>
             <div class="flex flex-col gap-3xs min-w-0">
               <span class="text-label fg-info">Note</span>
@@ -167,7 +167,7 @@
             <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><i class="icon icon-sm ph-bold ph-arrow-left"></i><span>Previous</span></span>
             <span class="text-subtitle fg-accent-1-weak">Overview</span>
           </a>
-          <a href="colour.html" class="flex flex-col items-end gap-3xs p-surface border border-weak hover:border-strong no-underline text-right transition-colors">
+          <a href="colour.html" class="flex flex-col items-end gap-3xs p-surface border border-weak hover:border-strong no-underline text-end transition-colors">
             <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><span>Next</span><i class="icon icon-sm ph-bold ph-arrow-right"></i></span>
             <span class="text-subtitle fg-accent-1-weak">Colour</span>
           </a>

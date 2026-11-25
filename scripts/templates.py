@@ -134,13 +134,13 @@ def top(path):
   <div class="flex items-center gap-lg h-header px-grid">
     <a href="{rel("index.html", path)}" class="inline-flex items-center gap-gutter-half no-underline fg-inverse"><i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-inverse-weak">__VERSION__</span></a>
     <nav aria-label="Sections" class="hidden md:flex items-center gap-lg">{secs}</nav>
-    <button type="button" data-theme-toggle class="inline-flex items-center justify-center size-nested ml-auto rounded-xs border border-transparent bg-transparent fg-inverse-weak hover:fg-inverse cursor-pointer transition-colors" aria-label="Switch to dark mode"><i class="icon ph ph-moon"></i></button>
+    <button type="button" data-theme-toggle class="inline-flex items-center justify-center size-nested ms-auto rounded-xs border border-transparent bg-transparent fg-inverse-weak hover:fg-inverse cursor-pointer transition-colors" aria-label="Switch to dark mode"><i class="icon ph ph-moon"></i></button>
     <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center size-nested no-underline fg-inverse-weak hover:fg-inverse transition-colors" aria-label="Nowind on GitHub"><i class="icon ph ph-github-logo"></i></a>
   </div>
 </header>
 <div class="flex items-center gap-xs px-grid py-2xs border-b-2 border-strong bg">
   <button type="button" popovertarget="site-map" class="inline-flex items-center gap-gutter-half min-w-0 h-control px-control rounded-sm border hover:bg-component-weak bg text-title-sm cursor-pointer transition-colors" aria-label="Site map: {cur or "all pages"}">{where}<i class="icon caret fg-weak" aria-hidden="true"></i></button>
-  <button type="button" data-search-open class="inline-flex items-center gap-gutter grow min-w-0 max-w-form h-control px-control rounded-sm border hover:border-strong bg-strong fg-subtle text-control-md cursor-text transition-colors" aria-label="Search the site"><i class="icon ph ph-magnifying-glass"></i><span class="grow truncate text-left">Search pages, components and classes</span><kbd class="hidden sm:inline text-mono-sm">⌘K</kbd></button>
+  <button type="button" data-search-open class="inline-flex items-center gap-gutter grow min-w-0 max-w-form h-control px-control rounded-sm border hover:border-strong bg-strong fg-subtle text-control-md cursor-text transition-colors" aria-label="Search the site"><i class="icon ph ph-magnifying-glass"></i><span class="grow truncate text-start">Search pages, components and classes</span><kbd class="hidden sm:inline text-mono-sm">⌘K</kbd></button>
   <span class="flex-1 hidden lg:block"></span>
   {step}
 </div>
@@ -172,7 +172,7 @@ def prev_next(path):
     else:
         cells.append('          <span></span>')
     if nxt:
-        cells.append(f"""          <a href="{rel(nxt, path)}" class="flex flex-col items-end gap-3xs p-surface border border-weak hover:border-strong no-underline text-right transition-colors">
+        cells.append(f"""          <a href="{rel(nxt, path)}" class="flex flex-col items-end gap-3xs p-surface border border-weak hover:border-strong no-underline text-end transition-colors">
             <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><span>Next</span><i class="icon icon-sm ph-bold ph-arrow-right"></i></span>
             <span class="text-subtitle fg-accent-1-weak">{TITLES.get(nxt, LABELS[nxt])}</span>
           </a>""")
@@ -186,7 +186,7 @@ CALLOUT = {
 
 def callout(kind, body_html):
     pal, icon, label = CALLOUT[kind]
-    return f"""<aside role="note" class="flex gap-gutter p-surface border-l-4 border-{pal} bg-component-{pal}-weak">
+    return f"""<aside role="note" class="flex gap-gutter p-surface border-s-4 border-{pal} bg-component-{pal}-weak">
             <i class="icon ph {icon} fg-{pal}-weak"></i>
             <div class="flex flex-col gap-3xs min-w-0">
               <span class="text-label fg-{pal}">{label}</span>
@@ -203,7 +203,7 @@ def code(filename, lang, src):
           </figure>"""
 
 def table(headers, rows, align=None):
-    align = align or ["left"] * len(headers)
+    align = [{"left": "start", "right": "end"}.get(x, x) for x in (align or ["left"] * len(headers))]
     ths = "".join(f'<th scope="col" class="text-{a} px-2xs md:px-sm py-xs border-b text-label fg-weak">{h}</th>' for h, a in zip(headers, align))
     trs = []
     for n, r in enumerate(rows):
@@ -254,7 +254,7 @@ def p(t):
 
 def ul(items):
     lis = "\n".join(f'            <li>{i}</li>' for i in items)
-    return f'<ul class="flex flex-col gap-3xs pl-md list-disc text-body-md max-w-measure">\n{lis}\n          </ul>'
+    return f'<ul class="flex flex-col gap-3xs ps-md list-disc text-body-md max-w-measure">\n{lis}\n          </ul>'
 
 def doc_page(current, title, article_html, toc_items=None, wide=False, sidebar_on=True):
     """Every generated page: band and section row, the twelve-column grid of blocks, previous and next, footer."""
@@ -322,7 +322,7 @@ def guide():
             callout("warning", "A callout interrupts the reader. Use at most one per section."),
             p("A code block is a figure: the file name and language in a caption, the code in a <code>pre</code> that scrolls sideways rather than wrapping. Tables wrap their cells instead of scrolling, so the code block is the only thing on the page that scrolls sideways."),
             code("callout.html", "HTML", """
-<aside role="note" class="flex gap-gutter p-surface border-l-4 border-info bg-component-info-weak">
+<aside role="note" class="flex gap-gutter p-surface border-s-4 border-info bg-component-info-weak">
   <i class="icon ph ph-info fg-info-weak"></i>
   <div class="flex flex-col gap-3xs">
     <span class="text-label fg-info">Note</span>
@@ -952,6 +952,9 @@ def lint_examples():
                 continue
             if tag in ("button", "a") and re.match(r"\s*<i\b[^>]*></i>\s*</" + tag + ">", html_[m.end():]) and (any(t.startswith(("px-", "py-")) for t in toks) or not any(re.fullmatch(r"p-[a-z0-9]+", t) for t in toks)):
                 out.append(f"{where}: an icon-only <{tag}> isn't square. Fix: one padding on all sides (p-xs, p-3xs), no px-/py-.")
+            physical = [t for t in toks if re.fullmatch(r"(?:[a-z0-9@-]+:)?(?:-?[pm][lr]-.+|left-.+|right-.+|text-(?:left|right)|border-[lr](?:-\d)?)", t)]
+            if physical:
+                out.append(f"{where}: {' '.join(physical)} is physical. Fix: use the logical class (ps-, pe-, ms-, me-, start-, end-, text-start, text-end, border-s, border-e).")
             if any(re.fullmatch(r"ph-caret-[a-z-]+", t) for t in toks) and "icon-sm" not in toks:
                 out.append(f"{where}: a caret isn't the small icon size. Fix: give it icon icon-sm.")
             if tag == "i" and any(t.startswith("ph-") for t in toks) and "icon" not in toks:

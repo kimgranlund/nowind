@@ -820,7 +820,7 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 
 ## Borders, radius, shadow
 
-63 classes.
+85 classes.
 
 | Class | Declarations |
 |---|---|
@@ -831,6 +831,8 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 | `.border-l` | `border-left-width: var(--border-width)` |
 | `.border-x` | `border-inline-width: var(--border-width)` |
 | `.border-y` | `border-block-width: var(--border-width)` |
+| `.border-s` | `border-inline-start-width: var(--border-width)` |
+| `.border-e` | `border-inline-end-width: var(--border-width)` |
 | `.border-0` | `border-width: 0; --_bw: 0px` |
 | `.border-t-0` | `border-top-width: 0` |
 | `.border-r-0` | `border-right-width: 0` |
@@ -838,6 +840,8 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 | `.border-l-0` | `border-left-width: 0` |
 | `.border-x-0` | `border-inline-width: 0` |
 | `.border-y-0` | `border-block-width: 0` |
+| `.border-s-0` | `border-inline-start-width: 0` |
+| `.border-e-0` | `border-inline-end-width: 0` |
 | `.border-2` | `border-width: 2px; --_bw: 2px` |
 | `.border-t-2` | `border-top-width: 2px` |
 | `.border-r-2` | `border-right-width: 2px` |
@@ -845,6 +849,8 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 | `.border-l-2` | `border-left-width: 2px` |
 | `.border-x-2` | `border-inline-width: 2px` |
 | `.border-y-2` | `border-block-width: 2px` |
+| `.border-s-2` | `border-inline-start-width: 2px` |
+| `.border-e-2` | `border-inline-end-width: 2px` |
 | `.border-4` | `border-width: 4px; --_bw: 4px` |
 | `.border-t-4` | `border-top-width: 4px` |
 | `.border-r-4` | `border-right-width: 4px` |
@@ -852,6 +858,8 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 | `.border-l-4` | `border-left-width: 4px` |
 | `.border-x-4` | `border-inline-width: 4px` |
 | `.border-y-4` | `border-block-width: 4px` |
+| `.border-s-4` | `border-inline-start-width: 4px` |
+| `.border-e-4` | `border-inline-end-width: 4px` |
 | `.border-solid` | `border-style: solid` |
 | `.border-dashed` | `border-style: dashed` |
 | `.border-dotted` | `border-style: dotted` |
@@ -864,6 +872,20 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 | `.rounded-xl` | `border-radius: var(--radius-xl); --_nest: max(0px, calc(var(--radius-xl) - var(--_inset) - var(--_bw)))` |
 | `.rounded-full` | `border-radius: 9999px; --_nest: max(0px, calc(9999px - var(--_inset) - var(--_bw)))` |
 | `.rounded-inner` | `border-radius: var(--_nest, var(--radius-sm))` |
+| `.rounded-s-none` | `border-start-start-radius: 0px; border-end-start-radius: 0px` |
+| `.rounded-e-none` | `border-start-end-radius: 0px; border-end-end-radius: 0px` |
+| `.rounded-s-xs` | `border-start-start-radius: var(--radius-xs); border-end-start-radius: var(--radius-xs)` |
+| `.rounded-e-xs` | `border-start-end-radius: var(--radius-xs); border-end-end-radius: var(--radius-xs)` |
+| `.rounded-s-sm` | `border-start-start-radius: var(--radius-sm); border-end-start-radius: var(--radius-sm)` |
+| `.rounded-e-sm` | `border-start-end-radius: var(--radius-sm); border-end-end-radius: var(--radius-sm)` |
+| `.rounded-s-md` | `border-start-start-radius: var(--radius-md); border-end-start-radius: var(--radius-md)` |
+| `.rounded-e-md` | `border-start-end-radius: var(--radius-md); border-end-end-radius: var(--radius-md)` |
+| `.rounded-s-lg` | `border-start-start-radius: var(--radius-lg); border-end-start-radius: var(--radius-lg)` |
+| `.rounded-e-lg` | `border-start-end-radius: var(--radius-lg); border-end-end-radius: var(--radius-lg)` |
+| `.rounded-s-xl` | `border-start-start-radius: var(--radius-xl); border-end-start-radius: var(--radius-xl)` |
+| `.rounded-e-xl` | `border-start-end-radius: var(--radius-xl); border-end-end-radius: var(--radius-xl)` |
+| `.rounded-s-full` | `border-start-start-radius: 9999px; border-end-start-radius: 9999px` |
+| `.rounded-e-full` | `border-start-end-radius: 9999px; border-end-end-radius: 9999px` |
 | `.outline` | `outline-width: var(--border-width); outline-style: solid` |
 | `.outline-2` | `outline-width: 2px; outline-style: solid` |
 | `.outline-0` | `outline-width: 0` |
@@ -890,7 +912,7 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 
 ## Spacing
 
-273 classes.
+339 classes.
 
 | Class | Declarations |
 |---|---|
@@ -971,6 +993,28 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 | `.py-2xl` | `padding-block: var(--space-2xl)` |
 | `.py-3xl` | `padding-block: var(--space-3xl)` |
 | `.py-4xl` | `padding-block: var(--space-4xl)` |
+| `.ps-0` | `padding-inline-start: 0` |
+| `.ps-3xs` | `padding-inline-start: var(--space-3xs)` |
+| `.ps-2xs` | `padding-inline-start: var(--space-2xs)` |
+| `.ps-xs` | `padding-inline-start: var(--space-xs)` |
+| `.ps-sm` | `padding-inline-start: var(--space-sm)` |
+| `.ps-md` | `padding-inline-start: var(--space-md)` |
+| `.ps-lg` | `padding-inline-start: var(--space-lg)` |
+| `.ps-xl` | `padding-inline-start: var(--space-xl)` |
+| `.ps-2xl` | `padding-inline-start: var(--space-2xl)` |
+| `.ps-3xl` | `padding-inline-start: var(--space-3xl)` |
+| `.ps-4xl` | `padding-inline-start: var(--space-4xl)` |
+| `.pe-0` | `padding-inline-end: 0` |
+| `.pe-3xs` | `padding-inline-end: var(--space-3xs)` |
+| `.pe-2xs` | `padding-inline-end: var(--space-2xs)` |
+| `.pe-xs` | `padding-inline-end: var(--space-xs)` |
+| `.pe-sm` | `padding-inline-end: var(--space-sm)` |
+| `.pe-md` | `padding-inline-end: var(--space-md)` |
+| `.pe-lg` | `padding-inline-end: var(--space-lg)` |
+| `.pe-xl` | `padding-inline-end: var(--space-xl)` |
+| `.pe-2xl` | `padding-inline-end: var(--space-2xl)` |
+| `.pe-3xl` | `padding-inline-end: var(--space-3xl)` |
+| `.pe-4xl` | `padding-inline-end: var(--space-4xl)` |
 | `.m-0` | `margin: 0` |
 | `.m-3xs` | `margin: var(--space-3xs)` |
 | `.m-2xs` | `margin: var(--space-2xs)` |
@@ -1048,6 +1092,28 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 | `.my-2xl` | `margin-block: var(--space-2xl)` |
 | `.my-3xl` | `margin-block: var(--space-3xl)` |
 | `.my-4xl` | `margin-block: var(--space-4xl)` |
+| `.ms-0` | `margin-inline-start: 0` |
+| `.ms-3xs` | `margin-inline-start: var(--space-3xs)` |
+| `.ms-2xs` | `margin-inline-start: var(--space-2xs)` |
+| `.ms-xs` | `margin-inline-start: var(--space-xs)` |
+| `.ms-sm` | `margin-inline-start: var(--space-sm)` |
+| `.ms-md` | `margin-inline-start: var(--space-md)` |
+| `.ms-lg` | `margin-inline-start: var(--space-lg)` |
+| `.ms-xl` | `margin-inline-start: var(--space-xl)` |
+| `.ms-2xl` | `margin-inline-start: var(--space-2xl)` |
+| `.ms-3xl` | `margin-inline-start: var(--space-3xl)` |
+| `.ms-4xl` | `margin-inline-start: var(--space-4xl)` |
+| `.me-0` | `margin-inline-end: 0` |
+| `.me-3xs` | `margin-inline-end: var(--space-3xs)` |
+| `.me-2xs` | `margin-inline-end: var(--space-2xs)` |
+| `.me-xs` | `margin-inline-end: var(--space-xs)` |
+| `.me-sm` | `margin-inline-end: var(--space-sm)` |
+| `.me-md` | `margin-inline-end: var(--space-md)` |
+| `.me-lg` | `margin-inline-end: var(--space-lg)` |
+| `.me-xl` | `margin-inline-end: var(--space-xl)` |
+| `.me-2xl` | `margin-inline-end: var(--space-2xl)` |
+| `.me-3xl` | `margin-inline-end: var(--space-3xl)` |
+| `.me-4xl` | `margin-inline-end: var(--space-4xl)` |
 | `.-m-3xs` | `margin: calc(var(--space-3xs) * -1)` |
 | `.-m-2xs` | `margin: calc(var(--space-2xs) * -1)` |
 | `.-m-xs` | `margin: calc(var(--space-xs) * -1)` |
@@ -1125,6 +1191,28 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 | `.-my-3xl` | `margin-block: calc(var(--space-3xl) * -1)` |
 | `.-my-4xl` | `margin-block: calc(var(--space-4xl) * -1)` |
 | `.my-auto` | `margin-block: auto` |
+| `.-ms-3xs` | `margin-inline-start: calc(var(--space-3xs) * -1)` |
+| `.-ms-2xs` | `margin-inline-start: calc(var(--space-2xs) * -1)` |
+| `.-ms-xs` | `margin-inline-start: calc(var(--space-xs) * -1)` |
+| `.-ms-sm` | `margin-inline-start: calc(var(--space-sm) * -1)` |
+| `.-ms-md` | `margin-inline-start: calc(var(--space-md) * -1)` |
+| `.-ms-lg` | `margin-inline-start: calc(var(--space-lg) * -1)` |
+| `.-ms-xl` | `margin-inline-start: calc(var(--space-xl) * -1)` |
+| `.-ms-2xl` | `margin-inline-start: calc(var(--space-2xl) * -1)` |
+| `.-ms-3xl` | `margin-inline-start: calc(var(--space-3xl) * -1)` |
+| `.-ms-4xl` | `margin-inline-start: calc(var(--space-4xl) * -1)` |
+| `.ms-auto` | `margin-inline-start: auto` |
+| `.-me-3xs` | `margin-inline-end: calc(var(--space-3xs) * -1)` |
+| `.-me-2xs` | `margin-inline-end: calc(var(--space-2xs) * -1)` |
+| `.-me-xs` | `margin-inline-end: calc(var(--space-xs) * -1)` |
+| `.-me-sm` | `margin-inline-end: calc(var(--space-sm) * -1)` |
+| `.-me-md` | `margin-inline-end: calc(var(--space-md) * -1)` |
+| `.-me-lg` | `margin-inline-end: calc(var(--space-lg) * -1)` |
+| `.-me-xl` | `margin-inline-end: calc(var(--space-xl) * -1)` |
+| `.-me-2xl` | `margin-inline-end: calc(var(--space-2xl) * -1)` |
+| `.-me-3xl` | `margin-inline-end: calc(var(--space-3xl) * -1)` |
+| `.-me-4xl` | `margin-inline-end: calc(var(--space-4xl) * -1)` |
+| `.me-auto` | `margin-inline-end: auto` |
 | `.gap-0` | `gap: 0` |
 | `.gap-x-0` | `column-gap: 0` |
 | `.gap-y-0` | `row-gap: 0` |
@@ -1234,7 +1322,7 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 
 ## Layout and misc
 
-249 classes.
+253 classes.
 
 | Class | Declarations |
 |---|---|
@@ -1328,6 +1416,10 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 | `.bottom-full` | `bottom: 100%` |
 | `.left-0` | `left: 0` |
 | `.left-full` | `left: 100%` |
+| `.start-0` | `inset-inline-start: 0` |
+| `.start-full` | `inset-inline-start: 100%` |
+| `.end-0` | `inset-inline-end: 0` |
+| `.end-full` | `inset-inline-end: 100%` |
 | `.z-0` | `z-index: 0` |
 | `.z-10` | `z-index: 10` |
 | `.z-20` | `z-index: 20` |

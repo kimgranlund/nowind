@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Logical properties (Tailwind v4 names):** `ps-`/`pe-`, `ms-`/`me-` (and `-ms-`/`-me-`, `ms-auto`/`me-auto`), `start-0`/`end-0`/`-full`, `border-s`/`border-e`, `rounded-s-*`/`rounded-e-*`. The examples and the site use them in place of left and right, so they mirror in right-to-left languages, and the examples lint rejects the physical forms.
 - **Breaking, one name per radius:** `rounded`, `rounded-control` and `rounded-nested` are removed; use `rounded-sm` (the control radius) and `rounded-xs` (one margin less).
 - **Leaner examples:** 232 interactive elements drop `transition-colors`/`transition`, which the reset already gives them; only elements that aren't interactive name a transition.
 - **Borders start in the reset:** as in Tailwind's preflight, every element starts with a zero-width solid border, so `border`, `border-t`, `border-b-2` and the rest set only a width, and `border-dashed` or `border-dotted` combine with any of them. Text fields, textareas and selects keep a default border and `hr` keeps its line. Tabs in the examples are underlined only (they had a stray full border).

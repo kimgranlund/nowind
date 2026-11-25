@@ -15,12 +15,12 @@
     "rule": "Put your own global CSS in @layer styles. Unlayered CSS beats every utility."
   },
   "counts": {
-    "classes": 1391,
+    "classes": 1483,
     "hover": 387,
     "state": 2238,
     "group": 174,
     "responsive": 1240,
-    "bytes": 417273
+    "bytes": 422789
   },
   "naming": "property-value, as Prewind and Tailwind: p-md, gap-lg, bg-solid-accent-1. Colour classes take the token name without --; text-color roles are the token name alone (fg-weak, fg-accent-1).",
   "variants": {
@@ -47,7 +47,7 @@
     "faces": "font-body (alias font-sans), font-heading, font-mono, font-control",
     "leading": "leading-none, tight, snug, normal, relaxed",
     "tracking": "tracking-tight, normal, wide, widest",
-    "radius": "rounded-none, rounded-xs (control − margin), rounded-sm (control), rounded-md (control + margin: cards, popovers), rounded-lg (+2 margins: dialogs), rounded-xl (+3), rounded-full. One name per value. After Affine, one margin per step and p-inset (margin − border) between levels, so rounded-md p-inset border holds rounded-sm items concentrically. rounded-inner gives any item its parent's radius minus the parent's padding and border.",
+    "radius": "rounded-none, rounded-xs (control − margin), rounded-sm (control), rounded-md (control + margin: cards, popovers), rounded-lg (+2 margins: dialogs), rounded-xl (+3), rounded-full. One name per value. rounded-s-* and rounded-e-* round one inline side (logical). After Affine, one margin per step and p-inset (margin − border) between levels, so rounded-md p-inset border holds rounded-sm items concentrically. rounded-inner gives any item its parent's radius minus the parent's padding and border.",
     "shadows": "shadow-xs, shadow-sm (and bare shadow), shadow-md, shadow-lg, shadow-xl, shadow-none; inset-shadow-xs, inset-shadow-sm, inset-shadow-none. Compound shadows after Massimo (theme.shadows.css); a cast and a recess on one element compose, as in Tailwind v4.",
     "borders": "border, border-0, -2, -4, with sides t r b l x y; border-solid/dashed/dotted/none",
     "layout": "container, display, grid-cols-1…12, col-span-1…12 and -full, flex, basis-0, basis fractions, position, inset, z-",

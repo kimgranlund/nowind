@@ -241,9 +241,9 @@
         "icon",
         "inline-flex",
         "items-center",
-        "ml-auto",
+        "ms-auto",
         "p-sm",
-        "pl-md",
+        "ps-md",
         "px-2xs",
         "py-3xs",
         "rounded-md",
@@ -368,8 +368,8 @@
         "rounded-sm",
         "select-base",
         "text-base",
-        "text-left",
         "text-sm",
+        "text-start",
         "truncate",
         "w-full"
       ]
@@ -833,7 +833,6 @@
         "invisible",
         "items-center",
         "justify-center",
-        "left-0",
         "mt-3xs",
         "opacity-0",
         "p-xs",
@@ -842,6 +841,7 @@
         "relative",
         "rounded-sm",
         "rounded-xs",
+        "start-0",
         "text-sm",
         "top-full",
         "transition-opacity",
@@ -904,7 +904,7 @@
         "example"
       ],
       "classes": [
-        "-ml-2xs",
+        "-ms-2xs",
         "bg-accent-1-9",
         "bg-accent-2-9",
         "bg-accent-3-9",
@@ -991,9 +991,9 @@
         "py-xs",
         "rounded-md",
         "tabular-nums",
-        "text-left",
-        "text-right",
+        "text-end",
         "text-sm",
+        "text-start",
         "transition",
         "w-full"
       ]
@@ -1041,9 +1041,9 @@
         "rounded-md",
         "tabular-nums",
         "text-base",
-        "text-left",
-        "text-right",
+        "text-end",
         "text-sm",
+        "text-start",
         "transition",
         "w-full"
       ]

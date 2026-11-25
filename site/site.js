@@ -17,7 +17,7 @@
           class="grow min-w-0 h-control bg-transparent border-0 fg text-control-md">
         <kbd class="text-mono-sm fg-weak">Esc</kbd>
       </div>
-      <ul id="search-results" role="listbox" aria-label="Results" class="list-none pl-0 flex flex-col min-h-0 overflow-y-auto"></ul>
+      <ul id="search-results" role="listbox" aria-label="Results" class="list-none ps-0 flex flex-col min-h-0 overflow-y-auto"></ul>
       <p class="px-control py-2xs border-t text-caption fg-weak" aria-live="polite"></p>
     </div>`;
   document.body.append(dialog);
@@ -48,7 +48,7 @@
     list.innerHTML = hits.map((r, i) => `<li role="option" id="search-${i}" aria-selected="${i === 0}">
       <a href="${new URL(r[1], base)}" tabindex="-1" class="flex items-center gap-gutter px-control py-2xs no-underline fg selected:bg-component-accent-1-weak hover:bg-component-weak">
         <i class="icon ph ${KINDS[r[2]]} fg-weak"></i>
-        <span class="flex flex-col grow min-w-0"><span class="truncate ${r[2] === "Class" ? "text-mono-sm" : "text-title-sm"}">${esc(r[0])}</span><span class="truncate text-caption fg-weak">${esc(r[3] || "")}</span></span>
+        <span class="flex flex-col grow min-w-0"><span class="truncate ${r[2] ==="Class" ? "text-mono-sm" : "text-title-sm"}">${esc(r[0])}</span><span class="truncate text-caption fg-weak">${esc(r[3] || "")}</span></span>
         <span class="text-kicker fg-subtle">${r[2]}</span>
       </a></li>`).join("");
     list.querySelectorAll("li").forEach((li) => li.firstElementChild.setAttribute("aria-selected", li.getAttribute("aria-selected")));
@@ -99,7 +99,7 @@
   const show = () => document.querySelectorAll("[data-theme-toggle]").forEach((b) => {
     const dark = current() === "dark";
     b.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
-    b.querySelector("i").className = `icon ph ${dark ? "ph-sun" : "ph-moon"}`;
+    b.querySelector("i").className = `icon ph ${dark ?"ph-sun" : "ph-moon"}`;
   });
   document.querySelectorAll("[data-theme-toggle]").forEach((b) => b.addEventListener("click", () => {
     const next = current() === "dark" ? "light" : "dark";

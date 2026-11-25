@@ -76,10 +76,10 @@ COMPONENTS = [
     {
         "slug": "toast", "name": "Toast", "icon": "ph-bell-ringing", "group": "Status",
         "summary": "A brief confirmation on the inverse colors, with an optional action.",
-        "html": """<div class="flex flex-wrap items-center gap-x-sm gap-y-2xs p-sm pl-md w-fit rounded-md bg-neutral-12 shadow-lg" role="status">
+        "html": """<div class="flex flex-wrap items-center gap-x-sm gap-y-2xs p-sm ps-md w-fit rounded-md bg-neutral-12 shadow-lg" role="status">
   <i class="icon ph ph-check-circle fg-neutral-1"></i>
   <span class="text-sm fg-neutral-1">Invite sent</span>
-  <span class="ml-auto flex items-center gap-2xs"><button class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent fg-accent-1-8 text-base font-medium cursor-pointer">Undo</button></span>
+  <span class="ms-auto flex items-center gap-2xs"><button class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent fg-accent-1-8 text-base font-medium cursor-pointer">Undo</button></span>
 </div>""",
         "use": ["Confirm an action that already happened, with Undo when it can be reversed."],
         "avoid": ["Errors the person must fix; use an alert near the problem."],
@@ -279,7 +279,7 @@ COMPONENTS = [
         "html": f"""<div class="flex flex-col gap-2xs max-w-form">
   <label for="doc-tz" class="text-sm font-medium">Time zone</label>
   <select id="doc-tz" class="select-base {FIELD}">
-    <button class="grow min-w-0 p-0 border-0 bg-transparent text-left"><selectedcontent class="block truncate"></selectedcontent></button>
+    <button class="grow min-w-0 p-0 border-0 bg-transparent text-start"><selectedcontent class="block truncate"></selectedcontent></button>
     <option>Europe/Helsinki (UTC+2)</option>
     <option>Europe/London (UTC+0)</option>
     <option>America/New_York (UTC−5)</option>
@@ -405,9 +405,9 @@ COMPONENTS = [
         "summary": "Initials on an accent solid, one control height square; a group overlaps them.",
         "html": """<div class="flex items-center">
   <span class="inline-flex items-center justify-center p-xs rounded-full border-2 border-neutral-1 bg-accent-1-9 fg-accent-1-contrast text-sm font-medium">AL</span>
-  <span class="inline-flex items-center justify-center p-xs rounded-full border-2 border-neutral-1 bg-accent-2-9 fg-accent-2-contrast text-sm font-medium -ml-2xs">GH</span>
-  <span class="inline-flex items-center justify-center p-xs rounded-full border-2 border-neutral-1 bg-accent-3-9 fg-accent-3-contrast text-sm font-medium -ml-2xs">KJ</span>
-  <span class="inline-flex items-center justify-center p-xs rounded-full border-2 border-neutral-1 bg-neutral-4 fg-neutral-11 text-sm font-medium -ml-2xs">+5</span>
+  <span class="inline-flex items-center justify-center p-xs rounded-full border-2 border-neutral-1 bg-accent-2-9 fg-accent-2-contrast text-sm font-medium -ms-2xs">GH</span>
+  <span class="inline-flex items-center justify-center p-xs rounded-full border-2 border-neutral-1 bg-accent-3-9 fg-accent-3-contrast text-sm font-medium -ms-2xs">KJ</span>
+  <span class="inline-flex items-center justify-center p-xs rounded-full border-2 border-neutral-1 bg-neutral-4 fg-neutral-11 text-sm font-medium -ms-2xs">+5</span>
 </div>""",
         "use": ["A border in the page color separates overlapping avatars."],
         "avoid": ["More than five in a row; end with a count."],
@@ -440,11 +440,11 @@ COMPONENTS = [
         "html": """<div class="rounded-md bg-neutral-1 border border-neutral-6 overflow-x-auto">
   <table class="w-full text-sm">
     <thead class="bg-neutral-2">
-      <tr><th class="text-left px-md py-xs text-sm font-medium fg-neutral-11 border-b border-neutral-6">Invoice</th><th class="text-left px-md py-xs text-sm font-medium fg-neutral-11 border-b border-neutral-6">Status</th><th class="text-right px-md py-xs text-sm font-medium fg-neutral-11 border-b border-neutral-6">Amount</th></tr>
+      <tr><th class="text-start px-md py-xs text-sm font-medium fg-neutral-11 border-b border-neutral-6">Invoice</th><th class="text-start px-md py-xs text-sm font-medium fg-neutral-11 border-b border-neutral-6">Status</th><th class="text-end px-md py-xs text-sm font-medium fg-neutral-11 border-b border-neutral-6">Amount</th></tr>
     </thead>
     <tbody>
-      <tr class="hover:bg-neutral-3 transition"><td class="px-md py-sm text-sm font-mono border-b border-neutral-6">INV-1042</td><td class="px-md py-sm border-b border-neutral-6">Paid</td><td class="px-md py-sm text-right text-sm font-mono tabular-nums border-b border-neutral-6">$1,280.00</td></tr>
-      <tr class="hover:bg-neutral-3 transition"><td class="px-md py-sm text-sm font-mono">INV-1043</td><td class="px-md py-sm">Pending</td><td class="px-md py-sm text-right text-sm font-mono tabular-nums">$640.50</td></tr>
+      <tr class="hover:bg-neutral-3 transition"><td class="px-md py-sm text-sm font-mono border-b border-neutral-6">INV-1042</td><td class="px-md py-sm border-b border-neutral-6">Paid</td><td class="px-md py-sm text-end text-sm font-mono tabular-nums border-b border-neutral-6">$1,280.00</td></tr>
+      <tr class="hover:bg-neutral-3 transition"><td class="px-md py-sm text-sm font-mono">INV-1043</td><td class="px-md py-sm">Pending</td><td class="px-md py-sm text-end text-sm font-mono tabular-nums">$640.50</td></tr>
     </tbody>
   </table>
 </div>""",
@@ -481,7 +481,7 @@ COMPONENTS = [
         "summary": "A hint that shows when its trigger is hovered or focused. The wrapper is a <code>group</code>; the hint uses <code>group-hover:</code> and <code>group-focus-within:</code>. No script.",
         "html": """<span class="group relative inline-block">
   <button class="inline-flex items-center justify-center p-xs rounded-sm border bg-neutral-3 hover:bg-neutral-4 fg-neutral-12 cursor-pointer" aria-label="Copy link" aria-describedby="doc-tip"><i class="icon ph ph-link"></i></button>
-  <span id="doc-tip" role="tooltip" class="absolute top-full left-0 z-20 mt-3xs px-xs py-3xs rounded-xs bg-neutral-12 fg-neutral-1 text-sm whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity">Copy link</span>
+  <span id="doc-tip" role="tooltip" class="absolute top-full start-0 z-20 mt-3xs px-xs py-3xs rounded-xs bg-neutral-12 fg-neutral-1 text-sm whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity">Copy link</span>
 </span>""",
         "use": ["A short label for an icon-only button, also given as its <code>aria-label</code>.", "<code>group-focus-within:</code> as well as <code>group-hover:</code>, so keyboard users see it."],
         "avoid": ["Anything people need to read to finish a task; put it on the page."],
@@ -506,14 +506,14 @@ COMPONENTS = [
   <table class="w-full text-sm">
     <thead class="bg-neutral-2">
       <tr>
-        <th aria-sort="ascending" class="text-left px-md py-xs border-b border-neutral-6"><button class="inline-flex items-center gap-2xs border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer">Name<i class="icon icon-sm ph-bold ph-caret-up"></i></button></th>
-        <th aria-sort="none" class="text-right px-md py-xs border-b border-neutral-6"><button class="inline-flex items-center gap-2xs border-0 bg-transparent fg-neutral-11 hover:fg-neutral-12 text-base font-medium cursor-pointer">Seats<i class="icon icon-sm ph-bold ph-caret-up-down"></i></button></th>
+        <th aria-sort="ascending" class="text-start px-md py-xs border-b border-neutral-6"><button class="inline-flex items-center gap-2xs border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer">Name<i class="icon icon-sm ph-bold ph-caret-up"></i></button></th>
+        <th aria-sort="none" class="text-end px-md py-xs border-b border-neutral-6"><button class="inline-flex items-center gap-2xs border-0 bg-transparent fg-neutral-11 hover:fg-neutral-12 text-base font-medium cursor-pointer">Seats<i class="icon icon-sm ph-bold ph-caret-up-down"></i></button></th>
       </tr>
     </thead>
     <tbody>
-      <tr class="hover:bg-neutral-3 transition"><td class="px-md py-sm border-b border-neutral-6">Contoso</td><td class="px-md py-sm text-right text-sm font-mono tabular-nums border-b border-neutral-6">48</td></tr>
-      <tr class="hover:bg-neutral-3 transition"><td class="px-md py-sm border-b border-neutral-6">Fabrikam</td><td class="px-md py-sm text-right text-sm font-mono tabular-nums border-b border-neutral-6">12</td></tr>
-      <tr class="hover:bg-neutral-3 transition"><td class="px-md py-sm">Northwind</td><td class="px-md py-sm text-right text-sm font-mono tabular-nums">7</td></tr>
+      <tr class="hover:bg-neutral-3 transition"><td class="px-md py-sm border-b border-neutral-6">Contoso</td><td class="px-md py-sm text-end text-sm font-mono tabular-nums border-b border-neutral-6">48</td></tr>
+      <tr class="hover:bg-neutral-3 transition"><td class="px-md py-sm border-b border-neutral-6">Fabrikam</td><td class="px-md py-sm text-end text-sm font-mono tabular-nums border-b border-neutral-6">12</td></tr>
+      <tr class="hover:bg-neutral-3 transition"><td class="px-md py-sm">Northwind</td><td class="px-md py-sm text-end text-sm font-mono tabular-nums">7</td></tr>
     </tbody>
   </table>
 </div>""",
