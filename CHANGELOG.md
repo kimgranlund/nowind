@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- **Group variants:** `group` on a parent, `group-hover:`, `group-focus-within:` and `group-open:` on a child (opacity, visibility and `fg-*`), for tooltips and reveal-on-hover.
+- **Offsets:** `top-full`, `bottom-full`, `left-full`, `right-full`.
+- **Component docs:** tooltip, combobox, sortable table, date range and media card (26 pages).
+
 ## 0.7.0 (2026-11-25)
 
 - **Renamed:** text-color role classes drop `text-`: `text-fg-weak` is now `fg-weak`, `text-fg-accent-1` is `fg-accent-1`, with their variants (`hover:fg`, `aria-selected:fg`). `text-on-solid-*` and the raw-step `text-*` classes are unchanged.

@@ -72,7 +72,10 @@ add("shrink", "flex-shrink: 1");
 add("shrink-0", "flex-shrink: 0");
 for (const p of ["static", "relative", "absolute", "fixed", "sticky"]) add(p, `position: ${p}`);
 add("inset-0", "inset: 0");
-for (const p of ["top", "right", "bottom", "left"]) add(`${p}-0`, `${p}: 0`);
+for (const p of ["top", "right", "bottom", "left"]) {
+  add(`${p}-0`, `${p}: 0`);
+  add(`${p}-full`, `${p}: 100%`);
+}
 for (let z = 0; z <= 100; z += 10) add(`z-${z}`, `z-index: ${z}`);
 
 // Typography
@@ -599,6 +602,21 @@ const STATES = [
 for (const [prefix, sel, list] of STATES) {
   for (const c of list) out.push(`  .${esc(`${prefix}:${c}`)}${sel} { ${D.get(c)}; }`);
 }
+
+// Group variants (Tailwind v4 names): a child reacts to its .group ancestor being hovered, focused or open, for
+// tooltips and reveal-on-hover parts. Opacity, visibility and the role colors of text only.
+add("group", "--_group: 1");
+const GROUP_CLASSES = [...D.keys()].filter((c) => /^opacity-|^(visible|invisible)$/.test(c) || (/^fg(-|$)/.test(c) && ROLE_COLORS.includes(c)));
+const GROUP_VARIANTS = [
+  ["group-hover", ".group:hover ", true],
+  ["group-focus-within", ".group:focus-within ", false],
+  ["group-open", ".group:is([open], :popover-open, [aria-expanded=\"true\"]) ", false],
+];
+for (const [prefix, pre, hoverOnly] of GROUP_VARIANTS) {
+  if (hoverOnly) out.push("  @media (hover: hover) {");
+  for (const c of GROUP_CLASSES) out.push(`  ${hoverOnly ? "  " : ""}${pre}.${esc(`${prefix}:${c}`)} { ${D.get(c)}; }`);
+  if (hoverOnly) out.push("  }");
+}
 for (const [bp, w] of BREAKPOINTS) {
   out.push(`  @media (min-width: ${w}px) {`);
   for (const c of LAYOUT) out.push(`  ${rule(`${bp}:${c}`, D.get(c))}`);
@@ -625,6 +643,7 @@ const manifest = {
     hover: "Inside @media (hover: hover), as Tailwind v4, so taps on touch screens don't stick. hover:border-* for the border roles, hover:text-* and hover:bg-* for the colour role tokens only (bg, component, border, solid, on-solid, fg and their palette versions), hover:opacity-*, hover:cursor-*. Raw palette steps and alpha steps have no hover class.",
     breakpoints: Object.fromEntries(BREAKPOINTS.map(([b, w]) => [b, `${w}px`])),
     responsive: "sm:, md:, lg:, xl:, 2xl: (read from the --breakpoint-* tokens) apply to layout: display, grid columns and spans, flex direction, wrap, basis, justify, align, text alignment, widths, heights, position, top, overflow, padding and gaps. Margins, colours and type have no breakpoint variants.",
+    groups: "group on a parent; group-hover:, group-focus-within: and group-open: on a child, for opacity, visibility and text roles (tooltips, reveal-on-hover).",
     states: "active:, focus-visible:, aria-selected:, aria-current:, aria-pressed:, aria-expanded:, open: (details, popovers), aria-invalid: (also :user-invalid) and disabled: (also aria-disabled). Colors only (plus opacity and cursor for disabled), for the neutral and accent roles; aria-invalid for neutral and danger.",
     none: "No group- or dark: variants. Dark mode comes from the theme's light-dark() tokens.",
   },

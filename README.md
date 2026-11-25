@@ -214,7 +214,9 @@ Hover states animate when an element has a transition class. `transition-colors`
         class="border-b-2 border-transparent aria-selected:border-border-accent-1-strong fg-weak aria-selected:fg">Profile</button>
 ```
 
-There are no `group-` or `dark:` variants. Dark mode needs no variant: every color token switches by itself.
+- **Groups:** put `group` on a parent and `group-hover:`, `group-focus-within:` or `group-open:` on a child to change its opacity, visibility or text role, as a tooltip does.
+
+There is no `dark:` variant. Dark mode needs no variant: every color token switches by itself.
 
 ### Light and dark
 

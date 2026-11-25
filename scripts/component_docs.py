@@ -287,4 +287,78 @@ COMPONENTS = [
         "use": ["Shape skeletons like the content that replaces them."],
         "avoid": ["A spinner for a wait longer than a few seconds; show progress."],
     },
+    {
+        "slug": "tooltip", "name": "Tooltip", "icon": "ph-chat-centered-text", "group": "Overlays",
+        "summary": "A hint that shows when its trigger is hovered or focused. The wrapper is a <code>group</code>; the hint uses <code>group-hover:</code> and <code>group-focus-within:</code>. No script.",
+        "html": """<span class="group relative inline-block">
+  <button class="inline-flex items-center justify-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component fg cursor-pointer transition-colors" aria-label="Copy link" aria-describedby="doc-tip"><i class="icon ph ph-link"></i></button>
+  <span id="doc-tip" role="tooltip" class="absolute top-full left-0 z-20 mt-3xs px-xs py-3xs rounded-xs bg-bg-inverse fg-inverse text-caption whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity">Copy link</span>
+</span>""",
+        "use": ["A short label for an icon-only button, also given as its <code>aria-label</code>.", "<code>group-focus-within:</code> as well as <code>group-hover:</code>, so keyboard users see it."],
+        "avoid": ["Anything people need to read to finish a task; put it on the page."],
+    },
+    {
+        "slug": "combobox", "name": "Combobox", "icon": "ph-magnifying-glass", "group": "Forms",
+        "summary": "A text field with suggestions, using the native <code>list</code> attribute and a <code>&lt;datalist&gt;</code>.",
+        "html": f"""<div class="flex flex-col gap-field max-w-form">
+  <label for="doc-country" class="text-label">Country</label>
+  <input id="doc-country" list="doc-countries" class="{FIELD}" placeholder="Start typing">
+  <datalist id="doc-countries">
+    <option value="Finland"></option><option value="France"></option><option value="Germany"></option><option value="Japan"></option>
+  </datalist>
+</div>""",
+        "use": ["Long lists where typing is faster than scrolling, and free text is allowed."],
+        "avoid": ["A fixed set of five or fewer; use radios or a segmented control."],
+    },
+    {
+        "slug": "sortable-table", "name": "Sortable table", "icon": "ph-sort-ascending", "group": "Data display",
+        "summary": "Column headers hold buttons; <code>aria-sort</code> on the header says which column sorts the rows and in which order.",
+        "html": """<div class="rounded-lg bg-bg border border-border-weak overflow-x-auto">
+  <table class="w-full text-body-sm">
+    <thead class="bg-bg-strong">
+      <tr>
+        <th aria-sort="ascending" class="text-left px-md py-xs border-b border-border-weak"><button class="inline-flex items-center gap-gutter-half border-0 bg-transparent fg text-label cursor-pointer">Name<i class="icon icon-sm ph-bold ph-caret-up"></i></button></th>
+        <th aria-sort="none" class="text-right px-md py-xs border-b border-border-weak"><button class="inline-flex items-center gap-gutter-half border-0 bg-transparent fg-weak hover:fg text-label cursor-pointer transition-colors">Seats<i class="icon icon-sm ph-bold ph-caret-up-down"></i></button></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="hover:bg-component-weak"><td class="px-md py-sm border-b border-border-weak">Contoso</td><td class="px-md py-sm text-right text-data border-b border-border-weak">48</td></tr>
+      <tr class="hover:bg-component-weak"><td class="px-md py-sm border-b border-border-weak">Fabrikam</td><td class="px-md py-sm text-right text-data border-b border-border-weak">12</td></tr>
+      <tr class="hover:bg-component-weak"><td class="px-md py-sm">Northwind</td><td class="px-md py-sm text-right text-data">7</td></tr>
+    </tbody>
+  </table>
+</div>""",
+        "use": ["Show the sort direction with an icon and in <code>aria-sort</code>.", "Sorting itself is a script's job; the classes only show the state."],
+        "avoid": ["Sorting columns nobody compares."],
+    },
+    {
+        "slug": "date-range", "name": "Date range", "icon": "ph-calendar-blank", "group": "Forms",
+        "summary": "Two native date fields grouped as one, with their own labels.",
+        "html": f"""<fieldset class="flex flex-col gap-field border-0 p-0 max-w-form">
+  <legend class="text-label mb-2xs">Stay</legend>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-row">
+    <div class="flex flex-col gap-field"><label for="doc-from" class="text-caption fg-weak">Check in</label><input id="doc-from" type="date" class="{FIELD}" value="2027-03-01"></div>
+    <div class="flex flex-col gap-field"><label for="doc-to" class="text-caption fg-weak">Check out</label><input id="doc-to" type="date" class="{FIELD}" value="2027-03-05"></div>
+  </div>
+</fieldset>""",
+        "use": ["Native date inputs: they bring the platform's picker and keyboard support."],
+        "avoid": ["A single text field for both dates."],
+    },
+    {
+        "slug": "media-card", "name": "Media card", "icon": "ph-image", "group": "Layout",
+        "summary": "A card led by a 16:9 media area, then a title, a line of detail and its author.",
+        "html": f"""<article class="flex flex-col {CARD} p-0 overflow-hidden max-w-form">
+  <div class="aspect-video flex items-center justify-center bg-accent-2-a4 fg-accent-2-weak"><i class="icon icon-lg ph-light ph-mountains"></i></div>
+  <div class="flex flex-col gap-field p-surface">
+    <span class="text-kicker fg-accent-2-weak">Case study</span>
+    <h3 class="text-title">Rebuilding a design system in a week</h3>
+    <div class="flex items-center gap-xs pt-2xs">
+      <span class="inline-flex items-center justify-center size-nested rounded-full bg-solid-accent-3 text-on-solid-accent-3 text-label">GH</span>
+      <span class="text-caption fg-weak">Grace Hopper · 6 min read</span>
+    </div>
+  </div>
+</article>""",
+        "use": ["<code>aspect-video</code> keeps the media area's shape before the image loads."],
+        "avoid": ["Text over the image without a scrim."],
+    },
 ]
