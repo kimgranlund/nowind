@@ -52,20 +52,20 @@ COMPONENTS = [
         "slug": "segmented", "name": "Segmented control", "icon": "ph-squares-four", "group": "Actions",
         "summary": "A set of mutually exclusive options. The pressed segment is styled by <code>aria-pressed</code>, not by a class.",
         "html": """<div class="inline-flex items-center h-control rounded-sm border-2 border-transparent bg-neutral-a2" role="group" aria-label="Range">
-  <button aria-pressed="true" class="inline-flex items-center h-full px-nested rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer"><span>Day</span></button>
-  <button aria-pressed="false" class="inline-flex items-center h-full px-nested rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer"><span>Week</span></button>
-  <button aria-pressed="false" class="inline-flex items-center h-full px-nested rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer"><span>Month</span></button>
+  <button aria-pressed="true" class="inline-flex items-center h-full px-nested rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black text-base font-medium cursor-pointer"><span>Day</span></button>
+  <button aria-pressed="false" class="inline-flex items-center h-full px-nested rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black text-base font-medium cursor-pointer"><span>Week</span></button>
+  <button aria-pressed="false" class="inline-flex items-center h-full px-nested rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black text-base font-medium cursor-pointer"><span>Month</span></button>
 </div>""",
         "examples": [
             {"id": "icons", "label": "Icons",
              "summary": "Icon segments are <code>h-full aspect-square</code> squares in the same box, so they fill it edge to edge less the 2px inset.",
              "html": """<div class="inline-flex items-center h-control rounded-sm border-2 border-transparent bg-neutral-a2" role="group" aria-label="Alignment">
-  <button class="inline-flex items-center justify-center h-full aspect-square rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 cursor-pointer" aria-label="Align start" aria-pressed="true"><i class="icon ph ph-text-align-left"></i></button>
-  <button class="inline-flex items-center justify-center h-full aspect-square rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 cursor-pointer" aria-label="Align center" aria-pressed="false"><i class="icon ph ph-text-align-center"></i></button>
-  <button class="inline-flex items-center justify-center h-full aspect-square rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 cursor-pointer" aria-label="Align end" aria-pressed="false"><i class="icon ph ph-text-align-right"></i></button>
+  <button class="inline-flex items-center justify-center h-full aspect-square rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black cursor-pointer" aria-label="Align start" aria-pressed="true"><i class="icon ph ph-text-align-left"></i></button>
+  <button class="inline-flex items-center justify-center h-full aspect-square rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black cursor-pointer" aria-label="Align center" aria-pressed="false"><i class="icon ph ph-text-align-center"></i></button>
+  <button class="inline-flex items-center justify-center h-full aspect-square rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black cursor-pointer" aria-label="Align end" aria-pressed="false"><i class="icon ph ph-text-align-right"></i></button>
 </div>"""},
         ],
-        "use": ["Two to five short options that change a view in place.", "The box is <code>h-control rounded-sm border-2 border-transparent</code>: the transparent border is its only padding (2px), and the segments are <code>h-full rounded-inner</code>, so their corners follow the box exactly.", "Segments touch; the pressed one lifts with <code>pressed:bg-neutral-1 pressed:shadow-xs</code>."],
+        "use": ["Two to five short options that change a view in place.", "The box is <code>h-control rounded-sm border-2 border-transparent</code>: the transparent border is its only padding (2px), and the segments are <code>h-full rounded-inner</code>, so their corners follow the box exactly.", "Segments touch; the pressed one lifts with <code>pressed:bg-white</code>."],
         "avoid": ["Options that navigate to another page; use tabs."],
     },
     {
@@ -123,7 +123,7 @@ COMPONENTS = [
     {
         "slug": "toast", "name": "Toast", "icon": "ph-bell-ringing", "group": "Status",
         "summary": "A brief confirmation on the inverse colours. One line keeps its action inline; a toast with detail stacks title, detail and actions in one text column, with the icon and dismiss on the first line.",
-        "html": """<div class="flex items-center gap-gutter p-2xs ps-xs w-fit rounded-md bg-neutral-12 shadow-lg" role="status">
+        "html": """<div class="flex items-center gap-gutter p-2xs w-fit rounded-md bg-neutral-12 shadow-lg" role="status">
   <i class="icon ph ph-check-circle fg-success-9"></i>
   <span class="text-base fg-neutral-1">Changes saved</span>
   <button class="inline-flex items-center h-nested px-nested rounded-inner state border-0 bg-neutral-1 fg-neutral-12 text-base font-medium cursor-pointer"><span>Undo</span></button>

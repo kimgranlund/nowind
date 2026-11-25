@@ -136,6 +136,8 @@ for (const c of COLORS) {
 }
 add("fg-inherit", "color: inherit");
 add("fg-current", "color: currentColor");
+// White and black that stay put in both modes (the neutral contrast ends), for a face that must not invert.
+for (const [n, t] of [["white", "--neutral-contrast-white"], ["black", "--neutral-contrast-black"]]) { add(`fg-${n}`, `color: var(${t})`); add(`bg-${n}`, `background-color: var(${t})`); }
 add("bg-transparent", "background-color: transparent");
 add("border-transparent", "border-color: transparent");
 for (let o = 0; o <= 100; o += 10) add(`opacity-${o}`, `opacity: ${o / 100}`);
@@ -370,7 +372,7 @@ const ROLE_COLORS = colorProps.filter((p) => !/^--shadow/.test(p) && !/-(surface
 // Raw steps of the interactive palettes take hover and state variants too, so an example can be written in primitives only.
 // The raw steps that take hover and state variants: the steps a control or item moves between (surfaces 1–5 and solids
 // 9–10, text 11–12 and contrast, borders 6–8) in neutral, accent-1 and danger. The state class covers tints elsewhere.
-const STEP_STATES = /^(bg-(neutral|accent-1|danger)-([1-5]|9|10)|fg-(neutral|accent-1|danger)-(11|12|contrast)|border-(neutral|accent-1|danger)-[6-8])$/;
+const STEP_STATES = /^(bg-(neutral|accent-1|danger)-([1-5]|9|10)|fg-(neutral|accent-1|danger)-(11|12|contrast)|border-(neutral|accent-1|danger)-[6-8]|(bg|fg)-(white|black))$/;
 const HOVER = [...D.keys()].filter((c) => ROLE_CLASSES.has(c) || STEP_STATES.test(c) || /^(fg|bg)-(inherit|current|transparent)$/.test(c) || /^opacity-|^cursor-/.test(c));
 const LAYOUT = [...D.keys()].filter((c) => /^(block|inline-block|inline|flex|inline-flex|grid|inline-grid|contents|hidden|flex-(row|col)(-reverse)?|flex-wrap|flex-nowrap|justify-|items-|self-|text-(left|center|right|justify|start|end)$|col-span-|w-(\d\/\d|full|auto|fit|sidebar|rail)$|basis-|gap-|p[xy]?-)/.test(c));
 // Container queries cover the classes that change a component's own layout; breakpoints cover the page's (LAYOUT).

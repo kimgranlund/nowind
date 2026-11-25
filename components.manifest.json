@@ -127,7 +127,7 @@
       "use": [
         "Two to five short options that change a view in place.",
         "The box is h-control rounded-sm border-2 border-transparent: the transparent border is its only padding (2px), and the segments are h-full rounded-inner, so their corners follow the box exactly.",
-        "Segments touch; the pressed one lifts with pressed:bg-neutral-1 pressed:shadow-xs."
+        "Segments touch; the pressed one lifts with pressed:bg-white."
       ],
       "avoid": [
         "Options that navigate to another page; use tabs."
@@ -160,9 +160,8 @@
         "inline-flex",
         "items-center",
         "justify-center",
-        "pressed:bg-neutral-1",
-        "pressed:fg-neutral-12",
-        "pressed:shadow-xs",
+        "pressed:bg-white",
+        "pressed:fg-black",
         "px-nested",
         "rounded-inner",
         "rounded-sm",
@@ -331,7 +330,6 @@
         "min-w-0",
         "p-2xs",
         "p-xs",
-        "ps-xs",
         "pt-3xs",
         "px-nested",
         "rounded-inner",

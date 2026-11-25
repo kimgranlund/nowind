@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- **Pressed segments are white in both modes, flat:** `pressed:bg-white pressed:fg-black` with no shadow. New `bg-white`, `bg-black`, `fg-white` and `fg-black` (the neutral contrast ends, the same in light and dark), with state variants.
+- **Unread dot:** a `block` span, so its padding draws a circle; inline, it took the line's height and drew a tall pill.
+- **Tag chips fixed:** a chip is `px-nested` with no fixed height, so its `size-nested` remove button sets the height and `px-nested` drops to zero at that trailing control: the circle meets the pill on three sides; the badge pass had stacked `px-nested` on the chip's own padding. The examples lint now catches a shorthand padding (`p-`, `px-`, `py-`) set alongside a one-side padding.
 - **Soft buttons without a border:** the accent soft button is `bg-accent-1-3` with a transparent border, matching the secondary button.
 - **No clipped cards when rows stack:** items that share a row use `md:flex-1`, not `flex-1`, so below `md`, where the row becomes a column, they keep their content height; the media card had shrunk to zero basis and `overflow-hidden` cut off its text.
 - **Menus anchor to their trigger:** the select's picker and every `anchor-*` popover start flush with the trigger's edge and are at least as wide as it (`anchor-size(width)`), with the 3xs gap only on the side facing it; before, the gap applied on every side and the picker floated inset and narrower than its field.
