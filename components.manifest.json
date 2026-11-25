@@ -605,7 +605,6 @@
       ],
       "classes": [
         "bg-transparent",
-        "border",
         "border-b",
         "border-b-2",
         "border-neutral-6",

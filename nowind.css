@@ -1,7 +1,9 @@
 @layer reset, styles, nowind;
 
 @layer reset {
-  :where(*, *::before, *::after) { box-sizing: border-box; border-color: var(--border); --_inset: 0px; --_bw: 0px; }
+  :where(*, *::before, *::after) { box-sizing: border-box; border-width: 0; border-style: solid; border-color: var(--border); --_inset: 0px; --_bw: 0px; }
+  :where(hr) { block-size: 0; border-block-start-width: var(--border-width); color: inherit; }
+  :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"], [type="hidden"]), textarea, select) { border-width: var(--border-width); }
   :where(button, select, input) { white-space: nowrap; }
   :where(a, button, summary, input, select, textarea, label, [role="button"], [role="tab"], [role="option"], [role="menuitem"], [role="switch"]) { transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, translate, scale, rotate; transition-duration: var(--motion-duration); transition-timing-function: var(--motion-easing); }
   :where(*) { margin: 0; }
@@ -1298,34 +1300,34 @@
   .bg-local { background-attachment: local; }
   .bg-scroll { background-attachment: scroll; }
   .bg-clip-text { -webkit-background-clip: text; background-clip: text; }
-  .border { border-width: var(--border-width); border-style: solid; --_bw: var(--border-width); }
-  .border-t { border-top-width: var(--border-width); border-top-style: solid; }
-  .border-r { border-right-width: var(--border-width); border-right-style: solid; }
-  .border-b { border-bottom-width: var(--border-width); border-bottom-style: solid; }
-  .border-l { border-left-width: var(--border-width); border-left-style: solid; }
-  .border-x { border-inline-width: var(--border-width); border-inline-style: solid; }
-  .border-y { border-block-width: var(--border-width); border-block-style: solid; }
-  .border-0 { border-width: 0; border-style: solid; --_bw: 0px; }
-  .border-t-0 { border-top-width: 0; border-top-style: solid; }
-  .border-r-0 { border-right-width: 0; border-right-style: solid; }
-  .border-b-0 { border-bottom-width: 0; border-bottom-style: solid; }
-  .border-l-0 { border-left-width: 0; border-left-style: solid; }
-  .border-x-0 { border-inline-width: 0; border-inline-style: solid; }
-  .border-y-0 { border-block-width: 0; border-block-style: solid; }
-  .border-2 { border-width: 2px; border-style: solid; --_bw: 2px; }
-  .border-t-2 { border-top-width: 2px; border-top-style: solid; }
-  .border-r-2 { border-right-width: 2px; border-right-style: solid; }
-  .border-b-2 { border-bottom-width: 2px; border-bottom-style: solid; }
-  .border-l-2 { border-left-width: 2px; border-left-style: solid; }
-  .border-x-2 { border-inline-width: 2px; border-inline-style: solid; }
-  .border-y-2 { border-block-width: 2px; border-block-style: solid; }
-  .border-4 { border-width: 4px; border-style: solid; --_bw: 4px; }
-  .border-t-4 { border-top-width: 4px; border-top-style: solid; }
-  .border-r-4 { border-right-width: 4px; border-right-style: solid; }
-  .border-b-4 { border-bottom-width: 4px; border-bottom-style: solid; }
-  .border-l-4 { border-left-width: 4px; border-left-style: solid; }
-  .border-x-4 { border-inline-width: 4px; border-inline-style: solid; }
-  .border-y-4 { border-block-width: 4px; border-block-style: solid; }
+  .border { border-width: var(--border-width); --_bw: var(--border-width); }
+  .border-t { border-top-width: var(--border-width); }
+  .border-r { border-right-width: var(--border-width); }
+  .border-b { border-bottom-width: var(--border-width); }
+  .border-l { border-left-width: var(--border-width); }
+  .border-x { border-inline-width: var(--border-width); }
+  .border-y { border-block-width: var(--border-width); }
+  .border-0 { border-width: 0; --_bw: 0px; }
+  .border-t-0 { border-top-width: 0; }
+  .border-r-0 { border-right-width: 0; }
+  .border-b-0 { border-bottom-width: 0; }
+  .border-l-0 { border-left-width: 0; }
+  .border-x-0 { border-inline-width: 0; }
+  .border-y-0 { border-block-width: 0; }
+  .border-2 { border-width: 2px; --_bw: 2px; }
+  .border-t-2 { border-top-width: 2px; }
+  .border-r-2 { border-right-width: 2px; }
+  .border-b-2 { border-bottom-width: 2px; }
+  .border-l-2 { border-left-width: 2px; }
+  .border-x-2 { border-inline-width: 2px; }
+  .border-y-2 { border-block-width: 2px; }
+  .border-4 { border-width: 4px; --_bw: 4px; }
+  .border-t-4 { border-top-width: 4px; }
+  .border-r-4 { border-right-width: 4px; }
+  .border-b-4 { border-bottom-width: 4px; }
+  .border-l-4 { border-left-width: 4px; }
+  .border-x-4 { border-inline-width: 4px; }
+  .border-y-4 { border-block-width: 4px; }
   .border-solid { border-style: solid; }
   .border-dashed { border-style: dashed; }
   .border-dotted { border-style: dotted; }

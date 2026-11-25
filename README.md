@@ -84,7 +84,7 @@ Classes follow `property-value`. A color class is the property prefix plus the t
 | Type roles | `text-display`, `text-heading-md`, `text-title`, `text-body-md`, `text-caption`, `text-label`, `text-kicker`, `text-figure`, `text-mono`, … |
 | Text color | `fg`, `fg-weak`, `fg-subtle`, `fg-accent-1`, `fg-on-solid`, `fg-inverse` |
 | Background | `bg`, `bg-strong`, `bg-component`, `bg-solid-accent-1`, `bg-accent-1-3`, `bg-neutral-a4`, `bg-inverse` (toasts, tooltips), `bg-scrim` |
-| Border | `border`, `border-2`, `border-t`, `border-default`, `border-accent-1-weak`, `rounded`, `rounded-lg` |
+| Border | `border`, `border-2`, `border-t` (widths: the reset sets a solid style), `border-dashed`, `border-default`, `border-accent-1-weak`, `rounded-sm`, `rounded-md` |
 | Shadow | `shadow-xs` … `shadow-xl`, `inset-shadow-xs`, `inset-shadow-sm`, `shadow-none` (a cast and a recess on one element combine) |
 | Typography | `font-semibold`, `font-sans`, `font-heading`, `font-mono`, `leading-tight`, `tracking-wide`, `uppercase`, `tabular-nums`, `text-balance`, `truncate` |
 | Layout | `container`, `flex`, `flex-col`, `items-center`, `justify-between`, `grid`, `grid-cols-1` … `grid-cols-12`, `col-span-2`, `col-span-full`, `basis-1/2`, `hidden`, `relative`, `z-10` |
