@@ -77,7 +77,8 @@
       "family": "blue",
       "use": "Neutral notices, tips, informational badges",
       "steps": "--info-1..12 → --colors-blue-1..12; --info-a1..a12 → --colors-blue-a1..a12",
-      "contrast": "light-dark(var(--info-contrast-white), var(--info-contrast-black))"
+      "contrast": "var(--info-contrast-white)",
+      "contrastNote": "Light text in both modes by choice. The library's solidLabel for blue is light then dark."
     }
   },
   "rebrand": {

@@ -51,7 +51,7 @@ Then check the result in `specimen.html` through a local server (`python3 -m htt
 - **Every theme value uses a token.** Utilities read tokens; tokens read other tokens or a palette.
 - **Colours are `light-dark()`.** Never add a separate dark theme or a `dark:` variant.
 - **No `color-mix()`.** Use the alpha steps (`--{palette}-a{1..12}`) for transparency. (checked)
-- **Text on a solid uses `--on-solid-{palette}`.** The library's `solidLabel` is the starting point, but Nowind overrides it where the owner chose: the accents, danger, warning and success take light text in both modes; neutral and info follow the library (light, then dark). Each palette's choice is in `palettes[].contrast` in the colors manifest.
+- **Text on a solid uses `--on-solid-{palette}`.** The library's `solidLabel` is the starting point, but Nowind overrides it where the owner chose: the accents and every status (danger, warning, success, info) take light text in both modes; only neutral follows the library (light, then dark). Each palette's choice is in `palettes[].contrast` in the colors manifest.
 - **Layers:** `reset, styles, nowind`. The reset wraps every selector in `:where()`.
 - **Contrast is out of scope.** Don't add contrast checks.
 

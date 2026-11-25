@@ -1150,7 +1150,7 @@
 
   --info-contrast-white: oklch(0.9397 0 202.2);
   --info-contrast-black: oklch(0.1806 0 30.32);
-  --info-contrast: light-dark(var(--info-contrast-white), var(--info-contrast-black));
+  --info-contrast: var(--info-contrast-white);
 }
 
 :root {
