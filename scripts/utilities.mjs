@@ -582,7 +582,19 @@ const out = [];
 out.push("@layer reset, styles, nowind;\n");
 out.push(reset);
 out.push("@layer nowind {");
+add("state", "isolation: isolate");
 for (const [c, d] of D) out.push(rule(c, d));
+
+// State layer (after Material's): .state lays a wash of the text colour over the element, under its content, at the
+// --state-* opacity for each state, so one class gives any element, in any palette, hover, focus, selected and
+// pressed states. position: relative sits in :where() so a position class still wins.
+out.push(`  :where(.state) { position: relative; }`);
+out.push(`  .state::after { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background-color: currentColor; opacity: 0; pointer-events: none; transition-property: opacity; ${T}; }`);
+out.push(`  @media (hover: hover) { .state:hover::after { opacity: var(--state-hover); } }`);
+out.push(`  .state:focus-visible::after { opacity: var(--state-focus); }`);
+out.push(`  .state:is([aria-selected="true"], [aria-pressed="true"], [aria-expanded="true"], [aria-current]:not([aria-current="false"]), :has(:checked))::after { opacity: var(--state-selected); }`);
+out.push(`  .state:active::after { opacity: var(--state-active); }`);
+out.push(`  .state:is(:disabled, [aria-disabled="true"])::after { opacity: 0; }`);
 out.push("  .icon > svg { width: 1em; height: 1em; fill: currentColor; }");
 out.push("  .list-none::-webkit-details-marker { display: none; }");
 out.push("  @keyframes nw-spin { to { rotate: 360deg; } }");
@@ -691,6 +703,7 @@ for (const [prefix, sel, list] of STATES) {
   for (const c of list) out.push(`  .${esc(`${prefix}:${c}`)}${sel} { ${D.get(c)}; }`);
 }
 
+
 // Group variants (Tailwind v4 names): a child reacts to its .group ancestor being hovered, focused or open (an open
 // details or popover, aria-expanded, or a group holding an open popover), for tooltips, reveals and carets that turn.
 // Opacity, visibility, rotation and the role colors of text only.
@@ -768,6 +781,7 @@ const manifest = {
     select: "select-base: the customizable select (appearance: base-select), its picker and options in the theme. The value is centred in the field and never wraps; a <button> holding <selectedcontent class=\"block truncate\"> lets a long value end in an ellipsis before the caret, which is drawn small and sits at the end. The highlighted option shows by its background, not a focus ring.",
     motion: "transition, transition-colors, -opacity, -shadow, -transform, -none (state-change length and easing by default); duration-fade, -snappy, -smooth, -bouncy; ease-smooth, -snappy, -bouncy (Massimo springs as linear()), ease-standard, -out, -in.",
     marks: "The reset draws checkboxes, radios, switches (<input type=checkbox role=switch>) and sliders at Affine's mark size (between F and the slot), filled with accent-1 when checked; mark-sm and mark-lg pick another size.",
+    state: "state: a state layer. An ::after wash of currentColor under the content, at --state-hover (0.08), --state-focus (0.1), --state-selected (0.12, also pressed, expanded, current and a checked child) and --state-active (0.16); none when disabled. One class covers every state in any palette, in place of a hover: and active: class per step; the element keeps its own radius.",
     icons: "icon (a slot-square box, glyph --icon-md), icon-sm, icon-md, icon-lg: lengths from the base size, so they count as regular classes and examples use them. Every Phosphor glyph sits in an icon box (<i class=\"icon ph ph-floppy-disk\">); carets are icon icon-sm. Or an inline <svg> inside .icon.",
     sizing: "w-, h-, min-/max- with 0, full, screen (100vw/100vh), fit; w-1/2, 1/3, 2/3, 1/4, 3/4 and fifths; h-dvh, h-svh, h-lvh and min-/max- versions; max-w-text (alias max-w-prose), max-w-form, max-w-container, h-control",
   },

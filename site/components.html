@@ -87,6 +87,32 @@
         </div>
       </div>
     </div>
+
+    <div class="p-md rounded-md bg-neutral-1 border border-neutral-6 shadow-sm flex flex-col gap-md">
+      <div class="flex flex-col gap-2xs">
+        <span class="text-xs font-mono uppercase tracking-widest fg-neutral-11">Step variants: hover: and active: per palette step</span>
+        <div class="flex flex-wrap items-center gap-sm">
+          <button class="inline-flex items-center justify-center py-xs px-sm gap-xs rounded-sm text-base font-medium cursor-pointer border border-transparent bg-accent-1-9 hover:bg-accent-1-10 active:bg-accent-1-10 fg-accent-1-contrast"><span>Primary</span></button>
+          <button class="inline-flex items-center justify-center py-xs px-sm gap-xs rounded-sm text-base font-medium cursor-pointer border bg-neutral-3 hover:bg-neutral-4 active:bg-neutral-5 fg-neutral-12"><span>Secondary</span></button>
+          <button class="inline-flex items-center justify-center py-xs px-sm gap-xs rounded-sm text-base font-medium cursor-pointer border border-transparent bg-transparent hover:bg-neutral-3 active:bg-neutral-4 fg-neutral-12"><span>Ghost</span></button>
+          <button class="inline-flex items-center justify-center py-xs px-sm gap-xs rounded-sm text-base font-medium cursor-pointer border border-accent-1-7 bg-accent-1-3 hover:bg-accent-1-4 active:bg-accent-1-5 fg-accent-1-11"><span>Soft</span></button>
+          <button class="inline-flex items-center justify-center py-xs px-sm gap-xs rounded-sm text-base font-medium cursor-pointer border border-transparent bg-danger-9 hover:bg-danger-10 active:bg-danger-10 fg-danger-contrast"><span>Delete</span></button>
+          <button class="inline-flex items-center justify-center py-xs px-sm gap-xs rounded-sm text-base font-medium cursor-pointer border bg-neutral-3 hover:bg-neutral-4 pressed:bg-neutral-5 active:bg-neutral-5 fg-neutral-12" aria-pressed="true"><span>Pressed</span></button>
+        </div>
+      </div>
+      <div class="flex flex-col gap-2xs">
+        <span class="text-xs font-mono uppercase tracking-widest fg-neutral-11">State layer: one state class, any palette</span>
+        <div class="flex flex-wrap items-center gap-sm">
+          <button class="inline-flex items-center justify-center py-xs px-sm gap-xs rounded-sm text-base font-medium cursor-pointer state border border-transparent bg-accent-1-9 fg-accent-1-contrast"><span>Primary</span></button>
+          <button class="inline-flex items-center justify-center py-xs px-sm gap-xs rounded-sm text-base font-medium cursor-pointer state border bg-neutral-3 fg-neutral-12"><span>Secondary</span></button>
+          <button class="inline-flex items-center justify-center py-xs px-sm gap-xs rounded-sm text-base font-medium cursor-pointer state border border-transparent bg-transparent fg-neutral-12"><span>Ghost</span></button>
+          <button class="inline-flex items-center justify-center py-xs px-sm gap-xs rounded-sm text-base font-medium cursor-pointer state border border-accent-1-7 bg-accent-1-3 fg-accent-1-11"><span>Soft</span></button>
+          <button class="inline-flex items-center justify-center py-xs px-sm gap-xs rounded-sm text-base font-medium cursor-pointer state border border-transparent bg-danger-9 fg-danger-contrast"><span>Delete</span></button>
+          <button class="inline-flex items-center justify-center py-xs px-sm gap-xs rounded-sm text-base font-medium cursor-pointer state border bg-neutral-3 fg-neutral-12" aria-pressed="true"><span>Pressed</span></button>
+        </div>
+      </div>
+      <p class="text-sm fg-neutral-11 max-w-prose">Hover, press and tab to compare. The state layer washes the text colour over the face at a fixed opacity, so it needs no step per palette and works on a transparent face; step variants pick each shade by hand.</p>
+    </div>
     </div>
   </section>
 

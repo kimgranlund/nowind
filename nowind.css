@@ -1682,6 +1682,14 @@
   .appearance-none { appearance: none; }
   .debug { outline: 1px dashed red; }
   .revert { all: revert; }
+  .state { isolation: isolate; }
+  :where(.state) { position: relative; }
+  .state::after { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background-color: currentColor; opacity: 0; pointer-events: none; transition-property: opacity; transition-duration: var(--_duration, var(--motion-duration)); transition-timing-function: var(--_ease, var(--motion-easing)); }
+  @media (hover: hover) { .state:hover::after { opacity: var(--state-hover); } }
+  .state:focus-visible::after { opacity: var(--state-focus); }
+  .state:is([aria-selected="true"], [aria-pressed="true"], [aria-expanded="true"], [aria-current]:not([aria-current="false"]), :has(:checked))::after { opacity: var(--state-selected); }
+  .state:active::after { opacity: var(--state-active); }
+  .state:is(:disabled, [aria-disabled="true"])::after { opacity: 0; }
   .icon > svg { width: 1em; height: 1em; fill: currentColor; }
   .list-none::-webkit-details-marker { display: none; }
   @keyframes nw-spin { to { rotate: 360deg; } }

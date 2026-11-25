@@ -144,6 +144,7 @@
 ["Group variants", "docs/states.html#groups", "Section", "States and variants"],
 ["Breakpoints", "docs/states.html#breakpoints", "Section", "States and variants"],
 ["Container queries", "docs/states.html#containers", "Section", "States and variants"],
+["State layer", "docs/states.html#layer", "Section", "States and variants"],
 ["Transitions and focus", "docs/states.html#motion", "Section", "States and variants"],
 ["Indicators", "docs/states.html#indicators", "Section", "States and variants"],
 ["Materials", "docs/materials.html#materials", "Section", "Materials"],
@@ -1722,5 +1723,6 @@
 [".backdrop-blur-none", "docs/classes.html#class-backdrop-blur-none", "Class", "backdrop-filter: none"],
 [".appearance-none", "docs/classes.html#class-appearance-none", "Class", "appearance: none"],
 [".revert", "docs/classes.html#class-revert", "Class", "all: revert"],
+[".state", "docs/classes.html#class-state", "Class", "isolation: isolate"],
 [".group", "docs/classes.html#class-group", "Class", "--_group: 1"]
 ]

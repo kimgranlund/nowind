@@ -111,6 +111,19 @@
           </figure>
           </div>
         </section>
+        <section id="layer" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">State layer</h2></div>
+          <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
+          <p class="text-body-md max-w-measure">state: a state layer. An ::after wash of currentColor under the content, at --state-hover (0.08), --state-focus (0.1), --state-selected (0.12, also pressed, expanded, current and a checked child) and --state-active (0.16); none when disabled. One class covers every state in any palette, in place of a hover: and active: class per step; the element keeps its own radius.</p>
+          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
+              <span class="text-mono-sm fg-weak truncate">ghost.html</span><span class="text-kicker fg-subtle">HTML</span>
+            </figcaption>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;button class=&quot;state py-xs px-sm rounded-sm bg-transparent fg-neutral-12&quot;&gt;Ghost&lt;/button&gt;
+&lt;button class=&quot;state py-xs px-sm rounded-sm bg-accent-1-9 fg-accent-1-contrast&quot;&gt;Primary&lt;/button&gt;</code></pre>
+          </figure>
+          </div>
+        </section>
         <section id="motion" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Transitions and focus</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">

@@ -230,4 +230,9 @@
   --fg-info-weak: var(--info-11);
   --fg-info: var(--info-12);
   --fg-info-strong: light-dark(var(--info-contrast-black), var(--info-contrast-white));
+
+  --state-hover: 0.08;
+  --state-focus: 0.1;
+  --state-selected: 0.12;
+  --state-active: 0.16;
 }

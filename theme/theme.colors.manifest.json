@@ -468,5 +468,15 @@
       "--fg-inverse-weak": "neutral 6"
     },
     "use": "Toasts, tooltips and a single selected item: the page's text colour as a fill, with the page colour as its text. Classes bg-inverse, fg-inverse, fg-inverse-weak."
+  },
+  "stateLayer": {
+    "tokens": {
+      "--state-hover": 0.08,
+      "--state-focus": 0.1,
+      "--state-selected": 0.12,
+      "--state-active": 0.16
+    },
+    "use": "Opacity of the .state layer, a wash of currentColor over the element under its content. Selected also covers pressed, expanded, current and a checked child. Disabled shows none.",
+    "derivation": "After Material's state layers (hover 8%, focus 10%, pressed 10 to 16%), raised for selected so a chosen item reads at rest."
   }
 }

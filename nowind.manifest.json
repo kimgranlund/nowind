@@ -15,13 +15,13 @@
     "rule": "Put your own global CSS in @layer styles. Unlayered CSS beats every utility."
   },
   "counts": {
-    "classes": 1484,
+    "classes": 1485,
     "hover": 387,
     "state": 2238,
     "group": 174,
     "responsive": 1240,
     "container": 1240,
-    "bytes": 490860
+    "bytes": 491714
   },
   "naming": "property-value, as Prewind and Tailwind: p-md, gap-lg, bg-solid-accent-1. Colour classes take the token name without --; text-color roles are the token name alone (fg-weak, fg-accent-1).",
   "variants": {
@@ -63,6 +63,7 @@
     "select": "select-base: the customizable select (appearance: base-select), its picker and options in the theme. The value is centred in the field and never wraps; a <button> holding <selectedcontent class=\"block truncate\"> lets a long value end in an ellipsis before the caret, which is drawn small and sits at the end. The highlighted option shows by its background, not a focus ring.",
     "motion": "transition, transition-colors, -opacity, -shadow, -transform, -none (state-change length and easing by default); duration-fade, -snappy, -smooth, -bouncy; ease-smooth, -snappy, -bouncy (Massimo springs as linear()), ease-standard, -out, -in.",
     "marks": "The reset draws checkboxes, radios, switches (<input type=checkbox role=switch>) and sliders at Affine's mark size (between F and the slot), filled with accent-1 when checked; mark-sm and mark-lg pick another size.",
+    "state": "state: a state layer. An ::after wash of currentColor under the content, at --state-hover (0.08), --state-focus (0.1), --state-selected (0.12, also pressed, expanded, current and a checked child) and --state-active (0.16); none when disabled. One class covers every state in any palette, in place of a hover: and active: class per step; the element keeps its own radius.",
     "icons": "icon (a slot-square box, glyph --icon-md), icon-sm, icon-md, icon-lg: lengths from the base size, so they count as regular classes and examples use them. Every Phosphor glyph sits in an icon box (<i class=\"icon ph ph-floppy-disk\">); carets are icon icon-sm. Or an inline <svg> inside .icon.",
     "sizing": "w-, h-, min-/max- with 0, full, screen (100vw/100vh), fit; w-1/2, 1/3, 2/3, 1/4, 3/4 and fifths; h-dvh, h-svh, h-lvh and min-/max- versions; max-w-text (alias max-w-prose), max-w-form, max-w-container, h-control"
   },

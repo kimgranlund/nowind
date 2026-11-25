@@ -1322,7 +1322,7 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 
 ## Layout and misc
 
-254 classes.
+255 classes.
 
 | Class | Declarations |
 |---|---|
@@ -1579,4 +1579,5 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 | `.backdrop-blur-none` | `backdrop-filter: none` |
 | `.appearance-none` | `appearance: none` |
 | `.revert` | `all: revert` |
+| `.state` | `isolation: isolate` |
 | `.group` | `--_group: 1` |
