@@ -115,8 +115,8 @@ const forText = (c) => step(c) || /^(fg|on-solid)(-|$)/.test(c);
 const forBg = (c) => step(c) || alphaStep(c) || /^(bg|component|solid|scrim)(-|$)/.test(c) || /-(surface|indicator|track)$/.test(c);
 const forBorder = (c) => step(c) || /^border(-|$)/.test(c);
 for (const c of COLORS) {
-  // fg roles are named by their token alone (fg-weak); other text colors keep text- (text-on-solid-danger, text-danger-9).
-  if (forText(c)) add(/^fg(-|$)/.test(c) ? c : `text-${c}`, `color: var(--${c})`);
+  // fg roles are named by their token alone (fg-weak); raw steps and on-solid take fg- (fg-danger-9, fg-on-solid-danger).
+  if (forText(c)) add(/^fg(-|$)/.test(c) ? c : `fg-${c}`, `color: var(--${c})`);
   if (forBg(c)) add(`bg-${c}`, `background-color: var(--${c})`);
   if (forBorder(c)) add(`border-${c}`, `border-color: var(--${c})`);
 }
@@ -327,7 +327,8 @@ const esc = (c) => c.replace(/[:./]/g, (ch) => `\\${ch}`).replace(/^(\d)/, (d) =
 const rule = (sel, decl) => `  .${esc(sel)} { ${decl}; }`;
 const ROLE_COLORS = colorProps.filter((p) => !/^--shadow/.test(p) && !/-(surface|indicator|track)$/.test(p)).map((p) => p.slice(2));
 const colorClass = new RegExp(`^(text|bg)-(${ROLE_COLORS.map((c) => c.replace(/[-]/g, "\\-")).join("|")}|inherit|current|transparent)$`);
-const HOVER = [...D.keys()].filter((c) => colorClass.test(c) || (/^fg(-|$)/.test(c) && ROLE_COLORS.includes(c)) || /^border-border(-|$)/.test(c) || /^opacity-|^cursor-/.test(c));
+const fgRole = (c) => /^fg(-|$)/.test(c) && (ROLE_COLORS.includes(c) || (/^fg-on-solid(-|$)/.test(c) && ROLE_COLORS.includes(c.slice(3))));
+const HOVER = [...D.keys()].filter((c) => colorClass.test(c) || fgRole(c) || /^border-border(-|$)/.test(c) || /^opacity-|^cursor-/.test(c));
 const LAYOUT = [...D.keys()].filter((c) => /^(block|inline-block|inline|flex|inline-flex|grid|inline-grid|contents|hidden|flex-(row|col)(-reverse)?|flex-wrap|flex-nowrap|justify-|items-|self-|text-(left|center|right|justify|start|end)$|col-span-|w-(\d\/\d|full|auto|fit|sidebar|rail)$|basis-|gap-|p[xytb]?-|static$|relative$|absolute$|fixed$|sticky$|top-|overflow-|h-(full|auto|dvh|screen|below-header)$)/.test(c));
 const geometryCss = read("theme/theme.geometry.css");
 const BREAKPOINTS = [...geometryCss.matchAll(/--breakpoint-([\w]+):\s*(\d+)px/g)].map((m) => [m[1], Number(m[2])]);
@@ -655,7 +656,7 @@ const manifest = {
   counts: { classes: D.size, hover: HOVER.length, responsive: LAYOUT.length * BREAKPOINTS.length, bytes: Buffer.byteLength(css) },
   naming: "property-value, as Prewind and Tailwind: p-md, gap-lg, bg-solid-accent-1. Colour classes take the token name without --; text-color roles are the token name alone (fg-weak, fg-accent-1).",
   variants: {
-    hover: "Inside @media (hover: hover), as Tailwind v4, so taps on touch screens don't stick. hover:border-* for the border roles, hover:text-* and hover:bg-* for the colour role tokens only (bg, component, border, solid, on-solid, fg and their palette versions), hover:opacity-*, hover:cursor-*. Raw palette steps and alpha steps have no hover class.",
+    hover: "Inside @media (hover: hover), as Tailwind v4, so taps on touch screens don't stick. hover:border-* for the border roles, hover:fg-* and hover:bg-* for the colour role tokens only (bg, component, border, solid, on-solid, fg and their palette versions), hover:opacity-*, hover:cursor-*. Raw palette steps and alpha steps have no hover class.",
     breakpoints: Object.fromEntries(BREAKPOINTS.map(([b, w]) => [b, `${w}px`])),
     responsive: "sm:, md:, lg:, xl:, 2xl: (read from the --breakpoint-* tokens) apply to layout: display, grid columns and spans, flex direction, wrap, basis, justify, align, text alignment, widths, heights, position, top, overflow, padding and gaps. Margins, colours and type have no breakpoint variants.",
     groups: "group on a parent; group-hover:, group-focus-within: and group-open: on a child, for opacity, visibility and text roles (tooltips, reveal-on-hover).",
@@ -667,7 +668,7 @@ const manifest = {
     typeScale: `text-{${SIZES.join(", ")}} (sets size and line height)`,
     kicker: `text-{${KICKERS.join(", ")}} (size and the kicker style)`,
     typeRoles: `text-{${ROLES.filter((r) => !KICKERS.includes(r)).join(", ")}} (every role companion)`,
-    colors: "Each property takes only its own roles: text- with fg-* and on-solid-*; bg- with bg-*, component-*, solid-*, surface, indicator and track; border- with border-*. Raw palette steps (accent-1-9) work with all three; alpha steps (neutral-a4) with bg- only. No outline colour classes: the reset sets the focus ring.",
+    colors: "Each property takes only its own roles: text colour is fg-* (the fg roles by their token name, plus fg-on-solid-*); bg- with bg-*, component-*, solid-*, surface, indicator and track; border- with border-*. Raw palette steps (fg-accent-1-9, bg-accent-1-9, border-accent-1-9) work with all three; alpha steps (neutral-a4) with bg- only. No outline colour classes: the reset sets the focus ring.",
     weights: "font-normal, font-medium, font-semibold, font-bold",
     faces: "font-body (alias font-sans), font-heading, font-mono, font-control",
     leading: "leading-none, tight, snug, normal, relaxed",

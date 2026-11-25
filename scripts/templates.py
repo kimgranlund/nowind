@@ -444,7 +444,7 @@ def changelog():
     blocks.append(code("index.html", "HTML", """
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v__VERSION__/dist/nowind.min.css">"""))
     for v, date, latest, intro, groups in RELEASES:
-        badge = '\n              <span class="inline-flex items-center w-fit h-nested px-nested bg-solid-accent-1 text-on-solid-accent-1 text-label">Latest</span>' if latest else ""
+        badge = '\n              <span class="inline-flex items-center w-fit h-nested px-nested bg-solid-accent-1 fg-on-solid-accent-1 text-label">Latest</span>' if latest else ""
         body = [p(t) for t in intro]
         for g, entries in groups:
             if g:
@@ -497,7 +497,7 @@ def docs_home():
           <h1 class="text-display-sm text-balance">Nowind documentation</h1>
           <p class="text-body-md fg-weak max-w-measure">Theme tokens and utility classes in plain CSS. Link one file and every class already exists, so it works in any HTML, including what a CMS writes.</p>
           <div class="flex flex-wrap gap-row">
-            <a href="guide.html" class="inline-flex items-center h-control px-control gap-gutter bg-solid-accent-1 hover:bg-solid-accent-1-strong no-underline text-on-solid-accent-1 text-title-sm transition-colors"><span>Read the guide</span><i class="icon ph ph-arrow-right"></i></a>
+            <a href="guide.html" class="inline-flex items-center h-control px-control gap-gutter bg-solid-accent-1 hover:bg-solid-accent-1-strong no-underline fg-on-solid-accent-1 text-title-sm transition-colors"><span>Read the guide</span><i class="icon ph ph-arrow-right"></i></a>
             <a href="reference.html" class="inline-flex items-center h-control px-control gap-gutter border border-border hover:bg-component-weak no-underline fg text-title-sm transition-colors"><span>Class reference</span></a>
           </div>
         </header>

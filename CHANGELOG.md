@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Breaking, text colour classes:** raw steps and on-solid now take `fg-` like the text roles: `text-accent-1-11` is `fg-accent-1-11`, `text-on-solid-danger` is `fg-on-solid-danger`. Every text colour class now starts with `fg`.
 - **Site moved:** the landing page, showcase, specimen and utilities demo are in `site/`, the docs in `site/docs/`. The root `index.html` redirects to `site/`.
 - **Classes page:** `site/docs/classes.html` lists all 1349 base classes by category with their declarations, a preview for colours, borders, radius and shadow, and a filter, under a grid linking to each group. Component pages link each class to its row.
 

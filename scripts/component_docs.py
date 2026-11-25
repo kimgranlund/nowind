@@ -2,7 +2,7 @@
 rendered live and shown as code, with when to use it and when not to. Utility classes only."""
 
 BTN = "inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm"
-BTN_PRIMARY = f"{BTN} border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong active:bg-solid-accent-1-strong text-on-solid-accent-1 text-title-sm cursor-pointer transition-colors"
+BTN_PRIMARY = f"{BTN} border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong active:bg-solid-accent-1-strong fg-on-solid-accent-1 text-title-sm cursor-pointer transition-colors"
 BTN_SECONDARY = f"{BTN} border border-border bg-component-weak hover:bg-component active:bg-component-strong fg text-title-sm cursor-pointer transition-colors"
 FIELD = "h-control px-control rounded-sm border border-border hover:border-border-strong aria-invalid:border-border-danger bg-bg text-control-md w-full transition-colors"
 CARD = "p-surface rounded-lg bg-bg border border-border-weak"
@@ -16,7 +16,7 @@ COMPONENTS = [
   <button class="{BTN_PRIMARY}"><span>Save changes</span></button>
   <button class="{BTN_SECONDARY}"><i class="icon ph ph-download-simple"></i><span>Export</span></button>
   <button class="{BTN} border-0 bg-transparent hover:bg-component-weak fg text-title-sm cursor-pointer transition-colors"><span>Cancel</span></button>
-  <button class="{BTN} border-0 bg-solid-danger hover:bg-solid-danger-strong text-on-solid-danger text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-trash"></i><span>Delete</span></button>
+  <button class="{BTN} border-0 bg-solid-danger hover:bg-solid-danger-strong fg-on-solid-danger text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-trash"></i><span>Delete</span></button>
 </div>""",
         "use": ["One primary button per view, for the action most people take.", "Wrap the label in a <code>&lt;span&gt;</code> so <code>px-control</code> can find an icon at either edge."],
         "avoid": ["A button for navigation; use a link styled the same way.", "Two primary buttons side by side; make the second secondary."],
@@ -26,7 +26,7 @@ COMPONENTS = [
         "summary": "A button with only an icon. The same padding rules make it exactly one control height square.",
         "html": f"""<div class="flex items-center gap-row">
   <button class="{BTN} border border-border bg-component-weak hover:bg-component fg cursor-pointer transition-colors" aria-label="Settings"><i class="icon ph ph-gear"></i></button>
-  <button class="{BTN} rounded-full border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong text-on-solid-accent-1 cursor-pointer transition-colors" aria-label="Add"><i class="icon ph-bold ph-plus"></i></button>
+  <button class="{BTN} rounded-full border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong fg-on-solid-accent-1 cursor-pointer transition-colors" aria-label="Add"><i class="icon ph-bold ph-plus"></i></button>
   <button class="inline-flex items-center justify-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-component-weak fg-weak cursor-pointer transition-colors" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
 </div>""",
         "use": ["Always give it an <code>aria-label</code>.", "Use <code>h-nested px-nested</code> and <code>icon-sm</code> inside dense rows."],
@@ -50,7 +50,7 @@ COMPONENTS = [
   <span class="inline-flex items-center h-nested px-nested gap-gutter-half rounded-full bg-component-weak border border-border-weak fg-weak text-label">Draft</span>
   <span class="inline-flex items-center h-nested px-nested gap-gutter-half rounded-full bg-component-success-weak border border-border-success-weak fg-success-weak text-label"><i class="icon icon-sm ph-bold ph-check"></i><span>Paid</span></span>
   <span class="inline-flex items-center h-nested px-nested gap-gutter-half rounded-full bg-component-warning-weak border border-border-warning-weak fg-warning-weak text-label"><i class="icon icon-sm ph-bold ph-clock"></i><span>Pending</span></span>
-  <span class="inline-flex items-center h-nested px-nested rounded-full bg-solid-info text-on-solid-info text-label">New</span>
+  <span class="inline-flex items-center h-nested px-nested rounded-full bg-solid-info fg-on-solid-info text-label">New</span>
 </div>""",
         "use": ["Pair a status color with its word, never color alone."],
         "avoid": ["A badge as a button; badges aren't interactive."],
@@ -167,9 +167,9 @@ COMPONENTS = [
         "summary": "Moves through pages of results. The current page is styled by <code>aria-current</code>.",
         "html": """<nav aria-label="Pagination" class="inline-flex items-center gap-3xs">
   <a href="#" class="inline-flex items-center justify-center size-control rounded-sm fg-weak hover:bg-component-weak no-underline transition-colors" aria-label="Previous"><i class="icon ph ph-caret-left"></i></a>
-  <a href="#" class="inline-flex items-center justify-center size-control rounded-sm fg-weak hover:bg-component-weak aria-current:bg-solid-accent-1 aria-current:text-on-solid-accent-1 no-underline text-numeral transition-colors">2</a>
-  <a href="#" aria-current="page" class="inline-flex items-center justify-center size-control rounded-sm fg-weak hover:bg-component-weak aria-current:bg-solid-accent-1 aria-current:text-on-solid-accent-1 no-underline text-numeral transition-colors">3</a>
-  <a href="#" class="inline-flex items-center justify-center size-control rounded-sm fg-weak hover:bg-component-weak aria-current:bg-solid-accent-1 aria-current:text-on-solid-accent-1 no-underline text-numeral transition-colors">4</a>
+  <a href="#" class="inline-flex items-center justify-center size-control rounded-sm fg-weak hover:bg-component-weak aria-current:bg-solid-accent-1 aria-current:fg-on-solid-accent-1 no-underline text-numeral transition-colors">2</a>
+  <a href="#" aria-current="page" class="inline-flex items-center justify-center size-control rounded-sm fg-weak hover:bg-component-weak aria-current:bg-solid-accent-1 aria-current:fg-on-solid-accent-1 no-underline text-numeral transition-colors">3</a>
+  <a href="#" class="inline-flex items-center justify-center size-control rounded-sm fg-weak hover:bg-component-weak aria-current:bg-solid-accent-1 aria-current:fg-on-solid-accent-1 no-underline text-numeral transition-colors">4</a>
   <a href="#" class="inline-flex items-center justify-center size-control rounded-sm fg-weak hover:bg-component-weak no-underline transition-colors" aria-label="Next"><i class="icon ph ph-caret-right"></i></a>
 </nav>""",
         "use": ["Long lists where people jump to a page; show the total near it."],
@@ -198,7 +198,7 @@ COMPONENTS = [
     <p class="text-body-sm fg-weak">This removes the project for everyone. You can't undo this.</p>
     <div class="flex justify-end gap-row">
       <button class="{BTN_SECONDARY}" commandfor="doc-dialog" command="close"><span>Cancel</span></button>
-      <button class="{BTN} border-0 bg-solid-danger hover:bg-solid-danger-strong text-on-solid-danger text-title-sm cursor-pointer transition-colors" commandfor="doc-dialog" command="close"><span>Delete</span></button>
+      <button class="{BTN} border-0 bg-solid-danger hover:bg-solid-danger-strong fg-on-solid-danger text-title-sm cursor-pointer transition-colors" commandfor="doc-dialog" command="close"><span>Delete</span></button>
     </div>
   </div>
 </dialog>""",
@@ -225,9 +225,9 @@ COMPONENTS = [
         "slug": "avatar", "name": "Avatar and group", "icon": "ph-user-circle", "group": "Data display",
         "summary": "Initials on an accent solid, one control height square; a group overlaps them.",
         "html": """<div class="flex items-center">
-  <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-neutral-1 bg-solid-accent-1 text-on-solid-accent-1 text-label">AL</span>
-  <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-neutral-1 bg-solid-accent-2 text-on-solid-accent-2 text-label -ml-2xs">GH</span>
-  <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-neutral-1 bg-solid-accent-3 text-on-solid-accent-3 text-label -ml-2xs">KJ</span>
+  <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-neutral-1 bg-solid-accent-1 fg-on-solid-accent-1 text-label">AL</span>
+  <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-neutral-1 bg-solid-accent-2 fg-on-solid-accent-2 text-label -ml-2xs">GH</span>
+  <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-neutral-1 bg-solid-accent-3 fg-on-solid-accent-3 text-label -ml-2xs">KJ</span>
   <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-neutral-1 bg-component fg-weak text-label -ml-2xs">+5</span>
 </div>""",
         "use": ["A border in the page color separates overlapping avatars."],
@@ -353,7 +353,7 @@ COMPONENTS = [
     <span class="text-kicker fg-accent-2-weak">Case study</span>
     <h3 class="text-title">Rebuilding a design system in a week</h3>
     <div class="flex items-center gap-xs pt-2xs">
-      <span class="inline-flex items-center justify-center size-nested rounded-full bg-solid-accent-3 text-on-solid-accent-3 text-label">GH</span>
+      <span class="inline-flex items-center justify-center size-nested rounded-full bg-solid-accent-3 fg-on-solid-accent-3 text-label">GH</span>
       <span class="text-caption fg-weak">Grace Hopper · 6 min read</span>
     </div>
   </div>
