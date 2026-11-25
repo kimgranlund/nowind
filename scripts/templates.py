@@ -957,6 +957,108 @@ def components_index():
         + [section(sid, g, body) for sid, g, body in groups])
     return doc_page("components-index.html", "Components", art, [(sid, g) for sid, g, _ in groups], wide=True)
 
+SIZE_RE = re.compile(r"text-(xs|sm|base|lg|xl|[2-6]xl)")
+
+
+def example_sources():
+    """(where, html) for every component snippet and every showcase block that is not a semantic demo."""
+    out = [(f"scripts/component_docs.py {c['slug']} {x['id']}", x["html"]) for c in COMPONENTS for x in [{"id": "example", "html": c["html"]}] + c.get("examples", [])]
+    page = open(os.path.join(OUT, "..", "components.html")).read()
+    body = 'md:col-span-9 min-w-0 flex flex-col gap-group">'
+    for m in re.finditer(r'<section id="([^"]+)"(.*?)\n  </section>', page, flags=re.S):
+        sec = m.group(0)
+        if "data-semantic-demo" not in sec[:80] and body in sec:
+            out.append((f"site/components.html #{m.group(1)}", sec[sec.index(body) + len(body):]))
+    return out
+
+
+def type_audit():
+    """Check every text-bearing element in the examples against the size contract in theme.type-roles.manifest.json
+    (sizeContract). Each element gets a kind from its tag, role, classes and content; its effective size (its own
+    text-* class, else the nearest ancestor's, else text-base) must be the kind's size. Returns (findings, unclassified)."""
+    VOID = {"input", "img", "br", "hr", "meta", "link", "source", "wbr", "col"}
+    WANT = {"inline": set(), "control": {"base"}, "option label": {"base"}, "cell": {"base"}, "header": {"sm"}, "label": {"sm"}, "supporting": {"sm"},
+            "body": {"base"}, "title": {"base"}, "dialog title": {"lg"}, "badge": {"sm"}, "keycap": {"xs"}, "kicker": {"xs"}, "figure": {"3xl"}}
+
+    class Node:
+        def __init__(self, tag, attrs, parent):
+            self.tag, self.attrs, self.parent = tag, attrs, parent
+            self.toks = (attrs.get("class") or "").split()
+            self.own = next((m.group(1) for t in self.toks for m in [SIZE_RE.fullmatch(t)] if m), None)
+            self.text, self.kids = "", []
+        def ancestors(self):
+            n = self.parent
+            while n: yield n; n = n.parent
+        def eff(self):
+            return self.own or next((a.own for a in self.ancestors() if a.own), None) or "base"
+        def alltext(self):
+            return self.text + "".join(k.alltext() for k in self.kids)
+        def has(self, pred):
+            return any(pred(k) or k.has(pred) for k in self.kids)
+
+    def is_control(n):
+        role = n.attrs.get("role", "")
+        sized = bool({"h-control", "h-nested", "size-control", "size-nested"} & set(n.toks)) and n.tag in ("a", "button", "div", "td", "th", "input")
+        return n.tag in ("button", "select", "summary", "textarea", "input") or role in ("tab", "option", "menuitem") or sized or "cursor-text" in n.toks
+
+    def kind(n):
+        if any(is_control(a) or a.tag == "kbd" for a in n.ancestors()): return None  # text inside a control or keycap is the control's
+        if n.tag == "kbd": return "keycap"
+        if "font-display" in n.toks: return "figure"
+        if "uppercase" in n.toks: return "kicker"
+        if is_control(n):
+            field = n.tag in ("input", "textarea", "select") or "cursor-text" in n.toks or n.has(lambda k: k.tag in ("input", "textarea", "select"))
+            return "control" if field or n.alltext().strip() else None  # an icon-only button has no text to size
+        if n.has(is_control) and any(t.startswith("bg-") for t in n.toks) and not n.text.strip(): return "control"  # a menu or popover of controls
+        if n.tag == "th": return "header"
+        if n.tag == "td": return "cell"
+        if n.tag == "label" and n.has(lambda k: k.tag == "input" and k.attrs.get("type") in ("checkbox", "radio")): return "option label"
+        if n.tag in ("label", "legend", "dt") and not n.text.strip(): return None  # a wrapper: its text children carry the kinds
+        if n.tag in ("label", "legend", "dt") or (n.tag == "dl" and n.own): return "label"
+        if "rounded-full" in n.toks and n.alltext().strip(): return "badge"
+        if n.tag in ("h1", "h2", "h3", "h4"):
+            return "dialog title" if any(a.tag == "dialog" or a.attrs.get("role") == "dialog" for a in n.ancestors()) else "title"
+        if n.tag == "p": return "body"
+        if n.tag in ("span", "div", "li", "ol", "ul", "a") and n.alltext().strip():
+            if n.parent and n.parent.text.strip(): return None  # inline in a sentence: takes the sentence's size
+            if n.attrs.get("role") == "tooltip" or (("absolute" in n.toks or any(t.startswith("anchor-") for t in n.toks)) and any(t.startswith("bg-") for t in n.toks)): return "supporting"
+            if "font-semibold" in n.toks or "font-bold" in n.toks: return "title"
+            if "font-medium" in n.toks and (n.tag == "span" or "justify-between" in n.toks):
+                sib = n.parent.kids[n.parent.kids.index(n) + 1] if n.parent and n.parent.kids.index(n) + 1 < len(n.parent.kids) else None
+                if sib is not None and sib.tag in ("span", "p") and not sib.kids: return "title"  # heads a line of detail: a toast or item title
+                return "label"  # names a group or a meter, as a field label does
+            if any(re.fullmatch(r"fg-[a-z]+(-\d)?-(8|11)", t) for t in n.toks): return "supporting"
+            if n.own: return "body"
+        return None
+
+    findings, unclassified = [], []
+    for where, html_ in example_sources():
+        nodes = []
+        class P(HTMLParser):
+            def __init__(self): super().__init__(); self.cur = None
+            def handle_starttag(self, tag, attrs):
+                n = Node(tag, dict(attrs), self.cur); nodes.append(n)
+                if self.cur: self.cur.kids.append(n)
+                if tag not in VOID: self.cur = n
+            def handle_data(self, d):
+                if self.cur: self.cur.text += d
+            def handle_endtag(self, tag):
+                n = self.cur
+                while n and n.tag != tag: n = n.parent
+                if n: self.cur = n.parent
+        P().feed(html_)
+        for n in nodes:
+            k = kind(n)
+            label = f"<{n.tag} class=\"{' '.join(n.toks)[:70]}\">"
+            if k and n.eff() not in WANT[k]:
+                findings.append((where, k, n.eff(), "/".join(sorted(WANT[k])), label))
+            elif not k and n.own and n.parent and n.parent.text.strip():
+                if n.own != n.parent.eff(): findings.append((where, "inline", n.own, n.parent.eff(), label))
+            elif not k and n.own and not any(is_control(a) for a in n.ancestors()):
+                unclassified.append((where, n.own, label))
+    return findings, unclassified
+
+
 def lint_examples():
     """Examples use regular (primitive) classes only. Returns one line per semantic class found in a component snippet
     or in a block of the showcase, except the showcase blocks marked data-semantic-demo."""
@@ -1093,6 +1195,16 @@ def main():
         f.write(json.dumps(comp, indent=2, ensure_ascii=False) + "\n")
     print("wrote components.manifest.json", len(comp["components"]), "components")
 
+if "--type-report" in sys.argv:
+    findings, unclassified = type_audit()
+    import collections
+    print(f"{len(findings)} elements off the size contract, {len(unclassified)} set a size but have no kind\n")
+    for k, n in collections.Counter((f[1], f[2], f[3]) for f in findings).most_common():
+        print(f"  {k[0]:13} is text-{k[1]:5} want text-{k[2]:6} x{n}")
+    print()
+    for f in findings: print(f"OFF  {f[0]}: {f[1]} is text-{f[2]}, want text-{f[3]}  {f[4]}")
+    for u in unclassified: print(f"KIND {u[0]}: text-{u[1]}  {u[2]}")
+    sys.exit(0)
 if "--lint" in sys.argv:
     problems = lint_examples()
     print("\n".join(problems))
