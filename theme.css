@@ -1,5 +1,6 @@
 @import "./theme/theme.colors.css";
 @import "./theme/theme.geometry.css";
+@import "./theme/theme.shadows.css";
 @import "./theme/theme.space.css";
 @import "./theme/theme.typography.css";
 @import "./theme/theme.type-roles.css";

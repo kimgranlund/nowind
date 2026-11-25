@@ -696,7 +696,7 @@ Variants: `hover:` on the 131 role-colour, opacity and cursor classes (inside `@
 
 ## Borders, radius, shadow
 
-53 classes.
+58 classes.
 
 | Class | Declarations |
 |---|---|
@@ -746,11 +746,16 @@ Variants: `hover:` on the 131 role-colour, opacity and cursor classes (inside `@
 | `.outline-solid` | `outline-style: solid` |
 | `.outline-dashed` | `outline-style: dashed` |
 | `.outline-dotted` | `outline-style: dotted` |
-| `.shadow-xs` | `box-shadow: var(--shadow-xs)` |
-| `.shadow-sm` | `box-shadow: var(--shadow-sm)` |
-| `.shadow` | `box-shadow: var(--shadow-sm)` |
-| `.shadow-lg` | `box-shadow: var(--shadow-lg)` |
-| `.shadow-none` | `box-shadow: none` |
+| `.shadow-xs` | `--_shadow: var(--shadow-xs); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000)` |
+| `.shadow-sm` | `--_shadow: var(--shadow-sm); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000)` |
+| `.shadow-md` | `--_shadow: var(--shadow-md); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000)` |
+| `.shadow-lg` | `--_shadow: var(--shadow-lg); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000)` |
+| `.shadow-xl` | `--_shadow: var(--shadow-xl); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000)` |
+| `.shadow` | `--_shadow: var(--shadow-sm); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000)` |
+| `.shadow-none` | `--_shadow: 0 0 #0000; box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000)` |
+| `.inset-shadow-xs` | `--_inset-shadow: var(--inset-shadow-xs); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000)` |
+| `.inset-shadow-sm` | `--_inset-shadow: var(--inset-shadow-sm); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000)` |
+| `.inset-shadow-none` | `--_inset-shadow: 0 0 #0000; box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000)` |
 | `.sr-only` | `position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0` |
 | `.debug` | `outline: 1px dashed red` |
 

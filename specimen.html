@@ -246,6 +246,7 @@ function build() {
   const space = get(/theme\.space\.css$/);
   const typography = get(/theme\.typography\.css$/);
   const roles = get(/theme\.type-roles\.css$/);
+  const shadows = get(/theme\.shadows\.css$/);
 
   PALETTES = [...new Set(colorSemantic.map(([n]) => n).filter((n) => /^--[a-z]+(-\d)?-1$/.test(n)).map((n) => n.slice(2, -2)))];
   const ACCENTS = PALETTES.filter((p) => p.startsWith("accent"));
@@ -324,6 +325,15 @@ function build() {
     sp.append(el("div", { class: "row" }, el("code", { class: "tok", title: val }, name), el("div", { class: "bar-wrap" }, el("div", { class: "bar", style: `width:var(${name})` })), pxEl));
   }
   s.append(sp);
+
+  // Shadows
+  s = section("shadows", "theme.shadows.css", "Shadows", "Compound shadows after Massimo: a contact layer plus key layers that double in offset while their opacity falls to a fixed total. Recesses turn the series inward.");
+  const sg = el("div", { class: "grid", style: "gap: var(--space-lg); padding: var(--space-md) 0" });
+  for (const [name] of shadows) {
+    const box = el("div", { style: `height: 96px; border-radius: var(--radius-surface); background: ${name.includes("inset") ? "var(--bg-strong)" : "var(--bg)"}; box-shadow: var(${name}); display: flex; align-items: center; justify-content: center` }, el("code", { class: "tok" }, name));
+    sg.append(box);
+  }
+  s.append(el("div", { style: "background: var(--bg-strong); padding: var(--space-lg); border-radius: 8px" }, sg));
 
   // Geometry
   s = section("geometry", "theme.geometry.css", "Geometry", "Built from --F, the scope's font size. Inputs first, then the lengths derived from them. The controls below use --control-height, --text-edge and --row-gap at the page size and in a 14px .scope.");

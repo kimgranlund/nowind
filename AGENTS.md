@@ -14,6 +14,7 @@ Read `README.md` for what Nowind is and how people use it. This file says how to
 | `theme/colors-raw/` | The radix-hct-colors library | no, copied in |
 | `theme/theme.geometry.css` | `--F` geometry, radius, container, breakpoints | yes |
 | `theme/theme.type-roles.css` | Semantic type roles (`--heading-md`, `--heading-md--line-height`, …) | yes |
+| `theme/theme.shadows.css` | Compound shadows (casts and recesses) after Massimo | no, `scripts/shadows.mjs` |
 | `theme/theme.typography.css`, `theme/theme.space.css` | Fluid Utopia scales, faces, weights, leading, tracking | no, `scripts/utopia.mjs` |
 | `nowind.css` | Reset and utility classes | no, `scripts/utilities.mjs` |
 | `dist/` | One-file bundle and its minified copy | no, `scripts/bundle.mjs` |
@@ -22,7 +23,7 @@ Read `README.md` for what Nowind is and how people use it. This file says how to
 | `specimen.html` | Every token, the reset and every class, read live from the stylesheets | yes |
 | `utilities.html` | Demo page built only from classes | yes |
 
-Manifests: [`theme/theme.typography.manifest.json`](theme/theme.typography.manifest.json), [`theme/theme.space.manifest.json`](theme/theme.space.manifest.json) and [`nowind.manifest.json`](nowind.manifest.json) are written by their scripts; change the script, not the file. These are hand-written; update them in the same change as their CSS:
+Manifests: [`theme/theme.typography.manifest.json`](theme/theme.typography.manifest.json), [`theme/theme.space.manifest.json`](theme/theme.space.manifest.json), [`theme/theme.shadows.manifest.json`](theme/theme.shadows.manifest.json) and [`nowind.manifest.json`](nowind.manifest.json) are written by their scripts; change the script, not the file. These are hand-written; update them in the same change as their CSS:
 
 - [`theme/theme.colors.manifest.json`](theme/theme.colors.manifest.json): palettes, families, contrast, roles, and each library family's `solidLabel`.
 - [`theme/theme.geometry.manifest.json`](theme/theme.geometry.manifest.json): `--F` inputs, derived lengths, radius, container, breakpoints.
@@ -34,6 +35,7 @@ Run the scripts in this order, as far down as the change reaches:
 
 ```bash
 node scripts/utopia.mjs      # only if the type or space scale changed
+node scripts/shadows.mjs     # only if the shadow constants or levels changed
 node scripts/utilities.mjs   # after any token change, so classes follow
 node scripts/bundle.mjs      # always last
 node scripts/check.mjs       # before every commit
@@ -60,6 +62,7 @@ Then check the result in `specimen.html` through a local server (`python3 -m htt
 - **Type:** `--text-{xs…6xl}` and `--text-{size}--line-height` (Tailwind v4). Roles are `--{role}` with `--{role}--{property}` companions, outside `--text-*`, so they never clash with sizes.
 - **Space:** `--space-{3xs…4xl}` (Prewind).
 - **Classes:** `property-value`; colour classes take the token name without `--` (`bg-solid-accent-1`, `text-fg-weak`). Tailwind v4 names where Tailwind has the same thing: `rounded-xs/sm`, `shadow-xs/sm`, `h-dvh`, `2xl:`.
+- **Shadows:** `--shadow-{xs…xl}` and `--inset-shadow-{xs,sm}` (Tailwind v4 names) for Massimo's levels, each a stack of 4–6 generated layers in multiples of `--q`. Change the constants in `scripts/shadows.mjs`, never a layer by hand.
 - **Controls and icons:** utilities only (`h-control`, `px-control`, `gap-gutter`, `icon`, …), after Affine UI's button and icon geometry. The icon-edge padding is a `:has(> .icon:first-child)` rule in the generator, so labels must be wrapped in a `<span>`. Glyphs come from Phosphor's web font, linked by the page, not bundled.
 - **Variants:** `hover:` for role-token colours, opacity and cursor, inside `@media (hover: hover)`; `sm:` to `2xl:` for layout only. No other variants.
 

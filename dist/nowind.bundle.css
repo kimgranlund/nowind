@@ -1370,12 +1370,6 @@
   --fg-info-weak: var(--info-11);
   --fg-info: var(--info-12);
   --fg-info-strong: light-dark(var(--info-contrast-black), var(--info-contrast-white));
-
-  --shadow-color: light-dark(oklch(0.25 0.02 250 / 0.12), oklch(0 0 0 / 0.5));
-  --shadow-color-weak: light-dark(oklch(0.25 0.02 250 / 0.07), oklch(0 0 0 / 0.35));
-  --shadow-xs: 0 1px 2px var(--shadow-color-weak);
-  --shadow-sm: 0 1px 3px var(--shadow-color), 0 1px 2px -1px var(--shadow-color-weak);
-  --shadow-lg: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -4px var(--shadow-color-weak);
 }
 
 @property --F { syntax: "<length>"; inherits: true; initial-value: 16px; }
@@ -1383,6 +1377,8 @@
 :root {
   --slot-slope: 2;
   --slot-offset: -8px;
+  --q-slope: 0.75;
+  --q-offset: -6.75px;
   --border-width: 1px;
   --mg: 1;
   --margin-offset: -1px;
@@ -1413,6 +1409,7 @@
 :root, .scope {
   --F: 1em;
   --slot: calc(var(--slot-slope) * var(--F) + var(--slot-offset));
+  --q: calc(var(--q-slope) * var(--F) + var(--q-offset));
   --margin: max(calc(var(--mg) * (var(--slot) - var(--F) + var(--margin-offset))), var(--border-width));
   --inset: calc(var(--margin) - var(--border-width));
   --gutter: calc(var(--gutter-factor) * var(--margin));
@@ -1445,6 +1442,49 @@
   --radius-surface: calc(var(--radius-control) + var(--corner-factor) * var(--margin));
   --radius-dialog: calc(var(--radius-control) + 2 * var(--corner-factor) * var(--margin));
   --container-padding: var(--page-margin);
+}
+
+:root, .scope {
+  --shadow-xs:
+    0 calc(var(--q) * 0.0625) calc(var(--q) * 0.125) 0 light-dark(rgb(27 28 32 / 0.192), rgb(0 0 0 / 0.48)),
+    0 calc(var(--q) * 0.125) calc(var(--q) * 0.25) calc(var(--q) * -0.0313) light-dark(rgb(27 28 32 / 0.098), rgb(0 0 0 / 0.251)),
+    0 calc(var(--q) * 0.25) calc(var(--q) * 0.5) calc(var(--q) * -0.0625) light-dark(rgb(27 28 32 / 0.071), rgb(0 0 0 / 0.126)),
+    0 calc(var(--q) * 0.5) calc(var(--q) * 1) calc(var(--q) * -0.125) light-dark(rgb(27 28 32 / 0.051), rgb(0 0 0 / 0.063));
+  --shadow-sm:
+    0 calc(var(--q) * 0.0625) calc(var(--q) * 0.125) 0 light-dark(rgb(27 28 32 / 0.16), rgb(0 0 0 / 0.4)),
+    0 calc(var(--q) * 0.125) calc(var(--q) * 0.25) calc(var(--q) * -0.0313) light-dark(rgb(27 28 32 / 0.084), rgb(0 0 0 / 0.235)),
+    0 calc(var(--q) * 0.25) calc(var(--q) * 0.5) calc(var(--q) * -0.0625) light-dark(rgb(27 28 32 / 0.061), rgb(0 0 0 / 0.117)),
+    0 calc(var(--q) * 0.5) calc(var(--q) * 1) calc(var(--q) * -0.125) light-dark(rgb(27 28 32 / 0.044), rgb(0 0 0 / 0.059)),
+    0 calc(var(--q) * 1) calc(var(--q) * 2) calc(var(--q) * -0.25) light-dark(rgb(27 28 32 / 0.031), rgb(0 0 0 / 0.029));
+  --shadow-md:
+    0 calc(var(--q) * 0.0625) calc(var(--q) * 0.125) 0 light-dark(rgb(27 28 32 / 0.12), rgb(0 0 0 / 0.3)),
+    0 calc(var(--q) * 0.125) calc(var(--q) * 0.25) calc(var(--q) * -0.0313) light-dark(rgb(27 28 32 / 0.076), rgb(0 0 0 / 0.227)),
+    0 calc(var(--q) * 0.25) calc(var(--q) * 0.5) calc(var(--q) * -0.0625) light-dark(rgb(27 28 32 / 0.055), rgb(0 0 0 / 0.114)),
+    0 calc(var(--q) * 0.5) calc(var(--q) * 1) calc(var(--q) * -0.125) light-dark(rgb(27 28 32 / 0.04), rgb(0 0 0 / 0.057)),
+    0 calc(var(--q) * 1) calc(var(--q) * 2) calc(var(--q) * -0.25) light-dark(rgb(27 28 32 / 0.029), rgb(0 0 0 / 0.028)),
+    0 calc(var(--q) * 2) calc(var(--q) * 4) calc(var(--q) * -0.5) light-dark(rgb(27 28 32 / 0.021), rgb(0 0 0 / 0.014));
+  --shadow-lg:
+    0 calc(var(--q) * 0.0625) calc(var(--q) * 0.125) 0 light-dark(rgb(27 28 32 / 0.096), rgb(0 0 0 / 0.24)),
+    0 calc(var(--q) * 0.1875) calc(var(--q) * 0.375) calc(var(--q) * -0.0469) light-dark(rgb(27 28 32 / 0.076), rgb(0 0 0 / 0.227)),
+    0 calc(var(--q) * 0.375) calc(var(--q) * 0.75) calc(var(--q) * -0.0938) light-dark(rgb(27 28 32 / 0.055), rgb(0 0 0 / 0.114)),
+    0 calc(var(--q) * 0.75) calc(var(--q) * 1.5) calc(var(--q) * -0.1875) light-dark(rgb(27 28 32 / 0.04), rgb(0 0 0 / 0.057)),
+    0 calc(var(--q) * 1.5) calc(var(--q) * 3) calc(var(--q) * -0.375) light-dark(rgb(27 28 32 / 0.029), rgb(0 0 0 / 0.028)),
+    0 calc(var(--q) * 3) calc(var(--q) * 6) calc(var(--q) * -0.75) light-dark(rgb(27 28 32 / 0.021), rgb(0 0 0 / 0.014));
+  --shadow-xl:
+    0 calc(var(--q) * 0.0625) calc(var(--q) * 0.125) 0 light-dark(rgb(27 28 32 / 0.08), rgb(0 0 0 / 0.2)),
+    0 calc(var(--q) * 0.25) calc(var(--q) * 0.5) calc(var(--q) * -0.0625) light-dark(rgb(27 28 32 / 0.076), rgb(0 0 0 / 0.227)),
+    0 calc(var(--q) * 0.5) calc(var(--q) * 1) calc(var(--q) * -0.125) light-dark(rgb(27 28 32 / 0.055), rgb(0 0 0 / 0.114)),
+    0 calc(var(--q) * 1) calc(var(--q) * 2) calc(var(--q) * -0.25) light-dark(rgb(27 28 32 / 0.04), rgb(0 0 0 / 0.057)),
+    0 calc(var(--q) * 2) calc(var(--q) * 4) calc(var(--q) * -0.5) light-dark(rgb(27 28 32 / 0.029), rgb(0 0 0 / 0.028)),
+    0 calc(var(--q) * 4) calc(var(--q) * 8) calc(var(--q) * -1) light-dark(rgb(27 28 32 / 0.021), rgb(0 0 0 / 0.014));
+  --inset-shadow-xs:
+    inset 0 calc(var(--q) * 0.0625) calc(var(--q) * 0.125) 0 light-dark(rgb(27 28 32 / 0.082), rgb(0 0 0 / 0.229)),
+    inset 0 calc(var(--q) * 0.125) calc(var(--q) * 0.25) 0 light-dark(rgb(27 28 32 / 0.049), rgb(0 0 0 / 0.114)),
+    inset 0 calc(var(--q) * 0.25) calc(var(--q) * 0.5) 0 light-dark(rgb(27 28 32 / 0.029), rgb(0 0 0 / 0.057));
+  --inset-shadow-sm:
+    inset 0 calc(var(--q) * 0.125) calc(var(--q) * 0.25) 0 light-dark(rgb(27 28 32 / 0.082), rgb(0 0 0 / 0.229)),
+    inset 0 calc(var(--q) * 0.25) calc(var(--q) * 0.5) 0 light-dark(rgb(27 28 32 / 0.049), rgb(0 0 0 / 0.114)),
+    inset 0 calc(var(--q) * 0.5) calc(var(--q) * 1) 0 light-dark(rgb(27 28 32 / 0.029), rgb(0 0 0 / 0.057));
 }
 
 :root {
@@ -2838,11 +2878,16 @@
   .outline-solid { outline-style: solid; }
   .outline-dashed { outline-style: dashed; }
   .outline-dotted { outline-style: dotted; }
-  .shadow-xs { box-shadow: var(--shadow-xs); }
-  .shadow-sm { box-shadow: var(--shadow-sm); }
-  .shadow { box-shadow: var(--shadow-sm); }
-  .shadow-lg { box-shadow: var(--shadow-lg); }
-  .shadow-none { box-shadow: none; }
+  .shadow-xs { --_shadow: var(--shadow-xs); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000); }
+  .shadow-sm { --_shadow: var(--shadow-sm); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000); }
+  .shadow-md { --_shadow: var(--shadow-md); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000); }
+  .shadow-lg { --_shadow: var(--shadow-lg); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000); }
+  .shadow-xl { --_shadow: var(--shadow-xl); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000); }
+  .shadow { --_shadow: var(--shadow-sm); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000); }
+  .shadow-none { --_shadow: 0 0 #0000; box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000); }
+  .inset-shadow-xs { --_inset-shadow: var(--inset-shadow-xs); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000); }
+  .inset-shadow-sm { --_inset-shadow: var(--inset-shadow-sm); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000); }
+  .inset-shadow-none { --_inset-shadow: 0 0 #0000; box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000); }
   .cursor-auto { cursor: auto; }
   .cursor-default { cursor: default; }
   .cursor-pointer { cursor: pointer; }

@@ -2,8 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(node scripts/utopia.mjs:*)",
+      "Bash(node scripts/shadows.mjs)",
       "Bash(node scripts/utilities.mjs)",
-      "Bash(node scripts/bundle.mjs)"
+      "Bash(node scripts/bundle.mjs)",
+      "Bash(node scripts/check.mjs:*)"
     ],
     "deny": [
       "Edit(./nowind.css)",
@@ -13,7 +15,10 @@
       "Edit(./theme/theme.typography.manifest.json)",
       "Edit(./theme/theme.space.css)",
       "Edit(./theme/theme.space.manifest.json)",
-      "Edit(./theme/colors-raw/**)"
+      "Edit(./theme/colors-raw/**)",
+      "Edit(./theme/theme.shadows.css)",
+      "Edit(./theme/theme.shadows.manifest.json)",
+      "Edit(./classes.md)"
     ]
   }
 }

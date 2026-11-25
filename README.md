@@ -82,7 +82,8 @@ Classes follow `property-value`. Color classes take the token name without `--`,
 | Type roles | `text-display`, `text-heading-md`, `text-title`, `text-body-md`, `text-caption`, `text-label`, `text-kicker`, `text-figure`, `text-mono`, … |
 | Text color | `text-fg`, `text-fg-weak`, `text-fg-subtle`, `text-fg-accent-1`, `text-on-solid` |
 | Background | `bg-bg`, `bg-bg-strong`, `bg-component`, `bg-solid-accent-1`, `bg-accent-1-3`, `bg-neutral-a4` |
-| Border | `border`, `border-2`, `border-t`, `border-border`, `border-border-accent-1-weak`, `rounded`, `rounded-lg`, `shadow` |
+| Border | `border`, `border-2`, `border-t`, `border-border`, `border-border-accent-1-weak`, `rounded`, `rounded-lg` |
+| Shadow | `shadow-xs` … `shadow-xl`, `inset-shadow-xs`, `inset-shadow-sm`, `shadow-none` (a cast and a recess on one element combine) |
 | Typography | `font-semibold`, `font-sans`, `font-heading`, `font-mono`, `leading-tight`, `tracking-wide`, `uppercase`, `tabular-nums`, `text-balance`, `truncate` |
 | Layout | `container`, `flex`, `flex-col`, `items-center`, `justify-between`, `grid`, `hidden`, `relative`, `z-10` |
 | Sizing | `w-full`, `w-fit`, `h-control`, `max-w-text` (or `max-w-prose`), `max-w-form`, `min-h-screen`, `min-h-dvh` |
@@ -188,6 +189,7 @@ dist/
 theme/
   theme.colors.css             color roles, Radix companions, shadows
   theme.geometry.css           --F geometry: slot, margin, control height, radius, container
+  theme.shadows.css            compound shadows after Massimo (generated)
   theme.space.css              fluid --space-* (generated)
   theme.typography.css         fluid --text-*, kicker, faces, weights, leading, tracking (generated)
   theme.type-roles.css         semantic roles: --heading-md, --heading-md--line-height, …
@@ -197,6 +199,7 @@ theme/
   colors-raw/                  the radix-hct-colors library (31 families)
 scripts/
   utopia.mjs                   generates the fluid type and space scales
+  shadows.mjs                  generates the compound shadows
   utilities.mjs                generates nowind.css from the theme tokens
   bundle.mjs                   inlines theme.css's imports and nowind.css into dist/
   check.mjs                    checks the rules in AGENTS.md; --self-test proves it catches breaks
@@ -212,6 +215,12 @@ utilities.html                 a demo built only from classes
 
 ```bash
 node scripts/utopia.mjs --min-vw 360 --max-vw 1240 --min-base 14 --max-base 18 --min-ratio 1.2 --max-ratio 1.25
+```
+
+**Shadows.** Every shadow is a stack of 4–6 layers generated from a few constants after Massimo: a tight contact layer where the element meets its ground, then key layers that double in offset and blur while their opacity falls to a fixed total. Lengths are multiples of `--q`, so a `.scope` with a smaller font size casts smaller shadows. Change the constants or levels in `scripts/shadows.mjs`, then:
+
+```bash
+node scripts/shadows.mjs
 ```
 
 **Utilities.** After changing or adding tokens, regenerate `nowind.css` so the classes follow:

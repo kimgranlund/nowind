@@ -146,11 +146,13 @@ add("outline-2", "outline-width: 2px; outline-style: solid");
 add("outline-0", "outline-width: 0");
 add("outline-offset-2", "outline-offset: 2px");
 for (const s of ["solid", "dashed", "dotted"]) add(`outline-${s}`, `outline-style: ${s}`);
-add("shadow-xs", "box-shadow: var(--shadow-xs)");
-add("shadow-sm", "box-shadow: var(--shadow-sm)");
-add("shadow", "box-shadow: var(--shadow-sm)");
-add("shadow-lg", "box-shadow: var(--shadow-lg)");
-add("shadow-none", "box-shadow: none");
+// A cast and a recess compose, as in Tailwind v4: each class sets its own part, and box-shadow draws both.
+const SHADOW_BOX = "box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000)";
+for (const lv of ["xs", "sm", "md", "lg", "xl"]) add(`shadow-${lv}`, `--_shadow: var(--shadow-${lv}); ${SHADOW_BOX}`);
+add("shadow", `--_shadow: var(--shadow-sm); ${SHADOW_BOX}`);
+add("shadow-none", `--_shadow: 0 0 #0000; ${SHADOW_BOX}`);
+for (const lv of ["xs", "sm"]) add(`inset-shadow-${lv}`, `--_inset-shadow: var(--inset-shadow-${lv}); ${SHADOW_BOX}`);
+add("inset-shadow-none", `--_inset-shadow: 0 0 #0000; ${SHADOW_BOX}`);
 
 // Interaction and misc (as Prewind)
 for (const c of ["auto", "default", "pointer", "wait", "text", "move", "not-allowed", "grab", "grabbing"]) add(`cursor-${c}`, `cursor: ${c}`);
@@ -373,7 +375,7 @@ const manifest = {
     leading: "leading-none, tight, snug, normal, relaxed",
     tracking: "tracking-tight, normal, wide, widest",
     radius: "rounded-none, rounded-xs (nested), rounded-sm and rounded (control), rounded-lg (surface), rounded-xl (dialog), rounded-full. Tailwind v4 names.",
-    shadows: "shadow-xs, shadow-sm (and bare shadow), shadow-lg, shadow-none. Tailwind v4 names.",
+    shadows: "shadow-xs, shadow-sm (and bare shadow), shadow-md, shadow-lg, shadow-xl, shadow-none; inset-shadow-xs, inset-shadow-sm, inset-shadow-none. Compound shadows after Massimo (theme.shadows.css); a cast and a recess on one element compose, as in Tailwind v4.",
     borders: "border, border-0, -2, -4, with sides t r b l x y; border-solid/dashed/dotted/none",
     layout: "container, display, flex, position, inset, z-",
     controls: "h-control, h-nested (an .icon inside it shrinks by the two borders so it fits), size-control, size-nested, min-w-control, min-w-nested, px-control and px-nested (padding steps in by one margin on a side whose first or last child is .icon; wrap the label in a <span>), gap-gutter, gap-gutter-half",

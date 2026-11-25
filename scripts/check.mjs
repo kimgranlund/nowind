@@ -34,6 +34,8 @@ const GENERATED = [
   "theme/theme.typography.manifest.json",
   "theme/theme.space.css",
   "theme/theme.space.manifest.json",
+  "theme/theme.shadows.css",
+  "theme/theme.shadows.manifest.json",
   "dist/nowind.bundle.css",
   "dist/nowind.min.css",
 ];
@@ -69,13 +71,13 @@ function check(root) {
   const tmp = mkdtempSync(join(tmpdir(), "nowind-check-"));
   try {
     cpSync(root, tmp, { recursive: true, filter: (p) => !p.includes(`${join(root, ".git")}`) });
-    for (const script of ["utopia.mjs", "utilities.mjs", "bundle.mjs"]) {
+    for (const script of ["utopia.mjs", "shadows.mjs", "utilities.mjs", "bundle.mjs"]) {
       execFileSync(process.execPath, [join(tmp, "scripts", script)], { cwd: tmp, stdio: "ignore" });
     }
     for (const f of GENERATED) {
       const a = join(root, f), b = join(tmp, f);
       if (!existsSync(a)) { errors.push(`${f}: missing. Fix: run the scripts in AGENTS.md order.`); continue; }
-      if (readFileSync(a, "utf8") !== readFileSync(b, "utf8")) errors.push(`${f}: differs from what the scripts write. Fix: edit the script or the theme, then run node scripts/utopia.mjs, utilities.mjs and bundle.mjs.`);
+      if (readFileSync(a, "utf8") !== readFileSync(b, "utf8")) errors.push(`${f}: differs from what the scripts write. Fix: edit the script or the theme, then run node scripts/utopia.mjs, shadows.mjs, utilities.mjs and bundle.mjs.`);
     }
   } finally {
     rmSync(tmp, { recursive: true, force: true });

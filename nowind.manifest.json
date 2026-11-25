@@ -15,10 +15,10 @@
     "rule": "Put your own global CSS in @layer styles. Unlayered CSS beats every utility."
   },
   "counts": {
-    "classes": 1206,
+    "classes": 1211,
     "hover": 131,
     "responsive": 205,
-    "bytes": 92479
+    "bytes": 93472
   },
   "naming": "property-value, as Prewind and Tailwind: p-md, gap-lg, text-fg-weak, bg-solid-accent-1. Colour classes take the token name without --.",
   "variants": {
@@ -44,7 +44,7 @@
     "leading": "leading-none, tight, snug, normal, relaxed",
     "tracking": "tracking-tight, normal, wide, widest",
     "radius": "rounded-none, rounded-xs (nested), rounded-sm and rounded (control), rounded-lg (surface), rounded-xl (dialog), rounded-full. Tailwind v4 names.",
-    "shadows": "shadow-xs, shadow-sm (and bare shadow), shadow-lg, shadow-none. Tailwind v4 names.",
+    "shadows": "shadow-xs, shadow-sm (and bare shadow), shadow-md, shadow-lg, shadow-xl, shadow-none; inset-shadow-xs, inset-shadow-sm, inset-shadow-none. Compound shadows after Massimo (theme.shadows.css); a cast and a recess on one element compose, as in Tailwind v4.",
     "borders": "border, border-0, -2, -4, with sides t r b l x y; border-solid/dashed/dotted/none",
     "layout": "container, display, flex, position, inset, z-",
     "controls": "h-control, h-nested (an .icon inside it shrinks by the two borders so it fits), size-control, size-nested, min-w-control, min-w-nested, px-control and px-nested (padding steps in by one margin on a side whose first or last child is .icon; wrap the label in a <span>), gap-gutter, gap-gutter-half",

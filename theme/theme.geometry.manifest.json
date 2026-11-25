@@ -121,6 +121,16 @@
       "token": "--icon-md-blend",
       "value": "0.5",
       "use": "How far the md glyph sits from F toward the slot."
+    },
+    {
+      "token": "--q-slope",
+      "value": "0.75",
+      "use": "q = slope × F + offset (Massimo's unit for shadows)."
+    },
+    {
+      "token": "--q-offset",
+      "value": "-6.75px",
+      "use": "See --q-slope."
     }
   ],
   "control": [
@@ -130,6 +140,13 @@
       "at14": "20px",
       "at16": "24px",
       "use": "Line box of a control; body line height."
+    },
+    {
+      "token": "--q",
+      "formula": "0.75F − 6.75",
+      "at14": "3.75px",
+      "at16": "5.25px",
+      "use": "Massimo's length unit; every shadow layer is a multiple of it, so shadows scale with the scope's font size."
     },
     {
       "token": "--margin",

@@ -3,6 +3,8 @@
 :root {
   --slot-slope: 2;
   --slot-offset: -8px;
+  --q-slope: 0.75;
+  --q-offset: -6.75px;
   --border-width: 1px;
   --mg: 1;
   --margin-offset: -1px;
@@ -33,6 +35,7 @@
 :root, .scope {
   --F: 1em;
   --slot: calc(var(--slot-slope) * var(--F) + var(--slot-offset));
+  --q: calc(var(--q-slope) * var(--F) + var(--q-offset));
   --margin: max(calc(var(--mg) * (var(--slot) - var(--F) + var(--margin-offset))), var(--border-width));
   --inset: calc(var(--margin) - var(--border-width));
   --gutter: calc(var(--gutter-factor) * var(--margin));

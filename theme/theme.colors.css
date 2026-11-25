@@ -226,10 +226,4 @@
   --fg-info-weak: var(--info-11);
   --fg-info: var(--info-12);
   --fg-info-strong: light-dark(var(--info-contrast-black), var(--info-contrast-white));
-
-  --shadow-color: light-dark(oklch(0.25 0.02 250 / 0.12), oklch(0 0 0 / 0.5));
-  --shadow-color-weak: light-dark(oklch(0.25 0.02 250 / 0.07), oklch(0 0 0 / 0.35));
-  --shadow-xs: 0 1px 2px var(--shadow-color-weak);
-  --shadow-sm: 0 1px 3px var(--shadow-color), 0 1px 2px -1px var(--shadow-color-weak);
-  --shadow-lg: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -4px var(--shadow-color-weak);
 }
