@@ -1,269 +1,94 @@
 # Nowind
 
-Prewind-style utility classes over a themeable token system, in plain CSS. No build step for the people using it: every class already exists, so it works in any HTML, including CMS output.
+A runtime CSS foundation with no build step and no dependencies. Link one file and every class already exists: no purging, no compiler, no config. Nowind gives HTML a small, closed set of style tags over a token layer you can retune, so whoever writes the markup, a person, a CMS or an agent, never has to author a stylesheet or reach for inline styles.
 
-- **Colors**: Radix 12-step scales regenerated in HCT, mapped to semantic roles for a neutral, four brand accents (accent-1 to accent-4) and four statuses (danger, warning, success, info), light and dark through `light-dark()`.
-- **Type and space**: fluid Utopia scales with Tailwind/Prewind names; space is a multiple of `--F`, so it also follows a `.scope`'s font size (`text-lg`, `p-md`), plus semantic type roles after Massimo (`text-heading-md`, `text-body-md`) and a kicker.
-- **Geometry**: control sizes, radii, icons, shadows and container spacing built from one input, `--F`, after Affine UI. At the root `--F` is the fluid body size, so a button is 30px tall on a phone and 46px on a wide screen; an element with the `scope` class pins its own size from its `font-size`.
-- **Utilities**: Prewind-style classes with Tailwind v4 names where they overlap, plus hover and breakpoint variants, in `nowind.css`. Every class is listed in [classes.md](classes.md); the counts are in [nowind.manifest.json](nowind.manifest.json).
+If you know Tailwind, you already know Nowind. The classes you type every day, `flex`, `p-md`, `gap-sm`, `rounded-md`, `shadow-sm`, `hover:`, `md:`, have the same names. The differences: sizes are t-shirt steps (`p-md`, `text-lg`) that scale fluidly, colors are Radix-style 12-step palettes, and lengths come from one geometric system instead of arbitrary numbers.
 
-## Setup
+Nowind is directly derived from four systems, and brings its own math to tie them together:
 
-Link one file from the CDN:
+- **[Prewind](https://github.com/codepilotsf/prewind)**: the no-build utility library Nowind grew from. Its shape (one CSS file, `@layer reset, styles, prewind`, t-shirt sizes, a theme file of CSS variables, global first) is Nowind's shape.
+- **[Tailwind CSS](https://tailwindcss.com)**: the class vocabulary and the runtime tag system: `property-value` names, v4 names where they differ (`rounded-xs`, `shadow-xs`, `h-dvh`), `hover:`, state and breakpoint variants, `group-*`, `@container` queries.
+- **[Radix Colors](https://www.radix-ui.com/colors)**: 12-step scales with alpha steps, regenerated in HCT, mapped to roles by contrast, light and dark through `light-dark()`.
+- **[Utopia](https://utopia.fyi)**: fluid type and space scales that grow with the viewport between two sizes, with no media queries.
+- **Nowind's own scaling**: one input, `--F` (the body size), drives every length after Affine UI's geometry: control heights (4n − 26 at base size n: 38px at 16), insets, gutters, icon boxes and a radius scale that nests concentrically. The fluid scale follows the root font size too, and three tiers (product, content, brand) re-run the whole system at a larger rhythm for a region.
+
+## Why Nowind
+
+**It is a runtime system.** Every class is in the file before the page loads, so it works with HTML that arrives at runtime: streamed responses, CMS output, server-rendered fragments and UI generated on the fly. There is nothing to compile and nothing to purge.
+
+**It is built for agents and generative UI.** A model writing interface markup does best with a vocabulary it already knows, a small set of choices and defaults that look right without help. Nowind gives it exactly that: Tailwind names, a constrained scale, and no need to write CSS or `style=""`. Every class, token and component is also described as data, so an agent can look things up instead of guessing:
+
+- [`nowind.manifest.json`](nowind.manifest.json): every class group, variant and count
+- [`components.manifest.json`](components.manifest.json): every component's purpose, use, avoid and the classes its example uses
+- `theme/*.manifest.json`: every token, what it is for and how it is derived
+
+**The defaults are the product.** Unstyled HTML already looks considered: the reset themes headings, links, fields, selects, checkboxes, radios, switches, sliders, file inputs, `progress`, `meter` and dialogs, with focus rings, transitions and reduced-motion handling built in. A button is one control tall and a card pads to nest its children's corners without anyone choosing a number. Smaller and larger sizes are there when a design asks for them (nested controls, tiers, `icon-sm`, `icon-lg`), but the default is always the sensible one.
+
+**The tokens are yours.** Every class reads a CSS variable. Change a palette, the type scale, the viewport range or the corner curvature in the token layer and every class follows.
+
+## Philosophy: classes first
+
+Prewind works global first. Nowind keeps that order for people, and adds a rule for machines:
+
+1. **Tokens and global CSS** for what should look the same everywhere: retune the theme, or put site-wide rules in `@layer styles`.
+2. **Utility classes** for everything else. Markup carries its own look, so generated UI needs no stylesheet.
+3. **No inline styles.** The scale has a step for every common case; if a value isn't on it, it belongs in the token layer.
+
+Markup drives state, too: set `aria-pressed`, `aria-selected`, `aria-current`, `open` or `aria-invalid` and the `pressed:`, `selected:`, `current:`, `open:` and `invalid:` variants follow. No script swaps classes.
+
+## Getting started
+
+Link one file:
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.8.0/dist/nowind.min.css">
 ```
 
-The link pins release `v0.8.0`, so your site won't change until you change the version. `@main` follows the latest commit, but jsDelivr caches it for up to 12 hours. Or copy `dist/nowind.min.css` into your project and link it locally. Releases are listed in [CHANGELOG.md](CHANGELOG.md).
-
-Browse it first: [component docs](https://kimgranlund.github.io/nowind/site/docs/components-index.html), the [showcase](https://kimgranlund.github.io/nowind/site/components.html), [specimen](https://kimgranlund.github.io/nowind/site/specimen.html) and the [class list](https://kimgranlund.github.io/nowind/site/docs/classes.html) are on GitHub Pages.
-
-`nowind.min.css` is the whole system in one request: the theme with every import inlined, the reset and the utilities. `dist/nowind.bundle.css` is the same, unminified.
-
-While working on Nowind itself, link the source files instead, so edits show without rebuilding:
+The link pins release `v0.8.0`. Or copy `dist/nowind.min.css` into your project. Releases are in [CHANGELOG.md](CHANGELOG.md). Browse the [component docs](https://kimgranlund.github.io/nowind/site/docs/components-index.html), the [showcase](https://kimgranlund.github.io/nowind/site/components.html), the [specimen](https://kimgranlund.github.io/nowind/site/specimen.html) and the [class list](https://kimgranlund.github.io/nowind/site/docs/classes.html) on GitHub Pages.
 
 ```html
-<link rel="stylesheet" href="theme.css">
-<link rel="stylesheet" href="nowind.css">
-```
-
-`theme.css` loads its groups and palettes through `@import`, about 25 requests, so use the bundle in production.
-
-`nowind.css` declares the cascade layers `reset, styles, nowind`. Put your own CSS in `@layer styles`, so a utility class always wins over it:
-
-```css
-@layer styles {
-  .site-nav { display: flex; gap: var(--space-md); }
-  .site-nav a { color: var(--fg-weak); }
-}
-```
-
-CSS outside any layer beats every utility, so keep your rules inside `@layer styles`.
-
-Or import the source files from one stylesheet of your own:
-
-```css
-@import "theme.css";
-@import "nowind.css";
-
-@layer styles {
-  /* your global rules */
-}
-```
-
-Fonts load with the theme: `theme.css` (and the bundle) imports Inter, Inter Tight and IBM Plex Mono from Google Fonts. `--font-body` is Inter, `--font-heading` is Inter Tight and `--font-mono` is IBM Plex Mono, each with a system fallback while they load. To use other faces, override those three tokens in `@layer styles`; the Google request still happens unless you remove the import from `theme.css` and rebuild.
-
-## Using it
-
-Work global first, as in Prewind:
-
-1. **Global CSS** in `@layer styles` for shared looks: navigation, headings, forms.
-2. **Utility classes** for one-off changes on a single element.
-3. **Inline styles** for any value the scale doesn't have (there is no bracket syntax).
-
-```html
-<article class="max-w-form p-lg rounded-lg bg border border-weak shadow-lg">
-  <span class="text-kicker fg-accent-1-weak">Release</span>
-  <h3 class="text-title mt-3xs mb-2xs">Nowind 0.1</h3>
-  <p class="text-body-md fg-weak">Fluid type, semantic roles and a light/dark palette.</p>
-  <button class="h-control px-md rounded-sm border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong fg-on-solid-accent-1">
-    Read more
+<article class="max-w-form p-md rounded-md bg-neutral-1 border border-neutral-6 shadow-sm">
+  <span class="text-xs font-mono uppercase tracking-widest fg-accent-1-11">Release</span>
+  <h3 class="text-base font-semibold">Nowind 0.8</h3>
+  <p class="fg-neutral-11">Fluid type, Radix palettes and one geometric system.</p>
+  <button class="inline-flex items-center h-control px-control gap-gutter rounded-sm state border border-transparent bg-accent-1-9 fg-accent-1-contrast font-medium">
+    <i class="icon ph ph-arrow-right"></i><span>Read more</span>
   </button>
 </article>
 ```
 
-### Class names
+Nowind declares the layers `reset, styles, nowind`. Put your own CSS in `@layer styles` and a utility class always wins over it:
 
-Classes follow `property-value`. A color class is the property prefix plus the token name, minus the role group when it matches the prefix: `--fg-weak` is `fg-weak`, `--bg-accent-1` is `bg-accent-1`, `--border-weak` is `border-weak`, but `--component-accent-1` is `bg-component-accent-1`. Each property takes only its own roles: `fg-` the `fg-*` and `on-solid-*` tokens, `bg-` the `bg-*`, `component-*` and `solid-*` tokens, `border-` the `border-*` tokens. The reset draws every border in `--border`, so `border` alone needs no color class; `border-default` sets it back explicitly. Raw palette steps (`bg-accent-1-3`, `fg-danger-11`, `border-neutral-6`) work with all three; alpha steps only with `bg-`. The table shows examples; [classes.md](classes.md) lists every class with its declarations.
-
-| Group | Examples |
-|---|---|
-| Spacing | `p-md`, `px-lg`, `mt-xs`, `-mt-sm`, `mx-auto`, `gap-sm` (sizes `0`, `3xs` … `4xl`) |
-| Type scale | `text-xs` … `text-6xl` (size and line height), `text-kicker-sm/md/lg` |
-| Type roles | `text-display`, `text-heading-md`, `text-title`, `text-body-md`, `text-caption`, `text-label`, `text-kicker`, `text-figure`, `text-mono`, … |
-| Text color | `fg`, `fg-weak`, `fg-subtle`, `fg-accent-1`, `fg-on-solid`, `fg-inverse` |
-| Background | `bg`, `bg-strong`, `bg-component`, `bg-solid-accent-1`, `bg-accent-1-3`, `bg-neutral-a4`, `bg-inverse` (toasts, tooltips), `bg-scrim` |
-| Border | `border`, `border-2`, `border-t` (widths: the reset sets a solid style), `border-dashed`, `border-default`, `border-accent-1-weak`, `rounded-sm`, `rounded-md` |
-| Shadow | `shadow-xs` … `shadow-xl`, `inset-shadow-xs`, `inset-shadow-sm`, `shadow-none` (a cast and a recess on one element combine) |
-| Typography | `font-semibold`, `font-sans`, `font-heading`, `font-mono`, `leading-tight`, `tracking-wide`, `uppercase`, `tabular-nums`, `text-balance`, `truncate` |
-| Layout | `container`, `flex`, `flex-col`, `items-center`, `justify-between`, `grid`, `grid-cols-1` … `grid-cols-12`, `col-span-2`, `col-span-full`, `basis-1/2`, `hidden`, `relative`, `z-10` |
-| Sizing | `w-full`, `w-fit`, `w-1/2`, `w-1/3`, `w-2/3`, `w-1/4`, `w-3/4`, fifths, `h-control`, `max-w-text` (or `max-w-prose`), `max-w-form`, `min-h-screen`, `min-h-dvh` |
-
-### Container levels and tiers
-
-Affine pads by what a box is, not by a size. These classes read the geometry tokens, so they grow with the type and follow a `.scope`:
-
-| Class | Use | At 16px |
-|---|---|---|
-| `p-surface` | Card or panel (slot − border) | 23px |
-| `p-dialog` | Dialog (control height − border) | 37px |
-| `p-region` | Sidebar | 24px |
-| `p-page` | Page content area (tier × control height) | 38px |
-| `gap-field` | Label to control, control to help | 7px |
-| `gap-row` | Controls side by side | 14px |
-| `gap-group` | Field to field | 19px |
-| `gap-section`, `mt-section`, `mb-section` | Before a new section (tier × slot) | 24px |
-
-Each padding class also has `px-` and `py-` versions.
-
-Tiers change the rhythm of a whole region. `tier-content` raises the font size by 2px and multiplies page and section spacing by 1.5; `tier-brand` adds 4px and 2×. `tier-product` is the default. Every size inside a tier recomputes, as inside a `.scope`, and the whole type scale grows with it: body text is 18px at the root, 20px in `tier-content` and 22px in `tier-brand` on a wide screen, with larger steps growing in proportion.
-
-```html
-<article class="tier-content">…</article>
+```css
+@layer styles {
+  .site-nav { display: flex; gap: var(--space-md); }
+}
 ```
 
-### Buttons and icons
+### The theme
 
-Nowind has no button component; a button is a stack of utilities. The geometry follows Affine UI: one control height tall, text padded by the text edge, and a side that holds an icon padded one margin less, so the icon's box sits one margin from the edge. An icon alone makes a square.
+`theme.css` holds the token layer: colors, type, space, geometry, radii, shadows, motion and materials, each a group of CSS variables in `theme/`. The bundle inlines it. To retune, override tokens in `@layer styles`, or edit the theme files and rebuild (see [Changing the theme](#changing-the-theme)).
 
-Icons use [Phosphor](https://phosphoricons.com)'s web font. Link the weights you use:
+Fonts load with the theme: Inter (`--font-body`), Inter Tight (`--font-heading`, `--font-display`) and IBM Plex Mono (`--font-mono`) from Google Fonts, each with a system fallback.
 
-```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/light/style.css">
-```
+### The included reset
 
-```html
-<button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm
-               border bg-component-weak hover:bg-component text-title-sm">
-  <i class="icon ph ph-floppy-disk"></i><span>Save</span>
-</button>
+The reset, in the `reset` layer with every selector in `:where()`, sets `box-sizing`, zero-width solid borders (so `border` sets only a width), sizes unsized headings from the type roles, keeps link underlines, gives buttons and links a focus ring and text fields an accent border, themes native form controls, transitions every interactive element and turns motion off for people who ask for less.
 
-<button class="inline-flex items-center justify-center h-control px-control rounded-sm border" aria-label="Add">
-  <i class="icon ph ph-plus"></i>
-</button>
+## Theming
 
-<button class="inline-flex items-center justify-center h-nested px-nested gap-gutter-half rounded-xs border text-label">
-  <i class="icon icon-sm ph-bold ph-funnel"></i><span>Filter</span>
-</button>
-```
+### Colors
 
-- **Wrap the label in a `<span>`.** `px-control` and `px-nested` find an icon edge with `:has(> .icon:first-child)` and `:last-child`, and CSS cannot see bare text.
-- **Icon sizes** follow Affine's weights: `icon icon-sm` with `ph-bold`, `icon` with `ph` (regular), `icon icon-lg` with `ph-light`. The box is always one slot square.
-- An inline `<svg>` inside `.icon` also works; it takes the glyph size and `currentColor`.
-- Classes: `h-control`, `h-nested`, `size-control`, `size-nested`, `min-w-control`, `px-control`, `px-nested`, `gap-gutter`, `gap-gutter-half`, `icon`, `icon-sm`, `icon-md`, `icon-lg`.
+After Radix, each palette is twelve steps plus twelve alpha steps, regenerated in HCT so the steps are even in perceived lightness, and each step switches for dark mode by itself through `light-dark()`. There is no `dark:` variant.
 
-### Materials
+Palettes: `neutral` (slate), `accent-1` (blue), `accent-2` (violet), `accent-3` (plum), `accent-4` (crimson), `danger`, `warning`, `success`, `info`.
 
-After Massimo, a region picks a material and each part says what it is. The material decides how parts are lit, lined or made of glass; it never changes a size or a fill color.
+- **Steps** for direct use: `bg-neutral-3`, `fg-accent-1-11`, `border-danger-7`, `bg-neutral-a4`, `fg-accent-1-contrast` (text on step 9).
+- **Roles** by contrast, for your own CSS and semantic classes: `--bg`, `--component-weak` / `--component` / `--component-strong` (rest, hover, pressed), `--border-weak` / `--border` / `--border-strong`, `--solid` / `--solid-strong`, `--fg-subtle` / `--fg-weak` / `--fg` / `--fg-strong`, each with a palette suffix (`--border-danger`, `--fg-accent-1-weak`).
 
-| Class | Effect |
-|---|---|
-| `material-flat` | No paint (the default) |
-| `material-physical` | Lit faces, a bevel, a cast shadow; pressed buttons sink |
-| `material-frosted` | Cards, buttons and overlays become frosted glass: blurred backdrop, sheen, lit rim |
-| `material-glass` | Clear glass after Apple's Liquid Glass: an 18% face, almost no blur, light catching the rim as two thin crescents |
-| `material-outline` | No fills: every part draws one line |
-
-Parts: `relief-raised` (buttons), `relief-raised-solid` (primary buttons), `relief-field` (inputs), `relief-recessed` (tracks, wells), `relief-etched`, `relief-ground` (cards), `relief-overlay` (popovers, dialogs). The nearest material wins, so regions nest.
-
-```html
-<div class="material-frosted relief-ground p-surface rounded-lg bg">
-  <input class="relief-field …">
-  <button class="relief-raised-solid …">Invite</button>
-</div>
-```
-
-**The lens.** Add `lens` to a glass part and its backdrop refracts: the edge bends like rounded-sm glass, the body magnifies slightly, and the rim fringes. It needs the `#nowind-lens` SVG filter in the page and `data-lens="on"` on `<html>`; this site's `site.js` draws a filter per element at its size and corner radius and sets the attribute in Chromium, the only engine that applies an SVG filter behind an element. Elsewhere glass keeps its blur.
-
-**Backdrops.** `bg-dots` paints a dot grid in `currentColor` (set it with `fg-*`), spaced by `bg-dots-sm`, `-md` or `-lg`. Glass needs something behind it to bend.
-
-### Radius and nesting
-
-After Affine UI, one unit runs the radius scale: each step is one margin (M) from the next. `rounded-xs` (control − M), `rounded-sm` (control), `rounded-md` (control + M: cards, popovers), `rounded-lg` (+2M: dialogs), `rounded-xl` (+3M). The padding between levels is the inset, `p-inset` (M − border), so a bordered container padded `p-inset` holds items one step down with parallel curves:
-
-```html
-<div popover class="rounded-md p-inset border">
-  <a class="rounded-sm …">Rename</a>
-</div>
-```
-
-For any other padding, `rounded-inner` takes the parent's radius minus its padding and border.
-
-### Fields
-
-A field with an icon, prefix, suffix or trailing action is a box around a bare input. The box takes the border, focus and error states; the slots run leading icon, prefix, input, suffix, trailing. The icon names the kind of value, and units go in the suffix, never in the value.
-
-```html
-<div class="flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8
-            focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 transition">
-  <i class="ph ph-scales fg-neutral-11"></i>
-  <input id="weight" inputmode="decimal" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent" value="72.5">
-  <span class="fg-neutral-11">kg</span>
-</div>
-```
-
-The reset themes the native controls that have no base appearance: the file input's button looks like a secondary button, `progress` is an accent bar, and `meter` turns success, warning or danger from its `low`, `high` and `optimum`. Text fields show focus by turning their border accent, not with a ring. `field-sizing-content` sizes a field to what's typed in it (textareas grow by default; `field-sizing-fixed` stops it).
-
-### Form marks
-
-The reset draws checkboxes, radios, switches and sliders with the theme, at Affine's mark size (between the body size and a slot), filled with `accent-1` when on. A switch is a checkbox with `role="switch"`; its thumb moves on the snappy spring. `mark-sm` and `mark-lg` pick another size.
-
-```html
-<label><input type="checkbox" role="switch" checked> Email me about mentions</label>
-<input type="checkbox" class="mark-lg" checked>
-<input type="range" value="60">
-```
-
-### Page grid and app shell
-
-After Affine: `gap-grid` is the column gutter (2M), `p-grid-inset` pads a placed element by half a gutter, and `px-grid` / `px-grid-compact` are the page's edge padding. For an app frame, `w-sidebar` (16F + 16), `w-rail` (collapsed), `h-header` and `max-w-measure` (a 44-character reading column) all grow with the type. `top-header` and `max-h-below-header` make a sidebar stick just under a sticky header: `lg:sticky top-header max-h-below-header lg:overflow-y-auto`.
-
-### Motion
-
-Every interactive element (links, buttons, summaries, fields, labels and the button, tab, option, menuitem and switch roles) transitions its colours, opacity, shadow and transforms by default. Anything else that changes with state names a transition class. `transition-colors` (and `transition`, `transition-opacity`, `transition-shadow`, `transition-transform`) use Affine's single state change: 160ms on Apple's standard ease. Swap in one of Massimo's springs for movement: `duration-snappy ease-snappy` for a toggle, `duration-smooth ease-smooth` for a sliding sheet, `ease-bouncy` for playful moments. The springs are real spring curves sampled into CSS `linear()`. The reset turns all motion off for people who ask for reduced motion.
-
-### Popovers, select and animation
-
-- `anchor-bottom`, `anchor-top`, `anchor-start`, `anchor-end` and `anchor-center` place a popover against the button that opens it (`popovertarget`), with CSS anchor positioning that flips at the screen edge. No script.
-- `select-base` turns a `<select>` into the customizable select: its picker and options take the theme.
-- `animate-spin` and `animate-pulse` for spinners and skeletons; the reset stops them for people who ask for reduced motion.
-
-```html
-<button popovertarget="menu">Sort</button>
-<div id="menu" popover class="anchor-bottom p-3xs rounded-lg bg border border-weak shadow-lg">…</div>
-```
-
-### Variants
-
-- **Hover**: only on devices that can hover, as Tailwind v4. Text, background and border colors of the role tokens and of the raw steps of neutral, accent-1 to accent-4 and danger, opacity and cursor: `hover:bg-component`, `hover:bg-neutral-4`, `hover:border-strong`, `hover:opacity-100`.
-- **Breakpoints**: `sm:` 640px, `md:` 768px, `lg:` 1024px, `xl:` 1280px, `2xl:` 1536px (the `--breakpoint-*` tokens), for layout: display, grid columns and spans, flex direction, wrap and basis, alignment, text alignment, widths (`md:w-1/3`) and gaps (`md:gap-lg`). Margins, color and type have no breakpoint variants; padding, position, `top-*`, overflow and heights do.
-- **State layer**: `state` on any element washes its text colour over it on hover, focus, press and when selected (`aria-selected`, `aria-pressed`, `aria-expanded`, `aria-current` or a checked child), at the `--state-*` opacities. One class in place of `hover:` and `active:` classes per palette step.
-- **Root size**: every size is rem plus a vw term scaled by the root size (`--vw`), so setting `html { font-size: 14px }` scales type, space, radii and controls by 14/16 at any width. Controls follow Affine: height 4n − 26 at base size n.
-- **Container queries**: `@container` on a wrapper, then `@sm:` 384px, `@md:` 448px, `@lg:` 512px, `@xl:` 576px, `@2xl:` 672px (the `--container-*` tokens) on the same layout classes, measured against that wrapper's width: `<div class="@container"><article class="flex flex-col @md:flex-row">`.
-
-```html
-<div class="grid grid-cols-1 md:grid-cols-3 gap-sm md:gap-lg">
-  <div class="md:col-span-2">…</div>
-  <div class="hidden lg:block">…</div>
-</div>
-```
-
-- **States** (Tailwind v4 names), colors only: `active:`, `focus-visible:` and `focus-within:` (borders), `selected:` (`aria-selected="true"`), `current:`, `pressed:`, `expanded:`, `open:` (details and popovers), `invalid:` (also `:user-invalid`), `has-invalid:` and `has-checked:` (a wrapper holding an invalid or checked input) and `disabled:` (also `aria-disabled`, with opacity and cursor). They cover the neutral and accent roles and the raw steps of neutral, accent-1 to accent-4 and danger; `invalid:` and `has-invalid:` cover neutral and danger. Markup drives the look:
-
-```html
-<button role="tab" aria-selected="true"
-        class="border-b-2 border-transparent selected:border-accent-1-strong fg-weak selected:fg">Profile</button>
-```
-
-- **Groups:** put `group` on a parent and `group-hover:`, `group-focus-within:` or `group-open:` on a child to change its opacity, visibility, rotation or text role. `group-open:` also matches a group holding an open popover, so a caret turns when its menu opens: `<i class="ph ph-caret-down transition group-open:rotate-180">`.
-
-There is no `dark:` variant. Dark mode needs no variant: every color token switches by itself.
-
-### Light and dark
-
-The page follows the OS setting. The site's band has a toggle that sets `data-color-mode` and remembers it. Force a mode on any element and everything inside it follows:
-
-```html
-<html data-color-mode="dark">
-<section class="light">…</section>
-```
+A page follows the OS setting; `data-color-mode="dark"` (or `light`) on any element forces a mode inside it.
 
 ### Tokens in your own CSS
-
-Every class reads a token, and your CSS can read the same ones:
 
 ```css
 @layer styles {
@@ -271,77 +96,139 @@ Every class reads a token, and your CSS can read the same ones:
     padding: var(--space-md);
     background: var(--component-accent-1-weak);
     border: var(--border-width) solid var(--border-accent-1-weak);
-    border-radius: var(--radius-surface);
+    border-radius: var(--radius-md);
     color: var(--fg-accent-1);
-    font-size: var(--body-md);
-    line-height: var(--body-md--line-height);
   }
 }
 ```
 
-The color roles, named by contrast against the page in both modes:
-
-| Group | Tokens (neutral; add `-accent-1` … `-accent-4`, `-danger`, `-warning`, `-success` or `-info` after the group for that palette) |
-|---|---|
-| Background | `--bg`, `--bg-strong` |
-| Component fill | `--component-weak` (rest), `--component` (hover), `--component-strong` (pressed) |
-| Border | `--border-weak` (dividers), `--border` (controls), `--border-strong` (hover) |
-| Solid | `--solid`, `--solid-strong` (hover), `--on-solid` (text on it) |
-| Text | `--fg-subtle`, `--fg-weak`, `--fg`, `--fg-strong` |
-
-So a field in error is `border-danger`, its message `fg-danger-weak`, and a destructive button `bg-solid-danger hover:bg-solid-danger-strong fg-on-solid-danger`.
-
 The full list, with what each token is for, is in the manifests in `theme/`.
 
-## Files
+## Fluid sizing
 
+Sizes are t-shirt steps: `3xs`, `2xs`, `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, `4xl` for space, `xs` to `6xl` for type. As in Prewind, they are generated with Utopia's math: each step is a CSS `clamp()` that grows with the viewport, and the ratio between steps holds at every width (1.2 on a phone, 1.25 on a wide screen).
+
+Nowind adds three things on top:
+
+- **One input.** Space steps are multiples of `--F`, the body size, and so is every control length. At the root `--F` is the fluid body size; inside a `.scope` or a tier it is that element's own font size, so a region with smaller type spaces itself to match.
+- **Affine's geometry.** From `--F` (n) come the slot (2n − 8, the icon box and small control), the margin (n − 9), the control height (slot + 2 margins, 4n − 26), the inset (margin − border) and the gutter. Controls, fields, segmented controls, toolbars, table rows and menu items share one height.
+- **The root scales everything.** The vw term of every clamp is scaled by the root font size (CSS typed arithmetic), so `html { font-size: 14px }` resizes type, space, radii and controls by 14/16 at any width. Breakpoints stay in px.
+
+| Base size n | 12 | 14 | 16 | 18 |
+|---|---|---|---|---|
+| Control height (4n − 26) | 22 | 30 | 38 | 46 |
+| Slot, small control (2n − 8) | 16 | 20 | 24 | 28 |
+
+### Radius and nesting
+
+One unit runs the radius scale: each step is one margin from the next (`rounded-xs` control − M, `rounded-sm` the control, `rounded-md` + M for cards and popovers, `rounded-lg` + 2M for dialogs, `rounded-xl` + 3M). The padding between two levels is the inset, `p-inset`, so a container holds the next step down with parallel curves; for any other padding, `rounded-inner` takes the parent's radius minus its padding and border.
+
+```html
+<div popover class="p-inset rounded-md border">
+  <a class="h-control px-control rounded-sm">Rename</a>
+</div>
 ```
-CHANGELOG.md                   releases
-index.html                     redirects to site/, the GitHub Pages landing page
-AGENTS.md                      how to change Nowind: generated files, script order, rules, naming
-theme.css                      imports the theme groups below
-nowind.css                     reset and utility classes (generated)
-nowind.manifest.json           class counts, groups, variants, changes from Prewind (generated)
-components.manifest.json       every component as data: page, group, summary, use, avoid, classes (generated)
-classes.md                     every class and its declarations (generated)
-dist/
-  nowind.bundle.css            theme + reset + utilities in one file (generated)
-  nowind.min.css               the same, minified (generated)
-theme/
-  theme.colors.css             color roles, Radix companions, shadows
-  theme.geometry.css           --F geometry: slot, margin, control height, radius, container
-  theme.shadows.css            compound shadows after Massimo (generated)
-  theme.motion.css             spring easings and durations after Massimo (generated)
-  theme.materials.css          material paint and glass faces after Massimo (generated)
-  theme.space.css              fluid --space-* (generated)
-  theme.typography.css         fluid --text-*, kicker, faces, weights, leading, tracking (generated)
-  theme.type-roles.css         semantic roles: --heading-md, --heading-md--line-height, …
-  theme.*.manifest.json        what every token is and how it's derived
-  colors-semantic/             accent-1 (blue), accent-2 (violet), accent-3 (plum), accent-4 (crimson), neutral (slate),
-                               danger (red), warning (amber), success (green), info (indigo): one file each
-  colors-raw/                  the radix-hct-colors library (31 families)
-scripts/
-  utopia.mjs                   generates the fluid type and space scales
-  shadows.mjs                  generates the compound shadows
-  motion.mjs                   generates the spring easings and durations
-  materials.mjs                generates the material paint tokens
-  utilities.mjs                generates nowind.css from the theme tokens
-  bundle.mjs                   inlines theme.css's imports and nowind.css into dist/
-  check.mjs                    checks the rules in AGENTS.md; --self-test proves it catches breaks
-  serve.mjs                    dev server on port 8765 with caching off
-  templates.py                 generates the docs site in site/docs/, its component pages and the class list
-  component_docs.py            the component pages' content: snippet, summary, use and avoid
-site/specimen.html             every token, the reset and every class, live
-site/utilities.html            a demo built only from classes
-site/docs/                     docs site: home, guide, colour, type and space, states and variants, materials, reference, classes, changelog and a page per component (generated by scripts/templates.py)
-site/site.js                   the one script every page loads: ⌘K search, the light/dark toggle, the glass lens
-site/search.json               the search index: every page, block heading, component and class (generated)
-site/components.html           buttons, badges, alerts, forms, cards, tables, navigation and a dialog, built only from classes
+
+### Tiers
+
+A tier re-runs the whole system for a region at a different rhythm, as product, editorial and marketing surfaces need:
+
+| Class | Body size | Spacing |
+|---|---|---|
+| `tier-product` | the base | 1× |
+| `tier-content` | + 2px | 1.5× |
+| `tier-brand` | + 4px | 2× |
+
+Every length inside a tier recomputes: type, space, controls, radii and shadows. Tiers nest without stacking: a `tier-product` frame inside a `tier-content` page is product-sized again.
+
+## Nowind, Prewind and Tailwind
+
+**Choose Nowind when:**
+
+- You want one runtime file, no build, no dependencies
+- Markup is written or generated at runtime, by people, a CMS or a model
+- You want defaults that look right and a constrained scale over arbitrary values
+- You want Radix-style palettes, fluid sizing and dark mode without configuration
+
+**Choose Tailwind when:** you want arbitrary values (`w-[347px]`), a build step's tree-shaking, or a plugin ecosystem.
+
+### What Nowind adds to Prewind
+
+- Grid (`grid-cols-1` … `12`, `col-span-*`), container queries (`@container`, `@md:`) and a `2xl:` breakpoint
+- State variants driven by ARIA (`pressed:`, `selected:`, `current:`, `expanded:`, `open:`, `invalid:`, `has-checked:`, `disabled:`) and group variants (`group-hover:`, `group-open:`)
+- A state layer: `state` washes the text color over any element on hover, focus, press and selection, in any palette
+- Transitions on by default, spring easings, `animate-spin`, `animate-pulse`
+- Control geometry (`h-control`, `px-control`, `size-control`, the `-nested` forms, `gap-gutter`), icon boxes (`icon`, `icon-sm`, `icon-lg`) and nesting radii
+- Radix palettes with alpha steps and roles; `text-{size}` sets the line height, as in Tailwind v4
+- Tiers, materials (`material-frosted`, `material-glass` with a refracting `lens`) and a themed reset for native controls
+- Logical sides (`ps-`, `me-`, `start-`, `border-s`, `rounded-e-*`) for right-to-left languages
+
+### What Nowind leaves out
+
+- **Arbitrary values.** No bracket syntax. A value the scale lacks belongs in the token layer.
+- **A `dark:` variant.** Every color switches by itself.
+- **`bg-opacity-*`.** Use the alpha steps: `bg-accent-1-a3`.
+- **Margins and colors at breakpoints.** Breakpoint and container variants cover layout only.
+
+## Reference
+
+Every class and its declarations: [classes.md](classes.md), or browse them as [regular](https://kimgranlund.github.io/nowind/site/docs/classes.html) and [semantic](https://kimgranlund.github.io/nowind/site/docs/semantic.html) classes. Regular classes name a step or a value (`p-md`, `text-lg`, `bg-neutral-3`); semantic classes name a role (`p-surface`, `fg-weak`, `text-heading-md`). Examples use regular classes only.
+
+| Group | Examples |
+|---|---|
+| Spacing | `p-md`, `px-lg`, `mt-xs`, `-mt-sm`, `mx-auto`, `gap-sm`, `p-inset` |
+| Type | `text-xs` … `text-6xl`, `font-medium` … `font-extrabold`, `font-display`, `font-mono`, `tracking-tight`, `uppercase`, `tabular-nums`, `truncate` |
+| Color | `fg-neutral-11`, `bg-accent-1-9`, `fg-accent-1-contrast`, `border-neutral-6`, `bg-neutral-a4` |
+| Borders and radius | `border`, `border-2`, `border-b`, `border-dashed`, `rounded-xs` … `rounded-xl`, `rounded-full`, `rounded-inner` |
+| Shadow | `shadow-xs` … `shadow-xl`, `inset-shadow-xs`, `inset-shadow-sm` |
+| Controls and icons | `h-control`, `px-control`, `size-control`, `h-nested`, `size-nested`, `gap-gutter`, `icon`, `icon-sm`, `icon-lg` |
+| Layout | `flex`, `grid`, `grid-cols-3`, `col-span-2`, `basis-1/3`, `items-center`, `justify-between`, `container`, `@container` |
+| Sizing | `w-full`, `w-fit`, `w-1/3`, `max-w-text`, `max-w-form`, `min-h-dvh`, `aspect-video`, `aspect-square` |
+
+### Text sizes in practice
+
+Every example follows one size contract, enforced by the examples lint: controls, table cells and body copy are `text-base`; labels, table headers, supporting lines and badges `text-sm`; titles `text-base font-semibold` (`text-lg` in a dialog); and an icon takes the step of the text beside it. The [Type and space](https://kimgranlund.github.io/nowind/site/docs/type-space.html) page has the table.
+
+### Buttons, fields and icons
+
+There is no button or field component: each is a stack of classes, and the docs show every pattern. Wrap a label in a `<span>`, so `px-control` can find an icon at either edge and pad it one margin less.
+
+```html
+<button class="inline-flex items-center h-control px-control gap-gutter rounded-sm state border bg-neutral-3 fg-neutral-12 font-medium">
+  <i class="icon ph ph-floppy-disk"></i><span>Save</span>
+</button>
+
+<div class="flex items-center gap-gutter h-control px-control rounded-sm border bg-neutral-1 cursor-text">
+  <i class="icon ph ph-scales fg-neutral-11"></i>
+  <input inputmode="decimal" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent" value="72.5">
+  <span class="fg-neutral-11">kg</span>
+</div>
+```
+
+Icons use [Phosphor](https://phosphoricons.com)'s web font; link the weights you use. Every glyph sits in an `icon` box, one slot square.
+
+## Variants
+
+| Prefix | Covers | Example |
+|---|---|---|
+| `hover:` | Colors of roles and steps, opacity, cursor (only on devices that can hover) | `hover:bg-neutral-4` |
+| `active:`, `focus-visible:`, `focus-within:` | Colors; borders for focus | `focus-within:border-accent-1-8` |
+| `selected:`, `current:`, `pressed:`, `expanded:`, `open:`, `has-checked:` | Colors, and `shadow-xs`/`-sm`/`-none` to lift a chosen item | `pressed:bg-neutral-1 pressed:shadow-xs` |
+| `invalid:`, `has-invalid:`, `disabled:` | Colors; opacity and cursor for disabled | `has-invalid:border-danger-7` |
+| `group-hover:`, `group-focus-within:`, `group-open:` | Opacity, visibility, rotation, text color | `group-open:rotate-180` |
+| `sm:` 640, `md:` 768, `lg:` 1024, `xl:` 1280, `2xl:` 1536 | Layout: display, grid, flex, alignment, widths, heights, padding, position, overflow, gaps | `md:grid-cols-3` |
+| `@sm:` 384 … `@2xl:` 672 | The same layout classes, against the nearest `@container` | `@md:flex-row` |
+
+```html
+<button role="tab" aria-selected="true"
+        class="h-control px-control border-b-2 border-transparent selected:border-accent-1-8 fg-neutral-11 selected:fg-neutral-12">
+  <span>Profile</span>
+</button>
 ```
 
 ## Changing the theme
 
-**Colors.** Each palette is one file in `theme/colors-semantic/`. To switch an accent to another family, change its `@import` and every `--colors-<family>-*` reference in its file. Then set its `--accent-N-contrast` from the family's `solidLabel` in the radix-hct-colors `manifest.json`: indigo, violet, plum and crimson take light text on their solid in both modes; amber, yellow and lime take dark text in both; most others take light text in light mode and dark in dark mode. To add a palette (danger, success), copy a palette file, rename the prefix and import it in `theme/theme.colors.css`.
+**Colors.** Each palette is one file in `theme/colors-semantic/`. Switch a palette's family by changing its import, and set its contrast token from the family's `solidLabel`. [AGENTS.md](AGENTS.md) has the steps for adding a palette.
 
 **Type and space.** Regenerate the fluid scales with your own viewport range, base sizes and ratios:
 
@@ -349,51 +236,23 @@ site/components.html           buttons, badges, alerts, forms, cards, tables, na
 node scripts/utopia.mjs --min-vw 360 --max-vw 1240 --min-base 14 --max-base 18 --min-ratio 1.2 --max-ratio 1.25
 ```
 
-**Shadows.** Every shadow is a stack of 4–6 layers generated from a few constants after Massimo: a tight contact layer where the element meets its ground, then key layers that double in offset and blur while their opacity falls to a fixed total. Lengths are multiples of `--q`, so a `.scope` with a smaller font size casts smaller shadows. Change the constants or levels in `scripts/shadows.mjs`, then:
+**Geometry.** The slopes and offsets in `theme/theme.geometry.css` set the control height, margin and radius curves; the defaults are Affine's.
 
-```bash
-node scripts/shadows.mjs
-```
+**Shadows, motion and materials** are generated from a few constants in `scripts/shadows.mjs`, `scripts/motion.mjs` and `scripts/materials.mjs`.
 
-**Utilities.** After changing or adding tokens, regenerate `nowind.css` so the classes follow:
+After any change, regenerate the classes and the bundle:
 
 ```bash
 node scripts/utilities.mjs
-```
-
-**Bundle.** Rebuild `dist/` last, after any change to the theme or the utilities:
-
-```bash
 node scripts/bundle.mjs
 ```
 
-The scripts need Node 18 or later and have no dependencies. People who use Nowind never run them.
-
-## Specimen
-
-`site/specimen.html` reads the tokens, reset rules and classes straight from the stylesheets, so it stays current. It needs a local server, because browsers block reading stylesheets from `file://`. The dev server turns caching off, so an edited stylesheet and everything it imports reload fresh:
-
-```bash
-node scripts/serve.mjs
-```
-
-Then open http://localhost:8765/site/specimen.html, or http://localhost:8765/site/components.html for common interface parts built only from utility classes.
-
-## Differences from Prewind
-
-- `container` is `min(100%, max)`, so it never overflows a narrow screen.
-- No `bg-opacity-*`. Use the alpha steps instead: `bg-accent-1-a3`, `bg-neutral-a5`.
-- No `m-full` or `p-full`.
-- `text-{size}` also sets the line height, as Tailwind v4 does.
-- The reset keeps link underlines and adds a focus ring, `:where()` selectors, headings sized from the type roles and reduced-motion handling.
-- Dark mode is built in through `light-dark()`.
-- Tailwind v4 names where v4 renamed v3 ones: `rounded-xs`/`rounded-sm`, `shadow-xs`/`shadow-sm`, `backdrop-blur-xs`/`-sm`. `h-screen` is `100vh`, with `h-dvh`, `h-svh` and `h-lvh` separate. Aliases `max-w-prose` and `font-sans`.
-- Added: semantic type roles, kicker classes, grid display, `tabular-nums`, `text-balance`, `text-pretty`, `w-fit`, `h-control`.
+The scripts need Node 18 or later and have no dependencies. People who use Nowind never run them. [AGENTS.md](AGENTS.md) lists every file, the script order and the rules `scripts/check.mjs` enforces.
 
 ## Browser support
 
-Nowind uses `light-dark()`, `@layer`, `@property`, `clamp()` and `:where()`, which every current browser supports. A few reset properties (`interpolate-size`, `field-sizing`, `text-wrap: pretty`) are progressive: browsers without them ignore them.
+Nowind uses `light-dark()`, `@layer`, `@property`, `@container`, `clamp()` and `:where()`, which every current browser supports. Some features are progressive and fall back cleanly: CSS typed arithmetic (the root-scaled fluid term), anchor positioning, the customizable `select`, `field-sizing`, `interpolate-size` and the glass lens (Chromium only).
 
 ## Credits
 
-Built on ideas and values from Prewind, [Tailwind CSS](https://tailwindcss.com), [Utopia](https://utopia.fyi) and [Radix Colors](https://www.radix-ui.com/colors), plus the Affine UI and Massimo kits.
+Derived from [Prewind](https://github.com/codepilotsf/prewind) by [Codepilot](https://codepilot.com), with the class system of [Tailwind CSS](https://tailwindcss.com), the color system of [Radix Colors](https://www.radix-ui.com/colors) and the fluid scales of [Utopia](https://utopia.fyi). Geometry after Affine UI; type roles, shadows, motion and materials after the Massimo kit.
