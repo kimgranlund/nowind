@@ -570,8 +570,8 @@ out.push("  :is([open] > summary, [aria-expanded=\"true\"]) .caret::before, .sel
 out.push("  .select-base option:checked { background: var(--component-accent-1-weak); color: var(--fg-accent-1-weak); }");
 out.push("  .h-nested > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }");
 for (const [cls, pad] of [["px-control", "--control-icon-padding"], ["px-nested", "--nested-icon-padding"]]) {
-  out.push(`  .${cls}:where(:has(> .icon:first-child)) { padding-inline-start: var(${pad}); }`);
-  out.push(`  .${cls}:where(:has(> .icon:last-child)) { padding-inline-end: var(${pad}); }`);
+  out.push(`  .${cls}:where(:has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(${pad}); }`);
+  out.push(`  .${cls}:where(:has(> :is(.icon, .h-nested, .size-nested):last-child)) { padding-inline-end: var(${pad}); }`);
 }
 // ---- Materials (after massimo-v4): a region's material paints the reliefs inside it. The nearest material wins:
 // each block is an @scope that stops at a nested material region. Flat is the default and paints nothing but casts.
@@ -644,12 +644,14 @@ const interactive = ROLE_STATE.filter(inPalettes(["neutral", "accent-1", "accent
 const STATES = [
   ["active", ":active", interactive],
   ["focus-visible", ":focus-visible", ROLE_STATE.filter((c) => /^border-/.test(c)).filter(inPalettes(["neutral", "accent-1", "accent-2", "accent-3", "accent-4"]))],
+  ["focus-within", ":focus-within", ROLE_STATE.filter((c) => /^border-/.test(c)).filter(inPalettes(["neutral", "accent-1", "accent-2", "accent-3", "accent-4"]))],
   ["aria-selected", '[aria-selected="true"]', interactive],
   ["aria-current", ':is([aria-current]:not([aria-current="false"]))', interactive],
   ["aria-pressed", '[aria-pressed="true"]', interactive],
   ["aria-expanded", '[aria-expanded="true"]', interactive],
   ["open", ":is([open], :popover-open)", interactive],
   ["aria-invalid", ':is([aria-invalid="true"], :user-invalid)', ROLE_STATE.filter((c) => /^(text|border|fg)(-|$)/.test(c)).filter(inPalettes(["neutral", "danger"]))],
+  ["has-invalid", ':has(:is([aria-invalid="true"], :user-invalid))', ROLE_STATE.filter((c) => /^(text|border|fg)(-|$)/.test(c)).filter(inPalettes(["neutral", "danger"]))],
   ["disabled", ':is(:disabled, [aria-disabled="true"])', [...ROLE_STATE.filter(inPalettes(["neutral"])), ...[...D.keys()].filter((c) => /^opacity-|^cursor-/.test(c))]],
 ];
 for (const [prefix, sel, list] of STATES) {
@@ -697,7 +699,7 @@ const manifest = {
     breakpoints: Object.fromEntries(BREAKPOINTS.map(([b, w]) => [b, `${w}px`])),
     responsive: "sm:, md:, lg:, xl:, 2xl: (read from the --breakpoint-* tokens) apply to layout: display, grid columns and spans, flex direction, wrap, basis, justify, align, text alignment, widths, heights, position, top, overflow, padding and gaps. Margins, colours and type have no breakpoint variants.",
     groups: "group on a parent; group-hover:, group-focus-within: and group-open: on a child, for opacity, visibility and text roles (tooltips, reveal-on-hover).",
-    states: "active:, focus-visible:, aria-selected:, aria-current:, aria-pressed:, aria-expanded:, open: (details, popovers), aria-invalid: (also :user-invalid) and disabled: (also aria-disabled). Colors only (plus opacity and cursor for disabled), for the neutral and accent roles; aria-invalid for neutral and danger.",
+    states: "active:, focus-visible:, focus-within: (a field wrapper whose input has focus), aria-selected:, aria-current:, aria-pressed:, aria-expanded:, open: (details, popovers), aria-invalid: (also :user-invalid), has-invalid: (a wrapper holding an invalid input) and disabled: (also aria-disabled). Colors only (plus opacity and cursor for disabled), for the neutral and accent roles; aria-invalid for neutral and danger.",
     none: "No group- or dark: variants. Dark mode comes from the theme's light-dark() tokens.",
   },
   categories: {

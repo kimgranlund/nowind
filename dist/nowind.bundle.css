@@ -3387,10 +3387,10 @@
   :is([open] > summary, [aria-expanded="true"]) .caret::before, .select-base:open::picker-icon { rotate: 225deg; translate: 0 25%; }
   .select-base option:checked { background: var(--component-accent-1-weak); color: var(--fg-accent-1-weak); }
   .h-nested > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }
-  .px-control:where(:has(> .icon:first-child)) { padding-inline-start: var(--control-icon-padding); }
-  .px-control:where(:has(> .icon:last-child)) { padding-inline-end: var(--control-icon-padding); }
-  .px-nested:where(:has(> .icon:first-child)) { padding-inline-start: var(--nested-icon-padding); }
-  .px-nested:where(:has(> .icon:last-child)) { padding-inline-end: var(--nested-icon-padding); }
+  .px-control:where(:has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--control-icon-padding); }
+  .px-control:where(:has(> :is(.icon, .h-nested, .size-nested):last-child)) { padding-inline-end: var(--control-icon-padding); }
+  .px-nested:where(:has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--nested-icon-padding); }
+  .px-nested:where(:has(> :is(.icon, .h-nested, .size-nested):last-child)) { padding-inline-end: var(--nested-icon-padding); }
   @scope (.material-physical) to (.material-flat, .material-frosted, .material-glass, .material-outline) {
     .relief-raised, :scope.relief-raised { background-image: linear-gradient(var(--paint-face-top), transparent, transparent, var(--paint-face-bottom)); box-shadow: inset 0 1px 0 var(--paint-bevel-top), inset 0 -1px 0 var(--paint-bevel-bottom), 0 0 0 0.5px var(--paint-bevel-ring), var(--shadow-sm); }
     .relief-raised:active, :scope.relief-raised:active { background-image: none; box-shadow: var(--inset-shadow-xs), inset 0 0 0 0.5px var(--paint-recess-ring), 0 1px 0 var(--paint-recess-lip); }
@@ -3693,6 +3693,21 @@
   .focus-visible\:border-accent-4-weak:focus-visible { border-color: var(--border-accent-4-weak); }
   .focus-visible\:border-accent-4:focus-visible { border-color: var(--border-accent-4); }
   .focus-visible\:border-accent-4-strong:focus-visible { border-color: var(--border-accent-4-strong); }
+  .focus-within\:border-weak:focus-within { border-color: var(--border-weak); }
+  .focus-within\:border-default:focus-within { border-color: var(--border); }
+  .focus-within\:border-strong:focus-within { border-color: var(--border-strong); }
+  .focus-within\:border-accent-1-weak:focus-within { border-color: var(--border-accent-1-weak); }
+  .focus-within\:border-accent-1:focus-within { border-color: var(--border-accent-1); }
+  .focus-within\:border-accent-1-strong:focus-within { border-color: var(--border-accent-1-strong); }
+  .focus-within\:border-accent-2-weak:focus-within { border-color: var(--border-accent-2-weak); }
+  .focus-within\:border-accent-2:focus-within { border-color: var(--border-accent-2); }
+  .focus-within\:border-accent-2-strong:focus-within { border-color: var(--border-accent-2-strong); }
+  .focus-within\:border-accent-3-weak:focus-within { border-color: var(--border-accent-3-weak); }
+  .focus-within\:border-accent-3:focus-within { border-color: var(--border-accent-3); }
+  .focus-within\:border-accent-3-strong:focus-within { border-color: var(--border-accent-3-strong); }
+  .focus-within\:border-accent-4-weak:focus-within { border-color: var(--border-accent-4-weak); }
+  .focus-within\:border-accent-4:focus-within { border-color: var(--border-accent-4); }
+  .focus-within\:border-accent-4-strong:focus-within { border-color: var(--border-accent-4-strong); }
   .aria-selected\:bg-scrim[aria-selected="true"] { background-color: var(--scrim); }
   .aria-selected\:bg-inverse[aria-selected="true"] { background-color: var(--bg-inverse); }
   .aria-selected\:fg-inverse[aria-selected="true"] { color: var(--fg-inverse); }
@@ -4123,6 +4138,26 @@
   .aria-invalid\:fg-danger-strong:is([aria-invalid="true"], :user-invalid) { color: var(--fg-danger-strong); }
   .aria-invalid\:fg-inherit:is([aria-invalid="true"], :user-invalid) { color: inherit; }
   .aria-invalid\:fg-current:is([aria-invalid="true"], :user-invalid) { color: currentColor; }
+  .has-invalid\:fg-inverse:has(:is([aria-invalid="true"], :user-invalid)) { color: var(--fg-inverse); }
+  .has-invalid\:fg-inverse-weak:has(:is([aria-invalid="true"], :user-invalid)) { color: var(--fg-inverse-weak); }
+  .has-invalid\:border-weak:has(:is([aria-invalid="true"], :user-invalid)) { border-color: var(--border-weak); }
+  .has-invalid\:border-default:has(:is([aria-invalid="true"], :user-invalid)) { border-color: var(--border); }
+  .has-invalid\:border-strong:has(:is([aria-invalid="true"], :user-invalid)) { border-color: var(--border-strong); }
+  .has-invalid\:fg-on-solid:has(:is([aria-invalid="true"], :user-invalid)) { color: var(--on-solid); }
+  .has-invalid\:fg-subtle:has(:is([aria-invalid="true"], :user-invalid)) { color: var(--fg-subtle); }
+  .has-invalid\:fg-weak:has(:is([aria-invalid="true"], :user-invalid)) { color: var(--fg-weak); }
+  .has-invalid\:fg:has(:is([aria-invalid="true"], :user-invalid)) { color: var(--fg); }
+  .has-invalid\:fg-strong:has(:is([aria-invalid="true"], :user-invalid)) { color: var(--fg-strong); }
+  .has-invalid\:border-danger-weak:has(:is([aria-invalid="true"], :user-invalid)) { border-color: var(--border-danger-weak); }
+  .has-invalid\:border-danger:has(:is([aria-invalid="true"], :user-invalid)) { border-color: var(--border-danger); }
+  .has-invalid\:border-danger-strong:has(:is([aria-invalid="true"], :user-invalid)) { border-color: var(--border-danger-strong); }
+  .has-invalid\:fg-on-solid-danger:has(:is([aria-invalid="true"], :user-invalid)) { color: var(--on-solid-danger); }
+  .has-invalid\:fg-danger-subtle:has(:is([aria-invalid="true"], :user-invalid)) { color: var(--fg-danger-subtle); }
+  .has-invalid\:fg-danger-weak:has(:is([aria-invalid="true"], :user-invalid)) { color: var(--fg-danger-weak); }
+  .has-invalid\:fg-danger:has(:is([aria-invalid="true"], :user-invalid)) { color: var(--fg-danger); }
+  .has-invalid\:fg-danger-strong:has(:is([aria-invalid="true"], :user-invalid)) { color: var(--fg-danger-strong); }
+  .has-invalid\:fg-inherit:has(:is([aria-invalid="true"], :user-invalid)) { color: inherit; }
+  .has-invalid\:fg-current:has(:is([aria-invalid="true"], :user-invalid)) { color: currentColor; }
   .disabled\:bg-scrim:is(:disabled, [aria-disabled="true"]) { background-color: var(--scrim); }
   .disabled\:bg-inverse:is(:disabled, [aria-disabled="true"]) { background-color: var(--bg-inverse); }
   .disabled\:fg-inverse:is(:disabled, [aria-disabled="true"]) { color: var(--fg-inverse); }

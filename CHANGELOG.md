@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- **Field slots:** a field is a box around a bare input with five slots: leading icon, prefix, input, suffix, trailing. New state variants `focus-within:` and `has-invalid:` let the box show the input's focus and errors. An `h-nested` or `size-nested` control at either end of a control now takes the same inset as an icon.
+- **Text field docs:** slots, ten data types (password with a show toggle, card number, date, time, weight, percentage, quantity, colour, postal code, duration) with the right `type`, `inputmode` and `autocomplete`, and the invalid, counted, read-only and disabled states.
 - **One control recipe:** buttons, links, inputs, selects and textareas share height, side padding, a border width (transparent on fills, so a solid button and a field line up to the pixel), radius and type. New `rounded-control` and `rounded-nested`. `scripts/check.mjs` flags a control that drifts.
 - **One caret:** `caret` on an icon box draws the disclosure chevron in CSS, and `select-base` draws the same one as its picker icon. Both turn over when open (`[open]`, `aria-expanded="true"`, an open select).
 - **Native controls:** the reset themes the file input's button, `progress` and `meter` (which turns success, warning or danger from its `low`, `high` and `optimum`), with system colours in forced colours. New `field-sizing-content` and `field-sizing-fixed`.

@@ -5,6 +5,11 @@ BTN = "inline-flex items-center justify-center h-control px-control gap-gutter r
 BTN_PRIMARY = f"{BTN} border border-transparent bg-solid-accent-1 hover:bg-solid-accent-1-strong active:bg-solid-accent-1-strong fg-on-solid-accent-1 text-title-sm cursor-pointer transition-colors"
 BTN_SECONDARY = f"{BTN} border bg-component-weak hover:bg-component active:bg-component-strong fg text-title-sm cursor-pointer transition-colors"
 FIELD = "h-control px-control rounded-control border hover:border-strong aria-invalid:border-danger bg text-control-md w-full transition-colors"
+BOX = "flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors"
+BARE = "grow min-w-0 self-stretch p-0 border-0 bg-transparent fg"
+KBD = "inline-flex items-center h-nested px-nested rounded-nested border fg-weak text-mono-sm"
+NESTED_SELECT = "select-base h-nested px-nested rounded-nested border border-transparent bg-transparent hover:bg-component-weak fg text-control-md cursor-pointer"
+NESTED_ICON = "inline-flex items-center justify-center size-nested rounded-nested border border-transparent bg-transparent hover:bg-component-weak aria-pressed:bg-component fg-weak hover:fg cursor-pointer transition-colors"
 CARD = "p-surface rounded-lg bg border border-weak"
 MENU_ITEM = "flex items-center gap-gutter h-control px-control border border-transparent rounded-control no-underline fg hover:bg-component-weak aria-selected:bg-component-accent-1-weak aria-selected:fg-accent-1-weak transition-colors"
 
@@ -81,16 +86,23 @@ COMPONENTS = [
     },
     {
         "slug": "text-field", "name": "Text field", "icon": "ph-textbox", "group": "Forms",
-        "summary": "A labelled input with help text. <code>aria-invalid</code> switches the border to danger.",
+        "summary": "A labelled field built from slots: a leading icon that says what kind of value it takes, a prefix, the input, a suffix and a trailing action. The box is the control; the input inside is bare.",
         "html": f"""<div class="flex flex-col gap-group max-w-form">
   <div class="flex flex-col gap-field">
     <label for="doc-name" class="text-label">Full name</label>
-    <input id="doc-name" class="{FIELD}" placeholder="Ada Lovelace">
+    <div class="{BOX}">
+      <i class="icon ph ph-user-circle fg-weak" aria-hidden="true"></i>
+      <input id="doc-name" class="{BARE}" autocomplete="name" placeholder="Ada Lovelace">
+    </div>
     <span class="text-caption fg-weak">Shown on your profile.</span>
   </div>
   <div class="flex flex-col gap-field">
     <label for="doc-email" class="text-label">Email</label>
-    <input id="doc-email" type="email" class="{FIELD}" value="ada@" aria-invalid="true" aria-describedby="doc-email-error">
+    <div class="{BOX}">
+      <i class="icon ph ph-envelope-simple fg-weak" aria-hidden="true"></i>
+      <input id="doc-email" type="email" class="{BARE}" autocomplete="email" value="ada@" aria-invalid="true" aria-describedby="doc-email-error">
+      <i class="icon ph ph-warning-circle fg-danger-weak" aria-hidden="true"></i>
+    </div>
     <span id="doc-email-error" class="text-caption fg-danger-weak">Enter a complete email address.</span>
   </div>
   <div class="flex flex-col gap-field">
@@ -99,8 +111,167 @@ COMPONENTS = [
     <span class="text-caption fg-weak">PNG or JPEG, up to 5 MB. The reset themes the button.</span>
   </div>
 </div>""",
-        "use": ["<code>gap-field</code> between label, control and help; <code>gap-group</code> between fields."],
-        "avoid": ["A placeholder instead of a label."],
+        "examples": [
+            {"id": "slots", "label": "Slots",
+             "summary": "Five slots, always in this order: leading icon, prefix, input, suffix, trailing. Any of them can be left out. An icon or a nested control at either end sits one margin from the edge, the same as in a button.",
+             "html": f"""<div class="flex flex-col gap-group max-w-form">
+  <div class="flex flex-col gap-field">
+    <label for="doc-user" class="text-label">Username <span class="fg-weak">· leading icon</span></label>
+    <div class="{BOX}">
+      <i class="icon ph ph-at fg-weak" aria-hidden="true"></i>
+      <input id="doc-user" class="{BARE}" autocomplete="username" spellcheck="false" placeholder="ada">
+    </div>
+  </div>
+  <div class="flex flex-col gap-field">
+    <label for="doc-site" class="text-label">Website <span class="fg-weak">· prefix</span></label>
+    <div class="{BOX}">
+      <span class="fg-weak whitespace-nowrap" aria-hidden="true">https://</span>
+      <input id="doc-site" type="text" inputmode="url" class="{BARE}" autocomplete="url" spellcheck="false" placeholder="yoursite.com">
+    </div>
+  </div>
+  <div class="flex flex-col gap-field">
+    <label for="doc-find" class="text-label">Search <span class="fg-weak">· leading icon and trailing key</span></label>
+    <div class="{BOX}">
+      <i class="icon ph ph-magnifying-glass fg-weak" aria-hidden="true"></i>
+      <input id="doc-find" type="search" class="{BARE}" placeholder="Search…">
+      <kbd class="{KBD}">⌘S</kbd>
+    </div>
+  </div>
+  <div class="flex flex-col gap-field">
+    <label for="doc-amount" class="text-label">Amount <span class="fg-weak">· prefix and trailing select</span></label>
+    <div class="{BOX}">
+      <span class="fg-weak" aria-hidden="true">$</span>
+      <input id="doc-amount" type="text" inputmode="decimal" class="{BARE} tabular-nums" placeholder="0.00">
+      <select class="{NESTED_SELECT}" aria-label="Currency"><option>USD</option><option>EUR</option><option>GBP</option></select>
+    </div>
+  </div>
+  <div class="flex flex-col gap-field">
+    <label for="doc-phone" class="text-label">Phone <span class="fg-weak">· leading select</span></label>
+    <div class="{BOX}">
+      <select class="{NESTED_SELECT}" aria-label="Country code"><option>US +1</option><option>FI +358</option><option>GB +44</option></select>
+      <input id="doc-phone" type="tel" class="{BARE} tabular-nums" autocomplete="tel-national" placeholder="Phone number">
+    </div>
+  </div>
+</div>"""},
+            {"id": "types", "label": "Data types",
+             "summary": "The leading icon names the kind of value; <code>type</code>, <code>inputmode</code> and <code>autocomplete</code> give the right keyboard and autofill. Units sit in the suffix, never in the value.",
+             "html": f"""<div class="grid grid-cols-1 md:grid-cols-2 gap-group">
+  <div class="flex flex-col gap-field">
+    <label for="doc-pass" class="text-label">Password</label>
+    <div class="{BOX}">
+      <i class="icon ph ph-lock-simple fg-weak" aria-hidden="true"></i>
+      <input id="doc-pass" type="password" class="{BARE}" autocomplete="new-password" value="correct horse">
+      <button type="button" class="{NESTED_ICON}" aria-label="Show password" aria-pressed="false" onclick="const i=this.parentElement.querySelector('input');i.type=i.type==='password'?'text':'password';this.setAttribute('aria-pressed',i.type==='text')"><i class="icon ph ph-eye"></i></button>
+    </div>
+  </div>
+  <div class="flex flex-col gap-field">
+    <label for="doc-card" class="text-label">Card number</label>
+    <div class="{BOX}">
+      <i class="icon ph ph-credit-card fg-weak" aria-hidden="true"></i>
+      <input id="doc-card" type="text" inputmode="numeric" class="{BARE} tabular-nums" autocomplete="cc-number" placeholder="1234 5678 9012 3456">
+    </div>
+  </div>
+  <div class="flex flex-col gap-field">
+    <label for="doc-start" class="text-label">Start date</label>
+    <div class="{BOX}">
+      <i class="icon ph ph-calendar-blank fg-weak" aria-hidden="true"></i>
+      <input id="doc-start" type="date" class="{BARE} tabular-nums" value="2027-03-01">
+    </div>
+  </div>
+  <div class="flex flex-col gap-field">
+    <label for="doc-time" class="text-label">Meeting time</label>
+    <div class="{BOX}">
+      <i class="icon ph ph-clock fg-weak" aria-hidden="true"></i>
+      <input id="doc-time" type="time" class="{BARE} tabular-nums" value="09:30">
+    </div>
+  </div>
+  <div class="flex flex-col gap-field">
+    <label for="doc-weight" class="text-label">Weight</label>
+    <div class="{BOX}">
+      <i class="icon ph ph-scales fg-weak" aria-hidden="true"></i>
+      <input id="doc-weight" type="text" inputmode="decimal" class="{BARE} tabular-nums" value="72.5">
+      <span class="fg-weak" aria-hidden="true">kg</span>
+    </div>
+  </div>
+  <div class="flex flex-col gap-field">
+    <label for="doc-discount" class="text-label">Discount</label>
+    <div class="{BOX}">
+      <i class="icon ph ph-percent fg-weak" aria-hidden="true"></i>
+      <input id="doc-discount" type="number" min="0" max="100" step="5" class="{BARE} tabular-nums" value="15">
+      <span class="fg-weak" aria-hidden="true">%</span>
+    </div>
+  </div>
+  <div class="flex flex-col gap-field">
+    <label for="doc-quantity" class="text-label">Quantity</label>
+    <div class="{BOX}">
+      <i class="icon ph ph-hash fg-weak" aria-hidden="true"></i>
+      <input id="doc-quantity" type="number" min="1" step="1" class="{BARE} tabular-nums" value="3">
+      <span class="fg-weak" aria-hidden="true">seats</span>
+    </div>
+  </div>
+  <div class="flex flex-col gap-field">
+    <label for="doc-hex" class="text-label">Brand colour</label>
+    <div class="{BOX}">
+      <i class="icon ph ph-palette fg-weak" aria-hidden="true"></i>
+      <span class="fg-weak" aria-hidden="true">#</span>
+      <input id="doc-hex" type="text" class="{BARE} tabular-nums" spellcheck="false" maxlength="6" value="0090FF">
+      <input type="color" class="size-nested rounded-nested border border-transparent p-0 bg-transparent cursor-pointer" value="#0090ff" aria-label="Pick a colour">
+    </div>
+  </div>
+  <div class="flex flex-col gap-field">
+    <label for="doc-zip" class="text-label">Postal code</label>
+    <div class="{BOX}">
+      <i class="icon ph ph-map-pin fg-weak" aria-hidden="true"></i>
+      <input id="doc-zip" type="text" inputmode="numeric" class="{BARE} tabular-nums" autocomplete="postal-code" placeholder="00100">
+    </div>
+  </div>
+  <div class="flex flex-col gap-field">
+    <label for="doc-duration" class="text-label">Duration</label>
+    <div class="{BOX}">
+      <i class="icon ph ph-timer fg-weak" aria-hidden="true"></i>
+      <input id="doc-duration" type="number" min="0" step="15" class="{BARE} tabular-nums" value="45">
+      <span class="fg-weak" aria-hidden="true">min</span>
+    </div>
+  </div>
+</div>"""},
+            {"id": "states", "label": "States",
+             "summary": "The box shows every state of the input inside it: <code>focus-within:</code> turns the border accent, <code>has-invalid:</code> turns it danger. A disabled or read-only field says so with its fill as well as its text.",
+             "html": f"""<div class="grid grid-cols-1 md:grid-cols-2 gap-group">
+  <div class="flex flex-col gap-field">
+    <label for="doc-handle" class="text-label">Handle</label>
+    <div class="{BOX}">
+      <i class="icon ph ph-at fg-weak" aria-hidden="true"></i>
+      <input id="doc-handle" class="{BARE}" value="ada lovelace" pattern="[a-z0-9_]+" aria-invalid="true" aria-describedby="doc-handle-error">
+    </div>
+    <span id="doc-handle-error" class="text-caption fg-danger-weak">Use lowercase letters, numbers and underscores.</span>
+  </div>
+  <div class="flex flex-col gap-field">
+    <label for="doc-title" class="text-label">Title</label>
+    <div class="{BOX}">
+      <i class="icon ph ph-text-t fg-weak" aria-hidden="true"></i>
+      <input id="doc-title" class="{BARE}" maxlength="40" value="Analytical Engine notes" aria-describedby="doc-title-count">
+      <span id="doc-title-count" class="fg-weak text-caption tabular-nums">23/40</span>
+    </div>
+  </div>
+  <div class="flex flex-col gap-field">
+    <label for="doc-id" class="text-label">Account ID</label>
+    <div class="{BOX} bg-strong">
+      <i class="icon ph ph-identification-card fg-weak" aria-hidden="true"></i>
+      <input id="doc-id" class="{BARE} fg-weak tabular-nums" value="AC-20481" readonly>
+      <i class="icon ph ph-lock-simple fg-subtle" aria-hidden="true"></i>
+    </div>
+  </div>
+  <div class="flex flex-col gap-field">
+    <label for="doc-seat" class="text-label fg-weak">Seat</label>
+    <div class="{BOX} bg-component-weak opacity-50 cursor-not-allowed">
+      <i class="icon ph ph-armchair fg-weak" aria-hidden="true"></i>
+      <input id="doc-seat" class="{BARE}" value="14C" disabled>
+    </div>
+  </div>
+</div>"""},
+        ],
+        "use": ["A leading icon for the kind of value, so a long form scans by shape.", "Prefixes and suffixes for parts the person doesn't type: a scheme, a currency sign, a unit.", "<code>gap-field</code> between label, box and help; <code>gap-group</code> between fields."],
+        "avoid": ["A placeholder instead of a label.", "A unit inside the value (\"72.5 kg\"): it breaks number keyboards and parsing.", "More than one trailing action in a box."],
     },
     {
         "slug": "select", "name": "Select", "icon": "ph-list-dashes", "group": "Forms",

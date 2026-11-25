@@ -698,17 +698,21 @@ def classes_of(snippet):
 def component_page(c):
     name = f"c-{c['slug']}.html"
     toc_items = [("example", "Example"), ("usage", "Usage"), ("classes", "Classes")]
-    chips = " ".join(f'<a href="{class_page_of(k.split(":")[-1])}#{class_id(k.split(":")[-1])}" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">{E(k)}</a>' for k in classes_of(c["html"]))
+    extras = c.get("examples", [])
+    all_html = c["html"] + "".join(x["html"] for x in extras)
+    chips = " ".join(f'<a href="{class_page_of(k.split(":")[-1])}#{class_id(k.split(":")[-1])}" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">{E(k)}</a>' for k in classes_of(all_html))
+    def example(sid, label, html_, summary=None):
+        return section(sid, label, *([p(summary)] if summary else []),
+            f"""<div class="tier-product p-surface rounded-lg border border-weak bg-strong">
+{html_}
+          </div>""",
+            code(f"{c['slug']}-{sid}.html" if sid != "example" else f"{c['slug']}.html", "HTML", html_))
     use = "\n".join(f'            <li class="flex gap-gutter"><i class="icon icon-sm ph-bold ph-check fg-success-weak"></i><span>{t}</span></li>' for t in c["use"])
     avoid = "\n".join(f'            <li class="flex gap-gutter"><i class="icon icon-sm ph-bold ph-x fg-danger-weak"></i><span>{t}</span></li>' for t in c["avoid"])
     art = "\n        ".join([
         page_head(c["group"], c["name"], c["summary"]),
-        section("example", "Example",
-            f"""<div class="tier-product p-surface rounded-lg border border-weak bg-strong">
-{c["html"]}
-          </div>""",
-            code(f"{c['slug']}.html", "HTML", c["html"]),
-        ),
+        example("example", "Example", c["html"]),
+        *[example(x["id"], x["label"], x["html"], x.get("summary")) for x in extras],
         section("usage", "Usage",
             f"""<div class="grid grid-cols-1 md:grid-cols-2 gap-grid">
             <div class="flex flex-col gap-field"><span class="text-label fg-success-weak">Use</span><ul role="list" class="flex flex-col gap-xs text-body-md">
@@ -720,7 +724,7 @@ def component_page(c):
           </div>""",
         ),
         section("classes", "Classes",
-            p(f"Every class in the example, {len(classes_of(c['html']))} in all. Each one links to its declarations in <a href=\"classes.html\">Classes</a> or <a href=\"semantic.html\">Semantic classes</a>."),
+            p(f"Every class in the examples, {len(classes_of(all_html))} in all. Each one links to its declarations in <a href=\"classes.html\">Classes</a> or <a href=\"semantic.html\">Semantic classes</a>."),
             f'<div class="flex flex-wrap gap-2xs">{chips}</div>',
         ),
     ])
