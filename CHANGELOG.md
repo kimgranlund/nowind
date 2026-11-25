@@ -5,6 +5,7 @@
 - **Group variants:** `group` on a parent, `group-hover:`, `group-focus-within:` and `group-open:` on a child (opacity, visibility and `fg-*`), for tooltips and reveal-on-hover.
 - **Offsets:** `top-full`, `bottom-full`, `left-full`, `right-full`.
 - **Component docs:** tooltip, combobox, sortable table, date range and media card (26 pages).
+- **Forced colors:** in Windows High Contrast, controls and overlays keep an outline, selected and current items get a Highlight outline, and checkboxes, radios, switches and sliders are redrawn in system colors.
 
 ## 0.7.0 (2026-11-25)
 

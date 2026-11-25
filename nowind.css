@@ -159,6 +159,21 @@
   dialog::backdrop { background: var(--scrim); }
   ::selection { background: var(--accent-1-a5); color: var(--fg); }
 
+  @media (forced-colors: active) {
+    :where(button, [role="button"], [role="tab"], summary, [popover], dialog) { outline: 1px solid ButtonText; outline-offset: -1px; }
+    :where([aria-selected="true"], [aria-pressed="true"], [aria-current]:not([aria-current="false"])) { outline: 2px solid Highlight; outline-offset: -2px; }
+    :where(input[type="checkbox"], input[type="radio"]) { forced-color-adjust: none; border-color: CanvasText; background: Canvas; }
+    :where(input[type="checkbox"], input[type="radio"]):is(:checked, :indeterminate) { border-color: Highlight; background: Highlight; }
+    :where(input[type="checkbox"], input[type="radio"])::before { background: HighlightText; }
+    :where(input[type="checkbox"][role="switch"])::before { background: CanvasText; }
+    :where(input[type="checkbox"][role="switch"]):checked::before { background: HighlightText; }
+    :where(input[type="range"]) { forced-color-adjust: none; }
+    :where(input[type="range"])::-webkit-slider-runnable-track { background: CanvasText; }
+    :where(input[type="range"])::-moz-range-track { background: CanvasText; }
+    :where(input[type="range"])::-webkit-slider-thumb { background: Canvas; border-color: CanvasText; }
+    :where(input[type="range"])::-moz-range-thumb { background: Canvas; border-color: CanvasText; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     :where(*, *::before, *::after) {
       animation-duration: 0.01ms !important;

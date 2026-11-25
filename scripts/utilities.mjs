@@ -491,6 +491,21 @@ const reset = `@layer reset {
   dialog::backdrop { background: var(--scrim); }
   ::selection { background: var(--accent-1-a5); color: var(--fg); }
 
+  @media (forced-colors: active) {
+    :where(button, [role="button"], [role="tab"], summary, [popover], dialog) { outline: 1px solid ButtonText; outline-offset: -1px; }
+    :where([aria-selected="true"], [aria-pressed="true"], [aria-current]:not([aria-current="false"])) { outline: 2px solid Highlight; outline-offset: -2px; }
+    :where(input[type="checkbox"], input[type="radio"]) { forced-color-adjust: none; border-color: CanvasText; background: Canvas; }
+    :where(input[type="checkbox"], input[type="radio"]):is(:checked, :indeterminate) { border-color: Highlight; background: Highlight; }
+    :where(input[type="checkbox"], input[type="radio"])::before { background: HighlightText; }
+    :where(input[type="checkbox"][role="switch"])::before { background: CanvasText; }
+    :where(input[type="checkbox"][role="switch"]):checked::before { background: HighlightText; }
+    :where(input[type="range"]) { forced-color-adjust: none; }
+    :where(input[type="range"])::-webkit-slider-runnable-track { background: CanvasText; }
+    :where(input[type="range"])::-moz-range-track { background: CanvasText; }
+    :where(input[type="range"])::-webkit-slider-thumb { background: Canvas; border-color: CanvasText; }
+    :where(input[type="range"])::-moz-range-thumb { background: Canvas; border-color: CanvasText; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     :where(*, *::before, *::after) {
       animation-duration: 0.01ms !important;
@@ -680,7 +695,7 @@ const manifest = {
     "No m-full / p-full: margin and padding percentages are of the width, not a full size.",
     "Margins and padding x/y use logical properties (margin-inline, padding-block).",
     "text-{size} also sets the matching line height, as Tailwind v4.",
-    "The reset keeps link underlines and adds a 2026 baseline: :where() selectors (no specificity), interpolate-size, text-size-adjust, font-synthesis none, headings set from the type roles (h1 heading-xl … h6 title-sm), text-wrap balance/pretty, field-sizing content, accent and caret colours, :focus-visible ring, :target scroll margin, [hidden] enforced, role=list, tabular table figures, ::backdrop and ::selection from tokens, and reduced-motion handling.",
+    "The reset keeps link underlines and adds a 2026 baseline: :where() selectors (no specificity), interpolate-size, text-size-adjust, font-synthesis none, headings set from the type roles (h1 heading-xl … h6 title-sm), text-wrap balance/pretty, field-sizing content, accent and caret colours, :focus-visible ring, :target scroll margin, [hidden] enforced, role=list, tabular table figures, ::backdrop and ::selection from tokens, and reduced-motion handling, and a forced-colors (Windows High Contrast) block: controls and overlays keep an outline, selected, pressed and current items a Highlight outline, and checkboxes, radios, switches and sliders are redrawn in system colors.",
     "No outline-{colour} classes, no text-/border- classes for alpha steps, and no class that pairs a role with another property (no bg-fg-*, text-bg-*, bg-border-*). Text-color roles are named by their token alone: fg, fg-weak, fg-accent-1-weak.",
     "Tailwind v4 names where v4 renamed v3 ones: rounded-xs/sm, shadow-xs/sm, backdrop-blur-xs/sm; h-screen is 100vh with h-dvh/svh/lvh separate; a 2xl breakpoint; aliases max-w-prose and font-sans.",
     "Added: grid display, text-start/end, justify-evenly, items-baseline, tabular-nums, text-balance/pretty, w-fit, h-control, kicker and type-role classes.",
