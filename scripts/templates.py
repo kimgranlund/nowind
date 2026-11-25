@@ -54,41 +54,58 @@ HEAD = """<!doctype html>
 CUR_SEC = ' aria-current="true"'
 CUR_PAGE = ' aria-current="page"'
 
+def site_map(path):
+    """The popover behind the bar's menu button: every section and its pages, the current page marked."""
+    def links(pages, two=False):
+        lis = "".join(
+            f'<li><a href="{rel(pp, path)}"{CUR_PAGE if pp == path else ""} class="block py-3xs no-underline text-body-sm {"fg font-semibold" if pp == path else "fg-weak hover:fg"} transition-colors">{label}</a></li>'
+            for pp, label in pages)
+        return f'<ul role="list" class="grid {"grid-cols-2 gap-x-md" if two else "grid-cols-1"}">{lis}</ul>'
+    def col(name, pages, two=False, span=""):
+        return f'<div class="{span} flex flex-col gap-2xs min-w-0"><span class="text-kicker fg-weak">{name}</span>{links(pages, two)}</div>'
+    sec = dict(SECTIONS)
+    return f"""<div id="site-map" popover class="anchor-bottom w-full max-w-measure max-h-below-header overflow-y-auto p-surface rounded-lg bg fg border shadow-lg">
+  <nav aria-label="Site map" class="grid grid-cols-1 md:grid-cols-4 gap-group">
+    {col("Docs", sec["Docs"])}
+    {col("Components", sec["Components"], two=True, span="md:col-span-2")}
+    <div class="flex flex-col gap-group">{col("Specimen", sec["Specimen"])}{col("Classes", sec["Classes"])}</div>
+  </nav>
+</div>
+"""
+
 def top(path):
-    """The band (wordmark, sections, search, GitHub) and the row of the current section's pages, for the page at site path."""
+    """The band (wordmark, sections, GitHub) and the bar under it: where you are with the site map, search, previous and next."""
     cur = section_of(path)
-    def sec_links(cls_on, cls_off):
-        return "".join(
-            f'<a href="{rel(pages[0][0], path)}"{CUR_SEC if name == cur else ""} class="{cls_on if name == cur else cls_off}">{name}</a>'
-            for name, pages in SECTIONS)
     band_on = "inline-flex items-center h-header border-b-2 border-accent-1 no-underline fg-inverse text-title-sm"
     band_off = "inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors"
-    row_on = "no-underline fg text-title-sm font-semibold"
-    row_off = "no-underline fg-weak hover:fg text-title-sm transition-colors"
-    pages = dict(SECTIONS).get(cur, [])
-    page_links = "".join(
-        f'<a href="{rel(pp, path)}"{CUR_PAGE if pp == path else ""} class="{row_on if pp == path else row_off}">{label}</a>'
-        for pp, label in pages)
-    phone_secs = sec_links(row_on, row_off)
+    secs = "".join(
+        f'<a href="{rel(pages[0][0], path)}"{CUR_SEC if name == cur else ""} class="{band_on if name == cur else band_off}">{name}</a>'
+        for name, pages in SECTIONS)
+    where = (f'<span class="fg-weak">{cur}</span><span class="fg-subtle">/</span><span class="truncate">{LABELS[path]}</span>'
+             if cur else '<span>Site map</span>')
+    step = ""
     if cur:
-        row = f"""<nav aria-label="{cur}" class="flex flex-col gap-2xs px-grid py-xs border-b-2 border-strong bg">
-  <div class="flex md:hidden flex-wrap gap-x-md gap-y-3xs pb-2xs border-b border-weak">{phone_secs}</div>
-  <div class="flex flex-wrap gap-x-md gap-y-3xs">{page_links}</div>
-</nav>"""
-    else:
-        row = f"""<nav aria-label="Sections" class="flex md:hidden flex-wrap gap-x-md gap-y-3xs px-grid py-xs border-b-2 border-strong bg">{phone_secs}</nav>"""
+        i = ORDER.index(path)
+        arrow = "inline-flex items-center justify-center size-control rounded-sm border hover:bg-component-weak no-underline fg transition-colors"
+        prev_a = (f'<a href="{rel(ORDER[i - 1], path)}" class="{arrow}" aria-label="Previous: {TITLES.get(ORDER[i - 1], LABELS[ORDER[i - 1]])}"><i class="icon ph ph-arrow-left"></i></a>'
+                  if i > 0 else "")
+        next_a = (f'<a href="{rel(ORDER[i + 1], path)}" class="{arrow}" aria-label="Next: {TITLES.get(ORDER[i + 1], LABELS[ORDER[i + 1]])}"><i class="icon ph ph-arrow-right"></i></a>'
+                  if i < len(ORDER) - 1 else "")
+        step = f'<span class="hidden sm:flex items-center gap-3xs">{prev_a}{next_a}</span>'
     return f"""<header class="sticky top-0 z-30 bg-inverse fg-inverse">
   <div class="flex items-center gap-lg h-header px-grid">
     <a href="{rel("index.html", path)}" class="inline-flex items-center gap-gutter-half no-underline fg-inverse"><i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-inverse-weak">__VERSION__</span></a>
-    <nav aria-label="Sections" class="hidden md:flex items-center gap-lg">{sec_links(band_on, band_off)}</nav>
-    <span class="flex items-center gap-xs ml-auto">
-      <button type="button" data-search-open class="inline-flex items-center gap-gutter-half h-nested px-nested rounded-xs border border-strong bg-transparent fg-inverse-weak hover:fg-inverse text-label cursor-pointer transition-colors" aria-label="Search the site"><i class="icon icon-sm ph ph-magnifying-glass"></i><span class="hidden sm:inline">Search</span><kbd class="hidden sm:inline text-mono-sm">⌘K</kbd></button>
-      <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center size-nested no-underline fg-inverse-weak hover:fg-inverse transition-colors" aria-label="Nowind on GitHub"><i class="icon ph ph-github-logo"></i></a>
-    </span>
+    <nav aria-label="Sections" class="hidden md:flex items-center gap-lg">{secs}</nav>
+    <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center size-nested ml-auto no-underline fg-inverse-weak hover:fg-inverse transition-colors" aria-label="Nowind on GitHub"><i class="icon ph ph-github-logo"></i></a>
   </div>
 </header>
-{row}
-"""
+<div class="flex items-center gap-xs px-grid py-2xs border-b-2 border-strong bg">
+  <button type="button" popovertarget="site-map" class="inline-flex items-center gap-gutter-half min-w-0 h-control px-control rounded-sm border hover:bg-component-weak bg text-title-sm cursor-pointer transition-colors" aria-label="Site map: {cur or "all pages"}">{where}<i class="icon icon-sm ph-bold ph-caret-down fg-weak"></i></button>
+  <button type="button" data-search-open class="inline-flex items-center gap-gutter grow min-w-0 max-w-form h-control px-control rounded-sm border hover:border-strong bg-strong fg-subtle text-control-md cursor-text transition-colors" aria-label="Search the site"><i class="icon ph ph-magnifying-glass"></i><span class="grow truncate text-left">Search pages, components and classes</span><kbd class="hidden sm:inline text-mono-sm">⌘K</kbd></button>
+  <span class="flex-1 hidden lg:block"></span>
+  {step}
+</div>
+{site_map(path)}"""
 
 def bottom(path):
     """The footer and the search script, for the page at site path."""
@@ -219,13 +236,13 @@ def guide():
                   "Build a documentation page from Nowind's shell lengths, its 12-column grid and four type roles. Every part on this page is the template you can copy.",
                   "Applies to Nowind __VERSION__"),
         section("frame", "The frame",
-            p("Every page on the site has the same three parts, after Vignelli's Unigrid: an inverse band with the four sections, a row of the current section's pages under a heavy rule, and the page itself, a stack of blocks. The band sticks to the top; everything else scrolls with the page."),
+            p("Every page on the site has the same three parts, after Vignelli's Unigrid: an inverse band with the four sections, a bar under a heavy rule with where you are, search and the next page, and the page itself, a stack of blocks. The band sticks to the top; everything else scrolls with the page."),
             code("frame.html", "HTML", """
 <html class="scroll-pt-header">
 <header class="sticky top-0 z-30 bg-inverse fg-inverse">
   <div class="flex items-center gap-lg h-header px-grid">…wordmark, sections, search…</div>
 </header>
-<nav class="flex flex-wrap gap-x-md px-grid py-xs border-b-2 border-strong">…this section's pages…</nav>
+<div class="flex items-center gap-xs px-grid py-2xs border-b-2 border-strong">…site map button, search, previous and next…</div>
 <main class="tier-content px-grid">
   <div class="grid grid-cols-12 gap-x-grid">…page head, blocks…</div>
 </main>"""),
@@ -240,7 +257,7 @@ def guide():
   <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">…</div>
 </section>"""),
             table(["Width", "Sections", "Label"], [
-                ["Under 768px", "In the row under the band", "Above the content"],
+                ["Under 768px", "In the site map", "Above the content"],
                 ["768px (<code>md:</code>) and up", "In the band", "Columns 1–3, content 4–12"],
             ]),
         ),
@@ -337,8 +354,8 @@ def reference():
         ),
         section("breakpoints", "Breakpoints",
             table(["Prefix", "Min width", "In these templates"], [
-                ["<code>sm:</code>", "640px", "The search button shows its label"],
-                ["<code>md:</code>", "768px", "Sections move into the band; block labels take three columns"],
+                ["<code>sm:</code>", "640px", "Previous and next appear; the search field shows ⌘K"],
+                ["<code>md:</code>", "768px", "Sections appear in the band; block labels take three columns"],
                 ["<code>lg:</code>", "1024px", "Not used"],
                 ["<code>xl:</code>", "1280px", "Not used"],
                 ["<code>2xl:</code>", "1536px", "Not used"],
@@ -459,9 +476,9 @@ def index():
     grid_strip = f"""<div class="grid grid-cols-4 md:grid-cols-12 gap-grid" aria-hidden="true">
 {cols}
           </div>"""
-    frame_diagram = """<div class="flex flex-col border" role="img" aria-label="Diagram of the frame: an inverse band with the sections, a row of the section's pages under a heavy rule, then blocks with a label column of three and content of nine">
+    frame_diagram = """<div class="flex flex-col border" role="img" aria-label="Diagram of the frame: an inverse band with the sections, a bar with the site map and search under a heavy rule, then blocks with a label column of three and content of nine">
             <div class="flex items-center px-sm py-xs bg-inverse fg-inverse text-label">band · sections · search</div>
-            <div class="px-sm py-xs border-b-2 border-strong text-label fg-weak">this section's pages</div>
+            <div class="px-sm py-xs border-b-2 border-strong text-label fg-weak">site map · search · previous, next</div>
             <div class="grid grid-cols-12 border-b border-weak">
               <div class="col-span-3 p-sm text-label">label · 3</div>
               <div class="col-span-9 p-sm text-label fg-weak">content · 9</div>
@@ -480,8 +497,9 @@ def index():
     parts = [
         ["Band", "<code>sticky top-0 z-30 bg-inverse fg-inverse</code>; inner <code>flex items-center gap-lg h-header px-grid</code>"],
         ["Section link", "<code>h-header border-b-2 fg-inverse-weak text-title-sm</code>; current: <code>border-accent-1 fg-inverse</code>"],
-        ["Search button", "<code>h-nested px-nested rounded-xs border border-strong text-label</code> with <code>data-search-open</code>"],
-        ["Section row", "<code>flex flex-wrap gap-x-md px-grid py-xs border-b-2 border-strong</code>; current page <code>fg font-semibold</code>"],
+        ["Site map", "A <code>popovertarget</code> button naming the section and page; the popover <code>anchor-bottom max-w-measure max-h-below-header overflow-y-auto</code>"],
+        ["Search field", "A button that looks like a field: <code>grow max-w-form h-control border bg-strong cursor-text</code> with <code>data-search-open</code>"],
+        ["Bar", "<code>flex items-center gap-xs px-grid py-2xs border-b-2 border-strong</code>; previous and next <code>size-control border</code>"],
         ["Main grid", "<code>tier-content px-grid</code>, inner <code>grid grid-cols-12 gap-x-grid</code>"],
         ["Page head", "<code>col-span-12 flex flex-col gap-field pt-page pb-xl</code>; title <code>text-display-sm</code>"],
         ["Block", "<code>col-span-12 grid grid-cols-12 gap-x-grid pt-sm pb-xl border-t border-strong</code>; label <code>md:col-span-3</code>, content <code>md:col-span-9</code>"],
@@ -493,7 +511,7 @@ def index():
     ]
     tpls = [
         ("docs-home.html", "Docs home", "A landing page: title, two actions, four entry points on the grid, an install snippet and the figures."),
-        ("guide.html", "Guide", "The band, the section row, the block with its label column, and search."),
+        ("guide.html", "Guide", "The band, the bar with the site map and search, and the block with its label column."),
         ("reference.html", "Reference", "Tables of classes and declarations, with code."),
         ("changelog.html", "Changelog", "Releases as rows on a 1 + 3 grid, with a release index in place of the contents."),
     ]
@@ -507,7 +525,7 @@ def index():
         ),
         section("frame", "The frame",
             frame_diagram,
-            p("An inverse band with the four sections, then a row of the current section's pages under a heavy rule, then the page as a stack of blocks. Only the band sticks; the page scrolls as a whole. Below 768px the sections move into the row."),
+            p("An inverse band with the four sections, then a bar under a heavy rule with the site map, search and the next page, then the page as a stack of blocks. Only the band sticks; the page scrolls as a whole. Below 768px the sections are reached through the site map."),
         ),
         section("grid", "The grid",
             grid_strip,
