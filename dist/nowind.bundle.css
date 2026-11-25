@@ -1458,10 +1458,10 @@
   --nested-padding: var(--margin);
   --nested-icon-padding: max(0px, calc(var(--nested-padding) - var(--margin)));
   --icon-box: var(--slot);
-  --icon-sm: var(--F);
+  --icon-sm: calc(var(--F) / 1.2);
   --icon-md: calc(var(--F) + var(--icon-md-blend) * (var(--slot) - var(--F)));
   --icon-lg: var(--slot);
-  --mark-sm: var(--icon-sm);
+  --mark-sm: var(--F);
   --mark-md: var(--icon-md);
   --mark-lg: var(--icon-lg);
   --switch-width-md: calc(2 * var(--mark-md) - 4 * var(--border-width));

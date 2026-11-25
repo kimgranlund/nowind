@@ -406,9 +406,9 @@
       },
       {
         "token": "--icon-sm",
-        "formula": "F",
-        "at16": "16px",
-        "use": "Small glyph; class icon-sm."
+        "formula": "F / 1.2",
+        "at16": "13.33px",
+        "use": "Small glyph, the small text step (F over the scale ratio), so it matches text-sm labels in chips, badges and toolbars; class icon-sm. Carets use it."
       },
       {
         "token": "--icon-md",

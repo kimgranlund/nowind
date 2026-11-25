@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **`icon-sm` is the small text step:** `--icon-sm` is F ÷ 1.2 (13.3px at 16) instead of F, so a small icon matches the `text-sm` label beside it in chips, badges and toolbars, where it had been larger than the text; carets get finer too. Marks keep their size (`--mark-sm` is F).
 - **Dialog type:** the title is `text-lg`, a step above the controls, and the body `text-base`, the controls' size (it had been `text-base` and `text-sm`, so the body read smaller than the buttons and the title no larger); footer buttons sit `gap-xs` apart.
 - **Actions in toasts and alerts nest:** Retry, Undo, View logs and Dismiss take `rounded-inner`, the surface's radius less its padding, instead of `rounded-xs`, the radius for an item one inset inside a control, which read as square at a toast's padding. The titled alert pads `p-xs`, as the toast does (at `p-sm` the inner radius came to 1.5px).
 - **Dialog example:** the close button is a fixed `size-nested shrink-0` square again (an earlier toolbar change had made it `h-full aspect-square`, so it grew with a wrapped title), and the dialog example has its own full row (capped at `max-w-form`), so its title and its Cancel and Delete buttons no longer wrap; the buttons sit `gap-xs` apart.
