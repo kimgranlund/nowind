@@ -6,6 +6,7 @@
 - **Motion:** Massimo's springs (`--ease-smooth`, `--ease-snappy`, `--ease-bouncy`) as CSS `linear()` easings with their durations, ease curves, and `transition-*`, `duration-*`, `ease-*` classes.
 - **Page grid and shell:** Affine's grid gutter, inset and edge margins, and shell lengths (sidebar, rail, header, measure, dock width) with `gap-grid`, `p-grid-inset`, `px-grid`, `w-sidebar`, `w-rail`, `h-header`, `max-w-measure`.
 - **Form marks:** the reset draws checkboxes, radios, switches (`role="switch"`) and sliders at Affine's mark sizes; `mark-sm`, `mark-lg`.
+- **Materials:** Massimo's flat, physical, frosted, glass and outline materials (`material-*` on a region, `relief-*` on a part), with generated paint tokens.
 - **Dev server:** `scripts/serve.mjs` serves previews with caching off.
 
 ## 0.2.0 (2026-11-25)

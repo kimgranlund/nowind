@@ -1487,6 +1487,47 @@
   .px-control:where(:has(> .icon:last-child)) { padding-inline-end: var(--control-icon-padding); }
   .px-nested:where(:has(> .icon:first-child)) { padding-inline-start: var(--nested-icon-padding); }
   .px-nested:where(:has(> .icon:last-child)) { padding-inline-end: var(--nested-icon-padding); }
+  @scope (.material-physical) to (.material-flat, .material-frosted, .material-glass, .material-outline) {
+    .relief-raised, :scope.relief-raised { background-image: linear-gradient(var(--paint-face-top), transparent, transparent, var(--paint-face-bottom)); box-shadow: inset 0 1px 0 var(--paint-bevel-top), inset 0 -1px 0 var(--paint-bevel-bottom), 0 0 0 0.5px var(--paint-bevel-ring), var(--shadow-sm); }
+    .relief-raised:active, :scope.relief-raised:active { background-image: none; box-shadow: var(--inset-shadow-xs), inset 0 0 0 0.5px var(--paint-recess-ring), 0 1px 0 var(--paint-recess-lip); }
+    .relief-raised-solid, :scope.relief-raised-solid { background-image: linear-gradient(var(--paint-face-top-solid), transparent, transparent, var(--paint-face-bottom-solid)); box-shadow: inset 0 1px 0 var(--paint-bevel-top-solid), inset 0 -1px 0 var(--paint-bevel-bottom), var(--shadow-sm); }
+    .relief-raised-solid:active, :scope.relief-raised-solid:active { background-image: none; box-shadow: var(--inset-shadow-xs), inset 0 0 0 0.5px var(--paint-recess-ring), 0 1px 0 var(--paint-recess-lip); }
+    .relief-recessed, :scope.relief-recessed { box-shadow: var(--inset-shadow-sm), inset 0 0 0 0.5px var(--paint-recess-ring), 0 1px 0 var(--paint-recess-lip); }
+    .relief-field, :scope.relief-field { box-shadow: var(--inset-shadow-sm), inset 0 0 0 0.5px var(--paint-recess-ring), 0 1px 0 var(--paint-recess-lip); }
+    .relief-etched, :scope.relief-etched { box-shadow: inset 0 1px 0 var(--paint-etch-top), inset 0 -1px 0 var(--paint-etch-ledge); }
+    .relief-ground, :scope.relief-ground { box-shadow: inset 0 1px 0 var(--paint-bevel-top), var(--shadow-md); }
+    .relief-overlay, :scope.relief-overlay { box-shadow: var(--shadow-lg); }
+  }
+  @scope (.material-frosted) to (.material-flat, .material-physical, .material-glass, .material-outline) {
+    .relief-raised, :scope.relief-raised { background-color: var(--glass-face-frosted); border-color: transparent; -webkit-backdrop-filter: blur(8px) saturate(1.6); backdrop-filter: blur(8px) saturate(1.6); background-image: linear-gradient(var(--paint-specular-frosted), transparent 45%); box-shadow: inset 0 1px 0 var(--paint-rim-frosted-top), inset 0 -1px 0 var(--paint-rim-frosted-bottom), inset 0 0 0 0.5px var(--paint-rim-frosted-ring), inset 0 0 var(--q) 0 var(--paint-rim-frosted-glow), 0 0 0 0.5px var(--paint-rim-frosted-outer), var(--shadow-sm); }
+    .relief-raised:active, :scope.relief-raised:active { background-image: none; box-shadow: var(--inset-shadow-xs), inset 0 0 0 0.5px var(--paint-recess-ring), 0 1px 0 var(--paint-recess-lip); }
+    .relief-raised-solid, :scope.relief-raised-solid { background-image: linear-gradient(var(--paint-face-top-solid), transparent, transparent, var(--paint-face-bottom-solid)); box-shadow: inset 0 1px 0 var(--paint-bevel-top-solid), inset 0 -1px 0 var(--paint-bevel-bottom), var(--shadow-sm); }
+    .relief-raised-solid:active, :scope.relief-raised-solid:active { background-image: none; box-shadow: var(--inset-shadow-xs), inset 0 0 0 0.5px var(--paint-recess-ring), 0 1px 0 var(--paint-recess-lip); }
+    .relief-recessed, :scope.relief-recessed { box-shadow: var(--inset-shadow-sm), inset 0 0 0 0.5px var(--paint-recess-ring), 0 1px 0 var(--paint-recess-lip); }
+    .relief-field, :scope.relief-field { box-shadow: var(--inset-shadow-sm), inset 0 0 0 0.5px var(--paint-recess-ring), 0 1px 0 var(--paint-recess-lip); }
+    .relief-etched, :scope.relief-etched { box-shadow: inset 0 1px 0 var(--paint-etch-top), inset 0 -1px 0 var(--paint-etch-ledge); }
+    .relief-ground, :scope.relief-ground { background-color: var(--glass-face-frosted); border-color: transparent; -webkit-backdrop-filter: blur(8px) saturate(1.6); backdrop-filter: blur(8px) saturate(1.6); background-image: linear-gradient(var(--paint-specular-frosted), transparent 45%); box-shadow: inset 0 1px 0 var(--paint-rim-frosted-top), inset 0 -1px 0 var(--paint-rim-frosted-bottom), inset 0 0 0 0.5px var(--paint-rim-frosted-ring), inset 0 0 var(--q) 0 var(--paint-rim-frosted-glow), 0 0 0 0.5px var(--paint-rim-frosted-outer), var(--shadow-md); }
+    .relief-overlay, :scope.relief-overlay { background-color: var(--glass-face-frosted); border-color: transparent; -webkit-backdrop-filter: blur(8px) saturate(1.6); backdrop-filter: blur(8px) saturate(1.6); background-image: linear-gradient(var(--paint-specular-frosted), transparent 45%); box-shadow: inset 0 1px 0 var(--paint-rim-frosted-top), inset 0 -1px 0 var(--paint-rim-frosted-bottom), inset 0 0 0 0.5px var(--paint-rim-frosted-ring), inset 0 0 var(--q) 0 var(--paint-rim-frosted-glow), 0 0 0 0.5px var(--paint-rim-frosted-outer), var(--shadow-lg); }
+  }
+  @scope (.material-glass) to (.material-flat, .material-physical, .material-frosted, .material-outline) {
+    .relief-raised, :scope.relief-raised { background-color: var(--glass-face-clear); border-color: transparent; -webkit-backdrop-filter: blur(1px) saturate(1.8); backdrop-filter: blur(1px) saturate(1.8); background-image: linear-gradient(var(--paint-specular-clear), transparent 30%); box-shadow: inset 0 1px 0 var(--paint-rim-clear-top), inset 0 -1px 0 var(--paint-rim-clear-bottom), inset 0 0 0 0.5px var(--paint-rim-clear-ring), inset 0 0 var(--q) 0 var(--paint-rim-clear-glow), 0 0 0 0.5px var(--paint-rim-clear-outer), var(--shadow-sm); }
+    .relief-raised:active, :scope.relief-raised:active { background-image: none; box-shadow: var(--inset-shadow-xs), inset 0 0 0 0.5px var(--paint-recess-ring), 0 1px 0 var(--paint-recess-lip); }
+    .relief-raised-solid, :scope.relief-raised-solid { background-image: linear-gradient(var(--paint-face-top-solid), transparent, transparent, var(--paint-face-bottom-solid)); box-shadow: inset 0 1px 0 var(--paint-bevel-top-solid), inset 0 -1px 0 var(--paint-bevel-bottom), var(--shadow-sm); }
+    .relief-raised-solid:active, :scope.relief-raised-solid:active { background-image: none; box-shadow: var(--inset-shadow-xs), inset 0 0 0 0.5px var(--paint-recess-ring), 0 1px 0 var(--paint-recess-lip); }
+    .relief-recessed, :scope.relief-recessed { box-shadow: var(--inset-shadow-sm), inset 0 0 0 0.5px var(--paint-recess-ring), 0 1px 0 var(--paint-recess-lip); }
+    .relief-field, :scope.relief-field { box-shadow: var(--inset-shadow-sm), inset 0 0 0 0.5px var(--paint-recess-ring), 0 1px 0 var(--paint-recess-lip); }
+    .relief-etched, :scope.relief-etched { box-shadow: inset 0 1px 0 var(--paint-etch-top), inset 0 -1px 0 var(--paint-etch-ledge); }
+    .relief-ground, :scope.relief-ground { background-color: var(--glass-face-clear); border-color: transparent; -webkit-backdrop-filter: blur(1px) saturate(1.8); backdrop-filter: blur(1px) saturate(1.8); background-image: linear-gradient(var(--paint-specular-clear), transparent 30%); box-shadow: inset 0 1px 0 var(--paint-rim-clear-top), inset 0 -1px 0 var(--paint-rim-clear-bottom), inset 0 0 0 0.5px var(--paint-rim-clear-ring), inset 0 0 var(--q) 0 var(--paint-rim-clear-glow), 0 0 0 0.5px var(--paint-rim-clear-outer), var(--shadow-md); }
+    .relief-overlay, :scope.relief-overlay { background-color: var(--glass-face-clear); border-color: transparent; -webkit-backdrop-filter: blur(1px) saturate(1.8); backdrop-filter: blur(1px) saturate(1.8); background-image: linear-gradient(var(--paint-specular-clear), transparent 30%); box-shadow: inset 0 1px 0 var(--paint-rim-clear-top), inset 0 -1px 0 var(--paint-rim-clear-bottom), inset 0 0 0 0.5px var(--paint-rim-clear-ring), inset 0 0 var(--q) 0 var(--paint-rim-clear-glow), 0 0 0 0.5px var(--paint-rim-clear-outer), var(--shadow-lg); }
+  }
+  @scope (.material-outline) to (.material-flat, .material-physical, .material-frosted, .material-glass) {
+    .relief-raised, :scope.relief-raised { background-color: transparent; background-image: none; border-color: transparent; box-shadow: inset 0 0 0 1px var(--fg-weak); }
+    .relief-recessed, :scope.relief-recessed { background-color: transparent; background-image: none; border-color: transparent; box-shadow: inset 0 0 0 1px var(--fg-weak); }
+    .relief-field, :scope.relief-field { background-color: transparent; background-image: none; border-color: transparent; box-shadow: inset 0 0 0 1px var(--fg-weak); }
+    .relief-etched, :scope.relief-etched { background-color: transparent; background-image: none; border-color: transparent; box-shadow: inset 0 0 0 1px var(--fg-weak); }
+    .relief-ground, :scope.relief-ground { background-color: transparent; background-image: none; border-color: transparent; box-shadow: inset 0 0 0 1px var(--fg-weak); }
+    .relief-overlay, :scope.relief-overlay { background-color: var(--bg); background-image: none; border-color: transparent; box-shadow: inset 0 0 0 1px var(--fg-weak); }
+  }
   @media (hover: hover) {
     .hover\:bg-scrim:hover { background-color: var(--scrim); }
     .hover\:bg-bg-inverse:hover { background-color: var(--bg-inverse); }

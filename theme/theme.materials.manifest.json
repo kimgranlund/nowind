@@ -1,0 +1,173 @@
+{
+  "file": "theme.materials.css",
+  "generated": "scripts/materials.mjs",
+  "description": "Material paint after massimo-v4: the paint roles (shade and lit at an alpha) and the glass faces that the relief classes in nowind.css read. A material never changes a length or a fill of the surface ladder: it adds light (face shading, bevel, cast, inner shadow), a 1px line in place of fills, or transmission on what floats.",
+  "source": "massimo-v4 packages/ui/src/materials.ts",
+  "paint": {
+    "rule": "Light scheme: shade is rgb(27 28 32), lit is white, each at the role's alpha. Dark scheme: black at 3× the shade alpha and white at ¼ the lit alpha, unless the role names its own dark alpha.",
+    "roles": [
+      {
+        "token": "--paint-face-top",
+        "base": "lit",
+        "alpha": 0.4,
+        "darkAlpha": 0.03
+      },
+      {
+        "token": "--paint-face-bottom",
+        "base": "shade",
+        "alpha": 0.015,
+        "darkAlpha": 0.055
+      },
+      {
+        "token": "--paint-face-top-solid",
+        "base": "lit",
+        "alpha": 0.065,
+        "darkAlpha": 0.07
+      },
+      {
+        "token": "--paint-face-bottom-solid",
+        "base": "shade",
+        "alpha": 0.03,
+        "darkAlpha": 0.015
+      },
+      {
+        "token": "--paint-bevel-top",
+        "base": "lit",
+        "alpha": 0.5,
+        "darkAlpha": 0.125
+      },
+      {
+        "token": "--paint-bevel-top-solid",
+        "base": "lit",
+        "alpha": 0.22,
+        "darkAlpha": 0.055
+      },
+      {
+        "token": "--paint-bevel-bottom",
+        "base": "shade",
+        "alpha": 0.05,
+        "darkAlpha": 0.15
+      },
+      {
+        "token": "--paint-bevel-ring",
+        "base": "shade",
+        "alpha": 0.06,
+        "darkAlpha": 0.18
+      },
+      {
+        "token": "--paint-recess-ring",
+        "base": "shade",
+        "alpha": 0.05,
+        "darkAlpha": 0.15
+      },
+      {
+        "token": "--paint-recess-lip",
+        "base": "lit",
+        "alpha": 0.45,
+        "darkAlpha": 0.113
+      },
+      {
+        "token": "--paint-etch-top",
+        "base": "shade",
+        "alpha": 0.08,
+        "darkAlpha": 0.3
+      },
+      {
+        "token": "--paint-etch-ledge",
+        "base": "lit",
+        "alpha": 1,
+        "darkAlpha": 0.14
+      },
+      {
+        "token": "--paint-rim-frosted-top",
+        "base": "lit",
+        "alpha": 0.8,
+        "darkAlpha": 0.3
+      },
+      {
+        "token": "--paint-rim-frosted-bottom",
+        "base": "lit",
+        "alpha": 0.35,
+        "darkAlpha": 0.08
+      },
+      {
+        "token": "--paint-rim-frosted-ring",
+        "base": "lit",
+        "alpha": 0.4,
+        "darkAlpha": 0.13
+      },
+      {
+        "token": "--paint-rim-frosted-glow",
+        "base": "lit",
+        "alpha": 0.3,
+        "darkAlpha": 0.07
+      },
+      {
+        "token": "--paint-rim-frosted-outer",
+        "base": "shade",
+        "alpha": 0.08,
+        "darkAlpha": 0.4
+      },
+      {
+        "token": "--paint-specular-frosted",
+        "base": "lit",
+        "alpha": 0.3,
+        "darkAlpha": 0.06
+      },
+      {
+        "token": "--paint-rim-clear-top",
+        "base": "lit",
+        "alpha": 0.95,
+        "darkAlpha": 0.38
+      },
+      {
+        "token": "--paint-rim-clear-bottom",
+        "base": "lit",
+        "alpha": 0.45,
+        "darkAlpha": 0.12
+      },
+      {
+        "token": "--paint-rim-clear-ring",
+        "base": "lit",
+        "alpha": 0.5,
+        "darkAlpha": 0.14
+      },
+      {
+        "token": "--paint-rim-clear-glow",
+        "base": "lit",
+        "alpha": 0.4,
+        "darkAlpha": 0.08
+      },
+      {
+        "token": "--paint-rim-clear-outer",
+        "base": "shade",
+        "alpha": 0.1,
+        "darkAlpha": 0.45
+      },
+      {
+        "token": "--paint-specular-clear",
+        "base": "lit",
+        "alpha": 0.4,
+        "darkAlpha": 0.1
+      }
+    ]
+  },
+  "glass": {
+    "tokens": [
+      "--glass-face-frosted",
+      "--glass-face-clear"
+    ],
+    "rule": "The neutral fill (slate) at 56.00000000000001% (frosted) or 18% (clear): step 1 in light, step 3 in dark, so the glass sits lighter than the page.",
+    "notDone": [
+      "Massimo's glass band (a contrast and brightness filter per scheme that presses the backdrop into a readable band) and its lens and frost texture are not ported."
+    ]
+  },
+  "materials": {
+    "flat": "No paint: the default. Overlays still cast.",
+    "physical": "Lit: face shading, a bevel (lit top, shaded bottom, half-pixel ring) and the raised cast; pressed sinks to a recess; fields and wells are recessed; cards cast at the popup level.",
+    "frosted": "Lit, and raised parts, cards and overlays are frosted glass: a 56% face over an 8px blur, a specular sheen, a lit rim and the cast.",
+    "glass": "Lit, and raised parts, cards and overlays are clear glass: an 18% face over a 1px blur, a sharper sheen and a brighter rim.",
+    "outline": "No fills but state: every part draws one 1px line in the muted text color; overlays stay opaque."
+  },
+  "usage": "Set a material on a region with material-physical, material-frosted, material-glass or material-outline (material-flat resets it). Parts say what they are with relief-raised (buttons), relief-raised-solid (primary buttons), relief-recessed (tracks, wells), relief-field (inputs), relief-etched, relief-ground (cards) and relief-overlay (popovers, dialogs). The nearest material wins: the classes are @scope rules that stop at a nested material."
+}

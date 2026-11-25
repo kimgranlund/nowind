@@ -486,6 +486,59 @@ for (const [cls, pad] of [["px-control", "--control-icon-padding"], ["px-nested"
   out.push(`  .${cls}:where(:has(> .icon:first-child)) { padding-inline-start: var(${pad}); }`);
   out.push(`  .${cls}:where(:has(> .icon:last-child)) { padding-inline-end: var(${pad}); }`);
 }
+// ---- Materials (after massimo-v4): a region's material paints the reliefs inside it. The nearest material wins:
+// each block is an @scope that stops at a nested material region. Flat is the default and paints nothing but casts.
+const MATERIALS = ["flat", "physical", "frosted", "glass", "outline"];
+const RELIEFS = ["raised", "raised-solid", "recessed", "field", "etched", "ground", "overlay"];
+const shading = (top, bottom) => `linear-gradient(var(--paint-${top}), transparent, transparent, var(--paint-${bottom}))`;
+const BEVEL = "inset 0 1px 0 var(--paint-bevel-top), inset 0 -1px 0 var(--paint-bevel-bottom), 0 0 0 0.5px var(--paint-bevel-ring)";
+const BEVEL_SOLID = "inset 0 1px 0 var(--paint-bevel-top-solid), inset 0 -1px 0 var(--paint-bevel-bottom)";
+const RECESS = (lv) => `var(--inset-shadow-${lv}), inset 0 0 0 0.5px var(--paint-recess-ring), 0 1px 0 var(--paint-recess-lip)`;
+const rim = (k) => `inset 0 1px 0 var(--paint-rim-${k}-top), inset 0 -1px 0 var(--paint-rim-${k}-bottom), inset 0 0 0 0.5px var(--paint-rim-${k}-ring), inset 0 0 var(--q) 0 var(--paint-rim-${k}-glow), 0 0 0 0.5px var(--paint-rim-${k}-outer)`;
+const LIT = {
+  "raised": `background-image: ${shading("face-top", "face-bottom")}; box-shadow: ${BEVEL}, var(--shadow-sm)`,
+  "raised:active": `background-image: none; box-shadow: ${RECESS("xs")}`,
+  "raised-solid": `background-image: ${shading("face-top-solid", "face-bottom-solid")}; box-shadow: ${BEVEL_SOLID}, var(--shadow-sm)`,
+  "raised-solid:active": `background-image: none; box-shadow: ${RECESS("xs")}`,
+  "recessed": `box-shadow: ${RECESS("sm")}`,
+  "field": `box-shadow: ${RECESS("sm")}`,
+  "etched": "box-shadow: inset 0 1px 0 var(--paint-etch-top), inset 0 -1px 0 var(--paint-etch-ledge)",
+  "ground": "box-shadow: inset 0 1px 0 var(--paint-bevel-top), var(--shadow-md)",
+  "overlay": "box-shadow: var(--shadow-lg)",
+};
+const glassPart = (k, face, filter, sheen, cast) =>
+  `background-color: var(--glass-face-${face}); border-color: transparent; -webkit-backdrop-filter: ${filter}; backdrop-filter: ${filter}; background-image: linear-gradient(var(--paint-specular-${face}), transparent ${sheen}); box-shadow: ${rim(k)}, var(--shadow-${cast})`;
+const GLASS = (k, face, filter, sheen) => ({
+  ...LIT,
+  "raised": glassPart(k, face, filter, sheen, "sm"),
+  "ground": glassPart(k, face, filter, sheen, "md"),
+  "overlay": glassPart(k, face, filter, sheen, "lg"),
+});
+const LINE = "background-color: transparent; background-image: none; border-color: transparent; box-shadow: inset 0 0 0 1px var(--fg-weak)";
+const PAINT = {
+  flat: {},
+  physical: LIT,
+  frosted: GLASS("frosted", "frosted", "blur(8px) saturate(1.6)", "45%"),
+  glass: GLASS("clear", "clear", "blur(1px) saturate(1.8)", "30%"),
+  outline: { "raised": LINE, "recessed": LINE, "field": LINE, "etched": LINE, "ground": LINE, "overlay": "background-color: var(--bg); background-image: none; border-color: transparent; box-shadow: inset 0 0 0 1px var(--fg-weak)" },
+};
+const materialCss = [];
+for (const r of RELIEFS) add(`relief-${r}`, r === "overlay" ? "box-shadow: var(--shadow-lg)" : "--_relief: 1");
+for (const m of MATERIALS) add(`material-${m}`, `--_material: ${m}`);
+for (const m of MATERIALS) {
+  const entries = Object.entries(PAINT[m]);
+  if (!entries.length) continue;
+  const others = MATERIALS.filter((x) => x !== m).map((x) => `.material-${x}`).join(", ");
+  materialCss.push(`  @scope (.material-${m}) to (${others}) {`);
+  for (const [part, decl] of entries) {
+    const [name, state] = part.split(":");
+    const st = state ? `:${state}` : "";
+    materialCss.push(`    .relief-${name}${st}, :scope.relief-${name}${st} { ${decl}; }`);
+  }
+  materialCss.push("  }");
+}
+out.push(...materialCss);
+
 out.push("  @media (hover: hover) {");
 for (const c of HOVER) out.push(`    .${esc(`hover:${c}`)}:hover { ${D.get(c)}; }`);
 out.push("  }");
@@ -533,6 +586,7 @@ const manifest = {
     layout: "container, display, grid-cols-1…12, col-span-1…12 and -full, flex, basis fractions, position, inset, z-",
     controls: "h-control, h-nested (an .icon inside it shrinks by the two borders so it fits), size-control, size-nested, min-w-control, min-w-nested, px-control and px-nested (padding steps in by one margin on a side whose first or last child is .icon; wrap the label in a <span>), gap-gutter, gap-gutter-half",
     levels: "p-surface, p-dialog (each minus the border), p-region, p-page, with px- and py- versions; gap-field, gap-row, gap-group, gap-section, gap-page; mt-section, mb-section. After Affine's container levels.",
+    materials: "material-flat, -physical, -frosted, -glass, -outline set a region's material (nearest wins, by @scope); relief-raised, -raised-solid, -recessed, -field, -etched, -ground, -overlay say what a part is. After Massimo.",
     grid: "gap-grid, gap-x-grid (2M), p-grid-inset (M), px-grid (slot), px-grid-compact; shell: w-sidebar (16F + 16), w-rail, h-header, min-h-header, max-w-measure (44F). After Affine.",
     tiers: "tier-product (1×), tier-content (font +2px, spacing 1.5×), tier-brand (font +4px, spacing 2×). Each is a scope: --F and everything derived recompute inside it.",
     motion: "transition, transition-colors, -opacity, -shadow, -transform, -none (state-change length and easing by default); duration-fade, -snappy, -smooth, -bouncy; ease-smooth, -snappy, -bouncy (Massimo springs as linear()), ease-standard, -out, -in.",
@@ -558,6 +612,7 @@ writeFileSync(join(root, "nowind.manifest.json"), JSON.stringify(manifest, null,
 const GROUPS = [
   ["Controls and icons", (c) => /^(icon|mark-|h-control|h-nested|size-control|size-nested|min-w-control|min-w-nested|px-control|px-nested|gap-gutter)/.test(c)],
   ["Levels and tiers", (c) => /^(p[xy]?-(surface|dialog|region|page)|gap-(field|row|group|section|page)|m[tb]-section|tier-)/.test(c)],
+  ["Materials", (c) => /^(material|relief)-/.test(c)],
   ["Page grid and shell", (c) => /^(gap-(x-)?grid|p-grid-inset|px-grid|w-sidebar|w-rail|(min-)?h-header|max-w-measure)/.test(c)],
   ["Type", (c, d) => /font-size/.test(d)],
   ["Text color", (c, d) => /^color:/.test(d)],

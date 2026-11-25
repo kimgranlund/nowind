@@ -23,6 +23,7 @@
       <a href="#feedback" class="inline-flex items-center h-control px-control rounded-sm no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors">Feedback</a>
       <a href="#forms" class="inline-flex items-center h-control px-control rounded-sm no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors">Forms</a>
       <a href="#data" class="inline-flex items-center h-control px-control rounded-sm no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors">Data</a>
+      <a href="#materials" class="inline-flex items-center h-control px-control rounded-sm no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors">Materials</a>
       <a href="#shell" class="inline-flex items-center h-control px-control rounded-sm no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors">Shell</a>
       <a href="#navigation" class="inline-flex items-center h-control px-control rounded-sm no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors">Navigation</a>
     </div>
@@ -343,6 +344,65 @@
             <span>to search</span>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Materials -->
+  <section id="materials" class="mb-3xl">
+    <span class="text-kicker text-fg-accent-1-weak">Surfaces</span>
+    <h2 class="text-heading-lg mb-xs">Materials</h2>
+    <p class="text-body-sm text-fg-weak max-w-text mb-md">Massimo's materials, one per region: <code>material-flat</code>, <code>-physical</code>, <code>-frosted</code>, <code>-glass</code> and <code>-outline</code>. Each part names its relief (<code>relief-ground</code>, <code>relief-raised</code>, <code>relief-raised-solid</code>, <code>relief-field</code>); the material decides how it is lit, lined or made of glass. The colored blocks behind show what the glass blurs.</p>
+    <div class="relative rounded-xl overflow-hidden">
+      <div class="absolute inset-0 grid grid-cols-4" aria-hidden="true">
+        <div class="bg-solid-accent-1"></div><div class="bg-solid-accent-3"></div><div class="bg-solid-warning"></div><div class="bg-solid-accent-2"></div>
+      </div>
+      <div class="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-group p-surface">
+      <div class="material-flat flex flex-col gap-field p-surface rounded-lg relief-ground bg-bg border border-border-weak">
+        <span class="text-kicker text-fg-weak">flat</span>
+        <span class="text-title">Invite your team</span>
+        <input class="relief-field h-control px-control rounded-sm border border-border bg-bg text-control-md w-full" placeholder="name@example.com">
+        <div class="flex gap-row">
+          <button class="relief-raised-solid inline-flex items-center h-control px-control rounded-sm border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong text-on-solid-accent-1 text-title-sm cursor-pointer transition-colors"><span>Invite</span></button>
+          <button class="relief-raised inline-flex items-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component text-fg text-title-sm cursor-pointer transition-colors"><span>Later</span></button>
+        </div>
+      </div>
+      <div class="material-physical flex flex-col gap-field p-surface rounded-lg relief-ground bg-bg border border-border-weak">
+        <span class="text-kicker text-fg-weak">physical</span>
+        <span class="text-title">Invite your team</span>
+        <input class="relief-field h-control px-control rounded-sm border border-border bg-bg text-control-md w-full" placeholder="name@example.com">
+        <div class="flex gap-row">
+          <button class="relief-raised-solid inline-flex items-center h-control px-control rounded-sm border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong text-on-solid-accent-1 text-title-sm cursor-pointer transition-colors"><span>Invite</span></button>
+          <button class="relief-raised inline-flex items-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component text-fg text-title-sm cursor-pointer transition-colors"><span>Later</span></button>
+        </div>
+      </div>
+      <div class="material-frosted flex flex-col gap-field p-surface rounded-lg relief-ground bg-bg border border-border-weak">
+        <span class="text-kicker text-fg-weak">frosted</span>
+        <span class="text-title">Invite your team</span>
+        <input class="relief-field h-control px-control rounded-sm border border-border bg-bg text-control-md w-full" placeholder="name@example.com">
+        <div class="flex gap-row">
+          <button class="relief-raised-solid inline-flex items-center h-control px-control rounded-sm border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong text-on-solid-accent-1 text-title-sm cursor-pointer transition-colors"><span>Invite</span></button>
+          <button class="relief-raised inline-flex items-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component text-fg text-title-sm cursor-pointer transition-colors"><span>Later</span></button>
+        </div>
+      </div>
+      <div class="material-glass flex flex-col gap-field p-surface rounded-lg relief-ground bg-bg border border-border-weak">
+        <span class="text-kicker text-fg-weak">glass</span>
+        <span class="text-title">Invite your team</span>
+        <input class="relief-field h-control px-control rounded-sm border border-border bg-bg text-control-md w-full" placeholder="name@example.com">
+        <div class="flex gap-row">
+          <button class="relief-raised-solid inline-flex items-center h-control px-control rounded-sm border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong text-on-solid-accent-1 text-title-sm cursor-pointer transition-colors"><span>Invite</span></button>
+          <button class="relief-raised inline-flex items-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component text-fg text-title-sm cursor-pointer transition-colors"><span>Later</span></button>
+        </div>
+      </div>
+      <div class="material-outline flex flex-col gap-field p-surface rounded-lg relief-ground bg-bg border border-border-weak">
+        <span class="text-kicker text-fg-weak">outline</span>
+        <span class="text-title">Invite your team</span>
+        <input class="relief-field h-control px-control rounded-sm border border-border bg-bg text-control-md w-full" placeholder="name@example.com">
+        <div class="flex gap-row">
+          <button class="relief-raised-solid inline-flex items-center h-control px-control rounded-sm border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong text-on-solid-accent-1 text-title-sm cursor-pointer transition-colors"><span>Invite</span></button>
+          <button class="relief-raised inline-flex items-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component text-fg text-title-sm cursor-pointer transition-colors"><span>Later</span></button>
+        </div>
+      </div>
       </div>
     </div>
   </section>

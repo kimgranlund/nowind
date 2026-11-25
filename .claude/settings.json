@@ -4,6 +4,7 @@
       "Bash(node scripts/utopia.mjs:*)",
       "Bash(node scripts/shadows.mjs)",
       "Bash(node scripts/motion.mjs)",
+      "Bash(node scripts/materials.mjs)",
       "Bash(node scripts/utilities.mjs)",
       "Bash(node scripts/bundle.mjs)",
       "Bash(node scripts/check.mjs:*)",
@@ -22,7 +23,9 @@
       "Edit(./theme/theme.shadows.manifest.json)",
       "Edit(./classes.md)",
       "Edit(./theme/theme.motion.css)",
-      "Edit(./theme/theme.motion.manifest.json)"
+      "Edit(./theme/theme.motion.manifest.json)",
+      "Edit(./theme/theme.materials.css)",
+      "Edit(./theme/theme.materials.manifest.json)"
     ]
   }
 }

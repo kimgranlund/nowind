@@ -16,6 +16,7 @@ Read `README.md` for what Nowind is and how people use it. This file says how to
 | `theme/theme.type-roles.css` | Semantic type roles (`--heading-md`, `--heading-md--line-height`, …) | yes |
 | `theme/theme.shadows.css` | Compound shadows (casts and recesses) after Massimo | no, `scripts/shadows.mjs` |
 | `theme/theme.motion.css` | Spring easings (CSS `linear()`) and durations after Massimo | no, `scripts/motion.mjs` |
+| `theme/theme.materials.css` | Material paint roles and glass faces after Massimo | no, `scripts/materials.mjs` |
 | `theme/theme.typography.css`, `theme/theme.space.css` | Fluid Utopia scales, faces, weights, leading, tracking | no, `scripts/utopia.mjs` |
 | `nowind.css` | Reset and utility classes | no, `scripts/utilities.mjs` |
 | `dist/` | One-file bundle and its minified copy | no, `scripts/bundle.mjs` |
@@ -39,6 +40,7 @@ Run the scripts in this order, as far down as the change reaches:
 node scripts/utopia.mjs      # only if the type or space scale changed
 node scripts/shadows.mjs     # only if the shadow constants or levels changed
 node scripts/motion.mjs      # only if the springs or curves changed
+node scripts/materials.mjs   # only if the paint roles or glass faces changed
 node scripts/utilities.mjs   # after any token change, so classes follow
 node scripts/bundle.mjs      # always last
 node scripts/check.mjs       # before every commit
@@ -68,6 +70,7 @@ Then check the result in `specimen.html` through the dev server (`node scripts/s
 - **Classes:** `property-value`; colour classes take the token name without `--` (`bg-solid-accent-1`, `text-fg-weak`). Tailwind v4 names where Tailwind has the same thing: `rounded-xs/sm`, `shadow-xs/sm`, `h-dvh`, `2xl:`.
 - **Shadows:** `--shadow-{xs…xl}` and `--inset-shadow-{xs,sm}` (Tailwind v4 names) for Massimo's levels, each a stack of 4–6 generated layers in multiples of `--q`. Change the constants in `scripts/shadows.mjs`, never a layer by hand.
 - **Levels and tiers:** `p-surface`, `p-dialog`, `p-region`, `p-page`, `gap-field`, `gap-row`, `gap-group`, `gap-section` after Affine's container levels; `tier-product`, `tier-content`, `tier-brand` are scopes, listed beside `.scope` in the selectors of `theme.geometry.css`, `scripts/utopia.mjs` and `scripts/shadows.mjs`. A new scope-like class goes in all three.
+- **Materials:** `material-*` on a region, `relief-*` on a part. The paint lives in `scripts/materials.mjs`; how each material paints each relief lives in `scripts/utilities.mjs` as `@scope` blocks, so the nearest material wins.
 - **Controls and icons:** utilities only (`h-control`, `px-control`, `gap-gutter`, `icon`, …), after Affine UI's button and icon geometry. The icon-edge padding is a `:has(> .icon:first-child)` rule in the generator, so labels must be wrapped in a `<span>`. Glyphs come from Phosphor's web font, linked by the page, not bundled.
 - **Variants:** `hover:` for role-token text, background and border colours, opacity and cursor, inside `@media (hover: hover)`; `sm:` to `2xl:` for layout only (display, grid, flex, basis, alignment, widths, gaps). No other variants.
 

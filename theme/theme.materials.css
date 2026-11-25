@@ -1,0 +1,29 @@
+:root {
+  --paint-face-top: light-dark(rgb(255 255 255 / 0.4), rgb(255 255 255 / 0.03));
+  --paint-face-bottom: light-dark(rgb(27 28 32 / 0.015), rgb(0 0 0 / 0.055));
+  --paint-face-top-solid: light-dark(rgb(255 255 255 / 0.065), rgb(255 255 255 / 0.07));
+  --paint-face-bottom-solid: light-dark(rgb(27 28 32 / 0.03), rgb(0 0 0 / 0.015));
+  --paint-bevel-top: light-dark(rgb(255 255 255 / 0.5), rgb(255 255 255 / 0.125));
+  --paint-bevel-top-solid: light-dark(rgb(255 255 255 / 0.22), rgb(255 255 255 / 0.055));
+  --paint-bevel-bottom: light-dark(rgb(27 28 32 / 0.05), rgb(0 0 0 / 0.15));
+  --paint-bevel-ring: light-dark(rgb(27 28 32 / 0.06), rgb(0 0 0 / 0.18));
+  --paint-recess-ring: light-dark(rgb(27 28 32 / 0.05), rgb(0 0 0 / 0.15));
+  --paint-recess-lip: light-dark(rgb(255 255 255 / 0.45), rgb(255 255 255 / 0.113));
+  --paint-etch-top: light-dark(rgb(27 28 32 / 0.08), rgb(0 0 0 / 0.3));
+  --paint-etch-ledge: light-dark(rgb(255 255 255 / 1), rgb(255 255 255 / 0.14));
+  --paint-rim-frosted-top: light-dark(rgb(255 255 255 / 0.8), rgb(255 255 255 / 0.3));
+  --paint-rim-frosted-bottom: light-dark(rgb(255 255 255 / 0.35), rgb(255 255 255 / 0.08));
+  --paint-rim-frosted-ring: light-dark(rgb(255 255 255 / 0.4), rgb(255 255 255 / 0.13));
+  --paint-rim-frosted-glow: light-dark(rgb(255 255 255 / 0.3), rgb(255 255 255 / 0.07));
+  --paint-rim-frosted-outer: light-dark(rgb(27 28 32 / 0.08), rgb(0 0 0 / 0.4));
+  --paint-specular-frosted: light-dark(rgb(255 255 255 / 0.3), rgb(255 255 255 / 0.06));
+  --paint-rim-clear-top: light-dark(rgb(255 255 255 / 0.95), rgb(255 255 255 / 0.38));
+  --paint-rim-clear-bottom: light-dark(rgb(255 255 255 / 0.45), rgb(255 255 255 / 0.12));
+  --paint-rim-clear-ring: light-dark(rgb(255 255 255 / 0.5), rgb(255 255 255 / 0.14));
+  --paint-rim-clear-glow: light-dark(rgb(255 255 255 / 0.4), rgb(255 255 255 / 0.08));
+  --paint-rim-clear-outer: light-dark(rgb(27 28 32 / 0.1), rgb(0 0 0 / 0.45));
+  --paint-specular-clear: light-dark(rgb(255 255 255 / 0.4), rgb(255 255 255 / 0.1));
+
+  --glass-face-frosted: light-dark(oklch(0.9399 0.0085 278.12 / 0.56), oklch(0.3268 0.014 277.48 / 0.56));
+  --glass-face-clear: light-dark(oklch(0.9399 0.0085 278.12 / 0.18), oklch(0.3268 0.014 277.48 / 0.18));
+}

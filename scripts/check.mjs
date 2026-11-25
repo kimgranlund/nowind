@@ -38,6 +38,8 @@ const GENERATED = [
   "theme/theme.shadows.manifest.json",
   "theme/theme.motion.css",
   "theme/theme.motion.manifest.json",
+  "theme/theme.materials.css",
+  "theme/theme.materials.manifest.json",
   "dist/nowind.bundle.css",
   "dist/nowind.min.css",
 ];
@@ -73,7 +75,7 @@ function check(root) {
   const tmp = mkdtempSync(join(tmpdir(), "nowind-check-"));
   try {
     cpSync(root, tmp, { recursive: true, filter: (p) => !p.includes(`${join(root, ".git")}`) });
-    for (const script of ["utopia.mjs", "shadows.mjs", "motion.mjs", "utilities.mjs", "bundle.mjs"]) {
+    for (const script of ["utopia.mjs", "shadows.mjs", "motion.mjs", "materials.mjs", "utilities.mjs", "bundle.mjs"]) {
       execFileSync(process.execPath, [join(tmp, "scripts", script)], { cwd: tmp, stdio: "ignore" });
     }
     for (const f of GENERATED) {

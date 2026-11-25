@@ -145,6 +145,27 @@ Icons use [Phosphor](https://phosphoricons.com)'s web font. Link the weights you
 - An inline `<svg>` inside `.icon` also works; it takes the glyph size and `currentColor`.
 - Classes: `h-control`, `h-nested`, `size-control`, `size-nested`, `min-w-control`, `px-control`, `px-nested`, `gap-gutter`, `gap-gutter-half`, `icon`, `icon-sm`, `icon-md`, `icon-lg`.
 
+### Materials
+
+After Massimo, a region picks a material and each part says what it is. The material decides how parts are lit, lined or made of glass; it never changes a size or a fill color.
+
+| Class | Effect |
+|---|---|
+| `material-flat` | No paint (the default) |
+| `material-physical` | Lit faces, a bevel, a cast shadow; pressed buttons sink |
+| `material-frosted` | Cards, buttons and overlays become frosted glass: blurred backdrop, sheen, lit rim |
+| `material-glass` | The same as clear glass: a thinner face and a sharper sheen |
+| `material-outline` | No fills: every part draws one line |
+
+Parts: `relief-raised` (buttons), `relief-raised-solid` (primary buttons), `relief-field` (inputs), `relief-recessed` (tracks, wells), `relief-etched`, `relief-ground` (cards), `relief-overlay` (popovers, dialogs). The nearest material wins, so regions nest.
+
+```html
+<div class="material-frosted relief-ground p-surface rounded-lg bg-bg">
+  <input class="relief-field …">
+  <button class="relief-raised-solid …">Invite</button>
+</div>
+```
+
 ### Form marks
 
 The reset draws checkboxes, radios, switches and sliders with the theme, at Affine's mark size (between the body size and a slot), filled with `accent-1` when on. A switch is a checkbox with `role="switch"`; its thumb moves on the snappy spring. `mark-sm` and `mark-lg` pick another size.
@@ -236,6 +257,7 @@ theme/
   theme.geometry.css           --F geometry: slot, margin, control height, radius, container
   theme.shadows.css            compound shadows after Massimo (generated)
   theme.motion.css             spring easings and durations after Massimo (generated)
+  theme.materials.css          material paint and glass faces after Massimo (generated)
   theme.space.css              fluid --space-* (generated)
   theme.typography.css         fluid --text-*, kicker, faces, weights, leading, tracking (generated)
   theme.type-roles.css         semantic roles: --heading-md, --heading-md--line-height, …
@@ -247,6 +269,7 @@ scripts/
   utopia.mjs                   generates the fluid type and space scales
   shadows.mjs                  generates the compound shadows
   motion.mjs                   generates the spring easings and durations
+  materials.mjs                generates the material paint tokens
   utilities.mjs                generates nowind.css from the theme tokens
   bundle.mjs                   inlines theme.css's imports and nowind.css into dist/
   check.mjs                    checks the rules in AGENTS.md; --self-test proves it catches breaks
