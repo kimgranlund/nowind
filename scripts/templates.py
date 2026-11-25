@@ -953,6 +953,10 @@ def lint_examples():
         for m in re.finditer(r'<(\w+)\b([^>]*?)\sclass="([^"]*)"([^>]*)>', html_):
             tag, toks = m.group(1), m.group(3).split()
             role = re.search(r'role="(\w+)"', m.group(2) + m.group(4))
+            if any(t in ("px-sm", "px-2xs") for t in toks) and re.match(r'\s*<(?:i|span)\b[^>]*class="[^"]*\bicon\b', html_[m.end():]):
+                out.append(f"{where}: <{tag}> pads its icon edge like a text edge. Fix: at an icon edge use the block padding (ps-xs pe-sm for px-sm, ps-3xs pe-2xs for px-2xs).")
+            if any(re.fullmatch(r"(hover|active):bg-.+", t) for t in toks) and not any(re.fullmatch(r"(pressed|selected|current|open|expanded|has-checked):bg-.+", t) for t in toks):
+                out.append(f"{where}: <{tag}> tints its fill with hover:/active: bg variants. Fix: use state (keep bg variants only where a state changes the surface, such as current:bg-accent-1-9).")
             if tag in ("a", "button", "summary", "input", "select", "textarea", "label") or (role and role.group(1) in ("button", "tab", "option", "menuitem", "switch")):
                 continue
             if tag in ("button", "a") and re.match(r"\s*<i\b[^>]*></i>\s*</" + tag + ">", html_[m.end():]) and (any(t.startswith(("px-", "py-")) for t in toks) or not any(re.fullmatch(r"p-[a-z0-9]+", t) for t in toks)):

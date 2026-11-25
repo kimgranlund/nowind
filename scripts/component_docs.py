@@ -2,16 +2,22 @@
 rendered live and shown as code, with when to use it and when not to. Utility classes only."""
 
 BTN = "inline-flex items-center justify-center py-xs px-sm gap-xs rounded-sm"
-BTN_PRIMARY = f"{BTN} border border-transparent bg-accent-1-9 hover:bg-accent-1-10 active:bg-accent-1-10 fg-accent-1-contrast text-base font-medium cursor-pointer"
-BTN_SECONDARY = f"{BTN} border bg-neutral-3 hover:bg-neutral-4 active:bg-neutral-5 fg-neutral-12 text-base font-medium cursor-pointer"
+BTN_PRIMARY = f"{BTN} state border border-transparent bg-accent-1-9 fg-accent-1-contrast text-base font-medium cursor-pointer"
+BTN_SECONDARY = f"{BTN} state border bg-neutral-3 fg-neutral-12 text-base font-medium cursor-pointer"
 FIELD = "py-xs px-sm rounded-sm border hover:border-neutral-8 invalid:border-danger-7 bg-neutral-1 text-base w-full"
 BOX = "flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition"
 BARE = "grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12"
 KBD = "inline-flex items-center py-3xs px-2xs rounded-xs border fg-neutral-11 text-sm font-mono"
-NESTED_SELECT = "select-base py-3xs px-2xs rounded-xs border border-transparent bg-transparent hover:bg-neutral-3 fg-neutral-12 text-base cursor-pointer"
-NESTED_ICON = "inline-flex items-center justify-center p-3xs rounded-xs border border-transparent bg-transparent hover:bg-neutral-3 pressed:bg-neutral-4 fg-neutral-11 hover:fg-neutral-12 cursor-pointer"
+NESTED_SELECT = "select-base py-3xs px-2xs rounded-xs state border border-transparent bg-transparent fg-neutral-12 text-base cursor-pointer"
+NESTED_ICON = "inline-flex items-center justify-center p-3xs rounded-xs state border border-transparent bg-transparent fg-neutral-11 hover:fg-neutral-12 cursor-pointer"
 CARD = "p-md rounded-md bg-neutral-1 border border-neutral-6"
 MENU_ITEM = "flex items-center gap-xs py-xs px-sm border border-transparent rounded-sm no-underline fg-neutral-12 hover:bg-neutral-3 selected:bg-accent-1-3 selected:fg-accent-1-11"
+
+
+def lead(c):
+    """At a leading icon the inline padding drops to the block padding, so the icon sits in a square cell."""
+    return c.replace("px-sm", "ps-xs pe-sm").replace("px-2xs", "ps-3xs pe-2xs")
+
 
 COMPONENTS = [
     {
@@ -19,9 +25,9 @@ COMPONENTS = [
         "summary": "Starts an action. One control height tall, padded by the text edge, with an icon side that steps in by one margin.",
         "html": f"""<div class="flex flex-wrap items-center gap-sm">
   <button class="{BTN_PRIMARY}"><span>Save changes</span></button>
-  <button class="{BTN_SECONDARY}"><i class="icon ph ph-download-simple"></i><span>Export</span></button>
-  <button class="{BTN} border border-transparent bg-transparent hover:bg-neutral-3 fg-neutral-12 text-base font-medium cursor-pointer"><span>Cancel</span></button>
-  <button class="{BTN} border border-transparent bg-danger-9 hover:bg-danger-10 fg-danger-contrast text-base font-medium cursor-pointer"><i class="icon ph ph-trash"></i><span>Delete</span></button>
+  <button class="{lead(BTN_SECONDARY)}"><i class="icon ph ph-download-simple"></i><span>Export</span></button>
+  <button class="{BTN} state border border-transparent bg-transparent fg-neutral-12 text-base font-medium cursor-pointer"><span>Cancel</span></button>
+  <button class="{lead(BTN)} state border border-transparent bg-danger-9 fg-danger-contrast text-base font-medium cursor-pointer"><i class="icon ph ph-trash"></i><span>Delete</span></button>
 </div>""",
         "use": ["One primary button per view, for the action most people take.", "Wrap the label in a <code>&lt;span&gt;</code>, and put the icon in its own <code>&lt;i&gt;</code> beside it."],
         "avoid": ["A button for navigation; use a link styled the same way.", "Two primary buttons side by side; make the second secondary."],
@@ -30,9 +36,9 @@ COMPONENTS = [
         "slug": "icon-button", "name": "Icon button", "icon": "ph-plus-circle", "group": "Actions",
         "summary": "A button with only an icon. One padding on all sides (<code>p-xs</code>, or <code>p-3xs</code> when small) around a square icon makes it square, the same height as a text button.",
         "html": f"""<div class="flex items-center gap-sm">
-  <button class="inline-flex items-center justify-center p-xs gap-xs rounded-sm border bg-neutral-3 hover:bg-neutral-4 fg-neutral-12 cursor-pointer" aria-label="Settings"><i class="icon ph ph-gear"></i></button>
-  <button class="inline-flex items-center justify-center p-xs gap-xs rounded-full border border-transparent bg-accent-1-9 hover:bg-accent-1-10 fg-accent-1-contrast cursor-pointer" aria-label="Add"><i class="icon ph-bold ph-plus"></i></button>
-  <button class="inline-flex items-center justify-center p-3xs rounded-xs border-0 bg-transparent hover:bg-neutral-3 fg-neutral-11 cursor-pointer" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
+  <button class="inline-flex items-center justify-center p-xs gap-xs rounded-sm state border bg-neutral-3 fg-neutral-12 cursor-pointer" aria-label="Settings"><i class="icon ph ph-gear"></i></button>
+  <button class="inline-flex items-center justify-center p-xs gap-xs rounded-full state border border-transparent bg-accent-1-9 fg-accent-1-contrast cursor-pointer" aria-label="Add"><i class="icon ph-bold ph-plus"></i></button>
+  <button class="inline-flex items-center justify-center p-3xs rounded-xs state border-0 bg-transparent fg-neutral-11 cursor-pointer" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
 </div>""",
         "use": ["Always give it an <code>aria-label</code>.", "Use <code>p-3xs</code> and an <code>icon icon-sm</code> inside dense rows."],
         "avoid": ["An icon whose meaning isn't obvious; add a text label instead."],
@@ -53,8 +59,8 @@ COMPONENTS = [
         "summary": "A short label for a status or category, at the nested control size.",
         "html": """<div class="flex flex-wrap items-center gap-2xs">
   <span class="inline-flex items-center py-3xs px-2xs gap-2xs rounded-full bg-neutral-3 border border-neutral-6 fg-neutral-11 text-sm font-medium">Draft</span>
-  <span class="inline-flex items-center py-3xs px-2xs gap-2xs rounded-full bg-success-3 border border-success-6 fg-success-11 text-sm font-medium"><i class="icon icon-sm ph-bold ph-check"></i><span>Paid</span></span>
-  <span class="inline-flex items-center py-3xs px-2xs gap-2xs rounded-full bg-warning-3 border border-warning-6 fg-warning-11 text-sm font-medium"><i class="icon icon-sm ph-bold ph-clock"></i><span>Pending</span></span>
+  <span class="inline-flex items-center py-3xs ps-3xs pe-2xs gap-2xs rounded-full bg-success-3 border border-success-6 fg-success-11 text-sm font-medium"><i class="icon icon-sm ph-bold ph-check"></i><span>Paid</span></span>
+  <span class="inline-flex items-center py-3xs ps-3xs pe-2xs gap-2xs rounded-full bg-warning-3 border border-warning-6 fg-warning-11 text-sm font-medium"><i class="icon icon-sm ph-bold ph-clock"></i><span>Pending</span></span>
   <span class="inline-flex items-center py-3xs px-2xs rounded-full bg-info-9 fg-info-contrast text-sm font-medium">New</span>
 </div>""",
         "use": ["Pair a status color with its word, never color alone."],
@@ -90,7 +96,7 @@ COMPONENTS = [
         "html": f"""<div class="flex flex-col gap-md max-w-form">
   <div class="flex flex-col gap-2xs">
     <label for="doc-name" class="text-sm font-medium">Full name</label>
-    <div class="{BOX}">
+    <div class="{lead(BOX)}">
       <i class="icon ph ph-user-circle fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-name" class="{BARE}" autocomplete="name" placeholder="Ada Lovelace">
     </div>
@@ -98,7 +104,7 @@ COMPONENTS = [
   </div>
   <div class="flex flex-col gap-2xs">
     <label for="doc-email" class="text-sm font-medium">Email</label>
-    <div class="{BOX}">
+    <div class="{lead(BOX)}">
       <i class="icon ph ph-envelope-simple fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-email" type="email" class="{BARE}" autocomplete="email" value="ada@" aria-invalid="true" aria-describedby="doc-email-error">
       <i class="icon ph ph-warning-circle fg-danger-11" aria-hidden="true"></i>
@@ -117,7 +123,7 @@ COMPONENTS = [
              "html": f"""<div class="flex flex-col gap-md max-w-form">
   <div class="flex flex-col gap-2xs">
     <label for="doc-user" class="text-sm font-medium">Username <span class="fg-neutral-11">· leading icon</span></label>
-    <div class="{BOX}">
+    <div class="{lead(BOX)}">
       <i class="icon ph ph-at fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-user" class="{BARE}" autocomplete="username" spellcheck="false" placeholder="ada">
     </div>
@@ -131,7 +137,7 @@ COMPONENTS = [
   </div>
   <div class="flex flex-col gap-2xs">
     <label for="doc-find" class="text-sm font-medium">Search <span class="fg-neutral-11">· leading icon and trailing key</span></label>
-    <div class="{BOX}">
+    <div class="{lead(BOX)}">
       <i class="icon ph ph-magnifying-glass fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-find" type="search" class="{BARE}" placeholder="Search…">
       <kbd class="{KBD}">⌘S</kbd>
@@ -158,7 +164,7 @@ COMPONENTS = [
              "html": f"""<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
   <div class="flex flex-col gap-2xs">
     <label for="doc-pass" class="text-sm font-medium">Password</label>
-    <div class="{BOX}">
+    <div class="{lead(BOX)}">
       <i class="icon ph ph-lock-simple fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-pass" type="password" class="{BARE}" autocomplete="new-password" value="correct horse">
       <button type="button" class="{NESTED_ICON}" aria-label="Show password" aria-pressed="false" onclick="const i=this.parentElement.querySelector('input');i.type=i.type==='password'?'text':'password';this.setAttribute('aria-pressed',i.type==='text')"><i class="icon ph ph-eye"></i></button>
@@ -166,28 +172,28 @@ COMPONENTS = [
   </div>
   <div class="flex flex-col gap-2xs">
     <label for="doc-card" class="text-sm font-medium">Card number</label>
-    <div class="{BOX}">
+    <div class="{lead(BOX)}">
       <i class="icon ph ph-credit-card fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-card" type="text" inputmode="numeric" class="{BARE} tabular-nums" autocomplete="cc-number" placeholder="1234 5678 9012 3456">
     </div>
   </div>
   <div class="flex flex-col gap-2xs">
     <label for="doc-start" class="text-sm font-medium">Start date</label>
-    <div class="{BOX}">
+    <div class="{lead(BOX)}">
       <i class="icon ph ph-calendar-blank fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-start" type="date" class="{BARE} tabular-nums" value="2027-03-01">
     </div>
   </div>
   <div class="flex flex-col gap-2xs">
     <label for="doc-time" class="text-sm font-medium">Meeting time</label>
-    <div class="{BOX}">
+    <div class="{lead(BOX)}">
       <i class="icon ph ph-clock fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-time" type="time" class="{BARE} tabular-nums" value="09:30">
     </div>
   </div>
   <div class="flex flex-col gap-2xs">
     <label for="doc-weight" class="text-sm font-medium">Weight</label>
-    <div class="{BOX}">
+    <div class="{lead(BOX)}">
       <i class="icon ph ph-scales fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-weight" type="text" inputmode="decimal" class="{BARE} tabular-nums" value="72.5">
       <span class="fg-neutral-11" aria-hidden="true">kg</span>
@@ -195,7 +201,7 @@ COMPONENTS = [
   </div>
   <div class="flex flex-col gap-2xs">
     <label for="doc-discount" class="text-sm font-medium">Discount</label>
-    <div class="{BOX}">
+    <div class="{lead(BOX)}">
       <i class="icon ph ph-percent fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-discount" type="number" min="0" max="100" step="5" class="{BARE} tabular-nums" value="15">
       <span class="fg-neutral-11" aria-hidden="true">%</span>
@@ -203,7 +209,7 @@ COMPONENTS = [
   </div>
   <div class="flex flex-col gap-2xs">
     <label for="doc-quantity" class="text-sm font-medium">Quantity</label>
-    <div class="{BOX}">
+    <div class="{lead(BOX)}">
       <i class="icon ph ph-hash fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-quantity" type="number" min="1" step="1" class="{BARE} tabular-nums" value="3">
       <span class="fg-neutral-11" aria-hidden="true">seats</span>
@@ -211,7 +217,7 @@ COMPONENTS = [
   </div>
   <div class="flex flex-col gap-2xs">
     <label for="doc-hex" class="text-sm font-medium">Brand colour</label>
-    <div class="{BOX}">
+    <div class="{lead(BOX)}">
       <i class="icon ph ph-palette fg-neutral-11" aria-hidden="true"></i>
       <span class="fg-neutral-11" aria-hidden="true">#</span>
       <input id="doc-hex" type="text" class="{BARE} tabular-nums" spellcheck="false" maxlength="6" value="0090FF">
@@ -220,14 +226,14 @@ COMPONENTS = [
   </div>
   <div class="flex flex-col gap-2xs">
     <label for="doc-zip" class="text-sm font-medium">Postal code</label>
-    <div class="{BOX}">
+    <div class="{lead(BOX)}">
       <i class="icon ph ph-map-pin fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-zip" type="text" inputmode="numeric" class="{BARE} tabular-nums" autocomplete="postal-code" placeholder="00100">
     </div>
   </div>
   <div class="flex flex-col gap-2xs">
     <label for="doc-duration" class="text-sm font-medium">Duration</label>
-    <div class="{BOX}">
+    <div class="{lead(BOX)}">
       <i class="icon ph ph-timer fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-duration" type="number" min="0" step="15" class="{BARE} tabular-nums" value="45">
       <span class="fg-neutral-11" aria-hidden="true">min</span>
@@ -239,7 +245,7 @@ COMPONENTS = [
              "html": f"""<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
   <div class="flex flex-col gap-2xs">
     <label for="doc-handle" class="text-sm font-medium">Handle</label>
-    <div class="{BOX}">
+    <div class="{lead(BOX)}">
       <i class="icon ph ph-at fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-handle" class="{BARE}" value="ada lovelace" pattern="[a-z0-9_]+" aria-invalid="true" aria-describedby="doc-handle-error">
     </div>
@@ -247,7 +253,7 @@ COMPONENTS = [
   </div>
   <div class="flex flex-col gap-2xs">
     <label for="doc-title" class="text-sm font-medium">Title</label>
-    <div class="{BOX}">
+    <div class="{lead(BOX)}">
       <i class="icon ph ph-text-t fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-title" class="{BARE}" maxlength="40" value="Analytical Engine notes" aria-describedby="doc-title-count">
       <span id="doc-title-count" class="fg-neutral-11 text-sm tabular-nums">23/40</span>
@@ -255,7 +261,7 @@ COMPONENTS = [
   </div>
   <div class="flex flex-col gap-2xs">
     <label for="doc-id" class="text-sm font-medium">Account ID</label>
-    <div class="{BOX} bg-neutral-2">
+    <div class="{lead(BOX)} bg-neutral-2">
       <i class="icon ph ph-identification-card fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-id" class="{BARE} fg-neutral-11 tabular-nums" value="AC-20481" readonly>
       <i class="icon ph ph-lock-simple fg-neutral-8" aria-hidden="true"></i>
@@ -263,7 +269,7 @@ COMPONENTS = [
   </div>
   <div class="flex flex-col gap-2xs">
     <label for="doc-seat" class="text-sm font-medium fg-neutral-11">Seat</label>
-    <div class="{BOX} bg-neutral-3 opacity-50 cursor-not-allowed">
+    <div class="{lead(BOX)} bg-neutral-3 opacity-50 cursor-not-allowed">
       <i class="icon ph ph-armchair fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-seat" class="{BARE}" value="14C" disabled>
     </div>
@@ -317,9 +323,9 @@ COMPONENTS = [
         "slug": "tabs", "name": "Tabs", "icon": "ph-tabs", "group": "Navigation",
         "summary": "Switches between views of the same thing. The selected tab is styled by <code>aria-selected</code>.",
         "html": """<div class="flex gap-md border-b border-neutral-6 overflow-x-auto" role="tablist">
-  <button role="tab" aria-selected="true" class="inline-flex items-center gap-xs py-xs px-sm border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none"><i class="icon ph ph-user"></i><span>Profile</span></button>
-  <button role="tab" aria-selected="false" class="inline-flex items-center gap-xs py-xs px-sm border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none"><i class="icon ph ph-credit-card"></i><span>Billing</span></button>
-  <button role="tab" aria-selected="false" class="inline-flex items-center gap-xs py-xs px-sm border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none"><i class="icon ph ph-users"></i><span>Members</span></button>
+  <button role="tab" aria-selected="true" class="inline-flex items-center gap-xs py-xs ps-xs pe-sm border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none"><i class="icon ph ph-user"></i><span>Profile</span></button>
+  <button role="tab" aria-selected="false" class="inline-flex items-center gap-xs py-xs ps-xs pe-sm border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none"><i class="icon ph ph-credit-card"></i><span>Billing</span></button>
+  <button role="tab" aria-selected="false" class="inline-flex items-center gap-xs py-xs ps-xs pe-sm border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none"><i class="icon ph ph-users"></i><span>Members</span></button>
 </div>""",
         "use": ["Moving <code>aria-selected</code> is all the script a tab needs for its look."],
         "avoid": ["More than six tabs; use a sidebar."],
@@ -343,11 +349,11 @@ COMPONENTS = [
         "slug": "pagination", "name": "Pagination", "icon": "ph-dots-three", "group": "Navigation",
         "summary": "Moves through pages of results. The current page is styled by <code>aria-current</code>.",
         "html": """<nav aria-label="Pagination" class="inline-flex items-center gap-3xs">
-  <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 no-underline" aria-label="Previous"><i class="icon icon-sm ph ph-caret-left"></i></a>
+  <a href="#" class="inline-flex items-center justify-center p-xs state border border-transparent rounded-sm fg-neutral-11 no-underline" aria-label="Previous"><i class="icon icon-sm ph ph-caret-left"></i></a>
   <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums">2</a>
   <a href="#" aria-current="page" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums">3</a>
   <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums">4</a>
-  <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 no-underline" aria-label="Next"><i class="icon icon-sm ph ph-caret-right"></i></a>
+  <a href="#" class="inline-flex items-center justify-center p-xs state border border-transparent rounded-sm fg-neutral-11 no-underline" aria-label="Next"><i class="icon icon-sm ph ph-caret-right"></i></a>
 </nav>""",
         "use": ["Long lists where people jump to a page; show the total near it."],
         "avoid": ["Feeds people scroll through; load more instead."],
@@ -356,11 +362,11 @@ COMPONENTS = [
         "slug": "menu", "name": "Popover menu", "icon": "ph-list", "group": "Overlays",
         "summary": "A menu that opens with <code>popovertarget</code> and sits against its button with <code>anchor-bottom</code>. No script.",
         "html": f"""<div class="group inline-block">
-<button class="{BTN_SECONDARY}" popovertarget="doc-sort"><i class="icon ph ph-sort-ascending"></i><span>Sort</span><i class="icon icon-sm ph ph-caret-down transition group-open:rotate-180" aria-hidden="true"></i></button>
+<button class="{lead(BTN_SECONDARY)}" popovertarget="doc-sort"><i class="icon ph ph-sort-ascending"></i><span>Sort</span><i class="icon icon-sm ph ph-caret-down transition group-open:rotate-180" aria-hidden="true"></i></button>
 <div id="doc-sort" popover class="anchor-bottom w-fit p-inset rounded-md bg-neutral-1 border border-neutral-6 shadow-lg">
   <div class="flex flex-col" role="listbox" aria-label="Sort by">
-    <a href="#" class="{MENU_ITEM}" role="option" aria-selected="true"><i class="icon ph ph-clock"></i><span class="grow">Last edited</span></a>
-    <a href="#" class="{MENU_ITEM}" role="option" aria-selected="false"><i class="icon ph ph-text-aa"></i><span class="grow">Name</span></a>
+    <a href="#" class="{lead(MENU_ITEM)}" role="option" aria-selected="true"><i class="icon ph ph-clock"></i><span class="grow">Last edited</span></a>
+    <a href="#" class="{lead(MENU_ITEM)}" role="option" aria-selected="false"><i class="icon ph ph-text-aa"></i><span class="grow">Name</span></a>
   </div>
 </div>
 </div>""",
@@ -370,14 +376,14 @@ COMPONENTS = [
     {
         "slug": "dialog", "name": "Dialog", "icon": "ph-app-window", "group": "Overlays",
         "summary": "A modal <code>&lt;dialog&gt;</code> opened with the <code>command</code> attribute; the reset dims the page behind it.",
-        "html": f"""<button class="{BTN_SECONDARY}" commandfor="doc-dialog" command="show-modal"><i class="icon ph ph-trash"></i><span>Delete project…</span></button>
+        "html": f"""<button class="{lead(BTN_SECONDARY)}" commandfor="doc-dialog" command="show-modal"><i class="icon ph ph-trash"></i><span>Delete project…</span></button>
 <dialog id="doc-dialog" class="m-auto p-lg rounded-lg bg-neutral-1 border-0 shadow-xl max-w-form w-full" aria-labelledby="doc-dialog-title">
   <div class="flex flex-col gap-md">
     <h3 id="doc-dialog-title" class="text-base font-semibold">Delete project?</h3>
     <p class="text-sm fg-neutral-11">This removes the project for everyone. You can't undo this.</p>
     <div class="flex justify-end gap-sm">
       <button class="{BTN_SECONDARY}" commandfor="doc-dialog" command="close"><span>Cancel</span></button>
-      <button class="{BTN} border border-transparent bg-danger-9 hover:bg-danger-10 fg-danger-contrast text-base font-medium cursor-pointer" commandfor="doc-dialog" command="close"><span>Delete</span></button>
+      <button class="{BTN} state border border-transparent bg-danger-9 fg-danger-contrast text-base font-medium cursor-pointer" commandfor="doc-dialog" command="close"><span>Delete</span></button>
     </div>
   </div>
 </dialog>""",
@@ -443,8 +449,8 @@ COMPONENTS = [
       <tr><th class="text-start px-md py-xs text-sm font-medium fg-neutral-11 border-b border-neutral-6">Invoice</th><th class="text-start px-md py-xs text-sm font-medium fg-neutral-11 border-b border-neutral-6">Status</th><th class="text-end px-md py-xs text-sm font-medium fg-neutral-11 border-b border-neutral-6">Amount</th></tr>
     </thead>
     <tbody>
-      <tr class="hover:bg-neutral-3 transition"><td class="px-md py-sm text-sm font-mono border-b border-neutral-6">INV-1042</td><td class="px-md py-sm border-b border-neutral-6">Paid</td><td class="px-md py-sm text-end text-sm font-mono tabular-nums border-b border-neutral-6">$1,280.00</td></tr>
-      <tr class="hover:bg-neutral-3 transition"><td class="px-md py-sm text-sm font-mono">INV-1043</td><td class="px-md py-sm">Pending</td><td class="px-md py-sm text-end text-sm font-mono tabular-nums">$640.50</td></tr>
+      <tr class="transition state"><td class="px-md py-sm text-sm font-mono border-b border-neutral-6">INV-1042</td><td class="px-md py-sm border-b border-neutral-6">Paid</td><td class="px-md py-sm text-end text-sm font-mono tabular-nums border-b border-neutral-6">$1,280.00</td></tr>
+      <tr class="transition state"><td class="px-md py-sm text-sm font-mono">INV-1043</td><td class="px-md py-sm">Pending</td><td class="px-md py-sm text-end text-sm font-mono tabular-nums">$640.50</td></tr>
     </tbody>
   </table>
 </div>""",
@@ -458,7 +464,7 @@ COMPONENTS = [
   <span class="inline-flex items-center justify-center p-xs rounded-full bg-neutral-3 fg-neutral-11"><i class="icon ph ph-folder-open"></i></span>
   <h3 class="text-base font-semibold">No projects yet</h3>
   <p class="text-sm fg-neutral-11 max-w-text">Create a project to collect designs, notes and feedback in one place.</p>
-  <button class="{BTN_PRIMARY} mt-xs"><i class="icon ph ph-plus"></i><span>New project</span></button>
+  <button class="{lead(BTN_PRIMARY)} mt-xs"><i class="icon ph ph-plus"></i><span>New project</span></button>
 </div>""",
         "use": ["Say what will appear here and how to start."],
         "avoid": ["Jokes or illustrations that hide the action."],
@@ -480,7 +486,7 @@ COMPONENTS = [
         "slug": "tooltip", "name": "Tooltip", "icon": "ph-chat-centered-text", "group": "Overlays",
         "summary": "A hint that shows when its trigger is hovered or focused. The wrapper is a <code>group</code>; the hint uses <code>group-hover:</code> and <code>group-focus-within:</code>. No script.",
         "html": """<span class="group relative inline-block">
-  <button class="inline-flex items-center justify-center p-xs rounded-sm border bg-neutral-3 hover:bg-neutral-4 fg-neutral-12 cursor-pointer" aria-label="Copy link" aria-describedby="doc-tip"><i class="icon ph ph-link"></i></button>
+  <button class="inline-flex items-center justify-center p-xs rounded-sm state border bg-neutral-3 fg-neutral-12 cursor-pointer" aria-label="Copy link" aria-describedby="doc-tip"><i class="icon ph ph-link"></i></button>
   <span id="doc-tip" role="tooltip" class="absolute top-full start-0 z-20 mt-3xs px-xs py-3xs rounded-xs bg-neutral-12 fg-neutral-1 text-sm whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity">Copy link</span>
 </span>""",
         "use": ["A short label for an icon-only button, also given as its <code>aria-label</code>.", "<code>group-focus-within:</code> as well as <code>group-hover:</code>, so keyboard users see it."],
@@ -511,9 +517,9 @@ COMPONENTS = [
       </tr>
     </thead>
     <tbody>
-      <tr class="hover:bg-neutral-3 transition"><td class="px-md py-sm border-b border-neutral-6">Contoso</td><td class="px-md py-sm text-end text-sm font-mono tabular-nums border-b border-neutral-6">48</td></tr>
-      <tr class="hover:bg-neutral-3 transition"><td class="px-md py-sm border-b border-neutral-6">Fabrikam</td><td class="px-md py-sm text-end text-sm font-mono tabular-nums border-b border-neutral-6">12</td></tr>
-      <tr class="hover:bg-neutral-3 transition"><td class="px-md py-sm">Northwind</td><td class="px-md py-sm text-end text-sm font-mono tabular-nums">7</td></tr>
+      <tr class="transition state"><td class="px-md py-sm border-b border-neutral-6">Contoso</td><td class="px-md py-sm text-end text-sm font-mono tabular-nums border-b border-neutral-6">48</td></tr>
+      <tr class="transition state"><td class="px-md py-sm border-b border-neutral-6">Fabrikam</td><td class="px-md py-sm text-end text-sm font-mono tabular-nums border-b border-neutral-6">12</td></tr>
+      <tr class="transition state"><td class="px-md py-sm">Northwind</td><td class="px-md py-sm text-end text-sm font-mono tabular-nums">7</td></tr>
     </tbody>
   </table>
 </div>""",
