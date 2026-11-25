@@ -803,7 +803,7 @@ Variants: `hover:` on the 162 role-colour, opacity and cursor classes (inside `@
 
 ## Borders, radius, shadow
 
-62 classes.
+64 classes.
 
 | Class | Declarations |
 |---|---|
@@ -843,6 +843,8 @@ Variants: `hover:` on the 162 role-colour, opacity and cursor classes (inside `@
 | `.rounded-xs` | `border-radius: var(--radius-nested)` |
 | `.rounded-sm` | `border-radius: var(--radius-control)` |
 | `.rounded` | `border-radius: var(--radius-control)` |
+| `.rounded-control` | `border-radius: var(--radius-control)` |
+| `.rounded-nested` | `border-radius: var(--radius-nested)` |
 | `.rounded-lg` | `border-radius: var(--radius-surface)` |
 | `.rounded-xl` | `border-radius: var(--radius-dialog)` |
 | `.rounded-full` | `border-radius: 9999px` |
@@ -1211,7 +1213,7 @@ Variants: `hover:` on the 162 role-colour, opacity and cursor classes (inside `@
 
 ## Layout and misc
 
-243 classes.
+244 classes.
 
 | Class | Declarations |
 |---|---|
@@ -1440,6 +1442,7 @@ Variants: `hover:` on the 162 role-colour, opacity and cursor classes (inside `@
 | `.max-w-form` | `max-width: var(--max-w-form)` |
 | `.max-w-container` | `max-width: var(--container-max)` |
 | `.scroll-pt-header` | `scroll-padding-block-start: var(--shell-header-height)` |
+| `.caret` | `--_caret: calc(var(--icon-md) * 0.4); --_caret-stroke: max(1.5px, calc(var(--icon-md) * 0.08))` |
 | `.select-none` | `user-select: none` |
 | `.select-text` | `user-select: text` |
 | `.select-all` | `user-select: all` |

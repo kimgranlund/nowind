@@ -1,12 +1,12 @@
 """Component docs data for scripts/templates.py: one entry per component, each a single HTML snippet that is both
 rendered live and shown as code, with when to use it and when not to. Utility classes only."""
 
-BTN = "inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm"
-BTN_PRIMARY = f"{BTN} border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong active:bg-solid-accent-1-strong fg-on-solid-accent-1 text-title-sm cursor-pointer transition-colors"
+BTN = "inline-flex items-center justify-center h-control px-control gap-gutter rounded-control"
+BTN_PRIMARY = f"{BTN} border border-transparent bg-solid-accent-1 hover:bg-solid-accent-1-strong active:bg-solid-accent-1-strong fg-on-solid-accent-1 text-title-sm cursor-pointer transition-colors"
 BTN_SECONDARY = f"{BTN} border bg-component-weak hover:bg-component active:bg-component-strong fg text-title-sm cursor-pointer transition-colors"
-FIELD = "h-control px-control rounded-sm border hover:border-strong aria-invalid:border-danger bg text-control-md w-full transition-colors"
+FIELD = "h-control px-control rounded-control border hover:border-strong aria-invalid:border-danger bg text-control-md w-full transition-colors"
 CARD = "p-surface rounded-lg bg border border-weak"
-MENU_ITEM = "flex items-center gap-gutter h-control px-control rounded-sm no-underline fg hover:bg-component-weak aria-selected:bg-component-accent-1-weak aria-selected:fg-accent-1-weak transition-colors"
+MENU_ITEM = "flex items-center gap-gutter h-control px-control border border-transparent rounded-control no-underline fg hover:bg-component-weak aria-selected:bg-component-accent-1-weak aria-selected:fg-accent-1-weak transition-colors"
 
 COMPONENTS = [
     {
@@ -15,8 +15,8 @@ COMPONENTS = [
         "html": f"""<div class="flex flex-wrap items-center gap-row">
   <button class="{BTN_PRIMARY}"><span>Save changes</span></button>
   <button class="{BTN_SECONDARY}"><i class="icon ph ph-download-simple"></i><span>Export</span></button>
-  <button class="{BTN} border-0 bg-transparent hover:bg-component-weak fg text-title-sm cursor-pointer transition-colors"><span>Cancel</span></button>
-  <button class="{BTN} border-0 bg-solid-danger hover:bg-solid-danger-strong fg-on-solid-danger text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-trash"></i><span>Delete</span></button>
+  <button class="{BTN} border border-transparent bg-transparent hover:bg-component-weak fg text-title-sm cursor-pointer transition-colors"><span>Cancel</span></button>
+  <button class="{BTN} border border-transparent bg-solid-danger hover:bg-solid-danger-strong fg-on-solid-danger text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-trash"></i><span>Delete</span></button>
 </div>""",
         "use": ["One primary button per view, for the action most people take.", "Wrap the label in a <code>&lt;span&gt;</code> so <code>px-control</code> can find an icon at either edge."],
         "avoid": ["A button for navigation; use a link styled the same way.", "Two primary buttons side by side; make the second secondary."],
@@ -26,7 +26,7 @@ COMPONENTS = [
         "summary": "A button with only an icon. The same padding rules make it exactly one control height square.",
         "html": f"""<div class="flex items-center gap-row">
   <button class="{BTN} border bg-component-weak hover:bg-component fg cursor-pointer transition-colors" aria-label="Settings"><i class="icon ph ph-gear"></i></button>
-  <button class="{BTN} rounded-full border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong fg-on-solid-accent-1 cursor-pointer transition-colors" aria-label="Add"><i class="icon ph-bold ph-plus"></i></button>
+  <button class="{BTN} rounded-full border border-transparent bg-solid-accent-1 hover:bg-solid-accent-1-strong fg-on-solid-accent-1 cursor-pointer transition-colors" aria-label="Add"><i class="icon ph-bold ph-plus"></i></button>
   <button class="inline-flex items-center justify-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-component-weak fg-weak cursor-pointer transition-colors" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
 </div>""",
         "use": ["Always give it an <code>aria-label</code>.", "Use <code>h-nested px-nested</code> and <code>icon-sm</code> inside dense rows."],
@@ -145,9 +145,9 @@ COMPONENTS = [
         "slug": "tabs", "name": "Tabs", "icon": "ph-tabs", "group": "Navigation",
         "summary": "Switches between views of the same thing. The selected tab is styled by <code>aria-selected</code>.",
         "html": """<div class="flex gap-md border-b border-weak overflow-x-auto" role="tablist">
-  <button role="tab" aria-selected="true" class="inline-flex items-center gap-gutter h-control border-0 border-b-2 border-transparent aria-selected:border-accent-1-strong bg-transparent fg-weak hover:fg aria-selected:fg text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-user"></i><span>Profile</span></button>
-  <button role="tab" aria-selected="false" class="inline-flex items-center gap-gutter h-control border-0 border-b-2 border-transparent aria-selected:border-accent-1-strong bg-transparent fg-weak hover:fg aria-selected:fg text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-credit-card"></i><span>Billing</span></button>
-  <button role="tab" aria-selected="false" class="inline-flex items-center gap-gutter h-control border-0 border-b-2 border-transparent aria-selected:border-accent-1-strong bg-transparent fg-weak hover:fg aria-selected:fg text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-users"></i><span>Members</span></button>
+  <button role="tab" aria-selected="true" class="inline-flex items-center gap-gutter h-control px-control border border-b-2 border-transparent aria-selected:border-accent-1-strong bg-transparent fg-weak hover:fg aria-selected:fg text-title-sm cursor-pointer transition-colors rounded-none"><i class="icon ph ph-user"></i><span>Profile</span></button>
+  <button role="tab" aria-selected="false" class="inline-flex items-center gap-gutter h-control px-control border border-b-2 border-transparent aria-selected:border-accent-1-strong bg-transparent fg-weak hover:fg aria-selected:fg text-title-sm cursor-pointer transition-colors rounded-none"><i class="icon ph ph-credit-card"></i><span>Billing</span></button>
+  <button role="tab" aria-selected="false" class="inline-flex items-center gap-gutter h-control px-control border border-b-2 border-transparent aria-selected:border-accent-1-strong bg-transparent fg-weak hover:fg aria-selected:fg text-title-sm cursor-pointer transition-colors rounded-none"><i class="icon ph ph-users"></i><span>Members</span></button>
 </div>""",
         "use": ["Moving <code>aria-selected</code> is all the script a tab needs for its look."],
         "avoid": ["More than six tabs; use a sidebar."],
@@ -171,11 +171,11 @@ COMPONENTS = [
         "slug": "pagination", "name": "Pagination", "icon": "ph-dots-three", "group": "Navigation",
         "summary": "Moves through pages of results. The current page is styled by <code>aria-current</code>.",
         "html": """<nav aria-label="Pagination" class="inline-flex items-center gap-3xs">
-  <a href="#" class="inline-flex items-center justify-center size-control rounded-sm fg-weak hover:bg-component-weak no-underline transition-colors" aria-label="Previous"><i class="icon ph ph-caret-left"></i></a>
-  <a href="#" class="inline-flex items-center justify-center size-control rounded-sm fg-weak hover:bg-component-weak aria-current:bg-solid-accent-1 aria-current:fg-on-solid-accent-1 no-underline text-numeral transition-colors">2</a>
-  <a href="#" aria-current="page" class="inline-flex items-center justify-center size-control rounded-sm fg-weak hover:bg-component-weak aria-current:bg-solid-accent-1 aria-current:fg-on-solid-accent-1 no-underline text-numeral transition-colors">3</a>
-  <a href="#" class="inline-flex items-center justify-center size-control rounded-sm fg-weak hover:bg-component-weak aria-current:bg-solid-accent-1 aria-current:fg-on-solid-accent-1 no-underline text-numeral transition-colors">4</a>
-  <a href="#" class="inline-flex items-center justify-center size-control rounded-sm fg-weak hover:bg-component-weak no-underline transition-colors" aria-label="Next"><i class="icon ph ph-caret-right"></i></a>
+  <a href="#" class="inline-flex items-center justify-center size-control border border-transparent rounded-control fg-weak hover:bg-component-weak no-underline transition-colors" aria-label="Previous"><i class="icon ph ph-caret-left"></i></a>
+  <a href="#" class="inline-flex items-center justify-center size-control border border-transparent rounded-control fg-weak hover:bg-component-weak aria-current:bg-solid-accent-1 aria-current:fg-on-solid-accent-1 no-underline text-numeral transition-colors">2</a>
+  <a href="#" aria-current="page" class="inline-flex items-center justify-center size-control border border-transparent rounded-control fg-weak hover:bg-component-weak aria-current:bg-solid-accent-1 aria-current:fg-on-solid-accent-1 no-underline text-numeral transition-colors">3</a>
+  <a href="#" class="inline-flex items-center justify-center size-control border border-transparent rounded-control fg-weak hover:bg-component-weak aria-current:bg-solid-accent-1 aria-current:fg-on-solid-accent-1 no-underline text-numeral transition-colors">4</a>
+  <a href="#" class="inline-flex items-center justify-center size-control border border-transparent rounded-control fg-weak hover:bg-component-weak no-underline transition-colors" aria-label="Next"><i class="icon ph ph-caret-right"></i></a>
 </nav>""",
         "use": ["Long lists where people jump to a page; show the total near it."],
         "avoid": ["Feeds people scroll through; load more instead."],
@@ -183,7 +183,7 @@ COMPONENTS = [
     {
         "slug": "menu", "name": "Popover menu", "icon": "ph-list", "group": "Overlays",
         "summary": "A menu that opens with <code>popovertarget</code> and sits against its button with <code>anchor-bottom</code>. No script.",
-        "html": f"""<button class="{BTN_SECONDARY}" popovertarget="doc-sort"><i class="icon ph ph-sort-ascending"></i><span>Sort</span><i class="icon icon-sm ph-bold ph-caret-down"></i></button>
+        "html": f"""<button class="{BTN_SECONDARY}" popovertarget="doc-sort"><i class="icon ph ph-sort-ascending"></i><span>Sort</span><i class="icon caret" aria-hidden="true"></i></button>
 <div id="doc-sort" popover class="anchor-bottom w-sidebar p-3xs rounded-lg bg border border-weak shadow-lg">
   <div class="flex flex-col" role="listbox" aria-label="Sort by">
     <a href="#" class="{MENU_ITEM}" role="option" aria-selected="true"><i class="icon ph ph-clock"></i><span class="grow">Last edited</span></a>
@@ -203,7 +203,7 @@ COMPONENTS = [
     <p class="text-body-sm fg-weak">This removes the project for everyone. You can't undo this.</p>
     <div class="flex justify-end gap-row">
       <button class="{BTN_SECONDARY}" commandfor="doc-dialog" command="close"><span>Cancel</span></button>
-      <button class="{BTN} border-0 bg-solid-danger hover:bg-solid-danger-strong fg-on-solid-danger text-title-sm cursor-pointer transition-colors" commandfor="doc-dialog" command="close"><span>Delete</span></button>
+      <button class="{BTN} border border-transparent bg-solid-danger hover:bg-solid-danger-strong fg-on-solid-danger text-title-sm cursor-pointer transition-colors" commandfor="doc-dialog" command="close"><span>Delete</span></button>
     </div>
   </div>
 </dialog>""",
@@ -215,11 +215,11 @@ COMPONENTS = [
         "summary": "Sections that open and close, built from <code>&lt;details&gt;</code>.",
         "html": """<div class="max-w-form">
   <details class="border-b border-weak" open>
-    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-title hover:fg-accent-1-weak transition-colors">Do I need a build step?<i class="icon ph ph-caret-down fg-weak"></i></summary>
+    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-title hover:fg-accent-1-weak transition-colors">Do I need a build step?<i class="icon caret fg-weak" aria-hidden="true"></i></summary>
     <p class="text-body-sm fg-weak pb-sm">No. Link one stylesheet; every class already exists.</p>
   </details>
   <details class="border-b border-weak">
-    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-title hover:fg-accent-1-weak transition-colors">Does it work in a CMS?<i class="icon ph ph-caret-down fg-weak"></i></summary>
+    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-title hover:fg-accent-1-weak transition-colors">Does it work in a CMS?<i class="icon caret fg-weak" aria-hidden="true"></i></summary>
     <p class="text-body-sm fg-weak pb-sm">Yes. Any class works in any HTML.</p>
   </details>
 </div>""",
@@ -306,7 +306,7 @@ COMPONENTS = [
         "slug": "tooltip", "name": "Tooltip", "icon": "ph-chat-centered-text", "group": "Overlays",
         "summary": "A hint that shows when its trigger is hovered or focused. The wrapper is a <code>group</code>; the hint uses <code>group-hover:</code> and <code>group-focus-within:</code>. No script.",
         "html": """<span class="group relative inline-block">
-  <button class="inline-flex items-center justify-center h-control px-control rounded-sm border bg-component-weak hover:bg-component fg cursor-pointer transition-colors" aria-label="Copy link" aria-describedby="doc-tip"><i class="icon ph ph-link"></i></button>
+  <button class="inline-flex items-center justify-center h-control px-control rounded-control border bg-component-weak hover:bg-component fg cursor-pointer transition-colors" aria-label="Copy link" aria-describedby="doc-tip"><i class="icon ph ph-link"></i></button>
   <span id="doc-tip" role="tooltip" class="absolute top-full left-0 z-20 mt-3xs px-xs py-3xs rounded-xs bg-inverse fg-inverse text-caption whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity">Copy link</span>
 </span>""",
         "use": ["A short label for an icon-only button, also given as its <code>aria-label</code>.", "<code>group-focus-within:</code> as well as <code>group-hover:</code>, so keyboard users see it."],

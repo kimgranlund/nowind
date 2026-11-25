@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Checks the rules AGENTS.md states. Usage:
 //   node scripts/check.mjs              check this repository
-//   node scripts/check.mjs --self-test  break a copy four ways and confirm each check fails
+//   node scripts/check.mjs --self-test  break a copy five ways and confirm each check fails
 import { readFileSync, readdirSync, statSync, cpSync, mkdtempSync, rmSync, writeFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join, relative } from "node:path";
@@ -77,6 +77,26 @@ function check(root) {
     }
   }
 
+  // 5. Controls share one recipe: every interactive element sized as a control has a border width (transparent on solid
+  // or ghost fills, never border-0), a radius class and control padding, and disclosure carets use the caret class.
+  const pages = [...readdirSync(join(root, "site")).filter((n) => n.endsWith(".html")).map((n) => join(root, "site", n)),
+    ...readdirSync(join(root, "site", "docs")).filter((n) => n.endsWith(".html")).map((n) => join(root, "site", "docs", n))];
+  for (const file of pages) {
+    const text = readFileSync(file, "utf8");
+    for (const m of text.matchAll(/<(a|button|summary|input|select|textarea)\b[^>]*\sclass="([^"]*)"/g)) {
+      const t = m[2].split(/\s+/);
+      if (!t.includes("h-control") && !t.includes("size-control")) continue;
+      const miss = [];
+      if (t.includes("border-0") || !t.some((x) => /^border(-[xytblr])?(-[24])?$/.test(x))) miss.push("a border width (border, with border-transparent on a fill)");
+      if (!t.some((x) => /^rounded(-|$)/.test(x))) miss.push("a radius (rounded-control)");
+      if (t.includes("h-control") && !t.includes("px-control") && !t.includes("w-full")) miss.push("px-control");
+      if (miss.length) errors.push(`${rel(file)}: <${m[1]} class="${m[2].slice(0, 60)}…"> lacks ${miss.join(", ")}. Fix: follow the control recipe in AGENTS.md.`);
+    }
+    for (const line of text.split("\n")) {
+      if (/<i class="[^"]*ph-caret-down/.test(line) && !/aria-sort/.test(line)) errors.push(`${rel(file)}: a disclosure uses ph-caret-down. Fix: use <i class="icon caret">.`);
+    }
+  }
+
   // 4. Generated files match what the scripts write.
   const tmp = mkdtempSync(join(tmpdir(), "nowind-check-"));
   try {
@@ -98,6 +118,7 @@ function check(root) {
 
 if (process.argv.includes("--self-test")) {
   const breaks = [
+    ["control without a border", "site/components.html", (s) => s.replace(/(<button[^>]*class="[^"]*\bh-control\b[^"]*?)\bborder\b/, "$1border-0")],
     ["comment in theme CSS", "theme/theme.colors.css", (s) => s.replace(":root {", ":root {\n  /* note */")],
     ["color-mix()", "theme/theme.type-roles.css", (s) => s.replace("{", "{\n  --x: color-mix(in oklab, red, blue);")],
     ["manifest names an undefined token", "theme/theme.geometry.manifest.json", (s) => s.replace('"--slot"', '"--slot-missing"')],

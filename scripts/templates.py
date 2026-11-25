@@ -100,8 +100,8 @@ def top(path):
   </div>
 </header>
 <div class="flex items-center gap-xs px-grid py-2xs border-b-2 border-strong bg">
-  <button type="button" popovertarget="site-map" class="inline-flex items-center gap-gutter-half min-w-0 h-control px-control rounded-sm border hover:bg-component-weak bg text-title-sm cursor-pointer transition-colors" aria-label="Site map: {cur or "all pages"}">{where}<i class="icon icon-sm ph-bold ph-caret-down fg-weak"></i></button>
-  <button type="button" data-search-open class="inline-flex items-center gap-gutter grow min-w-0 max-w-form h-control px-control rounded-sm border hover:border-strong bg-strong fg-subtle text-control-md cursor-text transition-colors" aria-label="Search the site"><i class="icon ph ph-magnifying-glass"></i><span class="grow truncate text-left">Search pages, components and classes</span><kbd class="hidden sm:inline text-mono-sm">⌘K</kbd></button>
+  <button type="button" popovertarget="site-map" class="inline-flex items-center gap-gutter-half min-w-0 h-control px-control rounded-control border hover:bg-component-weak bg text-title-sm cursor-pointer transition-colors" aria-label="Site map: {cur or "all pages"}">{where}<i class="icon caret fg-weak" aria-hidden="true"></i></button>
+  <button type="button" data-search-open class="inline-flex items-center gap-gutter grow min-w-0 max-w-form h-control px-control rounded-control border hover:border-strong bg-strong fg-subtle text-control-md cursor-text transition-colors" aria-label="Search the site"><i class="icon ph ph-magnifying-glass"></i><span class="grow truncate text-left">Search pages, components and classes</span><kbd class="hidden sm:inline text-mono-sm">⌘K</kbd></button>
   <span class="flex-1 hidden lg:block"></span>
   {step}
 </div>
@@ -674,7 +674,7 @@ def classes_page(semantic=False):
         "Colour, opacity and cursor classes also take <code>hover:</code> and the state variants; layout classes take <code>sm:</code> to <code>2xl:</code>.",
         "Nowind __VERSION__ · generated from classes.md")
     search = f"""<div class="col-span-12 sticky top-header z-10 flex items-center gap-row py-xs bg">
-          <input id="class-filter" type="search" placeholder="Filter by class or declaration" aria-label="Filter classes" class="grow min-w-0 h-control px-control rounded-sm border hover:border-strong bg text-control-md transition-colors">
+          <input id="class-filter" type="search" placeholder="Filter by class or declaration" aria-label="Filter classes" class="grow min-w-0 h-control px-control rounded-control border hover:border-strong bg text-control-md transition-colors">
           <span id="class-count" data-all="{total} classes" aria-live="polite" class="text-caption fg-weak whitespace-nowrap">{total} classes</span>
         </div>"""
     cards = "\n".join(

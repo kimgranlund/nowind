@@ -152,6 +152,8 @@ add("rounded-none", "border-radius: 0");
 add("rounded-xs", "border-radius: var(--radius-nested)");
 add("rounded-sm", "border-radius: var(--radius-control)");
 add("rounded", "border-radius: var(--radius-control)");
+add("rounded-control", "border-radius: var(--radius-control)");
+add("rounded-nested", "border-radius: var(--radius-nested)");
 add("rounded-lg", "border-radius: var(--radius-surface)");
 add("rounded-xl", "border-radius: var(--radius-dialog)");
 add("rounded-full", "border-radius: 9999px");
@@ -301,6 +303,7 @@ add("tier-content", "--tier: var(--tier-content); --tier-text: var(--tier-conten
 add("tier-brand", "--tier: var(--tier-brand); --tier-text: var(--tier-brand-text); font-size: calc(1em + var(--tier-brand-text))");
 add("gap-gutter-half", "gap: calc(var(--gutter) / 2)");
 add("icon", "display: inline-flex; align-items: center; justify-content: center; flex: none; width: var(--icon-box); height: var(--icon-box); font-size: var(--icon-md); line-height: 1");
+add("caret", "--_caret: calc(var(--icon-md) * 0.4); --_caret-stroke: max(1.5px, calc(var(--icon-md) * 0.08))");
 add("icon-sm", "font-size: var(--icon-sm)");
 add("icon-md", "font-size: var(--icon-md)");
 add("icon-lg", "font-size: var(--icon-lg)");
@@ -559,7 +562,11 @@ out.push("  @keyframes nw-pulse { 50% { opacity: 0.5; } }");
 out.push("  .select-base::picker(select) { appearance: base-select; margin-block: var(--space-3xs); padding: var(--space-3xs); border: var(--border-width) solid var(--border-weak); border-radius: var(--radius-surface); background: var(--bg); box-shadow: var(--shadow-lg); }");
 out.push("  .select-base option { padding: var(--margin) var(--text-edge); border-radius: var(--radius-nested); }");
 out.push("  .select-base option:hover, .select-base option:focus-visible { background: var(--component-weak); outline: none; }");
-out.push("  .select-base::picker-icon { color: var(--fg-weak); }");
+out.push("  .caret::before, .select-base::picker-icon { content: \"\"; flex: none; inline-size: var(--_caret); block-size: var(--_caret); border-inline-end: var(--_caret-stroke) solid currentColor; border-block-end: var(--_caret-stroke) solid currentColor; rotate: 45deg; translate: 0 -25%; transition: rotate var(--motion-duration) var(--motion-easing), translate var(--motion-duration) var(--motion-easing); }");
+out.push("  .select-base { --_caret: calc(var(--icon-md) * 0.4); --_caret-stroke: max(1.5px, calc(var(--icon-md) * 0.08)); }");
+out.push("  .select-base::picker-icon { color: var(--fg-weak); margin-inline: calc((var(--icon-box) - var(--_caret)) / 2); }");
+out.push("  .select-base.px-control { padding-inline-end: var(--control-icon-padding); }");
+out.push("  :is([open] > summary, [aria-expanded=\"true\"]) .caret::before, .select-base:open::picker-icon { rotate: 225deg; translate: 0 25%; }");
 out.push("  .select-base option:checked { background: var(--component-accent-1-weak); color: var(--fg-accent-1-weak); }");
 out.push("  .h-nested > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }");
 for (const [cls, pad] of [["px-control", "--control-icon-padding"], ["px-nested", "--nested-icon-padding"]]) {
@@ -726,7 +733,7 @@ const manifest = {
     "No m-full / p-full: margin and padding percentages are of the width, not a full size.",
     "Margins and padding x/y use logical properties (margin-inline, padding-block).",
     "text-{size} also sets the matching line height, as Tailwind v4.",
-    "The reset keeps link underlines and adds a 2026 baseline: :where() selectors (no specificity), interpolate-size, text-size-adjust, font-synthesis none, headings set from the type roles (h1 heading-xl … h6 title-sm), text-wrap balance/pretty, field-sizing content, accent and caret colours, :focus-visible ring, :target scroll margin, [hidden] enforced, role=list, tabular table figures, ::backdrop and ::selection from tokens, and reduced-motion handling, and a forced-colors (Windows High Contrast) block: controls and overlays keep an outline, selected, pressed and current items a Highlight outline, and checkboxes, radios, switches and sliders are redrawn in system colors. Focus: buttons, links and checkable controls get a 2px accent ring on :focus-visible; text fields (text-like inputs, textarea, select) get no ring and turn their border accent instead, with a Highlight outline in forced colours. Native controls without a base appearance are themed in the reset: the file input's button looks like a secondary button, progress is an accent bar on a component track, and meter turns success, warning or danger from its low, high and optimum attributes; each gets system colours in forced colours. field-sizing-content and field-sizing-fixed size a field to its content or not (textareas grow by default).",
+    "The reset keeps link underlines and adds a 2026 baseline: :where() selectors (no specificity), interpolate-size, text-size-adjust, font-synthesis none, headings set from the type roles (h1 heading-xl … h6 title-sm), text-wrap balance/pretty, field-sizing content, accent and caret colours, :focus-visible ring, :target scroll margin, [hidden] enforced, role=list, tabular table figures, ::backdrop and ::selection from tokens, and reduced-motion handling, and a forced-colors (Windows High Contrast) block: controls and overlays keep an outline, selected, pressed and current items a Highlight outline, and checkboxes, radios, switches and sliders are redrawn in system colors. Focus: buttons, links and checkable controls get a 2px accent ring on :focus-visible; text fields (text-like inputs, textarea, select) get no ring and turn their border accent instead, with a Highlight outline in forced colours. Native controls without a base appearance are themed in the reset: the file input's button looks like a secondary button, progress is an accent bar on a component track, and meter turns success, warning or danger from its low, high and optimum attributes; each gets system colours in forced colours. field-sizing-content and field-sizing-fixed size a field to its content or not (textareas grow by default). Controls share one recipe in utilities, enforced by scripts/check.mjs: h-control (or size-control), px-control, a border width (border-transparent on solid fills, never border-0), rounded-control and a control type role. caret, on an icon box (icon caret), is the one disclosure chevron; select-base draws the same chevron as its picker icon, and both turn over when open.",
     "No outline-{colour} classes, no text-/border- classes for alpha steps, and no class that pairs a role with another property (no bg-fg-*, text-bg-*, bg-border-*). Text-color roles are named by their token alone: fg, fg-weak, fg-accent-1-weak.",
     "Tailwind v4 names where v4 renamed v3 ones: rounded-xs/sm, shadow-xs/sm, backdrop-blur-xs/sm; h-screen is 100vh with h-dvh/svh/lvh separate; a 2xl breakpoint; aliases max-w-prose and font-sans.",
     "Added: grid display, text-start/end, justify-evenly, items-baseline, tabular-nums, text-balance/pretty, w-fit, h-control, kicker and type-role classes.",

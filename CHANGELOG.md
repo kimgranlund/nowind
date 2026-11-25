@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- **One control recipe:** buttons, links, inputs, selects and textareas share height, side padding, a border width (transparent on fills, so a solid button and a field line up to the pixel), radius and type. New `rounded-control` and `rounded-nested`. `scripts/check.mjs` flags a control that drifts.
+- **One caret:** `caret` on an icon box draws the disclosure chevron in CSS, and `select-base` draws the same one as its picker icon. Both turn over when open (`[open]`, `aria-expanded="true"`, an open select).
 - **Native controls:** the reset themes the file input's button, `progress` and `meter` (which turns success, warning or danger from its `low`, `high` and `optimum`), with system colours in forced colours. New `field-sizing-content` and `field-sizing-fixed`.
 - **Select:** `select-base` centres the chosen value in the field, the highlighted option shows by its background with no focus ring, and the picker arrow takes the weak text colour.
 - **Focus:** text fields (text-like inputs, textarea, select) no longer get the focus ring; their border turns accent instead. Buttons, links and checkable controls keep the ring, and in forced colours a focused field gets a Highlight outline.

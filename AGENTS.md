@@ -66,6 +66,7 @@ Then check the result in `site/specimen.html` through the dev server (`node scri
 - **Text on a solid uses `--on-solid-{palette}`.** The library's `solidLabel` is the starting point, but Nowind overrides it where the owner chose: the accents and every status (danger, warning, success, info) take light text in both modes; only neutral follows the library (light, then dark). Each palette's choice is in `palettes[].contrast` in the colors manifest.
 - **Layers:** `reset, styles, nowind`. The reset wraps every selector in `:where()`.
 - **Contrast is out of scope.** Don't add contrast checks.
+- **Controls share one recipe.** Every button, link, summary, input, select or textarea sized `h-control` or `size-control` has `px-control` (unless `size-control` or `w-full`), a border width (`border`, plus `border-transparent` on a solid or ghost fill, never `border-0`), a radius (`rounded-control`, `rounded-full` or `rounded-none`) and a control type role (`text-title-sm` or `text-control-md`). Disclosure carets are `<i class="icon caret">`, the same chevron `select-base` draws, never a `ph-caret-down` icon. (checked)
 
 ## Naming
 
