@@ -1460,7 +1460,7 @@
   --nested-padding: var(--margin);
   --nested-icon-padding: max(0px, calc(var(--nested-padding) - var(--margin)));
   --icon-box: var(--slot);
-  --icon-sm: calc(var(--F) / 1.2);
+  --icon-sm: calc(var(--F) * 0.875);
   --icon-md: calc(var(--F) + var(--icon-md-blend) * (var(--slot) - var(--F)));
   --icon-lg: var(--slot);
   --mark-sm: var(--F);
@@ -1656,8 +1656,8 @@
 }
 
 :root, .scope, .tier-product, .tier-content, .tier-brand {
-  --text-xs: calc(clamp(0.6076rem, 0.5617rem + 0.2043 * var(--vw), 0.72rem) + var(--tier-text, 0px) * 0.666);
-  --text-sm: calc(clamp(0.7292rem, 0.6593rem + 0.3106 * var(--vw), 0.9rem) + var(--tier-text, 0px) * 0.816);
+  --text-xs: calc(clamp(0.6563rem, 0.5795rem + 0.3409 * var(--vw), 0.8438rem) + var(--tier-text, 0px) * 0.75);
+  --text-sm: calc(clamp(0.7656rem, 0.6761rem + 0.3977 * var(--vw), 0.9844rem) + var(--tier-text, 0px) * 0.875);
   --text-base: calc(clamp(0.875rem, 0.7727rem + 0.4545 * var(--vw), 1.125rem) + var(--tier-text, 0px) * 1);
   --text-lg: calc(clamp(1.05rem, 0.9043rem + 0.6477 * var(--vw), 1.4063rem) + var(--tier-text, 0px) * 1.225);
   --text-xl: calc(clamp(1.26rem, 1.0563rem + 0.9051 * var(--vw), 1.7578rem) + var(--tier-text, 0px) * 1.501);

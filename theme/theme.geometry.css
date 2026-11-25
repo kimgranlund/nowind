@@ -76,7 +76,7 @@
   --nested-padding: var(--margin);
   --nested-icon-padding: max(0px, calc(var(--nested-padding) - var(--margin)));
   --icon-box: var(--slot);
-  --icon-sm: calc(var(--F) / 1.2);
+  --icon-sm: calc(var(--F) * 0.875);
   --icon-md: calc(var(--F) + var(--icon-md-blend) * (var(--slot) - var(--F)));
   --icon-lg: var(--slot);
   --mark-sm: var(--F);

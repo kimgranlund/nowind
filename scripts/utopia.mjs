@@ -42,9 +42,13 @@ function fluid(minPx, maxPx) {
   return { css, min: round(minPx, 2), max: round(maxPx, 2) };
 }
 
+// Below base the steps are fixed fractions of base (Tailwind's 14/16 and 12/16), not Utopia ratios: one ratio step
+// down (base / 1.2) is too big a drop for supporting text set beside body text.
+const SMALL = { sm: 0.875, xs: 0.75 };
 const text = TEXT_STEPS.map(([name, step]) => {
-  const v = fluid(cfg.minBase * cfg.minRatio ** step, cfg.maxBase * cfg.maxRatio ** step);
-  return { name, step, ...v, lineHeight: LINE_HEIGHTS[name], tierFactor: Number((((cfg.minRatio + cfg.maxRatio) / 2) ** step).toFixed(3)) };
+  const f = SMALL[name];
+  const v = f ? fluid(cfg.minBase * f, cfg.maxBase * f) : fluid(cfg.minBase * cfg.minRatio ** step, cfg.maxBase * cfg.maxRatio ** step);
+  return { name, step, ...v, lineHeight: LINE_HEIGHTS[name], tierFactor: f ?? Number((((cfg.minRatio + cfg.maxRatio) / 2) ** step).toFixed(3)) };
 });
 const byName = Object.fromEntries(text.map((t) => [t.name, t]));
 const kicker = KICKERS.map(([name, beside]) => {
@@ -114,7 +118,7 @@ const typeManifest = {
   file: "theme.typography.css",
   generated: "scripts/utopia.mjs",
   description: "Nowind type: a fluid Utopia scale with Tailwind/Prewind names. Each size is a clamp() from its size at the minimum viewport to its size at the maximum, so it grows with the viewport without media queries.",
-  method: "Utopia (utopia.fyi): size(step) = base × ratio^step at each end, interpolated linearly in vw between minVw and maxVw.",
+  method: "Utopia (utopia.fyi): size(step) = base × ratio^step at each end, interpolated linearly in vw between minVw and maxVw, for base and the steps above it. Below base the steps are fixed fractions, sm 0.875 × base and xs 0.75 × base (Tailwind's 14/16 and 12/16), since a full ratio step down was too big a drop for supporting text.",
   regenerate,
   config: { ...viewport, minBase: cfg.minBase, maxBase: cfg.maxBase, minRatio: cfg.minRatio, maxRatio: cfg.maxRatio },
   naming: {

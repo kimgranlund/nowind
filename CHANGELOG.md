@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **A gentler small step:** `text-sm` is 0.875 × base and `text-xs` 0.75 × base (14 and 12px at 16, Tailwind's ratios) at every width, instead of one and two Utopia ratio steps down (13.3 and 11px), which made supporting text drop too far below body text. The steps above base keep Utopia's ratio; `icon-sm` follows text-sm (0.875 F).
 - **Select picker in Phosphor, nested:** the select's caret, the `caret` class and the selected option's checkmark are Phosphor's caret-down and check (bold), inlined as mask tokens (`--glyph-caret`, `--glyph-check`), so nothing extra loads. The picker is `rounded-md` padded by the inset and its options are a control tall, `rounded-sm`, so their corners nest concentrically. 
 - **Breadcrumbs at the navigation size:** `text-base`, like the tabs and links around them; the size contract gains a navigation row.
 - **Sizes examples:** the Button, Icon button, Segmented control and Text field pages show small, default and large. A size is a region with its own base: `scope text-sm` or `scope text-lg` around the component, so height, padding, gaps, icons and corners all recompute and still nest (25, 37 and 51px at a 16px root), and the component's text inherits the scope's size. Both type audits treat a scope as relative.

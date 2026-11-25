@@ -2,7 +2,7 @@
   "file": "theme.typography.css",
   "generated": "scripts/utopia.mjs",
   "description": "Nowind type: a fluid Utopia scale with Tailwind/Prewind names. Each size is a clamp() from its size at the minimum viewport to its size at the maximum, so it grows with the viewport without media queries.",
-  "method": "Utopia (utopia.fyi): size(step) = base × ratio^step at each end, interpolated linearly in vw between minVw and maxVw.",
+  "method": "Utopia (utopia.fyi): size(step) = base × ratio^step at each end, interpolated linearly in vw between minVw and maxVw, for base and the steps above it. Below base the steps are fixed fractions, sm 0.875 × base and xs 0.75 × base (Tailwind's 14/16 and 12/16), since a full ratio step down was too big a drop for supporting text.",
   "regenerate": "node scripts/utopia.mjs --min-vw 360 --max-vw 1240 --min-base 14 --max-base 18 --min-ratio 1.2 --max-ratio 1.25",
   "config": {
     "minVw": 360,
@@ -25,18 +25,18 @@
     {
       "token": "--text-xs",
       "step": -2,
-      "minPx": 9.72,
-      "maxPx": 11.52,
+      "minPx": 10.5,
+      "maxPx": 13.5,
       "lineHeight": 1.5,
-      "value": "clamp(0.6076rem, 0.5617rem + 0.2043 * var(--vw), 0.72rem)"
+      "value": "clamp(0.6563rem, 0.5795rem + 0.3409 * var(--vw), 0.8438rem)"
     },
     {
       "token": "--text-sm",
       "step": -1,
-      "minPx": 11.67,
-      "maxPx": 14.4,
+      "minPx": 12.25,
+      "maxPx": 15.75,
       "lineHeight": 1.5,
-      "value": "clamp(0.7292rem, 0.6593rem + 0.3106 * var(--vw), 0.9rem)"
+      "value": "clamp(0.7656rem, 0.6761rem + 0.3977 * var(--vw), 0.9844rem)"
     },
     {
       "token": "--text-base",
@@ -109,14 +109,14 @@
       {
         "token": "--kicker-sm",
         "beside": "--text-xs",
-        "minPx": 9,
-        "maxPx": 10.6
+        "minPx": 9.66,
+        "maxPx": 12.42
       },
       {
         "token": "--kicker-md",
         "beside": "--text-sm",
-        "minPx": 10.74,
-        "maxPx": 13.25
+        "minPx": 11.27,
+        "maxPx": 14.49
       },
       {
         "token": "--kicker-lg",
