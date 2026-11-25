@@ -278,7 +278,6 @@
         "py-xs",
         "rounded-inner",
         "rounded-md",
-        "rounded-sm",
         "state",
         "text-base",
         "text-sm"

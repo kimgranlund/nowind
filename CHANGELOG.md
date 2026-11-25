@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **One corner for alerts:** one-line alerts are `rounded-md`, like titled alerts and toasts.
 - **Pressed segments are white in both modes, flat:** `pressed:bg-white pressed:fg-black` with no shadow. New `bg-white`, `bg-black`, `fg-white` and `fg-black` (the neutral contrast ends, the same in light and dark), with state variants.
 - **Unread dot:** a `block` span, so its padding draws a circle; inline, it took the line's height and drew a tall pill.
 - **Tag chips fixed:** a chip is `px-nested` with no fixed height, so its `size-nested` remove button sets the height and `px-nested` drops to zero at that trailing control: the circle meets the pill on three sides; the badge pass had stacked `px-nested` on the chip's own padding. The examples lint now catches a shorthand padding (`p-`, `px-`, `py-`) set alongside a one-side padding.
