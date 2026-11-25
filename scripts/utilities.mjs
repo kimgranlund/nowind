@@ -573,7 +573,7 @@ out.push("  .select-base { --_caret: calc(var(--icon-md) * 0.4); --_caret-stroke
 out.push("  .select-base::picker-icon { color: var(--fg-weak); margin-inline: calc((var(--icon-box) - var(--_caret)) / 2); }");
 out.push("  .select-base.px-control { padding-inline-end: var(--control-icon-padding); }");
 out.push("  :is([open] > summary, [aria-expanded=\"true\"]) .caret::before, .select-base:open::picker-icon { rotate: 225deg; translate: 0 25%; }");
-out.push("  :root[data-lens=\"on\"] .lens { -webkit-backdrop-filter: url(#nowind-lens) saturate(1.8); backdrop-filter: url(#nowind-lens) saturate(1.8); }");
+out.push("  :root[data-lens=\"on\"] .lens { -webkit-backdrop-filter: var(--_lens-filter, url(#nowind-lens)) saturate(1.8) brightness(1.05); backdrop-filter: var(--_lens-filter, url(#nowind-lens)) saturate(1.8) brightness(1.05); }");
 out.push("  .select-base option:checked { background: var(--component-accent-1-weak); color: var(--fg-accent-1-weak); }");
 out.push("  .h-nested > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }");
 for (const [cls, pad] of [["px-control", "--control-icon-padding"], ["px-nested", "--nested-icon-padding"]]) {
@@ -600,8 +600,11 @@ const LIT = {
   "ground": "box-shadow: inset 0 1px 0 var(--paint-bevel-top), var(--shadow-md)",
   "overlay": "box-shadow: var(--shadow-lg)",
 };
+// Clear glass after Apple's Liquid Glass: no gloss band, and the light catches the rim as two thin crescents on opposite
+// corners (top left bright, bottom right softer) over a faint inner glow, instead of a lit top edge.
+const rimLiquid = (k) => `inset 1.5px 1.5px 0 -0.5px var(--paint-rim-${k}-top), inset -1.5px -1.5px 0 -0.5px var(--paint-rim-${k}-bottom), inset 0 0 0 0.5px var(--paint-rim-${k}-ring), inset 0 0 calc(var(--q) * 2) 0 var(--paint-rim-${k}-glow), 0 0 0 0.5px var(--paint-rim-${k}-outer)`;
 const glassPart = (k, face, filter, sheen, cast) =>
-  `background-color: var(--glass-face-${face}); border-color: transparent; -webkit-backdrop-filter: ${filter}; backdrop-filter: ${filter}; background-image: linear-gradient(var(--paint-specular-${face}), transparent ${sheen}); box-shadow: ${rim(k)}, var(--shadow-${cast})`;
+  `background-color: var(--glass-face-${face}); border-color: transparent; -webkit-backdrop-filter: ${filter}; backdrop-filter: ${filter}; background-image: ${sheen ? `linear-gradient(var(--paint-specular-${face}), transparent ${sheen})` : "none"}; box-shadow: ${sheen ? rim(k) : rimLiquid(k)}, var(--shadow-${cast})`;
 const GLASS = (k, face, filter, sheen) => ({
   ...LIT,
   "raised": glassPart(k, face, filter, sheen, "sm"),
@@ -613,7 +616,7 @@ const PAINT = {
   flat: {},
   physical: LIT,
   frosted: GLASS("frosted", "frosted", "blur(8px) saturate(1.6)", "45%"),
-  glass: GLASS("clear", "clear", "blur(1px) saturate(1.8)", "30%"),
+  glass: GLASS("clear", "clear", "blur(0.5px) saturate(1.8) brightness(1.05)", null),
   outline: { "raised": LINE, "recessed": LINE, "field": LINE, "etched": LINE, "ground": LINE, "overlay": "background-color: var(--bg); background-image: none; border-color: transparent; box-shadow: inset 0 0 0 1px var(--fg-weak)" },
 };
 const materialCss = [];

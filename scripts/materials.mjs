@@ -83,7 +83,7 @@ const manifest = {
     flat: "No paint: the default. Overlays still cast.",
     physical: "Lit: face shading, a bevel (lit top, shaded bottom, half-pixel ring) and the raised cast; pressed sinks to a recess; fields and wells are recessed; cards cast at the popup level.",
     frosted: "Lit, and raised parts, cards and overlays are frosted glass: a 56% face over an 8px blur, a specular sheen, a lit rim and the cast.",
-    glass: "Lit, and raised parts, cards and overlays are clear glass: an 18% face over a 1px blur, a sharper sheen and a brighter rim.",
+    glass: "Lit, and raised parts, cards and overlays are clear glass after Apple's Liquid Glass: an 18% face over a 0.5px blur, no gloss band, and the light catching the rim as two thin crescents on opposite corners. Add lens for refraction.",
     outline: "No fills but state: every part draws one 1px line in the muted text color; overlays stay opaque.",
   },
   usage: "Set a material on a region with material-physical, material-frosted, material-glass or material-outline (material-flat resets it). Parts say what they are with relief-raised (buttons), relief-raised-solid (primary buttons), relief-recessed (tracks, wells), relief-field (inputs), relief-etched, relief-ground (cards) and relief-overlay (popovers, dialogs). The nearest material wins: the classes are @scope rules that stop at a nested material.",

@@ -111,11 +111,87 @@
   show();
 })();
 
-// The lens: only Chromium applies an SVG filter in backdrop-filter, so turn it on there, and not when the reader asks
-// for less transparency. Elements marked data-lens-label say which one they show.
+// The lens, after Apple's Liquid Glass: each .lens element gets its own displacement map, drawn at its size and corner
+// radius. A pixel inside the rim band shows the backdrop from further in, along the edge's inward normal, by an amount
+// that grows towards the edge (a convex rim); the centre is untouched. Red, green and blue bend by slightly different
+// amounts, so the rim fringes. Only Chromium applies an SVG filter in backdrop-filter, so the lens runs there, and not
+// when the reader asks for less transparency; elsewhere glass keeps its blur. Elements marked data-lens-label say which.
 (() => {
   const chromium = navigator.userAgentData?.brands?.some((b) => /Chromium/.test(b.brand)) || (/Chrome\//.test(navigator.userAgent) && !/CriOS/.test(navigator.userAgent));
   const on = chromium && !matchMedia("(prefers-reduced-transparency: reduce)").matches;
   document.documentElement.dataset.lens = on ? "on" : "off";
   document.querySelectorAll("[data-lens-label]").forEach((el) => { el.textContent = on ? "Lens on" : "Lens off: this browser can't refract, so glass shows its blur"; });
+  if (!on) return;
+
+  const NS = "http://www.w3.org/2000/svg";
+  const host = document.createElementNS(NS, "svg");
+  host.setAttribute("width", "0"); host.setAttribute("height", "0"); host.setAttribute("aria-hidden", "true");
+  host.style.position = "absolute";
+  document.body.append(host);
+  let n = 0;
+
+  function map(w, h, r, band) {
+    const c = document.createElement("canvas"); c.width = w; c.height = h;
+    const ctx = c.getContext("2d"), img = ctx.createImageData(w, h), d = img.data;
+    const hx = w / 2, hy = h / 2;
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      const px = x + 0.5 - hx, py = y + 0.5 - hy;
+      const qx = Math.abs(px) - (hx - r), qy = Math.abs(py) - (hy - r);
+      let dist, nx, ny;
+      if (qx > 0 && qy > 0) { const l = Math.hypot(qx, qy) || 1; dist = l - r; nx = qx / l; ny = qy / l; }
+      else if (qx > qy) { dist = qx - r; nx = 1; ny = 0; } else { dist = qy - r; nx = 0; ny = 1; }
+      const depth = -dist, s = Math.min(Math.max(depth / band, 0), 1);
+      const m = depth > 0 ? Math.pow(1 - s, 2.2) : 0;
+      // In backdrop-filter, Chromium's displacement reads the backdrop from the opposite side to a filter on the element,
+      // so the offset points outward here to show the backdrop from further in.
+      // A slight magnification over the whole body (6%), as a thick lens has, plus the rim bend.
+      const zoom = 0.06 / shift;
+      const dx = Math.max(-1, Math.min(1, Math.sign(px) * nx * m + px * zoom)), dy = Math.max(-1, Math.min(1, Math.sign(py) * ny * m + py * zoom));
+      const i = (y * w + x) * 4;
+      d[i] = 128 + 127 * dx; d[i + 1] = 128 + 127 * dy; d[i + 2] = 128; d[i + 3] = 255;
+    }
+    ctx.putImageData(img, 0, 0);
+    return c.toDataURL();
+  }
+
+  function build(el) {
+    const w = Math.round(el.offsetWidth), h = Math.round(el.offsetHeight);
+    if (!w || !h) return;
+    const r = Math.min(parseFloat(getComputedStyle(el).borderTopLeftRadius) || 0, w / 2, h / 2);
+    const band = Math.max(Math.min(Math.max(r, 12) * 1.1, w / 2, h / 2), 6);
+    const shift = Math.min(band * 0.55, 22);
+    const id = el.dataset.lensId || (el.dataset.lensId = `nowind-lens-${++n}`);
+    let f = host.querySelector(`#${id}`);
+    if (!f) { f = document.createElementNS(NS, "filter"); f.id = id; host.append(f); }
+    for (const [k, v] of Object.entries({ x: 0, y: 0, width: w, height: h, filterUnits: "userSpaceOnUse", primitiveUnits: "userSpaceOnUse", "color-interpolation-filters": "sRGB" })) f.setAttribute(k, v);
+    const disp = (k, res) => `<feDisplacementMap in="SourceGraphic" in2="map" scale="${(2 * shift * k).toFixed(2)}" xChannelSelector="R" yChannelSelector="G" result="${res}"/>`;
+    f.innerHTML = `<feImage href="${map(w, h, r, band)}" x="0" y="0" width="${w}" height="${h}" preserveAspectRatio="none" result="map"/>`
+      + disp(1, "dr") + disp(1.06, "dg") + disp(1.12, "db")
+      + `<feColorMatrix in="dr" values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" result="cr"/>`
+      + `<feColorMatrix in="dg" values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0" result="cg"/>`
+      + `<feColorMatrix in="db" values="0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0" result="cb"/>`
+      + `<feBlend in="cr" in2="cg" mode="screen" result="rg"/><feBlend in="rg" in2="cb" mode="screen"/>`;
+    el.style.setProperty("--_lens-filter", `url(#${id})`);
+  }
+
+  const seen = new WeakMap();
+  const ro = new ResizeObserver((entries) => entries.forEach((e) => {
+    const k = `${Math.round(e.target.offsetWidth)}x${Math.round(e.target.offsetHeight)}`;
+    if (seen.get(e.target) !== k) { seen.set(e.target, k); build(e.target); }
+  }));
+  document.querySelectorAll(".lens").forEach((el) => ro.observe(el));
 })();
+
+// Glass slider demo: a range input drives a glass thumb over a track.
+document.querySelectorAll("[data-glass-slider]").forEach((box) => {
+  const input = box.querySelector("input[type=range]"), thumb = box.querySelector("[data-thumb]"), fill = box.querySelector("[data-fill]");
+  const place = () => {
+    const t = (input.value - input.min) / (input.max - input.min), track = box.querySelector("[data-track]");
+    const x = t * track.offsetWidth;
+    fill.style.width = `${x}px`;
+    thumb.style.marginLeft = `${track.offsetLeft + x - thumb.offsetWidth / 2}px`;
+  };
+  input.addEventListener("input", place);
+  new ResizeObserver(place).observe(box);
+  place();
+});
