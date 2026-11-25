@@ -39,16 +39,22 @@
         <header class="col-span-12 flex flex-col gap-field pt-page pb-xl">
             <span class="text-kicker fg-weak">Status</span>
             <h1 class="text-display-sm text-balance">Alert</h1>
-            <p class="text-body-md fg-weak max-w-measure">A message about the page or a task, tinted by its status.</p>
+            <p class="text-body-md fg-weak max-w-measure">A message about the page or a task, tinted by its status. One line sits in the geometry of a field; a titled alert puts a large icon beside its title and the detail below.</p>
           </header>
         <section id="example" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Example</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <div class="tier-product p-surface rounded-md border border-weak bg-strong">
-<div class="flex gap-xs p-md rounded-md bg-warning-3 border border-warning-6" role="status">
-  <i class="icon ph ph-warning fg-warning-11"></i>
-  <div class="flex flex-col gap-3xs">
-    <span class="text-base font-semibold fg-warning-12">Your trial ends in 3 days</span>
+<div class="flex flex-col gap-xs max-w-form">
+  <div class="flex items-center gap-xs py-xs ps-xs pe-sm rounded-sm border border-info-6 bg-info-3" role="status">
+    <i class="icon ph ph-info fg-info-11"></i>
+    <span class="text-base fg-info-12">A new version is available.</span>
+  </div>
+  <div class="flex flex-col gap-3xs p-sm rounded-md border border-warning-6 bg-warning-3" role="status">
+    <div class="flex items-center gap-xs">
+      <i class="icon icon-lg ph ph-warning fg-warning-11"></i>
+      <span class="text-base font-semibold fg-warning-12">Your trial ends in 3 days</span>
+    </div>
     <span class="text-sm fg-warning-11">Add a payment method to keep your projects active.</span>
   </div>
 </div>
@@ -57,11 +63,73 @@
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">alert.html</span><span class="text-kicker fg-subtle">HTML</span>
             </figcaption>
-            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;flex gap-xs p-md rounded-md bg-warning-3 border border-warning-6&quot; role=&quot;status&quot;&gt;
-  &lt;i class=&quot;icon ph ph-warning fg-warning-11&quot;&gt;&lt;/i&gt;
-  &lt;div class=&quot;flex flex-col gap-3xs&quot;&gt;
-    &lt;span class=&quot;text-base font-semibold fg-warning-12&quot;&gt;Your trial ends in 3 days&lt;/span&gt;
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;flex flex-col gap-xs max-w-form&quot;&gt;
+  &lt;div class=&quot;flex items-center gap-xs py-xs ps-xs pe-sm rounded-sm border border-info-6 bg-info-3&quot; role=&quot;status&quot;&gt;
+    &lt;i class=&quot;icon ph ph-info fg-info-11&quot;&gt;&lt;/i&gt;
+    &lt;span class=&quot;text-base fg-info-12&quot;&gt;A new version is available.&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;flex flex-col gap-3xs p-sm rounded-md border border-warning-6 bg-warning-3&quot; role=&quot;status&quot;&gt;
+    &lt;div class=&quot;flex items-center gap-xs&quot;&gt;
+      &lt;i class=&quot;icon icon-lg ph ph-warning fg-warning-11&quot;&gt;&lt;/i&gt;
+      &lt;span class=&quot;text-base font-semibold fg-warning-12&quot;&gt;Your trial ends in 3 days&lt;/span&gt;
+    &lt;/div&gt;
     &lt;span class=&quot;text-sm fg-warning-11&quot;&gt;Add a payment method to keep your projects active.&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </figure>
+          </div>
+        </section>
+        <section id="single-line" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">One line</h2></div>
+          <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
+          <p class="text-body-md max-w-measure">One sentence, no title: the alert takes a field's geometry (py-xs, ps-xs at the icon edge, rounded-sm) and the base icon size, so it lines up with the controls around it.</p>
+          <div class="tier-product p-surface rounded-md border border-weak bg-strong">
+<div class="flex items-center gap-xs py-xs ps-xs pe-sm rounded-sm border border-success-6 bg-success-3 max-w-form" role="status">
+  <i class="icon ph ph-check-circle fg-success-11"></i>
+  <span class="text-base fg-success-12">Payment received.</span>
+</div>
+          </div>
+          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
+              <span class="text-mono-sm fg-weak truncate">alert-single-line.html</span><span class="text-kicker fg-subtle">HTML</span>
+            </figcaption>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;flex items-center gap-xs py-xs ps-xs pe-sm rounded-sm border border-success-6 bg-success-3 max-w-form&quot; role=&quot;status&quot;&gt;
+  &lt;i class=&quot;icon ph ph-check-circle fg-success-11&quot;&gt;&lt;/i&gt;
+  &lt;span class=&quot;text-base fg-success-12&quot;&gt;Payment received.&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+          </figure>
+          </div>
+        </section>
+        <section id="titled" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Title, detail and actions</h2></div>
+          <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
+          <p class="text-body-md max-w-measure">A title, a line of detail and actions: icon-lg sits on the title row, centred on it, and the detail and actions run the full width below. p-sm and rounded-md hold the nested buttons' rounded-xs.</p>
+          <div class="tier-product p-surface rounded-md border border-weak bg-strong">
+<div class="flex flex-col gap-3xs p-sm rounded-md border border-danger-6 bg-danger-3 max-w-form" role="alert">
+  <div class="flex items-center gap-xs">
+    <i class="icon icon-lg ph ph-warning-octagon fg-danger-11"></i>
+    <span class="text-base font-semibold fg-danger-12">Deployment failed</span>
+  </div>
+  <span class="text-sm fg-danger-11">The build stopped at step 4 of 6.</span>
+  <div class="flex gap-2xs pt-2xs">
+    <button class="inline-flex items-center py-3xs px-2xs rounded-xs state border-0 bg-danger-9 fg-danger-contrast text-base font-medium cursor-pointer"><span>View logs</span></button>
+    <button class="inline-flex items-center py-3xs px-2xs rounded-xs state border-0 bg-transparent fg-danger-11 text-base font-medium cursor-pointer"><span>Dismiss</span></button>
+  </div>
+</div>
+          </div>
+          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
+              <span class="text-mono-sm fg-weak truncate">alert-titled.html</span><span class="text-kicker fg-subtle">HTML</span>
+            </figcaption>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;flex flex-col gap-3xs p-sm rounded-md border border-danger-6 bg-danger-3 max-w-form&quot; role=&quot;alert&quot;&gt;
+  &lt;div class=&quot;flex items-center gap-xs&quot;&gt;
+    &lt;i class=&quot;icon icon-lg ph ph-warning-octagon fg-danger-11&quot;&gt;&lt;/i&gt;
+    &lt;span class=&quot;text-base font-semibold fg-danger-12&quot;&gt;Deployment failed&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;span class=&quot;text-sm fg-danger-11&quot;&gt;The build stopped at step 4 of 6.&lt;/span&gt;
+  &lt;div class=&quot;flex gap-2xs pt-2xs&quot;&gt;
+    &lt;button class=&quot;inline-flex items-center py-3xs px-2xs rounded-xs state border-0 bg-danger-9 fg-danger-contrast text-base font-medium cursor-pointer&quot;&gt;&lt;span&gt;View logs&lt;/span&gt;&lt;/button&gt;
+    &lt;button class=&quot;inline-flex items-center py-3xs px-2xs rounded-xs state border-0 bg-transparent fg-danger-11 text-base font-medium cursor-pointer&quot;&gt;&lt;span&gt;Dismiss&lt;/span&gt;&lt;/button&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
           </figure>
@@ -72,10 +140,12 @@
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-grid">
             <div class="flex flex-col gap-field"><span class="text-label fg-success-weak">Use</span><ul role="list" class="flex flex-col gap-xs text-body-md">
+            <li class="flex gap-gutter"><i class="icon icon-sm ph-bold ph-check fg-success-weak"></i><span>One line for a single sentence; a title row with <code>icon-lg</code> when there is detail or an action.</span></li>
             <li class="flex gap-gutter"><i class="icon icon-sm ph-bold ph-check fg-success-weak"></i><span><code>role="status"</code> for information, <code>role="alert"</code> only for errors that need attention now.</span></li>
             </ul></div>
             <div class="flex flex-col gap-field"><span class="text-label fg-danger-weak">Avoid</span><ul role="list" class="flex flex-col gap-xs text-body-md">
             <li class="flex gap-gutter"><i class="icon icon-sm ph-bold ph-x fg-danger-weak"></i><span>Stacking several alerts; merge them into one.</span></li>
+            <li class="flex gap-gutter"><i class="icon icon-sm ph-bold ph-x fg-danger-weak"></i><span>A large icon on a one-line alert, or the base icon beside a title.</span></li>
             </ul></div>
           </div>
           </div>
@@ -83,8 +153,8 @@
         <section id="classes" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Classes</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <p class="text-body-md max-w-measure">Every class in the examples, 15 in all. Each one links to its declarations in <a href="classes.html">Classes</a> or <a href="semantic.html">Semantic classes</a>.</p>
-          <div class="flex flex-wrap gap-2xs"><a href="classes.html#class-bg-warning-3" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">bg-warning-3</a> <a href="classes.html#class-border" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">border</a> <a href="classes.html#class-border-warning-6" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">border-warning-6</a> <a href="classes.html#class-fg-warning-11" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">fg-warning-11</a> <a href="classes.html#class-fg-warning-12" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">fg-warning-12</a> <a href="classes.html#class-flex" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">flex</a> <a href="classes.html#class-flex-col" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">flex-col</a> <a href="classes.html#class-font-semibold" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">font-semibold</a> <a href="classes.html#class-gap-3xs" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">gap-3xs</a> <a href="classes.html#class-gap-xs" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">gap-xs</a> <a href="classes.html#class-icon" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">icon</a> <a href="classes.html#class-p-md" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">p-md</a> <a href="classes.html#class-rounded-md" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">rounded-md</a> <a href="classes.html#class-text-base" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">text-base</a> <a href="classes.html#class-text-sm" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">text-sm</a></div>
+          <p class="text-body-md max-w-measure">Every class in the examples, 47 in all. Each one links to its declarations in <a href="classes.html">Classes</a> or <a href="semantic.html">Semantic classes</a>.</p>
+          <div class="flex flex-wrap gap-2xs"><a href="classes.html#class-bg-danger-3" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">bg-danger-3</a> <a href="classes.html#class-bg-danger-9" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">bg-danger-9</a> <a href="classes.html#class-bg-info-3" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">bg-info-3</a> <a href="classes.html#class-bg-success-3" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">bg-success-3</a> <a href="classes.html#class-bg-transparent" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">bg-transparent</a> <a href="classes.html#class-bg-warning-3" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">bg-warning-3</a> <a href="classes.html#class-border" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">border</a> <a href="classes.html#class-border-0" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">border-0</a> <a href="classes.html#class-border-danger-6" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">border-danger-6</a> <a href="classes.html#class-border-info-6" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">border-info-6</a> <a href="classes.html#class-border-success-6" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">border-success-6</a> <a href="classes.html#class-border-warning-6" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">border-warning-6</a> <a href="classes.html#class-cursor-pointer" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">cursor-pointer</a> <a href="classes.html#class-fg-danger-11" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">fg-danger-11</a> <a href="classes.html#class-fg-danger-12" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">fg-danger-12</a> <a href="classes.html#class-fg-danger-contrast" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">fg-danger-contrast</a> <a href="classes.html#class-fg-info-11" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">fg-info-11</a> <a href="classes.html#class-fg-info-12" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">fg-info-12</a> <a href="classes.html#class-fg-success-11" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">fg-success-11</a> <a href="classes.html#class-fg-success-12" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">fg-success-12</a> <a href="classes.html#class-fg-warning-11" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">fg-warning-11</a> <a href="classes.html#class-fg-warning-12" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">fg-warning-12</a> <a href="classes.html#class-flex" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">flex</a> <a href="classes.html#class-flex-col" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">flex-col</a> <a href="classes.html#class-font-medium" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">font-medium</a> <a href="classes.html#class-font-semibold" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">font-semibold</a> <a href="classes.html#class-gap-2xs" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">gap-2xs</a> <a href="classes.html#class-gap-3xs" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">gap-3xs</a> <a href="classes.html#class-gap-xs" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">gap-xs</a> <a href="classes.html#class-icon" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">icon</a> <a href="classes.html#class-icon-lg" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">icon-lg</a> <a href="classes.html#class-inline-flex" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">inline-flex</a> <a href="classes.html#class-items-center" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">items-center</a> <a href="classes.html#class-max-w-form" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">max-w-form</a> <a href="classes.html#class-p-sm" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">p-sm</a> <a href="classes.html#class-pe-sm" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">pe-sm</a> <a href="classes.html#class-ps-xs" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">ps-xs</a> <a href="classes.html#class-pt-2xs" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">pt-2xs</a> <a href="classes.html#class-px-2xs" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">px-2xs</a> <a href="classes.html#class-py-3xs" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">py-3xs</a> <a href="classes.html#class-py-xs" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">py-xs</a> <a href="classes.html#class-rounded-md" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">rounded-md</a> <a href="classes.html#class-rounded-sm" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">rounded-sm</a> <a href="classes.html#class-rounded-xs" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">rounded-xs</a> <a href="classes.html#class-state" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">state</a> <a href="classes.html#class-text-base" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">text-base</a> <a href="classes.html#class-text-sm" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">text-sm</a></div>
           </div>
         </section>
         <nav aria-label="Previous and next page" class="col-span-12 grid grid-cols-2 gap-grid py-page border-t border-strong">

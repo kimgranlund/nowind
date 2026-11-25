@@ -68,24 +68,51 @@ COMPONENTS = [
     },
     {
         "slug": "alert", "name": "Alert", "icon": "ph-warning-circle", "group": "Status",
-        "summary": "A message about the page or a task, tinted by its status.",
-        "html": """<div class="flex gap-xs p-md rounded-md bg-warning-3 border border-warning-6" role="status">
-  <i class="icon ph ph-warning fg-warning-11"></i>
-  <div class="flex flex-col gap-3xs">
-    <span class="text-base font-semibold fg-warning-12">Your trial ends in 3 days</span>
+        "summary": "A message about the page or a task, tinted by its status. One line sits in the geometry of a field; a titled alert puts a large icon beside its title and the detail below.",
+        "html": """<div class="flex flex-col gap-xs max-w-form">
+  <div class="flex items-center gap-xs py-xs ps-xs pe-sm rounded-sm border border-info-6 bg-info-3" role="status">
+    <i class="icon ph ph-info fg-info-11"></i>
+    <span class="text-base fg-info-12">A new version is available.</span>
+  </div>
+  <div class="flex flex-col gap-3xs p-sm rounded-md border border-warning-6 bg-warning-3" role="status">
+    <div class="flex items-center gap-xs">
+      <i class="icon icon-lg ph ph-warning fg-warning-11"></i>
+      <span class="text-base font-semibold fg-warning-12">Your trial ends in 3 days</span>
+    </div>
     <span class="text-sm fg-warning-11">Add a payment method to keep your projects active.</span>
   </div>
 </div>""",
-        "use": ["<code>role=\"status\"</code> for information, <code>role=\"alert\"</code> only for errors that need attention now."],
-        "avoid": ["Stacking several alerts; merge them into one."],
+        "examples": [
+            {"id": "single-line", "label": "One line",
+             "summary": "One sentence, no title: the alert takes a field's geometry (py-xs, ps-xs at the icon edge, rounded-sm) and the base icon size, so it lines up with the controls around it.",
+             "html": """<div class="flex items-center gap-xs py-xs ps-xs pe-sm rounded-sm border border-success-6 bg-success-3 max-w-form" role="status">
+  <i class="icon ph ph-check-circle fg-success-11"></i>
+  <span class="text-base fg-success-12">Payment received.</span>
+</div>"""},
+            {"id": "titled", "label": "Title, detail and actions",
+             "summary": "A title, a line of detail and actions: icon-lg sits on the title row, centred on it, and the detail and actions run the full width below. p-sm and rounded-md hold the nested buttons' rounded-xs.",
+             "html": """<div class="flex flex-col gap-3xs p-sm rounded-md border border-danger-6 bg-danger-3 max-w-form" role="alert">
+  <div class="flex items-center gap-xs">
+    <i class="icon icon-lg ph ph-warning-octagon fg-danger-11"></i>
+    <span class="text-base font-semibold fg-danger-12">Deployment failed</span>
+  </div>
+  <span class="text-sm fg-danger-11">The build stopped at step 4 of 6.</span>
+  <div class="flex gap-2xs pt-2xs">
+    <button class="inline-flex items-center py-3xs px-2xs rounded-xs state border-0 bg-danger-9 fg-danger-contrast text-base font-medium cursor-pointer"><span>View logs</span></button>
+    <button class="inline-flex items-center py-3xs px-2xs rounded-xs state border-0 bg-transparent fg-danger-11 text-base font-medium cursor-pointer"><span>Dismiss</span></button>
+  </div>
+</div>"""},
+        ],
+        "use": ["One line for a single sentence; a title row with <code>icon-lg</code> when there is detail or an action.", "<code>role=\"status\"</code> for information, <code>role=\"alert\"</code> only for errors that need attention now."],
+        "avoid": ["Stacking several alerts; merge them into one.", "A large icon on a one-line alert, or the base icon beside a title."],
     },
     {
         "slug": "toast", "name": "Toast", "icon": "ph-bell-ringing", "group": "Status",
         "summary": "A brief confirmation on the inverse colors, with an optional action.",
-        "html": """<div class="flex flex-wrap items-center gap-x-sm gap-y-2xs p-sm ps-md w-fit rounded-md bg-neutral-12 shadow-lg" role="status">
+        "html": """<div class="flex flex-wrap items-center gap-x-xs gap-y-3xs py-2xs ps-sm pe-2xs w-fit rounded-md bg-neutral-12 shadow-lg" role="status">
   <i class="icon ph ph-check-circle fg-neutral-1"></i>
-  <span class="text-sm fg-neutral-1">Invite sent</span>
-  <span class="ms-auto flex items-center gap-2xs"><button class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent fg-accent-1-8 text-base font-medium cursor-pointer">Undo</button></span>
+  <span class="text-base fg-neutral-1">Invite sent</span>
+  <span class="ms-auto flex items-center"><button class="inline-flex items-center py-3xs px-2xs rounded-xs state border-0 bg-transparent fg-accent-1-8 text-base font-medium cursor-pointer"><span>Undo</span></button></span>
 </div>""",
         "use": ["Confirm an action that already happened, with Undo when it can be reversed."],
         "avoid": ["Errors the person must fix; use an alert near the problem."],

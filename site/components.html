@@ -107,45 +107,39 @@
       <span class="text-xs font-mono uppercase tracking-widest px-2xs py-3xs rounded-xs bg-accent-2-9 fg-accent-2-contrast">Beta</span>
     </div>
 
-    <div class="flex flex-col gap-sm mb-lg max-w-form">
-      <div class="flex gap-xs p-md rounded-md bg-info-3 border border-info-6" role="status">
+    <div class="flex flex-col gap-xs max-w-form">
+      <div class="flex items-center gap-xs py-xs ps-xs pe-sm rounded-sm border border-info-6 bg-info-3" role="status">
         <i class="icon ph ph-info fg-info-11"></i>
-        <div class="flex flex-col gap-3xs">
-          <span class="text-base font-semibold fg-info-12">A new version is available</span>
-          <span class="text-sm fg-info-11">Reload to get the latest fixes. Your work is saved.</span>
-        </div>
+        <span class="text-base fg-info-12">A new version is available.</span>
       </div>
-      <div class="flex gap-xs p-md rounded-md bg-success-3 border border-success-6" role="status">
+      <div class="flex items-center gap-xs py-xs ps-xs pe-sm rounded-sm border border-success-6 bg-success-3" role="status">
         <i class="icon ph ph-check-circle fg-success-11"></i>
-        <div class="flex flex-col gap-3xs">
-          <span class="text-base font-semibold fg-success-12">Payment received</span>
-          <span class="text-sm fg-success-11">We emailed a receipt to the billing contact.</span>
-        </div>
+        <span class="text-base fg-success-12">Payment received.</span>
       </div>
-      <div class="flex gap-xs p-md rounded-md bg-warning-3 border border-warning-6" role="status">
-        <i class="icon ph ph-warning fg-warning-11"></i>
-        <div class="flex flex-col gap-3xs">
+      <div class="flex flex-col gap-3xs p-sm rounded-md border border-warning-6 bg-warning-3" role="status">
+        <div class="flex items-center gap-xs">
+          <i class="icon icon-lg ph ph-warning fg-warning-11"></i>
           <span class="text-base font-semibold fg-warning-12">Your trial ends in 3 days</span>
-          <span class="text-sm fg-warning-11">Add a payment method to keep your projects active.</span>
         </div>
+        <span class="text-sm fg-warning-11">Add a payment method to keep your projects active.</span>
       </div>
-      <div class="flex gap-xs p-md rounded-md bg-danger-3 border border-danger-6" role="alert">
-        <i class="icon ph ph-warning-octagon fg-danger-11"></i>
-        <div class="flex flex-col gap-3xs grow">
+      <div class="flex flex-col gap-3xs p-sm rounded-md border border-danger-6 bg-danger-3" role="alert">
+        <div class="flex items-center gap-xs">
+          <i class="icon icon-lg ph ph-warning-octagon fg-danger-11"></i>
           <span class="text-base font-semibold fg-danger-12">Deployment failed</span>
-          <span class="text-sm fg-danger-11">The build stopped at step 4 of 6.</span>
-          <div class="flex gap-xs mt-xs">
-            <button class="inline-flex items-center py-3xs px-2xs rounded-xs state border-0 bg-danger-9 fg-danger-contrast text-base font-medium cursor-pointer"><span>View logs</span></button>
-            <button class="inline-flex items-center py-3xs px-2xs rounded-xs state border-0 bg-transparent fg-danger-11 text-base font-medium cursor-pointer"><span>Dismiss</span></button>
-          </div>
+        </div>
+        <span class="text-sm fg-danger-11">The build stopped at step 4 of 6.</span>
+        <div class="flex gap-2xs pt-2xs">
+          <button class="inline-flex items-center py-3xs px-2xs rounded-xs state border-0 bg-danger-9 fg-danger-contrast text-base font-medium cursor-pointer"><span>View logs</span></button>
+          <button class="inline-flex items-center py-3xs px-2xs rounded-xs state border-0 bg-transparent fg-danger-11 text-base font-medium cursor-pointer"><span>Dismiss</span></button>
         </div>
       </div>
     </div>
 
-    <div class="flex flex-wrap items-center gap-x-sm gap-y-2xs p-sm ps-md rounded-md bg-neutral-12 w-fit shadow-lg" role="status">
+    <div class="flex flex-wrap items-center gap-x-xs gap-y-3xs py-2xs ps-sm pe-2xs rounded-md bg-neutral-12 w-fit shadow-lg" role="status">
       <i class="icon ph ph-check-circle fg-neutral-1"></i>
       <span class="text-base fg-neutral-1">Changes saved</span>
-      <span class="ms-auto flex items-center gap-2xs"><button class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent fg-accent-1-8 text-base font-medium cursor-pointer"><span>Undo</span></button></span>
+      <span class="ms-auto flex items-center"><button class="inline-flex items-center py-3xs px-2xs rounded-xs state border-0 bg-transparent fg-accent-1-8 text-base font-medium cursor-pointer"><span>Undo</span></button></span>
     </div>
     </div>
   </section>
@@ -752,17 +746,17 @@
       <div class="p-md rounded-md bg-neutral-1 border border-neutral-6 shadow-xs flex flex-col gap-md">
         <h3 class="text-base font-semibold">Toast stack</h3>
         <div class="flex flex-col gap-2xs">
-          <div class="flex flex-wrap items-center gap-x-sm gap-y-2xs p-sm ps-md rounded-md bg-neutral-12 shadow-lg" role="status">
-            <i class="icon ph ph-check-circle fg-success-9"></i><span class="grow basis-0 text-sm fg-neutral-1">Invite sent to grace@example.com</span><span class="ms-auto flex items-center gap-2xs"><button class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent fg-accent-1-8 text-base font-medium cursor-pointer">Undo</button>
-            <button class="inline-flex items-center justify-center p-3xs rounded-xs border-0 bg-transparent fg-neutral-6 cursor-pointer" aria-label="Dismiss"><i class="icon icon-sm ph-bold ph-x"></i></button></span>
+          <div class="flex flex-wrap items-center gap-x-xs gap-y-3xs py-2xs ps-sm pe-2xs rounded-md bg-neutral-12 shadow-lg" role="status">
+            <i class="icon ph ph-check-circle fg-success-9"></i><span class="grow basis-0 text-base fg-neutral-1">Invite sent to grace@example.com</span><span class="ms-auto flex items-center gap-3xs"><button class="inline-flex items-center py-3xs px-2xs rounded-xs state border-0 bg-transparent fg-accent-1-8 text-base font-medium cursor-pointer"><span>Undo</span></button>
+            <button class="inline-flex items-center justify-center p-3xs rounded-xs state border-0 bg-transparent fg-neutral-6 cursor-pointer" aria-label="Dismiss"><i class="icon icon-sm ph-bold ph-x"></i></button></span>
           </div>
-          <div class="flex flex-wrap items-center gap-x-sm gap-y-2xs p-sm ps-md rounded-md bg-neutral-12 shadow-lg" role="status">
-            <i class="icon ph ph-warning fg-warning-9"></i><span class="grow basis-0 text-sm fg-neutral-1">You're offline. Changes will sync later.</span>
-            <button class="inline-flex items-center justify-center p-3xs rounded-xs border-0 bg-transparent fg-neutral-6 cursor-pointer" aria-label="Dismiss"><i class="icon icon-sm ph-bold ph-x"></i></button>
+          <div class="flex flex-wrap items-center gap-x-xs gap-y-3xs py-2xs ps-sm pe-2xs rounded-md bg-neutral-12 shadow-lg" role="status">
+            <i class="icon ph ph-warning fg-warning-9"></i><span class="grow basis-0 text-base fg-neutral-1">You're offline. Changes will sync later.</span>
+            <button class="inline-flex items-center justify-center p-3xs rounded-xs state border-0 bg-transparent fg-neutral-6 cursor-pointer" aria-label="Dismiss"><i class="icon icon-sm ph-bold ph-x"></i></button>
           </div>
-          <div class="flex flex-wrap items-center gap-x-sm gap-y-2xs p-sm ps-md rounded-md bg-neutral-12 shadow-lg" role="status">
-            <i class="icon ph ph-x-circle fg-danger-9"></i><span class="grow basis-0 text-sm fg-neutral-1">Upload failed: file is over 10 MB</span><span class="ms-auto flex items-center gap-2xs"><button class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent fg-accent-1-8 text-base font-medium cursor-pointer">Retry</button>
-            <button class="inline-flex items-center justify-center p-3xs rounded-xs border-0 bg-transparent fg-neutral-6 cursor-pointer" aria-label="Dismiss"><i class="icon icon-sm ph-bold ph-x"></i></button></span>
+          <div class="flex flex-wrap items-center gap-x-xs gap-y-3xs py-2xs ps-sm pe-2xs rounded-md bg-neutral-12 shadow-lg" role="status">
+            <i class="icon ph ph-x-circle fg-danger-9"></i><span class="grow basis-0 text-base fg-neutral-1">Upload failed: file is over 10 MB</span><span class="ms-auto flex items-center gap-3xs"><button class="inline-flex items-center py-3xs px-2xs rounded-xs state border-0 bg-transparent fg-accent-1-8 text-base font-medium cursor-pointer"><span>Retry</span></button>
+            <button class="inline-flex items-center justify-center p-3xs rounded-xs state border-0 bg-transparent fg-neutral-6 cursor-pointer" aria-label="Dismiss"><i class="icon icon-sm ph-bold ph-x"></i></button></span>
           </div>
         </div>
       </div>
