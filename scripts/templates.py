@@ -6,7 +6,7 @@ import html, json, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from component_docs import COMPONENTS  # noqa: E402
 
-OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "site", "docs")
+OUT = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("--") else os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "site", "docs")
 E = html.escape
 
 # ---------------------------------------------------------------- site map
@@ -194,7 +194,7 @@ def block(sid, label, *parts, attrs=""):
     """One block of a page: its label in the first three of twelve columns, its content in the other nine."""
     inner = "\n          ".join(parts)
     ident = f' id="{sid}"' if sid else ""
-    return f"""<section{ident}{attrs} class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-field pt-sm pb-xl border-t border-strong">
+    return f"""<section{ident}{attrs} class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs">{label}</div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           {inner}
@@ -252,7 +252,7 @@ def guide():
         section("grid", "The block",
             p("Every block hangs from a label column: its label in the first three of twelve columns, its content in the other nine. A component's example, a palette and a release in the changelog all have this one shape. Below 768px the label sits above the content."),
             code("block.html", "HTML", """
-<section class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-field pt-sm pb-xl border-t border-strong">
+<section class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
   <div class="col-span-12 md:col-span-3"><h2 class="text-subtitle">Example</h2></div>
   <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">…</div>
 </section>"""),
@@ -619,7 +619,7 @@ def is_semantic(cat, k):
     if cat in SEMANTIC_CATS or (cat != "Layout and misc" and SEMANTIC_WORDS.search(k)):
         return True
     if cat in ("Text color", "Background color", "Border color"):
-        return not re.search(r"(accent-\d|neutral|danger|warning|success|info)-a?\d+$|-(inherit|current|transparent)$", k)
+        return not re.search(r"(accent-\d|neutral|danger|warning|success|info)-(a?\d+|contrast)$|-(inherit|current|transparent)$", k)
     if cat == "Type":
         return not re.fullmatch(r"text-(xs|sm|base|lg|\d?xl)", k)
     if cat == "Typography":
@@ -747,6 +747,32 @@ def components_index():
         + [section(sid, g, body) for sid, g, body in groups])
     return doc_page("components-index.html", "Components", art, [(sid, g) for sid, g, _ in groups], wide=True)
 
+def lint_examples():
+    """Examples use regular (primitive) classes only. Returns one line per semantic class found in a component snippet
+    or in a block of the showcase, except the showcase blocks marked data-semantic-demo."""
+    cat = {k: t for t, rows in read_classes() for k, _ in rows}
+    def bad(html_, where):
+        out = []
+        for cls in re.findall(r'class="([^"]+)"', html_):
+            for t in cls.split():
+                base = t.split(":")[-1]
+                if base in cat and is_semantic(cat[base], base):
+                    out.append(f"{where}: {t} is semantic. Fix: use regular classes in examples (the step, space or size it stands for).")
+        return out
+    errors = []
+    for c in COMPONENTS:
+        for x in [{"id": "example", "html": c["html"]}] + c.get("examples", []):
+            errors += bad(x["html"], f"scripts/component_docs.py {c['slug']} {x['id']}")
+    page = open(os.path.join(OUT, "..", "components.html")).read()
+    body = 'md:col-span-9 min-w-0 flex flex-col gap-group">'
+    for m in re.finditer(r'<section id="([^"]+)"(.*?)\n  </section>', page, flags=re.S):
+        sec = m.group(0)
+        if "data-semantic-demo" in sec[:80] or body not in sec:
+            continue
+        errors += bad(sec[sec.index(body) + len(body):], f"site/components.html #{m.group(1)}")
+    return sorted(set(errors))
+
+
 def main():
     os.makedirs(OUT, exist_ok=True)
     files = {"guide.html": guide(), "reference.html": reference(), "changelog.html": changelog(),
@@ -786,4 +812,8 @@ def main():
         f.write("[\n" + ",\n".join(json.dumps(r, ensure_ascii=False) for r in rows) + "\n]\n")
     print("wrote search.json", len(rows), "entries")
 
+if "--lint" in sys.argv:
+    problems = lint_examples()
+    print("\n".join(problems))
+    sys.exit(1 if problems else 0)
 main()

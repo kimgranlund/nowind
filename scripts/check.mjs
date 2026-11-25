@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Checks the rules AGENTS.md states. Usage:
 //   node scripts/check.mjs              check this repository
-//   node scripts/check.mjs --self-test  break a copy five ways and confirm each check fails
+//   node scripts/check.mjs --self-test  break a copy six ways and confirm each check fails
 import { readFileSync, readdirSync, statSync, cpSync, mkdtempSync, rmSync, writeFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join, relative } from "node:path";
@@ -78,7 +78,7 @@ function check(root) {
   }
 
   // 5. Controls share one recipe: every interactive element sized as a control has a border width (transparent on solid
-  // or ghost fills, never border-0), a radius class and control padding, and disclosure carets use the caret class.
+  // or ghost fills, never border-0), a radius class and control padding. Examples have no control classes, so this covers the site's own chrome.
   const pages = [...readdirSync(join(root, "site")).filter((n) => n.endsWith(".html")).map((n) => join(root, "site", n)),
     ...readdirSync(join(root, "site", "docs")).filter((n) => n.endsWith(".html")).map((n) => join(root, "site", "docs", n))];
   for (const file of pages) {
@@ -92,9 +92,13 @@ function check(root) {
       if (t.includes("h-control") && !t.includes("px-control") && !t.includes("w-full")) miss.push("px-control");
       if (miss.length) errors.push(`${rel(file)}: <${m[1]} class="${m[2].slice(0, 60)}…"> lacks ${miss.join(", ")}. Fix: follow the control recipe in AGENTS.md.`);
     }
-    for (const line of text.split("\n")) {
-      if (/<i class="[^"]*ph-caret-down/.test(line) && !/aria-sort/.test(line)) errors.push(`${rel(file)}: a disclosure uses ph-caret-down. Fix: use <i class="icon caret">.`);
-    }
+  }
+
+  // 6. Examples (component snippets, showcase blocks) use regular classes only; scripts/templates.py --lint lists any semantic one.
+  try {
+    execFileSync("python3", [join(root, "scripts", "templates.py"), "--lint"], { cwd: root, encoding: "utf8" });
+  } catch (e) {
+    for (const line of String(e.stdout || "").split("\n").filter(Boolean)) errors.push(line);
   }
 
   // 4. Generated files match what the scripts write.
@@ -118,6 +122,7 @@ function check(root) {
 
 if (process.argv.includes("--self-test")) {
   const breaks = [
+    ["semantic class in an example", "site/components.html", (s) => s.replace(/(md:col-span-9 min-w-0 flex flex-col gap-group">[\s\S]*?class="[^"]*?)\bp-md\b/, "$1p-surface")],
     ["control without a border", "site/components.html", (s) => s.replace(/(<button[^>]*class="[^"]*\bh-control\b[^"]*?)\bborder\b/, "$1border-0")],
     ["comment in theme CSS", "theme/theme.colors.css", (s) => s.replace(":root {", ":root {\n  /* note */")],
     ["color-mix()", "theme/theme.type-roles.css", (s) => s.replace("{", "{\n  --x: color-mix(in oklab, red, blue);")],

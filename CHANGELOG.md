@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- **Examples in primitives:** every component snippet and showcase block now uses regular classes only (palette steps, the space scale, type sizes), checked by `scripts/templates.py --lint`. The materials, shell and tiers demos keep their semantic classes. To keep hover and states, the raw steps of neutral, accent-1 to accent-4 and danger now take hover and state variants (nowind.css 236 → 381 KiB, the minified bundle 41 → 52.5 KB gzipped), and new `fg-{palette}-contrast` classes give text on a solid.
+- **Breaking:** `aria-selected:` is now `selected:`.
 - **Field slots:** a field is a box around a bare input with five slots: leading icon, prefix, input, suffix, trailing. New state variants `focus-within:` and `has-invalid:` let the box show the input's focus and errors. An `h-nested` or `size-nested` control at either end of a control now takes the same inset as an icon.
 - **Text field docs:** slots, ten data types (password with a show toggle, card number, date, time, weight, percentage, quantity, colour, postal code, duration) with the right `type`, `inputmode` and `autocomplete`, and the invalid, counted, read-only and disabled states.
 - **One control recipe:** buttons, links, inputs, selects and textareas share height, side padding, a border width (transparent on fills, so a solid button and a field line up to the pixel), radius and type. New `rounded-control` and `rounded-nested`. `scripts/check.mjs` flags a control that drifts.

@@ -112,7 +112,8 @@ add("text-pretty", "text-wrap: pretty");
 const PALETTES = [...new Set(paletteProps.map((p) => p.match(/^--([a-z]+(?:-\d)?)-1$/)).filter(Boolean).map((m) => m[1]))];
 const step = (c) => PALETTES.some((p) => new RegExp(`^${p}-\\d+$`).test(c));
 const alphaStep = (c) => PALETTES.some((p) => new RegExp(`^${p}-a\\d+$`).test(c));
-const forText = (c) => step(c) || /^(fg|on-solid)(-|$)/.test(c);
+const contrastStep = (c) => PALETTES.some((p) => c === `${p}-contrast`);
+const forText = (c) => step(c) || contrastStep(c) || /^(fg|on-solid)(-|$)/.test(c);
 const forBg = (c) => step(c) || alphaStep(c) || /^(bg|component|solid|scrim)(-|$)/.test(c) || /-(surface|indicator|track)$/.test(c);
 const forBorder = (c) => step(c) || /^border(-|$)/.test(c);
 // A colour class is the property prefix plus the token name, minus the role group when it matches the prefix:
@@ -338,7 +339,9 @@ add("revert", "all: revert");
 const esc = (c) => c.replace(/[:./]/g, (ch) => `\\${ch}`).replace(/^(\d)/, (d) => `\\3${d} `);
 const rule = (sel, decl) => `  .${esc(sel)} { ${decl}; }`;
 const ROLE_COLORS = colorProps.filter((p) => !/^--shadow/.test(p) && !/-(surface|indicator|track)$/.test(p)).map((p) => p.slice(2));
-const HOVER = [...D.keys()].filter((c) => ROLE_CLASSES.has(c) || /^(fg|bg)-(inherit|current|transparent)$/.test(c) || /^opacity-|^cursor-/.test(c));
+// Raw steps of the interactive palettes take hover and state variants too, so an example can be written in primitives only.
+const STEP_STATES = /^(fg|bg|border)-(neutral|accent-[1-4]|danger)-(\d+|contrast)$/;
+const HOVER = [...D.keys()].filter((c) => ROLE_CLASSES.has(c) || STEP_STATES.test(c) || /^(fg|bg)-(inherit|current|transparent)$/.test(c) || /^opacity-|^cursor-/.test(c));
 const LAYOUT = [...D.keys()].filter((c) => /^(block|inline-block|inline|flex|inline-flex|grid|inline-grid|contents|hidden|flex-(row|col)(-reverse)?|flex-wrap|flex-nowrap|justify-|items-|self-|text-(left|center|right|justify|start|end)$|col-span-|w-(\d\/\d|full|auto|fit|sidebar|rail)$|basis-|gap-|p[xytb]?-|static$|relative$|absolute$|fixed$|sticky$|top-|overflow-|h-(full|auto|dvh|screen|below-header)$)/.test(c));
 const geometryCss = read("theme/theme.geometry.css");
 const BREAKPOINTS = [...geometryCss.matchAll(/--breakpoint-([\w]+):\s*(\d+)px/g)].map((m) => [m[1], Number(m[2])]);
@@ -645,7 +648,7 @@ const STATES = [
   ["active", ":active", interactive],
   ["focus-visible", ":focus-visible", ROLE_STATE.filter((c) => /^border-/.test(c)).filter(inPalettes(["neutral", "accent-1", "accent-2", "accent-3", "accent-4"]))],
   ["focus-within", ":focus-within", ROLE_STATE.filter((c) => /^border-/.test(c)).filter(inPalettes(["neutral", "accent-1", "accent-2", "accent-3", "accent-4"]))],
-  ["aria-selected", '[aria-selected="true"]', interactive],
+  ["selected", '[aria-selected="true"]', interactive],
   ["aria-current", ':is([aria-current]:not([aria-current="false"]))', interactive],
   ["aria-pressed", '[aria-pressed="true"]', interactive],
   ["aria-expanded", '[aria-expanded="true"]', interactive],
@@ -695,11 +698,11 @@ const manifest = {
   counts: { classes: D.size, hover: HOVER.length, responsive: LAYOUT.length * BREAKPOINTS.length, bytes: Buffer.byteLength(css) },
   naming: "property-value, as Prewind and Tailwind: p-md, gap-lg, bg-solid-accent-1. Colour classes take the token name without --; text-color roles are the token name alone (fg-weak, fg-accent-1).",
   variants: {
-    hover: "Inside @media (hover: hover), as Tailwind v4, so taps on touch screens don't stick. hover:border-* for the border roles, hover:fg-* and hover:bg-* for the colour role tokens only (bg, component, border, solid, on-solid, fg and their palette versions), hover:opacity-*, hover:cursor-*. Raw palette steps and alpha steps have no hover class.",
+    hover: "Inside @media (hover: hover), as Tailwind v4, so taps on touch screens don't stick. hover:border-* for the border roles, hover:fg-* and hover:bg-* for the colour role tokens only (bg, component, border, solid, on-solid, fg and their palette versions), hover:opacity-*, hover:cursor-*. Raw steps of neutral, accent-1 to accent-4 and danger take hover too (hover:bg-neutral-4), so examples can use primitives only; alpha steps and the status palettes' steps have no hover class.",
     breakpoints: Object.fromEntries(BREAKPOINTS.map(([b, w]) => [b, `${w}px`])),
     responsive: "sm:, md:, lg:, xl:, 2xl: (read from the --breakpoint-* tokens) apply to layout: display, grid columns and spans, flex direction, wrap, basis, justify, align, text alignment, widths, heights, position, top, overflow, padding and gaps. Margins, colours and type have no breakpoint variants.",
     groups: "group on a parent; group-hover:, group-focus-within: and group-open: on a child, for opacity, visibility and text roles (tooltips, reveal-on-hover).",
-    states: "active:, focus-visible:, focus-within: (a field wrapper whose input has focus), aria-selected:, aria-current:, aria-pressed:, aria-expanded:, open: (details, popovers), aria-invalid: (also :user-invalid), has-invalid: (a wrapper holding an invalid input) and disabled: (also aria-disabled). Colors only (plus opacity and cursor for disabled), for the neutral and accent roles; aria-invalid for neutral and danger.",
+    states: "active:, focus-visible:, focus-within: (a field wrapper whose input has focus), selected: (aria-selected=\"true\"), aria-current:, aria-pressed:, aria-expanded:, open: (details, popovers), aria-invalid: (also :user-invalid), has-invalid: (a wrapper holding an invalid input) and disabled: (also aria-disabled). Colors only (plus opacity and cursor for disabled), for the neutral and accent roles; aria-invalid for neutral and danger.",
     none: "No group- or dark: variants. Dark mode comes from the theme's light-dark() tokens.",
   },
   categories: {

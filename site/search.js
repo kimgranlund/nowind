@@ -46,7 +46,7 @@
     }
     active = 0;
     list.innerHTML = hits.map((r, i) => `<li role="option" id="search-${i}" aria-selected="${i === 0}">
-      <a href="${new URL(r[1], base)}" tabindex="-1" class="flex items-center gap-gutter px-control py-2xs no-underline fg aria-selected:bg-component-accent-1-weak hover:bg-component-weak">
+      <a href="${new URL(r[1], base)}" tabindex="-1" class="flex items-center gap-gutter px-control py-2xs no-underline fg selected:bg-component-accent-1-weak hover:bg-component-weak">
         <i class="icon ph ${KINDS[r[2]]} fg-weak"></i>
         <span class="flex flex-col grow min-w-0"><span class="truncate ${r[2] === "Class" ? "text-mono-sm" : "text-title-sm"}">${esc(r[0])}</span><span class="truncate text-caption fg-weak">${esc(r[3] || "")}</span></span>
         <span class="text-kicker fg-subtle">${r[2]}</span>

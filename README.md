@@ -207,11 +207,11 @@ Hover states animate when an element has a transition class. `transition-colors`
 </div>
 ```
 
-- **States** (Tailwind v4 names), colors only: `active:`, `focus-visible:` (borders), `aria-selected:`, `aria-current:`, `aria-pressed:`, `aria-expanded:`, `open:` (details and popovers), `aria-invalid:` (also `:user-invalid`) and `disabled:` (also `aria-disabled`, with opacity and cursor). They cover the neutral and accent roles; `aria-invalid:` covers neutral and danger. Markup drives the look:
+- **States** (Tailwind v4 names), colors only: `active:`, `focus-visible:` and `focus-within:` (borders), `selected:` (`aria-selected="true"`), `aria-current:`, `aria-pressed:`, `aria-expanded:`, `open:` (details and popovers), `aria-invalid:` (also `:user-invalid`) and `disabled:` (also `aria-disabled`, with opacity and cursor). They cover the neutral and accent roles and the raw steps of neutral, accent-1 to accent-4 and danger; `aria-invalid:` and `has-invalid:` cover neutral and danger. Markup drives the look:
 
 ```html
 <button role="tab" aria-selected="true"
-        class="border-b-2 border-transparent aria-selected:border-accent-1-strong fg-weak aria-selected:fg">Profile</button>
+        class="border-b-2 border-transparent selected:border-accent-1-strong fg-weak selected:fg">Profile</button>
 ```
 
 - **Groups:** put `group` on a parent and `group-hover:`, `group-focus-within:` or `group-open:` on a child to change its opacity, visibility or text role, as a tooltip does.

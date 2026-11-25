@@ -38,32 +38,32 @@
             <h1 class="text-display-sm text-balance">Text field</h1>
             <p class="text-body-md fg-weak max-w-measure">A labelled field built from slots: a leading icon that says what kind of value it takes, a prefix, the input, a suffix and a trailing action. The box is the control; the input inside is bare.</p>
           </header>
-        <section id="example" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-field pt-sm pb-xl border-t border-strong">
+        <section id="example" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Example</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <div class="tier-product p-surface rounded-lg border border-weak bg-strong">
-<div class="flex flex-col gap-group max-w-form">
-  <div class="flex flex-col gap-field">
-    <label for="doc-name" class="text-label">Full name</label>
-    <div class="flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors">
-      <i class="icon ph ph-user-circle fg-weak" aria-hidden="true"></i>
-      <input id="doc-name" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg" autocomplete="name" placeholder="Ada Lovelace">
+<div class="flex flex-col gap-md max-w-form">
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-name" class="text-sm font-medium">Full name</label>
+    <div class="flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors">
+      <i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-user-circle fg-neutral-11" aria-hidden="true"></i>
+      <input id="doc-name" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12" autocomplete="name" placeholder="Ada Lovelace">
     </div>
-    <span class="text-caption fg-weak">Shown on your profile.</span>
+    <span class="text-sm fg-neutral-11">Shown on your profile.</span>
   </div>
-  <div class="flex flex-col gap-field">
-    <label for="doc-email" class="text-label">Email</label>
-    <div class="flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors">
-      <i class="icon ph ph-envelope-simple fg-weak" aria-hidden="true"></i>
-      <input id="doc-email" type="email" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg" autocomplete="email" value="ada@" aria-invalid="true" aria-describedby="doc-email-error">
-      <i class="icon ph ph-warning-circle fg-danger-weak" aria-hidden="true"></i>
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-email" class="text-sm font-medium">Email</label>
+    <div class="flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors">
+      <i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-envelope-simple fg-neutral-11" aria-hidden="true"></i>
+      <input id="doc-email" type="email" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12" autocomplete="email" value="ada@" aria-invalid="true" aria-describedby="doc-email-error">
+      <i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-warning-circle fg-danger-11" aria-hidden="true"></i>
     </div>
-    <span id="doc-email-error" class="text-caption fg-danger-weak">Enter a complete email address.</span>
+    <span id="doc-email-error" class="text-sm fg-danger-11">Enter a complete email address.</span>
   </div>
-  <div class="flex flex-col gap-field">
-    <label for="doc-photo" class="text-label">Photo</label>
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-photo" class="text-sm font-medium">Photo</label>
     <input id="doc-photo" type="file" accept="image/*">
-    <span class="text-caption fg-weak">PNG or JPEG, up to 5 MB. The reset themes the button.</span>
+    <span class="text-sm fg-neutral-11">PNG or JPEG, up to 5 MB. The reset themes the button.</span>
   </div>
 </div>
           </div>
@@ -71,74 +71,74 @@
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">text-field.html</span><span class="text-kicker fg-subtle">HTML</span>
             </figcaption>
-            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;flex flex-col gap-group max-w-form&quot;&gt;
-  &lt;div class=&quot;flex flex-col gap-field&quot;&gt;
-    &lt;label for=&quot;doc-name&quot; class=&quot;text-label&quot;&gt;Full name&lt;/label&gt;
-    &lt;div class=&quot;flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors&quot;&gt;
-      &lt;i class=&quot;icon ph ph-user-circle fg-weak&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
-      &lt;input id=&quot;doc-name&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg&quot; autocomplete=&quot;name&quot; placeholder=&quot;Ada Lovelace&quot;&gt;
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;flex flex-col gap-md max-w-form&quot;&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-name&quot; class=&quot;text-sm font-medium&quot;&gt;Full name&lt;/label&gt;
+    &lt;div class=&quot;flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors&quot;&gt;
+      &lt;i class=&quot;inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-user-circle fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;input id=&quot;doc-name&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12&quot; autocomplete=&quot;name&quot; placeholder=&quot;Ada Lovelace&quot;&gt;
     &lt;/div&gt;
-    &lt;span class=&quot;text-caption fg-weak&quot;&gt;Shown on your profile.&lt;/span&gt;
+    &lt;span class=&quot;text-sm fg-neutral-11&quot;&gt;Shown on your profile.&lt;/span&gt;
   &lt;/div&gt;
-  &lt;div class=&quot;flex flex-col gap-field&quot;&gt;
-    &lt;label for=&quot;doc-email&quot; class=&quot;text-label&quot;&gt;Email&lt;/label&gt;
-    &lt;div class=&quot;flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors&quot;&gt;
-      &lt;i class=&quot;icon ph ph-envelope-simple fg-weak&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
-      &lt;input id=&quot;doc-email&quot; type=&quot;email&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg&quot; autocomplete=&quot;email&quot; value=&quot;ada@&quot; aria-invalid=&quot;true&quot; aria-describedby=&quot;doc-email-error&quot;&gt;
-      &lt;i class=&quot;icon ph ph-warning-circle fg-danger-weak&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-email&quot; class=&quot;text-sm font-medium&quot;&gt;Email&lt;/label&gt;
+    &lt;div class=&quot;flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors&quot;&gt;
+      &lt;i class=&quot;inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-envelope-simple fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;input id=&quot;doc-email&quot; type=&quot;email&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12&quot; autocomplete=&quot;email&quot; value=&quot;ada@&quot; aria-invalid=&quot;true&quot; aria-describedby=&quot;doc-email-error&quot;&gt;
+      &lt;i class=&quot;inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-warning-circle fg-danger-11&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
     &lt;/div&gt;
-    &lt;span id=&quot;doc-email-error&quot; class=&quot;text-caption fg-danger-weak&quot;&gt;Enter a complete email address.&lt;/span&gt;
+    &lt;span id=&quot;doc-email-error&quot; class=&quot;text-sm fg-danger-11&quot;&gt;Enter a complete email address.&lt;/span&gt;
   &lt;/div&gt;
-  &lt;div class=&quot;flex flex-col gap-field&quot;&gt;
-    &lt;label for=&quot;doc-photo&quot; class=&quot;text-label&quot;&gt;Photo&lt;/label&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-photo&quot; class=&quot;text-sm font-medium&quot;&gt;Photo&lt;/label&gt;
     &lt;input id=&quot;doc-photo&quot; type=&quot;file&quot; accept=&quot;image/*&quot;&gt;
-    &lt;span class=&quot;text-caption fg-weak&quot;&gt;PNG or JPEG, up to 5 MB. The reset themes the button.&lt;/span&gt;
+    &lt;span class=&quot;text-sm fg-neutral-11&quot;&gt;PNG or JPEG, up to 5 MB. The reset themes the button.&lt;/span&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
           </figure>
           </div>
         </section>
-        <section id="slots" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-field pt-sm pb-xl border-t border-strong">
+        <section id="slots" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Slots</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-measure">Five slots, always in this order: leading icon, prefix, input, suffix, trailing. Any of them can be left out. An icon or a nested control at either end sits one margin from the edge, the same as in a button.</p>
           <div class="tier-product p-surface rounded-lg border border-weak bg-strong">
-<div class="flex flex-col gap-group max-w-form">
-  <div class="flex flex-col gap-field">
-    <label for="doc-user" class="text-label">Username <span class="fg-weak">· leading icon</span></label>
-    <div class="flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors">
-      <i class="icon ph ph-at fg-weak" aria-hidden="true"></i>
-      <input id="doc-user" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg" autocomplete="username" spellcheck="false" placeholder="ada">
+<div class="flex flex-col gap-md max-w-form">
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-user" class="text-sm font-medium">Username <span class="fg-neutral-11">· leading icon</span></label>
+    <div class="flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors">
+      <i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-at fg-neutral-11" aria-hidden="true"></i>
+      <input id="doc-user" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12" autocomplete="username" spellcheck="false" placeholder="ada">
     </div>
   </div>
-  <div class="flex flex-col gap-field">
-    <label for="doc-site" class="text-label">Website <span class="fg-weak">· prefix</span></label>
-    <div class="flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors">
-      <span class="fg-weak whitespace-nowrap" aria-hidden="true">https://</span>
-      <input id="doc-site" type="text" inputmode="url" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg" autocomplete="url" spellcheck="false" placeholder="yoursite.com">
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-site" class="text-sm font-medium">Website <span class="fg-neutral-11">· prefix</span></label>
+    <div class="flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors">
+      <span class="fg-neutral-11 whitespace-nowrap" aria-hidden="true">https://</span>
+      <input id="doc-site" type="text" inputmode="url" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12" autocomplete="url" spellcheck="false" placeholder="yoursite.com">
     </div>
   </div>
-  <div class="flex flex-col gap-field">
-    <label for="doc-find" class="text-label">Search <span class="fg-weak">· leading icon and trailing key</span></label>
-    <div class="flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors">
-      <i class="icon ph ph-magnifying-glass fg-weak" aria-hidden="true"></i>
-      <input id="doc-find" type="search" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg" placeholder="Search…">
-      <kbd class="inline-flex items-center h-nested px-nested rounded-nested border fg-weak text-mono-sm">⌘S</kbd>
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-find" class="text-sm font-medium">Search <span class="fg-neutral-11">· leading icon and trailing key</span></label>
+    <div class="flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors">
+      <i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-magnifying-glass fg-neutral-11" aria-hidden="true"></i>
+      <input id="doc-find" type="search" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12" placeholder="Search…">
+      <kbd class="inline-flex items-center py-3xs px-2xs rounded-xs border fg-neutral-11 text-sm font-mono">⌘S</kbd>
     </div>
   </div>
-  <div class="flex flex-col gap-field">
-    <label for="doc-amount" class="text-label">Amount <span class="fg-weak">· prefix and trailing select</span></label>
-    <div class="flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors">
-      <span class="fg-weak" aria-hidden="true">$</span>
-      <input id="doc-amount" type="text" inputmode="decimal" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg tabular-nums" placeholder="0.00">
-      <select class="select-base h-nested px-nested rounded-nested border border-transparent bg-transparent hover:bg-component-weak fg text-control-md cursor-pointer" aria-label="Currency"><option>USD</option><option>EUR</option><option>GBP</option></select>
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-amount" class="text-sm font-medium">Amount <span class="fg-neutral-11">· prefix and trailing select</span></label>
+    <div class="flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors">
+      <span class="fg-neutral-11" aria-hidden="true">$</span>
+      <input id="doc-amount" type="text" inputmode="decimal" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 tabular-nums" placeholder="0.00">
+      <select class="select-base py-3xs px-2xs rounded-xs border border-transparent bg-transparent hover:bg-neutral-3 fg-neutral-12 text-base cursor-pointer" aria-label="Currency"><option>USD</option><option>EUR</option><option>GBP</option></select>
     </div>
   </div>
-  <div class="flex flex-col gap-field">
-    <label for="doc-phone" class="text-label">Phone <span class="fg-weak">· leading select</span></label>
-    <div class="flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors">
-      <select class="select-base h-nested px-nested rounded-nested border border-transparent bg-transparent hover:bg-component-weak fg text-control-md cursor-pointer" aria-label="Country code"><option>US +1</option><option>FI +358</option><option>GB +44</option></select>
-      <input id="doc-phone" type="tel" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg tabular-nums" autocomplete="tel-national" placeholder="Phone number">
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-phone" class="text-sm font-medium">Phone <span class="fg-neutral-11">· leading select</span></label>
+    <div class="flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors">
+      <select class="select-base py-3xs px-2xs rounded-xs border border-transparent bg-transparent hover:bg-neutral-3 fg-neutral-12 text-base cursor-pointer" aria-label="Country code"><option>US +1</option><option>FI +358</option><option>GB +44</option></select>
+      <input id="doc-phone" type="tel" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 tabular-nums" autocomplete="tel-national" placeholder="Phone number">
     </div>
   </div>
 </div>
@@ -147,129 +147,129 @@
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">text-field-slots.html</span><span class="text-kicker fg-subtle">HTML</span>
             </figcaption>
-            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;flex flex-col gap-group max-w-form&quot;&gt;
-  &lt;div class=&quot;flex flex-col gap-field&quot;&gt;
-    &lt;label for=&quot;doc-user&quot; class=&quot;text-label&quot;&gt;Username &lt;span class=&quot;fg-weak&quot;&gt;· leading icon&lt;/span&gt;&lt;/label&gt;
-    &lt;div class=&quot;flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors&quot;&gt;
-      &lt;i class=&quot;icon ph ph-at fg-weak&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
-      &lt;input id=&quot;doc-user&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg&quot; autocomplete=&quot;username&quot; spellcheck=&quot;false&quot; placeholder=&quot;ada&quot;&gt;
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;flex flex-col gap-md max-w-form&quot;&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-user&quot; class=&quot;text-sm font-medium&quot;&gt;Username &lt;span class=&quot;fg-neutral-11&quot;&gt;· leading icon&lt;/span&gt;&lt;/label&gt;
+    &lt;div class=&quot;flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors&quot;&gt;
+      &lt;i class=&quot;inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-at fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;input id=&quot;doc-user&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12&quot; autocomplete=&quot;username&quot; spellcheck=&quot;false&quot; placeholder=&quot;ada&quot;&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class=&quot;flex flex-col gap-field&quot;&gt;
-    &lt;label for=&quot;doc-site&quot; class=&quot;text-label&quot;&gt;Website &lt;span class=&quot;fg-weak&quot;&gt;· prefix&lt;/span&gt;&lt;/label&gt;
-    &lt;div class=&quot;flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors&quot;&gt;
-      &lt;span class=&quot;fg-weak whitespace-nowrap&quot; aria-hidden=&quot;true&quot;&gt;https://&lt;/span&gt;
-      &lt;input id=&quot;doc-site&quot; type=&quot;text&quot; inputmode=&quot;url&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg&quot; autocomplete=&quot;url&quot; spellcheck=&quot;false&quot; placeholder=&quot;yoursite.com&quot;&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-site&quot; class=&quot;text-sm font-medium&quot;&gt;Website &lt;span class=&quot;fg-neutral-11&quot;&gt;· prefix&lt;/span&gt;&lt;/label&gt;
+    &lt;div class=&quot;flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors&quot;&gt;
+      &lt;span class=&quot;fg-neutral-11 whitespace-nowrap&quot; aria-hidden=&quot;true&quot;&gt;https://&lt;/span&gt;
+      &lt;input id=&quot;doc-site&quot; type=&quot;text&quot; inputmode=&quot;url&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12&quot; autocomplete=&quot;url&quot; spellcheck=&quot;false&quot; placeholder=&quot;yoursite.com&quot;&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class=&quot;flex flex-col gap-field&quot;&gt;
-    &lt;label for=&quot;doc-find&quot; class=&quot;text-label&quot;&gt;Search &lt;span class=&quot;fg-weak&quot;&gt;· leading icon and trailing key&lt;/span&gt;&lt;/label&gt;
-    &lt;div class=&quot;flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors&quot;&gt;
-      &lt;i class=&quot;icon ph ph-magnifying-glass fg-weak&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
-      &lt;input id=&quot;doc-find&quot; type=&quot;search&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg&quot; placeholder=&quot;Search…&quot;&gt;
-      &lt;kbd class=&quot;inline-flex items-center h-nested px-nested rounded-nested border fg-weak text-mono-sm&quot;&gt;⌘S&lt;/kbd&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-find&quot; class=&quot;text-sm font-medium&quot;&gt;Search &lt;span class=&quot;fg-neutral-11&quot;&gt;· leading icon and trailing key&lt;/span&gt;&lt;/label&gt;
+    &lt;div class=&quot;flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors&quot;&gt;
+      &lt;i class=&quot;inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-magnifying-glass fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;input id=&quot;doc-find&quot; type=&quot;search&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12&quot; placeholder=&quot;Search…&quot;&gt;
+      &lt;kbd class=&quot;inline-flex items-center py-3xs px-2xs rounded-xs border fg-neutral-11 text-sm font-mono&quot;&gt;⌘S&lt;/kbd&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class=&quot;flex flex-col gap-field&quot;&gt;
-    &lt;label for=&quot;doc-amount&quot; class=&quot;text-label&quot;&gt;Amount &lt;span class=&quot;fg-weak&quot;&gt;· prefix and trailing select&lt;/span&gt;&lt;/label&gt;
-    &lt;div class=&quot;flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors&quot;&gt;
-      &lt;span class=&quot;fg-weak&quot; aria-hidden=&quot;true&quot;&gt;$&lt;/span&gt;
-      &lt;input id=&quot;doc-amount&quot; type=&quot;text&quot; inputmode=&quot;decimal&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg tabular-nums&quot; placeholder=&quot;0.00&quot;&gt;
-      &lt;select class=&quot;select-base h-nested px-nested rounded-nested border border-transparent bg-transparent hover:bg-component-weak fg text-control-md cursor-pointer&quot; aria-label=&quot;Currency&quot;&gt;&lt;option&gt;USD&lt;/option&gt;&lt;option&gt;EUR&lt;/option&gt;&lt;option&gt;GBP&lt;/option&gt;&lt;/select&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-amount&quot; class=&quot;text-sm font-medium&quot;&gt;Amount &lt;span class=&quot;fg-neutral-11&quot;&gt;· prefix and trailing select&lt;/span&gt;&lt;/label&gt;
+    &lt;div class=&quot;flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors&quot;&gt;
+      &lt;span class=&quot;fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;$&lt;/span&gt;
+      &lt;input id=&quot;doc-amount&quot; type=&quot;text&quot; inputmode=&quot;decimal&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 tabular-nums&quot; placeholder=&quot;0.00&quot;&gt;
+      &lt;select class=&quot;select-base py-3xs px-2xs rounded-xs border border-transparent bg-transparent hover:bg-neutral-3 fg-neutral-12 text-base cursor-pointer&quot; aria-label=&quot;Currency&quot;&gt;&lt;option&gt;USD&lt;/option&gt;&lt;option&gt;EUR&lt;/option&gt;&lt;option&gt;GBP&lt;/option&gt;&lt;/select&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class=&quot;flex flex-col gap-field&quot;&gt;
-    &lt;label for=&quot;doc-phone&quot; class=&quot;text-label&quot;&gt;Phone &lt;span class=&quot;fg-weak&quot;&gt;· leading select&lt;/span&gt;&lt;/label&gt;
-    &lt;div class=&quot;flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors&quot;&gt;
-      &lt;select class=&quot;select-base h-nested px-nested rounded-nested border border-transparent bg-transparent hover:bg-component-weak fg text-control-md cursor-pointer&quot; aria-label=&quot;Country code&quot;&gt;&lt;option&gt;US +1&lt;/option&gt;&lt;option&gt;FI +358&lt;/option&gt;&lt;option&gt;GB +44&lt;/option&gt;&lt;/select&gt;
-      &lt;input id=&quot;doc-phone&quot; type=&quot;tel&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg tabular-nums&quot; autocomplete=&quot;tel-national&quot; placeholder=&quot;Phone number&quot;&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-phone&quot; class=&quot;text-sm font-medium&quot;&gt;Phone &lt;span class=&quot;fg-neutral-11&quot;&gt;· leading select&lt;/span&gt;&lt;/label&gt;
+    &lt;div class=&quot;flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors&quot;&gt;
+      &lt;select class=&quot;select-base py-3xs px-2xs rounded-xs border border-transparent bg-transparent hover:bg-neutral-3 fg-neutral-12 text-base cursor-pointer&quot; aria-label=&quot;Country code&quot;&gt;&lt;option&gt;US +1&lt;/option&gt;&lt;option&gt;FI +358&lt;/option&gt;&lt;option&gt;GB +44&lt;/option&gt;&lt;/select&gt;
+      &lt;input id=&quot;doc-phone&quot; type=&quot;tel&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 tabular-nums&quot; autocomplete=&quot;tel-national&quot; placeholder=&quot;Phone number&quot;&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
           </figure>
           </div>
         </section>
-        <section id="types" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-field pt-sm pb-xl border-t border-strong">
+        <section id="types" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Data types</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-measure">The leading icon names the kind of value; <code>type</code>, <code>inputmode</code> and <code>autocomplete</code> give the right keyboard and autofill. Units sit in the suffix, never in the value.</p>
           <div class="tier-product p-surface rounded-lg border border-weak bg-strong">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-group">
-  <div class="flex flex-col gap-field">
-    <label for="doc-pass" class="text-label">Password</label>
-    <div class="flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors">
-      <i class="icon ph ph-lock-simple fg-weak" aria-hidden="true"></i>
-      <input id="doc-pass" type="password" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg" autocomplete="new-password" value="correct horse">
-      <button type="button" class="inline-flex items-center justify-center size-nested rounded-nested border border-transparent bg-transparent hover:bg-component-weak aria-pressed:bg-component fg-weak hover:fg cursor-pointer transition-colors" aria-label="Show password" aria-pressed="false" onclick="const i=this.parentElement.querySelector('input');i.type=i.type==='password'?'text':'password';this.setAttribute('aria-pressed',i.type==='text')"><i class="icon ph ph-eye"></i></button>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-pass" class="text-sm font-medium">Password</label>
+    <div class="flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors">
+      <i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-lock-simple fg-neutral-11" aria-hidden="true"></i>
+      <input id="doc-pass" type="password" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12" autocomplete="new-password" value="correct horse">
+      <button type="button" class="inline-flex items-center justify-center p-3xs rounded-xs border border-transparent bg-transparent hover:bg-neutral-3 aria-pressed:bg-neutral-4 fg-neutral-11 hover:fg-neutral-12 cursor-pointer transition-colors" aria-label="Show password" aria-pressed="false" onclick="const i=this.parentElement.querySelector('input');i.type=i.type==='password'?'text':'password';this.setAttribute('aria-pressed',i.type==='text')"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-eye"></i></button>
     </div>
   </div>
-  <div class="flex flex-col gap-field">
-    <label for="doc-card" class="text-label">Card number</label>
-    <div class="flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors">
-      <i class="icon ph ph-credit-card fg-weak" aria-hidden="true"></i>
-      <input id="doc-card" type="text" inputmode="numeric" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg tabular-nums" autocomplete="cc-number" placeholder="1234 5678 9012 3456">
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-card" class="text-sm font-medium">Card number</label>
+    <div class="flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors">
+      <i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-credit-card fg-neutral-11" aria-hidden="true"></i>
+      <input id="doc-card" type="text" inputmode="numeric" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 tabular-nums" autocomplete="cc-number" placeholder="1234 5678 9012 3456">
     </div>
   </div>
-  <div class="flex flex-col gap-field">
-    <label for="doc-start" class="text-label">Start date</label>
-    <div class="flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors">
-      <i class="icon ph ph-calendar-blank fg-weak" aria-hidden="true"></i>
-      <input id="doc-start" type="date" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg tabular-nums" value="2027-03-01">
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-start" class="text-sm font-medium">Start date</label>
+    <div class="flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors">
+      <i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-calendar-blank fg-neutral-11" aria-hidden="true"></i>
+      <input id="doc-start" type="date" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 tabular-nums" value="2027-03-01">
     </div>
   </div>
-  <div class="flex flex-col gap-field">
-    <label for="doc-time" class="text-label">Meeting time</label>
-    <div class="flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors">
-      <i class="icon ph ph-clock fg-weak" aria-hidden="true"></i>
-      <input id="doc-time" type="time" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg tabular-nums" value="09:30">
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-time" class="text-sm font-medium">Meeting time</label>
+    <div class="flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors">
+      <i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-clock fg-neutral-11" aria-hidden="true"></i>
+      <input id="doc-time" type="time" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 tabular-nums" value="09:30">
     </div>
   </div>
-  <div class="flex flex-col gap-field">
-    <label for="doc-weight" class="text-label">Weight</label>
-    <div class="flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors">
-      <i class="icon ph ph-scales fg-weak" aria-hidden="true"></i>
-      <input id="doc-weight" type="text" inputmode="decimal" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg tabular-nums" value="72.5">
-      <span class="fg-weak" aria-hidden="true">kg</span>
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-weight" class="text-sm font-medium">Weight</label>
+    <div class="flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors">
+      <i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-scales fg-neutral-11" aria-hidden="true"></i>
+      <input id="doc-weight" type="text" inputmode="decimal" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 tabular-nums" value="72.5">
+      <span class="fg-neutral-11" aria-hidden="true">kg</span>
     </div>
   </div>
-  <div class="flex flex-col gap-field">
-    <label for="doc-discount" class="text-label">Discount</label>
-    <div class="flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors">
-      <i class="icon ph ph-percent fg-weak" aria-hidden="true"></i>
-      <input id="doc-discount" type="number" min="0" max="100" step="5" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg tabular-nums" value="15">
-      <span class="fg-weak" aria-hidden="true">%</span>
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-discount" class="text-sm font-medium">Discount</label>
+    <div class="flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors">
+      <i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-percent fg-neutral-11" aria-hidden="true"></i>
+      <input id="doc-discount" type="number" min="0" max="100" step="5" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 tabular-nums" value="15">
+      <span class="fg-neutral-11" aria-hidden="true">%</span>
     </div>
   </div>
-  <div class="flex flex-col gap-field">
-    <label for="doc-quantity" class="text-label">Quantity</label>
-    <div class="flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors">
-      <i class="icon ph ph-hash fg-weak" aria-hidden="true"></i>
-      <input id="doc-quantity" type="number" min="1" step="1" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg tabular-nums" value="3">
-      <span class="fg-weak" aria-hidden="true">seats</span>
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-quantity" class="text-sm font-medium">Quantity</label>
+    <div class="flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors">
+      <i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-hash fg-neutral-11" aria-hidden="true"></i>
+      <input id="doc-quantity" type="number" min="1" step="1" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 tabular-nums" value="3">
+      <span class="fg-neutral-11" aria-hidden="true">seats</span>
     </div>
   </div>
-  <div class="flex flex-col gap-field">
-    <label for="doc-hex" class="text-label">Brand colour</label>
-    <div class="flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors">
-      <i class="icon ph ph-palette fg-weak" aria-hidden="true"></i>
-      <span class="fg-weak" aria-hidden="true">#</span>
-      <input id="doc-hex" type="text" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg tabular-nums" spellcheck="false" maxlength="6" value="0090FF">
-      <input type="color" class="size-nested rounded-nested border border-transparent p-0 bg-transparent cursor-pointer" value="#0090ff" aria-label="Pick a colour">
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-hex" class="text-sm font-medium">Brand colour</label>
+    <div class="flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors">
+      <i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-palette fg-neutral-11" aria-hidden="true"></i>
+      <span class="fg-neutral-11" aria-hidden="true">#</span>
+      <input id="doc-hex" type="text" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 tabular-nums" spellcheck="false" maxlength="6" value="0090FF">
+      <input type="color" class="p-3xs rounded-xs border border-transparent p-0 bg-transparent cursor-pointer" value="#0090ff" aria-label="Pick a colour">
     </div>
   </div>
-  <div class="flex flex-col gap-field">
-    <label for="doc-zip" class="text-label">Postal code</label>
-    <div class="flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors">
-      <i class="icon ph ph-map-pin fg-weak" aria-hidden="true"></i>
-      <input id="doc-zip" type="text" inputmode="numeric" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg tabular-nums" autocomplete="postal-code" placeholder="00100">
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-zip" class="text-sm font-medium">Postal code</label>
+    <div class="flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors">
+      <i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-map-pin fg-neutral-11" aria-hidden="true"></i>
+      <input id="doc-zip" type="text" inputmode="numeric" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 tabular-nums" autocomplete="postal-code" placeholder="00100">
     </div>
   </div>
-  <div class="flex flex-col gap-field">
-    <label for="doc-duration" class="text-label">Duration</label>
-    <div class="flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors">
-      <i class="icon ph ph-timer fg-weak" aria-hidden="true"></i>
-      <input id="doc-duration" type="number" min="0" step="15" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg tabular-nums" value="45">
-      <span class="fg-weak" aria-hidden="true">min</span>
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-duration" class="text-sm font-medium">Duration</label>
+    <div class="flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors">
+      <i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-timer fg-neutral-11" aria-hidden="true"></i>
+      <input id="doc-duration" type="number" min="0" step="15" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 tabular-nums" value="45">
+      <span class="fg-neutral-11" aria-hidden="true">min</span>
     </div>
   </div>
 </div>
@@ -278,123 +278,123 @@
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">text-field-types.html</span><span class="text-kicker fg-subtle">HTML</span>
             </figcaption>
-            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;grid grid-cols-1 md:grid-cols-2 gap-group&quot;&gt;
-  &lt;div class=&quot;flex flex-col gap-field&quot;&gt;
-    &lt;label for=&quot;doc-pass&quot; class=&quot;text-label&quot;&gt;Password&lt;/label&gt;
-    &lt;div class=&quot;flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors&quot;&gt;
-      &lt;i class=&quot;icon ph ph-lock-simple fg-weak&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
-      &lt;input id=&quot;doc-pass&quot; type=&quot;password&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg&quot; autocomplete=&quot;new-password&quot; value=&quot;correct horse&quot;&gt;
-      &lt;button type=&quot;button&quot; class=&quot;inline-flex items-center justify-center size-nested rounded-nested border border-transparent bg-transparent hover:bg-component-weak aria-pressed:bg-component fg-weak hover:fg cursor-pointer transition-colors&quot; aria-label=&quot;Show password&quot; aria-pressed=&quot;false&quot; onclick=&quot;const i=this.parentElement.querySelector(&#x27;input&#x27;);i.type=i.type===&#x27;password&#x27;?&#x27;text&#x27;:&#x27;password&#x27;;this.setAttribute(&#x27;aria-pressed&#x27;,i.type===&#x27;text&#x27;)&quot;&gt;&lt;i class=&quot;icon ph ph-eye&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;grid grid-cols-1 md:grid-cols-2 gap-md&quot;&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-pass&quot; class=&quot;text-sm font-medium&quot;&gt;Password&lt;/label&gt;
+    &lt;div class=&quot;flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors&quot;&gt;
+      &lt;i class=&quot;inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-lock-simple fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;input id=&quot;doc-pass&quot; type=&quot;password&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12&quot; autocomplete=&quot;new-password&quot; value=&quot;correct horse&quot;&gt;
+      &lt;button type=&quot;button&quot; class=&quot;inline-flex items-center justify-center p-3xs rounded-xs border border-transparent bg-transparent hover:bg-neutral-3 aria-pressed:bg-neutral-4 fg-neutral-11 hover:fg-neutral-12 cursor-pointer transition-colors&quot; aria-label=&quot;Show password&quot; aria-pressed=&quot;false&quot; onclick=&quot;const i=this.parentElement.querySelector(&#x27;input&#x27;);i.type=i.type===&#x27;password&#x27;?&#x27;text&#x27;:&#x27;password&#x27;;this.setAttribute(&#x27;aria-pressed&#x27;,i.type===&#x27;text&#x27;)&quot;&gt;&lt;i class=&quot;inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-eye&quot;&gt;&lt;/i&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class=&quot;flex flex-col gap-field&quot;&gt;
-    &lt;label for=&quot;doc-card&quot; class=&quot;text-label&quot;&gt;Card number&lt;/label&gt;
-    &lt;div class=&quot;flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors&quot;&gt;
-      &lt;i class=&quot;icon ph ph-credit-card fg-weak&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
-      &lt;input id=&quot;doc-card&quot; type=&quot;text&quot; inputmode=&quot;numeric&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg tabular-nums&quot; autocomplete=&quot;cc-number&quot; placeholder=&quot;1234 5678 9012 3456&quot;&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-card&quot; class=&quot;text-sm font-medium&quot;&gt;Card number&lt;/label&gt;
+    &lt;div class=&quot;flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors&quot;&gt;
+      &lt;i class=&quot;inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-credit-card fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;input id=&quot;doc-card&quot; type=&quot;text&quot; inputmode=&quot;numeric&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 tabular-nums&quot; autocomplete=&quot;cc-number&quot; placeholder=&quot;1234 5678 9012 3456&quot;&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class=&quot;flex flex-col gap-field&quot;&gt;
-    &lt;label for=&quot;doc-start&quot; class=&quot;text-label&quot;&gt;Start date&lt;/label&gt;
-    &lt;div class=&quot;flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors&quot;&gt;
-      &lt;i class=&quot;icon ph ph-calendar-blank fg-weak&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
-      &lt;input id=&quot;doc-start&quot; type=&quot;date&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg tabular-nums&quot; value=&quot;2027-03-01&quot;&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-start&quot; class=&quot;text-sm font-medium&quot;&gt;Start date&lt;/label&gt;
+    &lt;div class=&quot;flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors&quot;&gt;
+      &lt;i class=&quot;inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-calendar-blank fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;input id=&quot;doc-start&quot; type=&quot;date&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 tabular-nums&quot; value=&quot;2027-03-01&quot;&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class=&quot;flex flex-col gap-field&quot;&gt;
-    &lt;label for=&quot;doc-time&quot; class=&quot;text-label&quot;&gt;Meeting time&lt;/label&gt;
-    &lt;div class=&quot;flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors&quot;&gt;
-      &lt;i class=&quot;icon ph ph-clock fg-weak&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
-      &lt;input id=&quot;doc-time&quot; type=&quot;time&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg tabular-nums&quot; value=&quot;09:30&quot;&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-time&quot; class=&quot;text-sm font-medium&quot;&gt;Meeting time&lt;/label&gt;
+    &lt;div class=&quot;flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors&quot;&gt;
+      &lt;i class=&quot;inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-clock fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;input id=&quot;doc-time&quot; type=&quot;time&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 tabular-nums&quot; value=&quot;09:30&quot;&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class=&quot;flex flex-col gap-field&quot;&gt;
-    &lt;label for=&quot;doc-weight&quot; class=&quot;text-label&quot;&gt;Weight&lt;/label&gt;
-    &lt;div class=&quot;flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors&quot;&gt;
-      &lt;i class=&quot;icon ph ph-scales fg-weak&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
-      &lt;input id=&quot;doc-weight&quot; type=&quot;text&quot; inputmode=&quot;decimal&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg tabular-nums&quot; value=&quot;72.5&quot;&gt;
-      &lt;span class=&quot;fg-weak&quot; aria-hidden=&quot;true&quot;&gt;kg&lt;/span&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-weight&quot; class=&quot;text-sm font-medium&quot;&gt;Weight&lt;/label&gt;
+    &lt;div class=&quot;flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors&quot;&gt;
+      &lt;i class=&quot;inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-scales fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;input id=&quot;doc-weight&quot; type=&quot;text&quot; inputmode=&quot;decimal&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 tabular-nums&quot; value=&quot;72.5&quot;&gt;
+      &lt;span class=&quot;fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;kg&lt;/span&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class=&quot;flex flex-col gap-field&quot;&gt;
-    &lt;label for=&quot;doc-discount&quot; class=&quot;text-label&quot;&gt;Discount&lt;/label&gt;
-    &lt;div class=&quot;flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors&quot;&gt;
-      &lt;i class=&quot;icon ph ph-percent fg-weak&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
-      &lt;input id=&quot;doc-discount&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;100&quot; step=&quot;5&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg tabular-nums&quot; value=&quot;15&quot;&gt;
-      &lt;span class=&quot;fg-weak&quot; aria-hidden=&quot;true&quot;&gt;%&lt;/span&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-discount&quot; class=&quot;text-sm font-medium&quot;&gt;Discount&lt;/label&gt;
+    &lt;div class=&quot;flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors&quot;&gt;
+      &lt;i class=&quot;inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-percent fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;input id=&quot;doc-discount&quot; type=&quot;number&quot; min=&quot;0&quot; max=&quot;100&quot; step=&quot;5&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 tabular-nums&quot; value=&quot;15&quot;&gt;
+      &lt;span class=&quot;fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;%&lt;/span&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class=&quot;flex flex-col gap-field&quot;&gt;
-    &lt;label for=&quot;doc-quantity&quot; class=&quot;text-label&quot;&gt;Quantity&lt;/label&gt;
-    &lt;div class=&quot;flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors&quot;&gt;
-      &lt;i class=&quot;icon ph ph-hash fg-weak&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
-      &lt;input id=&quot;doc-quantity&quot; type=&quot;number&quot; min=&quot;1&quot; step=&quot;1&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg tabular-nums&quot; value=&quot;3&quot;&gt;
-      &lt;span class=&quot;fg-weak&quot; aria-hidden=&quot;true&quot;&gt;seats&lt;/span&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-quantity&quot; class=&quot;text-sm font-medium&quot;&gt;Quantity&lt;/label&gt;
+    &lt;div class=&quot;flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors&quot;&gt;
+      &lt;i class=&quot;inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-hash fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;input id=&quot;doc-quantity&quot; type=&quot;number&quot; min=&quot;1&quot; step=&quot;1&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 tabular-nums&quot; value=&quot;3&quot;&gt;
+      &lt;span class=&quot;fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;seats&lt;/span&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class=&quot;flex flex-col gap-field&quot;&gt;
-    &lt;label for=&quot;doc-hex&quot; class=&quot;text-label&quot;&gt;Brand colour&lt;/label&gt;
-    &lt;div class=&quot;flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors&quot;&gt;
-      &lt;i class=&quot;icon ph ph-palette fg-weak&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
-      &lt;span class=&quot;fg-weak&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/span&gt;
-      &lt;input id=&quot;doc-hex&quot; type=&quot;text&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg tabular-nums&quot; spellcheck=&quot;false&quot; maxlength=&quot;6&quot; value=&quot;0090FF&quot;&gt;
-      &lt;input type=&quot;color&quot; class=&quot;size-nested rounded-nested border border-transparent p-0 bg-transparent cursor-pointer&quot; value=&quot;#0090ff&quot; aria-label=&quot;Pick a colour&quot;&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-hex&quot; class=&quot;text-sm font-medium&quot;&gt;Brand colour&lt;/label&gt;
+    &lt;div class=&quot;flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors&quot;&gt;
+      &lt;i class=&quot;inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-palette fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;span class=&quot;fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/span&gt;
+      &lt;input id=&quot;doc-hex&quot; type=&quot;text&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 tabular-nums&quot; spellcheck=&quot;false&quot; maxlength=&quot;6&quot; value=&quot;0090FF&quot;&gt;
+      &lt;input type=&quot;color&quot; class=&quot;p-3xs rounded-xs border border-transparent p-0 bg-transparent cursor-pointer&quot; value=&quot;#0090ff&quot; aria-label=&quot;Pick a colour&quot;&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class=&quot;flex flex-col gap-field&quot;&gt;
-    &lt;label for=&quot;doc-zip&quot; class=&quot;text-label&quot;&gt;Postal code&lt;/label&gt;
-    &lt;div class=&quot;flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors&quot;&gt;
-      &lt;i class=&quot;icon ph ph-map-pin fg-weak&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
-      &lt;input id=&quot;doc-zip&quot; type=&quot;text&quot; inputmode=&quot;numeric&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg tabular-nums&quot; autocomplete=&quot;postal-code&quot; placeholder=&quot;00100&quot;&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-zip&quot; class=&quot;text-sm font-medium&quot;&gt;Postal code&lt;/label&gt;
+    &lt;div class=&quot;flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors&quot;&gt;
+      &lt;i class=&quot;inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-map-pin fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;input id=&quot;doc-zip&quot; type=&quot;text&quot; inputmode=&quot;numeric&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 tabular-nums&quot; autocomplete=&quot;postal-code&quot; placeholder=&quot;00100&quot;&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class=&quot;flex flex-col gap-field&quot;&gt;
-    &lt;label for=&quot;doc-duration&quot; class=&quot;text-label&quot;&gt;Duration&lt;/label&gt;
-    &lt;div class=&quot;flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors&quot;&gt;
-      &lt;i class=&quot;icon ph ph-timer fg-weak&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
-      &lt;input id=&quot;doc-duration&quot; type=&quot;number&quot; min=&quot;0&quot; step=&quot;15&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg tabular-nums&quot; value=&quot;45&quot;&gt;
-      &lt;span class=&quot;fg-weak&quot; aria-hidden=&quot;true&quot;&gt;min&lt;/span&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-duration&quot; class=&quot;text-sm font-medium&quot;&gt;Duration&lt;/label&gt;
+    &lt;div class=&quot;flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors&quot;&gt;
+      &lt;i class=&quot;inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-timer fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;input id=&quot;doc-duration&quot; type=&quot;number&quot; min=&quot;0&quot; step=&quot;15&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 tabular-nums&quot; value=&quot;45&quot;&gt;
+      &lt;span class=&quot;fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;min&lt;/span&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
           </figure>
           </div>
         </section>
-        <section id="states" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-field pt-sm pb-xl border-t border-strong">
+        <section id="states" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">States</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-measure">The box shows every state of the input inside it: <code>focus-within:</code> turns the border accent, <code>has-invalid:</code> turns it danger. A disabled or read-only field says so with its fill as well as its text.</p>
           <div class="tier-product p-surface rounded-lg border border-weak bg-strong">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-group">
-  <div class="flex flex-col gap-field">
-    <label for="doc-handle" class="text-label">Handle</label>
-    <div class="flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors">
-      <i class="icon ph ph-at fg-weak" aria-hidden="true"></i>
-      <input id="doc-handle" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg" value="ada lovelace" pattern="[a-z0-9_]+" aria-invalid="true" aria-describedby="doc-handle-error">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-handle" class="text-sm font-medium">Handle</label>
+    <div class="flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors">
+      <i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-at fg-neutral-11" aria-hidden="true"></i>
+      <input id="doc-handle" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12" value="ada lovelace" pattern="[a-z0-9_]+" aria-invalid="true" aria-describedby="doc-handle-error">
     </div>
-    <span id="doc-handle-error" class="text-caption fg-danger-weak">Use lowercase letters, numbers and underscores.</span>
+    <span id="doc-handle-error" class="text-sm fg-danger-11">Use lowercase letters, numbers and underscores.</span>
   </div>
-  <div class="flex flex-col gap-field">
-    <label for="doc-title" class="text-label">Title</label>
-    <div class="flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors">
-      <i class="icon ph ph-text-t fg-weak" aria-hidden="true"></i>
-      <input id="doc-title" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg" maxlength="40" value="Analytical Engine notes" aria-describedby="doc-title-count">
-      <span id="doc-title-count" class="fg-weak text-caption tabular-nums">23/40</span>
-    </div>
-  </div>
-  <div class="flex flex-col gap-field">
-    <label for="doc-id" class="text-label">Account ID</label>
-    <div class="flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors bg-strong">
-      <i class="icon ph ph-identification-card fg-weak" aria-hidden="true"></i>
-      <input id="doc-id" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg fg-weak tabular-nums" value="AC-20481" readonly>
-      <i class="icon ph ph-lock-simple fg-subtle" aria-hidden="true"></i>
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-title" class="text-sm font-medium">Title</label>
+    <div class="flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors">
+      <i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-text-t fg-neutral-11" aria-hidden="true"></i>
+      <input id="doc-title" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12" maxlength="40" value="Analytical Engine notes" aria-describedby="doc-title-count">
+      <span id="doc-title-count" class="fg-neutral-11 text-sm tabular-nums">23/40</span>
     </div>
   </div>
-  <div class="flex flex-col gap-field">
-    <label for="doc-seat" class="text-label fg-weak">Seat</label>
-    <div class="flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors bg-component-weak opacity-50 cursor-not-allowed">
-      <i class="icon ph ph-armchair fg-weak" aria-hidden="true"></i>
-      <input id="doc-seat" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg" value="14C" disabled>
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-id" class="text-sm font-medium">Account ID</label>
+    <div class="flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors bg-neutral-2">
+      <i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-identification-card fg-neutral-11" aria-hidden="true"></i>
+      <input id="doc-id" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 fg-neutral-11 tabular-nums" value="AC-20481" readonly>
+      <i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-lock-simple fg-neutral-8" aria-hidden="true"></i>
+    </div>
+  </div>
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-seat" class="text-sm font-medium fg-neutral-11">Seat</label>
+    <div class="flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors bg-neutral-3 opacity-50 cursor-not-allowed">
+      <i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-armchair fg-neutral-11" aria-hidden="true"></i>
+      <input id="doc-seat" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12" value="14C" disabled>
     </div>
   </div>
 </div>
@@ -403,50 +403,50 @@
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">text-field-states.html</span><span class="text-kicker fg-subtle">HTML</span>
             </figcaption>
-            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;grid grid-cols-1 md:grid-cols-2 gap-group&quot;&gt;
-  &lt;div class=&quot;flex flex-col gap-field&quot;&gt;
-    &lt;label for=&quot;doc-handle&quot; class=&quot;text-label&quot;&gt;Handle&lt;/label&gt;
-    &lt;div class=&quot;flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors&quot;&gt;
-      &lt;i class=&quot;icon ph ph-at fg-weak&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
-      &lt;input id=&quot;doc-handle&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg&quot; value=&quot;ada lovelace&quot; pattern=&quot;[a-z0-9_]+&quot; aria-invalid=&quot;true&quot; aria-describedby=&quot;doc-handle-error&quot;&gt;
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;grid grid-cols-1 md:grid-cols-2 gap-md&quot;&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-handle&quot; class=&quot;text-sm font-medium&quot;&gt;Handle&lt;/label&gt;
+    &lt;div class=&quot;flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors&quot;&gt;
+      &lt;i class=&quot;inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-at fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;input id=&quot;doc-handle&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12&quot; value=&quot;ada lovelace&quot; pattern=&quot;[a-z0-9_]+&quot; aria-invalid=&quot;true&quot; aria-describedby=&quot;doc-handle-error&quot;&gt;
     &lt;/div&gt;
-    &lt;span id=&quot;doc-handle-error&quot; class=&quot;text-caption fg-danger-weak&quot;&gt;Use lowercase letters, numbers and underscores.&lt;/span&gt;
+    &lt;span id=&quot;doc-handle-error&quot; class=&quot;text-sm fg-danger-11&quot;&gt;Use lowercase letters, numbers and underscores.&lt;/span&gt;
   &lt;/div&gt;
-  &lt;div class=&quot;flex flex-col gap-field&quot;&gt;
-    &lt;label for=&quot;doc-title&quot; class=&quot;text-label&quot;&gt;Title&lt;/label&gt;
-    &lt;div class=&quot;flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors&quot;&gt;
-      &lt;i class=&quot;icon ph ph-text-t fg-weak&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
-      &lt;input id=&quot;doc-title&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg&quot; maxlength=&quot;40&quot; value=&quot;Analytical Engine notes&quot; aria-describedby=&quot;doc-title-count&quot;&gt;
-      &lt;span id=&quot;doc-title-count&quot; class=&quot;fg-weak text-caption tabular-nums&quot;&gt;23/40&lt;/span&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;flex flex-col gap-field&quot;&gt;
-    &lt;label for=&quot;doc-id&quot; class=&quot;text-label&quot;&gt;Account ID&lt;/label&gt;
-    &lt;div class=&quot;flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors bg-strong&quot;&gt;
-      &lt;i class=&quot;icon ph ph-identification-card fg-weak&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
-      &lt;input id=&quot;doc-id&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg fg-weak tabular-nums&quot; value=&quot;AC-20481&quot; readonly&gt;
-      &lt;i class=&quot;icon ph ph-lock-simple fg-subtle&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-title&quot; class=&quot;text-sm font-medium&quot;&gt;Title&lt;/label&gt;
+    &lt;div class=&quot;flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors&quot;&gt;
+      &lt;i class=&quot;inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-text-t fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;input id=&quot;doc-title&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12&quot; maxlength=&quot;40&quot; value=&quot;Analytical Engine notes&quot; aria-describedby=&quot;doc-title-count&quot;&gt;
+      &lt;span id=&quot;doc-title-count&quot; class=&quot;fg-neutral-11 text-sm tabular-nums&quot;&gt;23/40&lt;/span&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class=&quot;flex flex-col gap-field&quot;&gt;
-    &lt;label for=&quot;doc-seat&quot; class=&quot;text-label fg-weak&quot;&gt;Seat&lt;/label&gt;
-    &lt;div class=&quot;flex items-center gap-gutter h-control px-control rounded-control border hover:border-strong focus-within:border-accent-1-strong has-invalid:border-danger bg text-control-md cursor-text transition-colors bg-component-weak opacity-50 cursor-not-allowed&quot;&gt;
-      &lt;i class=&quot;icon ph ph-armchair fg-weak&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
-      &lt;input id=&quot;doc-seat&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg&quot; value=&quot;14C&quot; disabled&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-id&quot; class=&quot;text-sm font-medium&quot;&gt;Account ID&lt;/label&gt;
+    &lt;div class=&quot;flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors bg-neutral-2&quot;&gt;
+      &lt;i class=&quot;inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-identification-card fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;input id=&quot;doc-id&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 fg-neutral-11 tabular-nums&quot; value=&quot;AC-20481&quot; readonly&gt;
+      &lt;i class=&quot;inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-lock-simple fg-neutral-8&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-seat&quot; class=&quot;text-sm font-medium fg-neutral-11&quot;&gt;Seat&lt;/label&gt;
+    &lt;div class=&quot;flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors bg-neutral-3 opacity-50 cursor-not-allowed&quot;&gt;
+      &lt;i class=&quot;inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-armchair fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;input id=&quot;doc-seat&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12&quot; value=&quot;14C&quot; disabled&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
           </figure>
           </div>
         </section>
-        <section id="usage" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-field pt-sm pb-xl border-t border-strong">
+        <section id="usage" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Usage</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-grid">
             <div class="flex flex-col gap-field"><span class="text-label fg-success-weak">Use</span><ul role="list" class="flex flex-col gap-xs text-body-md">
             <li class="flex gap-gutter"><i class="icon icon-sm ph-bold ph-check fg-success-weak"></i><span>A leading icon for the kind of value, so a long form scans by shape.</span></li>
             <li class="flex gap-gutter"><i class="icon icon-sm ph-bold ph-check fg-success-weak"></i><span>Prefixes and suffixes for parts the person doesn't type: a scheme, a currency sign, a unit.</span></li>
-            <li class="flex gap-gutter"><i class="icon icon-sm ph-bold ph-check fg-success-weak"></i><span><code>gap-field</code> between label, box and help; <code>gap-group</code> between fields.</span></li>
+            <li class="flex gap-gutter"><i class="icon icon-sm ph-bold ph-check fg-success-weak"></i><span><code>gap-2xs</code> between label, box and help; <code>gap-md</code> between fields.</span></li>
             </ul></div>
             <div class="flex flex-col gap-field"><span class="text-label fg-danger-weak">Avoid</span><ul role="list" class="flex flex-col gap-xs text-body-md">
             <li class="flex gap-gutter"><i class="icon icon-sm ph-bold ph-x fg-danger-weak"></i><span>A placeholder instead of a label.</span></li>
@@ -456,11 +456,11 @@
           </div>
           </div>
         </section>
-        <section id="classes" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-field pt-sm pb-xl border-t border-strong">
+        <section id="classes" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Classes</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <p class="text-body-md max-w-measure">Every class in the examples, 53 in all. Each one links to its declarations in <a href="classes.html">Classes</a> or <a href="semantic.html">Semantic classes</a>.</p>
-          <div class="flex flex-wrap gap-2xs"><a href="semantic.html#class-bg-component" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">aria-pressed:bg-component</a> <a href="semantic.html#class-bg" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">bg</a> <a href="semantic.html#class-bg-component-weak" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">bg-component-weak</a> <a href="semantic.html#class-bg-strong" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">bg-strong</a> <a href="classes.html#class-bg-transparent" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">bg-transparent</a> <a href="classes.html#class-border" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">border</a> <a href="classes.html#class-border-0" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">border-0</a> <a href="classes.html#class-border-transparent" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">border-transparent</a> <a href="classes.html#class-cursor-not-allowed" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">cursor-not-allowed</a> <a href="classes.html#class-cursor-pointer" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">cursor-pointer</a> <a href="classes.html#class-cursor-text" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">cursor-text</a> <a href="semantic.html#class-fg" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">fg</a> <a href="semantic.html#class-fg-danger-weak" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">fg-danger-weak</a> <a href="semantic.html#class-fg-subtle" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">fg-subtle</a> <a href="semantic.html#class-fg-weak" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">fg-weak</a> <a href="classes.html#class-flex" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">flex</a> <a href="classes.html#class-flex-col" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">flex-col</a> <a href="semantic.html#class-border-accent-1-strong" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">focus-within:border-accent-1-strong</a> <a href="semantic.html#class-gap-field" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">gap-field</a> <a href="semantic.html#class-gap-group" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">gap-group</a> <a href="semantic.html#class-gap-gutter" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">gap-gutter</a> <a href="classes.html#class-grid" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">grid</a> <a href="classes.html#class-grid-cols-1" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">grid-cols-1</a> <a href="classes.html#class-grow" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">grow</a> <a href="semantic.html#class-h-control" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">h-control</a> <a href="semantic.html#class-h-nested" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">h-nested</a> <a href="semantic.html#class-border-danger" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">has-invalid:border-danger</a> <a href="semantic.html#class-bg-component-weak" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">hover:bg-component-weak</a> <a href="semantic.html#class-border-strong" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">hover:border-strong</a> <a href="semantic.html#class-fg" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">hover:fg</a> <a href="semantic.html#class-icon" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">icon</a> <a href="classes.html#class-inline-flex" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">inline-flex</a> <a href="classes.html#class-items-center" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">items-center</a> <a href="classes.html#class-justify-center" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">justify-center</a> <a href="classes.html#class-max-w-form" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">max-w-form</a> <a href="classes.html#class-grid-cols-2" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">md:grid-cols-2</a> <a href="classes.html#class-min-w-0" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">min-w-0</a> <a href="classes.html#class-opacity-50" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">opacity-50</a> <a href="classes.html#class-p-0" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">p-0</a> <a href="semantic.html#class-px-control" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">px-control</a> <a href="semantic.html#class-px-nested" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">px-nested</a> <a href="semantic.html#class-rounded-control" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">rounded-control</a> <a href="semantic.html#class-rounded-nested" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">rounded-nested</a> <a href="classes.html#class-select-base" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">select-base</a> <a href="classes.html#class-self-stretch" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">self-stretch</a> <a href="semantic.html#class-size-nested" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">size-nested</a> <a href="classes.html#class-tabular-nums" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">tabular-nums</a> <a href="semantic.html#class-text-caption" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">text-caption</a> <a href="semantic.html#class-text-control-md" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">text-control-md</a> <a href="semantic.html#class-text-label" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">text-label</a> <a href="semantic.html#class-text-mono-sm" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">text-mono-sm</a> <a href="classes.html#class-transition-colors" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">transition-colors</a> <a href="classes.html#class-whitespace-nowrap" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">whitespace-nowrap</a></div>
+          <p class="text-body-md max-w-measure">Every class in the examples, 55 in all. Each one links to its declarations in <a href="classes.html">Classes</a> or <a href="semantic.html">Semantic classes</a>.</p>
+          <div class="flex flex-wrap gap-2xs"><a href="classes.html#class-bg-neutral-4" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">aria-pressed:bg-neutral-4</a> <a href="classes.html#class-bg-neutral-1" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">bg-neutral-1</a> <a href="classes.html#class-bg-neutral-2" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">bg-neutral-2</a> <a href="classes.html#class-bg-neutral-3" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">bg-neutral-3</a> <a href="classes.html#class-bg-transparent" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">bg-transparent</a> <a href="classes.html#class-border" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">border</a> <a href="classes.html#class-border-0" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">border-0</a> <a href="classes.html#class-border-transparent" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">border-transparent</a> <a href="classes.html#class-cursor-not-allowed" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">cursor-not-allowed</a> <a href="classes.html#class-cursor-pointer" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">cursor-pointer</a> <a href="classes.html#class-cursor-text" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">cursor-text</a> <a href="classes.html#class-fg-danger-11" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">fg-danger-11</a> <a href="classes.html#class-fg-neutral-11" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">fg-neutral-11</a> <a href="classes.html#class-fg-neutral-12" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">fg-neutral-12</a> <a href="classes.html#class-fg-neutral-8" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">fg-neutral-8</a> <a href="classes.html#class-flex" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">flex</a> <a href="classes.html#class-flex-col" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">flex-col</a> <a href="classes.html#class-border-accent-1-8" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">focus-within:border-accent-1-8</a> <a href="classes.html#class-font-medium" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">font-medium</a> <a href="classes.html#class-font-mono" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">font-mono</a> <a href="classes.html#class-gap-2xs" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">gap-2xs</a> <a href="classes.html#class-gap-md" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">gap-md</a> <a href="classes.html#class-gap-xs" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">gap-xs</a> <a href="classes.html#class-grid" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">grid</a> <a href="classes.html#class-grid-cols-1" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">grid-cols-1</a> <a href="classes.html#class-grow" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">grow</a> <a href="classes.html#class-border-danger-7" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">has-invalid:border-danger-7</a> <a href="classes.html#class-bg-neutral-3" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">hover:bg-neutral-3</a> <a href="classes.html#class-border-neutral-8" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">hover:border-neutral-8</a> <a href="classes.html#class-fg-neutral-12" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">hover:fg-neutral-12</a> <a href="classes.html#class-inline-flex" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">inline-flex</a> <a href="classes.html#class-items-center" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">items-center</a> <a href="classes.html#class-justify-center" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">justify-center</a> <a href="classes.html#class-leading-none" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">leading-none</a> <a href="classes.html#class-max-w-form" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">max-w-form</a> <a href="classes.html#class-grid-cols-2" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">md:grid-cols-2</a> <a href="classes.html#class-min-w-0" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">min-w-0</a> <a href="classes.html#class-opacity-50" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">opacity-50</a> <a href="classes.html#class-p-0" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">p-0</a> <a href="classes.html#class-p-3xs" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">p-3xs</a> <a href="classes.html#class-px-2xs" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">px-2xs</a> <a href="classes.html#class-px-sm" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">px-sm</a> <a href="classes.html#class-py-3xs" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">py-3xs</a> <a href="classes.html#class-py-xs" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">py-xs</a> <a href="classes.html#class-rounded-sm" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">rounded-sm</a> <a href="classes.html#class-rounded-xs" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">rounded-xs</a> <a href="classes.html#class-select-base" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">select-base</a> <a href="classes.html#class-self-stretch" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">self-stretch</a> <a href="classes.html#class-shrink-0" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">shrink-0</a> <a href="classes.html#class-tabular-nums" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">tabular-nums</a> <a href="classes.html#class-text-base" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">text-base</a> <a href="classes.html#class-text-sm" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">text-sm</a> <a href="classes.html#class-text-xl" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">text-xl</a> <a href="classes.html#class-transition-colors" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">transition-colors</a> <a href="classes.html#class-whitespace-nowrap" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">whitespace-nowrap</a></div>
           </div>
         </section>
         <nav aria-label="Previous and next page" class="col-span-12 grid grid-cols-1 md:grid-cols-2 gap-grid py-page border-t border-strong">
