@@ -923,7 +923,7 @@
   // Demo only: move aria-selected, aria-pressed and aria-current on click, so the state classes can be tried.
   document.addEventListener("click", (e) => {
     const t = e.target.closest('[role="tab"], [aria-pressed], nav[aria-label="Pagination"] a, ul[role="list"] a');
-    if (!t) return;
+    if (!t || !t.closest("main") || (t.matches("a") && t.getAttribute("href") !== "#")) return;
     if (t.matches('[role="tab"]')) t.parentElement.querySelectorAll('[role="tab"]').forEach((x) => x.setAttribute("aria-selected", String(x === t)));
     else if (t.matches("[aria-pressed]")) t.parentElement.querySelectorAll("[aria-pressed]").forEach((x) => x.setAttribute("aria-pressed", String(x === t)));
     else { e.preventDefault(); if (/^\d+$/.test(t.textContent.trim()) || t.closest('ul[role="list"]')) { t.closest("nav, ul").querySelectorAll("a").forEach((x) => x.removeAttribute("aria-current")); t.setAttribute("aria-current", "page"); } }
