@@ -12,10 +12,10 @@ Prewind-style utility classes over a themeable token system, in plain CSS. No bu
 Link one file from the CDN:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.5.0/dist/nowind.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.6.0/dist/nowind.min.css">
 ```
 
-The link pins release `v0.5.0`, so your site won't change until you change the version. `@main` follows the latest commit, but jsDelivr caches it for up to 12 hours. Or copy `dist/nowind.min.css` into your project and link it locally. Releases are listed in [CHANGELOG.md](CHANGELOG.md).
+The link pins release `v0.6.0`, so your site won't change until you change the version. `@main` follows the latest commit, but jsDelivr caches it for up to 12 hours. Or copy `dist/nowind.min.css` into your project and link it locally. Releases are listed in [CHANGELOG.md](CHANGELOG.md).
 
 Browse it first: [component docs](https://kimgranlund.github.io/nowind/templates/components-index.html), the [showcase](https://kimgranlund.github.io/nowind/components.html), [specimen](https://kimgranlund.github.io/nowind/specimen.html) and the [class list](https://kimgranlund.github.io/nowind/classes.html) are on GitHub Pages.
 
