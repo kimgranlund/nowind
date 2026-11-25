@@ -91,3 +91,31 @@
   });
   document.querySelectorAll("[data-search-open]").forEach((b) => b.addEventListener("click", open));
 })();
+
+// Light and dark: the band's toggle flips the scheme and remembers it; the head script applies it before paint.
+(() => {
+  const root = document.documentElement, media = matchMedia("(prefers-color-scheme: dark)");
+  const current = () => root.dataset.colorMode || (media.matches ? "dark" : "light");
+  const show = () => document.querySelectorAll("[data-theme-toggle]").forEach((b) => {
+    const dark = current() === "dark";
+    b.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+    b.querySelector("i").className = `icon ph ${dark ? "ph-sun" : "ph-moon"}`;
+  });
+  document.querySelectorAll("[data-theme-toggle]").forEach((b) => b.addEventListener("click", () => {
+    const next = current() === "dark" ? "light" : "dark";
+    root.dataset.colorMode = next;
+    try { localStorage.setItem("nowind-color-mode", next); } catch {}
+    show();
+  }));
+  media.addEventListener("change", show);
+  show();
+})();
+
+// The lens: only Chromium applies an SVG filter in backdrop-filter, so turn it on there, and not when the reader asks
+// for less transparency. Elements marked data-lens-label say which one they show.
+(() => {
+  const chromium = navigator.userAgentData?.brands?.some((b) => /Chromium/.test(b.brand)) || (/Chrome\//.test(navigator.userAgent) && !/CriOS/.test(navigator.userAgent));
+  const on = chromium && !matchMedia("(prefers-reduced-transparency: reduce)").matches;
+  document.documentElement.dataset.lens = on ? "on" : "off";
+  document.querySelectorAll("[data-lens-label]").forEach((el) => { el.textContent = on ? "Lens on" : "Lens off: this browser can't refract, so glass shows its blur"; });
+})();

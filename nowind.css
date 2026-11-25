@@ -1275,6 +1275,7 @@
   .bg-repeat-x { background-repeat: repeat-x; }
   .bg-repeat-y { background-repeat: repeat-y; }
   .bg-no-repeat { background-repeat: no-repeat; }
+  .lens { --_lens: 1; }
   .bg-dots { background-image: radial-gradient(circle, currentColor var(--_dot, 1.5px), transparent calc(var(--_dot, 1.5px) + 0.75px)); background-size: var(--_dots, var(--space-sm)) var(--_dots, var(--space-sm)); background-position: center; }
   .bg-dots-sm { --_dots: var(--space-xs); --_dot: 1px; }
   .bg-dots-md { --_dots: var(--space-sm); --_dot: 1.5px; }
@@ -1584,6 +1585,7 @@
   .select-base::picker-icon { color: var(--fg-weak); margin-inline: calc((var(--icon-box) - var(--_caret)) / 2); }
   .select-base.px-control { padding-inline-end: var(--control-icon-padding); }
   :is([open] > summary, [aria-expanded="true"]) .caret::before, .select-base:open::picker-icon { rotate: 225deg; translate: 0 25%; }
+  :root[data-lens="on"] .lens { -webkit-backdrop-filter: url(#nowind-lens) saturate(1.8); backdrop-filter: url(#nowind-lens) saturate(1.8); }
   .select-base option:checked { background: var(--component-accent-1-weak); color: var(--fg-accent-1-weak); }
   .h-nested > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }
   .px-control:where(:has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--control-icon-padding); }

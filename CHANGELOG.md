@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- **Glass lens:** `lens` refracts what is behind a glass part through an SVG displacement filter (`#nowind-lens`): a band along the rim bends and magnifies, with a slight red-green-blue fringe. It runs where the page sets `data-lens="on"`, which the site's script does in Chromium, the only engine that applies an SVG filter in `backdrop-filter`; elsewhere glass keeps its blur. The showcase says which one you see.
+- **Light and dark toggle:** a button in the band switches the scheme and remembers it; a head script applies the choice before the page paints.
 - **Dot grid:** `bg-dots` paints a dot grid in `currentColor`, spaced by `bg-dots-sm`, `-md` or `-lg`. The materials demo uses it in place of coloured stripes, so the blur of frosted and glass is easy to read.
 - **Examples in primitives:** every component snippet and showcase block now uses regular classes only (palette steps, the space scale, type sizes), checked by `scripts/templates.py --lint`. The materials, shell and tiers demos keep their semantic classes. To keep hover and states, the raw steps of neutral, accent-1 to accent-4 and danger now take hover and state variants (nowind.css 236 → 381 KiB, the minified bundle 41 → 52.5 KB gzipped), and new `fg-{palette}-contrast` classes give text on a solid.
 - **Breaking:** `aria-selected:` is now `selected:`.

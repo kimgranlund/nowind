@@ -45,13 +45,31 @@ HEAD = """<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} · Nowind</title>
 <link rel="icon" href="data:,">
-<link rel="stylesheet" href="../../theme.css">
+{head_extra}<link rel="stylesheet" href="../../theme.css">
 <link rel="stylesheet" href="../../nowind.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
 </head>
 <body class="bg fg">
 """
+
+# The head script applies a saved light or dark choice before the page paints.
+HEAD_EXTRA = '<script>try{var m=localStorage.getItem("nowind-color-mode");if(m)document.documentElement.dataset.colorMode=m}catch(e){}</script>\n'
+
+# The lens: a displacement map that bends a band along the rim (red = x, green = y, 50% = none; the centre is neutral),
+# displaced three times for an R/G/B fringe and recombined. Box units, so it fits any element. Used by the lens class.
+LENS_MAP = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='r'%3E%3Cstop offset='0' stop-color='#f00'/%3E%3Cstop offset='1' stop-color='#000'/%3E%3C/linearGradient%3E%3ClinearGradient id='g' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='#0f0'/%3E%3Cstop offset='1' stop-color='#000'/%3E%3C/linearGradient%3E%3Cfilter id='b' x='-20%' y='-20%' width='140%' height='140%'%3E%3CfeGaussianBlur stdDeviation='7'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(#r)'/%3E%3Crect width='100' height='100' fill='url(#g)' style='mix-blend-mode:screen'/%3E%3Crect x='16' y='16' width='68' height='68' rx='8' fill='#808000' filter='url(#b)'/%3E%3C/svg%3E"
+LENS_SVG = ('<svg width="0" height="0" class="absolute" aria-hidden="true" focusable="false"><filter id="nowind-lens" x="0" y="0" width="1" height="1" '
+            'filterUnits="objectBoundingBox" primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB">'
+            f'<feImage href="{E(LENS_MAP)}" x="0" y="0" width="1" height="1" preserveAspectRatio="none" result="map"/>'
+            '<feDisplacementMap in="SourceGraphic" in2="map" scale="0.13" xChannelSelector="R" yChannelSelector="G" result="dr"/>'
+            '<feDisplacementMap in="SourceGraphic" in2="map" scale="0.1365" xChannelSelector="R" yChannelSelector="G" result="dg"/>'
+            '<feDisplacementMap in="SourceGraphic" in2="map" scale="0.143" xChannelSelector="R" yChannelSelector="G" result="db"/>'
+            '<feColorMatrix in="dr" values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" result="cr"/>'
+            '<feColorMatrix in="dg" values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0" result="cg"/>'
+            '<feColorMatrix in="db" values="0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0" result="cb"/>'
+            '<feBlend in="cr" in2="cg" mode="screen" result="rg"/><feBlend in="rg" in2="cb" mode="screen" result="rgb"/>'
+            '<feGaussianBlur in="rgb" stdDeviation="0.004"/></filter></svg>\n')
 
 CUR_SEC = ' aria-current="true"'
 CUR_PAGE = ' aria-current="page"'
@@ -113,7 +131,8 @@ def top(path):
   <div class="flex items-center gap-lg h-header px-grid">
     <a href="{rel("index.html", path)}" class="inline-flex items-center gap-gutter-half no-underline fg-inverse"><i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-inverse-weak">__VERSION__</span></a>
     <nav aria-label="Sections" class="hidden md:flex items-center gap-lg">{secs}</nav>
-    <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center size-nested ml-auto no-underline fg-inverse-weak hover:fg-inverse transition-colors" aria-label="Nowind on GitHub"><i class="icon ph ph-github-logo"></i></a>
+    <button type="button" data-theme-toggle class="inline-flex items-center justify-center size-nested ml-auto rounded-nested border border-transparent bg-transparent fg-inverse-weak hover:fg-inverse cursor-pointer transition-colors" aria-label="Switch to dark mode"><i class="icon ph ph-moon"></i></button>
+    <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center size-nested no-underline fg-inverse-weak hover:fg-inverse transition-colors" aria-label="Nowind on GitHub"><i class="icon ph ph-github-logo"></i></a>
   </div>
 </header>
 <div class="flex items-center gap-xs px-grid py-2xs border-b-2 border-strong bg">
@@ -134,7 +153,7 @@ def bottom(path):
     <a href="https://github.com/kimgranlund/nowind" class="no-underline fg-weak hover:fg transition-colors">GitHub</a>
   </span>
 </footer>
-<script src="{rel("search.js", path)}" defer></script>
+{LENS_SVG}<script src="{rel("site.js", path)}" defer></script>
 """
 
 def prev_next(path):
@@ -234,7 +253,7 @@ def ul(items):
 def doc_page(current, title, article_html, toc_items=None, wide=False, sidebar_on=True):
     """Every generated page: band and section row, the twelve-column grid of blocks, previous and next, footer."""
     path = "docs/" + current
-    return (HEAD.format(title=E(title)) + top(path) +
+    return (HEAD.format(title=E(title), head_extra=HEAD_EXTRA) + top(path) +
 f"""<main id="content" class="tier-content px-grid">
   <div class="grid grid-cols-12 gap-x-grid">
         {article_html}
@@ -807,6 +826,7 @@ def main():
         fp = os.path.join(site, path)
         text = open(fp).read()
         text = re.sub(r"<!--nowind:top-->.*?<!--/nowind:top-->", lambda m: "<!--nowind:top-->\n" + top(path) + "<!--/nowind:top-->", text, flags=re.S)
+        text = re.sub(r"<!--nowind:head-->.*?<!--/nowind:head-->", lambda m: "<!--nowind:head-->\n" + HEAD_EXTRA + "<!--/nowind:head-->", text, flags=re.S)
         text = re.sub(r"<!--nowind:bottom-->.*?<!--/nowind:bottom-->", lambda m: "<!--nowind:bottom-->\n" + bottom(path) + "<!--/nowind:bottom-->", text, flags=re.S)
         text = text.replace("__VERSION__", VERSION)
         with open(fp, "w") as f:

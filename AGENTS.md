@@ -23,7 +23,7 @@ Read `README.md` for what Nowind is and how people use it. This file says how to
 | `theme/*.manifest.json`, `nowind.manifest.json` | What each token or class is, how it is derived, what to use it for | see below |
 | `classes.md` | Every class and its declarations | no, `scripts/utilities.mjs` |
 | `index.html`, `site/index.html` | The root redirects to `site/`; `site/index.html` is the GitHub Pages landing page | yes, except between the `<!--nowind:top-->` and `<!--nowind:bottom-->` markers |
-| `site/search.js` | ⌘K search over `site/search.json` | yes |
+| `site/site.js` | The one script every page loads: ⌘K search over `site/search.json`, the light/dark toggle (saved in `localStorage`, applied before paint by a head script) and lens detection (`data-lens` on the root) | yes |
 | `site/search.json` | Search index: every page, block heading, component and class | no, `python3 scripts/templates.py` |
 | `site/specimen.html` | Every token, the reset and every class, read live from the stylesheets | yes, except between the `<!--nowind:` markers, which `scripts/templates.py` stamps |
 | `site/utilities.html` | Demo page built only from classes | yes, except between the `<!--nowind:` markers, which `scripts/templates.py` stamps |

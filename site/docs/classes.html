@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Classes · Nowind</title>
 <link rel="icon" href="data:,">
+<script>try{var m=localStorage.getItem("nowind-color-mode");if(m)document.documentElement.dataset.colorMode=m}catch(e){}</script>
 <link rel="stylesheet" href="../../theme.css">
 <link rel="stylesheet" href="../../nowind.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
@@ -15,7 +16,8 @@
   <div class="flex items-center gap-lg h-header px-grid">
     <a href="../index.html" class="inline-flex items-center gap-gutter-half no-underline fg-inverse"><i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-inverse-weak">0.8.0</span></a>
     <nav aria-label="Sections" class="hidden md:flex items-center gap-lg"><a href="docs-home.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Docs</a><a href="components-index.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Components</a><a href="../specimen.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Specimen</a><a href="classes.html" aria-current="true" class="inline-flex items-center h-header border-b-2 border-accent-1 no-underline fg-inverse text-title-sm">Classes</a></nav>
-    <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center size-nested ml-auto no-underline fg-inverse-weak hover:fg-inverse transition-colors" aria-label="Nowind on GitHub"><i class="icon ph ph-github-logo"></i></a>
+    <button type="button" data-theme-toggle class="inline-flex items-center justify-center size-nested ml-auto rounded-nested border border-transparent bg-transparent fg-inverse-weak hover:fg-inverse cursor-pointer transition-colors" aria-label="Switch to dark mode"><i class="icon ph ph-moon"></i></button>
+    <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center size-nested no-underline fg-inverse-weak hover:fg-inverse transition-colors" aria-label="Nowind on GitHub"><i class="icon ph ph-github-logo"></i></a>
   </div>
 </header>
 <div class="flex items-center gap-xs px-grid py-2xs border-b-2 border-strong bg">
@@ -36,7 +38,7 @@
         <header class="col-span-12 flex flex-col gap-field pt-page pb-xl">
             <span class="text-kicker fg-weak">Reference</span>
             <h1 class="text-display-sm text-balance">Classes</h1>
-            <p class="text-body-md fg-weak max-w-measure">Regular classes name a step on a scale or a property value, as in Tailwind and Prewind: <code>p-md</code>, <code>text-lg</code>, <code>border-warning-7</code>, <code>flex</code>. 1097 of them, with what each declares, read from <code>classes.md</code>. The rest are in <a href="semantic.html">Semantic classes</a>. Colour, opacity and cursor classes also take <code>hover:</code> and the state variants; layout classes take <code>sm:</code> to <code>2xl:</code>.</p>
+            <p class="text-body-md fg-weak max-w-measure">Regular classes name a step on a scale or a property value, as in Tailwind and Prewind: <code>p-md</code>, <code>text-lg</code>, <code>border-warning-7</code>, <code>flex</code>. 1098 of them, with what each declares, read from <code>classes.md</code>. The rest are in <a href="semantic.html">Semantic classes</a>. Colour, opacity and cursor classes also take <code>hover:</code> and the state variants; layout classes take <code>sm:</code> to <code>2xl:</code>.</p>
             <span class="text-caption fg-weak">Nowind 0.8.0 · generated from classes.md</span>
           </header>
         <section id="groups" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
@@ -68,14 +70,14 @@
               <span class="text-subtitle">Typography</span><span class="text-caption fg-weak whitespace-nowrap">54</span>
             </a>
             <a href="#layout-and-misc" class="flex items-baseline justify-between gap-row p-surface border border-weak hover:border-strong hover:bg-component-weak no-underline fg transition-colors">
-              <span class="text-subtitle">Layout and misc</span><span class="text-caption fg-weak whitespace-nowrap">248</span>
+              <span class="text-subtitle">Layout and misc</span><span class="text-caption fg-weak whitespace-nowrap">249</span>
             </a>
           </nav>
           </div>
         </section>
         <div class="col-span-12 sticky top-header z-10 flex items-center gap-row py-xs bg">
           <input id="class-filter" type="search" placeholder="Filter by class or declaration" aria-label="Filter classes" class="grow min-w-0 h-control px-control rounded-control border hover:border-strong bg text-control-md transition-colors">
-          <span id="class-count" data-all="1097 classes" aria-live="polite" class="text-caption fg-weak whitespace-nowrap">1097 classes</span>
+          <span id="class-count" data-all="1098 classes" aria-live="polite" class="text-caption fg-weak whitespace-nowrap">1098 classes</span>
         </div>
         <section id="motion-anchors-and-select" data-classes class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle">Motion, anchors and select</h2><span class="text-caption fg-weak">18 classes</span></div>
@@ -991,7 +993,7 @@
           </div>
         </section>
         <section id="layout-and-misc" data-classes class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
-          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle">Layout and misc</h2><span class="text-caption fg-weak">248 classes</span></div>
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle">Layout and misc</h2><span class="text-caption fg-weak">249 classes</span></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <ul role="list" class="border border-weak">
             <li aria-hidden="true" class="hidden md:grid grid-cols-12 gap-x-grid px-sm py-xs bg-strong"><span class="md:col-span-4 text-label fg-weak">Class</span><span class="md:col-span-8 text-label fg-weak">Declarations</span></li>
@@ -1111,6 +1113,7 @@
             <li id="class-bg-repeat-x" data-row class="scroll-mt-3xl grid grid-cols-12 gap-x-grid gap-y-3xs px-sm py-xs border-t border-weak"><code class="col-span-12 md:col-span-4 break-all text-mono-sm fg">.bg-repeat-x</code><span class="col-span-12 md:col-span-8 break-words text-mono-sm fg-weak">background-repeat: repeat-x</span></li>
             <li id="class-bg-repeat-y" data-row class="scroll-mt-3xl grid grid-cols-12 gap-x-grid gap-y-3xs px-sm py-xs border-t border-weak"><code class="col-span-12 md:col-span-4 break-all text-mono-sm fg">.bg-repeat-y</code><span class="col-span-12 md:col-span-8 break-words text-mono-sm fg-weak">background-repeat: repeat-y</span></li>
             <li id="class-bg-no-repeat" data-row class="scroll-mt-3xl grid grid-cols-12 gap-x-grid gap-y-3xs px-sm py-xs border-t border-weak"><code class="col-span-12 md:col-span-4 break-all text-mono-sm fg">.bg-no-repeat</code><span class="col-span-12 md:col-span-8 break-words text-mono-sm fg-weak">background-repeat: no-repeat</span></li>
+            <li id="class-lens" data-row class="scroll-mt-3xl grid grid-cols-12 gap-x-grid gap-y-3xs px-sm py-xs border-t border-weak"><code class="col-span-12 md:col-span-4 break-all text-mono-sm fg">.lens</code><span class="col-span-12 md:col-span-8 break-words text-mono-sm fg-weak">--_lens: 1</span></li>
             <li id="class-bg-dots" data-row class="scroll-mt-3xl grid grid-cols-12 gap-x-grid gap-y-3xs px-sm py-xs border-t border-weak"><code class="col-span-12 md:col-span-4 break-all text-mono-sm fg">.bg-dots</code><span class="col-span-12 md:col-span-8 break-words text-mono-sm fg-weak">background-image: radial-gradient(circle, currentColor var(--_dot, 1.5px), transparent calc(var(--_dot, 1.5px) + 0.75px)); background-size: var(--_dots, var(--space-sm)) var(--_dots, var(--space-sm)); background-position: center</span></li>
             <li id="class-bg-dots-sm" data-row class="scroll-mt-3xl grid grid-cols-12 gap-x-grid gap-y-3xs px-sm py-xs border-t border-weak"><code class="col-span-12 md:col-span-4 break-all text-mono-sm fg">.bg-dots-sm</code><span class="col-span-12 md:col-span-8 break-words text-mono-sm fg-weak">--_dots: var(--space-xs); --_dot: 1px</span></li>
             <li id="class-bg-dots-md" data-row class="scroll-mt-3xl grid grid-cols-12 gap-x-grid gap-y-3xs px-sm py-xs border-t border-weak"><code class="col-span-12 md:col-span-4 break-all text-mono-sm fg">.bg-dots-md</code><span class="col-span-12 md:col-span-8 break-words text-mono-sm fg-weak">--_dots: var(--space-sm); --_dot: 1.5px</span></li>
@@ -1266,7 +1269,8 @@
     <a href="https://github.com/kimgranlund/nowind" class="no-underline fg-weak hover:fg transition-colors">GitHub</a>
   </span>
 </footer>
-<script src="../search.js" defer></script>
+<svg width="0" height="0" class="absolute" aria-hidden="true" focusable="false"><filter id="nowind-lens" x="0" y="0" width="1" height="1" filterUnits="objectBoundingBox" primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB"><feImage href="data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 100 100&#x27; preserveAspectRatio=&#x27;none&#x27;%3E%3Cdefs%3E%3ClinearGradient id=&#x27;r&#x27;%3E%3Cstop offset=&#x27;0&#x27; stop-color=&#x27;#f00&#x27;/%3E%3Cstop offset=&#x27;1&#x27; stop-color=&#x27;#000&#x27;/%3E%3C/linearGradient%3E%3ClinearGradient id=&#x27;g&#x27; x2=&#x27;0&#x27; y2=&#x27;1&#x27;%3E%3Cstop offset=&#x27;0&#x27; stop-color=&#x27;#0f0&#x27;/%3E%3Cstop offset=&#x27;1&#x27; stop-color=&#x27;#000&#x27;/%3E%3C/linearGradient%3E%3Cfilter id=&#x27;b&#x27; x=&#x27;-20%&#x27; y=&#x27;-20%&#x27; width=&#x27;140%&#x27; height=&#x27;140%&#x27;%3E%3CfeGaussianBlur stdDeviation=&#x27;7&#x27;/%3E%3C/filter%3E%3C/defs%3E%3Crect width=&#x27;100&#x27; height=&#x27;100&#x27; fill=&#x27;url(#r)&#x27;/%3E%3Crect width=&#x27;100&#x27; height=&#x27;100&#x27; fill=&#x27;url(#g)&#x27; style=&#x27;mix-blend-mode:screen&#x27;/%3E%3Crect x=&#x27;16&#x27; y=&#x27;16&#x27; width=&#x27;68&#x27; height=&#x27;68&#x27; rx=&#x27;8&#x27; fill=&#x27;#808000&#x27; filter=&#x27;url(#b)&#x27;/%3E%3C/svg%3E" x="0" y="0" width="1" height="1" preserveAspectRatio="none" result="map"/><feDisplacementMap in="SourceGraphic" in2="map" scale="0.13" xChannelSelector="R" yChannelSelector="G" result="dr"/><feDisplacementMap in="SourceGraphic" in2="map" scale="0.1365" xChannelSelector="R" yChannelSelector="G" result="dg"/><feDisplacementMap in="SourceGraphic" in2="map" scale="0.143" xChannelSelector="R" yChannelSelector="G" result="db"/><feColorMatrix in="dr" values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" result="cr"/><feColorMatrix in="dg" values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0" result="cg"/><feColorMatrix in="db" values="0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0" result="cb"/><feBlend in="cr" in2="cg" mode="screen" result="rg"/><feBlend in="rg" in2="cb" mode="screen" result="rgb"/><feGaussianBlur in="rgb" stdDeviation="0.004"/></filter></svg>
+<script src="../site.js" defer></script>
 <script>
 {
   const input = document.getElementById("class-filter"), count = document.getElementById("class-count");
