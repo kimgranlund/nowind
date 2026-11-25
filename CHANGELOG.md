@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- **Fonts:** `theme.css` and the bundle load Inter, Inter Tight and IBM Plex Mono from Google Fonts. `--font-heading` is Inter Tight and `--font-mono` IBM Plex Mono.
+- **Dev server:** `scripts/serve.mjs` serves previews with caching off.
+
 ## 0.2.0 (2026-11-25)
 
 - **Inverse colors:** `--bg-inverse`, `--fg-inverse`, `--fg-inverse-weak` and their classes, for toasts and tooltips.

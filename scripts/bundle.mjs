@@ -11,12 +11,15 @@ const dist = join(root, "dist");
 
 const stripComments = (css) => css.replace(/\/\*[\s\S]*?\*\//g, "");
 
+// Remote imports (the web fonts) stay as @import and move to the top, where CSS requires them.
+const remote = new Set();
+
 function inline(file, seen = new Set()) {
   if (seen.has(file)) return "";
   seen.add(file);
   const css = stripComments(readFileSync(file, "utf8"));
   return css.replace(/@import\s+(?:url\()?["']([^"']+)["']\)?\s*;/g, (_, href) => {
-    if (/^(https?:)?\/\//.test(href)) throw new Error(`Remote @import in ${relative(root, file)}: ${href}`);
+    if (/^(https?:)?\/\//.test(href)) { remote.add(href); return ""; }
     return inline(join(dirname(file), href), seen);
   });
 }
@@ -29,10 +32,11 @@ const order = utilities.match(/@layer\s+[\w\s,-]+;/);
 if (!order) throw new Error("nowind.css has no @layer order statement");
 utilities = utilities.replace(order[0], "");
 
-if (/@import/.test(theme + utilities)) throw new Error("An @import was left unresolved");
+if (/@import/.test(theme + utilities)) throw new Error("A local @import was left unresolved");
 
 const tidy = (css) => css.replace(/[ \t]+$/gm, "").replace(/\n{3,}/g, "\n\n").trim();
-const bundle = `${order[0]}\n\n${tidy(theme)}\n\n${tidy(utilities)}\n`;
+const imports = [...remote].map((u) => `@import url("${u}");`).join("\n");
+const bundle = `${order[0]}\n${imports}\n\n${tidy(theme)}\n\n${tidy(utilities)}\n`;
 
 function minify(css) {
   return css

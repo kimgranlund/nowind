@@ -52,7 +52,7 @@ Or import the source files from one stylesheet of your own:
 }
 ```
 
-Nowind sets no font files. `--font-body` asks for Inter and falls back to the system UI face; link a font yourself if you want it.
+Fonts load with the theme: `theme.css` (and the bundle) imports Inter, Inter Tight and IBM Plex Mono from Google Fonts. `--font-body` is Inter, `--font-heading` is Inter Tight and `--font-mono` is IBM Plex Mono, each with a system fallback while they load. To use other faces, override those three tokens in `@layer styles`; the Google request still happens unless you remove the import from `theme.css` and rebuild.
 
 ## Using it
 

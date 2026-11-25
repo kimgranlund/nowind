@@ -136,15 +136,15 @@
   "faces": [
     {
       "token": "--font-body",
-      "use": "Body face. Nothing loads Inter; a page links it or falls back."
+      "use": "Body face: Inter, loaded from Google Fonts by theme.css (variable, 400–700, with optical sizes and italics)."
     },
     {
       "token": "--font-heading",
-      "use": "Headings. Affine sets Inter Tight here."
+      "use": "Headings and display: Inter Tight, 500–800, loaded by theme.css."
     },
     {
       "token": "--font-mono",
-      "use": "Kicker and numbers. Affine sets IBM Plex Mono here."
+      "use": "Kicker, code and figures: IBM Plex Mono 400 and 500, loaded by theme.css."
     }
   ],
   "weights": [

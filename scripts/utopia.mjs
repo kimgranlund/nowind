@@ -57,8 +57,8 @@ const header = "";
 
 const typeCss = `${header}:root {
   --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
-  --font-heading: var(--font-body);
-  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-heading: "Inter Tight", "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
   --font-weight-normal: 400;
   --font-weight-medium: 500;
@@ -121,9 +121,9 @@ const typeManifest = {
     use: "Set together: font-family, font-weight, letter-spacing, text-transform, font-size --kicker-{size}, color --fg-weak.",
   },
   faces: [
-    { token: "--font-body", use: "Body face. Nothing loads Inter; a page links it or falls back." },
-    { token: "--font-heading", use: "Headings. Affine sets Inter Tight here." },
-    { token: "--font-mono", use: "Kicker and numbers. Affine sets IBM Plex Mono here." },
+    { token: "--font-body", use: "Body face: Inter, loaded from Google Fonts by theme.css (variable, 400–700, with optical sizes and italics)." },
+    { token: "--font-heading", use: "Headings and display: Inter Tight, 500–800, loaded by theme.css." },
+    { token: "--font-mono", use: "Kicker, code and figures: IBM Plex Mono 400 and 500, loaded by theme.css." },
   ],
   weights: ["--font-weight-normal: 400", "--font-weight-medium: 500", "--font-weight-semibold: 600", "--font-weight-bold: 700"],
   tracking: ["--tracking-tight: -0.01em", "--tracking-normal: 0em", "--tracking-wide: 0.025em", "--tracking-widest: 0.16em"],

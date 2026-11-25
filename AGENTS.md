@@ -50,6 +50,7 @@ Then check the result in `specimen.html` through the dev server (`node scripts/s
 
 - **No comments in the CSS.** Notes, reasons and formulas go in the manifests. (checked)
 - **Every theme value uses a token.** Utilities read tokens; tokens read other tokens or a palette.
+- **Fonts load in `theme.css`.** Its first line imports Inter, Inter Tight and IBM Plex Mono from Google Fonts; `scripts/bundle.mjs` keeps that remote import and moves it to the top of the bundle. The stacks live in the `scripts/utopia.mjs` template.
 - **Colours are `light-dark()`.** Never add a separate dark theme or a `dark:` variant.
 - **No `color-mix()`.** Use the alpha steps (`--{palette}-a{1..12}`) for transparency. (checked)
 - **Text on a solid uses `--on-solid-{palette}`.** The library's `solidLabel` is the starting point, but Nowind overrides it where the owner chose: the accents and every status (danger, warning, success, info) take light text in both modes; only neutral follows the library (light, then dark). Each palette's choice is in `palettes[].contrast` in the colors manifest.

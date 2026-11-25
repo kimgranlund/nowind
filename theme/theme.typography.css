@@ -1,7 +1,7 @@
 :root {
   --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
-  --font-heading: var(--font-body);
-  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-heading: "Inter Tight", "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
   --font-weight-normal: 400;
   --font-weight-medium: 500;
