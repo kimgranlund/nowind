@@ -191,7 +191,7 @@ add("anchor-start", `position-area: inline-start span-block-end; ${ANCHOR}`);
 add("anchor-center", `position-area: block-end center; ${ANCHOR}`);
 
 // The customizable select (appearance: base-select): the picker takes the theme's overlay look.
-add("select-base", "appearance: base-select");
+add("select-base", "appearance: base-select; align-items: center; padding-block: 0");
 for (const d of ["fade", "snappy", "smooth", "bouncy"]) add(`duration-${d}`, `--_duration: var(--duration-${d}); transition-duration: var(--duration-${d})`);
 for (const e of ["smooth", "snappy", "bouncy", "standard", "out", "in"]) add(`ease-${e}`, `--_ease: var(--ease-${e}); transition-timing-function: var(--ease-${e})`);
 for (const lv of ["xs", "sm"]) add(`inset-shadow-${lv}`, `--_inset-shadow: var(--inset-shadow-${lv}); ${SHADOW_BOX}`);
@@ -536,7 +536,8 @@ out.push("  @keyframes nw-spin { to { rotate: 360deg; } }");
 out.push("  @keyframes nw-pulse { 50% { opacity: 0.5; } }");
 out.push("  .select-base::picker(select) { appearance: base-select; margin-block: var(--space-3xs); padding: var(--space-3xs); border: var(--border-width) solid var(--border-weak); border-radius: var(--radius-surface); background: var(--bg); box-shadow: var(--shadow-lg); }");
 out.push("  .select-base option { padding: var(--margin) var(--text-edge); border-radius: var(--radius-nested); }");
-out.push("  .select-base option:hover, .select-base option:focus-visible { background: var(--component-weak); }");
+out.push("  .select-base option:hover, .select-base option:focus-visible { background: var(--component-weak); outline: none; }");
+out.push("  .select-base::picker-icon { color: var(--fg-weak); }");
 out.push("  .select-base option:checked { background: var(--component-accent-1-weak); color: var(--fg-accent-1-weak); }");
 out.push("  .h-nested > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }");
 for (const [cls, pad] of [["px-control", "--control-icon-padding"], ["px-nested", "--nested-icon-padding"]]) {
@@ -691,7 +692,7 @@ const manifest = {
     tiers: "tier-product (1×), tier-content (font +2px, spacing 1.5×), tier-brand (font +4px, spacing 2×). Each is a scope: --F and everything derived recompute inside it.",
     animation: "animate-spin, animate-pulse, animate-none (cut by the reset under reduced motion).",
     anchor: "anchor-bottom, -top, -start, -end, -center: place a popover against its invoker with CSS anchor positioning, flipping at the screen edge.",
-    select: "select-base: the customizable select (appearance: base-select), its picker and options in the theme.",
+    select: "select-base: the customizable select (appearance: base-select), its picker and options in the theme. The value is centred in the field; the highlighted option shows by its background, not a focus ring.",
     motion: "transition, transition-colors, -opacity, -shadow, -transform, -none (state-change length and easing by default); duration-fade, -snappy, -smooth, -bouncy; ease-smooth, -snappy, -bouncy (Massimo springs as linear()), ease-standard, -out, -in.",
     marks: "The reset draws checkboxes, radios, switches (<input type=checkbox role=switch>) and sliders at Affine's mark size (between F and the slot), filled with accent-1 when checked; mark-sm and mark-lg pick another size.",
     icons: "icon (an S-square box, glyph --icon-md), icon-sm, icon-md, icon-lg. Glyphs: Phosphor web font (<i class=\"icon ph ph-floppy-disk\">; ph-bold at sm, ph-light at lg) or an inline <svg> inside .icon.",

@@ -276,7 +276,7 @@
 [".anchor-end", "docs/classes.html#class-anchor-end", "Class", "position-area: inline-end span-block-end; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: var(--space-3xs)"],
 [".anchor-start", "docs/classes.html#class-anchor-start", "Class", "position-area: inline-start span-block-end; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: var(--space-3xs)"],
 [".anchor-center", "docs/classes.html#class-anchor-center", "Class", "position-area: block-end center; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: var(--space-3xs)"],
-[".select-base", "docs/classes.html#class-select-base", "Class", "appearance: base-select"],
+[".select-base", "docs/classes.html#class-select-base", "Class", "appearance: base-select; align-items: center; padding-block: 0"],
 [".duration-fade", "docs/semantic.html#class-duration-fade", "Class", "--_duration: var(--duration-fade); transition-duration: var(--duration-fade)"],
 [".duration-snappy", "docs/semantic.html#class-duration-snappy", "Class", "--_duration: var(--duration-snappy); transition-duration: var(--duration-snappy)"],
 [".duration-smooth", "docs/semantic.html#class-duration-smooth", "Class", "--_duration: var(--duration-smooth); transition-duration: var(--duration-smooth)"],

@@ -98,7 +98,7 @@ Variants: `hover:` on the 162 role-colour, opacity and cursor classes (inside `@
 | `.anchor-end` | `position-area: inline-end span-block-end; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: var(--space-3xs)` |
 | `.anchor-start` | `position-area: inline-start span-block-end; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: var(--space-3xs)` |
 | `.anchor-center` | `position-area: block-end center; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: var(--space-3xs)` |
-| `.select-base` | `appearance: base-select` |
+| `.select-base` | `appearance: base-select; align-items: center; padding-block: 0` |
 | `.duration-fade` | `--_duration: var(--duration-fade); transition-duration: var(--duration-fade)` |
 | `.duration-snappy` | `--_duration: var(--duration-snappy); transition-duration: var(--duration-snappy)` |
 | `.duration-smooth` | `--_duration: var(--duration-smooth); transition-duration: var(--duration-smooth)` |

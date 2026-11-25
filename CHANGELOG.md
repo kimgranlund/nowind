@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Select:** `select-base` centres the chosen value in the field, the highlighted option shows by its background with no focus ring, and the picker arrow takes the weak text colour.
 - **Focus:** text fields (text-like inputs, textarea, select) no longer get the focus ring; their border turns accent instead. Buttons, links and checkable controls keep the ring, and in forced colours a focused field gets a Highlight outline.
 - **One page template:** every page (docs, component pages, the showcase, the specimen, the utilities demo, the landing page) shares one frame after Vignelli's Unigrid: an inverse band with the four sections, a bar with a site-map menu (every section and page, no script), a search field and previous and next, and blocks with their label in three of twelve columns. The docs sidebar, phone menu and on-page contents are gone.
 - **Search:** press ⌘K, Ctrl+K or `/` on any page to search every page, block heading, component and class. `site/search.json` is written with the pages.
