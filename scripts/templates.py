@@ -704,7 +704,14 @@ def classes_page():
           <input id="class-filter" type="search" placeholder="Filter by class or declaration" aria-label="Filter classes" class="grow min-w-0 h-control px-control rounded-sm border border-border hover:border-border-strong bg-bg text-control-md transition-colors">
           <span id="class-count" data-all="{total} classes" aria-live="polite" class="text-caption fg-weak whitespace-nowrap">{total} classes</span>
         </div>"""
-    art = "\n        ".join([head, search] + sections)
+    cards = "\n".join(
+        f"""            <a href="#{sid}" class="flex items-baseline justify-between gap-row p-surface border border-border-weak hover:border-border-strong hover:bg-component-weak no-underline fg transition-colors">
+              <span class="text-subtitle">{title}</span><span class="text-caption fg-weak whitespace-nowrap">{len(rows)}</span>
+            </a>""" for (sid, title), (_, rows) in zip(toc_items, cats))
+    groups = f"""<nav aria-label="Class groups" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-grid">
+{cards}
+          </nav>"""
+    art = "\n        ".join([head, groups, search] + sections)
     return doc_page("classes.html", "Classes", art, toc_items, wide=True).replace("</body>", CLASS_FILTER + "</body>", 1)
 
 
