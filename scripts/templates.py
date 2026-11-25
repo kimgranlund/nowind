@@ -261,7 +261,7 @@ def block(sid, label, *parts, attrs=""):
         </section>"""
 
 def section(sid, title, *parts):
-    return block(sid, f'<h2 class="text-subtitle text-balance">{title}</h2>', *parts)
+    return block(sid, f'<h2 class="text-heading-md text-balance">{title}</h2>', *parts)
 
 def subhead(t):
     return f'<h3 class="text-subtitle">{t}</h3>'

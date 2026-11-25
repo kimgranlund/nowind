@@ -57,7 +57,7 @@
             <p class="text-body-md fg-weak max-w-measure">A variant applies a class only in a state: <code>hover:bg-neutral-4</code>, <code>selected:border-accent-1-8</code>, <code>md:flex</code>. Each variant covers a fixed set of classes, mostly colours, so the stylesheet stays one file. The markup drives the look: set the ARIA attribute and the class follows.</p>
           </header>
         <section id="states" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
-          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">State variants</h2></div>
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">State variants</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <div class="border border-weak">
             <table class="w-full text-body-md">
@@ -88,7 +88,7 @@
           </div>
         </section>
         <section id="groups" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
-          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Group variants</h2></div>
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Group variants</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-measure">Put <code>group</code> on a parent; a child reacts to its state. These cover opacity, visibility, rotation and the text roles.</p>
           <div class="border border-weak">
@@ -104,13 +104,13 @@
           </div>
         </section>
         <section id="breakpoints" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
-          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Breakpoints</h2></div>
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Breakpoints</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-measure">sm:, md:, lg:, xl:, 2xl: (read from the --breakpoint-* tokens) apply to layout: display, grid columns and spans, flex direction, wrap, basis, justify, align, text alignment, widths, heights, position, top, overflow, padding and gaps. Margins, colours and type have no breakpoint variants.</p>
           </div>
         </section>
         <section id="containers" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
-          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Container queries</h2></div>
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Container queries</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-measure">@sm:, @md:, @lg:, @xl:, @2xl: (384, 448, 512, 576 and 672px, read from the --container-* tokens) apply the same layout classes when the nearest ancestor with @container (container-type: inline-size) is at least that wide, so a component lays itself out by its own width rather than the viewport&#x27;s.</p>
           <figure class="flex flex-col min-w-0 border border-weak bg-strong">
@@ -127,7 +127,7 @@
           </div>
         </section>
         <section id="layer" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
-          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">State layer</h2></div>
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">State layer</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-measure">state: a state layer. An ::after wash of currentColor under the content, at --state-hover (0.08), --state-focus (0.1), --state-selected (0.12, also pressed, expanded, current and a checked child) and --state-active (0.16); none when disabled. One class covers every state in any palette, in place of a hover: and active: class per step; the element keeps its own radius.</p>
           <figure class="flex flex-col min-w-0 border border-weak bg-strong">
@@ -140,14 +140,14 @@
           </div>
         </section>
         <section id="motion" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
-          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Transitions and focus</h2></div>
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Transitions and focus</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-measure">Every interactive element (links, buttons, summaries, fields, labels, and the button, tab, option, menuitem and switch roles) transitions its colours, opacity, shadow and transforms by default, at the motion duration and easing. Reduced motion cuts it. Anything else that changes with state names <code>transition</code>.</p>
           <p class="text-body-md max-w-measure">Focus: buttons, links and checkable controls get a 2px accent ring on <code>:focus-visible</code>. Text fields get no ring; their border turns accent, and a field box shows its input's focus with <code>focus-within:</code>.</p>
           </div>
         </section>
         <section id="indicators" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
-          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Indicators</h2></div>
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Indicators</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-measure">An indicator follows the state it shows. A caret turns over when its disclosure or menu opens: put <code>group</code> on the <code>details</code> or on the wrapper holding the button and its popover.</p>
           <figure class="flex flex-col min-w-0 border border-weak bg-strong">

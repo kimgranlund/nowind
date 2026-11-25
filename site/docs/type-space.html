@@ -57,7 +57,7 @@
             <p class="text-body-md fg-weak max-w-measure">One fluid scale for each: sizes grow with the viewport between a phone and a wide screen, and every space step is a multiple of the base size, F. Sizes are the primitives; roles name a size, weight and face for a use.</p>
           </header>
         <section id="sizes" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
-          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Type sizes</h2></div>
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Type sizes</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-measure">Each <code>text-*</code> class sets the size and its line height, as Tailwind v4 does. Sizes are measured at the smallest and largest viewport.</p>
           <div class="border border-weak">
@@ -80,7 +80,7 @@
           </div>
         </section>
         <section id="contract" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
-          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Where each size goes</h2></div>
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Where each size goes</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-measure">Which size each kind of text in an example takes. Sizes follow from what an element is, not from where it sits. the examples lint (scripts/templates.py) will classify each element by the &#x27;identify&#x27; rule and check its size against this table; a rendered pass will check rows, hierarchy and icon pairing. The examples lint enforces it, and <code>?audit=type</code> on any page checks the rendered rules below.</p>
           <div class="border border-weak">
@@ -106,7 +106,7 @@
           </div>
         </section>
         <section id="roles" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
-          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Type roles</h2></div>
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Type roles</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-measure">29 roles, each a size with its weight, face and leading, for a use. A role is semantic; in examples, write the size and weight instead.</p>
           <div class="border border-weak">
@@ -148,7 +148,7 @@
           </div>
         </section>
         <section id="faces" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
-          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Faces</h2></div>
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Faces</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <ul class="flex flex-col gap-3xs ps-md list-disc text-body-md max-w-measure">
             <li><code class="whitespace-nowrap">--font-body</code>: Body face: Inter, loaded from Google Fonts by theme.css (variable, 400–700, with optical sizes and italics).</li>
@@ -159,7 +159,7 @@
           </div>
         </section>
         <section id="space" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
-          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Space</h2></div>
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Space</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-measure">Space steps are a multiple of F, the base size: fluid at the page's root, and 1em inside a <code>.scope</code> or a tier, so a region with its own font size spaces itself to match. Every padding, margin and gap class takes these steps.</p>
           <div class="border border-weak">

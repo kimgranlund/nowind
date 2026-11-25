@@ -57,7 +57,7 @@
             <p class="text-body-md fg-weak max-w-measure">Two layers: palettes of twelve steps, and roles that name what a step is for. Use roles where the meaning matters (a page background, a hover fill, an error border) and steps where you want a specific value. Every value is a <code>light-dark()</code> pair, so both modes come from one class.</p>
           </header>
         <section id="palettes" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
-          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Palettes</h2></div>
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Palettes</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-measure">9 palettes, each a radix-hct family of twelve steps (1–2 backgrounds, 3–5 component fills, 6–8 borders, 9–10 solids, 11–12 text) and twelve alpha steps for transparency.</p>
           <div class="flex flex-col gap-3xs">
@@ -108,7 +108,7 @@
           </div>
         </section>
         <section id="roles" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
-          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Roles</h2></div>
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Roles</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-measure">A role is a step chosen for a use. Moving a role moves every part that uses it, and nothing that names a step.</p>
           <div class="border border-weak">
@@ -136,13 +136,13 @@
           </div>
         </section>
         <section id="classes" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
-          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Class names</h2></div>
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Class names</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-measure">A colour class is the property prefix plus the token name, minus the role group when it matches the prefix (fg-weak, bg-accent-1, border-weak; bg-component-accent-1 keeps its group). --border is border-default, because border is the width class; the reset draws every border in --border. Each property takes only its own roles: fg- with fg-*, on-solid-* and each palette&#x27;s contrast (fg-accent-1-contrast, the primitive for text on a solid); bg- with bg-*, component-*, solid-*, surface, indicator and track; border- with border-*. Raw palette steps (fg-accent-1-9, bg-accent-1-9, border-accent-1-9) work with all three; alpha steps (neutral-a4) with bg- only. No outline colour classes: the reset sets the focus ring.</p>
           </div>
         </section>
         <section id="solid" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
-          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Text on a solid</h2></div>
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Text on a solid</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-measure">Text on a step-9 fill takes that palette's contrast colour: <code>fg-accent-1-contrast</code> in primitives, <code>fg-on-solid-accent-1</code> as a role. The accents and every status take light text in both modes; neutral is light, then dark.</p>
           <figure class="flex flex-col min-w-0 border border-weak bg-strong">
@@ -154,7 +154,7 @@
           </div>
         </section>
         <section id="modes" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
-          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Light and dark</h2></div>
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Light and dark</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-measure">Colours follow the reader's system setting. <code>.light</code> and <code>.dark</code> (or <code>data-color-mode</code>) force a scheme on any subtree. The toggle in this site's band sets <code>data-color-mode</code> on the root and remembers it; a script in the head applies it before the page paints. There is no <code>dark:</code> variant.</p>
           </div>
