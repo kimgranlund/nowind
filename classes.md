@@ -55,9 +55,9 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 | `.gap-page` | `gap: var(--page-margin)` |
 | `.mt-section` | `margin-top: var(--section-gap)` |
 | `.mb-section` | `margin-bottom: var(--section-gap)` |
-| `.tier-product` | `--tier: 1; --tier-text: 0px` |
-| `.tier-content` | `--tier: var(--tier-content); --tier-text: var(--tier-content-text); font-size: calc(1em + var(--tier-content-text))` |
-| `.tier-brand` | `--tier: var(--tier-brand); --tier-text: var(--tier-brand-text); font-size: calc(1em + var(--tier-brand-text))` |
+| `.tier-product` | `--tier: 1; --tier-text: 0px; font-size: var(--text-base)` |
+| `.tier-content` | `--tier: var(--tier-content); --tier-text: var(--tier-content-text); font-size: var(--text-base)` |
+| `.tier-brand` | `--tier: var(--tier-brand); --tier-text: var(--tier-brand-text); font-size: var(--text-base)` |
 
 ## Materials
 

@@ -134,7 +134,8 @@ def top(path):
   <div class="flex items-center gap-lg h-header px-grid">
     <a href="{rel("index.html", path)}" class="inline-flex items-center gap-gutter-half no-underline fg-inverse"><i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-inverse-weak">__VERSION__</span></a>
     <nav aria-label="Sections" class="hidden md:flex items-center gap-lg">{secs}</nav>
-    <button type="button" data-size-toggle class="inline-flex items-center justify-center size-nested ms-auto rounded-xs border border-transparent bg-transparent fg-inverse-weak hover:fg-inverse text-xs font-mono tabular-nums cursor-pointer transition-colors" aria-label="Base font size"><span>16</span></button>
+    <button type="button" data-tier-toggle class="inline-flex items-center justify-center h-nested px-nested ms-auto rounded-xs border border-transparent bg-transparent fg-inverse-weak hover:fg-inverse text-xs font-mono uppercase tracking-widest cursor-pointer transition-colors" aria-label="Tier"><span>Auto</span></button>
+    <button type="button" data-size-toggle class="inline-flex items-center justify-center size-nested rounded-xs border border-transparent bg-transparent fg-inverse-weak hover:fg-inverse text-xs font-mono tabular-nums cursor-pointer transition-colors" aria-label="Base font size"><span>16</span></button>
     <button type="button" data-theme-toggle class="inline-flex items-center justify-center size-nested rounded-xs border border-transparent bg-transparent fg-inverse-weak hover:fg-inverse cursor-pointer transition-colors" aria-label="Switch to dark mode"><i class="icon ph ph-moon"></i></button>
     <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center size-nested no-underline fg-inverse-weak hover:fg-inverse transition-colors" aria-label="Nowind on GitHub"><i class="icon ph ph-github-logo"></i></a>
   </div>

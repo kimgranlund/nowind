@@ -319,9 +319,9 @@ add("max-h-below-header", "max-height: calc(100dvh - var(--shell-header-height))
 add("max-w-measure", "max-width: var(--shell-measure)");
 
 // Tiers (after Affine's space tiers): each is a scope with its own font size and spacing multiplier.
-add("tier-product", "--tier: 1; --tier-text: 0px");
-add("tier-content", "--tier: var(--tier-content); --tier-text: var(--tier-content-text); font-size: calc(1em + var(--tier-content-text))");
-add("tier-brand", "--tier: var(--tier-brand); --tier-text: var(--tier-brand-text); font-size: calc(1em + var(--tier-brand-text))");
+add("tier-product", "--tier: 1; --tier-text: 0px; font-size: var(--text-base)");
+add("tier-content", "--tier: var(--tier-content); --tier-text: var(--tier-content-text); font-size: var(--text-base)");
+add("tier-brand", "--tier: var(--tier-brand); --tier-text: var(--tier-brand-text); font-size: var(--text-base)");
 add("gap-gutter-half", "gap: calc(var(--gutter) / 2)");
 add("icon", "display: inline-flex; align-items: center; justify-content: center; flex: none; width: var(--icon-box); height: var(--icon-box); font-size: var(--icon-md); line-height: 1");
 add("caret", "font-size: var(--icon-sm); --_caret: calc(var(--icon-sm) * 0.4); --_caret-stroke: max(1.5px, calc(var(--icon-sm) * 0.08))");
@@ -775,7 +775,7 @@ const manifest = {
     levels: "p-surface, p-dialog (each minus the border), p-region, p-page, with px- and py- versions; gap-field, gap-row, gap-group, gap-section, gap-page; mt-section, mb-section. After Affine's container levels.",
     materials: "material-flat, -physical, -frosted, -glass, -outline set a region's material (nearest wins, by @scope); relief-raised, -raised-solid, -recessed, -field, -etched, -ground, -overlay say what a part is. After Massimo.",
     grid: "gap-grid, gap-x-grid (2M), p-grid-inset (M), px-grid (slot), px-grid-compact; shell: w-sidebar (16F + 16), w-rail, h-header, min-h-header, top-header (a sticky offset under the header), scroll-pt-header (on <html>, so in-page links land below a sticky header), h-below-header, max-h-below-header, max-w-measure (44F). After Affine.",
-    tiers: "tier-product (1×), tier-content (font +2px, spacing 1.5×), tier-brand (font +4px, spacing 2×). Each is a scope: --F and everything derived recompute inside it.",
+    tiers: "tier-product (1×), tier-content (font +2px, spacing 1.5×), tier-brand (font +4px, spacing 2×). Each is a scope: it sets its font size to the base plus its own step (var(--text-base)), never to what it inherits, so a tier inside another tier replaces it rather than adding to it; --F and everything derived recompute inside it.",
     animation: "animate-spin, animate-pulse, animate-none (cut by the reset under reduced motion).",
     anchor: "anchor-bottom, -top, -start, -end, -center: place a popover against its invoker with CSS anchor positioning, flipping at the screen edge.",
     select: "select-base: the customizable select (appearance: base-select), its picker and options in the theme. The value is centred in the field and never wraps; a <button> holding <selectedcontent class=\"block truncate\"> lets a long value end in an ellipsis before the caret, which is drawn small and sits at the end. The highlighted option shows by its background, not a focus ring.",

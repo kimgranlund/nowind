@@ -3471,9 +3471,9 @@
   .h-below-header { height: calc(100dvh - var(--shell-header-height)); }
   .max-h-below-header { max-height: calc(100dvh - var(--shell-header-height)); }
   .max-w-measure { max-width: var(--shell-measure); }
-  .tier-product { --tier: 1; --tier-text: 0px; }
-  .tier-content { --tier: var(--tier-content); --tier-text: var(--tier-content-text); font-size: calc(1em + var(--tier-content-text)); }
-  .tier-brand { --tier: var(--tier-brand); --tier-text: var(--tier-brand-text); font-size: calc(1em + var(--tier-brand-text)); }
+  .tier-product { --tier: 1; --tier-text: 0px; font-size: var(--text-base); }
+  .tier-content { --tier: var(--tier-content); --tier-text: var(--tier-content-text); font-size: var(--text-base); }
+  .tier-brand { --tier: var(--tier-brand); --tier-text: var(--tier-brand-text); font-size: var(--text-base); }
   .gap-gutter-half { gap: calc(var(--gutter) / 2); }
   .icon { display: inline-flex; align-items: center; justify-content: center; flex: none; width: var(--icon-box); height: var(--icon-box); font-size: var(--icon-md); line-height: 1; }
   .caret { font-size: var(--icon-sm); --_caret: calc(var(--icon-sm) * 0.4); --_caret-stroke: max(1.5px, calc(var(--icon-sm) * 0.08)); }

@@ -215,3 +215,31 @@ document.querySelectorAll("[data-glass-slider]").forEach((box) => {
   }));
   show();
 })();
+
+// Tier: the band's tier button cycles Auto (each region's own tier), product, content and brand, and remembers it.
+// It swaps the tier class on the main region and every example frame; the tiers demo keeps its own three.
+(() => {
+  const TIERS = ["auto", "product", "content", "brand"], KEY = "nowind-tier";
+  const targets = [...document.querySelectorAll("#content, .tier-product, .tier-content, .tier-brand")].filter((e) => !e.closest("[data-semantic-demo]"));
+  targets.forEach((e) => { e.dataset.tierDefault = (e.className.match(/\btier-(product|content|brand)\b/) || [, ""])[1]; });
+  let tier = "auto";
+  try { tier = localStorage.getItem(KEY) || "auto"; } catch {}
+  const apply = () => {
+    targets.forEach((e) => {
+      e.classList.remove("tier-product", "tier-content", "tier-brand");
+      const t = tier === "auto" ? e.dataset.tierDefault : tier;
+      if (t) e.classList.add(`tier-${t}`);
+    });
+    document.querySelectorAll("[data-tier-toggle]").forEach((b) => {
+      const next = TIERS[(TIERS.indexOf(tier) + 1) % TIERS.length];
+      b.querySelector("span").textContent = tier;
+      b.setAttribute("aria-label", `Tier: ${tier}; switch to ${next}`);
+    });
+  };
+  document.querySelectorAll("[data-tier-toggle]").forEach((b) => b.addEventListener("click", () => {
+    tier = TIERS[(TIERS.indexOf(tier) + 1) % TIERS.length];
+    try { localStorage.setItem(KEY, tier); } catch {}
+    apply();
+  }));
+  apply();
+})();
