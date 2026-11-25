@@ -155,6 +155,18 @@ const SHADOW_BOX = "box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 
 for (const lv of ["xs", "sm", "md", "lg", "xl"]) add(`shadow-${lv}`, `--_shadow: var(--shadow-${lv}); ${SHADOW_BOX}`);
 add("shadow", `--_shadow: var(--shadow-sm); ${SHADOW_BOX}`);
 add("shadow-none", `--_shadow: 0 0 #0000; ${SHADOW_BOX}`);
+
+// Motion (after Massimo's springs and Affine's single state change). The transition classes animate on the state
+// change length and easing; duration-* and ease-* swap in a spring or curve.
+const T = "transition-duration: var(--_duration, var(--motion-duration)); transition-timing-function: var(--_ease, var(--motion-easing))";
+add("transition", `transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, translate, scale, rotate; ${T}`);
+add("transition-colors", `transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke; ${T}`);
+add("transition-opacity", `transition-property: opacity; ${T}`);
+add("transition-shadow", `transition-property: box-shadow; ${T}`);
+add("transition-transform", `transition-property: transform, translate, scale, rotate; ${T}`);
+add("transition-none", "transition-property: none");
+for (const d of ["fade", "snappy", "smooth", "bouncy"]) add(`duration-${d}`, `--_duration: var(--duration-${d}); transition-duration: var(--duration-${d})`);
+for (const e of ["smooth", "snappy", "bouncy", "standard", "out", "in"]) add(`ease-${e}`, `--_ease: var(--ease-${e}); transition-timing-function: var(--ease-${e})`);
 for (const lv of ["xs", "sm"]) add(`inset-shadow-${lv}`, `--_inset-shadow: var(--inset-shadow-${lv}); ${SHADOW_BOX}`);
 add("inset-shadow-none", `--_inset-shadow: 0 0 #0000; ${SHADOW_BOX}`);
 
@@ -417,6 +429,7 @@ const manifest = {
     controls: "h-control, h-nested (an .icon inside it shrinks by the two borders so it fits), size-control, size-nested, min-w-control, min-w-nested, px-control and px-nested (padding steps in by one margin on a side whose first or last child is .icon; wrap the label in a <span>), gap-gutter, gap-gutter-half",
     levels: "p-surface, p-dialog (each minus the border), p-region, p-page, with px- and py- versions; gap-field, gap-row, gap-group, gap-section, gap-page; mt-section, mb-section. After Affine's container levels.",
     tiers: "tier-product (1×), tier-content (font +2px, spacing 1.5×), tier-brand (font +4px, spacing 2×). Each is a scope: --F and everything derived recompute inside it.",
+    motion: "transition, transition-colors, -opacity, -shadow, -transform, -none (state-change length and easing by default); duration-fade, -snappy, -smooth, -bouncy; ease-smooth, -snappy, -bouncy (Massimo springs as linear()), ease-standard, -out, -in.",
     icons: "icon (an S-square box, glyph --icon-md), icon-sm, icon-md, icon-lg. Glyphs: Phosphor web font (<i class=\"icon ph ph-floppy-disk\">; ph-bold at sm, ph-light at lg) or an inline <svg> inside .icon.",
     sizing: "w-, h-, min-/max- with 0, full, screen (100vw/100vh), fit; w-1/2, 1/3, 2/3, 1/4, 3/4 and fifths; h-dvh, h-svh, h-lvh and min-/max- versions; max-w-text (alias max-w-prose), max-w-form, max-w-container, h-control",
   },

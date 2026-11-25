@@ -729,7 +729,7 @@ Variants: `hover:` on the 162 role-colour, opacity and cursor classes (inside `@
 
 ## Borders, radius, shadow
 
-58 classes.
+61 classes.
 
 | Class | Declarations |
 |---|---|
@@ -786,6 +786,9 @@ Variants: `hover:` on the 162 role-colour, opacity and cursor classes (inside `@
 | `.shadow-xl` | `--_shadow: var(--shadow-xl); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000)` |
 | `.shadow` | `--_shadow: var(--shadow-sm); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000)` |
 | `.shadow-none` | `--_shadow: 0 0 #0000; box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000)` |
+| `.transition` | `transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, translate, scale, rotate; transition-duration: var(--_duration, var(--motion-duration)); transition-timing-function: var(--_ease, var(--motion-easing))` |
+| `.transition-colors` | `transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke; transition-duration: var(--_duration, var(--motion-duration)); transition-timing-function: var(--_ease, var(--motion-easing))` |
+| `.transition-shadow` | `transition-property: box-shadow; transition-duration: var(--_duration, var(--motion-duration)); transition-timing-function: var(--_ease, var(--motion-easing))` |
 | `.inset-shadow-xs` | `--_inset-shadow: var(--inset-shadow-xs); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000)` |
 | `.inset-shadow-sm` | `--_inset-shadow: var(--inset-shadow-sm); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000)` |
 | `.inset-shadow-none` | `--_inset-shadow: 0 0 #0000; box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000)` |
@@ -1129,7 +1132,7 @@ Variants: `hover:` on the 162 role-colour, opacity and cursor classes (inside `@
 
 ## Layout and misc
 
-225 classes.
+238 classes.
 
 | Class | Declarations |
 |---|---|
@@ -1251,6 +1254,19 @@ Variants: `hover:` on the 162 role-colour, opacity and cursor classes (inside `@
 | `.bg-local` | `background-attachment: local` |
 | `.bg-scroll` | `background-attachment: scroll` |
 | `.bg-clip-text` | `-webkit-background-clip: text; background-clip: text` |
+| `.transition-opacity` | `transition-property: opacity; transition-duration: var(--_duration, var(--motion-duration)); transition-timing-function: var(--_ease, var(--motion-easing))` |
+| `.transition-transform` | `transition-property: transform, translate, scale, rotate; transition-duration: var(--_duration, var(--motion-duration)); transition-timing-function: var(--_ease, var(--motion-easing))` |
+| `.transition-none` | `transition-property: none` |
+| `.duration-fade` | `--_duration: var(--duration-fade); transition-duration: var(--duration-fade)` |
+| `.duration-snappy` | `--_duration: var(--duration-snappy); transition-duration: var(--duration-snappy)` |
+| `.duration-smooth` | `--_duration: var(--duration-smooth); transition-duration: var(--duration-smooth)` |
+| `.duration-bouncy` | `--_duration: var(--duration-bouncy); transition-duration: var(--duration-bouncy)` |
+| `.ease-smooth` | `--_ease: var(--ease-smooth); transition-timing-function: var(--ease-smooth)` |
+| `.ease-snappy` | `--_ease: var(--ease-snappy); transition-timing-function: var(--ease-snappy)` |
+| `.ease-bouncy` | `--_ease: var(--ease-bouncy); transition-timing-function: var(--ease-bouncy)` |
+| `.ease-standard` | `--_ease: var(--ease-standard); transition-timing-function: var(--ease-standard)` |
+| `.ease-out` | `--_ease: var(--ease-out); transition-timing-function: var(--ease-out)` |
+| `.ease-in` | `--_ease: var(--ease-in); transition-timing-function: var(--ease-in)` |
 | `.cursor-auto` | `cursor: auto` |
 | `.cursor-default` | `cursor: default` |
 | `.cursor-pointer` | `cursor: pointer` |

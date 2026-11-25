@@ -3,6 +3,7 @@
     "allow": [
       "Bash(node scripts/utopia.mjs:*)",
       "Bash(node scripts/shadows.mjs)",
+      "Bash(node scripts/motion.mjs)",
       "Bash(node scripts/utilities.mjs)",
       "Bash(node scripts/bundle.mjs)",
       "Bash(node scripts/check.mjs:*)",
@@ -19,7 +20,9 @@
       "Edit(./theme/colors-raw/**)",
       "Edit(./theme/theme.shadows.css)",
       "Edit(./theme/theme.shadows.manifest.json)",
-      "Edit(./classes.md)"
+      "Edit(./classes.md)",
+      "Edit(./theme/theme.motion.css)",
+      "Edit(./theme/theme.motion.manifest.json)"
     ]
   }
 }

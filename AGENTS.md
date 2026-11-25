@@ -15,6 +15,7 @@ Read `README.md` for what Nowind is and how people use it. This file says how to
 | `theme/theme.geometry.css` | `--F` geometry, radius, container, breakpoints. At the root `--F` is `var(--text-base)`, so geometry is fluid; `.scope` sets `--F: 1em` | yes |
 | `theme/theme.type-roles.css` | Semantic type roles (`--heading-md`, `--heading-md--line-height`, …) | yes |
 | `theme/theme.shadows.css` | Compound shadows (casts and recesses) after Massimo | no, `scripts/shadows.mjs` |
+| `theme/theme.motion.css` | Spring easings (CSS `linear()`) and durations after Massimo | no, `scripts/motion.mjs` |
 | `theme/theme.typography.css`, `theme/theme.space.css` | Fluid Utopia scales, faces, weights, leading, tracking | no, `scripts/utopia.mjs` |
 | `nowind.css` | Reset and utility classes | no, `scripts/utilities.mjs` |
 | `dist/` | One-file bundle and its minified copy | no, `scripts/bundle.mjs` |
@@ -37,6 +38,7 @@ Run the scripts in this order, as far down as the change reaches:
 ```bash
 node scripts/utopia.mjs      # only if the type or space scale changed
 node scripts/shadows.mjs     # only if the shadow constants or levels changed
+node scripts/motion.mjs      # only if the springs or curves changed
 node scripts/utilities.mjs   # after any token change, so classes follow
 node scripts/bundle.mjs      # always last
 node scripts/check.mjs       # before every commit

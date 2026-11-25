@@ -145,6 +145,10 @@ Icons use [Phosphor](https://phosphoricons.com)'s web font. Link the weights you
 - An inline `<svg>` inside `.icon` also works; it takes the glyph size and `currentColor`.
 - Classes: `h-control`, `h-nested`, `size-control`, `size-nested`, `min-w-control`, `px-control`, `px-nested`, `gap-gutter`, `gap-gutter-half`, `icon`, `icon-sm`, `icon-md`, `icon-lg`.
 
+### Motion
+
+Hover states animate when an element has a transition class. `transition-colors` (and `transition`, `transition-opacity`, `transition-shadow`, `transition-transform`) use Affine's single state change: 160ms on Apple's standard ease. Swap in one of Massimo's springs for movement: `duration-snappy ease-snappy` for a toggle, `duration-smooth ease-smooth` for a sliding sheet, `ease-bouncy` for playful moments. The springs are real spring curves sampled into CSS `linear()`. The reset turns all motion off for people who ask for reduced motion.
+
 ### Variants
 
 - **Hover**: only on devices that can hover, as Tailwind v4. Text, background and border colors of the role tokens (not raw palette steps), opacity and cursor: `hover:bg-component`, `hover:text-fg`, `hover:border-border-strong`, `hover:opacity-100`.
@@ -217,6 +221,7 @@ theme/
   theme.colors.css             color roles, Radix companions, shadows
   theme.geometry.css           --F geometry: slot, margin, control height, radius, container
   theme.shadows.css            compound shadows after Massimo (generated)
+  theme.motion.css             spring easings and durations after Massimo (generated)
   theme.space.css              fluid --space-* (generated)
   theme.typography.css         fluid --text-*, kicker, faces, weights, leading, tracking (generated)
   theme.type-roles.css         semantic roles: --heading-md, --heading-md--line-height, …
@@ -227,6 +232,7 @@ theme/
 scripts/
   utopia.mjs                   generates the fluid type and space scales
   shadows.mjs                  generates the compound shadows
+  motion.mjs                   generates the spring easings and durations
   utilities.mjs                generates nowind.css from the theme tokens
   bundle.mjs                   inlines theme.css's imports and nowind.css into dist/
   check.mjs                    checks the rules in AGENTS.md; --self-test proves it catches breaks

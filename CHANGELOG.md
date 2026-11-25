@@ -3,6 +3,7 @@
 ## Unreleased
 
 - **Fonts:** `theme.css` and the bundle load Inter, Inter Tight and IBM Plex Mono from Google Fonts. `--font-heading` is Inter Tight and `--font-mono` IBM Plex Mono.
+- **Motion:** Massimo's springs (`--ease-smooth`, `--ease-snappy`, `--ease-bouncy`) as CSS `linear()` easings with their durations, ease curves, and `transition-*`, `duration-*`, `ease-*` classes.
 - **Dev server:** `scripts/serve.mjs` serves previews with caching off.
 
 ## 0.2.0 (2026-11-25)

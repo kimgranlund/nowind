@@ -1,0 +1,76 @@
+{
+  "file": "theme.motion.css",
+  "generated": "scripts/motion.mjs",
+  "description": "Motion after massimo-v4: Apple's spring presets sampled into CSS linear() easings over the time each takes to settle, so the curve is the spring itself, plus ease curves for color and opacity. --motion-duration and --motion-easing are Affine's single state-change pair, pointed at the fade.",
+  "source": "massimo-v4 packages/ui/src/motion.ts; affine-ui tokens/motion",
+  "method": {
+    "spring": "x(t) = 1 − e^(−ζωt)(cos ω_d t + (ζω/ω_d) sin ω_d t), ω = 2π / response, ζ = 1 − bounce (critically damped when bounce is 0). Sampled at 41 points from 0 to the settling time.",
+    "settle": "The time the spring stays within 0.1% of its target.",
+    "duration": "Each spring runs in 80% of its settling time (Massimo: buttons and menus felt slow at 100%).",
+    "fade": "Color and opacity have no distance to travel: they take 160ms on the standard ease."
+  },
+  "springs": [
+    {
+      "easing": "--ease-smooth",
+      "duration": "--duration-smooth",
+      "response": 0.5,
+      "bounce": 0,
+      "settle": "0.74s",
+      "value": "592ms",
+      "use": "No overshoot: the default for anything that moves (a sliding thumb, a sheet)."
+    },
+    {
+      "easing": "--ease-snappy",
+      "duration": "--duration-snappy",
+      "response": 0.4,
+      "bounce": 0.15,
+      "settle": "0.56s",
+      "value": "448ms",
+      "use": "A small overshoot: quick, direct feedback (a toggle, a pressed key's return)."
+    },
+    {
+      "easing": "--ease-bouncy",
+      "duration": "--duration-bouncy",
+      "response": 0.5,
+      "bounce": 0.3,
+      "settle": "0.82s",
+      "value": "656ms",
+      "use": "A visible overshoot: playful moments only."
+    }
+  ],
+  "curves": [
+    {
+      "token": "--ease-standard",
+      "value": "cubic-bezier(0.25, 0.1, 0.25, 1)",
+      "use": "Apple's standard ease, for color and opacity."
+    },
+    {
+      "token": "--ease-out",
+      "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "use": "Ease-out, for what enters."
+    },
+    {
+      "token": "--ease-in",
+      "value": "cubic-bezier(0.5, 0, 0.75, 0)",
+      "use": "Ease-in, for what leaves."
+    }
+  ],
+  "state": [
+    {
+      "token": "--duration-fade",
+      "value": "160ms",
+      "use": "Color and opacity changes."
+    },
+    {
+      "token": "--motion-duration",
+      "value": "var(--duration-fade)",
+      "use": "Affine's one state-change length; what the transition classes use by default."
+    },
+    {
+      "token": "--motion-easing",
+      "value": "var(--ease-standard)",
+      "use": "Affine's one state-change easing."
+    }
+  ],
+  "reducedMotion": "The reset cuts every animation and transition to 0.01ms under prefers-reduced-motion: reduce."
+}
