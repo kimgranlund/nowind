@@ -1,69 +1,87 @@
 {
   "file": "theme.colors.css",
   "files": {
-    "theme.colors.css": "Imported by ../theme.css. Imports colors-raw/globals.css and both palettes; defines companions (surface, indicator, track) and usage roles. Family-agnostic: never changes on rebrand.",
-    "colors-semantic/neutral.css": "Imports one color family; defines --neutral-1..12, --neutral-a1..a12 and the --neutral-contrast values.",
-    "colors-semantic/danger.css": "Imports red; defines --danger-1..12, --danger-a1..a12 and the --danger-contrast values.",
-    "colors-semantic/warning.css": "Imports amber; defines --warning-1..12, --warning-a1..a12 and the --warning-contrast values.",
-    "colors-semantic/success.css": "Imports green; defines --success-1..12, --success-a1..a12 and the --success-contrast values.",
-    "colors-semantic/info.css": "Imports blue; defines --info-1..12, --info-a1..a12 and the --info-contrast values.",
+    "theme.colors.css": "Imported by ../theme.css. Imports colors-raw/globals.css and all nine palettes; defines the companions (surface, indicator, track), the usage roles for every palette, and the shadows. Family-agnostic: never changes on rebrand.",
     "colors-semantic/accent-1.css": "Imports indigo; defines --accent-1-1..12, --accent-1-a1..a12 and the --accent-1-contrast values.",
     "colors-semantic/accent-2.css": "Imports violet; defines --accent-2-1..12, --accent-2-a1..a12 and the --accent-2-contrast values.",
     "colors-semantic/accent-3.css": "Imports plum; defines --accent-3-1..12, --accent-3-a1..a12 and the --accent-3-contrast values.",
-    "colors-semantic/accent-4.css": "Imports crimson; defines --accent-4-1..12, --accent-4-a1..a12 and the --accent-4-contrast values."
+    "colors-semantic/accent-4.css": "Imports crimson; defines --accent-4-1..12, --accent-4-a1..a12 and the --accent-4-contrast values.",
+    "colors-semantic/neutral.css": "Imports slate; defines --neutral-1..12, --neutral-a1..a12 and the --neutral-contrast values.",
+    "colors-semantic/danger.css": "Imports red; defines --danger-1..12, --danger-a1..a12 and the --danger-contrast values.",
+    "colors-semantic/warning.css": "Imports amber; defines --warning-1..12, --warning-a1..a12 and the --warning-contrast values.",
+    "colors-semantic/success.css": "Imports green; defines --success-1..12, --success-a1..a12 and the --success-contrast values.",
+    "colors-semantic/info.css": "Imports blue; defines --info-1..12, --info-a1..a12 and the --info-contrast values."
   },
-  "description": "Nowind theme: colors-semantic/ map color families from colors-raw/ to --accent-1-* and --neutral-*; theme.colors.css maps those to semantic tokens. Every value uses light-dark(), so light and dark mode come from color-scheme (colors-raw/globals.css).",
+  "description": "Nowind colour theme: colors-semantic/ maps colour families from colors-raw/ to nine palettes (accent-1, accent-2, accent-3, accent-4, neutral, danger, warning, success, info); theme.colors.css maps those to usage roles. Every value uses light-dark(), so light and dark mode come from color-scheme (colors-raw/globals.css).",
   "palettes": {
     "accent-1": {
       "file": "colors-semantic/accent-1.css",
       "family": "indigo",
-      "use": "Main brand accent: main actions, links, focus"
+      "use": "Main brand accent: main actions, links, focus",
+      "steps": "--accent-1-1..12 → --colors-indigo-1..12; --accent-1-a1..a12 → --colors-indigo-a1..a12",
+      "contrast": "var(--accent-1-contrast-white)"
     },
     "accent-2": {
       "file": "colors-semantic/accent-2.css",
       "family": "violet",
-      "use": "Second brand accent"
+      "use": "Second brand accent",
+      "steps": "--accent-2-1..12 → --colors-violet-1..12; --accent-2-a1..a12 → --colors-violet-a1..a12",
+      "contrast": "var(--accent-2-contrast-white)"
     },
     "accent-3": {
       "file": "colors-semantic/accent-3.css",
       "family": "plum",
-      "use": "Third brand accent"
+      "use": "Third brand accent",
+      "steps": "--accent-3-1..12 → --colors-plum-1..12; --accent-3-a1..a12 → --colors-plum-a1..a12",
+      "contrast": "var(--accent-3-contrast-white)"
     },
     "accent-4": {
       "file": "colors-semantic/accent-4.css",
       "family": "crimson",
-      "use": "Fourth brand accent"
+      "use": "Fourth brand accent",
+      "steps": "--accent-4-1..12 → --colors-crimson-1..12; --accent-4-a1..a12 → --colors-crimson-a1..a12",
+      "contrast": "var(--accent-4-contrast-white)"
     },
     "neutral": {
       "file": "colors-semantic/neutral.css",
-      "family": "slate"
+      "family": "slate",
+      "steps": "--neutral-1..12 → --colors-slate-1..12; --neutral-a1..a12 → --colors-slate-a1..a12",
+      "contrast": "light-dark(var(--neutral-contrast-white), var(--neutral-contrast-black))"
     },
     "danger": {
       "file": "colors-semantic/danger.css",
       "family": "red",
-      "use": "Errors, destructive actions, failed states"
+      "use": "Errors, destructive actions, failed states",
+      "steps": "--danger-1..12 → --colors-red-1..12; --danger-a1..a12 → --colors-red-a1..a12",
+      "contrast": "light-dark(var(--danger-contrast-white), var(--danger-contrast-black))"
     },
     "warning": {
       "file": "colors-semantic/warning.css",
       "family": "amber",
-      "use": "Caution, pending risk, degraded states"
+      "use": "Caution, pending risk, degraded states",
+      "steps": "--warning-1..12 → --colors-amber-1..12; --warning-a1..a12 → --colors-amber-a1..a12",
+      "contrast": "var(--warning-contrast-black)"
     },
     "success": {
       "file": "colors-semantic/success.css",
       "family": "green",
-      "use": "Completed, valid, healthy states"
+      "use": "Completed, valid, healthy states",
+      "steps": "--success-1..12 → --colors-green-1..12; --success-a1..a12 → --colors-green-a1..a12",
+      "contrast": "light-dark(var(--success-contrast-white), var(--success-contrast-black))"
     },
     "info": {
       "file": "colors-semantic/info.css",
       "family": "blue",
-      "use": "Neutral notices, tips, informational badges"
+      "use": "Neutral notices, tips, informational badges",
+      "steps": "--info-1..12 → --colors-blue-1..12; --info-a1..a12 → --colors-blue-a1..a12",
+      "contrast": "light-dark(var(--info-contrast-white), var(--info-contrast-black))"
     }
   },
   "rebrand": {
     "steps": [
       "In colors-semantic/<palette>.css, change the @import and every --colors-<family>-* reference to the new family.",
       "Re-check <palette>-contrast-white and -black against families[].solidLabel in the radix-hct-colors manifest.json (not copied into colors-raw/).",
-      "To add a palette (danger, success), copy a palette file, rename the prefix, and import it in theme.colors.css."
+      "To add a palette, copy a palette file in colors-semantic/, rename the prefix and family, set its contrast from solidLabel, import it in theme.colors.css, and copy one palette's companion and role block in theme.colors.css with the new name. Then run node scripts/utilities.mjs and node scripts/bundle.mjs."
     ],
     "handCopied": [
       "--accent-1-contrast-white",
@@ -103,72 +121,49 @@
   },
   "palette": [
     {
-      "token": "--accent-1-{1..12}",
-      "maps": "--colors-sky-{1..12}",
-      "use": "Accent scale steps: accent-1 shown; accent-2, -3 and -4 follow the same pattern.",
-      "file": "colors-semantic/accent-1.css"
+      "token": "--{palette}-{1..12}",
+      "maps": "--colors-{family}-{1..12}",
+      "use": "Scale steps of each palette; families are listed under palettes."
     },
     {
-      "token": "--accent-1-a{1..12}",
-      "maps": "--colors-sky-a{1..12}",
-      "use": "Transparent versions of steps 1–12; they match the solid steps over --neutral-1. For overlays and varied surfaces.",
-      "file": "colors-semantic/accent-1.css"
-    },
-    {
-      "token": "--neutral-{1..12}",
-      "maps": "--colors-slate-{1..12}",
-      "use": "Neutral scale steps.",
-      "file": "colors-semantic/neutral.css"
-    },
-    {
-      "token": "--neutral-a{1..12}",
-      "maps": "--colors-slate-a{1..12}",
-      "use": "Transparent neutral steps.",
-      "file": "colors-semantic/neutral.css"
+      "token": "--{palette}-a{1..12}",
+      "maps": "--colors-{family}-a{1..12}",
+      "use": "Transparent versions of steps 1–12; they match the solid steps over --neutral-1. For overlays and varied surfaces."
     }
   ],
   "companions": {
     "source": "Radix Themes --{color}-contrast/surface/indicator/track",
+    "palettes": [
+      "accent-1",
+      "accent-2",
+      "accent-3",
+      "accent-4",
+      "neutral",
+      "danger",
+      "warning",
+      "success",
+      "info"
+    ],
     "tokens": [
       {
-        "token": "--accent-1-contrast",
-        "use": "Text and icons on --solid-accent-1. Light-mode and dark-mode values are -contrast-white and -contrast-black, hand-copied from the library's solved on-solid values.",
-        "file": "colors-semantic/accent-1.css"
+        "token": "--{palette}-contrast",
+        "file": "colors-semantic/{palette}.css",
+        "use": "Text and icons on --solid-{palette} (neutral: --solid). Built from --{palette}-contrast-white and -black, hand-copied from the library's solved on-solid values; see palettes[].contrast."
       },
       {
-        "token": "--neutral-contrast",
-        "use": "Text and icons on --solid. Light-mode and dark-mode values are -contrast-white and -contrast-black, hand-copied from the library's solved on-solid values.",
-        "file": "colors-semantic/neutral.css"
-      },
-      {
-        "token": "--accent-1-surface",
+        "token": "--{palette}-surface",
         "step": "a2",
         "use": "Translucent fill for surface variants: cards, soft fields. Radix uses step 2 at 50%."
       },
       {
-        "token": "--neutral-surface",
-        "step": "a2",
-        "use": "Translucent neutral surface fill."
-      },
-      {
-        "token": "--accent-1-indicator",
+        "token": "--{palette}-indicator",
         "step": 9,
         "use": "Checkbox, radio and switch fill."
       },
       {
-        "token": "--neutral-indicator",
-        "step": 9,
-        "use": "Neutral indicator fill."
-      },
-      {
-        "token": "--accent-1-track",
+        "token": "--{palette}-track",
         "step": 9,
         "use": "Slider and progress fill."
-      },
-      {
-        "token": "--neutral-track",
-        "step": 9,
-        "use": "Neutral track fill."
       }
     ]
   },

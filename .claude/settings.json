@@ -1,19 +1,19 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run build)",
-      "Bash(npm run check)",
-      "Bash(npm run check:static)",
-      "Bash(node scripts/build.mjs)",
-      "Bash(node scripts/check.mjs:*)"
+      "Bash(node scripts/utopia.mjs:*)",
+      "Bash(node scripts/utilities.mjs)",
+      "Bash(node scripts/bundle.mjs)"
     ],
     "deny": [
-      "Edit(./jig/dist/**)",
-      "Edit(./tokens/tokens.*.css)",
-      "Edit(./kit/catalog.json)",
-      "Edit(./kit/catalog.md)",
-      "Edit(./demo/dist/**)",
-      "Edit(./site/dist/**)"
+      "Edit(./nowind.css)",
+      "Edit(./nowind.manifest.json)",
+      "Edit(./dist/**)",
+      "Edit(./theme/theme.typography.css)",
+      "Edit(./theme/theme.typography.manifest.json)",
+      "Edit(./theme/theme.space.css)",
+      "Edit(./theme/theme.space.manifest.json)",
+      "Edit(./theme/colors-raw/**)"
     ]
   }
 }

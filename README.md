@@ -143,6 +143,7 @@ The full list, with what each token is for, is in the manifests in `theme/`.
 ## Files
 
 ```
+AGENTS.md                      how to change Nowind: generated files, script order, rules, naming
 theme.css                      imports the theme groups below
 nowind.css                     reset and utility classes (generated)
 nowind.manifest.json           class counts, groups, variants, changes from Prewind

@@ -1,13 +1,17 @@
 {
   "file": "nowind.css",
   "generated": "scripts/utilities.mjs",
-  "description": "Prewind-style utility classes over the Nowind theme. One plain stylesheet, no build step for consumers: every class already exists. Regenerate after changing theme tokens.",
+  "description": "Prewind-style utility classes over the Nowind theme, with Tailwind v4 names where they overlap. One plain stylesheet, no build step for consumers: every class already exists. Regenerate after changing theme tokens, then rebuild the bundle.",
   "setup": {
     "order": "@layer reset, styles, nowind; (declared at the top of nowind.css)",
     "link": [
+      "dist/nowind.min.css"
+    ],
+    "linkWhileDeveloping": [
       "theme.css",
       "nowind.css"
     ],
+    "bundle": "node scripts/bundle.mjs writes dist/nowind.bundle.css and dist/nowind.min.css: theme.css with every @import inlined, then this file. Run it after this script.",
     "rule": "Put your own global CSS in @layer styles. Unlayered CSS beats every utility."
   },
   "counts": {
