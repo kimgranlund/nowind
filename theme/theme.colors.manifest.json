@@ -454,5 +454,10 @@
         }
       }
     }
+  },
+  "scrim": {
+    "token": "--scrim",
+    "value": "light-dark(rgb(27 28 32 / 0.45), rgb(0 0 0 / 0.65))",
+    "use": "The dimming layer behind a dialog or drawer, and the reset's ::backdrop. Dark in both modes: the neutral alpha steps lighten in dark mode, so they can't dim a page there. Class bg-scrim."
   }
 }

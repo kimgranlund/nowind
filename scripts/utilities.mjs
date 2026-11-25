@@ -105,7 +105,7 @@ const PALETTES = [...new Set(paletteProps.map((p) => p.match(/^--([a-z]+(?:-\d)?
 const step = (c) => PALETTES.some((p) => new RegExp(`^${p}-\\d+$`).test(c));
 const alphaStep = (c) => PALETTES.some((p) => new RegExp(`^${p}-a\\d+$`).test(c));
 const forText = (c) => step(c) || /^(fg|on-solid)(-|$)/.test(c);
-const forBg = (c) => step(c) || alphaStep(c) || /^(bg|component|solid)(-|$)/.test(c) || /-(surface|indicator|track)$/.test(c);
+const forBg = (c) => step(c) || alphaStep(c) || /^(bg|component|solid|scrim)(-|$)/.test(c) || /-(surface|indicator|track)$/.test(c);
 const forBorder = (c) => step(c) || /^border(-|$)/.test(c);
 for (const c of COLORS) {
   if (forText(c)) add(`text-${c}`, `color: var(--${c})`);
@@ -308,7 +308,7 @@ const reset = `@layer reset {
   :where(pre) { white-space: pre-wrap; }
 
   :where(dialog, [popover]) { color: inherit; font: inherit; }
-  :where(::backdrop) { background: var(--neutral-a8); }
+  :where(::backdrop) { background: var(--scrim); }
   :where(::selection) { background: var(--accent-1-a5); color: var(--fg); }
 
   @media (prefers-reduced-motion: reduce) {

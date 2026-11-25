@@ -22,6 +22,7 @@ Read `README.md` for what Nowind is and how people use it. This file says how to
 | `classes.md` | Every class and its declarations | no, `scripts/utilities.mjs` |
 | `specimen.html` | Every token, the reset and every class, read live from the stylesheets | yes |
 | `utilities.html` | Demo page built only from classes | yes |
+| `components.html` | Component showcase built only from classes: no `<style>`, no `style=` | yes |
 
 Manifests: [`theme/theme.typography.manifest.json`](theme/theme.typography.manifest.json), [`theme/theme.space.manifest.json`](theme/theme.space.manifest.json), [`theme/theme.shadows.manifest.json`](theme/theme.shadows.manifest.json) and [`nowind.manifest.json`](nowind.manifest.json) are written by their scripts; change the script, not the file. These are hand-written; update them in the same change as their CSS:
 

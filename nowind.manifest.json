@@ -15,10 +15,10 @@
     "rule": "Put your own global CSS in @layer styles. Unlayered CSS beats every utility."
   },
   "counts": {
-    "classes": 1211,
-    "hover": 131,
+    "classes": 1212,
+    "hover": 132,
     "responsive": 205,
-    "bytes": 93472
+    "bytes": 93578
   },
   "naming": "property-value, as Prewind and Tailwind: p-md, gap-lg, text-fg-weak, bg-solid-accent-1. Colour classes take the token name without --.",
   "variants": {

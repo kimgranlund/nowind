@@ -1158,6 +1158,7 @@
 
   --neutral-indicator: var(--neutral-9);
   --neutral-track: var(--neutral-9);
+  --scrim: light-dark(rgb(27 28 32 / 0.45), rgb(0 0 0 / 0.65));
 
   --bg: var(--neutral-1);
   --bg-strong: var(--neutral-2);
@@ -1794,7 +1795,7 @@
   :where(pre) { white-space: pre-wrap; }
 
   :where(dialog, [popover]) { color: inherit; font: inherit; }
-  :where(::backdrop) { background: var(--neutral-a8); }
+  :where(::backdrop) { background: var(--scrim); }
   :where(::selection) { background: var(--accent-1-a5); color: var(--fg); }
 
   @media (prefers-reduced-motion: reduce) {
@@ -2645,6 +2646,7 @@
   .bg-neutral-surface { background-color: var(--neutral-surface); }
   .bg-neutral-indicator { background-color: var(--neutral-indicator); }
   .bg-neutral-track { background-color: var(--neutral-track); }
+  .bg-scrim { background-color: var(--scrim); }
   .bg-bg { background-color: var(--bg); }
   .bg-bg-strong { background-color: var(--bg-strong); }
   .bg-component-weak { background-color: var(--component-weak); }
@@ -3026,6 +3028,7 @@
   .px-nested:where(:has(> .icon:first-child)) { padding-inline-start: var(--nested-icon-padding); }
   .px-nested:where(:has(> .icon:last-child)) { padding-inline-end: var(--nested-icon-padding); }
   @media (hover: hover) {
+    .hover\:bg-scrim:hover { background-color: var(--scrim); }
     .hover\:bg-bg:hover { background-color: var(--bg); }
     .hover\:bg-bg-strong:hover { background-color: var(--bg-strong); }
     .hover\:bg-component-weak:hover { background-color: var(--component-weak); }

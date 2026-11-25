@@ -205,6 +205,7 @@ scripts/
   check.mjs                    checks the rules in AGENTS.md; --self-test proves it catches breaks
 specimen.html                  every token, the reset and every class, live
 utilities.html                 a demo built only from classes
+components.html                buttons, badges, alerts, forms, cards, tables, navigation and a dialog, built only from classes
 ```
 
 ## Changing the theme
@@ -245,7 +246,7 @@ The scripts need Node 18 or later and have no dependencies. People who use Nowin
 python3 -m http.server 8765
 ```
 
-Then open http://localhost:8765/specimen.html.
+Then open http://localhost:8765/specimen.html, or http://localhost:8765/components.html for common interface parts built only from utility classes.
 
 ## Differences from Prewind
 
