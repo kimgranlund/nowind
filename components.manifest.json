@@ -988,8 +988,9 @@
         "inline-flex",
         "items-center",
         "justify-center",
-        "p-xs",
         "rounded-full",
+        "shrink-0",
+        "size-control",
         "text-sm"
       ]
     },
