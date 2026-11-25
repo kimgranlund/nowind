@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Checks the rules AGENTS.md states. Usage:
 //   node scripts/check.mjs              check this repository
-//   node scripts/check.mjs --self-test  break a copy sixteen ways and confirm each check fails
+//   node scripts/check.mjs --self-test  break a copy seventeen ways and confirm each check fails
 import { readFileSync, readdirSync, statSync, cpSync, mkdtempSync, rmSync, writeFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join, relative } from "node:path";
@@ -156,6 +156,8 @@ if (process.argv.includes("--self-test")) {
     ["hand-edited generated file", "nowind.css", (s) => s + "\n.hand-edit { color: red; }\n"],
     ["file AGENTS.md doesn't name", "site/unlisted.html", () => "<!doctype html>\n"],
     ["small control beside full-size ones", "site/components.html", (s) => s.replace(/(<button [^>]*aria-label="Settings">.*?<\/button>)/, '$1<button class="size-nested" aria-label="X"><i class="icon icon-sm ph ph-x"></i></button>')],
+    ["badge off the geometry contract", "site/components.html", (s) => s.replace(/(class="inline-flex items-center h-nested )px-nested( rounded-full border)/, "$1px-2xs$2")],
+    ["card off the geometry contract", "site/components.html", (s) => s.replace('<div class="p-md rounded-md bg-neutral-1 border border-neutral-6', '<div class="p-md rounded-sm bg-neutral-1 border border-neutral-6')],
     ["text off the size contract", "site/components.html", (s) => s.replace('<li class="flex items-center gap-xs text-base">', '<li class="flex items-center gap-xs text-sm">')],
     ["field box sized by padding", "site/components.html", (s) => s.replace(/<div class="flex items-center gap-gutter h-control px-control rounded-sm border[^"]*">(\s*<i class="icon ph ph-magnifying-glass)/, '<div class="flex items-center py-xs ps-xs pe-sm gap-gutter rounded-sm border bg-neutral-1">$1')],
     ["two classes set one property", "site/components.html", (s) => s.replace(/(md:col-span-9 min-w-0 flex flex-col gap-group">[\s\S]*?class="[^"]*?)\bh-control\b/, "$1h-control h-full")],

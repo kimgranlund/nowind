@@ -77,6 +77,7 @@
 ["Container levels", "docs/reference.html#levels", "Section", "Page grid and shell"],
 ["Tiers", "docs/reference.html#tiers", "Section", "Page grid and shell"],
 ["Radius and nesting", "docs/reference.html#radius", "Section", "Page grid and shell"],
+["Where each length goes", "docs/reference.html#lengths", "Section", "Page grid and shell"],
 ["Breakpoints", "docs/reference.html#breakpoints", "Section", "Page grid and shell"],
 ["Pin a release", "docs/changelog.html#pin", "Section", "Changelog"],
 ["0.9.0", "docs/changelog.html#v0-9-0", "Section", "Changelog"],

@@ -370,9 +370,18 @@ def radius_section():
                    code("nest.html", "HTML", '<div popover class="rounded-md p-inset border …">\n  <a class="rounded-sm …">Rename</a>   <!-- concentric: md − inset − border = sm -->\n</div>\n<div class="rounded-lg p-sm border">\n  <div class="rounded-inner …">…</div>   <!-- any other padding -->\n</div>'))
 
 
+def lengths_section():
+    gc = _m("theme/theme.geometry.manifest.json")["geometryContract"]
+    rows = [[E(k["kind"]), E(k["identify"]), f'<code>{E(k["height"])}</code>', f'<code>{E(k["padding"])}</code>', E(k["gap"]), f'<code>{E(k["corner"])}</code>'] for k in gc["kinds"]]
+    return section("lengths", "Where each length goes",
+        p(E(gc["description"].split(" A lint")[0]) + " The examples lint enforces it, and <code>?audit=geometry</code> on any page measures the rules below."),
+        table(["Part", "Identified by", "Height", "Padding", "Gap", "Corner"], rows),
+        p(" ".join(E(r) for r in gc["rules"])))
+
+
 def reference():
     toc_items = [("grid", "Page grid"), ("shell", "Shell lengths"), ("levels", "Container levels"),
-                 ("tiers", "Tiers"), ("breakpoints", "Breakpoints")]
+                 ("tiers", "Tiers"), ("radius", "Radius and nesting"), ("lengths", "Where each length goes"), ("breakpoints", "Breakpoints")]
     art = "\n        ".join([
         page_head("Reference", "Page grid and shell",
                   "The classes that place a page: the column gutter and edge padding, the shell's sidebar, header and reading measure, the container levels and the tiers. Each length is derived from the base size <code class=\"whitespace-nowrap\">--F</code>.",
@@ -427,6 +436,7 @@ def reference():
 <article class="tier-content flex flex-col gap-section py-page max-w-measure">…</article>"""),
         ),
         radius_section(),
+        lengths_section(),
         section("breakpoints", "Breakpoints",
             table(["Prefix", "Min width", "In these templates"], [
                 ["<code>sm:</code>", "640px", "Previous and next appear; the search field shows ⌘K"],
@@ -1127,7 +1137,7 @@ def geometry_audit():
             if t == "summary" and not toks & {"h-control", "size-control"}: return None  # a disclosure row, not a control
             if role == "tab" or "border-b-2" in toks: return "tab"
             return "control"
-        if "cursor-text" in toks: return "field box"
+        if "cursor-text" in toks or ("h-control" in toks and any(k.tag in ("input", "select", "textarea") for k in n.kids)): return "field box"
         if "rounded-full" in toks and n.alltext().strip() and not toks & {"size-nested", "size-control"}: return "badge"
         if "rounded-full" in toks and toks & {"size-nested", "size-control"}: return "round marker"
         if "popover" in n.attrs or ("absolute" in toks and "rounded-md" in toks): return "tooltip" if "bg-neutral-12" in toks else "popover"
@@ -1136,7 +1146,7 @@ def geometry_audit():
             if "bg-neutral-12" in toks: return "toast"
             return "alert" if any(re.fullmatch(r"bg-[a-z]+-3", x) for x in toks) else None
         if t == "label" and "rounded-sm" in toks and "border" in toks: return "option card"
-        if "border" in toks and "rounded-md" in toks and any(PAD(x) for x in toks) and not role: return "card"
+        if t in ("div", "article", "section", "form") and "border" in toks and any(re.fullmatch(r"rounded-(xs|sm|md|lg|xl)", x) for x in toks) and any(PAD(x) for x in toks) and not role and not "border-dashed" in toks: return "card"
         return None
 
     # kind: (allowed height, allowed padding, allowed gap, allowed corner); None means any, "" means none allowed
@@ -1271,6 +1281,7 @@ def lint_examples():
         if "data-semantic-demo" in sec[:80] or body not in sec:
             continue
         errors += bad(sec[sec.index(body) + len(body):], f"site/components.html #{m.group(1)}")
+    errors += [f"{w}: {k}: {prob}. Fix: the contract's classes (geometryContract in theme/theme.geometry.manifest.json). {lab}" for w, k, prob, lab in geometry_audit()]
     findings, unclassified = type_audit()
     errors += [f"{w}: {k} text is text-{eff}; the size contract wants text-{want}. Fix: the contract's size (sizeContract in theme/theme.type-roles.manifest.json). {lab}" for w, k, eff, want, lab in findings]
     errors += [f"{w}: {lab} sets text-{own} but has no kind in the size contract. Fix: give it a kind's classes, or let it inherit." for w, own, lab in unclassified]
