@@ -42,6 +42,7 @@ const GENERATED = [
   "theme/theme.materials.manifest.json",
   "dist/nowind.bundle.css",
   "dist/nowind.min.css",
+  ...readdirSync(join(repo, "templates")).filter((n) => n.endsWith(".html")).map((n) => `templates/${n}`),
 ];
 
 function check(root) {
@@ -78,6 +79,7 @@ function check(root) {
     for (const script of ["utopia.mjs", "shadows.mjs", "motion.mjs", "materials.mjs", "utilities.mjs", "bundle.mjs"]) {
       execFileSync(process.execPath, [join(tmp, "scripts", script)], { cwd: tmp, stdio: "ignore" });
     }
+    execFileSync("python3", [join(tmp, "scripts", "templates.py"), join(tmp, "templates")], { cwd: tmp, stdio: "ignore" });
     for (const f of GENERATED) {
       const a = join(root, f), b = join(tmp, f);
       if (!existsSync(a)) { errors.push(`${f}: missing. Fix: run the scripts in AGENTS.md order.`); continue; }

@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lay out a docs page · Nowind docs</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../theme.css">
+<link rel="stylesheet" href="../nowind.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
+</head>
+<body class="bg-bg text-fg">
+<div class="flex flex-col h-dvh overflow-hidden">
+  <div class="shrink-0 py-3xs bg-bg-inverse" aria-hidden="true"></div>
+  <header class="flex items-center justify-between gap-row h-header shrink-0 px-grid border-b border-border-weak bg-bg">
+    <a href="docs-home.html" class="inline-flex items-center gap-gutter no-underline text-fg">
+      <i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker text-fg-weak">0.3.0</span>
+    </a>
+    <nav aria-label="Main" class="hidden md:flex items-center gap-3xs">
+      <a href="docs-home.html" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline text-fg-weak hover:text-fg hover:border-border-strong text-title-sm transition-colors">Docs</a>
+      <a href="guide.html" aria-current="page" class="inline-flex items-center h-control px-control border-b-2 border-border-accent-1-strong no-underline text-fg text-title-sm">Guide</a>
+      <a href="reference.html" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline text-fg-weak hover:text-fg hover:border-border-strong text-title-sm transition-colors">Reference</a>
+      <a href="changelog.html" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline text-fg-weak hover:text-fg hover:border-border-strong text-title-sm transition-colors">Changelog</a>
+    </nav>
+    <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center h-control px-control gap-gutter border border-border bg-bg hover:bg-component-weak no-underline text-fg text-title-sm transition-colors" aria-label="Nowind on GitHub">
+      <i class="icon ph ph-github-logo"></i><span class="hidden sm:inline">GitHub</span>
+    </a>
+  </header>
+  <details class="lg:hidden shrink min-h-0 overflow-y-auto border-b border-border-weak bg-bg-strong">
+    <summary class="flex items-center gap-gutter h-control px-grid list-none cursor-pointer text-fg text-title-sm"><i class="icon ph ph-list"></i><span>Menu</span></summary>
+    <nav aria-label="Documentation" class="flex flex-col gap-group px-grid pt-2xs pb-md">
+      <div class="flex flex-col gap-field">
+        <span class="text-kicker text-fg-weak">Getting started</span>
+        <ul role="list" class="flex flex-col gap-3xs">
+          <li><a href="docs-home.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-house"></i><span class="truncate">Overview</span></a></li>
+          <li><a href="guide.html" aria-current="page" class="flex items-center h-control px-control gap-gutter border-l-2 border-border-accent-1-strong bg-component-weak no-underline text-fg text-title-sm"><i class="icon ph ph-book-open"></i><span class="truncate">Lay out a docs page</span></a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-field">
+        <span class="text-kicker text-fg-weak">Reference</span>
+        <ul role="list" class="flex flex-col gap-3xs">
+          <li><a href="reference.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-grid-four"></i><span class="truncate">Page grid and shell</span></a></li>
+          <li><a href="../components.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-squares-four"></i><span class="truncate">Components</span></a></li>
+          <li><a href="../specimen.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-palette"></i><span class="truncate">Specimen</span></a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-field">
+        <span class="text-kicker text-fg-weak">Project</span>
+        <ul role="list" class="flex flex-col gap-3xs">
+          <li><a href="changelog.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-clock-counter-clockwise"></i><span class="truncate">Changelog</span></a></li>
+          <li><a href="index.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-ruler"></i><span class="truncate">Templates</span></a></li>
+        </ul>
+      </div>
+    </nav>
+  </details>
+  <div class="flex flex-1 min-h-0">
+    <aside class="hidden lg:flex flex-col shrink-0 w-sidebar overflow-y-auto p-region border-r border-border-weak bg-bg-strong">
+      <nav aria-label="Documentation" class="flex flex-col gap-group">
+        <div class="flex flex-col gap-field">
+          <span class="text-kicker text-fg-weak">Getting started</span>
+          <ul role="list" class="flex flex-col gap-3xs">
+            <li><a href="docs-home.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-house"></i><span class="truncate">Overview</span></a></li>
+            <li><a href="guide.html" aria-current="page" class="flex items-center h-control px-control gap-gutter border-l-2 border-border-accent-1-strong bg-component-weak no-underline text-fg text-title-sm"><i class="icon ph ph-book-open"></i><span class="truncate">Lay out a docs page</span></a></li>
+          </ul>
+        </div>
+        <div class="flex flex-col gap-field">
+          <span class="text-kicker text-fg-weak">Reference</span>
+          <ul role="list" class="flex flex-col gap-3xs">
+            <li><a href="reference.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-grid-four"></i><span class="truncate">Page grid and shell</span></a></li>
+            <li><a href="../components.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-squares-four"></i><span class="truncate">Components</span></a></li>
+            <li><a href="../specimen.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-palette"></i><span class="truncate">Specimen</span></a></li>
+          </ul>
+        </div>
+        <div class="flex flex-col gap-field">
+          <span class="text-kicker text-fg-weak">Project</span>
+          <ul role="list" class="flex flex-col gap-3xs">
+            <li><a href="changelog.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-clock-counter-clockwise"></i><span class="truncate">Changelog</span></a></li>
+            <li><a href="index.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-ruler"></i><span class="truncate">Templates</span></a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+    <main id="content" class="flex flex-col flex-1 min-w-0 overflow-y-auto">
+      <div class="grow"><div class="grid grid-cols-4 md:grid-cols-12 gap-grid px-grid">
+      <article class="col-span-4 md:col-span-12 xl:col-span-9 min-w-0 tier-content flex flex-col gap-section py-page max-w-measure">
+        <header class="flex flex-col gap-field">
+            <span class="text-kicker text-fg-weak">Guide</span>
+            <h1 class="text-display-sm text-balance">Lay out a docs page</h1>
+            <p class="text-body-md text-fg-weak">Build a documentation page from Nowind's shell lengths, its 12-column grid and four type roles. Every part on this page is the template you can copy.</p>
+            <span class="text-caption text-fg-weak">Applies to Nowind 0.3.0</span>
+          </header>
+        <section id="frame" class="flex flex-col gap-group">
+          <h2 class="text-heading-md pt-sm border-t border-border">The frame</h2>
+          <p class="text-body-md">A docs page has five parts, always in the same place: a band and a header across the top, a sidebar on the left, the content in the middle and an on-page table of contents on the right. The frame fills the viewport, and only the sidebar and the content scroll.</p>
+          <figure class="flex flex-col min-w-0 border border-border-weak bg-bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-border-weak">
+              <span class="text-mono-sm text-fg-weak truncate">frame.html</span><span class="text-kicker text-fg-subtle">HTML</span>
+            </figcaption>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;flex flex-col h-dvh overflow-hidden&quot;&gt;
+  &lt;div class=&quot;shrink-0 py-3xs bg-bg-inverse&quot;&gt;&lt;/div&gt;
+  &lt;header class=&quot;flex items-center justify-between h-header shrink-0 px-grid border-b border-border-weak&quot;&gt;…&lt;/header&gt;
+  &lt;div class=&quot;flex flex-1 min-h-0&quot;&gt;
+    &lt;aside class=&quot;hidden lg:flex flex-col shrink-0 w-sidebar overflow-y-auto p-region&quot;&gt;…&lt;/aside&gt;
+    &lt;main class=&quot;flex flex-col flex-1 min-w-0 overflow-y-auto&quot;&gt;…&lt;/main&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </figure>
+          <p class="text-body-md">The header is <code>h-header</code> tall and the sidebar <code>w-sidebar</code> wide. Both follow the base size, so they grow with the type from a phone to a wide screen.</p>
+          <aside role="note" class="flex gap-gutter p-surface border-l-4 border-border-info bg-component-info-weak">
+            <i class="icon ph ph-info text-fg-info-weak"></i>
+            <div class="flex flex-col gap-3xs min-w-0">
+              <span class="text-label text-fg-info">Note</span>
+              <p class="text-body-md">Nowind has only <code>top-0</code>, so a sticky sidebar under a sticky header would slide beneath it. The frame avoids the offset: the header never scrolls, and the sidebar and main scroll on their own.</p>
+            </div>
+          </aside>
+        </section>
+        <section id="grid" class="flex flex-col gap-group">
+          <h2 class="text-heading-md pt-sm border-t border-border">The grid</h2>
+          <p class="text-body-md">Inside <code>main</code>, content sits on Nowind's page grid: four columns on a phone, twelve from 768px up, with <code>gap-grid</code> between columns and <code>px-grid</code> at the edges. The article takes nine columns and the table of contents three; below 1280px the table of contents is hidden and the article takes all twelve.</p>
+          <figure class="flex flex-col min-w-0 border border-border-weak bg-bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-border-weak">
+              <span class="text-mono-sm text-fg-weak truncate">main.html</span><span class="text-kicker text-fg-subtle">HTML</span>
+            </figcaption>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;grid grid-cols-4 md:grid-cols-12 gap-grid px-grid&quot;&gt;
+  &lt;article class=&quot;col-span-4 md:col-span-12 xl:col-span-9 tier-content max-w-measure&quot;&gt;…&lt;/article&gt;
+  &lt;aside class=&quot;hidden xl:block xl:col-span-3&quot;&gt;…&lt;/aside&gt;
+&lt;/div&gt;</code></pre>
+          </figure>
+          <div class="overflow-x-auto border border-border-weak">
+            <table class="w-full text-body-md">
+              <thead class="bg-bg-strong"><tr><th scope="col" class="text-left px-sm py-xs border-b border-border text-label text-fg-weak whitespace-nowrap">Width</th><th scope="col" class="text-left px-sm py-xs border-b border-border text-label text-fg-weak whitespace-nowrap">Sidebar</th><th scope="col" class="text-left px-sm py-xs border-b border-border text-label text-fg-weak whitespace-nowrap">Columns</th><th scope="col" class="text-left px-sm py-xs border-b border-border text-label text-fg-weak whitespace-nowrap">Table of contents</th></tr></thead>
+              <tbody>
+                <tr><td class="text-left align-top px-sm py-xs border-b border-border-weak whitespace-nowrap">Under 768px</td><td class="text-left align-top px-sm py-xs border-b border-border-weak">In the menu</td><td class="text-left align-top px-sm py-xs border-b border-border-weak">4</td><td class="text-left align-top px-sm py-xs border-b border-border-weak">Hidden</td></tr>
+                <tr><td class="text-left align-top px-sm py-xs border-b border-border-weak whitespace-nowrap">768px</td><td class="text-left align-top px-sm py-xs border-b border-border-weak">In the menu</td><td class="text-left align-top px-sm py-xs border-b border-border-weak">12</td><td class="text-left align-top px-sm py-xs border-b border-border-weak">Hidden</td></tr>
+                <tr><td class="text-left align-top px-sm py-xs border-b border-border-weak whitespace-nowrap">1024px (<code class="whitespace-nowrap">lg:</code>)</td><td class="text-left align-top px-sm py-xs border-b border-border-weak"><code class="whitespace-nowrap">w-sidebar</code></td><td class="text-left align-top px-sm py-xs border-b border-border-weak">12</td><td class="text-left align-top px-sm py-xs border-b border-border-weak">Hidden</td></tr>
+                <tr><td class="text-left align-top px-sm py-xs whitespace-nowrap">1280px (<code class="whitespace-nowrap">xl:</code>)</td><td class="text-left align-top px-sm py-xs"><code class="whitespace-nowrap">w-sidebar</code></td><td class="text-left align-top px-sm py-xs">12: 9 + 3</td><td class="text-left align-top px-sm py-xs">Shown</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section id="measure" class="flex flex-col gap-group">
+          <h2 class="text-heading-md pt-sm border-t border-border">The reading column</h2>
+          <p class="text-body-md">Prose stops at <code>max-w-measure</code>, 44 times the base size. The article is a <code>tier-content</code> region, so its section gaps and page padding are one and a half times the product rhythm and its measure grows with the tier's larger base size.</p>
+          <aside role="note" class="flex gap-gutter p-surface border-l-4 border-border-success bg-component-success-weak">
+            <i class="icon ph ph-check-circle text-fg-success-weak"></i>
+            <div class="flex flex-col gap-3xs min-w-0">
+              <span class="text-label text-fg-success">Tip</span>
+              <p class="text-body-md">Put the tier on the article only. The header, sidebar and table of contents stay in the product tier, so they look the same on every page.</p>
+            </div>
+          </aside>
+        </section>
+        <section id="type" class="flex flex-col gap-group">
+          <h2 class="text-heading-md pt-sm border-t border-border">Four type sizes</h2>
+          <p class="text-body-md">A docs page needs four sizes and no more. Contrast between them is the hierarchy, so they sit far apart: a display size for the page title, a heading size for sections, the base size for reading and controls, and a small size for labels and code.</p>
+          <div class="overflow-x-auto border border-border-weak">
+            <table class="w-full text-body-md">
+              <thead class="bg-bg-strong"><tr><th scope="col" class="text-left px-sm py-xs border-b border-border text-label text-fg-weak whitespace-nowrap">Size</th><th scope="col" class="text-left px-sm py-xs border-b border-border text-label text-fg-weak whitespace-nowrap">Classes</th><th scope="col" class="text-left px-sm py-xs border-b border-border text-label text-fg-weak whitespace-nowrap">Used for</th></tr></thead>
+              <tbody>
+                <tr><td class="text-left align-top px-sm py-xs border-b border-border-weak whitespace-nowrap">Display</td><td class="text-left align-top px-sm py-xs border-b border-border-weak"><code class="whitespace-nowrap">text-display-sm</code></td><td class="text-left align-top px-sm py-xs border-b border-border-weak">The page title, once per page</td></tr>
+                <tr><td class="text-left align-top px-sm py-xs border-b border-border-weak whitespace-nowrap">Heading</td><td class="text-left align-top px-sm py-xs border-b border-border-weak"><code class="whitespace-nowrap">text-heading-md</code></td><td class="text-left align-top px-sm py-xs border-b border-border-weak">Section headings, each under a rule</td></tr>
+                <tr><td class="text-left align-top px-sm py-xs border-b border-border-weak whitespace-nowrap">Base</td><td class="text-left align-top px-sm py-xs border-b border-border-weak"><code class="whitespace-nowrap">text-body-md</code>, <code class="whitespace-nowrap">text-subtitle</code>, <code class="whitespace-nowrap">text-title-sm</code></td><td class="text-left align-top px-sm py-xs border-b border-border-weak">Prose, subheadings, navigation and buttons</td></tr>
+                <tr><td class="text-left align-top px-sm py-xs whitespace-nowrap">Small</td><td class="text-left align-top px-sm py-xs"><code class="whitespace-nowrap">text-caption</code>, <code class="whitespace-nowrap">text-label</code>, <code class="whitespace-nowrap">text-kicker</code>, <code class="whitespace-nowrap">text-mono-sm</code></td><td class="text-left align-top px-sm py-xs">Metadata, table heads, kickers and code</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-body-md">Weight, not size, separates a subheading from prose: <code>text-subtitle</code> is the base size at a semibold weight.</p>
+        </section>
+        <section id="parts" class="flex flex-col gap-group">
+          <h2 class="text-heading-md pt-sm border-t border-border">Callouts, code and tables</h2>
+          <p class="text-body-md">A callout is a coloured rule on the left, a word and a sentence. The colour codes the kind and the word says it, so the meaning never depends on colour alone.</p>
+          <aside role="note" class="flex gap-gutter p-surface border-l-4 border-border-warning bg-component-warning-weak">
+            <i class="icon ph ph-warning text-fg-warning-weak"></i>
+            <div class="flex flex-col gap-3xs min-w-0">
+              <span class="text-label text-fg-warning">Warning</span>
+              <p class="text-body-md">A callout interrupts the reader. Use at most one per section.</p>
+            </div>
+          </aside>
+          <p class="text-body-md">A code block is a figure: the file name and language in a caption, the code in a <code>pre</code> that scrolls sideways rather than wrapping. Tables sit in a bordered box that scrolls on a narrow screen.</p>
+          <figure class="flex flex-col min-w-0 border border-border-weak bg-bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-border-weak">
+              <span class="text-mono-sm text-fg-weak truncate">callout.html</span><span class="text-kicker text-fg-subtle">HTML</span>
+            </figcaption>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;aside role=&quot;note&quot; class=&quot;flex gap-gutter p-surface border-l-4 border-border-info bg-component-info-weak&quot;&gt;
+  &lt;i class=&quot;icon ph ph-info text-fg-info-weak&quot;&gt;&lt;/i&gt;
+  &lt;div class=&quot;flex flex-col gap-3xs&quot;&gt;
+    &lt;span class=&quot;text-label text-fg-info&quot;&gt;Note&lt;/span&gt;
+    &lt;p class=&quot;text-body-md&quot;&gt;One sentence the reader must not miss.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/aside&gt;</code></pre>
+          </figure>
+        </section>
+        <section id="menu" class="flex flex-col gap-group">
+          <h2 class="text-heading-md pt-sm border-t border-border">Navigation on a phone</h2>
+          <p class="text-body-md">Below 1024px the sidebar moves into a <code>details</code> element under the header. It opens and closes without a script, and the same list of links serves both places.</p>
+          <figure class="flex flex-col min-w-0 border border-border-weak bg-bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-border-weak">
+              <span class="text-mono-sm text-fg-weak truncate">menu.html</span><span class="text-kicker text-fg-subtle">HTML</span>
+            </figcaption>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;details class=&quot;lg:hidden shrink min-h-0 overflow-y-auto border-b border-border-weak bg-bg-strong&quot;&gt;
+  &lt;summary class=&quot;flex items-center gap-gutter h-control px-grid list-none text-title-sm&quot;&gt;
+    &lt;i class=&quot;icon ph ph-list&quot;&gt;&lt;/i&gt;&lt;span&gt;Menu&lt;/span&gt;
+  &lt;/summary&gt;
+  &lt;nav class=&quot;flex flex-col gap-group px-grid pt-2xs pb-md&quot;&gt;…&lt;/nav&gt;
+&lt;/details&gt;</code></pre>
+          </figure>
+        </section>
+        <nav aria-label="Previous and next page" class="grid grid-cols-1 md:grid-cols-2 gap-grid">
+          <a href="docs-home.html" class="flex flex-col gap-3xs p-surface border border-border-weak hover:border-border-strong no-underline transition-colors">
+            <span class="inline-flex items-center gap-gutter-half text-kicker text-fg-weak"><i class="icon icon-sm ph-bold ph-arrow-left"></i><span>Previous</span></span>
+            <span class="text-subtitle text-fg-accent-1-weak">Overview</span>
+          </a>
+          <a href="reference.html" class="flex flex-col md:items-end gap-3xs p-surface border border-border-weak hover:border-border-strong no-underline md:text-right transition-colors">
+            <span class="inline-flex items-center gap-gutter-half text-kicker text-fg-weak"><span>Next</span><i class="icon icon-sm ph-bold ph-arrow-right"></i></span>
+            <span class="text-subtitle text-fg-accent-1-weak">Page grid and shell</span>
+          </a>
+        </nav>
+      </article>
+      <aside class="hidden xl:block xl:col-span-3">
+        <nav aria-label="On this page" class="sticky top-0 flex flex-col gap-field py-page">
+          <span class="text-kicker text-fg-weak">On this page</span>
+          <ol role="list" class="flex flex-col">
+            <li><a href="#frame" class="block py-3xs pl-sm border-l-2 border-border-weak hover:border-border-strong no-underline text-fg-weak hover:text-fg text-caption transition-colors">The frame</a></li>
+            <li><a href="#grid" class="block py-3xs pl-sm border-l-2 border-border-weak hover:border-border-strong no-underline text-fg-weak hover:text-fg text-caption transition-colors">The grid</a></li>
+            <li><a href="#measure" class="block py-3xs pl-sm border-l-2 border-border-weak hover:border-border-strong no-underline text-fg-weak hover:text-fg text-caption transition-colors">The reading column</a></li>
+            <li><a href="#type" class="block py-3xs pl-sm border-l-2 border-border-weak hover:border-border-strong no-underline text-fg-weak hover:text-fg text-caption transition-colors">Four type sizes</a></li>
+            <li><a href="#parts" class="block py-3xs pl-sm border-l-2 border-border-weak hover:border-border-strong no-underline text-fg-weak hover:text-fg text-caption transition-colors">Callouts, code and tables</a></li>
+            <li><a href="#menu" class="block py-3xs pl-sm border-l-2 border-border-weak hover:border-border-strong no-underline text-fg-weak hover:text-fg text-caption transition-colors">Navigation on a phone</a></li>
+          </ol>
+        </nav>
+      </aside>
+      </div></div>
+      <footer class="flex flex-col md:flex-row md:items-center justify-between gap-field px-grid py-surface border-t border-border-weak text-caption text-fg-weak">
+        <span>Nowind 0.3.0. Every page here is built from Nowind utility classes only.</span>
+        <span class="flex flex-wrap gap-row">
+          <a href="changelog.html" class="no-underline text-fg-weak hover:text-fg transition-colors">Changelog</a>
+          <a href="index.html" class="no-underline text-fg-weak hover:text-fg transition-colors">About these templates</a>
+          <a href="https://github.com/kimgranlund/nowind" class="no-underline text-fg-weak hover:text-fg transition-colors">GitHub</a>
+        </span>
+      </footer>
+    </main>
+  </div>
+</div>
+</body>
+</html>

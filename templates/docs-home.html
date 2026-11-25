@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overview · Nowind docs</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../theme.css">
+<link rel="stylesheet" href="../nowind.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
+</head>
+<body class="bg-bg text-fg">
+<div class="flex flex-col h-dvh overflow-hidden">
+  <div class="shrink-0 py-3xs bg-bg-inverse" aria-hidden="true"></div>
+  <header class="flex items-center justify-between gap-row h-header shrink-0 px-grid border-b border-border-weak bg-bg">
+    <a href="docs-home.html" class="inline-flex items-center gap-gutter no-underline text-fg">
+      <i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker text-fg-weak">0.3.0</span>
+    </a>
+    <nav aria-label="Main" class="hidden md:flex items-center gap-3xs">
+      <a href="docs-home.html" aria-current="page" class="inline-flex items-center h-control px-control border-b-2 border-border-accent-1-strong no-underline text-fg text-title-sm">Docs</a>
+      <a href="guide.html" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline text-fg-weak hover:text-fg hover:border-border-strong text-title-sm transition-colors">Guide</a>
+      <a href="reference.html" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline text-fg-weak hover:text-fg hover:border-border-strong text-title-sm transition-colors">Reference</a>
+      <a href="changelog.html" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline text-fg-weak hover:text-fg hover:border-border-strong text-title-sm transition-colors">Changelog</a>
+    </nav>
+    <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center h-control px-control gap-gutter border border-border bg-bg hover:bg-component-weak no-underline text-fg text-title-sm transition-colors" aria-label="Nowind on GitHub">
+      <i class="icon ph ph-github-logo"></i><span class="hidden sm:inline">GitHub</span>
+    </a>
+  </header>
+  <details class="lg:hidden shrink min-h-0 overflow-y-auto border-b border-border-weak bg-bg-strong">
+    <summary class="flex items-center gap-gutter h-control px-grid list-none cursor-pointer text-fg text-title-sm"><i class="icon ph ph-list"></i><span>Menu</span></summary>
+    <nav aria-label="Documentation" class="flex flex-col gap-group px-grid pt-2xs pb-md">
+      <div class="flex flex-col gap-field">
+        <span class="text-kicker text-fg-weak">Getting started</span>
+        <ul role="list" class="flex flex-col gap-3xs">
+          <li><a href="docs-home.html" aria-current="page" class="flex items-center h-control px-control gap-gutter border-l-2 border-border-accent-1-strong bg-component-weak no-underline text-fg text-title-sm"><i class="icon ph ph-house"></i><span class="truncate">Overview</span></a></li>
+          <li><a href="guide.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-book-open"></i><span class="truncate">Lay out a docs page</span></a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-field">
+        <span class="text-kicker text-fg-weak">Reference</span>
+        <ul role="list" class="flex flex-col gap-3xs">
+          <li><a href="reference.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-grid-four"></i><span class="truncate">Page grid and shell</span></a></li>
+          <li><a href="../components.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-squares-four"></i><span class="truncate">Components</span></a></li>
+          <li><a href="../specimen.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-palette"></i><span class="truncate">Specimen</span></a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-field">
+        <span class="text-kicker text-fg-weak">Project</span>
+        <ul role="list" class="flex flex-col gap-3xs">
+          <li><a href="changelog.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-clock-counter-clockwise"></i><span class="truncate">Changelog</span></a></li>
+          <li><a href="index.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-ruler"></i><span class="truncate">Templates</span></a></li>
+        </ul>
+      </div>
+    </nav>
+  </details>
+  <div class="flex flex-1 min-h-0">
+    <main id="content" class="flex flex-col flex-1 min-w-0 overflow-y-auto">
+      <div class="grow"><div class="grid grid-cols-4 md:grid-cols-12 gap-grid px-grid">
+        <header class="col-span-4 md:col-span-12 tier-brand flex flex-col gap-group py-page">
+          <span class="text-kicker text-fg-weak">Documentation · 0.3.0</span>
+          <h1 class="text-display-sm text-balance">Nowind documentation</h1>
+          <p class="text-body-md text-fg-weak max-w-measure">Theme tokens and utility classes in plain CSS. Link one file and every class already exists, so it works in any HTML, including what a CMS writes.</p>
+          <div class="flex flex-wrap gap-row">
+            <a href="guide.html" class="inline-flex items-center h-control px-control gap-gutter bg-solid-accent-1 hover:bg-solid-accent-1-strong no-underline text-on-solid-accent-1 text-title-sm transition-colors"><span>Read the guide</span><i class="icon ph ph-arrow-right"></i></a>
+            <a href="reference.html" class="inline-flex items-center h-control px-control gap-gutter border border-border hover:bg-component-weak no-underline text-fg text-title-sm transition-colors"><span>Class reference</span></a>
+          </div>
+        </header>
+        <a href="guide.html" class="col-span-4 md:col-span-6 xl:col-span-3 flex flex-col gap-field p-surface border border-border-weak hover:border-border-strong no-underline text-fg transition-colors">
+          <i class="icon ph ph-book-open text-fg-accent-1-weak"></i>
+          <span class="text-subtitle">Guide</span>
+          <span class="text-body-md text-fg-weak">Lay out a docs page: the frame, the grid, the reading column and four type sizes.</span>
+        </a>
+        <a href="reference.html" class="col-span-4 md:col-span-6 xl:col-span-3 flex flex-col gap-field p-surface border border-border-weak hover:border-border-strong no-underline text-fg transition-colors">
+          <i class="icon ph ph-grid-four text-fg-accent-1-weak"></i>
+          <span class="text-subtitle">Reference</span>
+          <span class="text-body-md text-fg-weak">Every grid, shell, level and tier class with its declaration and where it comes from.</span>
+        </a>
+        <a href="changelog.html" class="col-span-4 md:col-span-6 xl:col-span-3 flex flex-col gap-field p-surface border border-border-weak hover:border-border-strong no-underline text-fg transition-colors">
+          <i class="icon ph ph-clock-counter-clockwise text-fg-accent-1-weak"></i>
+          <span class="text-subtitle">Changelog</span>
+          <span class="text-body-md text-fg-weak">What changed in 0.1.0, 0.2.0 and 0.3.0, newest first.</span>
+        </a>
+        <a href="../components.html" class="col-span-4 md:col-span-6 xl:col-span-3 flex flex-col gap-field p-surface border border-border-weak hover:border-border-strong no-underline text-fg transition-colors">
+          <i class="icon ph ph-squares-four text-fg-accent-1-weak"></i>
+          <span class="text-subtitle">Components</span>
+          <span class="text-body-md text-fg-weak">Buttons, forms, tables and dialogs built only from utility classes.</span>
+        </a>
+        <section id="start" class="col-span-4 md:col-span-12 xl:col-span-7 flex flex-col gap-group py-page">
+          <h2 class="text-heading-md pt-sm border-t border-border">Start in one line</h2>
+          <p class="text-body-md max-w-measure">Link the minified bundle from the CDN. The link pins release 0.3.0, so your site won't change until you change the version.</p>
+          <figure class="flex flex-col min-w-0 border border-border-weak bg-bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-border-weak">
+              <span class="text-mono-sm text-fg-weak truncate">index.html</span><span class="text-kicker text-fg-subtle">HTML</span>
+            </figcaption>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.3.0/dist/nowind.min.css&quot;&gt;</code></pre>
+          </figure>
+          <aside role="note" class="flex gap-gutter p-surface border-l-4 border-border-info bg-component-info-weak">
+            <i class="icon ph ph-info text-fg-info-weak"></i>
+            <div class="flex flex-col gap-3xs min-w-0">
+              <span class="text-label text-fg-info">Note</span>
+              <p class="text-body-md">Put your own CSS in <code>@layer styles</code>, so a utility class always wins over it.</p>
+            </div>
+          </aside>
+        </section>
+        <section id="inside" class="col-span-4 md:col-span-12 xl:col-span-5 flex flex-col gap-group py-page">
+          <h2 class="text-heading-md pt-sm border-t border-border">In the box</h2>
+          <dl class="flex flex-col">
+            <div class="flex items-baseline justify-between gap-row py-xs border-b border-border-weak">
+              <dt class="text-body-md text-fg-weak">utility classes</dt><dd class="text-heading-md tabular-nums">1,324</dd>
+            </div>
+            <div class="flex items-baseline justify-between gap-row py-xs border-b border-border-weak">
+              <dt class="text-body-md text-fg-weak">breakpoint variants</dt><dd class="text-heading-md tabular-nums">660</dd>
+            </div>
+            <div class="flex items-baseline justify-between gap-row py-xs border-b border-border-weak">
+              <dt class="text-body-md text-fg-weak">hover variants</dt><dd class="text-heading-md tabular-nums">162</dd>
+            </div>
+            <div class="flex items-baseline justify-between gap-row py-xs border-b border-border-weak">
+              <dt class="text-body-md text-fg-weak">type roles</dt><dd class="text-heading-md tabular-nums">29</dd>
+            </div>
+            <div class="flex items-baseline justify-between gap-row py-xs border-b border-border-weak">
+              <dt class="text-body-md text-fg-weak">colour palettes</dt><dd class="text-heading-md tabular-nums">9</dd>
+            </div>
+          </dl>
+          <p class="text-caption text-fg-weak">Counts from <code>nowind.manifest.json</code> and the type-role manifest.</p>
+        </section>
+      </div></div>
+      <footer class="flex flex-col md:flex-row md:items-center justify-between gap-field px-grid py-surface border-t border-border-weak text-caption text-fg-weak">
+        <span>Nowind 0.3.0. Every page here is built from Nowind utility classes only.</span>
+        <span class="flex flex-wrap gap-row">
+          <a href="changelog.html" class="no-underline text-fg-weak hover:text-fg transition-colors">Changelog</a>
+          <a href="index.html" class="no-underline text-fg-weak hover:text-fg transition-colors">About these templates</a>
+          <a href="https://github.com/kimgranlund/nowind" class="no-underline text-fg-weak hover:text-fg transition-colors">GitHub</a>
+        </span>
+      </footer>
+    </main>
+  </div>
+</div>
+</body>
+</html>
