@@ -1,4 +1,4 @@
-:root {
+:root, .scope, .tier-product, .tier-content, .tier-brand {
   --font-control: var(--font-body);
 
   --display-lg: var(--text-6xl);

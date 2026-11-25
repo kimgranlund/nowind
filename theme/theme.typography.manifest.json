@@ -167,7 +167,7 @@
     "--leading-relaxed: 1.625"
   ],
   "notes": [
-    "Sizes are viewport-fluid, not tied to --F: a .scope with its own font-size does not resize them.",
+    "Sizes are viewport-fluid. Inside a tier each step grows by the tier's text step (--tier-text: 2px content, 4px brand) times the scale's mean ratio to that step's power, so the whole scale grows with the tier's body size. A .scope with its own font-size does not resize them.",
     "Font sizes in rem respect the user's browser font size; the vw part does not scale with zoom, so keep maxBase / minBase under about 2.5 (WCAG 1.4.4)."
   ]
 }

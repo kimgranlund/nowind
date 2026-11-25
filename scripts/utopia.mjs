@@ -44,7 +44,7 @@ function fluid(minPx, maxPx) {
 
 const text = TEXT_STEPS.map(([name, step]) => {
   const v = fluid(cfg.minBase * cfg.minRatio ** step, cfg.maxBase * cfg.maxRatio ** step);
-  return { name, step, ...v, lineHeight: LINE_HEIGHTS[name] };
+  return { name, step, ...v, lineHeight: LINE_HEIGHTS[name], tierFactor: Number((((cfg.minRatio + cfg.maxRatio) / 2) ** step).toFixed(3)) };
 });
 const byName = Object.fromEntries(text.map((t) => [t.name, t]));
 const kicker = KICKERS.map(([name, beside]) => {
@@ -76,16 +76,18 @@ const typeCss = `${header}:root {
   --leading-normal: 1.5;
   --leading-relaxed: 1.625;
 
-${text.map((t) => `  --text-${t.name}: ${t.css};`).join("\n")}
-
 ${text.map((t) => `  --text-${t.name}--line-height: ${t.lineHeight};`).join("\n")}
-
-${kicker.map((k) => `  --kicker-${k.name}: max(calc(var(--text-${k.beside}) * ${KICKER_FACTOR}), ${TEXT_FLOOR}px);`).join("\n")}
 
   --kicker-font: var(--font-mono);
   --kicker-weight: var(--font-weight-medium);
   --kicker-tracking: var(--tracking-widest);
   --kicker-transform: uppercase;
+}
+
+:root, .scope, .tier-product, .tier-content, .tier-brand {
+${text.map((t) => `  --text-${t.name}: calc(${t.css} + var(--tier-text, 0px) * ${t.tierFactor});`).join("\n")}
+
+${kicker.map((k) => `  --kicker-${k.name}: max(calc(var(--text-${k.beside}) * ${KICKER_FACTOR}), ${TEXT_FLOOR}px);`).join("\n")}
 }
 `;
 
@@ -129,7 +131,7 @@ const typeManifest = {
   tracking: ["--tracking-tight: -0.01em", "--tracking-normal: 0em", "--tracking-wide: 0.025em", "--tracking-widest: 0.16em"],
   leading: ["--leading-none: 1", "--leading-tight: 1.25", "--leading-snug: 1.375", "--leading-normal: 1.5", "--leading-relaxed: 1.625"],
   notes: [
-    "Sizes are viewport-fluid, not tied to --F: a .scope with its own font-size does not resize them.",
+    "Sizes are viewport-fluid. Inside a tier each step grows by the tier's text step (--tier-text: 2px content, 4px brand) times the scale's mean ratio to that step's power, so the whole scale grows with the tier's body size. A .scope with its own font-size does not resize them.",
     "Font sizes in rem respect the user's browser font size; the vw part does not scale with zoom, so keep maxBase / minBase under about 2.5 (WCAG 1.4.4).",
   ],
 };

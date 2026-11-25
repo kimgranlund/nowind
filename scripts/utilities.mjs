@@ -256,6 +256,8 @@ for (const [lv, v] of Object.entries(LEVEL_PAD)) {
   add(`p-${lv}`, `padding: ${v}`);
   add(`px-${lv}`, `padding-inline: ${v}`);
   add(`py-${lv}`, `padding-block: ${v}`);
+  add(`pt-${lv}`, `padding-top: ${v}`);
+  add(`pb-${lv}`, `padding-bottom: ${v}`);
 }
 add("gap-field", "gap: var(--field-gap)");
 add("gap-row", "gap: var(--row-gap)");
@@ -275,12 +277,15 @@ add("w-sidebar", "width: var(--shell-sidebar-width)");
 add("w-rail", "width: var(--shell-rail-width)");
 add("h-header", "height: var(--shell-header-height)");
 add("min-h-header", "min-height: var(--shell-header-height)");
+add("top-header", "top: var(--shell-header-height)");
+add("h-below-header", "height: calc(100dvh - var(--shell-header-height))");
+add("max-h-below-header", "max-height: calc(100dvh - var(--shell-header-height))");
 add("max-w-measure", "max-width: var(--shell-measure)");
 
 // Tiers (after Affine's space tiers): each is a scope with its own font size and spacing multiplier.
-add("tier-product", "--tier: 1");
-add("tier-content", "--tier: var(--tier-content); font-size: calc(1em + var(--tier-content-text))");
-add("tier-brand", "--tier: var(--tier-brand); font-size: calc(1em + var(--tier-brand-text))");
+add("tier-product", "--tier: 1; --tier-text: 0px");
+add("tier-content", "--tier: var(--tier-content); --tier-text: var(--tier-content-text); font-size: calc(1em + var(--tier-content-text))");
+add("tier-brand", "--tier: var(--tier-brand); --tier-text: var(--tier-brand-text); font-size: calc(1em + var(--tier-brand-text))");
 add("gap-gutter-half", "gap: calc(var(--gutter) / 2)");
 add("icon", "display: inline-flex; align-items: center; justify-content: center; flex: none; width: var(--icon-box); height: var(--icon-box); font-size: var(--icon-md); line-height: 1");
 add("icon-sm", "font-size: var(--icon-sm)");
@@ -319,7 +324,7 @@ const rule = (sel, decl) => `  .${esc(sel)} { ${decl}; }`;
 const ROLE_COLORS = colorProps.filter((p) => !/^--shadow/.test(p) && !/-(surface|indicator|track)$/.test(p)).map((p) => p.slice(2));
 const colorClass = new RegExp(`^(text|bg)-(${ROLE_COLORS.map((c) => c.replace(/[-]/g, "\\-")).join("|")}|inherit|current|transparent)$`);
 const HOVER = [...D.keys()].filter((c) => colorClass.test(c) || /^border-border(-|$)/.test(c) || /^opacity-|^cursor-/.test(c));
-const LAYOUT = [...D.keys()].filter((c) => /^(block|inline-block|inline|flex|inline-flex|grid|inline-grid|contents|hidden|flex-(row|col)(-reverse)?|flex-wrap|flex-nowrap|justify-|items-|self-|text-(left|center|right|justify|start|end)$|col-span-|w-(\d\/\d|full|auto|fit)$|basis-|gap-)/.test(c));
+const LAYOUT = [...D.keys()].filter((c) => /^(block|inline-block|inline|flex|inline-flex|grid|inline-grid|contents|hidden|flex-(row|col)(-reverse)?|flex-wrap|flex-nowrap|justify-|items-|self-|text-(left|center|right|justify|start|end)$|col-span-|w-(\d\/\d|full|auto|fit|sidebar|rail)$|basis-|gap-|p[xytb]?-|static$|relative$|absolute$|fixed$|sticky$|top-|overflow-|h-(full|auto|dvh|screen|below-header)$)/.test(c));
 const geometryCss = read("theme/theme.geometry.css");
 const BREAKPOINTS = [...geometryCss.matchAll(/--breakpoint-([\w]+):\s*(\d+)px/g)].map((m) => [m[1], Number(m[2])]);
 
@@ -476,6 +481,7 @@ const reset = `@layer reset {
   :where(td, th) { font-variant-numeric: tabular-nums; }
   :where(code, kbd, samp, pre) { font-family: var(--font-mono); font-size: var(--code); }
   :where(pre) { white-space: pre-wrap; }
+  :where(:not(pre) > code) { white-space: nowrap; }
 
   :where(dialog, [popover]) { color: inherit; font: inherit; }
   dialog::backdrop { background: var(--scrim); }
@@ -498,6 +504,7 @@ out.push(reset);
 out.push("@layer nowind {");
 for (const [c, d] of D) out.push(rule(c, d));
 out.push("  .icon > svg { width: 1em; height: 1em; fill: currentColor; }");
+out.push("  .list-none::-webkit-details-marker { display: none; }");
 out.push("  @keyframes nw-spin { to { rotate: 360deg; } }");
 out.push("  @keyframes nw-pulse { 50% { opacity: 0.5; } }");
 out.push("  .select-base::picker(select) { appearance: base-select; margin-block: var(--space-3xs); padding: var(--space-3xs); border: var(--border-width) solid var(--border-weak); border-radius: var(--radius-surface); background: var(--bg); box-shadow: var(--shadow-lg); }");
@@ -616,7 +623,7 @@ const manifest = {
   variants: {
     hover: "Inside @media (hover: hover), as Tailwind v4, so taps on touch screens don't stick. hover:border-* for the border roles, hover:text-* and hover:bg-* for the colour role tokens only (bg, component, border, solid, on-solid, fg and their palette versions), hover:opacity-*, hover:cursor-*. Raw palette steps and alpha steps have no hover class.",
     breakpoints: Object.fromEntries(BREAKPOINTS.map(([b, w]) => [b, `${w}px`])),
-    responsive: "sm:, md:, lg:, xl:, 2xl: (read from the --breakpoint-* tokens) apply to layout: display, grid columns and spans, flex direction, wrap, basis, justify, align, text alignment, widths (fractions, full, auto, fit) and gaps. Spacing other than gaps, colours and type have no breakpoint variants.",
+    responsive: "sm:, md:, lg:, xl:, 2xl: (read from the --breakpoint-* tokens) apply to layout: display, grid columns and spans, flex direction, wrap, basis, justify, align, text alignment, widths, heights, position, top, overflow, padding and gaps. Margins, colours and type have no breakpoint variants.",
     states: "active:, focus-visible:, aria-selected:, aria-current:, aria-pressed:, aria-expanded:, open: (details, popovers), aria-invalid: (also :user-invalid) and disabled: (also aria-disabled). Colors only (plus opacity and cursor for disabled), for the neutral and accent roles; aria-invalid for neutral and danger.",
     none: "No group- or dark: variants. Dark mode comes from the theme's light-dark() tokens.",
   },
@@ -637,7 +644,7 @@ const manifest = {
     controls: "h-control, h-nested (an .icon inside it shrinks by the two borders so it fits), size-control, size-nested, min-w-control, min-w-nested, px-control and px-nested (padding steps in by one margin on a side whose first or last child is .icon; wrap the label in a <span>), gap-gutter, gap-gutter-half",
     levels: "p-surface, p-dialog (each minus the border), p-region, p-page, with px- and py- versions; gap-field, gap-row, gap-group, gap-section, gap-page; mt-section, mb-section. After Affine's container levels.",
     materials: "material-flat, -physical, -frosted, -glass, -outline set a region's material (nearest wins, by @scope); relief-raised, -raised-solid, -recessed, -field, -etched, -ground, -overlay say what a part is. After Massimo.",
-    grid: "gap-grid, gap-x-grid (2M), p-grid-inset (M), px-grid (slot), px-grid-compact; shell: w-sidebar (16F + 16), w-rail, h-header, min-h-header, max-w-measure (44F). After Affine.",
+    grid: "gap-grid, gap-x-grid (2M), p-grid-inset (M), px-grid (slot), px-grid-compact; shell: w-sidebar (16F + 16), w-rail, h-header, min-h-header, top-header (a sticky offset under the header), h-below-header, max-h-below-header, max-w-measure (44F). After Affine.",
     tiers: "tier-product (1×), tier-content (font +2px, spacing 1.5×), tier-brand (font +4px, spacing 2×). Each is a scope: --F and everything derived recompute inside it.",
     animation: "animate-spin, animate-pulse, animate-none (cut by the reset under reduced motion).",
     anchor: "anchor-bottom, -top, -start, -end, -center: place a popover against its invoker with CSS anchor positioning, flipping at the screen edge.",
@@ -667,7 +674,7 @@ const GROUPS = [
   ["Levels and tiers", (c) => /^(p[xy]?-(surface|dialog|region|page)|gap-(field|row|group|section|page)|m[tb]-section|tier-)/.test(c)],
   ["Materials", (c) => /^(material|relief)-/.test(c)],
   ["Motion, anchors and select", (c) => /^(transition|duration-|ease-|animate-|anchor-|select-base)/.test(c)],
-  ["Page grid and shell", (c) => /^(gap-(x-)?grid|p-grid-inset|px-grid|w-sidebar|w-rail|(min-)?h-header|max-w-measure)/.test(c)],
+  ["Page grid and shell", (c) => /^(gap-(x-)?grid|p-grid-inset|px-grid|w-sidebar|w-rail|(min-)?h-header|top-header|(max-)?h-below-header|max-w-measure)/.test(c)],
   ["Type", (c, d) => /font-size/.test(d)],
   ["Text color", (c, d) => /^color:/.test(d)],
   ["Background color", (c, d) => /^background-color:/.test(d)],

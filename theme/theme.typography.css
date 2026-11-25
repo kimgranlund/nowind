@@ -19,17 +19,6 @@
   --leading-normal: 1.5;
   --leading-relaxed: 1.625;
 
-  --text-xs: clamp(0.6076rem, 0.5617rem + 0.2043vw, 0.72rem);
-  --text-sm: clamp(0.7292rem, 0.6593rem + 0.3106vw, 0.9rem);
-  --text-base: clamp(0.875rem, 0.7727rem + 0.4545vw, 1.125rem);
-  --text-lg: clamp(1.05rem, 0.9043rem + 0.6477vw, 1.4063rem);
-  --text-xl: clamp(1.26rem, 1.0563rem + 0.9051vw, 1.7578rem);
-  --text-2xl: clamp(1.512rem, 1.2317rem + 1.2459vw, 2.1973rem);
-  --text-3xl: clamp(1.8144rem, 1.4331rem + 1.6949vw, 2.7466rem);
-  --text-4xl: clamp(2.1773rem, 1.6635rem + 2.2835vw, 3.4332rem);
-  --text-5xl: clamp(2.6127rem, 1.926rem + 3.0524vw, 4.2915rem);
-  --text-6xl: clamp(3.1353rem, 2.2234rem + 4.053vw, 5.3644rem);
-
   --text-xs--line-height: 1.5;
   --text-sm--line-height: 1.5;
   --text-base--line-height: 1.5;
@@ -41,12 +30,25 @@
   --text-5xl--line-height: 1.05;
   --text-6xl--line-height: 1;
 
-  --kicker-sm: max(calc(var(--text-xs) * 0.92), 9px);
-  --kicker-md: max(calc(var(--text-sm) * 0.92), 9px);
-  --kicker-lg: max(calc(var(--text-base) * 0.92), 9px);
-
   --kicker-font: var(--font-mono);
   --kicker-weight: var(--font-weight-medium);
   --kicker-tracking: var(--tracking-widest);
   --kicker-transform: uppercase;
+}
+
+:root, .scope, .tier-product, .tier-content, .tier-brand {
+  --text-xs: calc(clamp(0.6076rem, 0.5617rem + 0.2043vw, 0.72rem) + var(--tier-text, 0px) * 0.666);
+  --text-sm: calc(clamp(0.7292rem, 0.6593rem + 0.3106vw, 0.9rem) + var(--tier-text, 0px) * 0.816);
+  --text-base: calc(clamp(0.875rem, 0.7727rem + 0.4545vw, 1.125rem) + var(--tier-text, 0px) * 1);
+  --text-lg: calc(clamp(1.05rem, 0.9043rem + 0.6477vw, 1.4063rem) + var(--tier-text, 0px) * 1.225);
+  --text-xl: calc(clamp(1.26rem, 1.0563rem + 0.9051vw, 1.7578rem) + var(--tier-text, 0px) * 1.501);
+  --text-2xl: calc(clamp(1.512rem, 1.2317rem + 1.2459vw, 2.1973rem) + var(--tier-text, 0px) * 1.838);
+  --text-3xl: calc(clamp(1.8144rem, 1.4331rem + 1.6949vw, 2.7466rem) + var(--tier-text, 0px) * 2.252);
+  --text-4xl: calc(clamp(2.1773rem, 1.6635rem + 2.2835vw, 3.4332rem) + var(--tier-text, 0px) * 2.759);
+  --text-5xl: calc(clamp(2.6127rem, 1.926rem + 3.0524vw, 4.2915rem) + var(--tier-text, 0px) * 3.379);
+  --text-6xl: calc(clamp(3.1353rem, 2.2234rem + 4.053vw, 5.3644rem) + var(--tier-text, 0px) * 4.14);
+
+  --kicker-sm: max(calc(var(--text-xs) * 0.92), 9px);
+  --kicker-md: max(calc(var(--text-sm) * 0.92), 9px);
+  --kicker-lg: max(calc(var(--text-base) * 0.92), 9px);
 }

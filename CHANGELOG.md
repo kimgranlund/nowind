@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- **Tiers grow the type:** inside `tier-content` and `tier-brand` the whole type scale and the type roles grow with the tier's body size.
+- **Sticky under a header:** `top-header`, `h-below-header`, `max-h-below-header`.
+- **Breakpoints** now cover padding, position, `top-*`, overflow and heights (`lg:sticky`, `md:p-surface`, `lg:overflow-y-auto`).
+- **Level padding sides:** `pt-` and `pb-` for `surface`, `dialog`, `region` and `page`.
+- **Reset:** inline code no longer wraps at hyphens; `list-none` also hides Safari's `<summary>` marker.
+
 ## 0.4.0 (2026-11-25)
 
 - **Popovers, select, animation:** `anchor-*` (CSS anchor positioning for popovers), `select-base` (customizable select), `animate-spin`, `animate-pulse`.

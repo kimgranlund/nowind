@@ -430,7 +430,7 @@ function buildUtilities() {
     ["Levels and tiers", (c) => /^(p[xy]?-(surface|dialog|region|page)|gap-(field|row|group|section|page)|m[tb]-section|tier-)/.test(c), "misc"],
     ["Materials", (c) => /^(material|relief)-/.test(c), "misc"],
     ["Motion, anchors and select", (c) => /^(transition|duration-|ease-|animate-|anchor-|select-base)/.test(c), "misc"],
-    ["Page grid and shell", (c) => /^(gap-(x-)?grid|p-grid-inset|px-grid|w-sidebar|w-rail|(min-)?h-header|max-w-measure)/.test(c), "misc"],
+    ["Page grid and shell", (c) => /^(gap-(x-)?grid|p-grid-inset|px-grid|w-sidebar|w-rail|(min-)?h-header|top-header|(max-)?h-below-header|max-w-measure)/.test(c), "misc"],
     ["Type", (c, d) => /font-size/.test(d), "type"],
     ["Text color", (c, d) => /^color:/.test(d), "color"],
     ["Background color", (c, d) => /^background-color:/.test(d), "bg"],

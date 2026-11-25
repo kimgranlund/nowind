@@ -188,10 +188,7 @@
         <section id="limits" class="flex flex-col gap-group">
           <h2 class="text-heading-md pt-sm border-t border-border">Known limits</h2>
           <ul class="flex flex-col gap-3xs pl-md list-disc text-body-md">
-            <li>There is no <code>top-header</code> offset, so the frame uses inner scrolling instead of a sticky header with a sticky sidebar.</li>
-            <li>Padding and type have no breakpoint variants. The templates rely on the fluid scale instead.</li>
-            <li>Type roles are sized on <code>:root</code>, so text set with a role class does not grow inside a tier; only spacing and geometry do.</li>
-            <li>Safari may still draw the disclosure triangle on the menu's <code>summary</code>; no class removes <code>::-webkit-details-marker</code>.</li>
+            <li>Margins and type have no breakpoint variants; padding, position, overflow, widths and gaps do. The templates rely on the fluid type scale.</li>
             <li>The table of contents does not mark the section in view. That needs a script.</li>
           </ul>
         </section>

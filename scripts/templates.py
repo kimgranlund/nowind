@@ -257,7 +257,7 @@ def guide():
   </div>
 </div>"""),
             p("The header is <code>h-header</code> tall and the sidebar <code>w-sidebar</code> wide. Both follow the base size, so they grow with the type from a phone to a wide screen."),
-            callout("note", "Nowind has only <code>top-0</code>, so a sticky sidebar under a sticky header would slide beneath it. The frame avoids the offset: the header never scrolls, and the sidebar and main scroll on their own."),
+            callout("note", "The frame keeps the header fixed and lets the sidebar and main scroll on their own. For a page that scrolls as a whole, make the header <code>sticky top-0</code> and the sidebar <code>sticky top-header</code> with <code>max-h-below-header</code>, so it sits just under the header."),
         ),
         section("grid", "The grid",
             p("Inside <code>main</code>, content sits on Nowind's page grid: four columns on a phone, twelve from 768px up, with <code>gap-grid</code> between columns and <code>px-grid</code> at the edges. The article takes nine columns and the table of contents three; below 1280px the table of contents is hidden and the article takes all twelve."),
@@ -602,10 +602,7 @@ def index():
         ),
         section("limits", "Known limits",
             ul([
-                "There is no <code>top-header</code> offset, so the frame uses inner scrolling instead of a sticky header with a sticky sidebar.",
-                "Padding and type have no breakpoint variants. The templates rely on the fluid scale instead.",
-                "Type roles are sized on <code>:root</code>, so text set with a role class does not grow inside a tier; only spacing and geometry do.",
-                "Safari may still draw the disclosure triangle on the menu's <code>summary</code>; no class removes <code>::-webkit-details-marker</code>.",
+                "Margins and type have no breakpoint variants; padding, position, overflow, widths and gaps do. The templates rely on the fluid type scale.",
                 "The table of contents does not mark the section in view. That needs a script.",
             ]),
         ),

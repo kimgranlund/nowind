@@ -111,7 +111,7 @@
             <i class="icon ph ph-info text-fg-info-weak"></i>
             <div class="flex flex-col gap-3xs min-w-0">
               <span class="text-label text-fg-info">Note</span>
-              <p class="text-body-md">Nowind has only <code>top-0</code>, so a sticky sidebar under a sticky header would slide beneath it. The frame avoids the offset: the header never scrolls, and the sidebar and main scroll on their own.</p>
+              <p class="text-body-md">The frame keeps the header fixed and lets the sidebar and main scroll on their own. For a page that scrolls as a whole, make the header <code>sticky top-0</code> and the sidebar <code>sticky top-header</code> with <code>max-h-below-header</code>, so it sits just under the header.</p>
             </div>
           </aside>
         </section>

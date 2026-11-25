@@ -107,7 +107,7 @@ Affine pads by what a box is, not by a size. These classes read the geometry tok
 
 Each padding class also has `px-` and `py-` versions.
 
-Tiers change the rhythm of a whole region. `tier-content` raises the font size by 2px and multiplies page and section spacing by 1.5; `tier-brand` adds 4px and 2×. `tier-product` is the default. Every size inside a tier recomputes, as inside a `.scope`.
+Tiers change the rhythm of a whole region. `tier-content` raises the font size by 2px and multiplies page and section spacing by 1.5; `tier-brand` adds 4px and 2×. `tier-product` is the default. Every size inside a tier recomputes, as inside a `.scope`, and the whole type scale grows with it: body text is 18px at the root, 20px in `tier-content` and 22px in `tier-brand` on a wide screen, with larger steps growing in proportion.
 
 ```html
 <article class="tier-content">…</article>
@@ -178,7 +178,7 @@ The reset draws checkboxes, radios, switches and sliders with the theme, at Affi
 
 ### Page grid and app shell
 
-After Affine: `gap-grid` is the column gutter (2M), `p-grid-inset` pads a placed element by half a gutter, and `px-grid` / `px-grid-compact` are the page's edge padding. For an app frame, `w-sidebar` (16F + 16), `w-rail` (collapsed), `h-header` and `max-w-measure` (a 44-character reading column) all grow with the type.
+After Affine: `gap-grid` is the column gutter (2M), `p-grid-inset` pads a placed element by half a gutter, and `px-grid` / `px-grid-compact` are the page's edge padding. For an app frame, `w-sidebar` (16F + 16), `w-rail` (collapsed), `h-header` and `max-w-measure` (a 44-character reading column) all grow with the type. `top-header` and `max-h-below-header` make a sidebar stick just under a sticky header: `lg:sticky top-header max-h-below-header lg:overflow-y-auto`.
 
 ### Motion
 
@@ -198,7 +198,7 @@ Hover states animate when an element has a transition class. `transition-colors`
 ### Variants
 
 - **Hover**: only on devices that can hover, as Tailwind v4. Text, background and border colors of the role tokens (not raw palette steps), opacity and cursor: `hover:bg-component`, `hover:text-fg`, `hover:border-border-strong`, `hover:opacity-100`.
-- **Breakpoints**: `sm:` 640px, `md:` 768px, `lg:` 1024px, `xl:` 1280px, `2xl:` 1536px (the `--breakpoint-*` tokens), for layout: display, grid columns and spans, flex direction, wrap and basis, alignment, text alignment, widths (`md:w-1/3`) and gaps (`md:gap-lg`). Padding, color and type have no breakpoint variants.
+- **Breakpoints**: `sm:` 640px, `md:` 768px, `lg:` 1024px, `xl:` 1280px, `2xl:` 1536px (the `--breakpoint-*` tokens), for layout: display, grid columns and spans, flex direction, wrap and basis, alignment, text alignment, widths (`md:w-1/3`) and gaps (`md:gap-lg`). Margins, color and type have no breakpoint variants; padding, position, `top-*`, overflow and heights do.
 
 ```html
 <div class="grid grid-cols-1 md:grid-cols-3 gap-sm md:gap-lg">
