@@ -143,6 +143,10 @@
       "use": "Headings and display: Inter Tight, 500–800, loaded by theme.css."
     },
     {
+      "token": "--font-display",
+      "use": "Display figures and numerals (prices, metrics): Inter Tight, the face that carries 800. Pair with font-extrabold and tracking-tight."
+    },
+    {
       "token": "--font-mono",
       "use": "Kicker, code and figures: IBM Plex Mono 400 and 500, loaded by theme.css."
     }
@@ -151,7 +155,8 @@
     "--font-weight-normal: 400",
     "--font-weight-medium: 500",
     "--font-weight-semibold: 600",
-    "--font-weight-bold: 700"
+    "--font-weight-bold: 700",
+    "--font-weight-extrabold: 800 (Inter Tight only: Inter loads 400–700)"
   ],
   "tracking": [
     "--tracking-tight: -0.01em",

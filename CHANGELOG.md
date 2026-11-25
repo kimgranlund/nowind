@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- **Display figures:** prices and metrics set in `font-display` (Inter Tight, new) at `font-extrabold` (800, new) with `tracking-tight`; the price caption stays on one line.
+- **Sidebar nav on the segmented geometry:** `rounded-sm border-2 border-transparent` with touching `rounded-inner` items, as the segmented control.
+- **One keycap:** every `<kbd>` is `h-nested min-w-nested px-2xs rounded-xs border`, so a single key is square and a chord sits `gap-3xs` apart.
+- **Nested curvature:** the one-line toast's Undo sits in the toast's end corner, so it takes `rounded-inner` and follows the toast's radius less its padding.
 - **Round markers are circles:** stepper numbers, avatars and initials are `size-nested` or `size-control` with `shrink-0`; padded, they took their width from the text and came out oval.
 - **No conflicting classes in the examples:** the lint now rejects two classes that set the same property on one element (the colour picker had `p-3xs` and `p-0`; the read-only and disabled fields stacked a second background, colour and cursor on the field's own). Self-test: fourteen breaks.
 - **Avatars:** each is `size-control shrink-0`, one control height square whatever the initials (they were padded, so they varied in width and shrank in a tight row); the showcase group keeps its avatars together and wraps the caption below them instead of one word per line.

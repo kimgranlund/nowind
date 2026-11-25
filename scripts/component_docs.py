@@ -7,7 +7,7 @@ BTN_SECONDARY = f"{BTN} state border bg-neutral-3 fg-neutral-12 text-base font-m
 FIELD = "h-control px-control rounded-sm border hover:border-neutral-8 invalid:border-danger-7 bg-neutral-1 text-base w-full"
 BOX = "flex items-center gap-gutter h-control px-control rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition"
 BARE = "grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12"
-KBD = "inline-flex items-center py-3xs px-2xs rounded-xs border fg-neutral-11 text-sm font-mono"
+KBD = "inline-flex items-center justify-center h-nested min-w-nested px-2xs rounded-xs border border-neutral-6 bg-neutral-2 fg-neutral-11 text-xs font-mono"
 NESTED_SELECT = "select-base h-nested px-nested rounded-xs state border border-transparent bg-transparent fg-neutral-12 text-base cursor-pointer"
 NESTED_ICON = "inline-flex items-center justify-center size-nested rounded-xs state border border-transparent bg-transparent fg-neutral-11 hover:fg-neutral-12 cursor-pointer"
 CARD = "p-md rounded-md bg-neutral-1 border border-neutral-6"
@@ -126,7 +126,7 @@ COMPONENTS = [
         "html": """<div class="flex items-center gap-gutter p-2xs ps-xs w-fit rounded-md bg-neutral-12 shadow-lg" role="status">
   <i class="icon ph ph-check-circle fg-success-9"></i>
   <span class="text-base fg-neutral-1">Changes saved</span>
-  <button class="inline-flex items-center h-nested px-nested rounded-xs state border-0 bg-neutral-1 fg-neutral-12 text-base font-medium cursor-pointer"><span>Undo</span></button>
+  <button class="inline-flex items-center h-nested px-nested rounded-inner state border-0 bg-neutral-1 fg-neutral-12 text-base font-medium cursor-pointer"><span>Undo</span></button>
 </div>""",
         "examples": [
             {"id": "detail", "label": "Title, detail and action",

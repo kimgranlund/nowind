@@ -1260,7 +1260,7 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 
 ## Typography
 
-57 classes.
+59 classes.
 
 | Class | Declarations |
 |---|---|
@@ -1279,8 +1279,10 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 | `.font-medium` | `font-weight: var(--font-weight-medium)` |
 | `.font-semibold` | `font-weight: var(--font-weight-semibold)` |
 | `.font-bold` | `font-weight: var(--font-weight-bold)` |
+| `.font-extrabold` | `font-weight: var(--font-weight-extrabold)` |
 | `.font-body` | `font-family: var(--font-body)` |
 | `.font-heading` | `font-family: var(--font-heading)` |
+| `.font-display` | `font-family: var(--font-display)` |
 | `.font-mono` | `font-family: var(--font-mono)` |
 | `.font-control` | `font-family: var(--font-control)` |
 | `.font-sans` | `font-family: var(--font-body)` |

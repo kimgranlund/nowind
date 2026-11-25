@@ -58,12 +58,14 @@ const header = "";
 const typeCss = `${header}:root {
   --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
   --font-heading: "Inter Tight", "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Inter Tight", "Inter", "Segoe UI", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
 
   --tracking-tight: -0.01em;
   --tracking-normal: 0em;
@@ -132,9 +134,10 @@ const typeManifest = {
   faces: [
     { token: "--font-body", use: "Body face: Inter, loaded from Google Fonts by theme.css (variable, 400–700, with optical sizes and italics)." },
     { token: "--font-heading", use: "Headings and display: Inter Tight, 500–800, loaded by theme.css." },
+    { token: "--font-display", use: "Display figures and numerals (prices, metrics): Inter Tight, the face that carries 800. Pair with font-extrabold and tracking-tight." },
     { token: "--font-mono", use: "Kicker, code and figures: IBM Plex Mono 400 and 500, loaded by theme.css." },
   ],
-  weights: ["--font-weight-normal: 400", "--font-weight-medium: 500", "--font-weight-semibold: 600", "--font-weight-bold: 700"],
+  weights: ["--font-weight-normal: 400", "--font-weight-medium: 500", "--font-weight-semibold: 600", "--font-weight-bold: 700", "--font-weight-extrabold: 800 (Inter Tight only: Inter loads 400–700)"],
   tracking: ["--tracking-tight: -0.01em", "--tracking-normal: 0em", "--tracking-wide: 0.025em", "--tracking-widest: 0.16em"],
   leading: ["--leading-none: 1", "--leading-tight: 1.25", "--leading-snug: 1.375", "--leading-normal: 1.5", "--leading-relaxed: 1.625"],
   notes: [

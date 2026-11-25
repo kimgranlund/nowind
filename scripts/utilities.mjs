@@ -99,8 +99,8 @@ add("not-italic", "font-style: normal");
 add("underline", "text-decoration-line: underline");
 add("line-through", "text-decoration-line: line-through");
 add("no-underline", "text-decoration-line: none");
-for (const w of ["normal", "medium", "semibold", "bold"]) add(`font-${w}`, `font-weight: var(--font-weight-${w})`);
-for (const f of ["body", "heading", "mono", "control"]) add(`font-${f}`, `font-family: var(--font-${f})`);
+for (const w of ["normal", "medium", "semibold", "bold", "extrabold"]) add(`font-${w}`, `font-weight: var(--font-weight-${w})`);
+for (const f of ["body", "heading", "display", "mono", "control"]) add(`font-${f}`, `font-family: var(--font-${f})`);
 add("font-sans", "font-family: var(--font-body)");
 for (const l of ["none", "tight", "snug", "normal", "relaxed"]) add(`leading-${l}`, `line-height: var(--leading-${l})`);
 for (const t of ["tight", "normal", "wide", "widest"]) add(`tracking-${t}`, `letter-spacing: var(--tracking-${t})`);
@@ -768,7 +768,7 @@ const manifest = {
     typeRoles: `text-{${ROLES.filter((r) => !KICKERS.includes(r)).join(", ")}} (every role companion)`,
     colors: "A colour class is the property prefix plus the token name, minus the role group when it matches the prefix (fg-weak, bg-accent-1, border-weak; bg-component-accent-1 keeps its group). --border is border-default, because border is the width class; the reset draws every border in --border. Each property takes only its own roles: fg- with fg-*, on-solid-* and each palette's contrast (fg-accent-1-contrast, the primitive for text on a solid); bg- with bg-*, component-*, solid-*, surface, indicator and track; border- with border-*. Raw palette steps (fg-accent-1-9, bg-accent-1-9, border-accent-1-9) work with all three; alpha steps (neutral-a4) with bg- only. No outline colour classes: the reset sets the focus ring.",
     weights: "font-normal, font-medium, font-semibold, font-bold",
-    faces: "font-body (alias font-sans), font-heading, font-mono, font-control",
+    faces: "font-body (alias font-sans), font-heading, font-display (Inter Tight, for figures; a face, so a regular class), font-mono, font-control; weights font-normal to font-extrabold (800, Inter Tight only)",
     leading: "leading-none, tight, snug, normal, relaxed",
     tracking: "tracking-tight, normal, wide, widest",
     radius: "rounded-none, rounded-xs (control − margin), rounded-sm (control), rounded-md (control + margin: cards, popovers), rounded-lg (+2 margins: dialogs), rounded-xl (+3), rounded-full. One name per value. rounded-s-* and rounded-e-* round one inline side (logical). After Affine, one margin per step and p-inset (margin − border) between levels, so rounded-md p-inset border holds rounded-sm items concentrically. rounded-inner gives any item its parent's radius minus the parent's padding and border.",
