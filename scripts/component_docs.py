@@ -122,13 +122,37 @@ COMPONENTS = [
     },
     {
         "slug": "toast", "name": "Toast", "icon": "ph-bell-ringing", "group": "Status",
-        "summary": "A brief confirmation on the inverse colors, with an optional action.",
-        "html": """<div class="flex flex-wrap items-center gap-x-xs gap-y-3xs py-2xs ps-sm pe-2xs w-fit rounded-md bg-neutral-12 shadow-lg" role="status">
-  <i class="icon ph ph-check-circle fg-neutral-1"></i>
-  <span class="text-base fg-neutral-1">Invite sent</span>
-  <span class="ms-auto flex items-center"><button class="inline-flex items-center h-nested px-nested rounded-xs state border-0 bg-transparent fg-accent-1-8 text-base font-medium cursor-pointer"><span>Undo</span></button></span>
+        "summary": "A brief confirmation on the inverse colours. One line keeps its action inline; a toast with detail stacks title, detail and actions in one text column, with the icon and dismiss on the first line.",
+        "html": """<div class="flex items-center gap-gutter p-2xs ps-xs w-fit rounded-md bg-neutral-12 shadow-lg" role="status">
+  <i class="icon ph ph-check-circle fg-success-9"></i>
+  <span class="text-base fg-neutral-1">Changes saved</span>
+  <button class="inline-flex items-center h-nested px-nested rounded-xs state border-0 bg-neutral-1 fg-neutral-12 text-base font-medium cursor-pointer"><span>Undo</span></button>
 </div>""",
-        "use": ["Confirm an action that already happened, with Undo when it can be reversed."],
+        "examples": [
+            {"id": "detail", "label": "Title, detail and action",
+             "summary": "Fixed slots: icon, a text column (title, detail, actions) and dismiss. <code>items-start</code> keeps the icon and dismiss on the title's line however the text wraps (the icon box and the title's line are both one slot tall). The toast pads <code>p-xs</code> on every side and the dismiss nests its corner with <code>rounded-inner</code>.",
+             "html": """<div class="flex flex-col gap-2xs max-w-form">
+  <div class="flex items-start gap-gutter p-xs rounded-md bg-neutral-12 shadow-lg" role="status">
+    <i class="icon ph ph-check-circle fg-success-9"></i>
+    <div class="grow min-w-0 flex flex-col gap-3xs">
+      <span class="text-base font-medium fg-neutral-1">Invite sent</span>
+      <span class="text-sm fg-neutral-8">grace@example.com can now join the workspace.</span>
+      <div class="flex gap-3xs pt-3xs"><button class="inline-flex items-center h-nested px-nested rounded-xs state border-0 bg-neutral-1 fg-neutral-12 text-base font-medium cursor-pointer"><span>Undo</span></button></div>
+    </div>
+    <button class="inline-flex items-center justify-center size-nested rounded-inner state border-0 bg-transparent fg-neutral-8 cursor-pointer" aria-label="Dismiss"><i class="icon icon-sm ph-bold ph-x"></i></button>
+  </div>
+  <div class="flex items-start gap-gutter p-xs rounded-md bg-neutral-12 shadow-lg" role="status">
+    <i class="icon ph ph-x-circle fg-danger-9"></i>
+    <div class="grow min-w-0 flex flex-col gap-3xs">
+      <span class="text-base font-medium fg-neutral-1">Upload failed</span>
+      <span class="text-sm fg-neutral-8">report.pdf is over the 10 MB limit.</span>
+      <div class="flex gap-3xs pt-3xs"><button class="inline-flex items-center h-nested px-nested rounded-xs state border-0 bg-neutral-1 fg-neutral-12 text-base font-medium cursor-pointer"><span>Retry</span></button></div>
+    </div>
+    <button class="inline-flex items-center justify-center size-nested rounded-inner state border-0 bg-transparent fg-neutral-8 cursor-pointer" aria-label="Dismiss"><i class="icon icon-sm ph-bold ph-x"></i></button>
+  </div>
+</div>"""},
+        ],
+        "use": ["Confirm an action that already happened, with Undo when it can be reversed.", "One line when the message is a few words; title and detail when it needs a second sentence."],
         "avoid": ["Errors the person must fix; use an alert near the problem."],
     },
     {

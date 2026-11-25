@@ -155,10 +155,10 @@
       </div>
     </div>
 
-    <div class="flex flex-wrap items-center gap-x-xs gap-y-3xs py-2xs ps-sm pe-2xs rounded-md bg-neutral-12 w-fit shadow-lg" role="status">
-      <i class="icon ph ph-check-circle fg-neutral-1"></i>
+    <div class="flex items-center gap-gutter p-2xs ps-xs w-fit rounded-md bg-neutral-12 shadow-lg" role="status">
+      <i class="icon ph ph-check-circle fg-success-9"></i>
       <span class="text-base fg-neutral-1">Changes saved</span>
-      <span class="ms-auto flex items-center"><button class="inline-flex items-center h-nested px-nested rounded-xs state border-0 bg-transparent fg-accent-1-8 text-base font-medium cursor-pointer"><span>Undo</span></button></span>
+      <button class="inline-flex items-center h-nested px-nested rounded-xs state border-0 bg-neutral-1 fg-neutral-12 text-base font-medium cursor-pointer"><span>Undo</span></button>
     </div>
     </div>
   </section>
@@ -765,17 +765,31 @@
       <div class="p-md rounded-md bg-neutral-1 border border-neutral-6 shadow-xs flex flex-col gap-md">
         <h3 class="text-base font-semibold">Toast stack</h3>
         <div class="flex flex-col gap-2xs">
-          <div class="flex flex-wrap items-center gap-x-xs gap-y-3xs py-2xs ps-sm pe-2xs rounded-md bg-neutral-12 shadow-lg" role="status">
-            <i class="icon ph ph-check-circle fg-success-9"></i><span class="grow basis-0 text-base fg-neutral-1">Invite sent to grace@example.com</span><span class="ms-auto flex items-center gap-3xs"><button class="inline-flex items-center h-nested px-nested rounded-xs state border-0 bg-transparent fg-accent-1-8 text-base font-medium cursor-pointer"><span>Undo</span></button>
-            <button class="inline-flex items-center justify-center size-nested rounded-xs state border-0 bg-transparent fg-neutral-6 cursor-pointer" aria-label="Dismiss"><i class="icon icon-sm ph-bold ph-x"></i></button></span>
+          <div class="flex items-start gap-gutter p-xs rounded-md bg-neutral-12 shadow-lg" role="status">
+            <i class="icon ph ph-check-circle fg-success-9"></i>
+            <div class="grow min-w-0 flex flex-col gap-3xs">
+              <span class="text-base font-medium fg-neutral-1">Invite sent</span>
+              <span class="text-sm fg-neutral-8">grace@example.com can now join the workspace.</span>
+              <div class="flex gap-3xs pt-3xs"><button class="inline-flex items-center h-nested px-nested rounded-xs state border-0 bg-neutral-1 fg-neutral-12 text-base font-medium cursor-pointer"><span>Undo</span></button></div>
+            </div>
+            <button class="inline-flex items-center justify-center size-nested rounded-inner state border-0 bg-transparent fg-neutral-8 cursor-pointer" aria-label="Dismiss"><i class="icon icon-sm ph-bold ph-x"></i></button>
           </div>
-          <div class="flex flex-wrap items-center gap-x-xs gap-y-3xs py-2xs ps-sm pe-2xs rounded-md bg-neutral-12 shadow-lg" role="status">
-            <i class="icon ph ph-warning fg-warning-9"></i><span class="grow basis-0 text-base fg-neutral-1">You're offline. Changes will sync later.</span>
-            <button class="inline-flex items-center justify-center size-nested rounded-xs state border-0 bg-transparent fg-neutral-6 cursor-pointer" aria-label="Dismiss"><i class="icon icon-sm ph-bold ph-x"></i></button>
+          <div class="flex items-start gap-gutter p-xs rounded-md bg-neutral-12 shadow-lg" role="status">
+            <i class="icon ph ph-warning fg-warning-9"></i>
+            <div class="grow min-w-0 flex flex-col gap-3xs">
+              <span class="text-base font-medium fg-neutral-1">You're offline</span>
+              <span class="text-sm fg-neutral-8">Changes will sync when you reconnect.</span>
+            </div>
+            <button class="inline-flex items-center justify-center size-nested rounded-inner state border-0 bg-transparent fg-neutral-8 cursor-pointer" aria-label="Dismiss"><i class="icon icon-sm ph-bold ph-x"></i></button>
           </div>
-          <div class="flex flex-wrap items-center gap-x-xs gap-y-3xs py-2xs ps-sm pe-2xs rounded-md bg-neutral-12 shadow-lg" role="status">
-            <i class="icon ph ph-x-circle fg-danger-9"></i><span class="grow basis-0 text-base fg-neutral-1">Upload failed: file is over 10 MB</span><span class="ms-auto flex items-center gap-3xs"><button class="inline-flex items-center h-nested px-nested rounded-xs state border-0 bg-transparent fg-accent-1-8 text-base font-medium cursor-pointer"><span>Retry</span></button>
-            <button class="inline-flex items-center justify-center size-nested rounded-xs state border-0 bg-transparent fg-neutral-6 cursor-pointer" aria-label="Dismiss"><i class="icon icon-sm ph-bold ph-x"></i></button></span>
+          <div class="flex items-start gap-gutter p-xs rounded-md bg-neutral-12 shadow-lg" role="status">
+            <i class="icon ph ph-x-circle fg-danger-9"></i>
+            <div class="grow min-w-0 flex flex-col gap-3xs">
+              <span class="text-base font-medium fg-neutral-1">Upload failed</span>
+              <span class="text-sm fg-neutral-8">report.pdf is over the 10 MB limit.</span>
+              <div class="flex gap-3xs pt-3xs"><button class="inline-flex items-center h-nested px-nested rounded-xs state border-0 bg-neutral-1 fg-neutral-12 text-base font-medium cursor-pointer"><span>Retry</span></button></div>
+            </div>
+            <button class="inline-flex items-center justify-center size-nested rounded-inner state border-0 bg-transparent fg-neutral-8 cursor-pointer" aria-label="Dismiss"><i class="icon icon-sm ph-bold ph-x"></i></button>
           </div>
         </div>
       </div>
@@ -834,17 +848,18 @@
         </ul>
       </div>
 
-      <div class="rounded-lg bg-neutral-1 border border-neutral-6 shadow-xl overflow-hidden" role="dialog" aria-label="Command palette">
-        <div class="flex items-center gap-xs py-xs px-md border-b border-neutral-6">
+      <div class="flex flex-col p-inset rounded-md bg-neutral-1 border border-neutral-6 shadow-xl" role="dialog" aria-label="Command palette">
+        <div class="flex items-center gap-gutter h-control px-control border border-transparent">
           <i class="icon ph ph-magnifying-glass fg-neutral-11"></i>
-          <input class="grow min-w-0 h-full border-0 bg-transparent text-base" placeholder="Type a command or search…" value="new">
-          <kbd class="inline-flex items-center py-3xs px-2xs rounded-xs border bg-neutral-2 text-xs font-mono fg-neutral-11">esc</kbd>
+          <input class="grow min-w-0 self-stretch p-0 border-0 bg-transparent text-base" placeholder="Type a command or search…" value="new" aria-label="Search commands">
+          <kbd class="inline-flex items-center h-nested px-2xs rounded-xs border border-neutral-6 bg-neutral-2 fg-neutral-11 text-xs font-mono">esc</kbd>
         </div>
-        <div class="flex flex-col p-2xs" role="listbox" aria-label="Commands">
-          <span class="text-xs font-mono uppercase tracking-widest fg-neutral-11 px-sm pt-2xs pb-3xs">Create</span>
-          <a href="#" class="flex items-center gap-gutter h-control px-control border border-transparent rounded-sm no-underline fg-neutral-12 hover:bg-neutral-3 selected:bg-accent-1-3 selected:fg-accent-1-11" role="option" aria-selected="true"><i class="icon ph ph-file-plus"></i><span class="grow">New document</span><kbd class="text-xs font-mono fg-neutral-11">⌘N</kbd></a>
-          <a href="#" class="flex items-center gap-gutter h-control px-control border border-transparent rounded-sm no-underline fg-neutral-12 hover:bg-neutral-3 selected:bg-accent-1-3 selected:fg-accent-1-11" role="option" aria-selected="false"><i class="icon ph ph-folder-plus"></i><span class="grow">New project</span><kbd class="text-xs font-mono fg-neutral-11">⇧⌘N</kbd></a>
-          <span class="text-xs font-mono uppercase tracking-widest fg-neutral-11 px-sm pt-xs pb-3xs">Navigate</span>
+        <div class="border-t border-neutral-6 my-3xs"></div>
+        <div class="flex flex-col" role="listbox" aria-label="Commands">
+          <span class="pt-2xs pb-3xs px-control text-xs font-mono uppercase tracking-widest fg-neutral-11">Create</span>
+          <a href="#" class="flex items-center gap-gutter h-control px-control border border-transparent rounded-sm no-underline fg-neutral-12 hover:bg-neutral-3 selected:bg-accent-1-3 selected:fg-accent-1-11" role="option" aria-selected="true"><i class="icon ph ph-file-plus"></i><span class="grow">New document</span><kbd class="inline-flex items-center h-nested px-2xs rounded-xs border border-neutral-6 bg-neutral-2 fg-neutral-11 text-xs font-mono">⌘N</kbd></a>
+          <a href="#" class="flex items-center gap-gutter h-control px-control border border-transparent rounded-sm no-underline fg-neutral-12 hover:bg-neutral-3 selected:bg-accent-1-3 selected:fg-accent-1-11" role="option" aria-selected="false"><i class="icon ph ph-folder-plus"></i><span class="grow">New project</span><kbd class="inline-flex items-center h-nested px-2xs rounded-xs border border-neutral-6 bg-neutral-2 fg-neutral-11 text-xs font-mono">⇧⌘N</kbd></a>
+          <span class="pt-xs pb-3xs px-control text-xs font-mono uppercase tracking-widest fg-neutral-11">Navigate</span>
           <a href="#" class="flex items-center gap-gutter h-control px-control border border-transparent rounded-sm no-underline fg-neutral-12 hover:bg-neutral-3 selected:bg-accent-1-3 selected:fg-accent-1-11" role="option" aria-selected="false"><i class="icon ph ph-users"></i><span class="grow">New member invite</span></a>
         </div>
       </div>
