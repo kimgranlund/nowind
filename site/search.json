@@ -79,6 +79,7 @@
 ["Radius and nesting", "docs/reference.html#radius", "Section", "Page grid and shell"],
 ["Breakpoints", "docs/reference.html#breakpoints", "Section", "Page grid and shell"],
 ["Pin a release", "docs/changelog.html#pin", "Section", "Changelog"],
+["0.9.0", "docs/changelog.html#v0-9-0", "Section", "Changelog"],
 ["0.8.0", "docs/changelog.html#v0-8-0", "Section", "Changelog"],
 ["0.7.0", "docs/changelog.html#v0-7-0", "Section", "Changelog"],
 ["0.6.0", "docs/changelog.html#v0-6-0", "Section", "Changelog"],

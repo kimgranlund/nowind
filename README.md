@@ -41,15 +41,15 @@ Markup drives state, too: set `aria-pressed`, `aria-selected`, `aria-current`, `
 Link one file:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.8.0/dist/nowind.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.9.0/dist/nowind.min.css">
 ```
 
-The link pins release `v0.8.0`. Or copy `dist/nowind.min.css` into your project. Releases are in [CHANGELOG.md](CHANGELOG.md). Browse the [component docs](https://kimgranlund.github.io/nowind/site/docs/components-index.html), the [showcase](https://kimgranlund.github.io/nowind/site/components.html), the [specimen](https://kimgranlund.github.io/nowind/site/specimen.html) and the [class list](https://kimgranlund.github.io/nowind/site/docs/classes.html) on GitHub Pages.
+The link pins release `v0.9.0`. Or copy `dist/nowind.min.css` into your project. Releases are in [CHANGELOG.md](CHANGELOG.md). Browse the [component docs](https://kimgranlund.github.io/nowind/site/docs/components-index.html), the [showcase](https://kimgranlund.github.io/nowind/site/components.html), the [specimen](https://kimgranlund.github.io/nowind/site/specimen.html) and the [class list](https://kimgranlund.github.io/nowind/site/docs/classes.html) on GitHub Pages.
 
 ```html
 <article class="max-w-form p-md rounded-md bg-neutral-1 border border-neutral-6 shadow-sm">
   <span class="text-xs font-mono uppercase tracking-widest fg-accent-1-11">Release</span>
-  <h3 class="text-base font-semibold">Nowind 0.8</h3>
+  <h3 class="text-base font-semibold">Nowind 0.9</h3>
   <p class="fg-neutral-11">Fluid type, Radix palettes and one geometric system.</p>
   <button class="inline-flex items-center h-control px-control gap-gutter rounded-sm state border border-transparent bg-accent-1-9 fg-accent-1-contrast font-medium">
     <i class="icon ph ph-arrow-right"></i><span>Read more</span>

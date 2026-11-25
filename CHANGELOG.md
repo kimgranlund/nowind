@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.9.0 (2026-11-25)
+
 - **Docs chrome on the size contract:** the Use and Avoid marks are `icon` beside body text (they were `icon-sm`), and a code caption sets its language label at the filename's size.
 - **Leaner variants (60.4 → 47.2 KiB gzip for the linked file):** hover and state variants cover the colour roles plus the raw steps a control moves between (surfaces 1–5, solids 9–10, text 11–12 and contrast, borders 6–8) in neutral, accent-1 and danger; other steps use `state`. Breakpoints cover display, grid, flex, alignment, widths, inline padding and gaps (no position, heights or overflow). Container queries are `@sm:`, `@md:`, `@lg:` over the classes that change a component's layout. Nothing the site uses was removed.
 - **Stronger hovers:** the state layer's opacities are 12% hover, 14% focus, 16% selected and 20% pressed (from 8, 10, 12 and 16), and the site map's links take the state layer with a nested-control shape.
