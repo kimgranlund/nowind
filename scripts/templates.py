@@ -948,6 +948,8 @@ def lint_examples():
             role = re.search(r'role="(\w+)"', m.group(2) + m.group(4))
             if tag in ("a", "button", "summary", "input", "select", "textarea", "label") or (role and role.group(1) in ("button", "tab", "option", "menuitem", "switch")):
                 continue
+            if tag in ("button", "a") and re.match(r"\s*<i\b[^>]*></i>\s*</" + tag + ">", html_[m.end():]) and (any(t.startswith(("px-", "py-")) for t in toks) or not any(re.fullmatch(r"p-[a-z0-9]+", t) for t in toks)):
+                out.append(f"{where}: an icon-only <{tag}> isn't square. Fix: one padding on all sides (p-xs, p-3xs), no px-/py-.")
             if any(re.fullmatch(r"ph-caret-[a-z-]+", t) for t in toks) and "text-base" not in toks:
                 out.append(f"{where}: a caret isn't the small icon size. Fix: give it text-base.")
             if any(variant.match(t) for t in toks) and not any(t.startswith("transition") for t in toks):
