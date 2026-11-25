@@ -15,6 +15,7 @@ PAGES = [
     ("guide.html", "Lay out a docs page"),
     ("reference.html", "Page grid and shell"),
     ("classes.html", "Classes"),
+    ("semantic.html", "Semantic classes"),
     ("changelog.html", "Changelog"),
     ("index.html", "About these templates"),
     ("components-index.html", "Components"),
@@ -26,6 +27,7 @@ NAV_GROUPS = [
                          ("guide.html", "Lay out a docs page", "ph-book-open")]),
     ("Reference", [("reference.html", "Page grid and shell", "ph-grid-four"),
                    ("classes.html", "Classes", "ph-list-bullets"),
+                   ("semantic.html", "Semantic classes", "ph-tag"),
                    ("../components.html", "Showcase", "ph-squares-four"),
                    ("../specimen.html", "Specimen", "ph-palette")]),
     ("Components", [("components-index.html", "All components", "ph-stack")] +
@@ -668,8 +670,42 @@ CLASS_FILTER = """<script>
 </script>
 """
 
-def classes_page():
-    cats = read_classes()
+SEMANTIC_CATS = {"Controls and icons", "Levels and tiers", "Materials", "Page grid and shell"}
+SEMANTIC_WORDS = re.compile(r"-(surface|dialog|region|page|field|row|group|section|control|nested|gutter|grid|sidebar|rail|header|measure)(-|$)")
+
+def is_semantic(cat, k):
+    """Semantic classes name a role (p-surface, fg-weak, text-heading-md); regular ones a scale step or a property value (p-md, border-warning-7)."""
+    if cat in SEMANTIC_CATS or (cat != "Layout and misc" and SEMANTIC_WORDS.search(k)):
+        return True
+    if cat in ("Text color", "Background color", "Border color"):
+        return not re.search(r"-a?\d+$|-(inherit|current|transparent)$", k)
+    if cat == "Type":
+        return not re.fullmatch(r"text-(xs|sm|base|lg|\d?xl)", k)
+    if cat == "Typography":
+        return k in ("font-body", "font-heading", "font-control")
+    if cat == "Motion, anchors and select":
+        return re.fullmatch(r"(duration|ease)-(fade|snappy|smooth|bouncy)", k) is not None
+    return False
+
+CLASS_PAGES = {
+    False: ("classes.html", "Classes", "Regular classes",
+            "name a step on a scale or a property value, as in Tailwind and Prewind: <code>p-md</code>, <code>text-lg</code>, <code>border-warning-7</code>, <code>flex</code>.",
+            ("semantic.html", "Semantic classes")),
+    True: ("semantic.html", "Semantic classes", "Semantic classes",
+           "name a role in the design rather than a value: a container level (<code>p-surface</code>, <code>gap-field</code>), a colour role (<code>fg-weak</code>, <code>bg-solid-accent-1</code>), a type role (<code>text-heading-md</code>), a control length, a material or a tier. Their values follow the theme.",
+           ("classes.html", "Regular classes")),
+}
+
+def class_page_of(k):
+    for cat, rows in read_classes():
+        if any(c == k for c, _ in rows):
+            return CLASS_PAGES[is_semantic(cat, k)][0]
+    return "classes.html"
+
+def classes_page(semantic=False):
+    fname, title_, kicker_name, what, (other, other_title) = CLASS_PAGES[semantic]
+    cats = [(t, [r for r in rows if is_semantic(t, r[0]) == semantic]) for t, rows in read_classes()]
+    cats = [(t, rows) for t, rows in cats if rows]
     total = sum(len(rows) for _, rows in cats)
     sections, toc_items = [], []
     for title, rows in cats:
@@ -696,8 +732,9 @@ def classes_page():
             </table>
           </div>
         </section>""")
-    head = page_head("Reference", "Classes",
-        f"Every base class in <code>nowind.css</code> and what it declares, {total} in all, read from <code>classes.md</code>. "
+    head = page_head("Reference", title_,
+        f"{kicker_name} {what} {total} of them, with what each declares, read from <code>classes.md</code>. "
+        f"The rest are in <a href=\"{other}\">{other_title}</a>. "
         "Colour, opacity and cursor classes also take <code>hover:</code> and the state variants; layout classes take <code>sm:</code> to <code>2xl:</code>.",
         "Nowind __VERSION__ · generated from classes.md")
     search = f"""<div class="sticky top-0 flex items-center gap-row py-xs bg-bg">
@@ -712,7 +749,7 @@ def classes_page():
 {cards}
           </nav>"""
     art = "\n        ".join([head, groups, search] + sections)
-    return doc_page("classes.html", "Classes", art, toc_items, wide=True).replace("</body>", CLASS_FILTER + "</body>", 1)
+    return doc_page(fname, title_, art, toc_items, wide=True).replace("</body>", CLASS_FILTER + "</body>", 1)
 
 
 # ---------------------------------------------------------------- component docs
@@ -725,7 +762,7 @@ def classes_of(snippet):
 def component_page(c):
     name = f"c-{c['slug']}.html"
     toc_items = [("example", "Example"), ("usage", "Usage"), ("classes", "Classes")]
-    chips = " ".join(f'<a href="classes.html#{class_id(k.split(":")[-1])}" class="inline-flex items-center h-nested px-nested rounded-xs bg-bg-strong border border-border-weak hover:border-border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">{E(k)}</a>' for k in classes_of(c["html"]))
+    chips = " ".join(f'<a href="{class_page_of(k.split(":")[-1])}#{class_id(k.split(":")[-1])}" class="inline-flex items-center h-nested px-nested rounded-xs bg-bg-strong border border-border-weak hover:border-border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">{E(k)}</a>' for k in classes_of(c["html"]))
     use = "\n".join(f'            <li class="flex gap-gutter"><i class="icon icon-sm ph-bold ph-check fg-success-weak"></i><span>{t}</span></li>' for t in c["use"])
     avoid = "\n".join(f'            <li class="flex gap-gutter"><i class="icon icon-sm ph-bold ph-x fg-danger-weak"></i><span>{t}</span></li>' for t in c["avoid"])
     art = "\n        ".join([
@@ -747,7 +784,7 @@ def component_page(c):
           </div>""",
         ),
         section("classes", "Classes",
-            p(f"Every class in the example, {len(classes_of(c['html']))} in all. Each one links to its declarations in <a href=\"classes.html\">Classes</a>."),
+            p(f"Every class in the example, {len(classes_of(c['html']))} in all. Each one links to its declarations in <a href=\"classes.html\">Classes</a> or <a href=\"semantic.html\">Semantic classes</a>."),
             f'<div class="flex flex-wrap gap-2xs">{chips}</div>',
         ),
     ])
@@ -773,7 +810,7 @@ def components_index():
 def main():
     os.makedirs(OUT, exist_ok=True)
     files = {"guide.html": guide(), "reference.html": reference(), "changelog.html": changelog(),
-             "docs-home.html": docs_home(), "index.html": index(), "components-index.html": components_index(), "classes.html": classes_page()}
+             "docs-home.html": docs_home(), "index.html": index(), "components-index.html": components_index(), "classes.html": classes_page(), "semantic.html": classes_page(True)}
     files.update({f"c-{c['slug']}.html": component_page(c) for c in COMPONENTS})
     for name, text in files.items():
         text = text.replace("<code>--", '<code class="whitespace-nowrap">--')

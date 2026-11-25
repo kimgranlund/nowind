@@ -25,7 +25,7 @@ Read `README.md` for what Nowind is and how people use it. This file says how to
 | `index.html`, `site/index.html` | The root redirects to `site/`; `site/index.html` is the GitHub Pages landing page | yes |
 | `site/specimen.html` | Every token, the reset and every class, read live from the stylesheets | yes |
 | `site/utilities.html` | Demo page built only from classes | yes |
-| `site/docs/*.html` | Docs site (designed with the massimo-vignelli agent): home, guide, reference, classes (read from `classes.md`), changelog and a `c-*.html` page per component | no, `python3 scripts/templates.py` |
+| `site/docs/*.html` | Docs site (designed with the massimo-vignelli agent): home, guide, reference, regular and semantic class lists (`classes.html`, `semantic.html`, read from `classes.md` and sorted by `is_semantic` in `scripts/templates.py`), changelog and a `c-*.html` page per component | no, `python3 scripts/templates.py` |
 | `scripts/component_docs.py` | Each component's snippet (rendered live and shown as code), summary, use and avoid | yes |
 | `site/components.html` | Component showcase built only from classes: no `<style>`, no `style=` | yes |
 
