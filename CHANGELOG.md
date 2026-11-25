@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Context kept current:** `AGENTS.md` has a rule that every change updates its manifest, entry files, docs and changelog in the same commit, and `scripts/check.mjs` now fails when `AGENTS.md` stops naming a repo file or names a path that doesn't exist (self-test: seven breaks). The class manifest's radius, icon, select, spacing and layout descriptions are brought up to date.
 - **Icon classes are primitives:** `icon`, `icon-sm`, `icon-md` and `icon-lg` are lengths from the base size, so they count as regular classes and the examples use them: `<i class="icon ph ph-gear">` in place of five layout classes and a type size (which made icons about 18% too big). Carets are `icon icon-sm`. The examples lint requires every Phosphor icon to sit in an `icon` box.
 - **Square icon buttons:** every icon-only button in the examples pads the same on all sides (`p-xs`, or `p-3xs` when small), so it is square; the examples lint rejects uneven padding on one.
 - **Docs pages:** previous and next sit side by side at every width; table cells pad less on a phone; a class name in a table breaks only at a hyphen or colon, never mid-word.

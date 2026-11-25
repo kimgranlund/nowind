@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Checks the rules AGENTS.md states. Usage:
 //   node scripts/check.mjs              check this repository
-//   node scripts/check.mjs --self-test  break a copy six ways and confirm each check fails
+//   node scripts/check.mjs --self-test  break a copy seven ways and confirm each check fails
 import { readFileSync, readdirSync, statSync, cpSync, mkdtempSync, rmSync, writeFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join, relative } from "node:path";
@@ -102,6 +102,29 @@ function check(root) {
     for (const line of String(e.stdout || "").split("\n").filter(Boolean)) errors.push(line);
   }
 
+  // 7. AGENTS.md names every file in the repo (by path, glob or directory), and every path it names exists.
+  {
+    const agents = readFileSync(join(root, "AGENTS.md"), "utf8");
+    const fenced = [...agents.matchAll(/```[^\n]*\n([\s\S]*?)```/g)].map((m) => m[1]);
+    const prose = agents.replace(/```[\s\S]*?```/g, "");
+    const tokens = [...fenced, ...[...prose.matchAll(/`([^`\n]+)`/g)].map((m) => m[1])].flatMap((t) => t.split(/\s+/));
+    const refs = new Set(tokens.filter((t) => /^[\w.*/-]+$/.test(t) && /[./]/.test(t)));
+    const glob = (pat) => new RegExp("^" + pat.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, "[^/]*") + "$");
+    const rowDirs = [...agents.matchAll(/^\| `([\w/-]+\/)`/gm)].map((m) => m[1]);
+    const covers = (f) => [...refs].some((r) => r === f || (r.includes("*") && glob(r).test(f))) || rowDirs.some((d) => f.startsWith(d));
+    const listed = [
+      ...readdirSync(root).filter((n) => /\.(css|json|md|html)$/.test(n)),
+      ...["site", "scripts", "theme", "dist"].flatMap((d) => existsSync(join(root, d)) ? readdirSync(join(root, d)).filter((n) => /\.(css|json|md|html|js|mjs|py)$/.test(n)).map((n) => `${d}/${n}`) : []),
+    ];
+    for (const f of listed) if (!covers(f)) errors.push(`${f}: AGENTS.md doesn't name it. Fix: add it to the table in "Where things live".`);
+    for (const r of refs) {
+      if (!r.includes("/") || /^(https?:|\.\.?\/|@|--)/.test(r) || /[{}]/.test(r) || !/(\.(css|json|md|html|js|mjs|py)|\/)$/.test(r.split(/[#:]/)[0])) continue;
+      const path = r.split(/[#:]/)[0];
+      const ok = path.includes("*") ? readdirSync(join(root, dirname(path))).some((n) => glob(path).test(`${dirname(path)}/${n}`)) : existsSync(join(root, path));
+      if (!ok) errors.push(`AGENTS.md: names ${r}, which doesn't exist. Fix: update the path.`);
+    }
+  }
+
   // 4. Generated files match what the scripts write.
   const tmp = mkdtempSync(join(tmpdir(), "nowind-check-"));
   try {
@@ -129,6 +152,7 @@ if (process.argv.includes("--self-test")) {
     ["color-mix()", "theme/theme.type-roles.css", (s) => s.replace("{", "{\n  --x: color-mix(in oklab, red, blue);")],
     ["manifest names an undefined token", "theme/theme.geometry.manifest.json", (s) => s.replace('"--slot"', '"--slot-missing"')],
     ["hand-edited generated file", "nowind.css", (s) => s + "\n.hand-edit { color: red; }\n"],
+    ["file AGENTS.md doesn't name", "site/unlisted.html", () => "<!doctype html>\n"],
   ];
   let ok = true;
   for (const [name, file, mutate] of breaks) {
@@ -136,7 +160,7 @@ if (process.argv.includes("--self-test")) {
     try {
       cpSync(repo, tmp, { recursive: true, filter: (p) => !p.includes(`${join(repo, ".git")}`) });
       const target = join(tmp, file);
-      const before = readFileSync(target, "utf8");
+      const before = existsSync(target) ? readFileSync(target, "utf8") : "";
       const after = mutate(before);
       if (after === before) { console.log(`FAIL  self-test "${name}": the mutation did not apply`); ok = false; continue; }
       writeFileSync(target, after);

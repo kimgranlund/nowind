@@ -8,6 +8,9 @@ Read `README.md` for what Nowind is and how people use it. This file says how to
 
 | Path | What it is | Edit by hand? |
 |---|---|---|
+| `AGENTS.md`, `CLAUDE.md` | Entry files: how to change Nowind (`CLAUDE.md` imports this file) | yes, in the same change as what they describe |
+| `README.md` | How people use Nowind | yes, in the same change as what it describes |
+| `CHANGELOG.md` | Releases; `## Unreleased` collects changes until a release dates it | yes, with every change people would notice |
 | `theme.css` | Entry: imports the four `theme/theme.*.css` groups | yes |
 | `theme/theme.colors.css` | Colour usage roles for every palette, Radix companions, shadows | yes |
 | `theme/colors-semantic/*.css` | One file per palette: steps, alpha steps, contrast | yes |
@@ -53,7 +56,18 @@ python3 scripts/templates.py # after a release (it reads CHANGELOG.md), a class 
 node scripts/check.mjs       # before every commit
 ```
 
-`scripts/check.mjs` enforces the rules below: no comments and no `color-mix()` in Nowind's CSS, every token a manifest names exists, and every generated file matches what the scripts write. `node scripts/check.mjs --self-test` breaks a copy four ways and confirms each is caught.
+`scripts/check.mjs` enforces the rules below: no comments and no `color-mix()` in Nowind's CSS, every token a manifest names exists, every generated file (CSS, manifests, `classes.md`, the docs pages, `site/search.json`) matches what the scripts write, the site's controls follow the control recipe, the examples pass `python3 scripts/templates.py --lint`, and this file names every file in the repo. `node scripts/check.mjs --self-test` breaks a copy seven ways and confirms each is caught. `node scripts/serve.mjs` serves the site on port 8765.
+
+## Keep the context current
+
+Every change updates, in the same commit, what describes it:
+
+- **Manifests.** A hand-written manifest changes with its CSS. A generated one (`nowind.manifest.json`, `components.manifest.json`, the typography, space, shadow, motion and materials manifests) changes through its script's text, never by hand.
+- **Entry files.** `AGENTS.md` when a file, script, rule or naming pattern changes; `README.md` when how people use Nowind changes.
+- **Docs.** The docs page that covers it (most read the manifests, so they follow by themselves) and `CHANGELOG.md` under `## Unreleased`.
+- **Checks.** A new rule gets a check in `scripts/check.mjs` or the examples lint, and a self-test break that proves the check fires.
+
+`node scripts/check.mjs` fails when this file stops naming a repo file, or names a path that doesn't exist.
 
 Then check the result in `site/specimen.html` through the dev server (`node scripts/serve.mjs`, port 8765); browsers block reading stylesheets from `file://`, and the server turns caching off so an edited stylesheet and its imports reload fresh. The `specimen` entry in `.claude/launch.json` starts it.
 
