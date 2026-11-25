@@ -382,6 +382,14 @@
         "current": "all text-base since the table change"
       },
       {
+        "kind": "navigation",
+        "identify": "a list inside nav: breadcrumbs, pagination, link lists",
+        "size": "text-base",
+        "icon": "icon (a separator caret is icon-sm)",
+        "status": "decided",
+        "current": "text-base"
+      },
+      {
         "kind": "header",
         "identify": "th",
         "size": "text-sm font-medium",

@@ -186,7 +186,7 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 | `.text-code` | `font-size: var(--code); line-height: var(--code--line-height); font-weight: var(--code--font-weight); font-family: var(--code--font-family); font-variant-numeric: var(--code--font-variant-numeric); font-variant-ligatures: var(--code--font-variant-ligatures)` |
 | `.text-kbd` | `font-size: var(--kbd); line-height: var(--kbd--line-height); font-weight: var(--kbd--font-weight); font-family: var(--kbd--font-family); font-variant-numeric: var(--kbd--font-variant-numeric)` |
 | `.text-chrome` | `font-size: var(--text-chrome); line-height: var(--leading-snug)` |
-| `.caret` | `font-size: var(--icon-sm); --_caret: calc(var(--icon-sm) * 0.4); --_caret-stroke: max(1.5px, calc(var(--icon-sm) * 0.08))` |
+| `.caret` | `font-size: var(--icon-sm)` |
 
 ## Text color
 

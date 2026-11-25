@@ -328,7 +328,7 @@ add("tier-content", "--tier: var(--tier-content); --tier-text: var(--tier-conten
 add("tier-brand", "--tier: var(--tier-brand); --tier-text: var(--tier-brand-text); font-size: var(--text-base)");
 add("gap-gutter-half", "gap: calc(var(--gutter) / 2)");
 add("icon", "display: inline-flex; align-items: center; justify-content: center; flex: none; width: var(--icon-box); height: var(--icon-box); font-size: var(--icon-md); line-height: 1");
-add("caret", "font-size: var(--icon-sm); --_caret: calc(var(--icon-sm) * 0.4); --_caret-stroke: max(1.5px, calc(var(--icon-sm) * 0.08))");
+add("caret", "font-size: var(--icon-sm)");
 add("icon-sm", "font-size: var(--icon-sm)");
 add("icon-md", "font-size: var(--icon-md)");
 add("icon-lg", "font-size: var(--icon-lg)");
@@ -603,14 +603,15 @@ out.push("  .icon > svg { width: 1em; height: 1em; fill: currentColor; }");
 out.push("  .list-none::-webkit-details-marker { display: none; }");
 out.push("  @keyframes nw-spin { to { rotate: 360deg; } }");
 out.push("  @keyframes nw-pulse { 50% { opacity: 0.5; } }");
-out.push("  .select-base::picker(select) { appearance: base-select; margin-block: var(--space-3xs); padding: var(--space-3xs); border: var(--border-width) solid var(--border-weak); border-radius: var(--radius-surface); background: var(--bg); box-shadow: var(--shadow-lg); }");
-out.push("  .select-base option { padding: var(--margin) var(--text-edge); border-radius: var(--radius-nested); }");
+out.push("  .select-base::picker(select) { appearance: base-select; margin-block: var(--space-3xs); padding: var(--inset); border: var(--border-width) solid var(--border-weak); border-radius: var(--radius-md); background: var(--bg); box-shadow: var(--shadow-lg); }");
+out.push("  .select-base option { display: flex; align-items: center; gap: var(--gutter); min-block-size: var(--control-height); padding-inline: var(--control-icon-padding) var(--control-padding); border: var(--border-width) solid transparent; border-radius: var(--radius-sm); }");
+out.push("  .select-base option::checkmark { content: \"\"; flex: none; inline-size: var(--icon-box); block-size: var(--icon-sm); background: currentColor; mask: var(--glyph-check) center / var(--icon-sm) no-repeat; }");
 out.push("  .select-base option:hover, .select-base option:focus-visible { background: var(--component-weak); outline: none; }");
-out.push("  .caret::before, .select-base::picker-icon { content: \"\"; flex: none; inline-size: var(--_caret); block-size: var(--_caret); border-inline-end: var(--_caret-stroke) solid currentColor; border-block-end: var(--_caret-stroke) solid currentColor; rotate: 45deg; translate: 0 -25%; transition: rotate var(--motion-duration) var(--motion-easing), translate var(--motion-duration) var(--motion-easing); }");
-out.push("  .select-base { --_caret: calc(var(--icon-sm) * 0.4); --_caret-stroke: max(1.5px, calc(var(--icon-sm) * 0.08)); min-inline-size: 0; }");
-out.push("  .select-base::picker-icon { color: var(--fg-weak); margin-inline: auto calc((var(--icon-box) - var(--_caret)) / 2); }");
+out.push("  .caret::before, .select-base::picker-icon { content: \"\"; flex: none; inline-size: var(--icon-sm); block-size: var(--icon-sm); background: currentColor; mask: var(--glyph-caret) center / contain no-repeat; transition: rotate var(--motion-duration) var(--motion-easing); }");
+out.push("  .select-base { min-inline-size: 0; }");
+out.push("  .select-base::picker-icon { color: var(--fg-weak); margin-inline: auto calc((var(--icon-box) - var(--icon-sm)) / 2); }");
 out.push("  .select-base.px-control { padding-inline-end: var(--control-icon-padding); }");
-out.push("  :is([open] > summary, [aria-expanded=\"true\"]) .caret::before, .select-base:open::picker-icon { rotate: 225deg; translate: 0 25%; }");
+out.push("  :is([open] > summary, [aria-expanded=\"true\"]) .caret::before, .select-base:open::picker-icon { rotate: 180deg; }");
 out.push("  :root[data-lens=\"on\"] .lens { -webkit-backdrop-filter: var(--_lens-filter, url(#nowind-lens)) saturate(1.8) brightness(1.05); backdrop-filter: var(--_lens-filter, url(#nowind-lens)) saturate(1.8) brightness(1.05); }");
 out.push("  .select-base option:checked { background: var(--component-accent-1-weak); color: var(--fg-accent-1-weak); }");
 out.push("  .h-nested > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }");
@@ -785,7 +786,7 @@ const manifest = {
     tiers: "tier-product (1×), tier-content (font +2px, spacing 1.5×), tier-brand (font +4px, spacing 2×). Each is a scope: it sets its font size to the base plus its own step (var(--text-base)), never to what it inherits, so a tier inside another tier replaces it rather than adding to it; --F and everything derived recompute inside it.",
     animation: "animate-spin, animate-pulse, animate-none (cut by the reset under reduced motion).",
     anchor: "anchor-bottom, -bottom-end (below, aligned to the invoker's end edge), -top, -start, -end, -center: place a popover against its invoker with CSS anchor positioning, flipping at the screen edge.",
-    select: "select-base: the customizable select (appearance: base-select), its picker and options in the theme. The value is centred in the field and never wraps; a <button> holding <selectedcontent class=\"block truncate\"> lets a long value end in an ellipsis before the caret, which is drawn small and sits at the end. The highlighted option shows by its background, not a focus ring.",
+    select: "select-base: the customizable select (appearance: base-select), its picker and options in the theme: the picker is rounded-md padded by the inset, so its options (control height, rounded-sm, a Phosphor check on the selected one) nest concentrically, and the picker icon is Phosphor's caret. The value is centred in the field and never wraps; a <button> holding <selectedcontent class=\"block truncate\"> lets a long value end in an ellipsis before the caret, which is drawn small and sits at the end. The highlighted option shows by its background, not a focus ring.",
     motion: "transition, transition-colors, -opacity, -shadow, -transform, -none (state-change length and easing by default); duration-fade, -snappy, -smooth, -bouncy; ease-smooth, -snappy, -bouncy (Massimo springs as linear()), ease-standard, -out, -in.",
     marks: "The reset draws checkboxes, radios, switches (<input type=checkbox role=switch>) and sliders at Affine's mark size (between F and the slot), filled with accent-1 when checked; mark-sm and mark-lg pick another size.",
     state: "state: a state layer. An ::after wash of currentColor under the content, at --state-hover (0.08), --state-focus (0.1), --state-selected (0.12, also pressed, expanded, current and a checked child) and --state-active (0.16); none when disabled. One class covers every state in any palette, in place of a hover: and active: class per step; the element keeps its own radius.",

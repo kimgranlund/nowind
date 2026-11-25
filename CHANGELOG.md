@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- **Select picker in Phosphor, nested:** the select's caret, the `caret` class and the selected option's checkmark are Phosphor's caret-down and check (bold), inlined as mask tokens (`--glyph-caret`, `--glyph-check`), so nothing extra loads. The picker is `rounded-md` padded by the inset and its options are a control tall, `rounded-sm`, so their corners nest concentrically. 
+- **Breadcrumbs at the navigation size:** `text-base`, like the tabs and links around them; the size contract gains a navigation row.
 - **Sizes examples:** the Button, Icon button, Segmented control and Text field pages show small, default and large. A size is a region with its own base: `scope text-sm` or `scope text-lg` around the component, so height, padding, gaps, icons and corners all recompute and still nest (25, 37 and 51px at a 16px root), and the component's text inherits the scope's size. Both type audits treat a scope as relative.
 - **Softer curvature:** `--radius-offset` is -4px (Affine uses -6px), so every radius step gains 2px: at 16px the control corner is 12px and the nested step 5px, where 3px had read as sharp on keycaps and nested items. Nesting stays exact. Keycaps set `text-sm`.
 - **README rewritten on Prewind's structure:** what Nowind is for (a runtime, no-dependency foundation for agents and generated UI, with sensible defaults and a retunable token layer), what it derives from (Prewind, Tailwind's class system, Radix Colors, Utopia) and what it adds (one-input geometry, root-scaled fluid sizing, tiers); a Nowind, Prewind and Tailwind comparison, a reference and a variants table. Stale examples (a padded field box, semantic classes) replaced with the current patterns.

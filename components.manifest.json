@@ -749,7 +749,7 @@
         "inline-flex",
         "items-center",
         "no-underline",
-        "text-sm"
+        "text-base"
       ]
     },
     {

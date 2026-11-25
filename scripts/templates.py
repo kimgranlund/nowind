@@ -980,7 +980,7 @@ def type_audit():
     (sizeContract). Each element gets a kind from its tag, role, classes and content; its effective size (its own
     text-* class, else the nearest ancestor's, else text-base) must be the kind's size. Returns (findings, unclassified)."""
     VOID = {"input", "img", "br", "hr", "meta", "link", "source", "wbr", "col"}
-    WANT = {"inline": set(), "control": {"base"}, "option label": {"base"}, "cell": {"base"}, "header": {"sm"}, "label": {"sm"}, "supporting": {"sm"},
+    WANT = {"inline": set(), "navigation": {"base"}, "control": {"base"}, "option label": {"base"}, "cell": {"base"}, "header": {"sm"}, "label": {"sm"}, "supporting": {"sm"},
             "body": {"base"}, "title": {"base"}, "dialog title": {"lg"}, "badge": {"sm"}, "keycap": {"sm"}, "kicker": {"xs"}, "figure": {"3xl"}}
 
     class Node:
@@ -1022,6 +1022,9 @@ def type_audit():
         if n.tag in ("h1", "h2", "h3", "h4"):
             return "dialog title" if any(a.tag == "dialog" or a.attrs.get("role") == "dialog" for a in n.ancestors()) else "title"
         if n.tag == "p": return "body"
+        navlist = lambda a: a.tag in ("ol", "ul") and any(b.tag == "nav" for b in a.ancestors())
+        if any(navlist(a) for a in n.ancestors()): return None  # links and items in a navigation list take the list's size
+        if navlist(n): return "navigation"
         if n.tag in ("span", "div", "li", "ol", "ul", "a") and n.alltext().strip():
             if n.parent and n.parent.text.strip(): return None  # inline in a sentence: takes the sentence's size
             if n.attrs.get("role") == "tooltip" or (("absolute" in n.toks or any(t.startswith("anchor-") for t in n.toks)) and any(t.startswith("bg-") for t in n.toks)): return "supporting"

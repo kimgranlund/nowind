@@ -399,7 +399,7 @@ COMPONENTS = [
         "slug": "breadcrumbs", "name": "Breadcrumbs", "icon": "ph-caret-right", "group": "Navigation",
         "summary": "Shows where a page sits in the hierarchy.",
         "html": """<nav aria-label="Breadcrumb">
-  <ol role="list" class="flex flex-wrap items-center gap-2xs text-sm fg-neutral-11">
+  <ol role="list" class="flex flex-wrap items-center gap-2xs text-base fg-neutral-11">
     <li><a href="#" class="fg-neutral-11 hover:fg-neutral-12 no-underline">Projects</a></li>
     <li class="inline-flex" aria-hidden="true"><i class="icon icon-sm ph-bold ph-caret-right fg-neutral-8"></i></li>
     <li><a href="#" class="fg-neutral-11 hover:fg-neutral-12 no-underline">Nowind</a></li>

@@ -561,5 +561,13 @@
     ],
     "value": "14px",
     "use": "A fixed size for a site's own settings and tool panels, which must not follow the root size or the tier. Put text-chrome with scope on the panel: --F becomes 14px there, so its controls, gaps and radii are fixed too (a 30px control)."
+  },
+  "glyphs": {
+    "tokens": [
+      "--glyph-caret",
+      "--glyph-check"
+    ],
+    "source": "Phosphor Icons (MIT), caret-down-bold and check-bold, inlined as SVG data URIs so Nowind loads nothing extra",
+    "use": "Masks for the drawn indicators: the caret class, the select's picker icon and the selected option's checkmark. Each is painted in currentColor at --icon-sm."
   }
 }

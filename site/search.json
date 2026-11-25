@@ -389,7 +389,7 @@
 [".text-code", "docs/semantic.html#class-text-code", "Class", "font-size: var(--code); line-height: var(--code--line-height); font-weight: var(--code--font-weight); font-family: var(--code--font-family); font-variant-numeric: var(--code--font-variant-numeric); font-variant-ligatures: var(--code--font-variant-ligatures)"],
 [".text-kbd", "docs/semantic.html#class-text-kbd", "Class", "font-size: var(--kbd); line-height: var(--kbd--line-height); font-weight: var(--kbd--font-weight); font-family: var(--kbd--font-family); font-variant-numeric: var(--kbd--font-variant-numeric)"],
 [".text-chrome", "docs/semantic.html#class-text-chrome", "Class", "font-size: var(--text-chrome); line-height: var(--leading-snug)"],
-[".caret", "docs/semantic.html#class-caret", "Class", "font-size: var(--icon-sm); --_caret: calc(var(--icon-sm) * 0.4); --_caret-stroke: max(1.5px, calc(var(--icon-sm) * 0.08))"],
+[".caret", "docs/semantic.html#class-caret", "Class", "font-size: var(--icon-sm)"],
 [".fg-accent-1-1", "docs/classes.html#class-fg-accent-1-1", "Class", "color: var(--accent-1-1)"],
 [".fg-accent-1-2", "docs/classes.html#class-fg-accent-1-2", "Class", "color: var(--accent-1-2)"],
 [".fg-accent-1-3", "docs/classes.html#class-fg-accent-1-3", "Class", "color: var(--accent-1-3)"],
