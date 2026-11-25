@@ -197,3 +197,21 @@ document.querySelectorAll("[data-glass-slider]").forEach((box) => {
   new ResizeObserver(place).observe(box);
   place();
 });
+
+// Base size: the band's size button cycles the root font size through 12, 14, 16 and 18px and remembers it; the head script applies it before paint. Type, space and geometry follow, since they are rem and --F based.
+(() => {
+  const root = document.documentElement, SIZES = [12, 14, 16, 18];
+  const current = () => Math.round(parseFloat(getComputedStyle(root).fontSize));
+  const show = () => document.querySelectorAll("[data-size-toggle]").forEach((b) => {
+    const now = current(), next = SIZES[(SIZES.indexOf(now) + 1) % SIZES.length] || 16;
+    b.querySelector("span").textContent = now;
+    b.setAttribute("aria-label", `Base font size ${now}px; switch to ${next}px`);
+  });
+  document.querySelectorAll("[data-size-toggle]").forEach((b) => b.addEventListener("click", () => {
+    const next = SIZES[(SIZES.indexOf(current()) + 1) % SIZES.length] || 16;
+    root.style.fontSize = `${next}px`;
+    try { localStorage.setItem("nowind-root-size", String(next)); } catch {}
+    show();
+  }));
+  show();
+})();

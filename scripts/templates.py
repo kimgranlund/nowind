@@ -57,7 +57,7 @@ HEAD = """<!doctype html>
 """
 
 # The head script applies a saved light or dark choice before the page paints.
-HEAD_EXTRA = '<script>try{var m=localStorage.getItem("nowind-color-mode");if(m)document.documentElement.dataset.colorMode=m}catch(e){}</script>\n'
+HEAD_EXTRA = '<script>try{var d=document.documentElement,m=localStorage.getItem("nowind-color-mode"),z=localStorage.getItem("nowind-root-size");if(m)d.dataset.colorMode=m;if(z)d.style.fontSize=z+"px"}catch(e){}</script>\n'
 
 # The lens: a displacement map that bends a band along the rim (red = x, green = y, 50% = none; the centre is neutral),
 # displaced three times for an R/G/B fringe and recombined. Box units, so it fits any element. Used by the lens class.
@@ -134,7 +134,8 @@ def top(path):
   <div class="flex items-center gap-lg h-header px-grid">
     <a href="{rel("index.html", path)}" class="inline-flex items-center gap-gutter-half no-underline fg-inverse"><i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-inverse-weak">__VERSION__</span></a>
     <nav aria-label="Sections" class="hidden md:flex items-center gap-lg">{secs}</nav>
-    <button type="button" data-theme-toggle class="inline-flex items-center justify-center size-nested ms-auto rounded-xs border border-transparent bg-transparent fg-inverse-weak hover:fg-inverse cursor-pointer transition-colors" aria-label="Switch to dark mode"><i class="icon ph ph-moon"></i></button>
+    <button type="button" data-size-toggle class="inline-flex items-center justify-center size-nested ms-auto rounded-xs border border-transparent bg-transparent fg-inverse-weak hover:fg-inverse text-xs font-mono tabular-nums cursor-pointer transition-colors" aria-label="Base font size"><span>16</span></button>
+    <button type="button" data-theme-toggle class="inline-flex items-center justify-center size-nested rounded-xs border border-transparent bg-transparent fg-inverse-weak hover:fg-inverse cursor-pointer transition-colors" aria-label="Switch to dark mode"><i class="icon ph ph-moon"></i></button>
     <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center size-nested no-underline fg-inverse-weak hover:fg-inverse transition-colors" aria-label="Nowind on GitHub"><i class="icon ph ph-github-logo"></i></a>
   </div>
 </header>

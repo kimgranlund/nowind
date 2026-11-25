@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Materials · Nowind</title>
 <link rel="icon" href="data:,">
-<script>try{var m=localStorage.getItem("nowind-color-mode");if(m)document.documentElement.dataset.colorMode=m}catch(e){}</script>
+<script>try{var d=document.documentElement,m=localStorage.getItem("nowind-color-mode"),z=localStorage.getItem("nowind-root-size");if(m)d.dataset.colorMode=m;if(z)d.style.fontSize=z+"px"}catch(e){}</script>
 <link rel="stylesheet" href="../../theme.css">
 <link rel="stylesheet" href="../../nowind.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
@@ -16,7 +16,8 @@
   <div class="flex items-center gap-lg h-header px-grid">
     <a href="../index.html" class="inline-flex items-center gap-gutter-half no-underline fg-inverse"><i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-inverse-weak">0.8.0</span></a>
     <nav aria-label="Sections" class="hidden md:flex items-center gap-lg"><a href="docs-home.html" aria-current="true" class="inline-flex items-center h-header border-b-2 border-accent-1 no-underline fg-inverse text-title-sm">Docs</a><a href="components-index.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Components</a><a href="../specimen.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Specimen</a><a href="classes.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Classes</a></nav>
-    <button type="button" data-theme-toggle class="inline-flex items-center justify-center size-nested ms-auto rounded-xs border border-transparent bg-transparent fg-inverse-weak hover:fg-inverse cursor-pointer transition-colors" aria-label="Switch to dark mode"><i class="icon ph ph-moon"></i></button>
+    <button type="button" data-size-toggle class="inline-flex items-center justify-center size-nested ms-auto rounded-xs border border-transparent bg-transparent fg-inverse-weak hover:fg-inverse text-xs font-mono tabular-nums cursor-pointer transition-colors" aria-label="Base font size"><span>16</span></button>
+    <button type="button" data-theme-toggle class="inline-flex items-center justify-center size-nested rounded-xs border border-transparent bg-transparent fg-inverse-weak hover:fg-inverse cursor-pointer transition-colors" aria-label="Switch to dark mode"><i class="icon ph ph-moon"></i></button>
     <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center size-nested no-underline fg-inverse-weak hover:fg-inverse transition-colors" aria-label="Nowind on GitHub"><i class="icon ph ph-github-logo"></i></a>
   </div>
 </header>

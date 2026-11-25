@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Base size toggle on the site:** a button beside light and dark cycles the root font size through 12, 14, 16 and 18px and remembers it. Type, space, radii and control heights all follow, since they are built on `rem` and `--F`; the breakpoints and container widths stay in px.
 - **Container queries:** put `@container` on a wrapper and its descendants take `@sm:` to `@2xl:` (384 to 672px, the `--container-*` tokens) on the same layout classes as the breakpoints, so a component follows its own width. The media card uses it: the media moves beside the text once the card is 448px wide. The media card also loses a padding that `p-0` could not override.
 - **Logical properties (Tailwind v4 names):** `ps-`/`pe-`, `ms-`/`me-` (and `-ms-`/`-me-`, `ms-auto`/`me-auto`), `start-0`/`end-0`/`-full`, `border-s`/`border-e`, `rounded-s-*`/`rounded-e-*`. The examples and the site use them in place of left and right, so they mirror in right-to-left languages, and the examples lint rejects the physical forms.
 - **Breaking, one name per radius:** `rounded`, `rounded-control` and `rounded-nested` are removed; use `rounded-sm` (the control radius) and `rounded-xs` (one margin less).
