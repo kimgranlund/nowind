@@ -130,7 +130,7 @@
   document.body.append(host);
   let n = 0;
 
-  function map(w, h, r, band) {
+  function map(w, h, r, band, shift) {
     const c = document.createElement("canvas"); c.width = w; c.height = h;
     const ctx = c.getContext("2d"), img = ctx.createImageData(w, h), d = img.data;
     const hx = w / 2, hy = h / 2;
@@ -141,12 +141,14 @@
       if (qx > 0 && qy > 0) { const l = Math.hypot(qx, qy) || 1; dist = l - r; nx = qx / l; ny = qy / l; }
       else if (qx > qy) { dist = qx - r; nx = 1; ny = 0; } else { dist = qy - r; nx = 0; ny = 1; }
       const depth = -dist, s = Math.min(Math.max(depth / band, 0), 1);
-      const m = depth > 0 ? Math.pow(1 - s, 2.2) : 0;
-      // In backdrop-filter, Chromium's displacement reads the backdrop from the opposite side to a filter on the element,
-      // so the offset points outward here to show the backdrop from further in.
-      // A slight magnification over the whole body (6%), as a thick lens has, plus the rim bend.
+      // Refraction through a rounded glass edge: the surface is a quarter circle across the band, and the bend follows
+      // its slope, steep at the rim and easing towards the flat centre.
+      const z = Math.sqrt(Math.max(1 - (1 - s) * (1 - s), 1e-4));
+      const m = depth > 0 && s < 1 ? Math.min(((1 - s) / z) * 0.35, 1) : 0;
+      // feDisplacementMap reads the backdrop at p + scale·(map − ½), so a negative offset towards the centre shows the
+      // backdrop from further in: the rim bends inward and the whole body magnifies slightly (6%), as a thick lens does.
       const zoom = 0.06 / shift;
-      const dx = Math.max(-1, Math.min(1, Math.sign(px) * nx * m + px * zoom)), dy = Math.max(-1, Math.min(1, Math.sign(py) * ny * m + py * zoom));
+      const dx = Math.max(-1, Math.min(1, -Math.sign(px) * nx * m - px * zoom)), dy = Math.max(-1, Math.min(1, -Math.sign(py) * ny * m - py * zoom));
       const i = (y * w + x) * 4;
       d[i] = 128 + 127 * dx; d[i + 1] = 128 + 127 * dy; d[i + 2] = 128; d[i + 3] = 255;
     }
@@ -158,14 +160,14 @@
     const w = Math.round(el.offsetWidth), h = Math.round(el.offsetHeight);
     if (!w || !h) return;
     const r = Math.min(parseFloat(getComputedStyle(el).borderTopLeftRadius) || 0, w / 2, h / 2);
-    const band = Math.max(Math.min(Math.max(r, 12) * 1.1, w / 2, h / 2), 6);
-    const shift = Math.min(band * 0.55, 22);
+    const band = Math.max(Math.min(Math.max(r, 16), 0.32 * Math.min(w, h)), 6);
+    const shift = Math.min(band * 0.7, 28);
     const id = el.dataset.lensId || (el.dataset.lensId = `nowind-lens-${++n}`);
     let f = host.querySelector(`#${id}`);
     if (!f) { f = document.createElementNS(NS, "filter"); f.id = id; host.append(f); }
     for (const [k, v] of Object.entries({ x: 0, y: 0, width: w, height: h, filterUnits: "userSpaceOnUse", primitiveUnits: "userSpaceOnUse", "color-interpolation-filters": "sRGB" })) f.setAttribute(k, v);
     const disp = (k, res) => `<feDisplacementMap in="SourceGraphic" in2="map" scale="${(2 * shift * k).toFixed(2)}" xChannelSelector="R" yChannelSelector="G" result="${res}"/>`;
-    f.innerHTML = `<feImage href="${map(w, h, r, band)}" x="0" y="0" width="${w}" height="${h}" preserveAspectRatio="none" result="map"/>`
+    f.innerHTML = `<feImage href="${map(w, h, r, band, shift)}" x="0" y="0" width="${w}" height="${h}" preserveAspectRatio="none" result="map"/>`
       + disp(1, "dr") + disp(1.06, "dg") + disp(1.12, "db")
       + `<feColorMatrix in="dr" values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" result="cr"/>`
       + `<feColorMatrix in="dg" values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0" result="cg"/>`
