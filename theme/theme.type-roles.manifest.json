@@ -363,7 +363,7 @@
     }
   ],
   "sizeContract": {
-    "description": "Which size each kind of text in an example takes. Sizes follow from what an element is, not from where it sits. the examples lint (scripts/templates.py) will classify each element by the 'identify' rule and check its size against this table; a rendered pass will check rows, hierarchy and icon pairing. Status 'decided' rows are settled; 'open' rows wait for the owner.",
+    "description": "Which size each kind of text in an example takes. Sizes follow from what an element is, not from where it sits. the examples lint (scripts/templates.py) will classify each element by the 'identify' rule and check its size against this table; a rendered pass will check rows, hierarchy and icon pairing. Every row is decided; 'review' marks elements the classifier cannot place yet.",
     "kinds": [
       {
         "kind": "control",
@@ -386,8 +386,7 @@
         "identify": "th",
         "size": "text-sm font-medium",
         "icon": "icon-sm",
-        "status": "open",
-        "question": "Table headers at text-sm (supporting) or text-base like their cells?",
+        "status": "decided",
         "current": "text-sm"
       },
       {
@@ -395,8 +394,7 @@
         "identify": "label, legend",
         "size": "text-sm font-medium",
         "icon": "icon-sm",
-        "status": "open",
-        "question": "Field labels at text-sm (35 today) or text-base (9 today)?",
+        "status": "decided",
         "current": "35 text-sm, 9 text-base, 4 inherit"
       },
       {
@@ -410,19 +408,17 @@
       {
         "kind": "body",
         "identify": "p in a surface (dialog, card, alert, toast, empty state)",
-        "size": "text-base",
+        "size": "text-base, in every surface",
         "icon": "icon",
-        "status": "open",
-        "question": "Body copy at text-base everywhere (as the dialog now is), or text-sm in compact surfaces such as toasts and cards?",
+        "status": "decided",
         "current": "12 text-sm, 5 text-base"
       },
       {
         "kind": "surface title",
         "identify": "h2/h3 heading a surface",
-        "size": "text-lg font-semibold in a dialog; text-base font-semibold in cards, lists, alerts and toasts",
+        "size": "text-lg font-semibold in a dialog; text-base font-semibold everywhere else (cards, lists, alerts, toasts)",
         "icon": "icon-lg on a title row",
-        "status": "open",
-        "question": "Card titles at text-base (matching list names) or text-lg?",
+        "status": "decided",
         "current": "19 text-base, 3 text-lg"
       },
       {
