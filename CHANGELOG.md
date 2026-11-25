@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.2.0 (2026-11-25)
 
 - **Inverse colors:** `--bg-inverse`, `--fg-inverse`, `--fg-inverse-weak` and their classes, for toasts and tooltips.
 - **Hover borders:** `hover:border-*` for the border roles (`hover:border-border-strong`).
