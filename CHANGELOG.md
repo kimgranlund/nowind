@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Site map links:** each link is as wide as its label with the nested corner (`w-fit rounded-xs`), so a hover is a small wash rather than a full-column pill, and the current page is marked with an accent tint instead of the same grey as a hover.
 ## 0.9.0 (2026-11-25)
 
 - **Docs chrome on the size contract:** the Use and Avoid marks are `icon` beside body text (they were `icon-sm`), and a code caption sets its language label at the filename's size.

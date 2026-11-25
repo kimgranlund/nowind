@@ -82,7 +82,7 @@ def site_map(path):
     """The popover behind the bar's menu button: every section and its pages, the current page marked."""
     def links(pages, two=False):
         lis = "".join(
-            f'<li><a href="{rel(pp, path)}"{CUR_PAGE if pp == path else ""} class="flex items-center h-nested px-nested rounded-sm state no-underline text-body-sm {"fg font-semibold" if pp == path else "fg-weak hover:fg"}">{label}</a></li>'
+            f'<li><a href="{rel(pp, path)}"{CUR_PAGE if pp == path else ""} class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm {"bg-component-accent-1 fg-accent-1 font-medium" if pp == path else "state fg-weak hover:fg"}">{label}</a></li>'
             for pp, label in pages)
         return f'<ul role="list" class="grid {"grid-cols-2 gap-x-md" if two else "grid-cols-1"}">{lis}</ul>'
     def col(name, pages, two=False, span=""):
