@@ -93,6 +93,23 @@
           <p class="text-body-md max-w-measure">sm:, md:, lg:, xl:, 2xl: (read from the --breakpoint-* tokens) apply to layout: display, grid columns and spans, flex direction, wrap, basis, justify, align, text alignment, widths, heights, position, top, overflow, padding and gaps. Margins, colours and type have no breakpoint variants.</p>
           </div>
         </section>
+        <section id="containers" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Container queries</h2></div>
+          <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
+          <p class="text-body-md max-w-measure">@sm:, @md:, @lg:, @xl:, @2xl: (384, 448, 512, 576 and 672px, read from the --container-* tokens) apply the same layout classes when the nearest ancestor with @container (container-type: inline-size) is at least that wide, so a component lays itself out by its own width rather than the viewport&#x27;s.</p>
+          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
+              <span class="text-mono-sm fg-weak truncate">card.html</span><span class="text-kicker fg-subtle">HTML</span>
+            </figcaption>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;@container&quot;&gt;
+  &lt;article class=&quot;flex flex-col @md:flex-row&quot;&gt;
+    &lt;div class=&quot;aspect-video @md:basis-1/3 shrink-0&quot;&gt;…&lt;/div&gt;
+    &lt;div class=&quot;p-md&quot;&gt;…&lt;/div&gt;
+  &lt;/article&gt;
+&lt;/div&gt;</code></pre>
+          </figure>
+          </div>
+        </section>
         <section id="motion" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Transitions and focus</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">

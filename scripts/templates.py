@@ -842,7 +842,7 @@ def states_page():
     nm = _m("nowind.manifest.json")
     rows = [[f"<code>{v}</code>", f"<code>{E(sel)}</code>", E(what), str(count(v))] for v, sel, what in STATE_DOCS]
     grows = [[f"<code>{v}</code>", E(when), str(count(v))] for v, when in GROUP_DOCS]
-    toc = [("states", "State variants"), ("groups", "Group variants"), ("breakpoints", "Breakpoints"), ("motion", "Transitions and focus"), ("indicators", "Indicators")]
+    toc = [("states", "State variants"), ("groups", "Group variants"), ("breakpoints", "Breakpoints"), ("containers", "Container queries"), ("motion", "Transitions and focus"), ("indicators", "Indicators")]
     art = "\n        ".join([
         page_head("Docs", "States and variants",
                   "A variant applies a class only in a state: <code>hover:bg-neutral-4</code>, <code>selected:border-accent-1-8</code>, <code>md:flex</code>. Each variant covers a fixed set of classes, mostly colours, so the stylesheet stays one file. The markup drives the look: set the ARIA attribute and the class follows."),
@@ -851,6 +851,8 @@ def states_page():
         section("groups", "Group variants", p("Put <code>group</code> on a parent; a child reacts to its state. These cover opacity, visibility, rotation and the text roles."),
                 table(["Variant", "When", "Classes"], grows)),
         section("breakpoints", "Breakpoints", p(_plain(nm["variants"]["responsive"]))),
+        section("containers", "Container queries", p(_plain(nm["variants"]["container"])),
+                code("card.html", "HTML", '<div class="@container">\n  <article class="flex flex-col @md:flex-row">\n    <div class="aspect-video @md:basis-1/3 shrink-0">…</div>\n    <div class="p-md">…</div>\n  </article>\n</div>')),
         section("motion", "Transitions and focus",
                 p("Every interactive element (links, buttons, summaries, fields, labels, and the button, tab, option, menuitem and switch roles) transitions its colours, opacity, shadow and transforms by default, at the motion duration and easing. Reduced motion cuts it. Anything else that changes with state names <code>transition</code>."),
                 p("Focus: buttons, links and checkable controls get a 2px accent ring on <code>:focus-visible</code>. Text fields get no ring; their border turns accent, and a field box shows its input's focus with <code>focus-within:</code>.")),

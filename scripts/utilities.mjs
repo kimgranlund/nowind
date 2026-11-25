@@ -73,6 +73,7 @@ add("shrink", "flex-shrink: 1");
 add("shrink-0", "flex-shrink: 0");
 for (const p of ["static", "relative", "absolute", "fixed", "sticky"]) add(p, `position: ${p}`);
 add("inset-0", "inset: 0");
+add("@container", "container-type: inline-size");
 for (const p of ["top", "right", "bottom", "left"]) {
   add(`${p}-0`, `${p}: 0`);
   add(`${p}-full`, `${p}: 100%`);
@@ -355,7 +356,7 @@ add("debug", "outline: 1px dashed red");
 add("revert", "all: revert");
 
 // ---- Variants (Prewind's rules) ----
-const esc = (c) => c.replace(/[:./]/g, (ch) => `\\${ch}`).replace(/^(\d)/, (d) => `\\3${d} `);
+const esc = (c) => c.replace(/[:./@]/g, (ch) => `\\${ch}`).replace(/^(\d)/, (d) => `\\3${d} `);
 const rule = (sel, decl) => `  .${esc(sel)} { ${decl}; }`;
 const ROLE_COLORS = colorProps.filter((p) => !/^--shadow/.test(p) && !/-(surface|indicator|track)$/.test(p)).map((p) => p.slice(2));
 // Raw steps of the interactive palettes take hover and state variants too, so an example can be written in primitives only.
@@ -364,6 +365,7 @@ const HOVER = [...D.keys()].filter((c) => ROLE_CLASSES.has(c) || STEP_STATES.tes
 const LAYOUT = [...D.keys()].filter((c) => /^(block|inline-block|inline|flex|inline-flex|grid|inline-grid|contents|hidden|flex-(row|col)(-reverse)?|flex-wrap|flex-nowrap|justify-|items-|self-|text-(left|center|right|justify|start|end)$|col-span-|w-(\d\/\d|full|auto|fit|sidebar|rail)$|basis-|gap-|p[xytb]?-|static$|relative$|absolute$|fixed$|sticky$|top-|overflow-|h-(full|auto|dvh|screen|below-header)$)/.test(c));
 const geometryCss = read("theme/theme.geometry.css");
 const BREAKPOINTS = [...geometryCss.matchAll(/--breakpoint-([\w]+):\s*(\d+)px/g)].map((m) => [m[1], Number(m[2])]);
+const CONTAINERS = [...geometryCss.matchAll(/--container-(sm|md|lg|xl|2xl):\s*(\d+)px/g)].map((m) => [m[1], Number(m[2])]);
 
 const reset = `@layer reset {
   :where(*, *::before, *::after) { box-sizing: border-box; border-width: 0; border-style: solid; border-color: var(--border); --_inset: 0px; --_bw: 0px; }
@@ -709,6 +711,13 @@ for (const [bp, w] of BREAKPOINTS) {
   for (const c of LAYOUT) out.push(`  ${rule(`${bp}:${c}`, D.get(c))}`);
   out.push("  }");
 }
+// Container queries (Tailwind v4 names): @container marks a query container; @sm: to @2xl: apply a layout class when
+// the nearest one is at least that wide, so a component adapts to its slot, not the window.
+for (const [cq, w] of CONTAINERS) {
+  out.push(`  @container (min-width: ${w}px) {`);
+  for (const c of LAYOUT) out.push(`  ${rule(`@${cq}:${c}`, D.get(c))}`);
+  out.push("  }");
+}
 out.push("}");
 const css = out.join("\n") + "\n";
 writeFileSync(join(root, "nowind.css"), css);
@@ -724,12 +733,13 @@ const manifest = {
     bundle: "node scripts/bundle.mjs writes dist/nowind.bundle.css and dist/nowind.min.css: theme.css with every @import inlined, then this file. Run it after this script.",
     rule: "Put your own global CSS in @layer styles. Unlayered CSS beats every utility.",
   },
-  counts: { classes: D.size, hover: HOVER.length, state: STATES.reduce((n, [, , l]) => n + l.length, 0), group: GROUP_CLASSES.length * GROUP_VARIANTS.length, responsive: LAYOUT.length * BREAKPOINTS.length, bytes: Buffer.byteLength(css) },
+  counts: { classes: D.size, hover: HOVER.length, state: STATES.reduce((n, [, , l]) => n + l.length, 0), group: GROUP_CLASSES.length * GROUP_VARIANTS.length, responsive: LAYOUT.length * BREAKPOINTS.length, container: LAYOUT.length * CONTAINERS.length, bytes: Buffer.byteLength(css) },
   naming: "property-value, as Prewind and Tailwind: p-md, gap-lg, bg-solid-accent-1. Colour classes take the token name without --; text-color roles are the token name alone (fg-weak, fg-accent-1).",
   variants: {
     hover: "Inside @media (hover: hover), as Tailwind v4, so taps on touch screens don't stick. hover:border-* for the border roles, hover:fg-* and hover:bg-* for the colour role tokens only (bg, component, border, solid, on-solid, fg and their palette versions), hover:opacity-*, hover:cursor-*. Raw steps of neutral, accent-1 to accent-4 and danger take hover too (hover:bg-neutral-4), so examples can use primitives only; alpha steps and the status palettes' steps have no hover class.",
     breakpoints: Object.fromEntries(BREAKPOINTS.map(([b, w]) => [b, `${w}px`])),
     responsive: "sm:, md:, lg:, xl:, 2xl: (read from the --breakpoint-* tokens) apply to layout: display, grid columns and spans, flex direction, wrap, basis, justify, align, text alignment, widths, heights, position, top, overflow, padding and gaps. Margins, colours and type have no breakpoint variants.",
+    container: "@sm:, @md:, @lg:, @xl:, @2xl: (384, 448, 512, 576 and 672px, read from the --container-* tokens) apply the same layout classes when the nearest ancestor with @container (container-type: inline-size) is at least that wide, so a component lays itself out by its own width rather than the viewport's.",
     groups: "group on a parent; group-hover:, group-focus-within: and group-open: on a child, for opacity, visibility, rotation and the fg roles. group-open matches an open details or popover, aria-expanded=\"true\", or a group holding an open popover, so a caret with transition group-open:rotate-180 turns when its disclosure or menu opens.",
     states: "active:, focus-visible:, focus-within: (a field wrapper whose input has focus), selected: (aria-selected=\"true\"), current: (aria-current), pressed: (aria-pressed=\"true\"), expanded: (aria-expanded=\"true\"), open: (details, popovers), invalid: (aria-invalid=\"true\" or :user-invalid), has-invalid: (a wrapper holding an invalid input), has-checked: (a wrapper holding a checked radio or checkbox, such as a choice card) and disabled: (also aria-disabled). Colors only (plus opacity and cursor for disabled), for the neutral and accent roles and the raw steps of neutral, accent-1 to accent-4 and danger; invalid: and has-invalid: for neutral and danger.",
     none: "No group- or dark: variants. Dark mode comes from the theme's light-dark() tokens.",

@@ -536,7 +536,8 @@
       "page": "site/docs/c-media-card.html",
       "summary": "A card led by a 16:9 media area, then a title, a line of detail and its author.",
       "use": [
-        "aspect-video keeps the media area's shape before the image loads."
+        "aspect-video keeps the media area's shape before the image loads.",
+        "@container on the wrapper lets the card lay itself out by its own width: @md:flex-row puts the media beside the text once the card is 448px wide, wherever it sits."
       ],
       "avoid": [
         "Text over the image without a scrim."
@@ -545,6 +546,9 @@
         "example"
       ],
       "classes": [
+        "@container",
+        "@md:basis-1/3",
+        "@md:flex-row",
         "aspect-video",
         "bg-accent-2-a4",
         "bg-accent-3-9",
@@ -566,14 +570,13 @@
         "inline-flex",
         "items-center",
         "justify-center",
-        "max-w-form",
         "overflow-hidden",
-        "p-0",
         "p-3xs",
         "p-md",
         "pt-2xs",
         "rounded-full",
         "rounded-md",
+        "shrink-0",
         "text-base",
         "text-sm",
         "text-xs",

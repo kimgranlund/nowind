@@ -536,8 +536,9 @@ COMPONENTS = [
     {
         "slug": "media-card", "name": "Media card", "icon": "ph-image", "group": "Layout",
         "summary": "A card led by a 16:9 media area, then a title, a line of detail and its author.",
-        "html": f"""<article class="flex flex-col {CARD} p-0 overflow-hidden max-w-form">
-  <div class="aspect-video flex items-center justify-center bg-accent-2-a4 fg-accent-2-11"><i class="icon icon-lg ph-light ph-mountains"></i></div>
+        "html": f"""<div class="@container">
+<article class="flex flex-col @md:flex-row rounded-md bg-neutral-1 border border-neutral-6 overflow-hidden">
+  <div class="aspect-video @md:basis-1/3 shrink-0 flex items-center justify-center bg-accent-2-a4 fg-accent-2-11"><i class="icon icon-lg ph-light ph-mountains"></i></div>
   <div class="flex flex-col gap-2xs p-md">
     <span class="text-xs font-mono uppercase tracking-widest fg-accent-2-11">Case study</span>
     <h3 class="text-base font-semibold">Rebuilding a design system in a week</h3>
@@ -546,8 +547,9 @@ COMPONENTS = [
       <span class="text-sm fg-neutral-11">Grace Hopper · 6 min read</span>
     </div>
   </div>
-</article>""",
-        "use": ["<code>aspect-video</code> keeps the media area's shape before the image loads."],
+</article>
+</div>""",
+        "use": ["<code>aspect-video</code> keeps the media area's shape before the image loads.", "<code>@container</code> on the wrapper lets the card lay itself out by its own width: <code>@md:flex-row</code> puts the media beside the text once the card is 448px wide, wherever it sits."],
         "avoid": ["Text over the image without a scrim."],
     },
 ]

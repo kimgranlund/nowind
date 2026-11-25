@@ -543,5 +543,16 @@
       }
     ]
   },
-  "nesting": "After Affine UI, one unit runs the whole scale: each radius step is one margin (M) from the next (xs = control − M, sm = control, md = control + M, lg = control + 2M, xl = control + 3M), and the padding between levels is the inset (I = M − border). So a bordered container padded p-inset holds items one radius step down, concentrically: (r + M) − (M − B) − B = r. Pairs: rounded-md p-inset holds rounded-sm; rounded-lg p-inset holds rounded-md; rounded-sm p-inset holds rounded-xs. Any other padding uses rounded-inner (the parent's radius minus its padding and border)."
+  "nesting": "After Affine UI, one unit runs the whole scale: each radius step is one margin (M) from the next (xs = control − M, sm = control, md = control + M, lg = control + 2M, xl = control + 3M), and the padding between levels is the inset (I = M − border). So a bordered container padded p-inset holds items one radius step down, concentrically: (r + M) − (M − B) − B = r. Pairs: rounded-md p-inset holds rounded-sm; rounded-lg p-inset holds rounded-md; rounded-sm p-inset holds rounded-xs. Any other padding uses rounded-inner (the parent's radius minus its padding and border).",
+  "containers": {
+    "tokens": [
+      "--container-sm",
+      "--container-md",
+      "--container-lg",
+      "--container-xl",
+      "--container-2xl"
+    ],
+    "values": "384, 448, 512, 576, 672px (Tailwind v4's @sm to @2xl: 24, 28, 32, 36, 42rem at 16px)",
+    "use": "@sm: to @2xl: apply a layout class when the nearest @container is at least that wide, so a component adapts to the slot it sits in rather than the window. In px like the breakpoints, because a query can't read a custom property; scripts/utilities.mjs reads these values."
+  }
 }

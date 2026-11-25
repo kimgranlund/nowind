@@ -230,6 +230,7 @@ Every interactive element (links, buttons, summaries, fields, labels and the but
 
 - **Hover**: only on devices that can hover, as Tailwind v4. Text, background and border colors of the role tokens and of the raw steps of neutral, accent-1 to accent-4 and danger, opacity and cursor: `hover:bg-component`, `hover:bg-neutral-4`, `hover:border-strong`, `hover:opacity-100`.
 - **Breakpoints**: `sm:` 640px, `md:` 768px, `lg:` 1024px, `xl:` 1280px, `2xl:` 1536px (the `--breakpoint-*` tokens), for layout: display, grid columns and spans, flex direction, wrap and basis, alignment, text alignment, widths (`md:w-1/3`) and gaps (`md:gap-lg`). Margins, color and type have no breakpoint variants; padding, position, `top-*`, overflow and heights do.
+- **Container queries**: `@container` on a wrapper, then `@sm:` 384px, `@md:` 448px, `@lg:` 512px, `@xl:` 576px, `@2xl:` 672px (the `--container-*` tokens) on the same layout classes, measured against that wrapper's width: `<div class="@container"><article class="flex flex-col @md:flex-row">`.
 
 ```html
 <div class="grid grid-cols-1 md:grid-cols-3 gap-sm md:gap-lg">
