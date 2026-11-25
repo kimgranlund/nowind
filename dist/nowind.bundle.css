@@ -1875,12 +1875,12 @@
   }
 
   :where(h1, h2, h3, h4, h5, h6) { text-wrap: balance; overflow-wrap: break-word; }
-  :where(h1) { font-size: var(--heading-xl); line-height: var(--heading-xl--line-height); font-weight: var(--heading-xl--font-weight); font-family: var(--heading-xl--font-family); letter-spacing: var(--heading-xl--letter-spacing); }
-  :where(h2) { font-size: var(--heading-lg); line-height: var(--heading-lg--line-height); font-weight: var(--heading-lg--font-weight); font-family: var(--heading-lg--font-family); letter-spacing: var(--heading-lg--letter-spacing); }
-  :where(h3) { font-size: var(--heading-md); line-height: var(--heading-md--line-height); font-weight: var(--heading-md--font-weight); font-family: var(--heading-md--font-family); letter-spacing: var(--heading-md--letter-spacing); }
-  :where(h4) { font-size: var(--heading-sm); line-height: var(--heading-sm--line-height); font-weight: var(--heading-sm--font-weight); font-family: var(--heading-sm--font-family); }
-  :where(h5) { font-size: var(--title); line-height: var(--title--line-height); font-weight: var(--title--font-weight); font-family: var(--title--font-family); }
-  :where(h6) { font-size: var(--title-sm); line-height: var(--title-sm--line-height); font-weight: var(--title-sm--font-weight); font-family: var(--title-sm--font-family); }
+  :where(h1:not(.text-xs, .text-sm, .text-base, .text-lg, .text-xl, .text-2xl, .text-3xl, .text-4xl, .text-5xl, .text-6xl)) { font-size: var(--heading-xl); line-height: var(--heading-xl--line-height); font-weight: var(--heading-xl--font-weight); font-family: var(--heading-xl--font-family); letter-spacing: var(--heading-xl--letter-spacing); }
+  :where(h2:not(.text-xs, .text-sm, .text-base, .text-lg, .text-xl, .text-2xl, .text-3xl, .text-4xl, .text-5xl, .text-6xl)) { font-size: var(--heading-lg); line-height: var(--heading-lg--line-height); font-weight: var(--heading-lg--font-weight); font-family: var(--heading-lg--font-family); letter-spacing: var(--heading-lg--letter-spacing); }
+  :where(h3:not(.text-xs, .text-sm, .text-base, .text-lg, .text-xl, .text-2xl, .text-3xl, .text-4xl, .text-5xl, .text-6xl)) { font-size: var(--heading-md); line-height: var(--heading-md--line-height); font-weight: var(--heading-md--font-weight); font-family: var(--heading-md--font-family); letter-spacing: var(--heading-md--letter-spacing); }
+  :where(h4:not(.text-xs, .text-sm, .text-base, .text-lg, .text-xl, .text-2xl, .text-3xl, .text-4xl, .text-5xl, .text-6xl)) { font-size: var(--heading-sm); line-height: var(--heading-sm--line-height); font-weight: var(--heading-sm--font-weight); font-family: var(--heading-sm--font-family); }
+  :where(h5:not(.text-xs, .text-sm, .text-base, .text-lg, .text-xl, .text-2xl, .text-3xl, .text-4xl, .text-5xl, .text-6xl)) { font-size: var(--title); line-height: var(--title--line-height); font-weight: var(--title--font-weight); font-family: var(--title--font-family); }
+  :where(h6:not(.text-xs, .text-sm, .text-base, .text-lg, .text-xl, .text-2xl, .text-3xl, .text-4xl, .text-5xl, .text-6xl)) { font-size: var(--title-sm); line-height: var(--title-sm--line-height); font-weight: var(--title-sm--font-weight); font-family: var(--title-sm--font-family); }
   :where(p, li, figcaption, blockquote, dd) { text-wrap: pretty; overflow-wrap: break-word; }
 
   :where(img, picture, video, canvas, svg, iframe) { display: block; max-inline-size: 100%; }

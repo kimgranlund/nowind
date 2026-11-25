@@ -56,7 +56,7 @@ python3 scripts/templates.py # after a release (it reads CHANGELOG.md), a class 
 node scripts/check.mjs       # before every commit
 ```
 
-`scripts/check.mjs` enforces the rules below: no comments and no `color-mix()` in Nowind's CSS, every token a manifest names exists, every generated file (CSS, manifests, `classes.md`, the docs pages, `site/search.json`) matches what the scripts write, the site's controls follow the control recipe, the examples pass `python3 scripts/templates.py --lint`, and this file names every file in the repo. `node scripts/check.mjs --self-test` breaks a copy fourteen ways and confirms each is caught. `node scripts/serve.mjs` serves the site on port 8765.
+`scripts/check.mjs` enforces the rules below: no comments and no `color-mix()` in Nowind's CSS, every token a manifest names exists, every generated file (CSS, manifests, `classes.md`, the docs pages, `site/search.json`) matches what the scripts write, the site's controls follow the control recipe, the examples pass `python3 scripts/templates.py --lint`, and this file names every file in the repo. `node scripts/check.mjs --self-test` breaks a copy fifteen ways and confirms each is caught. `node scripts/serve.mjs` serves the site on port 8765.
 
 ## Keep the context current
 
@@ -79,7 +79,7 @@ Then check the result in `site/specimen.html` through the dev server (`node scri
 - **Colours are `light-dark()`.** Never add a separate dark theme or a `dark:` variant.
 - **No `color-mix()`.** Use the alpha steps (`--{palette}-a{1..12}`) for transparency. (checked)
 - **Text on a solid uses `--on-solid-{palette}`.** The library's `solidLabel` is the starting point, but Nowind overrides it where the owner chose: the accents and every status (danger, warning, success, info) take light text in both modes; only neutral follows the library (light, then dark). Each palette's choice is in `palettes[].contrast` in the colors manifest.
-- **Layers:** `reset, styles, nowind`. The reset wraps every selector in `:where()`.
+- **Layers:** `reset, styles, nowind`. The reset wraps every selector in `:where()`. Its heading roles apply only to headings without a `text-{size}` class; a sized heading reads as text at that size.
 - **Contrast is out of scope.** Don't add contrast checks.
 - **Radii nest.** A container that holds items against its padding pairs by name: `rounded-md p-inset border` holds `rounded-sm`, `rounded-sm p-inset` holds `rounded-xs`, one step per margin after Affine. Any other padding uses `rounded-inner` on the item. The scale and the rule live in `theme/theme.geometry.css` and its manifest (`nesting`).
 - **Logical sides.** Examples and the site say start and end, not left and right: `ps-`, `pe-`, `ms-`, `me-`, `start-`, `end-`, `text-start`, `text-end`, `border-s`, `border-e`, `rounded-s-*`, `rounded-e-*`. The physical classes exist for authors who need them; the examples lint rejects them. (checked)

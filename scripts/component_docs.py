@@ -509,13 +509,13 @@ COMPONENTS = [
         "slug": "table", "name": "Table", "icon": "ph-table", "group": "Data display",
         "summary": "Rows of records in a surface that scrolls sideways on narrow screens.",
         "html": """<div class="rounded-md bg-neutral-1 border border-neutral-6 overflow-x-auto">
-  <table class="w-full text-sm">
+  <table class="w-full">
     <thead class="bg-neutral-2">
-      <tr><th class="text-start px-md py-xs text-sm font-medium fg-neutral-11 border-b border-neutral-6">Invoice</th><th class="text-start px-md py-xs text-sm font-medium fg-neutral-11 border-b border-neutral-6">Status</th><th class="text-end px-md py-xs text-sm font-medium fg-neutral-11 border-b border-neutral-6">Amount</th></tr>
+      <tr><th class="text-start h-control px-control font-medium fg-neutral-11 border-b border-neutral-6">Invoice</th><th class="text-start h-control px-control font-medium fg-neutral-11 border-b border-neutral-6">Status</th><th class="text-end h-control px-control font-medium fg-neutral-11 border-b border-neutral-6">Amount</th></tr>
     </thead>
     <tbody>
-      <tr class="transition state"><td class="px-md py-sm text-sm font-mono border-b border-neutral-6">INV-1042</td><td class="px-md py-sm border-b border-neutral-6">Paid</td><td class="px-md py-sm text-end text-sm font-mono tabular-nums border-b border-neutral-6">$1,280.00</td></tr>
-      <tr class="transition state"><td class="px-md py-sm text-sm font-mono">INV-1043</td><td class="px-md py-sm">Pending</td><td class="px-md py-sm text-end text-sm font-mono tabular-nums">$640.50</td></tr>
+      <tr class="transition state"><td class="h-control px-control font-mono border-b border-neutral-6">INV-1042</td><td class="h-control px-control border-b border-neutral-6">Paid</td><td class="h-control px-control text-end font-mono tabular-nums border-b border-neutral-6">$1,280.00</td></tr>
+      <tr class="transition state"><td class="h-control px-control font-mono">INV-1043</td><td class="h-control px-control">Pending</td><td class="h-control px-control text-end font-mono tabular-nums">$640.50</td></tr>
     </tbody>
   </table>
 </div>""",
@@ -574,17 +574,17 @@ COMPONENTS = [
         "slug": "sortable-table", "name": "Sortable table", "icon": "ph-sort-ascending", "group": "Data display",
         "summary": "Column headers hold buttons; <code>aria-sort</code> on the header says which column sorts the rows and in which order.",
         "html": """<div class="rounded-md bg-neutral-1 border border-neutral-6 overflow-x-auto">
-  <table class="w-full text-sm">
+  <table class="w-full">
     <thead class="bg-neutral-2">
       <tr>
-        <th aria-sort="ascending" class="text-start px-md py-xs border-b border-neutral-6"><button class="inline-flex items-center gap-2xs border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer">Name<i class="icon icon-sm ph-bold ph-caret-up"></i></button></th>
-        <th aria-sort="none" class="text-end px-md py-xs border-b border-neutral-6"><button class="inline-flex items-center gap-2xs border-0 bg-transparent fg-neutral-11 hover:fg-neutral-12 text-base font-medium cursor-pointer">Seats<i class="icon icon-sm ph-bold ph-caret-up-down"></i></button></th>
+        <th aria-sort="ascending" class="text-start h-control px-control border-b border-neutral-6"><button class="inline-flex items-center gap-2xs border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer">Name<i class="icon icon-sm ph-bold ph-caret-up"></i></button></th>
+        <th aria-sort="none" class="text-end h-control px-control border-b border-neutral-6"><button class="inline-flex items-center gap-2xs border-0 bg-transparent fg-neutral-11 hover:fg-neutral-12 text-base font-medium cursor-pointer">Seats<i class="icon icon-sm ph-bold ph-caret-up-down"></i></button></th>
       </tr>
     </thead>
     <tbody>
-      <tr class="transition state"><td class="px-md py-sm border-b border-neutral-6">Contoso</td><td class="px-md py-sm text-end text-sm font-mono tabular-nums border-b border-neutral-6">48</td></tr>
-      <tr class="transition state"><td class="px-md py-sm border-b border-neutral-6">Fabrikam</td><td class="px-md py-sm text-end text-sm font-mono tabular-nums border-b border-neutral-6">12</td></tr>
-      <tr class="transition state"><td class="px-md py-sm">Northwind</td><td class="px-md py-sm text-end text-sm font-mono tabular-nums">7</td></tr>
+      <tr class="transition state"><td class="h-control px-control border-b border-neutral-6">Contoso</td><td class="h-control px-control text-end font-mono tabular-nums border-b border-neutral-6">48</td></tr>
+      <tr class="transition state"><td class="h-control px-control border-b border-neutral-6">Fabrikam</td><td class="h-control px-control text-end font-mono tabular-nums border-b border-neutral-6">12</td></tr>
+      <tr class="transition state"><td class="h-control px-control">Northwind</td><td class="h-control px-control text-end font-mono tabular-nums">7</td></tr>
     </tbody>
   </table>
 </div>""",

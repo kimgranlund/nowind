@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **Dialog example:** the close button is a fixed `size-nested shrink-0` square again (an earlier toolbar change had made it `h-full aspect-square`, so it grew with a wrapped title), and the dialog example has its own full row (capped at `max-w-form`), so its title and its Cancel and Delete buttons no longer wrap; the buttons sit `gap-xs` apart.
+- **Search field:** the showcase's search box is the standard field box (`h-control px-control`), so the `⌘K` keycap sits one inset from the top, bottom and end and its `rounded-xs` nests in the field's corner. It had been padded (`py-xs ps-xs pe-sm`), taller than a control with an uneven inset. The examples lint now rejects a field box sized by padding (self-test: fifteen breaks).
+- **Website field:** the showcase's `https://` prefix is the standard prefix slot (plain `fg-neutral-11` text in the field box) instead of a grey add-on band that didn't fill the field's height.
+- **Tables at the control size:** example table cells and headers set `text-base` (inherited) instead of `text-sm`, and take the control geometry (`h-control px-control`), so a row is a control's height and its text starts where a button's would.
+- **Sized headings read as text:** the reset's heading roles (face, weight, tracking) now apply only to an `h1`–`h6` without a `text-{size}` class. A card title written `<h3 class="text-base font-semibold">` had kept the heading face (Inter Tight, tight tracking) and looked larger than the same size elsewhere, such as a list item's name; now it matches. Role classes (`text-title`, `text-heading-md`, …) still set their own face, and `font-heading` adds it back by hand.
 - **Toolbar on the segmented geometry:** `h-control rounded-sm border-2 border-transparent bg-neutral-3` with touching `h-full rounded-inner` items and an inset divider, so the toolbar, the alignment group and the segmented control share one inset, height and corner.
 - **Display figures:** prices and metrics set in `font-display` (Inter Tight, new) at `font-extrabold` (800, new) with `tracking-tight`; the price caption stays on one line.
 - **Sidebar nav on the segmented geometry:** `rounded-sm border-2 border-transparent` with touching `rounded-inner` items, as the segmented control.

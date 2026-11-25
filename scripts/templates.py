@@ -987,6 +987,8 @@ def lint_examples():
                 out.append(f"{where}: <{tag}> is sized by padding. Fix: a control takes the control geometry (h-control px-control, h-nested px-nested; size-control or size-nested when it holds only an icon).")
             if any(t in ("h-control", "h-nested", "size-control", "size-nested") for t in toks) and any(re.fullmatch(r"gap-(3xs|2xs|xs|sm)", t) for t in toks):
                 out.append(f"{where}: <{tag}> spaces its icon and label with a space step. Fix: a control uses the control gap (gap-gutter, gap-gutter-half when nested).")
+            if "border" in toks and any(re.fullmatch(r"py-(3xs|2xs|xs|sm)", t) for t in toks) and re.match(r'\s*(?:<[^>]+>[^<]*</[^>]+>\s*|<[^/>][^>]*>\s*)?<(?:input|select|textarea)\b', html_[m.end():]):
+                out.append(f"{where}: a field box is sized by padding. Fix: the field box geometry (flex items-center gap-gutter h-control px-control rounded-sm border … cursor-text) with a bare input inside.")
             if any(t in ("px-sm", "px-2xs") for t in toks) and re.match(r'\s*<(?:i|span)\b[^>]*class="[^"]*\bicon\b', html_[m.end():]):
                 out.append(f"{where}: <{tag}> pads its icon edge like a text edge. Fix: at an icon edge use the block padding (ps-xs pe-sm for px-sm, ps-3xs pe-2xs for px-2xs).")
             if any(re.fullmatch(r"(hover|active):bg-.+", t) for t in toks) and not any(re.fullmatch(r"(pressed|selected|current|open|expanded|has-checked):bg-.+", t) for t in toks):
