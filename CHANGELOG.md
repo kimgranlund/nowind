@@ -2,8 +2,9 @@
 
 ## Unreleased
 
+- **Docs frame:** the page scrolls as a whole. The header is sticky, the sidebar sticks under it, and `main` is no longer a scroll box. Below 1024px only the Menu row shows, the GitHub button is icon-only below 1280px, tables wrap instead of scrolling sideways, and the class lists become two-line rows on a phone. New `scroll-pt-header` and `scroll-mt-*` keep linked rows clear of sticky bars.
 - **Breaking, background and border role classes:** the role group is dropped when it matches the prefix, as `fg-` already did: `bg-bg` is `bg`, `bg-bg-accent-1` is `bg-accent-1`, `border-border-weak` is `border-weak`. Plain `border-border` is `border-default`, and the reset now draws every border in `--border`, so `border` alone needs no colour class.
-- **Breaking, text colour classes:** raw steps and on-solid now take `fg-` like the text roles: `text-accent-1-11` is `fg-accent-1-11`, `text-on-solid-danger` is `fg-on-solid-danger`. Every text colour class now starts with `fg`.
+- **Breaking, text colour classes:** raw steps and on-solid now take `fg-` like the text roles: `text-accent-1-11` is `fg-accent-1-11`, `text-on-solid-danger` is `fg-on-solid-danger`. `text-inherit` and `text-current` are `fg-inherit` and `fg-current`. Every text colour class now starts with `fg`.
 - **Site moved:** the landing page, showcase, specimen and utilities demo are in `site/`, the docs in `site/docs/`. The root `index.html` redirects to `site/`.
 - **Classes page:** `site/docs/classes.html` lists all 1349 base classes by category with their declarations, a preview for colours, borders, radius and shadow, and a filter, under a grid linking to each group. Regular classes (a scale step or a value: `p-md`, `border-warning-7`) and semantic classes (a role: `p-surface`, `fg-weak`, `text-heading-md`) get separate pages, `classes.html` and `semantic.html`. Component pages link each class to its row.
 

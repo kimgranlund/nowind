@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-pt-header">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,13 +11,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
 </head>
 <body class="bg fg">
-<div class="flex flex-col h-dvh overflow-hidden">
-  <div class="shrink-0 py-3xs bg-inverse" aria-hidden="true"></div>
-  <header class="flex items-center justify-between gap-row h-header shrink-0 px-grid border-b border-weak bg">
+<div class="shrink-0 py-3xs bg-inverse" aria-hidden="true"></div>
+<header class="sticky top-0 z-30 flex items-center justify-between gap-row h-header px-grid border-b border-weak bg">
     <a href="docs-home.html" class="inline-flex items-center gap-gutter no-underline fg">
       <i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-weak">0.8.0</span>
     </a>
-    <nav aria-label="Main" class="hidden md:flex items-center gap-3xs">
+    <nav aria-label="Main" class="hidden lg:flex items-center gap-3xs">
       <a href="docs-home.html" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline fg-weak hover:fg hover:border-strong text-title-sm transition-colors">Docs</a>
       <a href="guide.html" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline fg-weak hover:fg hover:border-strong text-title-sm transition-colors">Guide</a>
       <a href="components-index.html" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline fg-weak hover:fg hover:border-strong text-title-sm transition-colors">Components</a>
@@ -26,10 +25,10 @@
       <a href="changelog.html" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline fg-weak hover:fg hover:border-strong text-title-sm transition-colors">Changelog</a>
     </nav>
     <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center h-control px-control gap-gutter border bg hover:bg-component-weak no-underline fg text-title-sm transition-colors" aria-label="Nowind on GitHub">
-      <i class="icon ph ph-github-logo"></i><span class="hidden sm:inline">GitHub</span>
+      <i class="icon ph ph-github-logo"></i><span class="hidden xl:inline">GitHub</span>
     </a>
   </header>
-  <details class="lg:hidden shrink min-h-0 overflow-y-auto border-b border-weak bg-strong">
+<details class="lg:hidden border-b border-weak bg-strong">
     <summary class="flex items-center gap-gutter h-control px-grid list-none cursor-pointer fg text-title-sm"><i class="icon ph ph-list"></i><span>Menu</span></summary>
     <nav aria-label="Documentation" class="flex flex-col gap-group px-grid pt-2xs pb-md">
       <div class="flex flex-col gap-field">
@@ -90,8 +89,8 @@
       </div>
     </nav>
   </details>
-  <div class="flex flex-1 min-h-0">
-    <aside class="hidden lg:flex flex-col shrink-0 w-sidebar overflow-y-auto p-region border-r border-weak bg-strong">
+<div class="flex">
+  <aside class="hidden lg:flex flex-col shrink-0 self-start sticky top-header w-sidebar h-below-header overflow-y-auto p-region border-r border-weak bg-strong">
       <nav aria-label="Documentation" class="flex flex-col gap-group">
         <div class="flex flex-col gap-field">
           <span class="text-kicker fg-weak">Getting started</span>
@@ -151,8 +150,8 @@
         </div>
       </nav>
     </aside>
-    <main id="content" class="flex flex-col flex-1 min-w-0 overflow-y-auto">
-      <div class="grow"><div class="grid grid-cols-4 md:grid-cols-12 gap-grid px-grid">
+  <main id="content" class="flex flex-col flex-1 min-w-0">
+    <div class="grid grid-cols-4 md:grid-cols-12 gap-grid px-grid">
       <article class="col-span-4 md:col-span-12 xl:col-span-9 min-w-0 tier-content flex flex-col gap-section py-page max-w-measure">
         <header class="flex flex-col gap-field">
             <span class="text-kicker fg-weak">Templates</span>
@@ -198,14 +197,14 @@
         <section id="type" class="flex flex-col gap-group">
           <h2 class="text-heading-md pt-sm border-t">Type scale</h2>
           <p class="text-body-md">Four sizes, far apart. Weight separates roles that share a size.</p>
-          <div class="overflow-x-auto border border-weak">
+          <div class="border border-weak">
             <table class="w-full text-body-md">
-              <thead class="bg-strong"><tr><th scope="col" class="text-left px-sm py-xs border-b text-label fg-weak whitespace-nowrap">Sample</th><th scope="col" class="text-left px-sm py-xs border-b text-label fg-weak whitespace-nowrap">Size</th><th scope="col" class="text-left px-sm py-xs border-b text-label fg-weak whitespace-nowrap">Classes</th><th scope="col" class="text-left px-sm py-xs border-b text-label fg-weak whitespace-nowrap">Token</th><th scope="col" class="text-left px-sm py-xs border-b text-label fg-weak whitespace-nowrap">Used for</th></tr></thead>
+              <thead class="bg-strong"><tr><th scope="col" class="text-left px-sm py-xs border-b text-label fg-weak">Sample</th><th scope="col" class="text-left px-sm py-xs border-b text-label fg-weak">Size and use</th><th scope="col" class="text-left px-sm py-xs border-b text-label fg-weak">Classes</th></tr></thead>
               <tbody>
-                <tr><td class="text-left align-top px-sm py-xs border-b border-weak whitespace-nowrap"><span class="text-display-sm">Aa</span></td><td class="text-left align-top px-sm py-xs border-b border-weak">Display</td><td class="text-left align-top px-sm py-xs border-b border-weak"><code class="whitespace-nowrap">text-display-sm</code></td><td class="text-left align-top px-sm py-xs border-b border-weak"><code class="whitespace-nowrap">--text-4xl</code></td><td class="text-left align-top px-sm py-xs border-b border-weak">Page title</td></tr>
-                <tr><td class="text-left align-top px-sm py-xs border-b border-weak whitespace-nowrap"><span class="text-heading-md">Aa</span></td><td class="text-left align-top px-sm py-xs border-b border-weak">Heading</td><td class="text-left align-top px-sm py-xs border-b border-weak"><code class="whitespace-nowrap">text-heading-md</code></td><td class="text-left align-top px-sm py-xs border-b border-weak"><code class="whitespace-nowrap">--text-xl</code></td><td class="text-left align-top px-sm py-xs border-b border-weak">Section heading</td></tr>
-                <tr><td class="text-left align-top px-sm py-xs border-b border-weak whitespace-nowrap"><span class="text-body-md">Aa</span></td><td class="text-left align-top px-sm py-xs border-b border-weak">Base</td><td class="text-left align-top px-sm py-xs border-b border-weak"><code class="whitespace-nowrap">text-body-md</code> · <code class="whitespace-nowrap">text-subtitle</code> · <code class="whitespace-nowrap">text-title-sm</code></td><td class="text-left align-top px-sm py-xs border-b border-weak"><code class="whitespace-nowrap">--text-base</code></td><td class="text-left align-top px-sm py-xs border-b border-weak">Prose, subheads, nav, buttons</td></tr>
-                <tr><td class="text-left align-top px-sm py-xs whitespace-nowrap"><span class="text-caption">Aa</span></td><td class="text-left align-top px-sm py-xs">Small</td><td class="text-left align-top px-sm py-xs"><code class="whitespace-nowrap">text-caption</code> · <code class="whitespace-nowrap">text-label</code> · <code class="whitespace-nowrap">text-kicker</code> · <code class="whitespace-nowrap">text-mono-sm</code></td><td class="text-left align-top px-sm py-xs"><code class="whitespace-nowrap">--text-sm</code></td><td class="text-left align-top px-sm py-xs">Metadata, labels, code</td></tr>
+                <tr><td class="text-left align-top px-sm py-xs break-words border-b border-weak"><span class="text-display-sm">Aa</span></td><td class="text-left align-top px-sm py-xs break-words border-b border-weak">Display<br><span class="text-caption fg-weak">Page title, <code class="whitespace-normal break-all">--text-4xl</code></span></td><td class="text-left align-top px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">text-display-sm</code></td></tr>
+                <tr><td class="text-left align-top px-sm py-xs break-words border-b border-weak"><span class="text-heading-md">Aa</span></td><td class="text-left align-top px-sm py-xs break-words border-b border-weak">Heading<br><span class="text-caption fg-weak">Section heading, <code class="whitespace-normal break-all">--text-xl</code></span></td><td class="text-left align-top px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">text-heading-md</code></td></tr>
+                <tr><td class="text-left align-top px-sm py-xs break-words border-b border-weak"><span class="text-body-md">Aa</span></td><td class="text-left align-top px-sm py-xs break-words border-b border-weak">Base<br><span class="text-caption fg-weak">Prose, subheads, nav, buttons, <code class="whitespace-normal break-all">--text-base</code></span></td><td class="text-left align-top px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">text-body-md</code> · <code class="whitespace-normal break-all">text-subtitle</code> · <code class="whitespace-normal break-all">text-title-sm</code></td></tr>
+                <tr><td class="text-left align-top px-sm py-xs break-words"><span class="text-caption">Aa</span></td><td class="text-left align-top px-sm py-xs break-words">Small<br><span class="text-caption fg-weak">Metadata, labels, code, <code class="whitespace-normal break-all">--text-sm</code></span></td><td class="text-left align-top px-sm py-xs break-words"><code class="whitespace-normal break-all">text-caption</code> · <code class="whitespace-normal break-all">text-label</code> · <code class="whitespace-normal break-all">text-kicker</code> · <code class="whitespace-normal break-all">text-mono-sm</code></td></tr>
               </tbody>
             </table>
           </div>
@@ -223,25 +222,25 @@
         </section>
         <section id="parts" class="flex flex-col gap-group">
           <h2 class="text-heading-md pt-sm border-t">Which classes make which part</h2>
-          <div class="overflow-x-auto border border-weak">
+          <div class="border border-weak">
             <table class="w-full text-body-md">
-              <thead class="bg-strong"><tr><th scope="col" class="text-left px-sm py-xs border-b text-label fg-weak whitespace-nowrap">Part</th><th scope="col" class="text-left px-sm py-xs border-b text-label fg-weak whitespace-nowrap">Classes</th></tr></thead>
+              <thead class="bg-strong"><tr><th scope="col" class="text-left px-sm py-xs border-b text-label fg-weak">Part</th><th scope="col" class="text-left px-sm py-xs border-b text-label fg-weak">Classes</th></tr></thead>
               <tbody>
-                <tr><td class="text-left align-top px-sm py-xs border-b border-weak whitespace-nowrap">Band</td><td class="text-left align-top px-sm py-xs border-b border-weak"><code>py-3xs bg-inverse</code></td></tr>
-                <tr><td class="text-left align-top px-sm py-xs border-b border-weak whitespace-nowrap">Header</td><td class="text-left align-top px-sm py-xs border-b border-weak"><code>flex items-center justify-between h-header px-grid border-b border-weak</code></td></tr>
-                <tr><td class="text-left align-top px-sm py-xs border-b border-weak whitespace-nowrap">Header link</td><td class="text-left align-top px-sm py-xs border-b border-weak"><code>inline-flex items-center h-control px-control border-b-2 text-title-sm</code>; current: <code>border-accent-1-strong fg</code></td></tr>
-                <tr><td class="text-left align-top px-sm py-xs border-b border-weak whitespace-nowrap">Menu (phone)</td><td class="text-left align-top px-sm py-xs border-b border-weak"><code class="whitespace-nowrap">details</code> with <code>lg:hidden shrink min-h-0 overflow-y-auto</code></td></tr>
-                <tr><td class="text-left align-top px-sm py-xs border-b border-weak whitespace-nowrap">Sidebar</td><td class="text-left align-top px-sm py-xs border-b border-weak"><code>hidden lg:flex flex-col w-sidebar p-region border-r bg-strong</code></td></tr>
-                <tr><td class="text-left align-top px-sm py-xs border-b border-weak whitespace-nowrap">Sidebar link</td><td class="text-left align-top px-sm py-xs border-b border-weak"><code>flex items-center h-control px-control gap-gutter border-l-2 text-title-sm</code>; current: <code>border-accent-1-strong bg-component-weak fg</code></td></tr>
-                <tr><td class="text-left align-top px-sm py-xs border-b border-weak whitespace-nowrap">Main grid</td><td class="text-left align-top px-sm py-xs border-b border-weak"><code>grid grid-cols-4 md:grid-cols-12 gap-grid px-grid</code></td></tr>
-                <tr><td class="text-left align-top px-sm py-xs border-b border-weak whitespace-nowrap">Article</td><td class="text-left align-top px-sm py-xs border-b border-weak"><code>xl:col-span-9 tier-content flex flex-col gap-section py-page max-w-measure</code></td></tr>
-                <tr><td class="text-left align-top px-sm py-xs border-b border-weak whitespace-nowrap">Section heading</td><td class="text-left align-top px-sm py-xs border-b border-weak"><code>text-heading-md pt-sm border-t</code></td></tr>
-                <tr><td class="text-left align-top px-sm py-xs border-b border-weak whitespace-nowrap">Table of contents</td><td class="text-left align-top px-sm py-xs border-b border-weak"><code>hidden xl:block xl:col-span-3</code>, inner <code>sticky top-0</code>; links <code>pl-sm border-l-2 text-caption</code></td></tr>
-                <tr><td class="text-left align-top px-sm py-xs border-b border-weak whitespace-nowrap">Callout</td><td class="text-left align-top px-sm py-xs border-b border-weak"><code>flex gap-gutter p-surface border-l-4 border-info bg-component-info-weak</code></td></tr>
-                <tr><td class="text-left align-top px-sm py-xs border-b border-weak whitespace-nowrap">Code block</td><td class="text-left align-top px-sm py-xs border-b border-weak"><code class="whitespace-nowrap">figure</code> with <code>border bg-strong</code>; <code class="whitespace-nowrap">pre</code> with <code>p-surface overflow-x-auto whitespace-pre text-mono-sm</code></td></tr>
-                <tr><td class="text-left align-top px-sm py-xs border-b border-weak whitespace-nowrap">Table</td><td class="text-left align-top px-sm py-xs border-b border-weak">Box <code>overflow-x-auto border</code>; <code class="whitespace-nowrap">th</code> <code>px-sm py-xs text-label</code>; <code class="whitespace-nowrap">td</code> <code>px-sm py-xs border-b</code></td></tr>
-                <tr><td class="text-left align-top px-sm py-xs border-b border-weak whitespace-nowrap">Previous and next</td><td class="text-left align-top px-sm py-xs border-b border-weak"><code>grid grid-cols-1 md:grid-cols-2 gap-grid</code>; each <code>p-surface border hover:border-strong</code></td></tr>
-                <tr><td class="text-left align-top px-sm py-xs whitespace-nowrap">Footer</td><td class="text-left align-top px-sm py-xs"><code>flex flex-col md:flex-row gap-field px-grid py-surface border-t text-caption</code></td></tr>
+                <tr><td class="text-left align-top px-sm py-xs break-words border-b border-weak">Band</td><td class="text-left align-top px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">py-3xs bg-inverse</code></td></tr>
+                <tr><td class="text-left align-top px-sm py-xs break-words border-b border-weak">Header</td><td class="text-left align-top px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">sticky top-0 z-30 flex items-center justify-between h-header px-grid border-b border-weak bg</code></td></tr>
+                <tr><td class="text-left align-top px-sm py-xs break-words border-b border-weak">Header link</td><td class="text-left align-top px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">inline-flex items-center h-control px-control border-b-2 text-title-sm</code>; current: <code class="whitespace-normal break-all">border-accent-1-strong fg</code></td></tr>
+                <tr><td class="text-left align-top px-sm py-xs break-words border-b border-weak">Menu (phone)</td><td class="text-left align-top px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">details</code> with <code class="whitespace-normal break-all">lg:hidden border-b</code></td></tr>
+                <tr><td class="text-left align-top px-sm py-xs break-words border-b border-weak">Sidebar</td><td class="text-left align-top px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">hidden lg:flex flex-col self-start sticky top-header w-sidebar h-below-header overflow-y-auto p-region border-r bg-strong</code></td></tr>
+                <tr><td class="text-left align-top px-sm py-xs break-words border-b border-weak">Sidebar link</td><td class="text-left align-top px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">flex items-center h-control px-control gap-gutter border-l-2 text-title-sm</code>; current: <code class="whitespace-normal break-all">border-accent-1-strong bg-component-weak fg</code></td></tr>
+                <tr><td class="text-left align-top px-sm py-xs break-words border-b border-weak">Main grid</td><td class="text-left align-top px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">grid grid-cols-4 md:grid-cols-12 gap-grid px-grid</code></td></tr>
+                <tr><td class="text-left align-top px-sm py-xs break-words border-b border-weak">Article</td><td class="text-left align-top px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">xl:col-span-9 tier-content flex flex-col gap-section py-page max-w-measure</code></td></tr>
+                <tr><td class="text-left align-top px-sm py-xs break-words border-b border-weak">Section heading</td><td class="text-left align-top px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">text-heading-md pt-sm border-t</code></td></tr>
+                <tr><td class="text-left align-top px-sm py-xs break-words border-b border-weak">Table of contents</td><td class="text-left align-top px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">hidden xl:block xl:col-span-3</code>, inner <code class="whitespace-normal break-all">sticky top-header</code>; links <code class="whitespace-normal break-all">pl-sm border-l-2 text-caption</code></td></tr>
+                <tr><td class="text-left align-top px-sm py-xs break-words border-b border-weak">Callout</td><td class="text-left align-top px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">flex gap-gutter p-surface border-l-4 border-info bg-component-info-weak</code></td></tr>
+                <tr><td class="text-left align-top px-sm py-xs break-words border-b border-weak">Code block</td><td class="text-left align-top px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">figure</code> with <code class="whitespace-normal break-all">border bg-strong</code>; <code class="whitespace-normal break-all">pre</code> with <code class="whitespace-normal break-all">p-surface overflow-x-auto whitespace-pre text-mono-sm</code></td></tr>
+                <tr><td class="text-left align-top px-sm py-xs break-words border-b border-weak">Table</td><td class="text-left align-top px-sm py-xs break-words border-b border-weak">Box <code class="whitespace-normal break-all">border</code>, no scrolling; <code class="whitespace-normal break-all">th</code> <code class="whitespace-normal break-all">px-sm py-xs text-label</code>; <code class="whitespace-normal break-all">td</code> <code class="whitespace-normal break-all">px-sm py-xs border-b break-words</code>, code in cells <code class="whitespace-normal break-all">whitespace-normal break-all</code></td></tr>
+                <tr><td class="text-left align-top px-sm py-xs break-words border-b border-weak">Previous and next</td><td class="text-left align-top px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">grid grid-cols-1 md:grid-cols-2 gap-grid</code>; each <code class="whitespace-normal break-all">p-surface border hover:border-strong</code></td></tr>
+                <tr><td class="text-left align-top px-sm py-xs break-words">Footer</td><td class="text-left align-top px-sm py-xs break-words"><code class="whitespace-normal break-all">flex flex-col md:flex-row gap-field px-grid py-surface border-t text-caption</code></td></tr>
               </tbody>
             </table>
           </div>
@@ -274,7 +273,7 @@
         </nav>
       </article>
       <aside class="hidden xl:block xl:col-span-3">
-        <nav aria-label="On this page" class="sticky top-0 flex flex-col gap-field py-page">
+        <nav aria-label="On this page" class="sticky top-header flex flex-col gap-field py-page">
           <span class="text-kicker fg-weak">On this page</span>
           <ol role="list" class="flex flex-col">
             <li><a href="#purpose" class="block py-3xs pl-sm border-l-2 border-weak hover:border-strong no-underline fg-weak hover:fg text-caption transition-colors">Purpose</a></li>
@@ -288,8 +287,8 @@
           </ol>
         </nav>
       </aside>
-      </div></div>
-      <footer class="flex flex-col md:flex-row md:items-center justify-between gap-field px-grid py-surface border-t border-weak text-caption fg-weak">
+    </div>
+    <footer class="flex flex-col md:flex-row md:items-center justify-between gap-field px-grid py-surface border-t border-weak text-caption fg-weak">
         <span>Nowind 0.8.0. Every page here is built from Nowind utility classes only.</span>
         <span class="flex flex-wrap gap-row">
           <a href="changelog.html" class="no-underline fg-weak hover:fg transition-colors">Changelog</a>
@@ -297,8 +296,7 @@
           <a href="https://github.com/kimgranlund/nowind" class="no-underline fg-weak hover:fg transition-colors">GitHub</a>
         </span>
       </footer>
-    </main>
-  </div>
+  </main>
 </div>
 </body>
 </html>

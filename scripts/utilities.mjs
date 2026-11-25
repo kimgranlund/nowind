@@ -45,6 +45,7 @@ for (const s of ["0", ...SPACE]) {
   add(`gap-x-${s}`, `column-gap: ${sv(s)}`);
   add(`gap-y-${s}`, `row-gap: ${sv(s)}`);
 }
+for (const s of SPACE) add(`scroll-mt-${s}`, `scroll-margin-block-start: var(--space-${s})`);
 
 // Layout
 add("container", "width: min(100%, var(--container-max)); margin-inline: auto; padding-inline: var(--container-padding)");
@@ -125,8 +126,8 @@ for (const c of COLORS) {
   if (forBg(c)) colorAdd(/^bg(-|$)/.test(c) ? c : `bg-${c}`, c, `background-color: var(--${c})`);
   if (forBorder(c)) colorAdd(c === "border" ? "border-default" : /^border-/.test(c) ? c : `border-${c}`, c, `border-color: var(--${c})`);
 }
-add("text-inherit", "color: inherit");
-add("text-current", "color: currentColor");
+add("fg-inherit", "color: inherit");
+add("fg-current", "color: currentColor");
 add("bg-transparent", "background-color: transparent");
 add("border-transparent", "border-color: transparent");
 for (let o = 0; o <= 100; o += 10) add(`opacity-${o}`, `opacity: ${o / 100}`);
@@ -287,6 +288,7 @@ add("w-rail", "width: var(--shell-rail-width)");
 add("h-header", "height: var(--shell-header-height)");
 add("min-h-header", "min-height: var(--shell-header-height)");
 add("top-header", "top: var(--shell-header-height)");
+add("scroll-pt-header", "scroll-padding-block-start: var(--shell-header-height)");
 add("h-below-header", "height: calc(100dvh - var(--shell-header-height))");
 add("max-h-below-header", "max-height: calc(100dvh - var(--shell-header-height))");
 add("max-w-measure", "max-width: var(--shell-measure)");
@@ -331,7 +333,7 @@ add("revert", "all: revert");
 const esc = (c) => c.replace(/[:./]/g, (ch) => `\\${ch}`).replace(/^(\d)/, (d) => `\\3${d} `);
 const rule = (sel, decl) => `  .${esc(sel)} { ${decl}; }`;
 const ROLE_COLORS = colorProps.filter((p) => !/^--shadow/.test(p) && !/-(surface|indicator|track)$/.test(p)).map((p) => p.slice(2));
-const HOVER = [...D.keys()].filter((c) => ROLE_CLASSES.has(c) || /^(text|bg)-(inherit|current|transparent)$/.test(c) || /^opacity-|^cursor-/.test(c));
+const HOVER = [...D.keys()].filter((c) => ROLE_CLASSES.has(c) || /^(fg|bg)-(inherit|current|transparent)$/.test(c) || /^opacity-|^cursor-/.test(c));
 const LAYOUT = [...D.keys()].filter((c) => /^(block|inline-block|inline|flex|inline-flex|grid|inline-grid|contents|hidden|flex-(row|col)(-reverse)?|flex-wrap|flex-nowrap|justify-|items-|self-|text-(left|center|right|justify|start|end)$|col-span-|w-(\d\/\d|full|auto|fit|sidebar|rail)$|basis-|gap-|p[xytb]?-|static$|relative$|absolute$|fixed$|sticky$|top-|overflow-|h-(full|auto|dvh|screen|below-header)$)/.test(c));
 const geometryCss = read("theme/theme.geometry.css");
 const BREAKPOINTS = [...geometryCss.matchAll(/--breakpoint-([\w]+):\s*(\d+)px/g)].map((m) => [m[1], Number(m[2])]);
@@ -667,7 +669,7 @@ const manifest = {
     none: "No group- or dark: variants. Dark mode comes from the theme's light-dark() tokens.",
   },
   categories: {
-    spacing: `p-, px-, py-, pt-, pr-, pb-, pl-, m-*, -m-*, m*-auto, gap-, gap-x-, gap-y- with 0 and ${SPACE.join(", ")}`,
+    spacing: `p-, px-, py-, pt-, pr-, pb-, pl-, m-*, -m-*, m*-auto, gap-, gap-x-, gap-y- with 0 and ${SPACE.join(", ")}; scroll-mt-* (where a linked element stops under sticky bars) with the same steps, no 0`,
     typeScale: `text-{${SIZES.join(", ")}} (sets size and line height)`,
     kicker: `text-{${KICKERS.join(", ")}} (size and the kicker style)`,
     typeRoles: `text-{${ROLES.filter((r) => !KICKERS.includes(r)).join(", ")}} (every role companion)`,
@@ -683,7 +685,7 @@ const manifest = {
     controls: "h-control, h-nested (an .icon inside it shrinks by the two borders so it fits), size-control, size-nested, min-w-control, min-w-nested, px-control and px-nested (padding steps in by one margin on a side whose first or last child is .icon; wrap the label in a <span>), gap-gutter, gap-gutter-half",
     levels: "p-surface, p-dialog (each minus the border), p-region, p-page, with px- and py- versions; gap-field, gap-row, gap-group, gap-section, gap-page; mt-section, mb-section. After Affine's container levels.",
     materials: "material-flat, -physical, -frosted, -glass, -outline set a region's material (nearest wins, by @scope); relief-raised, -raised-solid, -recessed, -field, -etched, -ground, -overlay say what a part is. After Massimo.",
-    grid: "gap-grid, gap-x-grid (2M), p-grid-inset (M), px-grid (slot), px-grid-compact; shell: w-sidebar (16F + 16), w-rail, h-header, min-h-header, top-header (a sticky offset under the header), h-below-header, max-h-below-header, max-w-measure (44F). After Affine.",
+    grid: "gap-grid, gap-x-grid (2M), p-grid-inset (M), px-grid (slot), px-grid-compact; shell: w-sidebar (16F + 16), w-rail, h-header, min-h-header, top-header (a sticky offset under the header), scroll-pt-header (on <html>, so in-page links land below a sticky header), h-below-header, max-h-below-header, max-w-measure (44F). After Affine.",
     tiers: "tier-product (1×), tier-content (font +2px, spacing 1.5×), tier-brand (font +4px, spacing 2×). Each is a scope: --F and everything derived recompute inside it.",
     animation: "animate-spin, animate-pulse, animate-none (cut by the reset under reduced motion).",
     anchor: "anchor-bottom, -top, -start, -end, -center: place a popover against its invoker with CSS anchor positioning, flipping at the screen edge.",

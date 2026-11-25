@@ -2263,6 +2263,16 @@
   .gap-4xl { gap: var(--space-4xl); }
   .gap-x-4xl { column-gap: var(--space-4xl); }
   .gap-y-4xl { row-gap: var(--space-4xl); }
+  .scroll-mt-3xs { scroll-margin-block-start: var(--space-3xs); }
+  .scroll-mt-2xs { scroll-margin-block-start: var(--space-2xs); }
+  .scroll-mt-xs { scroll-margin-block-start: var(--space-xs); }
+  .scroll-mt-sm { scroll-margin-block-start: var(--space-sm); }
+  .scroll-mt-md { scroll-margin-block-start: var(--space-md); }
+  .scroll-mt-lg { scroll-margin-block-start: var(--space-lg); }
+  .scroll-mt-xl { scroll-margin-block-start: var(--space-xl); }
+  .scroll-mt-2xl { scroll-margin-block-start: var(--space-2xl); }
+  .scroll-mt-3xl { scroll-margin-block-start: var(--space-3xl); }
+  .scroll-mt-4xl { scroll-margin-block-start: var(--space-4xl); }
   .container { width: min(100%, var(--container-max)); margin-inline: auto; padding-inline: var(--container-padding); }
   .block { display: block; }
   .inline-block { display: inline-block; }
@@ -3029,8 +3039,8 @@
   .fg-info-weak { color: var(--fg-info-weak); }
   .fg-info { color: var(--fg-info); }
   .fg-info-strong { color: var(--fg-info-strong); }
-  .text-inherit { color: inherit; }
-  .text-current { color: currentColor; }
+  .fg-inherit { color: inherit; }
+  .fg-current { color: currentColor; }
   .bg-transparent { background-color: transparent; }
   .border-transparent { border-color: transparent; }
   .opacity-0 { opacity: 0; }
@@ -3286,6 +3296,7 @@
   .h-header { height: var(--shell-header-height); }
   .min-h-header { min-height: var(--shell-header-height); }
   .top-header { top: var(--shell-header-height); }
+  .scroll-pt-header { scroll-padding-block-start: var(--shell-header-height); }
   .h-below-header { height: calc(100dvh - var(--shell-header-height)); }
   .max-h-below-header { max-height: calc(100dvh - var(--shell-header-height)); }
   .max-w-measure { max-width: var(--shell-measure); }
@@ -3529,8 +3540,8 @@
     .hover\:fg-info-weak:hover { color: var(--fg-info-weak); }
     .hover\:fg-info:hover { color: var(--fg-info); }
     .hover\:fg-info-strong:hover { color: var(--fg-info-strong); }
-    .hover\:text-inherit:hover { color: inherit; }
-    .hover\:text-current:hover { color: currentColor; }
+    .hover\:fg-inherit:hover { color: inherit; }
+    .hover\:fg-current:hover { color: currentColor; }
     .hover\:bg-transparent:hover { background-color: transparent; }
     .hover\:opacity-0:hover { opacity: 0; }
     .hover\:opacity-10:hover { opacity: 0.1; }
@@ -3632,8 +3643,8 @@
   .active\:fg-accent-4-weak:active { color: var(--fg-accent-4-weak); }
   .active\:fg-accent-4:active { color: var(--fg-accent-4); }
   .active\:fg-accent-4-strong:active { color: var(--fg-accent-4-strong); }
-  .active\:text-inherit:active { color: inherit; }
-  .active\:text-current:active { color: currentColor; }
+  .active\:fg-inherit:active { color: inherit; }
+  .active\:fg-current:active { color: currentColor; }
   .active\:bg-transparent:active { background-color: transparent; }
   .focus-visible\:border-weak:focus-visible { border-color: var(--border-weak); }
   .focus-visible\:border-default:focus-visible { border-color: var(--border); }
@@ -3729,8 +3740,8 @@
   .aria-selected\:fg-accent-4-weak[aria-selected="true"] { color: var(--fg-accent-4-weak); }
   .aria-selected\:fg-accent-4[aria-selected="true"] { color: var(--fg-accent-4); }
   .aria-selected\:fg-accent-4-strong[aria-selected="true"] { color: var(--fg-accent-4-strong); }
-  .aria-selected\:text-inherit[aria-selected="true"] { color: inherit; }
-  .aria-selected\:text-current[aria-selected="true"] { color: currentColor; }
+  .aria-selected\:fg-inherit[aria-selected="true"] { color: inherit; }
+  .aria-selected\:fg-current[aria-selected="true"] { color: currentColor; }
   .aria-selected\:bg-transparent[aria-selected="true"] { background-color: transparent; }
   .aria-current\:bg-scrim:is([aria-current]:not([aria-current="false"])) { background-color: var(--scrim); }
   .aria-current\:bg-inverse:is([aria-current]:not([aria-current="false"])) { background-color: var(--bg-inverse); }
@@ -3811,8 +3822,8 @@
   .aria-current\:fg-accent-4-weak:is([aria-current]:not([aria-current="false"])) { color: var(--fg-accent-4-weak); }
   .aria-current\:fg-accent-4:is([aria-current]:not([aria-current="false"])) { color: var(--fg-accent-4); }
   .aria-current\:fg-accent-4-strong:is([aria-current]:not([aria-current="false"])) { color: var(--fg-accent-4-strong); }
-  .aria-current\:text-inherit:is([aria-current]:not([aria-current="false"])) { color: inherit; }
-  .aria-current\:text-current:is([aria-current]:not([aria-current="false"])) { color: currentColor; }
+  .aria-current\:fg-inherit:is([aria-current]:not([aria-current="false"])) { color: inherit; }
+  .aria-current\:fg-current:is([aria-current]:not([aria-current="false"])) { color: currentColor; }
   .aria-current\:bg-transparent:is([aria-current]:not([aria-current="false"])) { background-color: transparent; }
   .aria-pressed\:bg-scrim[aria-pressed="true"] { background-color: var(--scrim); }
   .aria-pressed\:bg-inverse[aria-pressed="true"] { background-color: var(--bg-inverse); }
@@ -3893,8 +3904,8 @@
   .aria-pressed\:fg-accent-4-weak[aria-pressed="true"] { color: var(--fg-accent-4-weak); }
   .aria-pressed\:fg-accent-4[aria-pressed="true"] { color: var(--fg-accent-4); }
   .aria-pressed\:fg-accent-4-strong[aria-pressed="true"] { color: var(--fg-accent-4-strong); }
-  .aria-pressed\:text-inherit[aria-pressed="true"] { color: inherit; }
-  .aria-pressed\:text-current[aria-pressed="true"] { color: currentColor; }
+  .aria-pressed\:fg-inherit[aria-pressed="true"] { color: inherit; }
+  .aria-pressed\:fg-current[aria-pressed="true"] { color: currentColor; }
   .aria-pressed\:bg-transparent[aria-pressed="true"] { background-color: transparent; }
   .aria-expanded\:bg-scrim[aria-expanded="true"] { background-color: var(--scrim); }
   .aria-expanded\:bg-inverse[aria-expanded="true"] { background-color: var(--bg-inverse); }
@@ -3975,8 +3986,8 @@
   .aria-expanded\:fg-accent-4-weak[aria-expanded="true"] { color: var(--fg-accent-4-weak); }
   .aria-expanded\:fg-accent-4[aria-expanded="true"] { color: var(--fg-accent-4); }
   .aria-expanded\:fg-accent-4-strong[aria-expanded="true"] { color: var(--fg-accent-4-strong); }
-  .aria-expanded\:text-inherit[aria-expanded="true"] { color: inherit; }
-  .aria-expanded\:text-current[aria-expanded="true"] { color: currentColor; }
+  .aria-expanded\:fg-inherit[aria-expanded="true"] { color: inherit; }
+  .aria-expanded\:fg-current[aria-expanded="true"] { color: currentColor; }
   .aria-expanded\:bg-transparent[aria-expanded="true"] { background-color: transparent; }
   .open\:bg-scrim:is([open], :popover-open) { background-color: var(--scrim); }
   .open\:bg-inverse:is([open], :popover-open) { background-color: var(--bg-inverse); }
@@ -4057,8 +4068,8 @@
   .open\:fg-accent-4-weak:is([open], :popover-open) { color: var(--fg-accent-4-weak); }
   .open\:fg-accent-4:is([open], :popover-open) { color: var(--fg-accent-4); }
   .open\:fg-accent-4-strong:is([open], :popover-open) { color: var(--fg-accent-4-strong); }
-  .open\:text-inherit:is([open], :popover-open) { color: inherit; }
-  .open\:text-current:is([open], :popover-open) { color: currentColor; }
+  .open\:fg-inherit:is([open], :popover-open) { color: inherit; }
+  .open\:fg-current:is([open], :popover-open) { color: currentColor; }
   .open\:bg-transparent:is([open], :popover-open) { background-color: transparent; }
   .aria-invalid\:fg-inverse:is([aria-invalid="true"], :user-invalid) { color: var(--fg-inverse); }
   .aria-invalid\:fg-inverse-weak:is([aria-invalid="true"], :user-invalid) { color: var(--fg-inverse-weak); }
@@ -4078,8 +4089,8 @@
   .aria-invalid\:fg-danger-weak:is([aria-invalid="true"], :user-invalid) { color: var(--fg-danger-weak); }
   .aria-invalid\:fg-danger:is([aria-invalid="true"], :user-invalid) { color: var(--fg-danger); }
   .aria-invalid\:fg-danger-strong:is([aria-invalid="true"], :user-invalid) { color: var(--fg-danger-strong); }
-  .aria-invalid\:text-inherit:is([aria-invalid="true"], :user-invalid) { color: inherit; }
-  .aria-invalid\:text-current:is([aria-invalid="true"], :user-invalid) { color: currentColor; }
+  .aria-invalid\:fg-inherit:is([aria-invalid="true"], :user-invalid) { color: inherit; }
+  .aria-invalid\:fg-current:is([aria-invalid="true"], :user-invalid) { color: currentColor; }
   .disabled\:bg-scrim:is(:disabled, [aria-disabled="true"]) { background-color: var(--scrim); }
   .disabled\:bg-inverse:is(:disabled, [aria-disabled="true"]) { background-color: var(--bg-inverse); }
   .disabled\:fg-inverse:is(:disabled, [aria-disabled="true"]) { color: var(--fg-inverse); }
@@ -4099,8 +4110,8 @@
   .disabled\:fg-weak:is(:disabled, [aria-disabled="true"]) { color: var(--fg-weak); }
   .disabled\:fg:is(:disabled, [aria-disabled="true"]) { color: var(--fg); }
   .disabled\:fg-strong:is(:disabled, [aria-disabled="true"]) { color: var(--fg-strong); }
-  .disabled\:text-inherit:is(:disabled, [aria-disabled="true"]) { color: inherit; }
-  .disabled\:text-current:is(:disabled, [aria-disabled="true"]) { color: currentColor; }
+  .disabled\:fg-inherit:is(:disabled, [aria-disabled="true"]) { color: inherit; }
+  .disabled\:fg-current:is(:disabled, [aria-disabled="true"]) { color: currentColor; }
   .disabled\:bg-transparent:is(:disabled, [aria-disabled="true"]) { background-color: transparent; }
   .disabled\:opacity-0:is(:disabled, [aria-disabled="true"]) { opacity: 0; }
   .disabled\:opacity-10:is(:disabled, [aria-disabled="true"]) { opacity: 0.1; }

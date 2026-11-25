@@ -41,7 +41,7 @@ TOP_NAV = [("docs-home.html", "Docs"), ("guide.html", "Guide"), ("components-ind
 
 # ---------------------------------------------------------------- shared parts
 HEAD = """<!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-pt-header">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -65,15 +65,15 @@ def header(current):
             links.append(f'      <a href="{href}" aria-current="page" class="inline-flex items-center h-control px-control border-b-2 border-accent-1-strong no-underline fg text-title-sm">{label}</a>')
         else:
             links.append(f'      <a href="{href}" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline fg-weak hover:fg hover:border-strong text-title-sm transition-colors">{label}</a>')
-    return f"""<header class="flex items-center justify-between gap-row h-header shrink-0 px-grid border-b border-weak bg">
+    return f"""<header class="sticky top-0 z-30 flex items-center justify-between gap-row h-header px-grid border-b border-weak bg">
     <a href="docs-home.html" class="inline-flex items-center gap-gutter no-underline fg">
       <i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-weak">__VERSION__</span>
     </a>
-    <nav aria-label="Main" class="hidden md:flex items-center gap-3xs">
+    <nav aria-label="Main" class="hidden lg:flex items-center gap-3xs">
 {chr(10).join(links)}
     </nav>
     <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center h-control px-control gap-gutter border bg hover:bg-component-weak no-underline fg text-title-sm transition-colors" aria-label="Nowind on GitHub">
-      <i class="icon ph ph-github-logo"></i><span class="hidden sm:inline">GitHub</span>
+      <i class="icon ph ph-github-logo"></i><span class="hidden xl:inline">GitHub</span>
     </a>
   </header>
 """
@@ -97,7 +97,7 @@ def nav_groups(current, indent="      "):
 
 def menu(current):
     """Phone and tablet navigation: a disclosure row under the header. No script."""
-    return f"""<details class="lg:hidden shrink min-h-0 overflow-y-auto border-b border-weak bg-strong">
+    return f"""<details class="lg:hidden border-b border-weak bg-strong">
     <summary class="flex items-center gap-gutter h-control px-grid list-none cursor-pointer fg text-title-sm"><i class="icon ph ph-list"></i><span>Menu</span></summary>
     <nav aria-label="Documentation" class="flex flex-col gap-group px-grid pt-2xs pb-md">
 {nav_groups(current)}
@@ -106,7 +106,7 @@ def menu(current):
 """
 
 def sidebar(current):
-    return f"""<aside class="hidden lg:flex flex-col shrink-0 w-sidebar overflow-y-auto p-region border-r border-weak bg-strong">
+    return f"""<aside class="hidden lg:flex flex-col shrink-0 self-start sticky top-header w-sidebar h-below-header overflow-y-auto p-region border-r border-weak bg-strong">
       <nav aria-label="Documentation" class="flex flex-col gap-group">
 {nav_groups(current, "        ")}
       </nav>
@@ -118,7 +118,7 @@ def toc(items, label="On this page"):
         f'            <li><a href="#{i}" class="block py-3xs pl-sm border-l-2 border-weak hover:border-strong no-underline fg-weak hover:fg text-caption transition-colors">{E(t)}</a></li>'
         for i, t in items)
     return f"""<aside class="hidden xl:block xl:col-span-3">
-        <nav aria-label="{label}" class="sticky top-0 flex flex-col gap-field py-page">
+        <nav aria-label="{label}" class="sticky top-header flex flex-col gap-field py-page">
           <span class="text-kicker fg-weak">{label}</span>
           <ol role="list" class="flex flex-col">
 {lis}
@@ -184,15 +184,15 @@ def code(filename, lang, src):
 
 def table(headers, rows, align=None):
     align = align or ["left"] * len(headers)
-    ths = "".join(f'<th scope="col" class="text-{a} px-sm py-xs border-b text-label fg-weak whitespace-nowrap">{h}</th>' for h, a in zip(headers, align))
+    ths = "".join(f'<th scope="col" class="text-{a} px-sm py-xs border-b text-label fg-weak">{h}</th>' for h, a in zip(headers, align))
     trs = []
     for n, r in enumerate(rows):
         last = n == len(rows) - 1
         b = "" if last else " border-b border-weak"
-        r = [re.sub(r"<code>([^< ]+)</code>", r'<code class="whitespace-nowrap">\1</code>', c) for c in r]
-        tds = "".join(f'<td class="text-{a} align-top px-sm py-xs{b}{" whitespace-nowrap" if k == 0 else ""}">{c}</td>' for k, (c, a) in enumerate(zip(r, align)))
+        r = [c.replace("<code>", '<code class="whitespace-normal break-all">') for c in r]
+        tds = "".join(f'<td class="text-{a} align-top px-sm py-xs break-words{b}">{c}</td>' for c, a in zip(r, align))
         trs.append(f"                <tr>{tds}</tr>")
-    return f"""<div class="overflow-x-auto border border-weak">
+    return f"""<div class="border border-weak">
             <table class="w-full text-body-md">
               <thead class="bg-strong"><tr>{ths}</tr></thead>
               <tbody>
@@ -231,16 +231,14 @@ def doc_page(current, title, article_html, toc_items, wide=False, sidebar_on=Tru
     measure = "" if wide else " max-w-measure"
     side = sidebar(current) if sidebar_on else ""
     return (HEAD.format(title=E(title)) +
-f"""<div class="flex flex-col h-dvh overflow-hidden">
-  {band()}  {header(current)}  {menu(current)}  <div class="flex flex-1 min-h-0">
-    {side}    <main id="content" class="flex flex-col flex-1 min-w-0 overflow-y-auto">
-      <div class="grow"><div class="grid grid-cols-4 md:grid-cols-12 gap-grid px-grid">
+f"""{band()}{header(current)}{menu(current)}<div class="flex">
+  {side}  <main id="content" class="flex flex-col flex-1 min-w-0">
+    <div class="grid grid-cols-4 md:grid-cols-12 gap-grid px-grid">
       <article class="col-span-4 md:col-span-12 xl:col-span-9 min-w-0 tier-content flex flex-col gap-section py-page{measure}">
         {article_html}
         {prev_next(current)}      </article>
-      {toc(toc_items)}      </div></div>
-      {footer()}    </main>
-  </div>
+      {toc(toc_items)}    </div>
+    {footer()}  </main>
 </div>
 </body>
 </html>
@@ -256,18 +254,17 @@ def guide():
                   "Build a documentation page from Nowind's shell lengths, its 12-column grid and four type roles. Every part on this page is the template you can copy.",
                   "Applies to Nowind __VERSION__"),
         section("frame", "The frame",
-            p("A docs page has five parts, always in the same place: a band and a header across the top, a sidebar on the left, the content in the middle and an on-page table of contents on the right. The frame fills the viewport, and only the sidebar and the content scroll."),
+            p("A docs page has five parts, always in the same place: a band and a header across the top, a sidebar on the left, the content in the middle and an on-page table of contents on the right. The page scrolls as a whole: the header sticks to the top and the sidebar sticks under it, scrolling on its own only when its links are taller than the window."),
             code("frame.html", "HTML", """
-<div class="flex flex-col h-dvh overflow-hidden">
-  <div class="shrink-0 py-3xs bg-inverse"></div>
-  <header class="flex items-center justify-between h-header shrink-0 px-grid border-b border-weak">…</header>
-  <div class="flex flex-1 min-h-0">
-    <aside class="hidden lg:flex flex-col shrink-0 w-sidebar overflow-y-auto p-region">…</aside>
-    <main class="flex flex-col flex-1 min-w-0 overflow-y-auto">…</main>
-  </div>
+<html class="scroll-pt-header">
+<div class="py-3xs bg-inverse"></div>
+<header class="sticky top-0 z-30 flex items-center justify-between h-header px-grid border-b border-weak bg">…</header>
+<div class="flex">
+  <aside class="hidden lg:flex flex-col shrink-0 self-start sticky top-header w-sidebar h-below-header overflow-y-auto p-region">…</aside>
+  <main class="flex flex-col flex-1 min-w-0">…</main>
 </div>"""),
             p("The header is <code>h-header</code> tall and the sidebar <code>w-sidebar</code> wide. Both follow the base size, so they grow with the type from a phone to a wide screen."),
-            callout("note", "The frame keeps the header fixed and lets the sidebar and main scroll on their own. For a page that scrolls as a whole, make the header <code>sticky top-0</code> and the sidebar <code>sticky top-header</code> with <code>max-h-below-header</code>, so it sits just under the header."),
+            callout("note", "Keep one scroller: the page. Don't make <code>main</code> a scroll box; browsers paint very tall nested scrollers badly, and in-page links, find and the back button work against the window. <code>scroll-pt-header</code> on <code>html</code> keeps linked headings clear of the sticky header."),
         ),
         section("grid", "The grid",
             p("Inside <code>main</code>, content sits on Nowind's page grid: four columns on a phone, twelve from 768px up, with <code>gap-grid</code> between columns and <code>px-grid</code> at the edges. The article takes nine columns and the table of contents three; below 1280px the table of contents is hidden and the article takes all twelve."),
@@ -300,7 +297,7 @@ def guide():
         section("parts", "Callouts, code and tables",
             p("A callout is a coloured rule on the left, a word and a sentence. The colour codes the kind and the word says it, so the meaning never depends on colour alone."),
             callout("warning", "A callout interrupts the reader. Use at most one per section."),
-            p("A code block is a figure: the file name and language in a caption, the code in a <code>pre</code> that scrolls sideways rather than wrapping. Tables sit in a bordered box that scrolls on a narrow screen."),
+            p("A code block is a figure: the file name and language in a caption, the code in a <code>pre</code> that scrolls sideways rather than wrapping. Tables wrap their cells instead of scrolling, so the code block is the only thing on the page that scrolls sideways."),
             code("callout.html", "HTML", """
 <aside role="note" class="flex gap-gutter p-surface border-l-4 border-info bg-component-info-weak">
   <i class="icon ph ph-info fg-info-weak"></i>
@@ -313,7 +310,7 @@ def guide():
         section("menu", "Navigation on a phone",
             p("Below 1024px the sidebar moves into a <code>details</code> element under the header. It opens and closes without a script, and the same list of links serves both places."),
             code("menu.html", "HTML", """
-<details class="lg:hidden shrink min-h-0 overflow-y-auto border-b border-weak bg-strong">
+<details class="lg:hidden border-b border-weak bg-strong">
   <summary class="flex items-center gap-gutter h-control px-grid list-none text-title-sm">
     <i class="icon ph ph-list"></i><span>Menu</span>
   </summary>
@@ -490,10 +487,8 @@ def docs_home():
     figs = "\n".join(f"""            <div class="flex items-baseline justify-between gap-row py-xs border-b border-weak">
               <dt class="text-body-md fg-weak">{l}</dt><dd class="text-heading-md tabular-nums">{n}</dd>
             </div>""" for n, l in figures)
-    body = f"""<div class="flex flex-col h-dvh overflow-hidden">
-  {band()}  {header(cur)}  {menu(cur)}  <div class="flex flex-1 min-h-0">
-    <main id="content" class="flex flex-col flex-1 min-w-0 overflow-y-auto">
-      <div class="grow"><div class="grid grid-cols-4 md:grid-cols-12 gap-grid px-grid">
+    body = f"""{band()}{header(cur)}{menu(cur)}<main id="content" class="flex flex-col">
+      <div class="grid grid-cols-4 md:grid-cols-12 gap-grid px-grid">
         <header class="col-span-4 md:col-span-12 tier-brand flex flex-col gap-group py-page">
           <span class="text-kicker fg-weak">Documentation · __VERSION__</span>
           <h1 class="text-display-sm text-balance">Nowind documentation</h1>
@@ -517,10 +512,8 @@ def docs_home():
           </dl>
           <p class="text-caption fg-weak">Counts from <code>nowind.manifest.json</code> and the type-role manifest.</p>
         </section>
-      </div></div>
-      {footer()}    </main>
-  </div>
-</div>
+      </div>
+      {footer()}</main>
 </body>
 </html>
 """
@@ -553,18 +546,18 @@ def index():
     ]
     parts = [
         ["Band", "<code>py-3xs bg-inverse</code>"],
-        ["Header", "<code>flex items-center justify-between h-header px-grid border-b border-weak</code>"],
+        ["Header", "<code>sticky top-0 z-30 flex items-center justify-between h-header px-grid border-b border-weak bg</code>"],
         ["Header link", "<code>inline-flex items-center h-control px-control border-b-2 text-title-sm</code>; current: <code>border-accent-1-strong fg</code>"],
-        ["Menu (phone)", "<code>details</code> with <code>lg:hidden shrink min-h-0 overflow-y-auto</code>"],
-        ["Sidebar", "<code>hidden lg:flex flex-col w-sidebar p-region border-r bg-strong</code>"],
+        ["Menu (phone)", "<code>details</code> with <code>lg:hidden border-b</code>"],
+        ["Sidebar", "<code>hidden lg:flex flex-col self-start sticky top-header w-sidebar h-below-header overflow-y-auto p-region border-r bg-strong</code>"],
         ["Sidebar link", "<code>flex items-center h-control px-control gap-gutter border-l-2 text-title-sm</code>; current: <code>border-accent-1-strong bg-component-weak fg</code>"],
         ["Main grid", "<code>grid grid-cols-4 md:grid-cols-12 gap-grid px-grid</code>"],
         ["Article", "<code>xl:col-span-9 tier-content flex flex-col gap-section py-page max-w-measure</code>"],
         ["Section heading", "<code>text-heading-md pt-sm border-t</code>"],
-        ["Table of contents", "<code>hidden xl:block xl:col-span-3</code>, inner <code>sticky top-0</code>; links <code>pl-sm border-l-2 text-caption</code>"],
+        ["Table of contents", "<code>hidden xl:block xl:col-span-3</code>, inner <code>sticky top-header</code>; links <code>pl-sm border-l-2 text-caption</code>"],
         ["Callout", "<code>flex gap-gutter p-surface border-l-4 border-info bg-component-info-weak</code>"],
         ["Code block", "<code>figure</code> with <code>border bg-strong</code>; <code>pre</code> with <code>p-surface overflow-x-auto whitespace-pre text-mono-sm</code>"],
-        ["Table", "Box <code>overflow-x-auto border</code>; <code>th</code> <code>px-sm py-xs text-label</code>; <code>td</code> <code>px-sm py-xs border-b</code>"],
+        ["Table", "Box <code>border</code>, no scrolling; <code>th</code> <code>px-sm py-xs text-label</code>; <code>td</code> <code>px-sm py-xs border-b break-words</code>, code in cells <code>whitespace-normal break-all</code>"],
         ["Previous and next", "<code>grid grid-cols-1 md:grid-cols-2 gap-grid</code>; each <code>p-surface border hover:border-strong</code>"],
         ["Footer", "<code>flex flex-col md:flex-row gap-field px-grid py-surface border-t text-caption</code>"],
     ]
@@ -592,7 +585,7 @@ def index():
         ),
         section("type", "Type scale",
             p("Four sizes, far apart. Weight separates roles that share a size."),
-            table(["Sample", "Size", "Classes", "Token", "Used for"], [list(r) for r in type_rows]),
+            table(["Sample", "Size and use", "Classes"], [[smp, f'{size}<br><span class="text-caption fg-weak">{use}, {tok}</span>', cls] for smp, size, cls, tok, use in type_rows]),
             p("One family carries everything: Inter for text, Inter Tight for display and headings, IBM Plex Mono for code and kickers. Nowind has no serif, so these pages have none."),
         ),
         section("colour", "Colour and form",
@@ -656,7 +649,7 @@ CLASS_FILTER = """<script>
     let shown = 0;
     for (const s of sections) {
       let n = 0;
-      for (const r of s.querySelectorAll("tbody tr")) {
+      for (const r of s.querySelectorAll("[data-row]")) {
         const hit = !q || r.textContent.toLowerCase().includes(q);
         r.hidden = !hit;
         n += hit;
@@ -712,32 +705,29 @@ def classes_page(semantic=False):
         sid = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
         toc_items.append((sid, title))
         prev = PREVIEW.get(title)
+        span = ("md:col-span-4", "md:col-span-6", "md:col-span-2") if prev else ("md:col-span-4", "md:col-span-8", "")
         heads = ["Class", "Declarations"] + (["Preview"] if prev else [])
-        ths = "".join(f'<th scope="col" class="text-left px-sm py-xs border-b text-label fg-weak whitespace-nowrap">{h}</th>' for h in heads)
-        trs = []
+        head_row = "".join(f'<span class="{sp} text-label fg-weak">{h}</span>' for h, sp in zip(heads, span))
+        rows_html = []
         for k, decl in rows:
-            cells = [f'<td class="align-top px-sm py-xs border-b border-weak"><code class="whitespace-nowrap">.{E(k)}</code></td>',
-                     f'<td class="align-top px-sm py-xs border-b border-weak text-mono-sm fg-weak">{E(decl)}</td>']
+            cells = [f'<code class="col-span-12 {span[0]} break-all text-mono-sm fg">.{E(k)}</code>',
+                     f'<span class="col-span-12 {span[1]} break-words text-mono-sm fg-weak">{E(decl)}</span>']
             if prev:
-                cells.append(f'<td class="align-top px-sm py-xs border-b border-weak">{prev(k)}</td>')
-            trs.append(f'                <tr id="{class_id(k)}">{"".join(cells)}</tr>')
+                cells.append(f'<span class="col-span-12 {span[2]}">{prev(k)}</span>')
+            rows_html.append(f'            <li id="{class_id(k)}" data-row class="scroll-mt-3xl grid grid-cols-12 gap-x-grid gap-y-3xs px-sm py-xs border-t border-weak">{"".join(cells)}</li>')
         sections.append(f"""<section id="{sid}" data-classes class="flex flex-col gap-group">
           <h2 class="flex items-baseline justify-between gap-row text-heading-md pt-sm border-t"><span>{title}</span><span class="text-caption fg-weak">{len(rows)} classes</span></h2>
-          <div class="overflow-x-auto border border-weak">
-            <table class="w-full text-body-md">
-              <thead class="bg-strong"><tr>{ths}</tr></thead>
-              <tbody>
-{chr(10).join(trs)}
-              </tbody>
-            </table>
-          </div>
+          <ul role="list" class="border border-weak">
+            <li aria-hidden="true" class="hidden md:grid grid-cols-12 gap-x-grid px-sm py-xs bg-strong">{head_row}</li>
+{chr(10).join(rows_html)}
+          </ul>
         </section>""")
     head = page_head("Reference", title_,
         f"{kicker_name} {what} {total} of them, with what each declares, read from <code>classes.md</code>. "
         f"The rest are in <a href=\"{other}\">{other_title}</a>. "
         "Colour, opacity and cursor classes also take <code>hover:</code> and the state variants; layout classes take <code>sm:</code> to <code>2xl:</code>.",
         "Nowind __VERSION__ · generated from classes.md")
-    search = f"""<div class="sticky top-0 flex items-center gap-row py-xs bg">
+    search = f"""<div class="sticky top-header z-10 flex items-center gap-row py-xs bg">
           <input id="class-filter" type="search" placeholder="Filter by class or declaration" aria-label="Filter classes" class="grow min-w-0 h-control px-control rounded-sm border hover:border-strong bg text-control-md transition-colors">
           <span id="class-count" data-all="{total} classes" aria-live="polite" class="text-caption fg-weak whitespace-nowrap">{total} classes</span>
         </div>"""
@@ -768,7 +758,7 @@ def component_page(c):
     art = "\n        ".join([
         page_head(c["group"], c["name"], c["summary"]),
         section("example", "Example",
-            f"""<div class="tier-product p-surface rounded-lg border border-weak bg-strong overflow-x-auto">
+            f"""<div class="tier-product p-surface rounded-lg border border-weak bg-strong">
 {c["html"]}
           </div>""",
             code(f"{c['slug']}.html", "HTML", c["html"]),

@@ -339,8 +339,8 @@ Variants: `hover:` on the 162 role-colour, opacity and cursor classes (inside `@
 | `.fg-info-weak` | `color: var(--fg-info-weak)` |
 | `.fg-info` | `color: var(--fg-info)` |
 | `.fg-info-strong` | `color: var(--fg-info-strong)` |
-| `.text-inherit` | `color: inherit` |
-| `.text-current` | `color: currentColor` |
+| `.fg-inherit` | `color: inherit` |
+| `.fg-current` | `color: currentColor` |
 
 ## Background color
 
@@ -1211,10 +1211,20 @@ Variants: `hover:` on the 162 role-colour, opacity and cursor classes (inside `@
 
 ## Layout and misc
 
-230 classes.
+241 classes.
 
 | Class | Declarations |
 |---|---|
+| `.scroll-mt-3xs` | `scroll-margin-block-start: var(--space-3xs)` |
+| `.scroll-mt-2xs` | `scroll-margin-block-start: var(--space-2xs)` |
+| `.scroll-mt-xs` | `scroll-margin-block-start: var(--space-xs)` |
+| `.scroll-mt-sm` | `scroll-margin-block-start: var(--space-sm)` |
+| `.scroll-mt-md` | `scroll-margin-block-start: var(--space-md)` |
+| `.scroll-mt-lg` | `scroll-margin-block-start: var(--space-lg)` |
+| `.scroll-mt-xl` | `scroll-margin-block-start: var(--space-xl)` |
+| `.scroll-mt-2xl` | `scroll-margin-block-start: var(--space-2xl)` |
+| `.scroll-mt-3xl` | `scroll-margin-block-start: var(--space-3xl)` |
+| `.scroll-mt-4xl` | `scroll-margin-block-start: var(--space-4xl)` |
 | `.container` | `width: min(100%, var(--container-max)); margin-inline: auto; padding-inline: var(--container-padding)` |
 | `.block` | `display: block` |
 | `.inline-block` | `display: inline-block` |
@@ -1427,6 +1437,7 @@ Variants: `hover:` on the 162 role-colour, opacity and cursor classes (inside `@
 | `.max-w-prose` | `max-width: var(--max-w-text)` |
 | `.max-w-form` | `max-width: var(--max-w-form)` |
 | `.max-w-container` | `max-width: var(--container-max)` |
+| `.scroll-pt-header` | `scroll-padding-block-start: var(--shell-header-height)` |
 | `.select-none` | `user-select: none` |
 | `.select-text` | `user-select: text` |
 | `.select-all` | `user-select: all` |

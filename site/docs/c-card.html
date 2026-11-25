@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-pt-header">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,13 +11,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
 </head>
 <body class="bg fg">
-<div class="flex flex-col h-dvh overflow-hidden">
-  <div class="shrink-0 py-3xs bg-inverse" aria-hidden="true"></div>
-  <header class="flex items-center justify-between gap-row h-header shrink-0 px-grid border-b border-weak bg">
+<div class="shrink-0 py-3xs bg-inverse" aria-hidden="true"></div>
+<header class="sticky top-0 z-30 flex items-center justify-between gap-row h-header px-grid border-b border-weak bg">
     <a href="docs-home.html" class="inline-flex items-center gap-gutter no-underline fg">
       <i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-weak">0.8.0</span>
     </a>
-    <nav aria-label="Main" class="hidden md:flex items-center gap-3xs">
+    <nav aria-label="Main" class="hidden lg:flex items-center gap-3xs">
       <a href="docs-home.html" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline fg-weak hover:fg hover:border-strong text-title-sm transition-colors">Docs</a>
       <a href="guide.html" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline fg-weak hover:fg hover:border-strong text-title-sm transition-colors">Guide</a>
       <a href="components-index.html" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline fg-weak hover:fg hover:border-strong text-title-sm transition-colors">Components</a>
@@ -26,10 +25,10 @@
       <a href="changelog.html" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline fg-weak hover:fg hover:border-strong text-title-sm transition-colors">Changelog</a>
     </nav>
     <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center h-control px-control gap-gutter border bg hover:bg-component-weak no-underline fg text-title-sm transition-colors" aria-label="Nowind on GitHub">
-      <i class="icon ph ph-github-logo"></i><span class="hidden sm:inline">GitHub</span>
+      <i class="icon ph ph-github-logo"></i><span class="hidden xl:inline">GitHub</span>
     </a>
   </header>
-  <details class="lg:hidden shrink min-h-0 overflow-y-auto border-b border-weak bg-strong">
+<details class="lg:hidden border-b border-weak bg-strong">
     <summary class="flex items-center gap-gutter h-control px-grid list-none cursor-pointer fg text-title-sm"><i class="icon ph ph-list"></i><span>Menu</span></summary>
     <nav aria-label="Documentation" class="flex flex-col gap-group px-grid pt-2xs pb-md">
       <div class="flex flex-col gap-field">
@@ -90,8 +89,8 @@
       </div>
     </nav>
   </details>
-  <div class="flex flex-1 min-h-0">
-    <aside class="hidden lg:flex flex-col shrink-0 w-sidebar overflow-y-auto p-region border-r border-weak bg-strong">
+<div class="flex">
+  <aside class="hidden lg:flex flex-col shrink-0 self-start sticky top-header w-sidebar h-below-header overflow-y-auto p-region border-r border-weak bg-strong">
       <nav aria-label="Documentation" class="flex flex-col gap-group">
         <div class="flex flex-col gap-field">
           <span class="text-kicker fg-weak">Getting started</span>
@@ -151,8 +150,8 @@
         </div>
       </nav>
     </aside>
-    <main id="content" class="flex flex-col flex-1 min-w-0 overflow-y-auto">
-      <div class="grow"><div class="grid grid-cols-4 md:grid-cols-12 gap-grid px-grid">
+  <main id="content" class="flex flex-col flex-1 min-w-0">
+    <div class="grid grid-cols-4 md:grid-cols-12 gap-grid px-grid">
       <article class="col-span-4 md:col-span-12 xl:col-span-9 min-w-0 tier-content flex flex-col gap-section py-page max-w-measure">
         <header class="flex flex-col gap-field">
             <span class="text-kicker fg-weak">Layout</span>
@@ -161,7 +160,7 @@
           </header>
         <section id="example" class="flex flex-col gap-group">
           <h2 class="text-heading-md pt-sm border-t">Example</h2>
-          <div class="tier-product p-surface rounded-lg border border-weak bg-strong overflow-x-auto">
+          <div class="tier-product p-surface rounded-lg border border-weak bg-strong">
 <article class="flex flex-col gap-field p-surface rounded-lg bg border border-weak shadow-sm max-w-form">
   <span class="text-kicker fg-accent-1-weak">Guide</span>
   <h3 class="text-title">Designing with fluid type</h3>
@@ -209,7 +208,7 @@
         </nav>
       </article>
       <aside class="hidden xl:block xl:col-span-3">
-        <nav aria-label="On this page" class="sticky top-0 flex flex-col gap-field py-page">
+        <nav aria-label="On this page" class="sticky top-header flex flex-col gap-field py-page">
           <span class="text-kicker fg-weak">On this page</span>
           <ol role="list" class="flex flex-col">
             <li><a href="#example" class="block py-3xs pl-sm border-l-2 border-weak hover:border-strong no-underline fg-weak hover:fg text-caption transition-colors">Example</a></li>
@@ -218,8 +217,8 @@
           </ol>
         </nav>
       </aside>
-      </div></div>
-      <footer class="flex flex-col md:flex-row md:items-center justify-between gap-field px-grid py-surface border-t border-weak text-caption fg-weak">
+    </div>
+    <footer class="flex flex-col md:flex-row md:items-center justify-between gap-field px-grid py-surface border-t border-weak text-caption fg-weak">
         <span>Nowind 0.8.0. Every page here is built from Nowind utility classes only.</span>
         <span class="flex flex-wrap gap-row">
           <a href="changelog.html" class="no-underline fg-weak hover:fg transition-colors">Changelog</a>
@@ -227,8 +226,7 @@
           <a href="https://github.com/kimgranlund/nowind" class="no-underline fg-weak hover:fg transition-colors">GitHub</a>
         </span>
       </footer>
-    </main>
-  </div>
+  </main>
 </div>
 </body>
 </html>
