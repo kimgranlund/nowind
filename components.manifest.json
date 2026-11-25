@@ -246,15 +246,15 @@
         "inline-flex",
         "items-center",
         "max-w-form",
-        "p-sm",
+        "p-xs",
         "pe-sm",
         "ps-xs",
         "pt-2xs",
         "px-nested",
         "py-xs",
+        "rounded-inner",
         "rounded-md",
         "rounded-sm",
-        "rounded-xs",
         "state",
         "text-base",
         "text-sm"
@@ -311,7 +311,6 @@
         "px-nested",
         "rounded-inner",
         "rounded-md",
-        "rounded-xs",
         "shadow-lg",
         "size-nested",
         "state",
@@ -846,7 +845,7 @@
         "font-semibold",
         "gap-gutter",
         "gap-md",
-        "gap-sm",
+        "gap-xs",
         "h-control",
         "icon",
         "inline-flex",
@@ -862,7 +861,7 @@
         "shadow-xl",
         "state",
         "text-base",
-        "text-sm",
+        "text-lg",
         "w-full"
       ]
     },
@@ -953,7 +952,6 @@
         "pb-sm",
         "py-sm",
         "text-base",
-        "text-sm",
         "transition"
       ]
     },

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- **Dialog type:** the title is `text-lg`, a step above the controls, and the body `text-base`, the controls' size (it had been `text-base` and `text-sm`, so the body read smaller than the buttons and the title no larger); footer buttons sit `gap-xs` apart.
+- **Actions in toasts and alerts nest:** Retry, Undo, View logs and Dismiss take `rounded-inner`, the surface's radius less its padding, instead of `rounded-xs`, the radius for an item one inset inside a control, which read as square at a toast's padding. The titled alert pads `p-xs`, as the toast does (at `p-sm` the inner radius came to 1.5px).
 - **Dialog example:** the close button is a fixed `size-nested shrink-0` square again (an earlier toolbar change had made it `h-full aspect-square`, so it grew with a wrapped title), and the dialog example has its own full row (capped at `max-w-form`), so its title and its Cancel and Delete buttons no longer wrap; the buttons sit `gap-xs` apart.
 - **Search field:** the showcase's search box is the standard field box (`h-control px-control`), so the `⌘K` keycap sits one inset from the top, bottom and end and its `rounded-xs` nests in the field's corner. It had been padded (`py-xs ps-xs pe-sm`), taller than a control with an uneven inset. The examples lint now rejects a field box sized by padding (self-test: fifteen breaks).
 - **Website field:** the showcase's `https://` prefix is the standard prefix slot (plain `fg-neutral-11` text in the field box) instead of a grey add-on band that didn't fill the field's height.

@@ -135,22 +135,22 @@
         <i class="icon ph ph-check-circle fg-success-11"></i>
         <span class="text-base fg-success-12">Payment received.</span>
       </div>
-      <div class="flex flex-col gap-3xs p-sm rounded-md border border-warning-6 bg-warning-3" role="status">
+      <div class="flex flex-col gap-3xs p-xs rounded-md border border-warning-6 bg-warning-3" role="status">
         <div class="flex items-center gap-xs">
           <i class="icon icon-lg ph ph-warning fg-warning-11"></i>
           <span class="text-base font-semibold fg-warning-12">Your trial ends in 3 days</span>
         </div>
         <span class="text-sm fg-warning-11">Add a payment method to keep your projects active.</span>
       </div>
-      <div class="flex flex-col gap-3xs p-sm rounded-md border border-danger-6 bg-danger-3" role="alert">
+      <div class="flex flex-col gap-3xs p-xs rounded-md border border-danger-6 bg-danger-3" role="alert">
         <div class="flex items-center gap-xs">
           <i class="icon icon-lg ph ph-warning-octagon fg-danger-11"></i>
           <span class="text-base font-semibold fg-danger-12">Deployment failed</span>
         </div>
         <span class="text-sm fg-danger-11">The build stopped at step 4 of 6.</span>
         <div class="flex gap-2xs pt-2xs">
-          <button class="inline-flex items-center h-nested px-nested rounded-xs state border-0 bg-danger-9 fg-danger-contrast text-base font-medium cursor-pointer"><span>View logs</span></button>
-          <button class="inline-flex items-center h-nested px-nested rounded-xs state border-0 bg-transparent fg-danger-11 text-base font-medium cursor-pointer"><span>Dismiss</span></button>
+          <button class="inline-flex items-center h-nested px-nested rounded-inner state border-0 bg-danger-9 fg-danger-contrast text-base font-medium cursor-pointer"><span>View logs</span></button>
+          <button class="inline-flex items-center h-nested px-nested rounded-inner state border-0 bg-transparent fg-danger-11 text-base font-medium cursor-pointer"><span>Dismiss</span></button>
         </div>
       </div>
     </div>
@@ -571,9 +571,9 @@
           <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm state border bg-neutral-3 fg-neutral-12 text-base font-medium cursor-pointer" commandfor="confirm-dialog" command="show-modal"><i class="icon ph ph-trash"></i><span>Delete project…</span></button>
           <dialog id="confirm-dialog" class="m-auto p-lg rounded-lg bg-neutral-1 border-0 shadow-xl max-w-form w-full" aria-labelledby="confirm-title">
             <div class="flex flex-col gap-md">
-              <h3 id="confirm-title" class="text-base font-semibold">Delete project?</h3>
-              <p class="text-sm fg-neutral-11">This removes the project and its 14 files for everyone. You can't undo this.</p>
-              <div class="flex justify-end gap-sm">
+              <h3 id="confirm-title" class="text-lg font-semibold">Delete project?</h3>
+              <p class="text-base fg-neutral-11">This removes the project and its 14 files for everyone. You can't undo this.</p>
+              <div class="flex justify-end gap-xs">
                 <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm state border bg-neutral-3 fg-neutral-12 text-base font-medium cursor-pointer" commandfor="confirm-dialog" command="close"><span>Cancel</span></button>
                 <button class="inline-flex items-center h-control px-control gap-gutter rounded-sm state border border-transparent bg-danger-9 fg-danger-contrast text-base font-medium cursor-pointer" commandfor="confirm-dialog" command="close"><i class="icon ph ph-trash"></i><span>Delete</span></button>
               </div>
@@ -771,7 +771,7 @@
             <div class="grow min-w-0 flex flex-col gap-3xs">
               <span class="text-base font-medium fg-neutral-1">Invite sent</span>
               <span class="text-sm fg-neutral-8">grace@example.com can now join the workspace.</span>
-              <div class="flex gap-3xs pt-3xs"><button class="inline-flex items-center h-nested px-nested rounded-xs state border-0 bg-neutral-1 fg-neutral-12 text-base font-medium cursor-pointer"><span>Undo</span></button></div>
+              <div class="flex gap-3xs pt-3xs"><button class="inline-flex items-center h-nested px-nested rounded-inner state border-0 bg-neutral-1 fg-neutral-12 text-base font-medium cursor-pointer"><span>Undo</span></button></div>
             </div>
             <button class="inline-flex items-center justify-center size-nested rounded-inner state border-0 bg-transparent fg-neutral-8 cursor-pointer" aria-label="Dismiss"><i class="icon icon-sm ph-bold ph-x"></i></button>
           </div>
@@ -788,7 +788,7 @@
             <div class="grow min-w-0 flex flex-col gap-3xs">
               <span class="text-base font-medium fg-neutral-1">Upload failed</span>
               <span class="text-sm fg-neutral-8">report.pdf is over the 10 MB limit.</span>
-              <div class="flex gap-3xs pt-3xs"><button class="inline-flex items-center h-nested px-nested rounded-xs state border-0 bg-neutral-1 fg-neutral-12 text-base font-medium cursor-pointer"><span>Retry</span></button></div>
+              <div class="flex gap-3xs pt-3xs"><button class="inline-flex items-center h-nested px-nested rounded-inner state border-0 bg-neutral-1 fg-neutral-12 text-base font-medium cursor-pointer"><span>Retry</span></button></div>
             </div>
             <button class="inline-flex items-center justify-center size-nested rounded-inner state border-0 bg-transparent fg-neutral-8 cursor-pointer" aria-label="Dismiss"><i class="icon icon-sm ph-bold ph-x"></i></button>
           </div>
@@ -884,10 +884,10 @@
       <div class="flex-1 min-w-0 flex items-center justify-center p-md rounded-md bg-neutral-3">
         <div class="flex flex-col gap-md p-lg rounded-lg bg-neutral-1 shadow-xl max-w-form w-full" role="dialog" aria-labelledby="dlg-title">
           <div class="flex items-start justify-between gap-sm">
-            <h3 id="dlg-title" class="min-w-0 text-base font-semibold">Delete project?</h3>
+            <h3 id="dlg-title" class="min-w-0 text-lg font-semibold">Delete project?</h3>
             <button class="inline-flex items-center justify-center size-nested shrink-0 rounded-xs state border-0 bg-transparent fg-neutral-11 cursor-pointer" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
           </div>
-          <p class="text-sm fg-neutral-11">This removes the project and its 14 files for everyone. You can't undo this.</p>
+          <p class="text-base fg-neutral-11">This removes the project and its 14 files for everyone. You can't undo this.</p>
           <div class="flex flex-wrap justify-end gap-xs">
             <button class="inline-flex items-center h-control px-control rounded-sm state border bg-neutral-3 fg-neutral-12 text-base font-medium cursor-pointer"><span>Cancel</span></button>
             <button class="inline-flex items-center h-control px-control gap-gutter rounded-sm state border border-transparent bg-danger-9 fg-danger-contrast text-base font-medium cursor-pointer"><i class="icon ph ph-trash"></i><span>Delete</span></button>

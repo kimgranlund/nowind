@@ -88,7 +88,7 @@ COMPONENTS = [
     <i class="icon ph ph-info fg-info-11"></i>
     <span class="text-base fg-info-12">A new version is available.</span>
   </div>
-  <div class="flex flex-col gap-3xs p-sm rounded-md border border-warning-6 bg-warning-3" role="status">
+  <div class="flex flex-col gap-3xs p-xs rounded-md border border-warning-6 bg-warning-3" role="status">
     <div class="flex items-center gap-xs">
       <i class="icon icon-lg ph ph-warning fg-warning-11"></i>
       <span class="text-base font-semibold fg-warning-12">Your trial ends in 3 days</span>
@@ -104,16 +104,16 @@ COMPONENTS = [
   <span class="text-base fg-success-12">Payment received.</span>
 </div>"""},
             {"id": "titled", "label": "Title, detail and actions",
-             "summary": "A title, a line of detail and actions: icon-lg sits on the title row, centred on it, and the detail and actions run the full width below. p-sm and rounded-md hold the nested buttons' rounded-xs.",
-             "html": """<div class="flex flex-col gap-3xs p-sm rounded-md border border-danger-6 bg-danger-3 max-w-form" role="alert">
+             "summary": "A title, a line of detail and actions: icon-lg sits on the title row, centred on it, and the detail and actions run the full width below. <code>p-xs</code> in <code>rounded-md</code>, the toast's padding, so the buttons' <code>rounded-inner</code> follows the corner.",
+             "html": """<div class="flex flex-col gap-3xs p-xs rounded-md border border-danger-6 bg-danger-3 max-w-form" role="alert">
   <div class="flex items-center gap-xs">
     <i class="icon icon-lg ph ph-warning-octagon fg-danger-11"></i>
     <span class="text-base font-semibold fg-danger-12">Deployment failed</span>
   </div>
   <span class="text-sm fg-danger-11">The build stopped at step 4 of 6.</span>
   <div class="flex gap-2xs pt-2xs">
-    <button class="inline-flex items-center h-nested px-nested rounded-xs state border-0 bg-danger-9 fg-danger-contrast text-base font-medium cursor-pointer"><span>View logs</span></button>
-    <button class="inline-flex items-center h-nested px-nested rounded-xs state border-0 bg-transparent fg-danger-11 text-base font-medium cursor-pointer"><span>Dismiss</span></button>
+    <button class="inline-flex items-center h-nested px-nested rounded-inner state border-0 bg-danger-9 fg-danger-contrast text-base font-medium cursor-pointer"><span>View logs</span></button>
+    <button class="inline-flex items-center h-nested px-nested rounded-inner state border-0 bg-transparent fg-danger-11 text-base font-medium cursor-pointer"><span>Dismiss</span></button>
   </div>
 </div>"""},
         ],
@@ -137,7 +137,7 @@ COMPONENTS = [
     <div class="grow min-w-0 flex flex-col gap-3xs">
       <span class="text-base font-medium fg-neutral-1">Invite sent</span>
       <span class="text-sm fg-neutral-8">grace@example.com can now join the workspace.</span>
-      <div class="flex gap-3xs pt-3xs"><button class="inline-flex items-center h-nested px-nested rounded-xs state border-0 bg-neutral-1 fg-neutral-12 text-base font-medium cursor-pointer"><span>Undo</span></button></div>
+      <div class="flex gap-3xs pt-3xs"><button class="inline-flex items-center h-nested px-nested rounded-inner state border-0 bg-neutral-1 fg-neutral-12 text-base font-medium cursor-pointer"><span>Undo</span></button></div>
     </div>
     <button class="inline-flex items-center justify-center size-nested rounded-inner state border-0 bg-transparent fg-neutral-8 cursor-pointer" aria-label="Dismiss"><i class="icon icon-sm ph-bold ph-x"></i></button>
   </div>
@@ -146,7 +146,7 @@ COMPONENTS = [
     <div class="grow min-w-0 flex flex-col gap-3xs">
       <span class="text-base font-medium fg-neutral-1">Upload failed</span>
       <span class="text-sm fg-neutral-8">report.pdf is over the 10 MB limit.</span>
-      <div class="flex gap-3xs pt-3xs"><button class="inline-flex items-center h-nested px-nested rounded-xs state border-0 bg-neutral-1 fg-neutral-12 text-base font-medium cursor-pointer"><span>Retry</span></button></div>
+      <div class="flex gap-3xs pt-3xs"><button class="inline-flex items-center h-nested px-nested rounded-inner state border-0 bg-neutral-1 fg-neutral-12 text-base font-medium cursor-pointer"><span>Retry</span></button></div>
     </div>
     <button class="inline-flex items-center justify-center size-nested rounded-inner state border-0 bg-transparent fg-neutral-8 cursor-pointer" aria-label="Dismiss"><i class="icon icon-sm ph-bold ph-x"></i></button>
   </div>
@@ -444,9 +444,9 @@ COMPONENTS = [
         "html": f"""<button class="{BTN_SECONDARY}" commandfor="doc-dialog" command="show-modal"><i class="icon ph ph-trash"></i><span>Delete project…</span></button>
 <dialog id="doc-dialog" class="m-auto p-lg rounded-lg bg-neutral-1 border-0 shadow-xl max-w-form w-full" aria-labelledby="doc-dialog-title">
   <div class="flex flex-col gap-md">
-    <h3 id="doc-dialog-title" class="text-base font-semibold">Delete project?</h3>
-    <p class="text-sm fg-neutral-11">This removes the project for everyone. You can't undo this.</p>
-    <div class="flex justify-end gap-sm">
+    <h3 id="doc-dialog-title" class="text-lg font-semibold">Delete project?</h3>
+    <p class="text-base fg-neutral-11">This removes the project for everyone. You can't undo this.</p>
+    <div class="flex justify-end gap-xs">
       <button class="{BTN_SECONDARY}" commandfor="doc-dialog" command="close"><span>Cancel</span></button>
       <button class="{BTN} state border border-transparent bg-danger-9 fg-danger-contrast text-base font-medium cursor-pointer" commandfor="doc-dialog" command="close"><span>Delete</span></button>
     </div>
@@ -461,11 +461,11 @@ COMPONENTS = [
         "html": """<div class="max-w-form">
   <details class="group border-b border-neutral-6" open>
     <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-base font-semibold hover:fg-accent-1-11">Do I need a build step?<i class="icon icon-sm ph ph-caret-down fg-neutral-11 transition group-open:rotate-180" aria-hidden="true"></i></summary>
-    <p class="text-sm fg-neutral-11 pb-sm">No. Link one stylesheet; every class already exists.</p>
+    <p class="text-base fg-neutral-11 pb-sm">No. Link one stylesheet; every class already exists.</p>
   </details>
   <details class="group border-b border-neutral-6">
     <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-base font-semibold hover:fg-accent-1-11">Does it work in a CMS?<i class="icon icon-sm ph ph-caret-down fg-neutral-11 transition group-open:rotate-180" aria-hidden="true"></i></summary>
-    <p class="text-sm fg-neutral-11 pb-sm">Yes. Any class works in any HTML.</p>
+    <p class="text-base fg-neutral-11 pb-sm">Yes. Any class works in any HTML.</p>
   </details>
 </div>""",
         "use": ["<code>list-none</code> on the summary hides the marker, including Safari's."],
