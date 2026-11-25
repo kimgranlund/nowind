@@ -84,7 +84,7 @@ COMPONENTS = [
         "slug": "alert", "name": "Alert", "icon": "ph-warning-circle", "group": "Status",
         "summary": "A message about the page or a task, tinted by its status. One line sits in the geometry of a field; a titled alert puts a large icon beside its title and the detail below.",
         "html": """<div class="flex flex-col gap-xs max-w-form">
-  <div class="flex items-center gap-xs py-xs ps-xs pe-sm rounded-md border border-info-6 bg-info-3" role="status">
+  <div class="flex items-center gap-gutter py-xs ps-xs pe-sm rounded-md border border-info-6 bg-info-3" role="status">
     <i class="icon ph ph-info fg-info-11"></i>
     <span class="text-base fg-info-12">A new version is available.</span>
   </div>
@@ -99,7 +99,7 @@ COMPONENTS = [
         "examples": [
             {"id": "single-line", "label": "One line",
              "summary": "One sentence, no title: the alert takes a field's height and padding (py-xs, ps-xs at the icon edge) and the titled alert's corner (rounded-md) and the base icon size, so it lines up with the controls around it.",
-             "html": """<div class="flex items-center gap-xs py-xs ps-xs pe-sm rounded-md border border-success-6 bg-success-3 max-w-form" role="status">
+             "html": """<div class="flex items-center gap-gutter py-xs ps-xs pe-sm rounded-md border border-success-6 bg-success-3 max-w-form" role="status">
   <i class="icon ph ph-check-circle fg-success-11"></i>
   <span class="text-base fg-success-12">Payment received.</span>
 </div>"""},

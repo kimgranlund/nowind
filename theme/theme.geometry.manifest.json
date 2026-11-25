@@ -571,7 +571,7 @@
     "use": "Masks for the drawn indicators: the caret class, the select's picker icon and the selected option's checkmark. Each is painted in currentColor at --icon-sm."
   },
   "geometryContract": {
-    "description": "Which height, padding, gap and corner each kind of part in an example takes, so every part of one kind is built the same way. The rows read the Affine geometry above: control height 4n − 26, margin M, inset M − border, radii one M apart. A lint and a rendered pass (?audit=geometry) will check the examples against it; 'open' rows wait for the owner. Every row is written in regular (primitive) classes, the ones examples use: control lengths, space steps, radius steps and rounded-inner.",
+    "description": "Which height, padding, gap and corner each kind of part in an example takes, so every part of one kind is built the same way. The rows read the Affine geometry above: control height 4n − 26, margin M, inset M − border, radii one M apart. A lint and a rendered pass (?audit=geometry) will check the examples against it. Every row is written in regular (primitive) classes, the ones examples use: control lengths, space steps, radius steps and rounded-inner.",
     "kinds": [
       {
         "kind": "control",
@@ -640,9 +640,8 @@
         "padding": "px-2xs",
         "gap": "none",
         "corner": "rounded-xs",
-        "status": "open",
-        "current": "12 at px-2xs",
-        "question": "Keycaps pad px-2xs (half a space step) where other small parts pad px-nested (one margin). Keep px-2xs, or move to px-nested?"
+        "status": "decided",
+        "current": "12 at px-2xs"
       },
       {
         "kind": "card",
@@ -661,9 +660,8 @@
         "padding": "p-sm",
         "gap": "gap-sm",
         "corner": "rounded-sm",
-        "status": "open",
-        "current": "2 plan pickers at p-sm rounded-sm",
-        "question": "Selectable option cards are p-sm rounded-sm, a step tighter than cards. Keep them tighter, or match cards (p-md rounded-md)?"
+        "status": "decided",
+        "current": "2 plan pickers at p-sm rounded-sm"
       },
       {
         "kind": "popover",
@@ -679,23 +677,21 @@
         "kind": "tooltip",
         "identify": "a short label popover",
         "height": "content height",
-        "padding": "p-sm",
+        "padding": "py-2xs px-xs",
         "gap": "none",
         "corner": "rounded-sm",
-        "status": "open",
-        "current": "1 at p-sm rounded-sm",
-        "question": "The tooltip pads p-sm with rounded-sm. Keep, or tighten to py-2xs px-xs for a one-line label?"
+        "status": "decided",
+        "current": "1 at p-sm rounded-sm"
       },
       {
         "kind": "alert",
         "identify": "status or alert surface",
         "height": "one line: h-control-like (py-xs); titled: content",
         "padding": "one line: py-xs ps-xs pe-sm; titled: p-xs",
-        "gap": "one line: gap-xs; titled: gap-3xs between lines",
+        "gap": "gap-gutter between icon and text (as toasts and controls); titled: gap-3xs between lines",
         "corner": "rounded-md",
-        "status": "open",
-        "current": "4 one-line at gap-xs, 4 titled at gap-3xs",
-        "question": "One-line alerts space icon and text gap-xs, toasts gap-gutter. Match the toast (gap-gutter), or keep gap-xs?"
+        "status": "decided",
+        "current": "4 one-line at gap-xs, 4 titled at gap-3xs"
       },
       {
         "kind": "toast",

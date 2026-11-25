@@ -263,6 +263,7 @@
         "font-semibold",
         "gap-2xs",
         "gap-3xs",
+        "gap-gutter",
         "gap-xs",
         "h-nested",
         "icon",
