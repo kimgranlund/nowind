@@ -12,10 +12,12 @@ Prewind-style utility classes over a themeable token system, in plain CSS. No bu
 Link one file from the CDN:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@main/dist/nowind.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.1.0/dist/nowind.min.css">
 ```
 
-For a site that must not change under you, pin a commit or tag instead of `@main`, for example `@3b47c06`. Or copy `dist/nowind.min.css` into your project and link it locally.
+The link pins release `v0.1.0`, so your site won't change until you change the version. `@main` follows the latest commit, but jsDelivr caches it for up to 12 hours. Or copy `dist/nowind.min.css` into your project and link it locally. Releases are listed in [CHANGELOG.md](CHANGELOG.md).
+
+Browse it first: [components](https://kimgranlund.github.io/nowind/components.html), [specimen](https://kimgranlund.github.io/nowind/specimen.html) and the [class list](https://kimgranlund.github.io/nowind/classes.html) are on GitHub Pages.
 
 `nowind.min.css` is the whole system in one request: the theme with every import inlined, the reset and the utilities. `dist/nowind.bundle.css` is the same, unminified.
 
@@ -201,6 +203,8 @@ The full list, with what each token is for, is in the manifests in `theme/`.
 ## Files
 
 ```
+CHANGELOG.md                   releases
+index.html                     GitHub Pages landing page
 AGENTS.md                      how to change Nowind: generated files, script order, rules, naming
 theme.css                      imports the theme groups below
 nowind.css                     reset and utility classes (generated)
