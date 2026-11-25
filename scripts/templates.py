@@ -913,7 +913,7 @@ def component_page(c):
     chips = " ".join(f'<a href="{class_page_of(k.split(":")[-1])}#{class_id(k.split(":")[-1])}" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">{E(k)}</a>' for k in classes_of(all_html))
     def example(sid, label, html_, summary=None):
         return section(sid, label, *([p(summary)] if summary else []),
-            f"""<div class="tier-product p-surface rounded-md border border-weak bg-strong">
+            f"""<div data-example class="tier-product p-surface rounded-md border border-weak bg-strong">
 {html_}
           </div>""",
             code(f"{c['slug']}-{sid}.html" if sid != "example" else f"{c['slug']}.html", "HTML", html_))

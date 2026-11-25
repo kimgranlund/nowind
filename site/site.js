@@ -215,3 +215,64 @@ document.querySelectorAll("[data-glass-slider]").forEach((box) => {
   media.addEventListener("change", show);
   show();
 })();
+
+// Type audit (open any page with ?audit=type): checks the rendered examples against the size contract's three rules
+// (sizeContract.rules in theme/theme.type-roles.manifest.json) and logs what breaks them; window.nowindTypeAudit holds
+// the list. Rows: text side by side shares a size, unless one side is a control, figure, badge, keycap or kicker.
+// Order: within a surface, title >= body >= supporting, and a dialog title is larger than its buttons. Icons: an icon
+// takes the step of the text beside it (icon-sm with text-sm, icon with text-base, icon-lg with a title).
+(() => {
+  if (new URLSearchParams(location.search).get("audit") !== "type") return;
+  const run = () => {
+    const out = [];
+    const px = (el) => parseFloat(getComputedStyle(el).fontSize);
+    const F = (el) => parseFloat(getComputedStyle(el).getPropertyValue("--F")) || px(el);
+    const where = (el) => { const s = el.closest("section[id]"); return `#${s ? s.id : "?"} ${el.tagName.toLowerCase()}.${[...el.classList].slice(0, 4).join(".")} “${el.textContent.trim().slice(0, 28)}”`; };
+    const isControl = (el) => el.matches("a, button, select, input, textarea, summary, [role=tab], [role=option], [role=menuitem], .h-control, .h-nested, .size-control, .size-nested");
+    const isMark = (el) => el.matches("kbd, .rounded-full, .font-display, .uppercase") || !!el.closest("kbd, .rounded-full");
+    const ownText = (el) => [...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim());
+    const texty = (el) => !el.matches(".icon") && el.textContent.trim() && (ownText(el) || el.children.length === 1 && ownText(el.children[0]));
+    const scope = [...document.querySelectorAll("main section[id]")].filter((s) => !s.matches("[data-semantic-demo]"));
+    const frames = [...document.querySelectorAll("[data-example]")];
+    const inScope = frames.length ? (el) => !!el.closest("[data-example]") : (el) => scope.some((s) => s.contains(el)) && !el.closest("[data-semantic-demo]");
+    // 1. Rows
+    for (const row of document.querySelectorAll("main *")) {
+      if (!inScope(row)) continue;
+      const cs = getComputedStyle(row);
+      if (!cs.display.includes("flex") || cs.flexDirection !== "row" || isControl(row) || row.closest("button, a, summary, [role=option], [role=menuitem]")) continue;
+      const kids = [...row.children].filter((k) => texty(k) && !isControl(k) && !isMark(k) && getComputedStyle(k).display !== "none");
+      const sizes = [...new Set(kids.map((k) => px(k).toFixed(1)))];
+      if (kids.length > 1 && sizes.length > 1) out.push({ rule: "row", where: where(row), detail: kids.map((k) => `${px(k).toFixed(1)}px “${k.textContent.trim().slice(0, 16)}”`).join(" | ") });
+    }
+    // 2. Order within a surface
+    const surfaces = [...document.querySelectorAll("main dialog, main [role=dialog], main [role=status], main [role=alert], main article, main .rounded-md.border, main .rounded-lg")].filter((e) => inScope(e) && !e.matches("[data-example]"));
+    for (const s of surfaces) {
+      const title = s.querySelector("h1, h2, h3, h4, .font-semibold");
+      const body = [...s.querySelectorAll("p")].find((p) => !p.closest("button"));
+      const btn = s.querySelector("button .text-base, button:not(:has(.icon:only-child))");
+      if (title && body && px(title) < px(body)) out.push({ rule: "order", where: where(s), detail: `title ${px(title).toFixed(1)}px < body ${px(body).toFixed(1)}px` });
+      if (s.matches("dialog, [role=dialog]") && title && btn && px(title) <= px(btn)) out.push({ rule: "order", where: where(s), detail: `dialog title ${px(title).toFixed(1)}px <= button ${px(btn).toFixed(1)}px` });
+      const muted = [...s.querySelectorAll("p, span")].filter((e) => [...e.classList].some((c) => /^fg-[a-z]+(-\d)?-(8|11)$/.test(c)) && ownText(e) && !e.closest("button, kbd, .rounded-full"));
+      for (const m of muted) if (body && m !== body && px(m) > px(body)) out.push({ rule: "order", where: where(m), detail: `supporting ${px(m).toFixed(1)}px > body ${px(body).toFixed(1)}px` });
+    }
+    // 3. Icons pair with the text beside them
+    for (const i of document.querySelectorAll("main .icon")) {
+      if (!inScope(i) || i.matches(".caret, [class*=ph-caret-]")) continue;
+      const host = i.closest("button, a, summary, [role=option], [role=menuitem]");
+      if (host && host.matches(".h-nested, .size-nested, .h-full") && i.matches(".icon-sm")) continue;
+      const near = [i.nextElementSibling, i.previousElementSibling].find((n) => n && texty(n));
+      if (!near) continue;
+      const r = px(near) / F(near);
+      const bold = parseInt(getComputedStyle(near).fontWeight) >= 600;
+      const want = r < 0.92 ? "icon-sm" : bold && near.matches("h1, h2, h3, h4, .font-semibold") && i.matches(".icon-lg") ? "icon-lg" : "icon";
+      const has = i.matches(".icon-sm") ? "icon-sm" : i.matches(".icon-lg") ? "icon-lg" : "icon";
+      if (has !== want) out.push({ rule: "icon", where: where(i.parentElement), detail: `${has} beside ${px(near).toFixed(1)}px text (want ${want})` });
+    }
+    window.nowindTypeAudit = out;
+    console.log(`Type audit: ${out.length} finding(s)`);
+    if (out.length) console.table(out);
+    return out;
+  };
+  window.addEventListener("load", run);
+  window.nowindRunTypeAudit = run;
+})();
