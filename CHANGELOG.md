@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.5.0 (2026-11-25)
 
 - **Tiers grow the type:** inside `tier-content` and `tier-brand` the whole type scale and the type roles grow with the tier's body size.
 - **Sticky under a header:** `top-header`, `h-below-header`, `max-h-below-header`.
