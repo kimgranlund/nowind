@@ -1,0 +1,173 @@
+{
+  "file": "theme.typography.css",
+  "generated": "scripts/utopia.mjs",
+  "description": "Nowind type: a fluid Utopia scale with Tailwind/Prewind names. Each size is a clamp() from its size at the minimum viewport to its size at the maximum, so it grows with the viewport without media queries.",
+  "method": "Utopia (utopia.fyi): size(step) = base × ratio^step at each end, interpolated linearly in vw between minVw and maxVw.",
+  "regenerate": "node scripts/utopia.mjs --min-vw 360 --max-vw 1240 --min-base 14 --max-base 18 --min-ratio 1.2 --max-ratio 1.25",
+  "config": {
+    "minVw": 360,
+    "maxVw": 1240,
+    "unit": "px",
+    "rem": 16,
+    "minBase": 14,
+    "maxBase": 18,
+    "minRatio": 1.2,
+    "maxRatio": 1.25
+  },
+  "naming": {
+    "sizes": "Tailwind v4 / Prewind: --text-xs … --text-6xl. base is step 0.",
+    "lineHeights": "Tailwind v4 pattern: --text-{size}--line-height, unitless.",
+    "faces": "Prewind: --font-body, --font-heading; Tailwind: --font-mono.",
+    "weights": "Tailwind v4: --font-weight-{name}.",
+    "tracking": "Tailwind v4 names; values differ: tight is -0.01em (Tailwind -0.025em), widest 0.16em (Tailwind 0.1em)."
+  },
+  "sizes": [
+    {
+      "token": "--text-xs",
+      "step": -2,
+      "minPx": 9.72,
+      "maxPx": 11.52,
+      "lineHeight": 1.5,
+      "value": "clamp(0.6076rem, 0.5617rem + 0.2043vw, 0.72rem)"
+    },
+    {
+      "token": "--text-sm",
+      "step": -1,
+      "minPx": 11.67,
+      "maxPx": 14.4,
+      "lineHeight": 1.5,
+      "value": "clamp(0.7292rem, 0.6593rem + 0.3106vw, 0.9rem)"
+    },
+    {
+      "token": "--text-base",
+      "step": 0,
+      "minPx": 14,
+      "maxPx": 18,
+      "lineHeight": 1.5,
+      "value": "clamp(0.875rem, 0.7727rem + 0.4545vw, 1.125rem)"
+    },
+    {
+      "token": "--text-lg",
+      "step": 1,
+      "minPx": 16.8,
+      "maxPx": 22.5,
+      "lineHeight": 1.4,
+      "value": "clamp(1.05rem, 0.9043rem + 0.6477vw, 1.4063rem)"
+    },
+    {
+      "token": "--text-xl",
+      "step": 2,
+      "minPx": 20.16,
+      "maxPx": 28.13,
+      "lineHeight": 1.35,
+      "value": "clamp(1.26rem, 1.0563rem + 0.9051vw, 1.7578rem)"
+    },
+    {
+      "token": "--text-2xl",
+      "step": 3,
+      "minPx": 24.19,
+      "maxPx": 35.16,
+      "lineHeight": 1.3,
+      "value": "clamp(1.512rem, 1.2317rem + 1.2459vw, 2.1973rem)"
+    },
+    {
+      "token": "--text-3xl",
+      "step": 4,
+      "minPx": 29.03,
+      "maxPx": 43.95,
+      "lineHeight": 1.2,
+      "value": "clamp(1.8144rem, 1.4331rem + 1.6949vw, 2.7466rem)"
+    },
+    {
+      "token": "--text-4xl",
+      "step": 5,
+      "minPx": 34.84,
+      "maxPx": 54.93,
+      "lineHeight": 1.1,
+      "value": "clamp(2.1773rem, 1.6635rem + 2.2835vw, 3.4332rem)"
+    },
+    {
+      "token": "--text-5xl",
+      "step": 6,
+      "minPx": 41.8,
+      "maxPx": 68.66,
+      "lineHeight": 1.05,
+      "value": "clamp(2.6127rem, 1.926rem + 3.0524vw, 4.2915rem)"
+    },
+    {
+      "token": "--text-6xl",
+      "step": 7,
+      "minPx": 50.16,
+      "maxPx": 85.83,
+      "lineHeight": 1,
+      "value": "clamp(3.1353rem, 2.2234rem + 4.053vw, 5.3644rem)"
+    }
+  ],
+  "kicker": {
+    "rule": "A kicker is 0.92 × the size it sits beside, never under 9px, so uppercase mono reads at that size's weight.",
+    "sizes": [
+      {
+        "token": "--kicker-sm",
+        "beside": "--text-xs",
+        "minPx": 9,
+        "maxPx": 10.6
+      },
+      {
+        "token": "--kicker-md",
+        "beside": "--text-sm",
+        "minPx": 10.74,
+        "maxPx": 13.25
+      },
+      {
+        "token": "--kicker-lg",
+        "beside": "--text-base",
+        "minPx": 12.88,
+        "maxPx": 16.56
+      }
+    ],
+    "style": [
+      "--kicker-font: var(--font-mono)",
+      "--kicker-weight: var(--font-weight-medium)",
+      "--kicker-tracking: var(--tracking-widest)",
+      "--kicker-transform: uppercase"
+    ],
+    "use": "Set together: font-family, font-weight, letter-spacing, text-transform, font-size --kicker-{size}, color --fg-weak."
+  },
+  "faces": [
+    {
+      "token": "--font-body",
+      "use": "Body face. Nothing loads Inter; a page links it or falls back."
+    },
+    {
+      "token": "--font-heading",
+      "use": "Headings. Affine sets Inter Tight here."
+    },
+    {
+      "token": "--font-mono",
+      "use": "Kicker and numbers. Affine sets IBM Plex Mono here."
+    }
+  ],
+  "weights": [
+    "--font-weight-normal: 400",
+    "--font-weight-medium: 500",
+    "--font-weight-semibold: 600",
+    "--font-weight-bold: 700"
+  ],
+  "tracking": [
+    "--tracking-tight: -0.01em",
+    "--tracking-normal: 0em",
+    "--tracking-wide: 0.025em",
+    "--tracking-widest: 0.16em"
+  ],
+  "leading": [
+    "--leading-none: 1",
+    "--leading-tight: 1.25",
+    "--leading-snug: 1.375",
+    "--leading-normal: 1.5",
+    "--leading-relaxed: 1.625"
+  ],
+  "notes": [
+    "Sizes are viewport-fluid, not tied to --F: a .scope with its own font-size does not resize them.",
+    "Font sizes in rem respect the user's browser font size; the vw part does not scale with zoom, so keep maxBase / minBase under about 2.5 (WCAG 1.4.4)."
+  ]
+}

@@ -1,0 +1,235 @@
+@import "./colors-raw/globals.css";
+@import "./colors-semantic/accent-1.css";
+@import "./colors-semantic/accent-2.css";
+@import "./colors-semantic/accent-3.css";
+@import "./colors-semantic/accent-4.css";
+@import "./colors-semantic/neutral.css";
+@import "./colors-semantic/danger.css";
+@import "./colors-semantic/warning.css";
+@import "./colors-semantic/success.css";
+@import "./colors-semantic/info.css";
+
+:root {
+  --neutral-surface: var(--neutral-a2);
+
+  --neutral-indicator: var(--neutral-9);
+  --neutral-track: var(--neutral-9);
+
+  --bg: var(--neutral-1);
+  --bg-strong: var(--neutral-2);
+
+  --component-weak: var(--neutral-3);
+  --component: var(--neutral-4);
+  --component-strong: var(--neutral-5);
+
+  --border-weak: var(--neutral-6);
+  --border: var(--neutral-7);
+  --border-strong: var(--neutral-8);
+
+  --solid: var(--neutral-9);
+  --solid-strong: var(--neutral-10);
+  --on-solid: var(--neutral-contrast);
+
+  --fg-subtle: var(--neutral-8);
+  --fg-weak: var(--neutral-11);
+  --fg: var(--neutral-12);
+  --fg-strong: light-dark(var(--neutral-contrast-black), var(--neutral-contrast-white));
+
+  --accent-1-surface: var(--accent-1-a2);
+  --accent-1-indicator: var(--accent-1-9);
+  --accent-1-track: var(--accent-1-9);
+
+  --bg-accent-1: var(--accent-1-1);
+  --bg-accent-1-strong: var(--accent-1-2);
+
+  --component-accent-1-weak: var(--accent-1-3);
+  --component-accent-1: var(--accent-1-4);
+  --component-accent-1-strong: var(--accent-1-5);
+
+  --border-accent-1-weak: var(--accent-1-6);
+  --border-accent-1: var(--accent-1-7);
+  --border-accent-1-strong: var(--accent-1-8);
+
+  --solid-accent-1: var(--accent-1-9);
+  --solid-accent-1-strong: var(--accent-1-10);
+  --on-solid-accent-1: var(--accent-1-contrast);
+
+  --fg-accent-1-subtle: var(--accent-1-8);
+  --fg-accent-1-weak: var(--accent-1-11);
+  --fg-accent-1: var(--accent-1-12);
+  --fg-accent-1-strong: light-dark(var(--accent-1-contrast-black), var(--accent-1-contrast-white));
+
+  --accent-2-surface: var(--accent-2-a2);
+  --accent-2-indicator: var(--accent-2-9);
+  --accent-2-track: var(--accent-2-9);
+
+  --bg-accent-2: var(--accent-2-1);
+  --bg-accent-2-strong: var(--accent-2-2);
+
+  --component-accent-2-weak: var(--accent-2-3);
+  --component-accent-2: var(--accent-2-4);
+  --component-accent-2-strong: var(--accent-2-5);
+
+  --border-accent-2-weak: var(--accent-2-6);
+  --border-accent-2: var(--accent-2-7);
+  --border-accent-2-strong: var(--accent-2-8);
+
+  --solid-accent-2: var(--accent-2-9);
+  --solid-accent-2-strong: var(--accent-2-10);
+  --on-solid-accent-2: var(--accent-2-contrast);
+
+  --fg-accent-2-subtle: var(--accent-2-8);
+  --fg-accent-2-weak: var(--accent-2-11);
+  --fg-accent-2: var(--accent-2-12);
+  --fg-accent-2-strong: light-dark(var(--accent-2-contrast-black), var(--accent-2-contrast-white));
+
+  --accent-3-surface: var(--accent-3-a2);
+  --accent-3-indicator: var(--accent-3-9);
+  --accent-3-track: var(--accent-3-9);
+
+  --bg-accent-3: var(--accent-3-1);
+  --bg-accent-3-strong: var(--accent-3-2);
+
+  --component-accent-3-weak: var(--accent-3-3);
+  --component-accent-3: var(--accent-3-4);
+  --component-accent-3-strong: var(--accent-3-5);
+
+  --border-accent-3-weak: var(--accent-3-6);
+  --border-accent-3: var(--accent-3-7);
+  --border-accent-3-strong: var(--accent-3-8);
+
+  --solid-accent-3: var(--accent-3-9);
+  --solid-accent-3-strong: var(--accent-3-10);
+  --on-solid-accent-3: var(--accent-3-contrast);
+
+  --fg-accent-3-subtle: var(--accent-3-8);
+  --fg-accent-3-weak: var(--accent-3-11);
+  --fg-accent-3: var(--accent-3-12);
+  --fg-accent-3-strong: light-dark(var(--accent-3-contrast-black), var(--accent-3-contrast-white));
+
+  --accent-4-surface: var(--accent-4-a2);
+  --accent-4-indicator: var(--accent-4-9);
+  --accent-4-track: var(--accent-4-9);
+
+  --bg-accent-4: var(--accent-4-1);
+  --bg-accent-4-strong: var(--accent-4-2);
+
+  --component-accent-4-weak: var(--accent-4-3);
+  --component-accent-4: var(--accent-4-4);
+  --component-accent-4-strong: var(--accent-4-5);
+
+  --border-accent-4-weak: var(--accent-4-6);
+  --border-accent-4: var(--accent-4-7);
+  --border-accent-4-strong: var(--accent-4-8);
+
+  --solid-accent-4: var(--accent-4-9);
+  --solid-accent-4-strong: var(--accent-4-10);
+  --on-solid-accent-4: var(--accent-4-contrast);
+
+  --fg-accent-4-subtle: var(--accent-4-8);
+  --fg-accent-4-weak: var(--accent-4-11);
+  --fg-accent-4: var(--accent-4-12);
+  --fg-accent-4-strong: light-dark(var(--accent-4-contrast-black), var(--accent-4-contrast-white));
+
+  --danger-surface: var(--danger-a2);
+  --danger-indicator: var(--danger-9);
+  --danger-track: var(--danger-9);
+
+  --bg-danger: var(--danger-1);
+  --bg-danger-strong: var(--danger-2);
+
+  --component-danger-weak: var(--danger-3);
+  --component-danger: var(--danger-4);
+  --component-danger-strong: var(--danger-5);
+
+  --border-danger-weak: var(--danger-6);
+  --border-danger: var(--danger-7);
+  --border-danger-strong: var(--danger-8);
+
+  --solid-danger: var(--danger-9);
+  --solid-danger-strong: var(--danger-10);
+  --on-solid-danger: var(--danger-contrast);
+
+  --fg-danger-subtle: var(--danger-8);
+  --fg-danger-weak: var(--danger-11);
+  --fg-danger: var(--danger-12);
+  --fg-danger-strong: light-dark(var(--danger-contrast-black), var(--danger-contrast-white));
+
+  --warning-surface: var(--warning-a2);
+  --warning-indicator: var(--warning-9);
+  --warning-track: var(--warning-9);
+
+  --bg-warning: var(--warning-1);
+  --bg-warning-strong: var(--warning-2);
+
+  --component-warning-weak: var(--warning-3);
+  --component-warning: var(--warning-4);
+  --component-warning-strong: var(--warning-5);
+
+  --border-warning-weak: var(--warning-6);
+  --border-warning: var(--warning-7);
+  --border-warning-strong: var(--warning-8);
+
+  --solid-warning: var(--warning-9);
+  --solid-warning-strong: var(--warning-10);
+  --on-solid-warning: var(--warning-contrast);
+
+  --fg-warning-subtle: var(--warning-8);
+  --fg-warning-weak: var(--warning-11);
+  --fg-warning: var(--warning-12);
+  --fg-warning-strong: light-dark(var(--warning-contrast-black), var(--warning-contrast-white));
+
+  --success-surface: var(--success-a2);
+  --success-indicator: var(--success-9);
+  --success-track: var(--success-9);
+
+  --bg-success: var(--success-1);
+  --bg-success-strong: var(--success-2);
+
+  --component-success-weak: var(--success-3);
+  --component-success: var(--success-4);
+  --component-success-strong: var(--success-5);
+
+  --border-success-weak: var(--success-6);
+  --border-success: var(--success-7);
+  --border-success-strong: var(--success-8);
+
+  --solid-success: var(--success-9);
+  --solid-success-strong: var(--success-10);
+  --on-solid-success: var(--success-contrast);
+
+  --fg-success-subtle: var(--success-8);
+  --fg-success-weak: var(--success-11);
+  --fg-success: var(--success-12);
+  --fg-success-strong: light-dark(var(--success-contrast-black), var(--success-contrast-white));
+
+  --info-surface: var(--info-a2);
+  --info-indicator: var(--info-9);
+  --info-track: var(--info-9);
+
+  --bg-info: var(--info-1);
+  --bg-info-strong: var(--info-2);
+
+  --component-info-weak: var(--info-3);
+  --component-info: var(--info-4);
+  --component-info-strong: var(--info-5);
+
+  --border-info-weak: var(--info-6);
+  --border-info: var(--info-7);
+  --border-info-strong: var(--info-8);
+
+  --solid-info: var(--info-9);
+  --solid-info-strong: var(--info-10);
+  --on-solid-info: var(--info-contrast);
+
+  --fg-info-subtle: var(--info-8);
+  --fg-info-weak: var(--info-11);
+  --fg-info: var(--info-12);
+  --fg-info-strong: light-dark(var(--info-contrast-black), var(--info-contrast-white));
+
+  --shadow-color: light-dark(oklch(0.25 0.02 250 / 0.12), oklch(0 0 0 / 0.5));
+  --shadow-color-weak: light-dark(oklch(0.25 0.02 250 / 0.07), oklch(0 0 0 / 0.35));
+  --shadow-xs: 0 1px 2px var(--shadow-color-weak);
+  --shadow-sm: 0 1px 3px var(--shadow-color), 0 1px 2px -1px var(--shadow-color-weak);
+  --shadow-lg: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -4px var(--shadow-color-weak);
+}

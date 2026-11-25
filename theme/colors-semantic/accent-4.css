@@ -1,0 +1,33 @@
+@import "../colors-raw/crimson.css";
+
+:root {
+  --accent-4-1: var(--colors-crimson-1);
+  --accent-4-2: var(--colors-crimson-2);
+  --accent-4-3: var(--colors-crimson-3);
+  --accent-4-4: var(--colors-crimson-4);
+  --accent-4-5: var(--colors-crimson-5);
+  --accent-4-6: var(--colors-crimson-6);
+  --accent-4-7: var(--colors-crimson-7);
+  --accent-4-8: var(--colors-crimson-8);
+  --accent-4-9: var(--colors-crimson-9);
+  --accent-4-10: var(--colors-crimson-10);
+  --accent-4-11: var(--colors-crimson-11);
+  --accent-4-12: var(--colors-crimson-12);
+
+  --accent-4-a1: var(--colors-crimson-a1);
+  --accent-4-a2: var(--colors-crimson-a2);
+  --accent-4-a3: var(--colors-crimson-a3);
+  --accent-4-a4: var(--colors-crimson-a4);
+  --accent-4-a5: var(--colors-crimson-a5);
+  --accent-4-a6: var(--colors-crimson-a6);
+  --accent-4-a7: var(--colors-crimson-a7);
+  --accent-4-a8: var(--colors-crimson-a8);
+  --accent-4-a9: var(--colors-crimson-a9);
+  --accent-4-a10: var(--colors-crimson-a10);
+  --accent-4-a11: var(--colors-crimson-a11);
+  --accent-4-a12: var(--colors-crimson-a12);
+
+  --accent-4-contrast-white: oklch(0.9397 0 202.2);
+  --accent-4-contrast-black: oklch(0.1806 0 30.32);
+  --accent-4-contrast: var(--accent-4-contrast-white);
+}

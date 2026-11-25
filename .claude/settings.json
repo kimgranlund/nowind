@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build)",
+      "Bash(npm run check)",
+      "Bash(npm run check:static)",
+      "Bash(node scripts/build.mjs)",
+      "Bash(node scripts/check.mjs:*)"
+    ],
+    "deny": [
+      "Edit(./jig/dist/**)",
+      "Edit(./tokens/tokens.*.css)",
+      "Edit(./kit/catalog.json)",
+      "Edit(./kit/catalog.md)",
+      "Edit(./demo/dist/**)",
+      "Edit(./site/dist/**)"
+    ]
+  }
+}

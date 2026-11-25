@@ -1,0 +1,58 @@
+@property --F { syntax: "<length>"; inherits: true; initial-value: 16px; }
+
+:root {
+  --slot-slope: 2;
+  --slot-offset: -8px;
+  --border-width: 1px;
+  --mg: 1;
+  --margin-offset: -1px;
+  --gutter-factor: 1;
+  --row-gap-factor: 2;
+  --row-gap-floor: 4px;
+  --field-gap-factor: 1;
+  --group-gap-factor: 0.5;
+  --surface-factor: 1;
+  --dialog-factor: 1;
+  --region-factor: 1;
+  --page-factor: 1;
+  --tier: 1;
+  --radius-slope: 1;
+  --radius-offset: -6px;
+  --corner-factor: 1;
+  --container-max: 1280px;
+  --max-w-text: 68ch;
+  --max-w-form: 32rem;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+:root, .scope {
+  --F: 1em;
+  --slot: calc(var(--slot-slope) * var(--F) + var(--slot-offset));
+  --margin: max(calc(var(--mg) * (var(--slot) - var(--F) + var(--margin-offset))), var(--border-width));
+  --inset: calc(var(--margin) - var(--border-width));
+  --gutter: calc(var(--gutter-factor) * var(--margin));
+  --row-gap: max(calc(var(--row-gap-factor) * var(--margin)), var(--row-gap-floor));
+  --control-height: calc(var(--slot) + 2 * var(--margin));
+  --text-edge: calc(2 * var(--margin));
+
+  --tier-inner: max(1, calc(var(--tier) / 2));
+  --field-gap: calc(var(--field-gap-factor) * var(--margin));
+  --group-gap: calc(var(--group-gap-factor) * var(--control-height));
+  --surface-base: calc(var(--surface-factor) * var(--slot));
+  --surface-padding: calc(var(--tier-inner) * var(--surface-base));
+  --section-gap: calc(var(--tier) * var(--surface-base));
+  --dialog-base: calc(var(--dialog-factor) * var(--control-height));
+  --dialog-padding: calc(var(--tier-inner) * var(--dialog-base));
+  --region-padding: calc(var(--region-factor) * var(--slot));
+  --page-margin: calc(var(--tier) * var(--page-factor) * var(--control-height));
+
+  --radius-control: clamp(0px, calc(var(--radius-slope) * var(--F) + var(--radius-offset)), calc(var(--control-height) / 2));
+  --radius-nested: max(0px, calc(var(--radius-control) - var(--margin)));
+  --radius-surface: calc(var(--radius-control) + var(--corner-factor) * var(--margin));
+  --radius-dialog: calc(var(--radius-control) + 2 * var(--corner-factor) * var(--margin));
+  --container-padding: var(--page-margin);
+}

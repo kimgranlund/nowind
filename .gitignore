@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+CLAUDE.local.md
+.claude/worktrees/
+.env
+docs/loops/**/shots/
+.claude/settings.local.json

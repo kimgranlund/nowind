@@ -1,0 +1,33 @@
+@import "../colors-raw/violet.css";
+
+:root {
+  --accent-2-1: var(--colors-violet-1);
+  --accent-2-2: var(--colors-violet-2);
+  --accent-2-3: var(--colors-violet-3);
+  --accent-2-4: var(--colors-violet-4);
+  --accent-2-5: var(--colors-violet-5);
+  --accent-2-6: var(--colors-violet-6);
+  --accent-2-7: var(--colors-violet-7);
+  --accent-2-8: var(--colors-violet-8);
+  --accent-2-9: var(--colors-violet-9);
+  --accent-2-10: var(--colors-violet-10);
+  --accent-2-11: var(--colors-violet-11);
+  --accent-2-12: var(--colors-violet-12);
+
+  --accent-2-a1: var(--colors-violet-a1);
+  --accent-2-a2: var(--colors-violet-a2);
+  --accent-2-a3: var(--colors-violet-a3);
+  --accent-2-a4: var(--colors-violet-a4);
+  --accent-2-a5: var(--colors-violet-a5);
+  --accent-2-a6: var(--colors-violet-a6);
+  --accent-2-a7: var(--colors-violet-a7);
+  --accent-2-a8: var(--colors-violet-a8);
+  --accent-2-a9: var(--colors-violet-a9);
+  --accent-2-a10: var(--colors-violet-a10);
+  --accent-2-a11: var(--colors-violet-a11);
+  --accent-2-a12: var(--colors-violet-a12);
+
+  --accent-2-contrast-white: oklch(0.9397 0 202.2);
+  --accent-2-contrast-black: oklch(0.1806 0 30.32);
+  --accent-2-contrast: var(--accent-2-contrast-white);
+}

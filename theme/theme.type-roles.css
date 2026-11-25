@@ -1,0 +1,168 @@
+:root {
+  --font-control: var(--font-body);
+
+  --display-lg: var(--text-6xl);
+  --display-lg--line-height: calc(var(--display-lg) * 1.25 - 1.5px);
+  --display-lg--font-weight: 800;
+  --display-lg--font-family: var(--font-heading);
+  --display-lg--letter-spacing: var(--tracking-tight);
+
+  --display-md: var(--text-5xl);
+  --display-md--line-height: calc(var(--display-md) * 1.25 - 1.5px);
+  --display-md--font-weight: 800;
+  --display-md--font-family: var(--font-heading);
+  --display-md--letter-spacing: var(--tracking-tight);
+
+  --display-sm: var(--text-4xl);
+  --display-sm--line-height: calc(var(--display-sm) * 1.25 - 1.5px);
+  --display-sm--font-weight: 800;
+  --display-sm--font-family: var(--font-heading);
+  --display-sm--letter-spacing: var(--tracking-tight);
+
+  --display: var(--text-3xl);
+  --display--line-height: calc(var(--display) * 1.25 - 1.5px);
+  --display--font-weight: 800;
+  --display--font-family: var(--font-heading);
+  --display--letter-spacing: var(--tracking-tight);
+
+  --heading-xl: var(--text-3xl);
+  --heading-xl--line-height: calc(var(--heading-xl) * 1.5 - 3px);
+  --heading-xl--font-weight: 700;
+  --heading-xl--font-family: var(--font-heading);
+  --heading-xl--letter-spacing: var(--tracking-tight);
+
+  --heading-lg: var(--text-2xl);
+  --heading-lg--line-height: calc(var(--heading-lg) * 1.5 - 3px);
+  --heading-lg--font-weight: 700;
+  --heading-lg--font-family: var(--font-heading);
+  --heading-lg--letter-spacing: var(--tracking-tight);
+
+  --heading-md: var(--text-xl);
+  --heading-md--line-height: calc(var(--heading-md) * 1.5 - 3px);
+  --heading-md--font-weight: 700;
+  --heading-md--font-family: var(--font-heading);
+  --heading-md--letter-spacing: var(--tracking-tight);
+
+  --heading-sm: var(--text-lg);
+  --heading-sm--line-height: calc(var(--heading-sm) * 1.5 - 3px);
+  --heading-sm--font-weight: 590;
+  --heading-sm--font-family: var(--font-body);
+
+  --figure: var(--text-2xl);
+  --figure--line-height: var(--figure);
+  --figure--font-weight: 590;
+  --figure--font-family: var(--font-heading);
+  --figure--letter-spacing: var(--tracking-tight);
+  --figure--font-variant-numeric: tabular-nums lining-nums;
+
+  --lead: var(--text-lg);
+  --lead--line-height: calc(var(--lead) * 1.75 - 4.5px);
+  --lead--font-weight: 400;
+  --lead--font-family: var(--font-body);
+
+  --quote: var(--text-lg);
+  --quote--line-height: calc(var(--quote) * 1.75 - 4.5px);
+  --quote--font-weight: 400;
+  --quote--font-family: var(--font-body);
+  --quote--font-style: italic;
+
+  --title: var(--text-lg);
+  --title--line-height: calc(var(--title) * 1.5 - 3px);
+  --title--font-weight: 590;
+  --title--font-family: var(--font-body);
+
+  --subtitle: var(--text-base);
+  --subtitle--line-height: calc(var(--subtitle) * 1.5 - 3px);
+  --subtitle--font-weight: 590;
+  --subtitle--font-family: var(--font-body);
+
+  --body-lg: var(--text-lg);
+  --body-lg--line-height: calc(var(--body-lg) * 1.75 - 4.5px);
+  --body-lg--font-weight: 400;
+  --body-lg--font-family: var(--font-body);
+
+  --body-md: var(--text-base);
+  --body-md--line-height: calc(var(--body-md) * 2 - 6px);
+  --body-md--font-weight: 400;
+  --body-md--font-family: var(--font-body);
+
+  --body-sm: var(--text-sm);
+  --body-sm--line-height: calc(var(--body-sm) * 2 - 6px);
+  --body-sm--font-weight: 400;
+  --body-sm--font-family: var(--font-body);
+
+  --caption: var(--text-sm);
+  --caption--line-height: calc(var(--caption) * 1.75 - 4.5px);
+  --caption--font-weight: 400;
+  --caption--font-family: var(--font-body);
+
+  --footnote: var(--text-xs);
+  --footnote--line-height: calc(var(--footnote) * 1.75 - 4.5px);
+  --footnote--font-weight: 400;
+  --footnote--font-family: var(--font-body);
+
+  --title-sm: var(--text-base);
+  --title-sm--line-height: calc(var(--title-sm) * 1.5 - 3px);
+  --title-sm--font-weight: 450;
+  --title-sm--font-family: var(--font-control);
+
+  --control-md: var(--text-base);
+  --control-md--line-height: calc(var(--control-md) * 1.75 - 4.5px);
+  --control-md--font-weight: 450;
+  --control-md--font-family: var(--font-control);
+
+  --data: var(--text-base);
+  --data--line-height: calc(var(--data) * 1.5 - 3px);
+  --data--font-weight: 400;
+  --data--font-family: var(--font-body);
+  --data--font-variant-numeric: tabular-nums lining-nums;
+
+  --label: var(--text-sm);
+  --label--line-height: calc(var(--label) * 1.5 - 3px);
+  --label--font-weight: 450;
+  --label--font-family: var(--font-control);
+
+  --kicker: var(--kicker-md);
+  --kicker--line-height: calc(var(--kicker) * 1.5 - 3px);
+  --kicker--font-weight: var(--kicker-weight);
+  --kicker--font-family: var(--kicker-font);
+  --kicker--letter-spacing: var(--kicker-tracking);
+  --kicker--text-transform: var(--kicker-transform);
+
+  --kicker-sm--line-height: calc(var(--kicker-sm) * 1.5 - 3px);
+  --kicker-sm--font-weight: var(--kicker-weight);
+  --kicker-sm--font-family: var(--kicker-font);
+  --kicker-sm--letter-spacing: var(--kicker-tracking);
+  --kicker-sm--text-transform: var(--kicker-transform);
+
+  --numeral: var(--text-sm);
+  --numeral--line-height: calc(var(--numeral) * 1.5 - 3px);
+  --numeral--font-weight: 450;
+  --numeral--font-family: var(--font-control);
+  --numeral--font-variant-numeric: tabular-nums;
+
+  --mono: var(--text-base);
+  --mono--line-height: calc(var(--mono) * 1.75 - 4.5px);
+  --mono--font-weight: 400;
+  --mono--font-family: var(--font-mono);
+  --mono--font-variant-numeric: tabular-nums;
+
+  --mono-sm: var(--text-sm);
+  --mono-sm--line-height: calc(var(--mono-sm) * 1.75 - 4.5px);
+  --mono-sm--font-weight: 400;
+  --mono-sm--font-family: var(--font-mono);
+  --mono-sm--font-variant-numeric: tabular-nums;
+
+  --code: calc(1em - 1px);
+  --code--line-height: inherit;
+  --code--font-weight: 400;
+  --code--font-family: var(--font-mono);
+  --code--font-variant-ligatures: none;
+  --code--font-variant-numeric: tabular-nums;
+
+  --kbd: calc(1em - 1px);
+  --kbd--line-height: var(--kbd);
+  --kbd--font-weight: 500;
+  --kbd--font-family: var(--font-mono);
+  --kbd--font-variant-numeric: tabular-nums;
+}

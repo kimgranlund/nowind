@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nowind Utilities</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="theme.css">
+<link rel="stylesheet" href="nowind.css">
+</head>
+<body>
+<main class="container py-2xl">
+  <span class="text-kicker text-fg-weak">nowind.css</span>
+  <h1 class="text-display-sm mb-sm">Utility classes</h1>
+  <p class="text-lead text-fg-weak max-w-text mb-xl">Prewind-style classes over the Nowind theme. Every element on this page is styled with classes only; nothing here has its own CSS.</p>
+
+  <section class="mb-2xl">
+    <h2 class="text-heading-md mb-xs">Responsive row</h2>
+    <p class="text-caption text-fg-weak mb-sm">Column below 768px, row above; the third box appears at 1024px.</p>
+    <div class="flex flex-col md:flex-row gap-sm">
+      <div id="box1" class="flex-1 p-md rounded-lg bg-component-weak border border-border-weak">flex flex-col</div>
+      <div class="flex-1 p-md rounded-lg bg-component-weak border border-border-weak">md:flex-row</div>
+      <div id="box3" class="flex-1 hidden lg:block p-md rounded-lg bg-component-weak border border-border-weak">hidden lg:block</div>
+    </div>
+  </section>
+
+  <section class="mb-2xl">
+    <h2 class="text-heading-md mb-sm">Hover</h2>
+    <div class="flex flex-wrap items-center gap-sm">
+      <button id="btn" class="h-control px-md rounded border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong text-on-solid-accent-1 text-title-sm cursor-pointer">Primary</button>
+      <button class="h-control px-md rounded border border-border bg-component-weak hover:bg-component text-fg text-title-sm cursor-pointer">Secondary</button>
+      <span class="p-xs rounded opacity-50 hover:opacity-100 bg-bg-strong">opacity-50 hover:opacity-100</span>
+      <a href="#" class="text-fg-accent-1-weak hover:text-fg-accent-1">hover:text-fg-accent-1</a>
+    </div>
+  </section>
+
+  <section class="mb-2xl">
+    <h2 class="text-heading-md mb-sm">Card</h2>
+    <article id="card" class="max-w-form p-lg rounded-lg bg-bg border border-border-weak shadow-lg">
+      <span class="text-kicker text-fg-accent-1-weak">Release</span>
+      <h3 class="text-title mt-3xs mb-2xs">Nowind 0.1</h3>
+      <p class="text-body-md text-fg-weak mb-md">Fluid type, semantic roles and a light/dark palette in one plain stylesheet.</p>
+      <div class="flex items-center justify-between gap-sm">
+        <span class="text-figure tabular-nums">926</span>
+        <span class="text-caption text-fg-weak">classes</span>
+      </div>
+    </article>
+  </section>
+
+  <section class="mb-2xl">
+    <h2 class="text-heading-md mb-sm">Type scale</h2>
+    <div class="flex flex-col gap-2xs">
+      <span class="text-xs">text-xs</span>
+      <span class="text-sm">text-sm</span>
+      <span class="text-base">text-base</span>
+      <span class="text-lg">text-lg</span>
+      <span class="text-xl">text-xl</span>
+      <span class="text-2xl">text-2xl</span>
+      <span class="text-3xl">text-3xl</span>
+      <span class="text-kicker-md text-fg-weak">text-kicker-md</span>
+      <code class="text-mono-sm bg-bg-strong px-2xs rounded-xs w-fit">text-mono-sm</code>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="text-heading-md mb-sm">Palette</h2>
+    <div class="flex flex-wrap gap-3xs">
+      <span class="w-full text-caption text-fg-weak">bg-accent-1-1 … 12</span>
+      <span class="p-sm rounded-xs bg-accent-1-1"></span><span class="p-sm rounded-xs bg-accent-1-2"></span><span class="p-sm rounded-xs bg-accent-1-3"></span><span class="p-sm rounded-xs bg-accent-1-4"></span><span class="p-sm rounded-xs bg-accent-1-5"></span><span class="p-sm rounded-xs bg-accent-1-6"></span><span class="p-sm rounded-xs bg-accent-1-7"></span><span class="p-sm rounded-xs bg-accent-1-8"></span><span class="p-sm rounded-xs bg-accent-1-9"></span><span class="p-sm rounded-xs bg-accent-1-10"></span><span class="p-sm rounded-xs bg-accent-1-11"></span><span class="p-sm rounded-xs bg-accent-1-12"></span>
+    </div>
+  </section>
+</main>
+</body>
+</html>

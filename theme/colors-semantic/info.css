@@ -1,0 +1,33 @@
+@import "../colors-raw/blue.css";
+
+:root {
+  --info-1: var(--colors-blue-1);
+  --info-2: var(--colors-blue-2);
+  --info-3: var(--colors-blue-3);
+  --info-4: var(--colors-blue-4);
+  --info-5: var(--colors-blue-5);
+  --info-6: var(--colors-blue-6);
+  --info-7: var(--colors-blue-7);
+  --info-8: var(--colors-blue-8);
+  --info-9: var(--colors-blue-9);
+  --info-10: var(--colors-blue-10);
+  --info-11: var(--colors-blue-11);
+  --info-12: var(--colors-blue-12);
+
+  --info-a1: var(--colors-blue-a1);
+  --info-a2: var(--colors-blue-a2);
+  --info-a3: var(--colors-blue-a3);
+  --info-a4: var(--colors-blue-a4);
+  --info-a5: var(--colors-blue-a5);
+  --info-a6: var(--colors-blue-a6);
+  --info-a7: var(--colors-blue-a7);
+  --info-a8: var(--colors-blue-a8);
+  --info-a9: var(--colors-blue-a9);
+  --info-a10: var(--colors-blue-a10);
+  --info-a11: var(--colors-blue-a11);
+  --info-a12: var(--colors-blue-a12);
+
+  --info-contrast-white: oklch(0.9397 0 202.2);
+  --info-contrast-black: oklch(0.1806 0 30.32);
+  --info-contrast: light-dark(var(--info-contrast-white), var(--info-contrast-black));
+}

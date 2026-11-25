@@ -1,0 +1,875 @@
+{
+  "colors": {
+    "orange": {
+      "light": {
+        "1": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.9032,
+              0.858
+            ],
+            "alpha": 1,
+            "hex": "#ffe6db"
+          }
+        },
+        "2": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.8558,
+              0.7927
+            ],
+            "alpha": 1,
+            "hex": "#ffdaca"
+          }
+        },
+        "3": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.7994,
+              0.7109
+            ],
+            "alpha": 1,
+            "hex": "#ffccb5"
+          }
+        },
+        "4": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.732,
+              0.6125
+            ],
+            "alpha": 1,
+            "hex": "#ffbb9c"
+          }
+        },
+        "5": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.6511,
+              0.4928
+            ],
+            "alpha": 1,
+            "hex": "#ffa67e"
+          }
+        },
+        "6": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9333,
+              0.5899,
+              0.4333
+            ],
+            "alpha": 1,
+            "hex": "#ee966e"
+          }
+        },
+        "7": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8549,
+              0.5238,
+              0.3718
+            ],
+            "alpha": 1,
+            "hex": "#da865f"
+          }
+        },
+        "8": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.765,
+              0.4498,
+              0.3037
+            ],
+            "alpha": 1,
+            "hex": "#c3734d"
+          }
+        },
+        "9": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9686,
+              0.4196,
+              0.0823
+            ],
+            "alpha": 1,
+            "hex": "#f76b15"
+          }
+        },
+        "10": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7534,
+              0.3078,
+              0
+            ],
+            "alpha": 1,
+            "hex": "#c04e00"
+          }
+        },
+        "11": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4972,
+              0.1925,
+              0
+            ],
+            "alpha": 1,
+            "hex": "#7f3100"
+          }
+        },
+        "12": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1449,
+              0.0329,
+              0
+            ],
+            "alpha": 1,
+            "hex": "#250800"
+          }
+        }
+      },
+      "dark": {
+        "1": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1966,
+              0.085,
+              0.0318
+            ],
+            "alpha": 1,
+            "hex": "#321608"
+          }
+        },
+        "2": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2493,
+              0.1143,
+              0.0489
+            ],
+            "alpha": 1,
+            "hex": "#401d0c"
+          }
+        },
+        "3": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3288,
+              0.1588,
+              0.0766
+            ],
+            "alpha": 1,
+            "hex": "#542814"
+          }
+        },
+        "4": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4166,
+              0.2077,
+              0.1067
+            ],
+            "alpha": 1,
+            "hex": "#6a351b"
+          }
+        },
+        "5": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5138,
+              0.2617,
+              0.1397
+            ],
+            "alpha": 1,
+            "hex": "#834324"
+          }
+        },
+        "6": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6089,
+              0.3256,
+              0.1906
+            ],
+            "alpha": 1,
+            "hex": "#9b5331"
+          }
+        },
+        "7": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7009,
+              0.3982,
+              0.2567
+            ],
+            "alpha": 1,
+            "hex": "#b36641"
+          }
+        },
+        "8": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7949,
+              0.4743,
+              0.3263
+            ],
+            "alpha": 1,
+            "hex": "#cb7953"
+          }
+        },
+        "9": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9686,
+              0.4196,
+              0.0823
+            ],
+            "alpha": 1,
+            "hex": "#f76b15"
+          }
+        },
+        "10": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.943,
+              0.4877,
+              0.2643
+            ],
+            "alpha": 1,
+            "hex": "#f07c43"
+          }
+        },
+        "11": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.7178,
+              0.5916
+            ],
+            "alpha": 1,
+            "hex": "#ffb797"
+          }
+        },
+        "12": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.8833,
+              0.8324
+            ],
+            "alpha": 1,
+            "hex": "#ffe1d4"
+          }
+        }
+      },
+      "alpha": {
+        "light": {
+          "a1": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                0.8974,
+                0.8408
+              ],
+              "alpha": 1,
+              "hex": "#ffe5d6"
+            }
+          },
+          "a2": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                0.8461,
+                0.7666
+              ],
+              "alpha": 1,
+              "hex": "#ffd8c3"
+            }
+          },
+          "a3": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                0.787,
+                0.6792
+              ],
+              "alpha": 1,
+              "hex": "#ffc9ad"
+            }
+          },
+          "a4": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                0.7206,
+                0.5844
+              ],
+              "alpha": 1,
+              "hex": "#ffb895"
+            }
+          },
+          "a5": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                0.6506,
+                0.4915
+              ],
+              "alpha": 1,
+              "hex": "#ffa67d"
+            }
+          },
+          "a6": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.9443,
+                0.2963,
+                0.0008
+              ],
+              "alpha": 0.53
+            }
+          },
+          "a7": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.8104,
+                0.2556,
+                0.001
+              ],
+              "alpha": 0.597
+            }
+          },
+          "a8": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.6884,
+                0.2187,
+                0.0011
+              ],
+              "alpha": 0.671
+            }
+          },
+          "a9": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.9733,
+                0.3706,
+                0.0004
+              ],
+              "alpha": 0.911
+            }
+          },
+          "a10": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.7751,
+                0.2845,
+                0
+              ],
+              "alpha": 1,
+              "hex": "#c64900"
+            }
+          },
+          "a11": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.5162,
+                0.1714,
+                0
+              ],
+              "alpha": 1,
+              "hex": "#842c00"
+            }
+          },
+          "a12": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.1532,
+                0.0249,
+                0
+              ],
+              "alpha": 1,
+              "hex": "#270600"
+            }
+          }
+        },
+        "dark": {
+          "a1": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.2273,
+                0.0734,
+                0.0001
+              ],
+              "alpha": 0.726
+            }
+          },
+          "a2": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.3474,
+                0.1134,
+                0.0002
+              ],
+              "alpha": 0.577
+            }
+          },
+          "a3": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.7444,
+                0.2428,
+                0.0003
+              ],
+              "alpha": 0.339
+            }
+          },
+          "a4": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.9983,
+                0.3856,
+                0.0894
+              ],
+              "alpha": 0.341
+            }
+          },
+          "a5": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.9985,
+                0.4394,
+                0.1691
+              ],
+              "alpha": 0.451
+            }
+          },
+          "a6": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.9997,
+                0.4918,
+                0.2498
+              ],
+              "alpha": 0.558
+            }
+          },
+          "a7": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.9999,
+                0.5424,
+                0.3286
+              ],
+              "alpha": 0.662
+            }
+          },
+          "a8": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.9991,
+                0.5821,
+                0.3896
+              ],
+              "alpha": 0.769
+            }
+          },
+          "a9": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.9996,
+                0.4306,
+                0.0811
+              ],
+              "alpha": 0.965
+            }
+          },
+          "a10": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.9998,
+                0.5132,
+                0.2744
+              ],
+              "alpha": 0.936
+            }
+          },
+          "a11": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                0.6922,
+                0.5295
+              ],
+              "alpha": 1,
+              "hex": "#ffb187"
+            }
+          },
+          "a12": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                1,
+                0.875,
+                0.8096
+              ],
+              "alpha": 1,
+              "hex": "#ffdfce"
+            }
+          }
+        }
+      },
+      "tonal": {
+        "100": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9871,
+              0.9065,
+              0.8753
+            ],
+            "alpha": 1,
+            "hex": "#fce7df"
+          }
+        },
+        "150": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9814,
+              0.8389,
+              0.779
+            ],
+            "alpha": 1,
+            "hex": "#fad6c7"
+          }
+        },
+        "200": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9689,
+              0.7723,
+              0.6863
+            ],
+            "alpha": 1,
+            "hex": "#f7c5af"
+          }
+        },
+        "250": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9494,
+              0.7074,
+              0.5983
+            ],
+            "alpha": 1,
+            "hex": "#f2b499"
+          }
+        },
+        "300": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9225,
+              0.6442,
+              0.5158
+            ],
+            "alpha": 1,
+            "hex": "#eba484"
+          }
+        },
+        "350": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8894,
+              0.5833,
+              0.4388
+            ],
+            "alpha": 1,
+            "hex": "#e39570"
+          }
+        },
+        "400": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.85,
+              0.5249,
+              0.3685
+            ],
+            "alpha": 1,
+            "hex": "#d9865e"
+          }
+        },
+        "450": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8047,
+              0.4694,
+              0.3048
+            ],
+            "alpha": 1,
+            "hex": "#cd784e"
+          }
+        },
+        "500": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7522,
+              0.4179,
+              0.2509
+            ],
+            "alpha": 1,
+            "hex": "#c06b40"
+          }
+        },
+        "550": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6862,
+              0.3749,
+              0.2186
+            ],
+            "alpha": 1,
+            "hex": "#af6038"
+          }
+        },
+        "600": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6159,
+              0.3356,
+              0.195
+            ],
+            "alpha": 1,
+            "hex": "#9d5632"
+          }
+        },
+        "650": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.544,
+              0.2989,
+              0.1765
+            ],
+            "alpha": 1,
+            "hex": "#8b4c2d"
+          }
+        },
+        "700": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4715,
+              0.2639,
+              0.1614
+            ],
+            "alpha": 1,
+            "hex": "#784329"
+          }
+        },
+        "750": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3985,
+              0.2308,
+              0.1492
+            ],
+            "alpha": 1,
+            "hex": "#663b26"
+          }
+        },
+        "800": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3257,
+              0.1988,
+              0.1384
+            ],
+            "alpha": 1,
+            "hex": "#533323"
+          }
+        },
+        "850": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2534,
+              0.168,
+              0.1285
+            ],
+            "alpha": 1,
+            "hex": "#412b21"
+          }
+        },
+        "900": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1811,
+              0.1376,
+              0.1186
+            ],
+            "alpha": 1,
+            "hex": "#2e231e"
+          }
+        },
+        "950": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1098,
+              0.1071,
+              0.1066
+            ],
+            "alpha": 1,
+            "hex": "#1c1b1b"
+          }
+        },
+        "050": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9906,
+              0.9739,
+              0.9707
+            ],
+            "alpha": 1,
+            "hex": "#fdf8f8"
+          }
+        }
+      }
+    }
+  }
+}

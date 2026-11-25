@@ -1,0 +1,33 @@
+@import "../colors-raw/amber.css";
+
+:root {
+  --warning-1: var(--colors-amber-1);
+  --warning-2: var(--colors-amber-2);
+  --warning-3: var(--colors-amber-3);
+  --warning-4: var(--colors-amber-4);
+  --warning-5: var(--colors-amber-5);
+  --warning-6: var(--colors-amber-6);
+  --warning-7: var(--colors-amber-7);
+  --warning-8: var(--colors-amber-8);
+  --warning-9: var(--colors-amber-9);
+  --warning-10: var(--colors-amber-10);
+  --warning-11: var(--colors-amber-11);
+  --warning-12: var(--colors-amber-12);
+
+  --warning-a1: var(--colors-amber-a1);
+  --warning-a2: var(--colors-amber-a2);
+  --warning-a3: var(--colors-amber-a3);
+  --warning-a4: var(--colors-amber-a4);
+  --warning-a5: var(--colors-amber-a5);
+  --warning-a6: var(--colors-amber-a6);
+  --warning-a7: var(--colors-amber-a7);
+  --warning-a8: var(--colors-amber-a8);
+  --warning-a9: var(--colors-amber-a9);
+  --warning-a10: var(--colors-amber-a10);
+  --warning-a11: var(--colors-amber-a11);
+  --warning-a12: var(--colors-amber-a12);
+
+  --warning-contrast-white: oklch(0.9397 0 202.2);
+  --warning-contrast-black: oklch(0.1806 0 30.32);
+  --warning-contrast: var(--warning-contrast-black);
+}

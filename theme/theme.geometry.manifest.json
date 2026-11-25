@@ -1,0 +1,256 @@
+{
+  "file": "theme.geometry.css",
+  "description": "Nowind geometry: every length derives from one input, --F (the scope's font size), after Affine UI. Set font-size on :root or any .scope to resize everything inside it.",
+  "source": "affine-ui tokens/control, tokens/levels, tokens/tiers, tokens/radius",
+  "scopes": {
+    "selector": ":root, .scope",
+    "rule": "Derived tokens are declared on :root and on every .scope, so a .scope with its own font-size recomputes them. --F is registered with @property as a <length>, so it resolves to px on each scope."
+  },
+  "inputs": [
+    {
+      "token": "--F",
+      "value": "1em",
+      "use": "The scope's font size. The only token in em."
+    },
+    {
+      "token": "--slot-slope",
+      "value": "2",
+      "use": "slot = slope × F + offset."
+    },
+    {
+      "token": "--slot-offset",
+      "value": "-8px",
+      "use": "See --slot-slope."
+    },
+    {
+      "token": "--border-width",
+      "value": "1px",
+      "use": "Control border; the inset is the margin minus this."
+    },
+    {
+      "token": "--mg",
+      "value": "1",
+      "use": "Margin multiplier."
+    },
+    {
+      "token": "--margin-offset",
+      "value": "-1px",
+      "use": "margin = mg × (slot − F + offset)."
+    },
+    {
+      "token": "--gutter-factor",
+      "value": "1",
+      "use": "× margin."
+    },
+    {
+      "token": "--row-gap-factor",
+      "value": "2",
+      "use": "× margin: gap between controls side by side."
+    },
+    {
+      "token": "--row-gap-floor",
+      "value": "4px",
+      "use": "Side-by-side controls never sit closer than this."
+    },
+    {
+      "token": "--field-gap-factor",
+      "value": "1",
+      "use": "× margin: label to control, control to help."
+    },
+    {
+      "token": "--group-gap-factor",
+      "value": "0.5",
+      "use": "× control height: between fields."
+    },
+    {
+      "token": "--surface-factor",
+      "value": "1",
+      "use": "× slot: card padding and the gap between groups in it."
+    },
+    {
+      "token": "--dialog-factor",
+      "value": "1",
+      "use": "× control height: dialog padding."
+    },
+    {
+      "token": "--region-factor",
+      "value": "1",
+      "use": "× slot: sidebar padding."
+    },
+    {
+      "token": "--page-factor",
+      "value": "1",
+      "use": "× control height: page margin and the gap between surfaces."
+    },
+    {
+      "token": "--tier",
+      "value": "1",
+      "use": "Multiplies section gap, page margin and display text. Product 1; Affine uses 1.5 for content and 2 for brand."
+    },
+    {
+      "token": "--radius-slope",
+      "value": "1",
+      "use": "radius = slope × F + offset."
+    },
+    {
+      "token": "--radius-offset",
+      "value": "-6px",
+      "use": "See --radius-slope."
+    },
+    {
+      "token": "--corner-factor",
+      "value": "1",
+      "use": "× margin added per level out."
+    },
+    {
+      "token": "--container-max",
+      "value": "1280px",
+      "use": "Widest the .container class gets."
+    },
+    {
+      "token": "--max-w-text",
+      "value": "68ch",
+      "use": "Reading measure for .max-w-text."
+    },
+    {
+      "token": "--max-w-form",
+      "value": "32rem",
+      "use": "Form width for .max-w-form."
+    }
+  ],
+  "control": [
+    {
+      "token": "--slot",
+      "formula": "2F − 8",
+      "at14": "20px",
+      "at16": "24px",
+      "use": "Line box of a control; body line height."
+    },
+    {
+      "token": "--margin",
+      "formula": "slot − F − 1, at least the border",
+      "at14": "5px",
+      "at16": "7px",
+      "use": "Outer edge to slot."
+    },
+    {
+      "token": "--inset",
+      "formula": "margin − border",
+      "at14": "4px",
+      "at16": "6px",
+      "use": "Padding inside the border."
+    },
+    {
+      "token": "--gutter",
+      "formula": "margin",
+      "at14": "5px",
+      "at16": "7px",
+      "use": "Between a control's parts."
+    },
+    {
+      "token": "--row-gap",
+      "formula": "2 × margin, at least 4px",
+      "at14": "10px",
+      "at16": "14px",
+      "use": "Between controls side by side."
+    },
+    {
+      "token": "--control-height",
+      "formula": "slot + 2 × margin",
+      "at14": "30px",
+      "at16": "38px",
+      "use": "Height of a button or input."
+    },
+    {
+      "token": "--text-edge",
+      "formula": "2 × margin",
+      "at14": "10px",
+      "at16": "14px",
+      "use": "Outer edge to text where no icon sits."
+    }
+  ],
+  "levels": [
+    {
+      "token": "--field-gap",
+      "formula": "margin",
+      "use": "Label to control, control to help."
+    },
+    {
+      "token": "--group-gap",
+      "formula": "0.5 × control height",
+      "use": "Between fields."
+    },
+    {
+      "token": "--surface-padding",
+      "formula": "tier-inner × slot",
+      "use": "Card padding."
+    },
+    {
+      "token": "--section-gap",
+      "formula": "tier × slot",
+      "use": "Above a heading that starts a section."
+    },
+    {
+      "token": "--dialog-padding",
+      "formula": "tier-inner × control height",
+      "use": "Dialog padding."
+    },
+    {
+      "token": "--region-padding",
+      "formula": "slot",
+      "use": "Sidebar padding."
+    },
+    {
+      "token": "--page-margin",
+      "formula": "tier × control height",
+      "use": "Content-area margin and the gap between surfaces."
+    }
+  ],
+  "helpers": [
+    "--tier-inner",
+    "--surface-base",
+    "--dialog-base"
+  ],
+  "notes": [
+    "The fluid --space-* scale lives in theme.space.css (generated by scripts/utopia.mjs)."
+  ],
+  "radius": [
+    {
+      "token": "--radius-control",
+      "formula": "F − 6, capped at a pill",
+      "use": "A control's corner; class rounded."
+    },
+    {
+      "token": "--radius-nested",
+      "formula": "control − margin",
+      "use": "One level in; class rounded-sm."
+    },
+    {
+      "token": "--radius-surface",
+      "formula": "control + margin",
+      "use": "A card; class rounded-lg."
+    },
+    {
+      "token": "--radius-dialog",
+      "formula": "control + 2 × margin",
+      "use": "A dialog; class rounded-xl."
+    }
+  ],
+  "container": [
+    {
+      "token": "--container-padding",
+      "formula": "page-margin",
+      "use": "Inline padding of .container."
+    }
+  ],
+  "breakpoints": {
+    "tokens": {
+      "--breakpoint-sm": "640px",
+      "--breakpoint-md": "768px",
+      "--breakpoint-lg": "1024px",
+      "--breakpoint-xl": "1280px",
+      "--breakpoint-2xl": "1536px"
+    },
+    "rule": "Tailwind v4 names and values. CSS can't read a custom property inside @media, so scripts/utilities.mjs reads these values when it writes the sm: … 2xl: variants."
+  }
+}

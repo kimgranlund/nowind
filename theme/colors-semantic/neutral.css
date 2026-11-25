@@ -1,0 +1,33 @@
+@import "../colors-raw/slate.css";
+
+:root {
+  --neutral-1: var(--colors-slate-1);
+  --neutral-2: var(--colors-slate-2);
+  --neutral-3: var(--colors-slate-3);
+  --neutral-4: var(--colors-slate-4);
+  --neutral-5: var(--colors-slate-5);
+  --neutral-6: var(--colors-slate-6);
+  --neutral-7: var(--colors-slate-7);
+  --neutral-8: var(--colors-slate-8);
+  --neutral-9: var(--colors-slate-9);
+  --neutral-10: var(--colors-slate-10);
+  --neutral-11: var(--colors-slate-11);
+  --neutral-12: var(--colors-slate-12);
+
+  --neutral-a1: var(--colors-slate-a1);
+  --neutral-a2: var(--colors-slate-a2);
+  --neutral-a3: var(--colors-slate-a3);
+  --neutral-a4: var(--colors-slate-a4);
+  --neutral-a5: var(--colors-slate-a5);
+  --neutral-a6: var(--colors-slate-a6);
+  --neutral-a7: var(--colors-slate-a7);
+  --neutral-a8: var(--colors-slate-a8);
+  --neutral-a9: var(--colors-slate-a9);
+  --neutral-a10: var(--colors-slate-a10);
+  --neutral-a11: var(--colors-slate-a11);
+  --neutral-a12: var(--colors-slate-a12);
+
+  --neutral-contrast-white: oklch(0.9397 0 202.2);
+  --neutral-contrast-black: oklch(0.1806 0 30.32);
+  --neutral-contrast: light-dark(var(--neutral-contrast-white), var(--neutral-contrast-black));
+}

@@ -1,0 +1,365 @@
+{
+  "file": "theme.type-roles.css",
+  "description": "Nowind semantic type roles, after massimo-v4 (packages/ui/src/fonts.ts typeRoles). Each role is a --{role} size that points at a t-shirt size, with Tailwind v4-style companions: --{role}--line-height, --font-weight, --font-family, --letter-spacing, and --font-variant-numeric / --text-transform / --font-style where the role needs them.",
+  "source": "massimo-v4 packages/ui/src/fonts.ts (archived; the live kit is maison-repo packages/ui-kit)",
+  "depends": [
+    "theme.typography.css (--text-*, --kicker-*, --font-*, --tracking-*)"
+  ],
+  "naming": {
+    "pattern": "--{role}, --{role}--{property}",
+    "rule": "Roles sit outside --text-* so they never clash with the t-shirt sizes or the --text-* colour tokens. Companion names follow Tailwind v4's --text-{name}--{property}."
+  },
+  "lineHeight": {
+    "formula": "size + k × (size/2 − 3px), written calc(size × (1 + k/2) − 3k px)",
+    "k": {
+      "0": "figures, keys: set solid",
+      "0.5": "display",
+      "1": "titles, headings, controls, labels",
+      "1.5": "prose, captions, mono",
+      "2": "running body text"
+    },
+    "source": "massimo line(k) = size + k·q, q = size/2 − 3"
+  },
+  "weights": {
+    "400": "body",
+    "450": "control labels (Inter variable)",
+    "500": "kbd",
+    "590": "titles (Inter variable)",
+    "700": "headings",
+    "800": "display"
+  },
+  "snapped": [
+    "subtitle: Massimo F + s/2 → --text-base",
+    "body-sm: Massimo F − s/2 → --text-sm",
+    "heading-sm, lead, quote, title, body-lg share --text-lg; weight and line height tell them apart",
+    "heading-xl and display share --text-3xl"
+  ],
+  "notDone": [
+    "Massimo's display tracking (16px − size)/25 is approximated by --tracking-tight (-0.01em).",
+    "Massimo's text-box trimming, text-wrap balance/pretty, hanging punctuation, opsz and the control face's cv01/ss03 alternates are not tokens; they belong in role classes.",
+    "Massimo's kicker is Inter 450, +0.08em with the case feature; Nowind keeps the Affine kicker (mono 500, 0.16em) through --kicker-*."
+  ],
+  "roles": [
+    {
+      "role": "--display-lg",
+      "size": "var(--text-6xl)",
+      "lineK": 0.5,
+      "weight": 800,
+      "family": "var(--font-heading)",
+      "letterSpacing": "var(--tracking-tight)",
+      "use": "A landing page's hero",
+      "massimo": "40/14·F → 100/14·F, fluid"
+    },
+    {
+      "role": "--display-md",
+      "size": "var(--text-5xl)",
+      "lineK": 0.5,
+      "weight": 800,
+      "family": "var(--font-heading)",
+      "letterSpacing": "var(--tracking-tight)",
+      "use": "A section's lead on a landing page",
+      "massimo": "32/14·F → 72/14·F, fluid"
+    },
+    {
+      "role": "--display-sm",
+      "size": "var(--text-4xl)",
+      "lineK": 0.5,
+      "weight": 800,
+      "family": "var(--font-heading)",
+      "letterSpacing": "var(--tracking-tight)",
+      "use": "An article's or content page's one big title",
+      "massimo": "2F → 52/14·F, fluid"
+    },
+    {
+      "role": "--display",
+      "size": "var(--text-3xl)",
+      "lineK": 0.5,
+      "weight": 800,
+      "family": "var(--font-heading)",
+      "letterSpacing": "var(--tracking-tight)",
+      "use": "A page's or dashboard's one big title",
+      "massimo": "F + 8s"
+    },
+    {
+      "role": "--heading-xl",
+      "size": "var(--text-3xl)",
+      "lineK": 1,
+      "weight": 700,
+      "family": "var(--font-heading)",
+      "letterSpacing": "var(--tracking-tight)",
+      "use": "An admin or app page's title",
+      "massimo": "24/14·F → 32/14·F, fluid"
+    },
+    {
+      "role": "--heading-lg",
+      "size": "var(--text-2xl)",
+      "lineK": 1,
+      "weight": 700,
+      "family": "var(--font-heading)",
+      "letterSpacing": "var(--tracking-tight)",
+      "use": "A page's title in product UI",
+      "massimo": "F + 4s → F + 5s"
+    },
+    {
+      "role": "--heading-md",
+      "size": "var(--text-xl)",
+      "lineK": 1,
+      "weight": 700,
+      "family": "var(--font-heading)",
+      "letterSpacing": "var(--tracking-tight)",
+      "use": "A section's heading",
+      "massimo": "F + 3s → F + 4s"
+    },
+    {
+      "role": "--heading-sm",
+      "size": "var(--text-lg)",
+      "lineK": 1,
+      "weight": 590,
+      "family": "var(--font-body)",
+      "letterSpacing": null,
+      "use": "A group's heading",
+      "massimo": "F + 2s"
+    },
+    {
+      "role": "--figure",
+      "size": "var(--text-2xl)",
+      "lineK": 0,
+      "weight": 590,
+      "family": "var(--font-heading)",
+      "letterSpacing": "var(--tracking-tight)",
+      "extras": {
+        "font-variant-numeric": "tabular-nums lining-nums"
+      },
+      "use": "A stat's value, a big readout",
+      "massimo": "F + 6s"
+    },
+    {
+      "role": "--lead",
+      "size": "var(--text-lg)",
+      "lineK": 1.5,
+      "weight": 400,
+      "family": "var(--font-body)",
+      "letterSpacing": null,
+      "use": "The paragraph under a page title",
+      "massimo": "F + 2s"
+    },
+    {
+      "role": "--quote",
+      "size": "var(--text-lg)",
+      "lineK": 1.5,
+      "weight": 400,
+      "family": "var(--font-body)",
+      "letterSpacing": null,
+      "extras": {
+        "font-style": "italic"
+      },
+      "use": "A pull quote, a testimonial",
+      "massimo": "F + 2s"
+    },
+    {
+      "role": "--title",
+      "size": "var(--text-lg)",
+      "lineK": 1,
+      "weight": 590,
+      "family": "var(--font-body)",
+      "letterSpacing": null,
+      "use": "A card's or panel's title",
+      "massimo": "F + s"
+    },
+    {
+      "role": "--subtitle",
+      "size": "var(--text-base)",
+      "lineK": 1,
+      "weight": 590,
+      "family": "var(--font-body)",
+      "letterSpacing": null,
+      "use": "A row's title inside a card",
+      "massimo": "F + s/2 (snapped to base)"
+    },
+    {
+      "role": "--body-lg",
+      "size": "var(--text-lg)",
+      "lineK": 1.5,
+      "weight": 400,
+      "family": "var(--font-body)",
+      "letterSpacing": null,
+      "use": "Reading-first pages, articles, help",
+      "massimo": "F + s"
+    },
+    {
+      "role": "--body-md",
+      "size": "var(--text-base)",
+      "lineK": 2,
+      "weight": 400,
+      "family": "var(--font-body)",
+      "letterSpacing": null,
+      "use": "Running text",
+      "massimo": "F"
+    },
+    {
+      "role": "--body-sm",
+      "size": "var(--text-sm)",
+      "lineK": 2,
+      "weight": 400,
+      "family": "var(--font-body)",
+      "letterSpacing": null,
+      "use": "Dense secondary prose",
+      "massimo": "F − s/2 (snapped to sm)"
+    },
+    {
+      "role": "--caption",
+      "size": "var(--text-sm)",
+      "lineK": 1.5,
+      "weight": 400,
+      "family": "var(--font-body)",
+      "letterSpacing": null,
+      "use": "Secondary text, metadata",
+      "massimo": "F − s"
+    },
+    {
+      "role": "--footnote",
+      "size": "var(--text-xs)",
+      "lineK": 1.5,
+      "weight": 400,
+      "family": "var(--font-body)",
+      "letterSpacing": null,
+      "use": "Legal lines, footnotes, fine print",
+      "massimo": "F − 2s, at least 10px"
+    },
+    {
+      "role": "--title-sm",
+      "size": "var(--text-base)",
+      "lineK": 1,
+      "weight": 450,
+      "family": "var(--font-control)",
+      "letterSpacing": null,
+      "use": "A control's label",
+      "massimo": "F"
+    },
+    {
+      "role": "--control-md",
+      "size": "var(--text-base)",
+      "lineK": 1.5,
+      "weight": 450,
+      "family": "var(--font-control)",
+      "letterSpacing": null,
+      "use": "A field's value, an item's text",
+      "massimo": "F"
+    },
+    {
+      "role": "--data",
+      "size": "var(--text-base)",
+      "lineK": 1,
+      "weight": 400,
+      "family": "var(--font-body)",
+      "letterSpacing": null,
+      "extras": {
+        "font-variant-numeric": "tabular-nums lining-nums"
+      },
+      "use": "Table cells, figures in rows",
+      "massimo": "F"
+    },
+    {
+      "role": "--label",
+      "size": "var(--text-sm)",
+      "lineK": 1,
+      "weight": 450,
+      "family": "var(--font-control)",
+      "letterSpacing": null,
+      "use": "A field's or a stat's name",
+      "massimo": "F − s"
+    },
+    {
+      "role": "--kicker",
+      "size": "var(--kicker-md)",
+      "lineK": 1,
+      "weight": "var(--kicker-weight)",
+      "family": "var(--kicker-font)",
+      "letterSpacing": "var(--kicker-tracking)",
+      "extras": {
+        "text-transform": "var(--kicker-transform)"
+      },
+      "use": "A category over a title, a group's name",
+      "massimo": "max(F/2 + 4, F − 4)"
+    },
+    {
+      "role": "--kicker-sm",
+      "size": "var(--kicker-sm) (from theme.typography.css)",
+      "lineK": 1,
+      "weight": "var(--kicker-weight)",
+      "family": "var(--kicker-font)",
+      "letterSpacing": "var(--kicker-tracking)",
+      "extras": {
+        "text-transform": "var(--kicker-transform)"
+      },
+      "use": "A navigation section's heading",
+      "massimo": "F/2 + 3"
+    },
+    {
+      "role": "--numeral",
+      "size": "var(--text-sm)",
+      "lineK": 1,
+      "weight": 450,
+      "family": "var(--font-control)",
+      "letterSpacing": null,
+      "extras": {
+        "font-variant-numeric": "tabular-nums"
+      },
+      "use": "An ordered step, a count",
+      "massimo": "F − s"
+    },
+    {
+      "role": "--mono",
+      "size": "var(--text-base)",
+      "lineK": 1.5,
+      "weight": 400,
+      "family": "var(--font-mono)",
+      "letterSpacing": null,
+      "extras": {
+        "font-variant-numeric": "tabular-nums"
+      },
+      "use": "IDs, paths, tokens, code blocks",
+      "massimo": "F"
+    },
+    {
+      "role": "--mono-sm",
+      "size": "var(--text-sm)",
+      "lineK": 1.5,
+      "weight": 400,
+      "family": "var(--font-mono)",
+      "letterSpacing": null,
+      "extras": {
+        "font-variant-numeric": "tabular-nums"
+      },
+      "use": "Figures that line up, timestamps",
+      "massimo": "F − s"
+    },
+    {
+      "role": "--code",
+      "size": "calc(1em - 1px)",
+      "lineK": "inherit",
+      "weight": 400,
+      "family": "var(--font-mono)",
+      "letterSpacing": null,
+      "extras": {
+        "font-variant-ligatures": "none",
+        "font-variant-numeric": "tabular-nums"
+      },
+      "use": "Inline code in running text",
+      "massimo": "host − 1px"
+    },
+    {
+      "role": "--kbd",
+      "size": "calc(1em - 1px)",
+      "lineK": 0,
+      "weight": 500,
+      "family": "var(--font-mono)",
+      "letterSpacing": null,
+      "extras": {
+        "font-variant-numeric": "tabular-nums"
+      },
+      "use": "A key on a keycap",
+      "massimo": "host − 1px"
+    }
+  ]
+}

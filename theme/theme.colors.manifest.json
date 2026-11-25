@@ -1,0 +1,333 @@
+{
+  "file": "theme.colors.css",
+  "files": {
+    "theme.colors.css": "Imported by ../theme.css. Imports colors-raw/globals.css and both palettes; defines companions (surface, indicator, track) and usage roles. Family-agnostic: never changes on rebrand.",
+    "colors-semantic/neutral.css": "Imports one color family; defines --neutral-1..12, --neutral-a1..a12 and the --neutral-contrast values.",
+    "colors-semantic/danger.css": "Imports red; defines --danger-1..12, --danger-a1..a12 and the --danger-contrast values.",
+    "colors-semantic/warning.css": "Imports amber; defines --warning-1..12, --warning-a1..a12 and the --warning-contrast values.",
+    "colors-semantic/success.css": "Imports green; defines --success-1..12, --success-a1..a12 and the --success-contrast values.",
+    "colors-semantic/info.css": "Imports blue; defines --info-1..12, --info-a1..a12 and the --info-contrast values.",
+    "colors-semantic/accent-1.css": "Imports indigo; defines --accent-1-1..12, --accent-1-a1..a12 and the --accent-1-contrast values.",
+    "colors-semantic/accent-2.css": "Imports violet; defines --accent-2-1..12, --accent-2-a1..a12 and the --accent-2-contrast values.",
+    "colors-semantic/accent-3.css": "Imports plum; defines --accent-3-1..12, --accent-3-a1..a12 and the --accent-3-contrast values.",
+    "colors-semantic/accent-4.css": "Imports crimson; defines --accent-4-1..12, --accent-4-a1..a12 and the --accent-4-contrast values."
+  },
+  "description": "Nowind theme: colors-semantic/ map color families from colors-raw/ to --accent-1-* and --neutral-*; theme.colors.css maps those to semantic tokens. Every value uses light-dark(), so light and dark mode come from color-scheme (colors-raw/globals.css).",
+  "palettes": {
+    "accent-1": {
+      "file": "colors-semantic/accent-1.css",
+      "family": "indigo",
+      "use": "Main brand accent: main actions, links, focus"
+    },
+    "accent-2": {
+      "file": "colors-semantic/accent-2.css",
+      "family": "violet",
+      "use": "Second brand accent"
+    },
+    "accent-3": {
+      "file": "colors-semantic/accent-3.css",
+      "family": "plum",
+      "use": "Third brand accent"
+    },
+    "accent-4": {
+      "file": "colors-semantic/accent-4.css",
+      "family": "crimson",
+      "use": "Fourth brand accent"
+    },
+    "neutral": {
+      "file": "colors-semantic/neutral.css",
+      "family": "slate"
+    },
+    "danger": {
+      "file": "colors-semantic/danger.css",
+      "family": "red",
+      "use": "Errors, destructive actions, failed states"
+    },
+    "warning": {
+      "file": "colors-semantic/warning.css",
+      "family": "amber",
+      "use": "Caution, pending risk, degraded states"
+    },
+    "success": {
+      "file": "colors-semantic/success.css",
+      "family": "green",
+      "use": "Completed, valid, healthy states"
+    },
+    "info": {
+      "file": "colors-semantic/info.css",
+      "family": "blue",
+      "use": "Neutral notices, tips, informational badges"
+    }
+  },
+  "rebrand": {
+    "steps": [
+      "In colors-semantic/<palette>.css, change the @import and every --colors-<family>-* reference to the new family.",
+      "Re-check <palette>-contrast-white and -black against families[].solidLabel in the radix-hct-colors manifest.json (not copied into colors-raw/).",
+      "To add a palette (danger, success), copy a palette file, rename the prefix, and import it in theme.colors.css."
+    ],
+    "handCopied": [
+      "--accent-1-contrast-white",
+      "--accent-1-contrast-black",
+      "--neutral-contrast-white",
+      "--neutral-contrast-black",
+      "--danger-contrast-white",
+      "--danger-contrast-black",
+      "--warning-contrast-white",
+      "--warning-contrast-black",
+      "--success-contrast-white",
+      "--success-contrast-black",
+      "--info-contrast-white",
+      "--info-contrast-black",
+      "--accent-2-contrast-white",
+      "--accent-2-contrast-black",
+      "--accent-3-contrast-white",
+      "--accent-3-contrast-black",
+      "--accent-4-contrast-white",
+      "--accent-4-contrast-black"
+    ],
+    "notes": "Indigo, violet, plum and crimson take light text on step 9 in both modes, so their -contrast is -contrast-white in light and dark. Slate, red, green and blue take light text in light mode and dark text in dark mode. Amber takes dark text in both."
+  },
+  "naming": {
+    "pattern": "--{group}[-accent-1|-accent-2|-accent-3|-accent-4|-danger|-warning|-success|-info][-weak|-strong]",
+    "rule": "The bare name is the middle of its group; -weak and -strong move one step within the group (less or more contrast against the page, in both modes). Without a palette name a token uses the neutral scale.",
+    "exceptions": [
+      {
+        "token": "--fg-subtle",
+        "note": "Borrows step 8 from the border group. Below body-text contrast: hints and disabled labels only."
+      },
+      {
+        "token": "--fg-strong",
+        "note": "Not a scale step: the inverse of --{neutral|accent-N}-contrast, darkest text in light mode and lightest in dark."
+      }
+    ]
+  },
+  "palette": [
+    {
+      "token": "--accent-1-{1..12}",
+      "maps": "--colors-sky-{1..12}",
+      "use": "Accent scale steps: accent-1 shown; accent-2, -3 and -4 follow the same pattern.",
+      "file": "colors-semantic/accent-1.css"
+    },
+    {
+      "token": "--accent-1-a{1..12}",
+      "maps": "--colors-sky-a{1..12}",
+      "use": "Transparent versions of steps 1–12; they match the solid steps over --neutral-1. For overlays and varied surfaces.",
+      "file": "colors-semantic/accent-1.css"
+    },
+    {
+      "token": "--neutral-{1..12}",
+      "maps": "--colors-slate-{1..12}",
+      "use": "Neutral scale steps.",
+      "file": "colors-semantic/neutral.css"
+    },
+    {
+      "token": "--neutral-a{1..12}",
+      "maps": "--colors-slate-a{1..12}",
+      "use": "Transparent neutral steps.",
+      "file": "colors-semantic/neutral.css"
+    }
+  ],
+  "companions": {
+    "source": "Radix Themes --{color}-contrast/surface/indicator/track",
+    "tokens": [
+      {
+        "token": "--accent-1-contrast",
+        "use": "Text and icons on --solid-accent-1. Light-mode and dark-mode values are -contrast-white and -contrast-black, hand-copied from the library's solved on-solid values.",
+        "file": "colors-semantic/accent-1.css"
+      },
+      {
+        "token": "--neutral-contrast",
+        "use": "Text and icons on --solid. Light-mode and dark-mode values are -contrast-white and -contrast-black, hand-copied from the library's solved on-solid values.",
+        "file": "colors-semantic/neutral.css"
+      },
+      {
+        "token": "--accent-1-surface",
+        "step": "a2",
+        "use": "Translucent fill for surface variants: cards, soft fields. Radix uses step 2 at 50%."
+      },
+      {
+        "token": "--neutral-surface",
+        "step": "a2",
+        "use": "Translucent neutral surface fill."
+      },
+      {
+        "token": "--accent-1-indicator",
+        "step": 9,
+        "use": "Checkbox, radio and switch fill."
+      },
+      {
+        "token": "--neutral-indicator",
+        "step": 9,
+        "use": "Neutral indicator fill."
+      },
+      {
+        "token": "--accent-1-track",
+        "step": 9,
+        "use": "Slider and progress fill."
+      },
+      {
+        "token": "--neutral-track",
+        "step": 9,
+        "use": "Neutral track fill."
+      }
+    ]
+  },
+  "roles": [
+    {
+      "group": "bg",
+      "steps": "1–2",
+      "tokens": [
+        {
+          "neutral": "--bg",
+          "accent": "--bg-accent-N",
+          "step": 1,
+          "use": "Page background."
+        },
+        {
+          "neutral": "--bg-strong",
+          "accent": "--bg-accent-N-strong",
+          "step": 2,
+          "use": "Subtle areas: sidebars, striped rows, code blocks."
+        }
+      ]
+    },
+    {
+      "group": "component",
+      "steps": "3–5",
+      "tokens": [
+        {
+          "neutral": "--component-weak",
+          "accent": "--component-accent-N-weak",
+          "step": 3,
+          "use": "Interactive fill at rest."
+        },
+        {
+          "neutral": "--component",
+          "accent": "--component-accent-N",
+          "step": 4,
+          "use": "Hover."
+        },
+        {
+          "neutral": "--component-strong",
+          "accent": "--component-accent-N-strong",
+          "step": 5,
+          "use": "Pressed or selected."
+        }
+      ]
+    },
+    {
+      "group": "border",
+      "steps": "6–8",
+      "tokens": [
+        {
+          "neutral": "--border-weak",
+          "accent": "--border-accent-N-weak",
+          "step": 6,
+          "use": "Separators and card outlines."
+        },
+        {
+          "neutral": "--border",
+          "accent": "--border-accent-N",
+          "step": 7,
+          "use": "Control borders and the focus ring."
+        },
+        {
+          "neutral": "--border-strong",
+          "accent": "--border-accent-N-strong",
+          "step": 8,
+          "use": "Control border on hover."
+        }
+      ]
+    },
+    {
+      "group": "solid",
+      "steps": "9–10",
+      "tokens": [
+        {
+          "neutral": "--solid",
+          "accent": "--solid-accent-N",
+          "step": 9,
+          "use": "Buttons, badges, indicators."
+        },
+        {
+          "neutral": "--solid-strong",
+          "accent": "--solid-accent-N-strong",
+          "step": 10,
+          "use": "Hover."
+        },
+        {
+          "neutral": "--on-solid",
+          "accent": "--on-solid-accent-N",
+          "maps": "--{neutral|accent-N}-contrast",
+          "use": "Text and icons on a solid."
+        }
+      ]
+    },
+    {
+      "group": "fg",
+      "steps": "11–12",
+      "tokens": [
+        {
+          "neutral": "--fg-subtle",
+          "accent": "--fg-accent-N-subtle",
+          "step": 8,
+          "use": "Hints, disabled labels. Below body-text contrast."
+        },
+        {
+          "neutral": "--fg-weak",
+          "accent": "--fg-accent-N-weak",
+          "step": 11,
+          "use": "Secondary text, captions, links."
+        },
+        {
+          "neutral": "--fg",
+          "accent": "--fg-accent-N",
+          "step": 12,
+          "use": "Body text and headings."
+        },
+        {
+          "neutral": "--fg-strong",
+          "accent": "--fg-accent-N-strong",
+          "maps": "light-dark(var(--{neutral|accent-N}-contrast-black), var(--{neutral|accent-N}-contrast-white))",
+          "use": "Maximum contrast against the page."
+        }
+      ]
+    }
+  ],
+  "shadows": {
+    "tokens": [
+      "--shadow-xs",
+      "--shadow-sm",
+      "--shadow-lg"
+    ],
+    "colors": [
+      "--shadow-color",
+      "--shadow-color-weak"
+    ],
+    "rule": "A cool dark tint in light mode, plain black at higher alpha in dark mode, where a light shadow would read as a glow.",
+    "naming": "Tailwind v4 names: xs (was sm in v3), sm (was the bare shadow), lg."
+  },
+  "statuses": {
+    "palettes": [
+      "danger",
+      "warning",
+      "success",
+      "info"
+    ],
+    "rule": "Each status has the full accent role set with the status name in place of 'accent-N': --bg-danger, --component-danger-weak, --border-danger, --solid-danger, --on-solid-danger, --fg-danger-weak, plus --danger-surface, --danger-indicator and --danger-track.",
+    "info": "Info uses blue rather than the library's cyan.",
+    "warning": "Amber takes dark text on its solid in both modes, so --warning-contrast is --warning-contrast-black in light and dark.",
+    "pattern": "--{group}-{status}[-weak|-strong]"
+  },
+  "accents": {
+    "palettes": [
+      "accent-1",
+      "accent-2",
+      "accent-3",
+      "accent-4"
+    ],
+    "rule": "Four brand accents replace the old primary. accent-1 is the main one: the reset uses it for links, the focus ring, accent-color, caret and ::selection. Each accent has the full role set: --bg-accent-N, --component-accent-N-weak, --border-accent-N, --solid-accent-N, --on-solid-accent-N, --fg-accent-N-weak, --accent-N-surface …",
+    "steps": "Palette steps read --accent-N-{1..12} and --accent-N-a{1..12}.",
+    "neutral": "Neutral stays slate, the library's pairing for indigo (accent-1)."
+  }
+}

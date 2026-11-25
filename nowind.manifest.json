@@ -1,0 +1,59 @@
+{
+  "file": "nowind.css",
+  "generated": "scripts/utilities.mjs",
+  "description": "Prewind-style utility classes over the Nowind theme. One plain stylesheet, no build step for consumers: every class already exists. Regenerate after changing theme tokens.",
+  "setup": {
+    "order": "@layer reset, styles, nowind; (declared at the top of nowind.css)",
+    "link": [
+      "theme.css",
+      "nowind.css"
+    ],
+    "rule": "Put your own global CSS in @layer styles. Unlayered CSS beats every utility."
+  },
+  "counts": {
+    "classes": 1543,
+    "hover": 293,
+    "responsive": 205,
+    "bytes": 127271
+  },
+  "naming": "property-value, as Prewind and Tailwind: p-md, gap-lg, text-fg-weak, bg-solid-accent-1. Colour classes take the token name without --.",
+  "variants": {
+    "hover": "Inside @media (hover: hover), as Tailwind v4, so taps on touch screens don't stick. hover:text-* and hover:bg-* for the colour role tokens only (bg, component, border, solid, on-solid, fg and their palette versions), hover:opacity-*, hover:cursor-*. Raw palette steps and alpha steps have no hover class.",
+    "breakpoints": {
+      "sm": "640px",
+      "md": "768px",
+      "lg": "1024px",
+      "xl": "1280px",
+      "2xl": "1536px"
+    },
+    "responsive": "sm:, md:, lg:, xl:, 2xl: (read from the --breakpoint-* tokens) apply to display, flex direction, wrap, justify, align and text alignment only, as Prewind.",
+    "none": "No focus:, active:, group- or dark: variants. Dark mode comes from the theme's light-dark() tokens."
+  },
+  "categories": {
+    "spacing": "p-, px-, py-, pt-, pr-, pb-, pl-, m-*, -m-*, m*-auto, gap-, gap-x-, gap-y- with 0 and 3xs, 2xs, xs, sm, md, lg, xl, 2xl, 3xl, 4xl",
+    "typeScale": "text-{xs, sm, base, lg, xl, 2xl, 3xl, 4xl, 5xl, 6xl} (sets size and line height)",
+    "kicker": "text-{kicker-sm, kicker-md, kicker-lg} (size and the kicker style)",
+    "typeRoles": "text-{display-lg, display-md, display-sm, display, heading-xl, heading-lg, heading-md, heading-sm, figure, lead, quote, title, subtitle, body-lg, body-md, body-sm, caption, footnote, title-sm, control-md, data, label, kicker, numeral, mono, mono-sm, code, kbd} (every role companion)",
+    "colors": "bg- with all 387 colour tokens; text- and border- with the 279 solid ones (no alpha steps). No outline colour classes: the reset sets the focus ring.",
+    "weights": "font-normal, font-medium, font-semibold, font-bold",
+    "faces": "font-body (alias font-sans), font-heading, font-mono, font-control",
+    "leading": "leading-none, tight, snug, normal, relaxed",
+    "tracking": "tracking-tight, normal, wide, widest",
+    "radius": "rounded-none, rounded-xs (nested), rounded-sm and rounded (control), rounded-lg (surface), rounded-xl (dialog), rounded-full. Tailwind v4 names.",
+    "shadows": "shadow-xs, shadow-sm (and bare shadow), shadow-lg, shadow-none. Tailwind v4 names.",
+    "borders": "border, border-0, -2, -4, with sides t r b l x y; border-solid/dashed/dotted/none",
+    "layout": "container, display, flex, position, inset, z-",
+    "sizing": "w-, h-, min-/max- with 0, full, screen (100vw/100vh), fit; h-dvh, h-svh, h-lvh and min-/max- versions; max-w-text (alias max-w-prose), max-w-form, max-w-container, h-control"
+  },
+  "changesFromPrewind": [
+    "container: width min(100%, --container-max), so it never overflows a narrow screen (Prewind's 360px minimum did).",
+    "No bg-opacity-*: it relied on relative colour syntax with no fallback and was inherited by children. Use the alpha steps (bg-accent-1-a3, bg-neutral-a5) instead.",
+    "No m-full / p-full: margin and padding percentages are of the width, not a full size.",
+    "Margins and padding x/y use logical properties (margin-inline, padding-block).",
+    "text-{size} also sets the matching line height, as Tailwind v4.",
+    "The reset keeps link underlines and adds a 2026 baseline: :where() selectors (no specificity), interpolate-size, text-size-adjust, font-synthesis none, headings set from the type roles (h1 heading-xl … h6 title-sm), text-wrap balance/pretty, field-sizing content, accent and caret colours, :focus-visible ring, :target scroll margin, [hidden] enforced, role=list, tabular table figures, ::backdrop and ::selection from tokens, and reduced-motion handling.",
+    "No outline-{colour} classes, and no text-/border- classes for alpha steps, to keep the file small.",
+    "Tailwind v4 names where v4 renamed v3 ones: rounded-xs/sm, shadow-xs/sm, backdrop-blur-xs/sm; h-screen is 100vh with h-dvh/svh/lvh separate; a 2xl breakpoint; aliases max-w-prose and font-sans.",
+    "Added: grid display, text-start/end, justify-evenly, items-baseline, tabular-nums, text-balance/pretty, w-fit, h-control, kicker and type-role classes."
+  ]
+}

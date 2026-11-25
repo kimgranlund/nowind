@@ -1,0 +1,33 @@
+@import "../colors-raw/plum.css";
+
+:root {
+  --accent-3-1: var(--colors-plum-1);
+  --accent-3-2: var(--colors-plum-2);
+  --accent-3-3: var(--colors-plum-3);
+  --accent-3-4: var(--colors-plum-4);
+  --accent-3-5: var(--colors-plum-5);
+  --accent-3-6: var(--colors-plum-6);
+  --accent-3-7: var(--colors-plum-7);
+  --accent-3-8: var(--colors-plum-8);
+  --accent-3-9: var(--colors-plum-9);
+  --accent-3-10: var(--colors-plum-10);
+  --accent-3-11: var(--colors-plum-11);
+  --accent-3-12: var(--colors-plum-12);
+
+  --accent-3-a1: var(--colors-plum-a1);
+  --accent-3-a2: var(--colors-plum-a2);
+  --accent-3-a3: var(--colors-plum-a3);
+  --accent-3-a4: var(--colors-plum-a4);
+  --accent-3-a5: var(--colors-plum-a5);
+  --accent-3-a6: var(--colors-plum-a6);
+  --accent-3-a7: var(--colors-plum-a7);
+  --accent-3-a8: var(--colors-plum-a8);
+  --accent-3-a9: var(--colors-plum-a9);
+  --accent-3-a10: var(--colors-plum-a10);
+  --accent-3-a11: var(--colors-plum-a11);
+  --accent-3-a12: var(--colors-plum-a12);
+
+  --accent-3-contrast-white: oklch(0.9397 0 202.2);
+  --accent-3-contrast-black: oklch(0.1806 0 30.32);
+  --accent-3-contrast: var(--accent-3-contrast-white);
+}

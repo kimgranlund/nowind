@@ -1,0 +1,33 @@
+@import "../colors-raw/green.css";
+
+:root {
+  --success-1: var(--colors-green-1);
+  --success-2: var(--colors-green-2);
+  --success-3: var(--colors-green-3);
+  --success-4: var(--colors-green-4);
+  --success-5: var(--colors-green-5);
+  --success-6: var(--colors-green-6);
+  --success-7: var(--colors-green-7);
+  --success-8: var(--colors-green-8);
+  --success-9: var(--colors-green-9);
+  --success-10: var(--colors-green-10);
+  --success-11: var(--colors-green-11);
+  --success-12: var(--colors-green-12);
+
+  --success-a1: var(--colors-green-a1);
+  --success-a2: var(--colors-green-a2);
+  --success-a3: var(--colors-green-a3);
+  --success-a4: var(--colors-green-a4);
+  --success-a5: var(--colors-green-a5);
+  --success-a6: var(--colors-green-a6);
+  --success-a7: var(--colors-green-a7);
+  --success-a8: var(--colors-green-a8);
+  --success-a9: var(--colors-green-a9);
+  --success-a10: var(--colors-green-a10);
+  --success-a11: var(--colors-green-a11);
+  --success-a12: var(--colors-green-a12);
+
+  --success-contrast-white: oklch(0.9397 0 202.2);
+  --success-contrast-black: oklch(0.1806 0 30.32);
+  --success-contrast: light-dark(var(--success-contrast-white), var(--success-contrast-black));
+}

@@ -1,0 +1,33 @@
+@import "../colors-raw/red.css";
+
+:root {
+  --danger-1: var(--colors-red-1);
+  --danger-2: var(--colors-red-2);
+  --danger-3: var(--colors-red-3);
+  --danger-4: var(--colors-red-4);
+  --danger-5: var(--colors-red-5);
+  --danger-6: var(--colors-red-6);
+  --danger-7: var(--colors-red-7);
+  --danger-8: var(--colors-red-8);
+  --danger-9: var(--colors-red-9);
+  --danger-10: var(--colors-red-10);
+  --danger-11: var(--colors-red-11);
+  --danger-12: var(--colors-red-12);
+
+  --danger-a1: var(--colors-red-a1);
+  --danger-a2: var(--colors-red-a2);
+  --danger-a3: var(--colors-red-a3);
+  --danger-a4: var(--colors-red-a4);
+  --danger-a5: var(--colors-red-a5);
+  --danger-a6: var(--colors-red-a6);
+  --danger-a7: var(--colors-red-a7);
+  --danger-a8: var(--colors-red-a8);
+  --danger-a9: var(--colors-red-a9);
+  --danger-a10: var(--colors-red-a10);
+  --danger-a11: var(--colors-red-a11);
+  --danger-a12: var(--colors-red-a12);
+
+  --danger-contrast-white: oklch(0.9397 0 202.2);
+  --danger-contrast-black: oklch(0.1806 0 30.32);
+  --danger-contrast: light-dark(var(--danger-contrast-white), var(--danger-contrast-black));
+}

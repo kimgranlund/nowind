@@ -1,0 +1,13 @@
+/* Globals: which scheme light-dark() resolves to. No colors here.
+   Default follows the OS; .light / .dark (or data-color-mode) force a scheme on any subtree. */
+:root {
+  color-scheme: light dark;
+}
+.light,
+[data-color-mode="light"] {
+  color-scheme: light;
+}
+.dark,
+[data-color-mode="dark"] {
+  color-scheme: dark;
+}

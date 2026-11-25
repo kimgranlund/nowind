@@ -1,0 +1,90 @@
+{
+  "file": "theme.space.css",
+  "generated": "scripts/utopia.mjs",
+  "description": "Nowind space: a fluid Utopia space scale with Prewind names. Each step is a multiple of the base text size at each end of the viewport range.",
+  "method": "Utopia: space(step) = base × multiplier at minVw and at maxVw, interpolated linearly in vw.",
+  "regenerate": "node scripts/utopia.mjs --min-vw 360 --max-vw 1240 --min-base 14 --max-base 18 --min-ratio 1.2 --max-ratio 1.25",
+  "config": {
+    "minVw": 360,
+    "maxVw": 1240,
+    "unit": "px",
+    "rem": 16,
+    "minBase": 14,
+    "maxBase": 18
+  },
+  "sizes": [
+    {
+      "token": "--space-3xs",
+      "multiplier": 0.25,
+      "minPx": 3.5,
+      "maxPx": 4.5,
+      "value": "clamp(0.2188rem, 0.1932rem + 0.1136vw, 0.2813rem)"
+    },
+    {
+      "token": "--space-2xs",
+      "multiplier": 0.5,
+      "minPx": 7,
+      "maxPx": 9,
+      "value": "clamp(0.4375rem, 0.3864rem + 0.2273vw, 0.5625rem)"
+    },
+    {
+      "token": "--space-xs",
+      "multiplier": 0.75,
+      "minPx": 10.5,
+      "maxPx": 13.5,
+      "value": "clamp(0.6563rem, 0.5795rem + 0.3409vw, 0.8438rem)"
+    },
+    {
+      "token": "--space-sm",
+      "multiplier": 1,
+      "minPx": 14,
+      "maxPx": 18,
+      "value": "clamp(0.875rem, 0.7727rem + 0.4545vw, 1.125rem)"
+    },
+    {
+      "token": "--space-md",
+      "multiplier": 1.5,
+      "minPx": 21,
+      "maxPx": 27,
+      "value": "clamp(1.3125rem, 1.1591rem + 0.6818vw, 1.6875rem)"
+    },
+    {
+      "token": "--space-lg",
+      "multiplier": 2,
+      "minPx": 28,
+      "maxPx": 36,
+      "value": "clamp(1.75rem, 1.5455rem + 0.9091vw, 2.25rem)"
+    },
+    {
+      "token": "--space-xl",
+      "multiplier": 3,
+      "minPx": 42,
+      "maxPx": 54,
+      "value": "clamp(2.625rem, 2.3182rem + 1.3636vw, 3.375rem)"
+    },
+    {
+      "token": "--space-2xl",
+      "multiplier": 4,
+      "minPx": 56,
+      "maxPx": 72,
+      "value": "clamp(3.5rem, 3.0909rem + 1.8182vw, 4.5rem)"
+    },
+    {
+      "token": "--space-3xl",
+      "multiplier": 6,
+      "minPx": 84,
+      "maxPx": 108,
+      "value": "clamp(5.25rem, 4.6364rem + 2.7273vw, 6.75rem)"
+    },
+    {
+      "token": "--space-4xl",
+      "multiplier": 8,
+      "minPx": 112,
+      "maxPx": 144,
+      "value": "clamp(7rem, 6.1818rem + 3.6364vw, 9rem)"
+    }
+  ],
+  "notes": [
+    "For utility classes and page layout. Inside components use the --F geometry in theme.geometry.css, which follows the scope's font size."
+  ]
+}
