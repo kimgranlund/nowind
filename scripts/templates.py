@@ -1051,6 +1051,8 @@ def type_audit():
                 if n: self.cur = n.parent
         P().feed(html_)
         for n in nodes:
+            if "scope" in n.toks or any("scope" in a.toks for a in n.ancestors()):
+                continue  # a scope sets its own base size: sizes inside it are relative to that base
             k = kind(n)
             label = f"<{n.tag} class=\"{' '.join(n.toks)[:70]}\">"
             if k and n.eff() not in WANT[k]:

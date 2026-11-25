@@ -234,7 +234,8 @@ document.querySelectorAll("[data-glass-slider]").forEach((box) => {
     const texty = (el) => !el.matches(".icon") && el.textContent.trim() && (ownText(el) || el.children.length === 1 && ownText(el.children[0]));
     const scope = [...document.querySelectorAll("main section[id]")].filter((s) => !s.matches("[data-semantic-demo]"));
     const frames = [...document.querySelectorAll("[data-example]")];
-    const inScope = frames.length ? (el) => !!el.closest("[data-example]") : (el) => scope.some((s) => s.contains(el)) && !el.closest("[data-semantic-demo]");
+    const inScope0 = frames.length ? (el) => !!el.closest("[data-example]") : (el) => scope.some((s) => s.contains(el)) && !el.closest("[data-semantic-demo]");
+    const inScope = (el) => inScope0(el) && !el.closest(".scope");
     // 1. Rows
     for (const row of document.querySelectorAll("main *")) {
       if (!inScope(row)) continue;

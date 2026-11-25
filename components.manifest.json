@@ -18,7 +18,8 @@
         "Two primary buttons side by side; make the second secondary."
       ],
       "examples": [
-        "example"
+        "example",
+        "sizes"
       ],
       "classes": [
         "bg-accent-1-9",
@@ -30,11 +31,15 @@
         "cursor-pointer",
         "fg-accent-1-contrast",
         "fg-danger-contrast",
+        "fg-neutral-11",
         "fg-neutral-12",
         "flex",
+        "flex-col",
         "flex-wrap",
         "font-medium",
+        "gap-2xs",
         "gap-gutter",
+        "gap-md",
         "gap-sm",
         "h-control",
         "icon",
@@ -43,8 +48,11 @@
         "justify-center",
         "px-control",
         "rounded-sm",
+        "scope",
         "state",
-        "text-base"
+        "text-base",
+        "text-lg",
+        "text-sm"
       ]
     },
     {
@@ -62,7 +70,8 @@
       ],
       "examples": [
         "example",
-        "toolbar"
+        "toolbar",
+        "sizes"
       ],
       "classes": [
         "aspect-square",
@@ -80,9 +89,13 @@
         "fg-neutral-11",
         "fg-neutral-12",
         "flex",
+        "flex-col",
+        "flex-wrap",
         "font-medium",
+        "gap-2xs",
         "gap-gutter",
         "gap-gutter-half",
+        "gap-md",
         "gap-sm",
         "h-control",
         "h-full",
@@ -97,9 +110,12 @@
         "rounded-full",
         "rounded-inner",
         "rounded-sm",
+        "scope",
         "size-control",
         "state",
-        "text-base"
+        "text-base",
+        "text-lg",
+        "text-sm"
       ]
     },
     {
@@ -118,7 +134,8 @@
       ],
       "examples": [
         "example",
-        "icons"
+        "icons",
+        "sizes"
       ],
       "classes": [
         "aspect-square",
@@ -129,7 +146,13 @@
         "border-transparent",
         "cursor-pointer",
         "fg-neutral-11",
+        "flex",
+        "flex-col",
+        "flex-wrap",
         "font-medium",
+        "gap-2xs",
+        "gap-md",
+        "gap-sm",
         "h-control",
         "h-full",
         "hover:bg-neutral-4",
@@ -143,7 +166,10 @@
         "px-nested",
         "rounded-inner",
         "rounded-sm",
-        "text-base"
+        "scope",
+        "text-base",
+        "text-lg",
+        "text-sm"
       ]
     },
     {
@@ -339,7 +365,8 @@
         "example",
         "slots",
         "types",
-        "states"
+        "states",
+        "sizes"
       ],
       "classes": [
         "bg-neutral-1",
@@ -359,12 +386,14 @@
         "fg-neutral-8",
         "flex",
         "flex-col",
+        "flex-wrap",
         "focus-within:border-accent-1-8",
         "font-medium",
         "font-mono",
         "gap-2xs",
         "gap-gutter",
         "gap-md",
+        "gap-sm",
         "grid",
         "grid-cols-1",
         "grow",
@@ -388,14 +417,17 @@
         "px-nested",
         "rounded-sm",
         "rounded-xs",
+        "scope",
         "select-base",
         "self-stretch",
         "size-nested",
         "state",
         "tabular-nums",
         "text-base",
+        "text-lg",
         "text-sm",
         "transition",
+        "w-full",
         "whitespace-nowrap"
       ]
     },

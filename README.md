@@ -129,6 +129,18 @@ One unit runs the radius scale: each step is one margin from the next (`rounded-
 </div>
 ```
 
+### Sizes
+
+A smaller or larger component is a region with a smaller or larger base: wrap it in `scope text-sm` or `scope text-lg` and every length inside recomputes from that size. Inside a scope, leave `text-base` off so the component's text follows too.
+
+```html
+<div class="scope text-sm">
+  <button class="inline-flex items-center h-control px-control gap-gutter rounded-sm border bg-neutral-3 font-medium">
+    <i class="icon ph ph-download-simple"></i><span>Export</span>
+  </button>
+</div>
+```
+
 ### Tiers
 
 A tier re-runs the whole system for a region at a different rhythm, as product, editorial and marketing surfaces need:

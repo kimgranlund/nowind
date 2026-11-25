@@ -624,3 +624,45 @@ COMPONENTS = [
         "avoid": ["Text over the image without a scrim."],
     },
 ]
+
+
+# Sizes: a component's size comes from the base size it is drawn at. Wrapping it in `scope text-sm` or `scope text-lg`
+# makes that region's base the small or large text step, so height, padding, gaps, icons and corners all recompute; the
+# component's own text inherits the scope's size instead of pinning text-base.
+def _scaled(html):
+    return html.replace(" text-base", "")
+
+
+def _sizes(html, wrap="flex flex-wrap items-center gap-sm"):
+    rows = [("Small", "scope text-sm"), ("Default", ""), ("Large", "scope text-lg")]
+    out = []
+    for label, scope in rows:
+        body = _scaled(html) if scope else html
+        out.append(f"""  <div class="flex flex-col gap-2xs">
+    <span class="text-sm fg-neutral-11">{label}{f' · <code>{scope}</code>' if scope else ''}</span>
+    <div class="{(scope + ' ' if scope else '') + wrap}">
+{chr(10).join('      ' + l for l in body.splitlines())}
+    </div>
+  </div>""")
+    return '<div class="flex flex-col gap-md">\n' + "\n".join(out) + "\n</div>"
+
+
+_SIZE_FIELD = f"""<div class="{BOX} w-full max-w-form">
+  <i class="icon ph ph-magnifying-glass fg-neutral-11" aria-hidden="true"></i>
+  <input type="search" class="{BARE}" placeholder="Search projects" aria-label="Search projects">
+  <kbd class="{KBD}">/</kbd>
+</div>"""
+
+_SIZE_DEMOS = {
+    "button": lambda c: '\n'.join(l for l in c["html"].splitlines()[1:-1]),
+    "icon-button": lambda c: '\n'.join(l for l in c["html"].splitlines()[1:-1]),
+    "segmented": lambda c: c["html"],
+    "text-field": lambda c: _SIZE_FIELD,
+}
+for _c in COMPONENTS:
+    if _c["slug"] in _SIZE_DEMOS:
+        _c.setdefault("examples", []).append({
+            "id": "sizes", "label": "Sizes",
+            "summary": "Every length here comes from the base size, so a smaller or larger component is a region with a smaller or larger base: <code>scope text-sm</code> or <code>scope text-lg</code> around it. Height, padding, gaps, icons and corners all recompute and still nest; inside the scope the component's text inherits the scope's size. The default needs no wrapper.",
+            "html": _sizes(_SIZE_DEMOS[_c["slug"]](_c)),
+        })
