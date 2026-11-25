@@ -236,7 +236,7 @@ Icons use [Phosphor](https://phosphoricons.com)'s web font; link the weights you
 node scripts/utopia.mjs --min-vw 360 --max-vw 1240 --min-base 14 --max-base 18 --min-ratio 1.2 --max-ratio 1.25
 ```
 
-**Geometry.** The slopes and offsets in `theme/theme.geometry.css` set the control height, margin and radius curves; the defaults are Affine's.
+**Geometry.** The slopes and offsets in `theme/theme.geometry.css` set the control height, margin and radius curves. The defaults are Affine's, with corners 2px softer (`--radius-offset: -4px`); raise or lower that one token to change every corner at once, and nesting stays exact.
 
 **Shadows, motion and materials** are generated from a few constants in `scripts/shadows.mjs`, `scripts/motion.mjs` and `scripts/materials.mjs`.
 

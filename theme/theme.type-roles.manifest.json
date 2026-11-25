@@ -432,10 +432,10 @@
       {
         "kind": "keycap",
         "identify": "kbd",
-        "size": "text-xs font-mono",
+        "size": "text-sm font-mono",
         "icon": "none",
         "status": "decided",
-        "current": "9 text-xs"
+        "current": "text-sm"
       },
       {
         "kind": "kicker",

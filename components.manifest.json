@@ -395,7 +395,6 @@
         "tabular-nums",
         "text-base",
         "text-sm",
-        "text-xs",
         "transition",
         "whitespace-nowrap"
       ]

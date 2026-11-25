@@ -981,7 +981,7 @@ def type_audit():
     text-* class, else the nearest ancestor's, else text-base) must be the kind's size. Returns (findings, unclassified)."""
     VOID = {"input", "img", "br", "hr", "meta", "link", "source", "wbr", "col"}
     WANT = {"inline": set(), "control": {"base"}, "option label": {"base"}, "cell": {"base"}, "header": {"sm"}, "label": {"sm"}, "supporting": {"sm"},
-            "body": {"base"}, "title": {"base"}, "dialog title": {"lg"}, "badge": {"sm"}, "keycap": {"xs"}, "kicker": {"xs"}, "figure": {"3xl"}}
+            "body": {"base"}, "title": {"base"}, "dialog title": {"lg"}, "badge": {"sm"}, "keycap": {"sm"}, "kicker": {"xs"}, "figure": {"3xl"}}
 
     class Node:
         def __init__(self, tag, attrs, parent):

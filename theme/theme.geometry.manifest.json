@@ -94,8 +94,8 @@
     },
     {
       "token": "--radius-offset",
-      "value": "-6px",
-      "use": "See --radius-slope."
+      "value": "-4px",
+      "use": "See --radius-slope. Raised from Affine's -6px so the nested step (control − margin) is 5px at 16, not 3px, which read as sharp on keycaps and nested items; every step gains 2px and nesting stays exact."
     },
     {
       "token": "--corner-factor",
@@ -334,13 +334,13 @@
   "radius": [
     {
       "token": "--radius-control",
-      "formula": "F − 6, capped at a pill",
-      "use": "A control's corner; class rounded."
+      "formula": "F − 4, capped at a pill",
+      "use": "A control's corner; class rounded-sm."
     },
     {
       "token": "--radius-nested",
       "formula": "control − margin",
-      "use": "One level in; class rounded-sm."
+      "use": "One level in; class rounded-xs."
     },
     {
       "token": "--radius-surface",
