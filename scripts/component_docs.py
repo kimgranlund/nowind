@@ -4,12 +4,12 @@ rendered live and shown as code, with when to use it and when not to. Utility cl
 BTN = "inline-flex items-center justify-center py-xs px-sm gap-xs rounded-sm"
 BTN_PRIMARY = f"{BTN} border border-transparent bg-accent-1-9 hover:bg-accent-1-10 active:bg-accent-1-10 fg-accent-1-contrast text-base font-medium cursor-pointer transition-colors"
 BTN_SECONDARY = f"{BTN} border bg-neutral-3 hover:bg-neutral-4 active:bg-neutral-5 fg-neutral-12 text-base font-medium cursor-pointer transition-colors"
-FIELD = "py-xs px-sm rounded-sm border hover:border-neutral-8 aria-invalid:border-danger-7 bg-neutral-1 text-base w-full transition-colors"
+FIELD = "py-xs px-sm rounded-sm border hover:border-neutral-8 invalid:border-danger-7 bg-neutral-1 text-base w-full transition-colors"
 BOX = "flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors"
 BARE = "grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12"
 KBD = "inline-flex items-center py-3xs px-2xs rounded-xs border fg-neutral-11 text-base font-mono"
 NESTED_SELECT = "select-base py-3xs px-2xs rounded-xs border border-transparent bg-transparent hover:bg-neutral-3 fg-neutral-12 text-base cursor-pointer"
-NESTED_ICON = "inline-flex items-center justify-center p-3xs rounded-xs border border-transparent bg-transparent hover:bg-neutral-3 aria-pressed:bg-neutral-4 fg-neutral-11 hover:fg-neutral-12 cursor-pointer transition-colors"
+NESTED_ICON = "inline-flex items-center justify-center p-3xs rounded-xs border border-transparent bg-transparent hover:bg-neutral-3 pressed:bg-neutral-4 fg-neutral-11 hover:fg-neutral-12 cursor-pointer transition-colors"
 CARD = "p-md rounded-lg bg-neutral-1 border border-neutral-6"
 MENU_ITEM = "flex items-center gap-xs py-xs px-sm border border-transparent rounded-sm no-underline fg-neutral-12 hover:bg-neutral-3 selected:bg-accent-1-3 selected:fg-accent-1-11 transition-colors"
 
@@ -41,9 +41,9 @@ COMPONENTS = [
         "slug": "segmented", "name": "Segmented control", "icon": "ph-squares-four", "group": "Actions",
         "summary": "A set of mutually exclusive options. The pressed segment is styled by <code>aria-pressed</code>, not by a class.",
         "html": """<div class="inline-flex items-center gap-3xs p-3xs rounded bg-neutral-3" role="group" aria-label="Range">
-  <button aria-pressed="true" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 aria-pressed:bg-neutral-1 fg-neutral-11 aria-pressed:fg-neutral-12 text-base font-medium cursor-pointer transition-colors"><span>Day</span></button>
-  <button aria-pressed="false" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 aria-pressed:bg-neutral-1 fg-neutral-11 aria-pressed:fg-neutral-12 text-base font-medium cursor-pointer transition-colors"><span>Week</span></button>
-  <button aria-pressed="false" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 aria-pressed:bg-neutral-1 fg-neutral-11 aria-pressed:fg-neutral-12 text-base font-medium cursor-pointer transition-colors"><span>Month</span></button>
+  <button aria-pressed="true" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer transition-colors"><span>Day</span></button>
+  <button aria-pressed="false" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer transition-colors"><span>Week</span></button>
+  <button aria-pressed="false" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer transition-colors"><span>Month</span></button>
 </div>""",
         "use": ["Two to five short options that change a view in place."],
         "avoid": ["Options that navigate to another page; use tabs."],
@@ -343,9 +343,9 @@ COMPONENTS = [
         "summary": "Moves through pages of results. The current page is styled by <code>aria-current</code>.",
         "html": """<nav aria-label="Pagination" class="inline-flex items-center gap-3xs">
   <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 no-underline transition-colors" aria-label="Previous"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-caret-left"></i></a>
-  <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 aria-current:bg-accent-1-9 aria-current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums transition-colors">2</a>
-  <a href="#" aria-current="page" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 aria-current:bg-accent-1-9 aria-current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums transition-colors">3</a>
-  <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 aria-current:bg-accent-1-9 aria-current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums transition-colors">4</a>
+  <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums transition-colors">2</a>
+  <a href="#" aria-current="page" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums transition-colors">3</a>
+  <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums transition-colors">4</a>
   <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 no-underline transition-colors" aria-label="Next"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-caret-right"></i></a>
 </nav>""",
         "use": ["Long lists where people jump to a page; show the total near it."],

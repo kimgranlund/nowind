@@ -207,7 +207,7 @@ Hover states animate when an element has a transition class. `transition-colors`
 </div>
 ```
 
-- **States** (Tailwind v4 names), colors only: `active:`, `focus-visible:` and `focus-within:` (borders), `selected:` (`aria-selected="true"`), `aria-current:`, `aria-pressed:`, `aria-expanded:`, `open:` (details and popovers), `aria-invalid:` (also `:user-invalid`) and `disabled:` (also `aria-disabled`, with opacity and cursor). They cover the neutral and accent roles and the raw steps of neutral, accent-1 to accent-4 and danger; `aria-invalid:` and `has-invalid:` cover neutral and danger. Markup drives the look:
+- **States** (Tailwind v4 names), colors only: `active:`, `focus-visible:` and `focus-within:` (borders), `selected:` (`aria-selected="true"`), `current:`, `pressed:`, `expanded:`, `open:` (details and popovers), `invalid:` (also `:user-invalid`) and `disabled:` (also `aria-disabled`, with opacity and cursor). They cover the neutral and accent roles and the raw steps of neutral, accent-1 to accent-4 and danger; `invalid:` and `has-invalid:` cover neutral and danger. Markup drives the look:
 
 ```html
 <button role="tab" aria-selected="true"

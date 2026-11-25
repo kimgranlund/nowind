@@ -75,14 +75,14 @@
 
       <div class="flex flex-wrap items-center gap-lg">
         <div class="inline-flex" role="group" aria-label="Alignment">
-          <button class="inline-flex items-center justify-center py-xs px-sm rounded-none border bg-neutral-3 hover:bg-neutral-4 aria-pressed:bg-neutral-5 active:bg-neutral-5 fg-neutral-12 cursor-pointer transition-colors" aria-label="Align left" aria-pressed="true"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-text-align-left"></i></button>
-          <button class="inline-flex items-center justify-center py-xs px-sm rounded-none border-y border-r bg-neutral-3 hover:bg-neutral-4 aria-pressed:bg-neutral-5 active:bg-neutral-5 fg-neutral-12 cursor-pointer transition-colors" aria-label="Align center"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-text-align-center"></i></button>
-          <button class="inline-flex items-center justify-center py-xs px-sm rounded-none border-y border-r bg-neutral-3 hover:bg-neutral-4 aria-pressed:bg-neutral-5 active:bg-neutral-5 fg-neutral-12 cursor-pointer transition-colors" aria-label="Align right"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-text-align-right"></i></button>
+          <button class="inline-flex items-center justify-center py-xs px-sm rounded-none border bg-neutral-3 hover:bg-neutral-4 pressed:bg-neutral-5 active:bg-neutral-5 fg-neutral-12 cursor-pointer transition-colors" aria-label="Align left" aria-pressed="true"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-text-align-left"></i></button>
+          <button class="inline-flex items-center justify-center py-xs px-sm rounded-none border-y border-r bg-neutral-3 hover:bg-neutral-4 pressed:bg-neutral-5 active:bg-neutral-5 fg-neutral-12 cursor-pointer transition-colors" aria-label="Align center"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-text-align-center"></i></button>
+          <button class="inline-flex items-center justify-center py-xs px-sm rounded-none border-y border-r bg-neutral-3 hover:bg-neutral-4 pressed:bg-neutral-5 active:bg-neutral-5 fg-neutral-12 cursor-pointer transition-colors" aria-label="Align right"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-text-align-right"></i></button>
         </div>
         <div class="inline-flex items-center gap-3xs p-3xs rounded bg-neutral-3">
-          <button aria-pressed="true" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 aria-pressed:bg-neutral-1 fg-neutral-11 aria-pressed:fg-neutral-12 text-base font-medium cursor-pointer transition-colors"><span>Day</span></button>
-          <button aria-pressed="false" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 aria-pressed:bg-neutral-1 fg-neutral-11 aria-pressed:fg-neutral-12 text-base font-medium cursor-pointer transition-colors"><span>Week</span></button>
-          <button aria-pressed="false" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 aria-pressed:bg-neutral-1 fg-neutral-11 aria-pressed:fg-neutral-12 text-base font-medium cursor-pointer transition-colors"><span>Month</span></button>
+          <button aria-pressed="true" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer transition-colors"><span>Day</span></button>
+          <button aria-pressed="false" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer transition-colors"><span>Week</span></button>
+          <button aria-pressed="false" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer transition-colors"><span>Month</span></button>
         </div>
       </div>
     </div>
@@ -160,7 +160,7 @@
       </div>
       <div class="flex flex-col gap-2xs">
         <label for="email" class="text-sm font-medium fg-neutral-12">Email</label>
-        <input id="email" type="email" class="py-xs px-sm rounded-sm border hover:border-neutral-8 aria-invalid:border-danger-7 bg-neutral-1 text-base w-full" value="ada@" aria-invalid="true" aria-describedby="email-error">
+        <input id="email" type="email" class="py-xs px-sm rounded-sm border hover:border-neutral-8 invalid:border-danger-7 bg-neutral-1 text-base w-full" value="ada@" aria-invalid="true" aria-describedby="email-error">
         <span id="email-error" class="inline-flex items-center gap-3xs text-sm fg-danger-11"><i class="inline-flex items-center justify-center shrink-0 text-base leading-none ph-bold ph-warning-circle"></i><span>Enter a complete email address.</span></span>
       </div>
       <div class="flex flex-col md:flex-row gap-md">
@@ -332,9 +332,9 @@
 
       <div class="flex flex-col md:flex-row gap-lg">
         <ul role="list" class="flex flex-col gap-3xs p-2xs rounded-lg bg-neutral-2 md:w-1/4">
-          <li><a href="#" aria-current="page" class="flex items-center py-xs border border-transparent px-sm gap-xs rounded-sm fg-neutral-11 hover:fg-neutral-12 hover:bg-neutral-3 aria-current:bg-accent-1-3 aria-current:fg-accent-1-11 no-underline text-base font-medium transition-colors"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-house"></i><span>Overview</span></a></li>
-          <li><a href="#" class="flex items-center py-xs border border-transparent px-sm gap-xs rounded-sm fg-neutral-11 hover:fg-neutral-12 hover:bg-neutral-3 aria-current:bg-accent-1-3 aria-current:fg-accent-1-11 no-underline text-base font-medium transition-colors"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-chart-line-up"></i><span>Analytics</span></a></li>
-          <li><a href="#" class="flex items-center py-xs border border-transparent px-sm gap-xs rounded-sm fg-neutral-11 hover:fg-neutral-12 hover:bg-neutral-3 aria-current:bg-accent-1-3 aria-current:fg-accent-1-11 no-underline text-base font-medium transition-colors"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-gear"></i><span>Settings</span></a></li>
+          <li><a href="#" aria-current="page" class="flex items-center py-xs border border-transparent px-sm gap-xs rounded-sm fg-neutral-11 hover:fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11 no-underline text-base font-medium transition-colors"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-house"></i><span>Overview</span></a></li>
+          <li><a href="#" class="flex items-center py-xs border border-transparent px-sm gap-xs rounded-sm fg-neutral-11 hover:fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11 no-underline text-base font-medium transition-colors"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-chart-line-up"></i><span>Analytics</span></a></li>
+          <li><a href="#" class="flex items-center py-xs border border-transparent px-sm gap-xs rounded-sm fg-neutral-11 hover:fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11 no-underline text-base font-medium transition-colors"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-gear"></i><span>Settings</span></a></li>
         </ul>
 
         <div class="flex flex-col gap-sm grow">
@@ -342,9 +342,9 @@
             <span class="text-sm fg-neutral-11">Showing 21–30 of 94</span>
             <nav aria-label="Pagination" class="inline-flex items-center gap-3xs">
               <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 no-underline transition-colors" aria-label="Previous"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-caret-left"></i></a>
-              <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 aria-current:bg-accent-1-9 aria-current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums transition-colors">2</a>
-              <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 aria-current:bg-accent-1-9 aria-current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums transition-colors" aria-current="page">3</a>
-              <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 aria-current:bg-accent-1-9 aria-current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums transition-colors">4</a>
+              <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums transition-colors">2</a>
+              <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums transition-colors" aria-current="page">3</a>
+              <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums transition-colors">4</a>
               <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 no-underline transition-colors" aria-label="Next"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-caret-right"></i></a>
             </nav>
           </div>
@@ -503,7 +503,7 @@
   <section id="disclosure" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
     <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><span class="text-kicker fg-accent-1-weak">Disclosure</span><h2 class="text-subtitle text-balance">Accordion, menu, dialog and avatars</h2></div>
     <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-    <p class="text-sm fg-neutral-11 max-w-text mb-md">Native elements and no script: the accordion and the menu are <code>&lt;details&gt;</code>, and the dialog opens with the <code>command</code> attribute. <code>open:</code> and <code>aria-current:</code> style their states.</p>
+    <p class="text-sm fg-neutral-11 max-w-text mb-md">Native elements and no script: the accordion and the menu are <code>&lt;details&gt;</code>, and the dialog opens with the <code>command</code> attribute. <code>open:</code> and <code>current:</code> style their states.</p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
       <div class="p-md rounded-lg bg-neutral-1 border border-neutral-6 shadow-xs">
@@ -768,14 +768,14 @@
       <div class="p-md rounded-lg bg-neutral-1 border border-neutral-6 shadow-xs flex flex-col gap-md">
         <h3 class="text-base font-semibold">Toolbar</h3>
         <div class="inline-flex flex-wrap items-center gap-3xs p-3xs w-fit rounded-lg border border-neutral-6 bg-neutral-2" role="toolbar" aria-label="Formatting">
-          <button class="inline-flex items-center justify-center py-xs px-sm rounded-sm border border-transparent bg-transparent hover:bg-neutral-3 aria-pressed:bg-neutral-5 fg-neutral-12 cursor-pointer transition-colors" aria-pressed="true" aria-label="Bold"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph-bold ph-text-b"></i></button>
-          <button class="inline-flex items-center justify-center py-xs px-sm rounded-sm border border-transparent bg-transparent hover:bg-neutral-3 aria-pressed:bg-neutral-5 fg-neutral-12 cursor-pointer transition-colors" aria-pressed="false" aria-label="Italic"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-text-italic"></i></button>
-          <button class="inline-flex items-center justify-center py-xs px-sm rounded-sm border border-transparent bg-transparent hover:bg-neutral-3 aria-pressed:bg-neutral-5 fg-neutral-12 cursor-pointer transition-colors" aria-pressed="false" aria-label="Underline"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-text-underline"></i></button>
+          <button class="inline-flex items-center justify-center py-xs px-sm rounded-sm border border-transparent bg-transparent hover:bg-neutral-3 pressed:bg-neutral-5 fg-neutral-12 cursor-pointer transition-colors" aria-pressed="true" aria-label="Bold"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph-bold ph-text-b"></i></button>
+          <button class="inline-flex items-center justify-center py-xs px-sm rounded-sm border border-transparent bg-transparent hover:bg-neutral-3 pressed:bg-neutral-5 fg-neutral-12 cursor-pointer transition-colors" aria-pressed="false" aria-label="Italic"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-text-italic"></i></button>
+          <button class="inline-flex items-center justify-center py-xs px-sm rounded-sm border border-transparent bg-transparent hover:bg-neutral-3 pressed:bg-neutral-5 fg-neutral-12 cursor-pointer transition-colors" aria-pressed="false" aria-label="Underline"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-text-underline"></i></button>
           <span class="self-stretch my-2xs border-l border-neutral-6" aria-hidden="true"></span>
-          <button class="inline-flex items-center justify-center py-xs px-sm rounded-sm border border-transparent bg-transparent hover:bg-neutral-3 aria-pressed:bg-neutral-5 fg-neutral-12 cursor-pointer transition-colors" aria-label="Link"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-link"></i></button>
-          <button class="inline-flex items-center justify-center py-xs px-sm rounded-sm border border-transparent bg-transparent hover:bg-neutral-3 aria-pressed:bg-neutral-5 fg-neutral-12 cursor-pointer transition-colors" aria-label="Code"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-code"></i></button>
+          <button class="inline-flex items-center justify-center py-xs px-sm rounded-sm border border-transparent bg-transparent hover:bg-neutral-3 pressed:bg-neutral-5 fg-neutral-12 cursor-pointer transition-colors" aria-label="Link"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-link"></i></button>
+          <button class="inline-flex items-center justify-center py-xs px-sm rounded-sm border border-transparent bg-transparent hover:bg-neutral-3 pressed:bg-neutral-5 fg-neutral-12 cursor-pointer transition-colors" aria-label="Code"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-code"></i></button>
           <span class="self-stretch my-2xs border-l border-neutral-6" aria-hidden="true"></span>
-          <button class="inline-flex items-center justify-center py-xs px-sm rounded-sm border border-transparent bg-transparent hover:bg-neutral-3 aria-pressed:bg-neutral-5 fg-neutral-12 cursor-pointer transition-colors" aria-label="Undo"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-arrow-counter-clockwise"></i></button>
+          <button class="inline-flex items-center justify-center py-xs px-sm rounded-sm border border-transparent bg-transparent hover:bg-neutral-3 pressed:bg-neutral-5 fg-neutral-12 cursor-pointer transition-colors" aria-label="Undo"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-arrow-counter-clockwise"></i></button>
         </div>
       </div>
 

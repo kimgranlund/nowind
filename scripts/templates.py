@@ -787,7 +787,7 @@ def lint_examples():
     """Examples use regular (primitive) classes only. Returns one line per semantic class found in a component snippet
     or in a block of the showcase, except the showcase blocks marked data-semantic-demo."""
     cat = {k: t for t, rows in read_classes() for k, _ in rows}
-    variant = re.compile(r"^(hover|active|focus-visible|focus-within|selected|aria-current|aria-pressed|aria-expanded|open|aria-invalid|has-invalid|disabled|group-hover|group-open|group-focus-within):")
+    variant = re.compile(r"^(hover|active|focus-visible|focus-within|selected|current|pressed|expanded|open|invalid|has-invalid|disabled|group-hover|group-open|group-focus-within):")
     def bad(html_, where):
         out = []
         # An element that changes with state animates the change: interactive elements get it from the reset; any
