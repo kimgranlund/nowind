@@ -22,11 +22,12 @@ Read `README.md` for what Nowind is and how people use it. This file says how to
 | `dist/` | One-file bundle and its minified copy | no, `scripts/bundle.mjs` |
 | `theme/*.manifest.json`, `nowind.manifest.json` | What each token or class is, how it is derived, what to use it for | see below |
 | `classes.md` | Every class and its declarations | no, `scripts/utilities.mjs` |
-| `specimen.html` | Every token, the reset and every class, read live from the stylesheets | yes |
-| `utilities.html` | Demo page built only from classes | yes |
-| `templates/*.html` | Docs site (designed with the massimo-vignelli agent): home, guide, reference, changelog and a `c-*.html` page per component | no, `python3 scripts/templates.py` |
+| `index.html`, `site/index.html` | The root redirects to `site/`; `site/index.html` is the GitHub Pages landing page | yes |
+| `site/specimen.html` | Every token, the reset and every class, read live from the stylesheets | yes |
+| `site/utilities.html` | Demo page built only from classes | yes |
+| `site/docs/*.html` | Docs site (designed with the massimo-vignelli agent): home, guide, reference, classes (read from `classes.md`), changelog and a `c-*.html` page per component | no, `python3 scripts/templates.py` |
 | `scripts/component_docs.py` | Each component's snippet (rendered live and shown as code), summary, use and avoid | yes |
-| `components.html` | Component showcase built only from classes: no `<style>`, no `style=` | yes |
+| `site/components.html` | Component showcase built only from classes: no `<style>`, no `style=` | yes |
 
 Manifests: [`theme/theme.typography.manifest.json`](theme/theme.typography.manifest.json), [`theme/theme.space.manifest.json`](theme/theme.space.manifest.json), [`theme/theme.shadows.manifest.json`](theme/theme.shadows.manifest.json) and [`nowind.manifest.json`](nowind.manifest.json) are written by their scripts; change the script, not the file. These are hand-written; update them in the same change as their CSS:
 
@@ -45,13 +46,13 @@ node scripts/motion.mjs      # only if the springs or curves changed
 node scripts/materials.mjs   # only if the paint roles or glass faces changed
 node scripts/utilities.mjs   # after any token change, so classes follow
 node scripts/bundle.mjs      # always last
-python3 scripts/templates.py # after a release (it reads CHANGELOG.md) or a change to the templates
+python3 scripts/templates.py # after a release (it reads CHANGELOG.md), a class change (it reads classes.md) or a change to the templates
 node scripts/check.mjs       # before every commit
 ```
 
 `scripts/check.mjs` enforces the rules below: no comments and no `color-mix()` in Nowind's CSS, every token a manifest names exists, and every generated file matches what the scripts write. `node scripts/check.mjs --self-test` breaks a copy four ways and confirms each is caught.
 
-Then check the result in `specimen.html` through the dev server (`node scripts/serve.mjs`, port 8765); browsers block reading stylesheets from `file://`, and the server turns caching off so an edited stylesheet and its imports reload fresh. The `specimen` entry in `.claude/launch.json` starts it.
+Then check the result in `site/specimen.html` through the dev server (`node scripts/serve.mjs`, port 8765); browsers block reading stylesheets from `file://`, and the server turns caching off so an edited stylesheet and its imports reload fresh. The `specimen` entry in `.claude/launch.json` starts it.
 
 ## Rules
 

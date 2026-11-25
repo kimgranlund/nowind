@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Changelog · Nowind docs</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="../../theme.css">
+<link rel="stylesheet" href="../../nowind.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
+</head>
+<body class="bg-bg fg">
+<div class="flex flex-col h-dvh overflow-hidden">
+  <div class="shrink-0 py-3xs bg-bg-inverse" aria-hidden="true"></div>
+  <header class="flex items-center justify-between gap-row h-header shrink-0 px-grid border-b border-border-weak bg-bg">
+    <a href="docs-home.html" class="inline-flex items-center gap-gutter no-underline fg">
+      <i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-weak">0.8.0</span>
+    </a>
+    <nav aria-label="Main" class="hidden md:flex items-center gap-3xs">
+      <a href="docs-home.html" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline fg-weak hover:fg hover:border-border-strong text-title-sm transition-colors">Docs</a>
+      <a href="guide.html" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline fg-weak hover:fg hover:border-border-strong text-title-sm transition-colors">Guide</a>
+      <a href="components-index.html" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline fg-weak hover:fg hover:border-border-strong text-title-sm transition-colors">Components</a>
+      <a href="reference.html" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline fg-weak hover:fg hover:border-border-strong text-title-sm transition-colors">Reference</a>
+      <a href="classes.html" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline fg-weak hover:fg hover:border-border-strong text-title-sm transition-colors">Classes</a>
+      <a href="changelog.html" aria-current="page" class="inline-flex items-center h-control px-control border-b-2 border-border-accent-1-strong no-underline fg text-title-sm">Changelog</a>
+    </nav>
+    <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center h-control px-control gap-gutter border border-border bg-bg hover:bg-component-weak no-underline fg text-title-sm transition-colors" aria-label="Nowind on GitHub">
+      <i class="icon ph ph-github-logo"></i><span class="hidden sm:inline">GitHub</span>
+    </a>
+  </header>
+  <details class="lg:hidden shrink min-h-0 overflow-y-auto border-b border-border-weak bg-bg-strong">
+    <summary class="flex items-center gap-gutter h-control px-grid list-none cursor-pointer fg text-title-sm"><i class="icon ph ph-list"></i><span>Menu</span></summary>
+    <nav aria-label="Documentation" class="flex flex-col gap-group px-grid pt-2xs pb-md">
+      <div class="flex flex-col gap-field">
+        <span class="text-kicker fg-weak">Getting started</span>
+        <ul role="list" class="flex flex-col gap-3xs">
+          <li><a href="docs-home.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-house"></i><span class="truncate">Overview</span></a></li>
+          <li><a href="guide.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-book-open"></i><span class="truncate">Lay out a docs page</span></a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-field">
+        <span class="text-kicker fg-weak">Reference</span>
+        <ul role="list" class="flex flex-col gap-3xs">
+          <li><a href="reference.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-grid-four"></i><span class="truncate">Page grid and shell</span></a></li>
+          <li><a href="classes.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-list-bullets"></i><span class="truncate">Classes</span></a></li>
+          <li><a href="../components.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-squares-four"></i><span class="truncate">Showcase</span></a></li>
+          <li><a href="../specimen.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-palette"></i><span class="truncate">Specimen</span></a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-field">
+        <span class="text-kicker fg-weak">Components</span>
+        <ul role="list" class="flex flex-col gap-3xs">
+          <li><a href="components-index.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-stack"></i><span class="truncate">All components</span></a></li>
+          <li><a href="c-button.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-cursor-click"></i><span class="truncate">Button</span></a></li>
+          <li><a href="c-icon-button.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-plus-circle"></i><span class="truncate">Icon button</span></a></li>
+          <li><a href="c-segmented.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-squares-four"></i><span class="truncate">Segmented control</span></a></li>
+          <li><a href="c-badge.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-tag"></i><span class="truncate">Badge</span></a></li>
+          <li><a href="c-alert.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-warning-circle"></i><span class="truncate">Alert</span></a></li>
+          <li><a href="c-toast.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-bell-ringing"></i><span class="truncate">Toast</span></a></li>
+          <li><a href="c-text-field.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-textbox"></i><span class="truncate">Text field</span></a></li>
+          <li><a href="c-select.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-list-dashes"></i><span class="truncate">Select</span></a></li>
+          <li><a href="c-form-controls.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-toggle-right"></i><span class="truncate">Checkbox, radio and switch</span></a></li>
+          <li><a href="c-card.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-cards"></i><span class="truncate">Card</span></a></li>
+          <li><a href="c-tabs.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-tabs"></i><span class="truncate">Tabs</span></a></li>
+          <li><a href="c-breadcrumbs.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-caret-right"></i><span class="truncate">Breadcrumbs</span></a></li>
+          <li><a href="c-pagination.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-dots-three"></i><span class="truncate">Pagination</span></a></li>
+          <li><a href="c-menu.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-list"></i><span class="truncate">Popover menu</span></a></li>
+          <li><a href="c-dialog.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-app-window"></i><span class="truncate">Dialog</span></a></li>
+          <li><a href="c-accordion.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-rows"></i><span class="truncate">Accordion</span></a></li>
+          <li><a href="c-avatar.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-user-circle"></i><span class="truncate">Avatar and group</span></a></li>
+          <li><a href="c-progress.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-chart-bar-horizontal"></i><span class="truncate">Progress bar</span></a></li>
+          <li><a href="c-table.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-table"></i><span class="truncate">Table</span></a></li>
+          <li><a href="c-empty-state.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-folder-open"></i><span class="truncate">Empty state</span></a></li>
+          <li><a href="c-loading.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-circle-notch"></i><span class="truncate">Spinner and skeleton</span></a></li>
+          <li><a href="c-tooltip.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-chat-centered-text"></i><span class="truncate">Tooltip</span></a></li>
+          <li><a href="c-combobox.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-magnifying-glass"></i><span class="truncate">Combobox</span></a></li>
+          <li><a href="c-sortable-table.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-sort-ascending"></i><span class="truncate">Sortable table</span></a></li>
+          <li><a href="c-date-range.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-calendar-blank"></i><span class="truncate">Date range</span></a></li>
+          <li><a href="c-media-card.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-image"></i><span class="truncate">Media card</span></a></li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-field">
+        <span class="text-kicker fg-weak">Project</span>
+        <ul role="list" class="flex flex-col gap-3xs">
+          <li><a href="changelog.html" aria-current="page" class="flex items-center h-control px-control gap-gutter border-l-2 border-border-accent-1-strong bg-component-weak no-underline fg text-title-sm"><i class="icon ph ph-clock-counter-clockwise"></i><span class="truncate">Changelog</span></a></li>
+          <li><a href="index.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-ruler"></i><span class="truncate">Templates</span></a></li>
+        </ul>
+      </div>
+    </nav>
+  </details>
+  <div class="flex flex-1 min-h-0">
+    <aside class="hidden lg:flex flex-col shrink-0 w-sidebar overflow-y-auto p-region border-r border-border-weak bg-bg-strong">
+      <nav aria-label="Documentation" class="flex flex-col gap-group">
+        <div class="flex flex-col gap-field">
+          <span class="text-kicker fg-weak">Getting started</span>
+          <ul role="list" class="flex flex-col gap-3xs">
+            <li><a href="docs-home.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-house"></i><span class="truncate">Overview</span></a></li>
+            <li><a href="guide.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-book-open"></i><span class="truncate">Lay out a docs page</span></a></li>
+          </ul>
+        </div>
+        <div class="flex flex-col gap-field">
+          <span class="text-kicker fg-weak">Reference</span>
+          <ul role="list" class="flex flex-col gap-3xs">
+            <li><a href="reference.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-grid-four"></i><span class="truncate">Page grid and shell</span></a></li>
+            <li><a href="classes.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-list-bullets"></i><span class="truncate">Classes</span></a></li>
+            <li><a href="../components.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-squares-four"></i><span class="truncate">Showcase</span></a></li>
+            <li><a href="../specimen.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-palette"></i><span class="truncate">Specimen</span></a></li>
+          </ul>
+        </div>
+        <div class="flex flex-col gap-field">
+          <span class="text-kicker fg-weak">Components</span>
+          <ul role="list" class="flex flex-col gap-3xs">
+            <li><a href="components-index.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-stack"></i><span class="truncate">All components</span></a></li>
+            <li><a href="c-button.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-cursor-click"></i><span class="truncate">Button</span></a></li>
+            <li><a href="c-icon-button.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-plus-circle"></i><span class="truncate">Icon button</span></a></li>
+            <li><a href="c-segmented.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-squares-four"></i><span class="truncate">Segmented control</span></a></li>
+            <li><a href="c-badge.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-tag"></i><span class="truncate">Badge</span></a></li>
+            <li><a href="c-alert.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-warning-circle"></i><span class="truncate">Alert</span></a></li>
+            <li><a href="c-toast.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-bell-ringing"></i><span class="truncate">Toast</span></a></li>
+            <li><a href="c-text-field.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-textbox"></i><span class="truncate">Text field</span></a></li>
+            <li><a href="c-select.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-list-dashes"></i><span class="truncate">Select</span></a></li>
+            <li><a href="c-form-controls.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-toggle-right"></i><span class="truncate">Checkbox, radio and switch</span></a></li>
+            <li><a href="c-card.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-cards"></i><span class="truncate">Card</span></a></li>
+            <li><a href="c-tabs.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-tabs"></i><span class="truncate">Tabs</span></a></li>
+            <li><a href="c-breadcrumbs.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-caret-right"></i><span class="truncate">Breadcrumbs</span></a></li>
+            <li><a href="c-pagination.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-dots-three"></i><span class="truncate">Pagination</span></a></li>
+            <li><a href="c-menu.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-list"></i><span class="truncate">Popover menu</span></a></li>
+            <li><a href="c-dialog.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-app-window"></i><span class="truncate">Dialog</span></a></li>
+            <li><a href="c-accordion.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-rows"></i><span class="truncate">Accordion</span></a></li>
+            <li><a href="c-avatar.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-user-circle"></i><span class="truncate">Avatar and group</span></a></li>
+            <li><a href="c-progress.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-chart-bar-horizontal"></i><span class="truncate">Progress bar</span></a></li>
+            <li><a href="c-table.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-table"></i><span class="truncate">Table</span></a></li>
+            <li><a href="c-empty-state.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-folder-open"></i><span class="truncate">Empty state</span></a></li>
+            <li><a href="c-loading.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-circle-notch"></i><span class="truncate">Spinner and skeleton</span></a></li>
+            <li><a href="c-tooltip.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-chat-centered-text"></i><span class="truncate">Tooltip</span></a></li>
+            <li><a href="c-combobox.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-magnifying-glass"></i><span class="truncate">Combobox</span></a></li>
+            <li><a href="c-sortable-table.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-sort-ascending"></i><span class="truncate">Sortable table</span></a></li>
+            <li><a href="c-date-range.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-calendar-blank"></i><span class="truncate">Date range</span></a></li>
+            <li><a href="c-media-card.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-image"></i><span class="truncate">Media card</span></a></li>
+          </ul>
+        </div>
+        <div class="flex flex-col gap-field">
+          <span class="text-kicker fg-weak">Project</span>
+          <ul role="list" class="flex flex-col gap-3xs">
+            <li><a href="changelog.html" aria-current="page" class="flex items-center h-control px-control gap-gutter border-l-2 border-border-accent-1-strong bg-component-weak no-underline fg text-title-sm"><i class="icon ph ph-clock-counter-clockwise"></i><span class="truncate">Changelog</span></a></li>
+            <li><a href="index.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-ruler"></i><span class="truncate">Templates</span></a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+    <main id="content" class="flex flex-col flex-1 min-w-0 overflow-y-auto">
+      <div class="grow"><div class="grid grid-cols-4 md:grid-cols-12 gap-grid px-grid">
+      <article class="col-span-4 md:col-span-12 xl:col-span-9 min-w-0 tier-content flex flex-col gap-section py-page">
+        <header class="flex flex-col gap-field">
+            <span class="text-kicker fg-weak">Changelog</span>
+            <h1 class="text-display-sm text-balance">Release notes</h1>
+            <p class="text-body-md fg-weak">What changed in each release of Nowind, newest first. Pin a release in the CDN link and your site changes only when you change the version.</p>
+          </header>
+        <figure class="flex flex-col min-w-0 border border-border-weak bg-bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-border-weak">
+              <span class="text-mono-sm fg-weak truncate">index.html</span><span class="text-kicker fg-subtle">HTML</span>
+            </figcaption>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.8.0/dist/nowind.min.css&quot;&gt;</code></pre>
+          </figure>
+        <section id="v0-8-0" class="grid grid-cols-1 md:grid-cols-4 gap-grid pt-sm border-t border-border">
+            <div class="flex flex-col gap-field">
+              <h2 class="text-heading-md">0.8.0</h2>
+              <time datetime="2026-11-25" class="text-caption fg-weak">2026-11-25</time>
+              <span class="inline-flex items-center w-fit h-nested px-nested bg-solid-accent-1 text-on-solid-accent-1 text-label">Latest</span>
+            </div>
+            <div class="md:col-span-3 flex flex-col gap-group min-w-0">
+              <ul role="list" class="flex flex-col gap-group">
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Group variants</span><p class="text-body-md"><code>group</code> on a parent, <code>group-hover:</code>, <code>group-focus-within:</code> and <code>group-open:</code> on a child (opacity, visibility and <code>fg-*</code>), for tooltips and reveal-on-hover.</p></li>
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Offsets</span><p class="text-body-md"><code>top-full</code>, <code>bottom-full</code>, <code>left-full</code>, <code>right-full</code>.</p></li>
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Component docs</span><p class="text-body-md">Tooltip, combobox, sortable table, date range and media card (26 pages).</p></li>
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Forced colors</span><p class="text-body-md">In Windows High Contrast, controls and overlays keep an outline, selected and current items get a Highlight outline, and checkboxes, radios, switches and sliders are redrawn in system colors.</p></li>
+              </ul>
+            </div>
+          </section>
+        <section id="v0-7-0" class="grid grid-cols-1 md:grid-cols-4 gap-grid pt-sm border-t border-border">
+            <div class="flex flex-col gap-field">
+              <h2 class="text-heading-md">0.7.0</h2>
+              <time datetime="2026-11-25" class="text-caption fg-weak">2026-11-25</time>
+            </div>
+            <div class="md:col-span-3 flex flex-col gap-group min-w-0">
+              <ul role="list" class="flex flex-col gap-group">
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Renamed</span><p class="text-body-md">Text-color role classes drop <code>text-</code>: <code>text-fg-weak</code> is now <code>fg-weak</code>, <code>text-fg-accent-1</code> is <code>fg-accent-1</code>, with their variants (<code>hover:fg</code>, <code>aria-selected:fg</code>). <code>text-on-solid-*</code> and the raw-step <code>text-*</code> classes are unchanged.</p></li>
+              </ul>
+            </div>
+          </section>
+        <section id="v0-6-0" class="grid grid-cols-1 md:grid-cols-4 gap-grid pt-sm border-t border-border">
+            <div class="flex flex-col gap-field">
+              <h2 class="text-heading-md">0.6.0</h2>
+              <time datetime="2026-11-25" class="text-caption fg-weak">2026-11-25</time>
+            </div>
+            <div class="md:col-span-3 flex flex-col gap-group min-w-0">
+              <ul role="list" class="flex flex-col gap-group">
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Component docs</span><p class="text-body-md">A page per component in <code>templates/</code> (21 so far), each with the component live, its HTML to copy, when to use it and when not to, and the classes it uses; plus an index. Content lives in <code>scripts/component_docs.py</code>.</p></li>
+              </ul>
+            </div>
+          </section>
+        <section id="v0-5-0" class="grid grid-cols-1 md:grid-cols-4 gap-grid pt-sm border-t border-border">
+            <div class="flex flex-col gap-field">
+              <h2 class="text-heading-md">0.5.0</h2>
+              <time datetime="2026-11-25" class="text-caption fg-weak">2026-11-25</time>
+            </div>
+            <div class="md:col-span-3 flex flex-col gap-group min-w-0">
+              <ul role="list" class="flex flex-col gap-group">
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Tiers grow the type</span><p class="text-body-md">Inside <code>tier-content</code> and <code>tier-brand</code> the whole type scale and the type roles grow with the tier's body size.</p></li>
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Sticky under a header</span><p class="text-body-md"><code>top-header</code>, <code>h-below-header</code>, <code>max-h-below-header</code>.</p></li>
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Breakpoints</span><p class="text-body-md">Now cover padding, position, <code>top-*</code>, overflow and heights (<code>lg:sticky</code>, <code>md:p-surface</code>, <code>lg:overflow-y-auto</code>).</p></li>
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Level padding sides</span><p class="text-body-md"><code>pt-</code> and <code>pb-</code> for <code>surface</code>, <code>dialog</code>, <code>region</code> and <code>page</code>.</p></li>
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Reset</span><p class="text-body-md">Inline code no longer wraps at hyphens; <code>list-none</code> also hides Safari's <code>&lt;summary&gt;</code> marker.</p></li>
+              </ul>
+            </div>
+          </section>
+        <section id="v0-4-0" class="grid grid-cols-1 md:grid-cols-4 gap-grid pt-sm border-t border-border">
+            <div class="flex flex-col gap-field">
+              <h2 class="text-heading-md">0.4.0</h2>
+              <time datetime="2026-11-25" class="text-caption fg-weak">2026-11-25</time>
+            </div>
+            <div class="md:col-span-3 flex flex-col gap-group min-w-0">
+              <ul role="list" class="flex flex-col gap-group">
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Popovers, select, animation</span><p class="text-body-md"><code>anchor-*</code> (CSS anchor positioning for popovers), <code>select-base</code> (customizable select), <code>animate-spin</code>, <code>animate-pulse</code>.</p></li>
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Showcase components</span><p class="text-body-md">Accordion, dropdown, modal dialog, avatar group, progress, stepper, input groups, description list, activity, pricing, dropzone, tags, rating, popover menu and info, toast stack, loading states, toolbar, notifications, command palette.</p></li>
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Fixed</span><p class="text-body-md">The reset's backdrop and selection rules were ignored (pseudo-elements in <code>:where()</code>); the scrim now dims only modal dialogs.</p></li>
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">State variants</span><p class="text-body-md"><code>active:</code>, <code>focus-visible:</code>, <code>aria-selected:</code>, <code>aria-current:</code>, <code>aria-pressed:</code>, <code>aria-expanded:</code>, <code>open:</code>, <code>aria-invalid:</code>, <code>disabled:</code>, colors only, for the neutral and accent roles. The showcase's tabs, toggles, nav and pagination now take their look from ARIA state.</p></li>
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Docs-site templates</span><p class="text-body-md"><code>templates/</code> holds a docs home, a guide with sidebar and table of contents, a reference page and a changelog, built only from utility classes and generated by <code>scripts/templates.py</code>.</p></li>
+              </ul>
+            </div>
+          </section>
+        <section id="v0-3-0" class="grid grid-cols-1 md:grid-cols-4 gap-grid pt-sm border-t border-border">
+            <div class="flex flex-col gap-field">
+              <h2 class="text-heading-md">0.3.0</h2>
+              <time datetime="2026-11-25" class="text-caption fg-weak">2026-11-25</time>
+            </div>
+            <div class="md:col-span-3 flex flex-col gap-group min-w-0">
+              <ul role="list" class="flex flex-col gap-group">
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Fonts</span><p class="text-body-md"><code>theme.css</code> and the bundle load Inter, Inter Tight and IBM Plex Mono from Google Fonts. <code class="whitespace-nowrap">--font-heading</code> is Inter Tight and <code class="whitespace-nowrap">--font-mono</code> IBM Plex Mono.</p></li>
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Motion</span><p class="text-body-md">Massimo's springs (<code class="whitespace-nowrap">--ease-smooth</code>, <code class="whitespace-nowrap">--ease-snappy</code>, <code class="whitespace-nowrap">--ease-bouncy</code>) as CSS <code>linear()</code> easings with their durations, ease curves, and <code>transition-*</code>, <code>duration-*</code>, <code>ease-*</code> classes.</p></li>
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Page grid and shell</span><p class="text-body-md">Affine's grid gutter, inset and edge margins, and shell lengths (sidebar, rail, header, measure, dock width) with <code>gap-grid</code>, <code>p-grid-inset</code>, <code>px-grid</code>, <code>w-sidebar</code>, <code>w-rail</code>, <code>h-header</code>, <code>max-w-measure</code>.</p></li>
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Form marks</span><p class="text-body-md">The reset draws checkboxes, radios, switches (<code>role="switch"</code>) and sliders at Affine's mark sizes; <code>mark-sm</code>, <code>mark-lg</code>.</p></li>
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Materials</span><p class="text-body-md">Massimo's flat, physical, frosted, glass and outline materials (<code>material-*</code> on a region, <code>relief-*</code> on a part), with generated paint tokens.</p></li>
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Dev server</span><p class="text-body-md"><code>scripts/serve.mjs</code> serves previews with caching off.</p></li>
+              </ul>
+            </div>
+          </section>
+        <section id="v0-2-0" class="grid grid-cols-1 md:grid-cols-4 gap-grid pt-sm border-t border-border">
+            <div class="flex flex-col gap-field">
+              <h2 class="text-heading-md">0.2.0</h2>
+              <time datetime="2026-11-25" class="text-caption fg-weak">2026-11-25</time>
+            </div>
+            <div class="md:col-span-3 flex flex-col gap-group min-w-0">
+              <ul role="list" class="flex flex-col gap-group">
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Inverse colors</span><p class="text-body-md"><code class="whitespace-nowrap">--bg-inverse</code>, <code class="whitespace-nowrap">--fg-inverse</code>, <code class="whitespace-nowrap">--fg-inverse-weak</code> and their classes, for toasts and tooltips.</p></li>
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Hover borders</span><p class="text-body-md"><code>hover:border-*</code> for the border roles (<code>hover:border-border-strong</code>).</p></li>
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Grid</span><p class="text-body-md"><code>grid-cols-1</code> … <code>grid-cols-12</code>, <code>grid-cols-none</code>, <code>col-span-1</code> … <code>col-span-12</code>, <code>col-span-full</code>.</p></li>
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Fractions</span><p class="text-body-md"><code>w-1/2</code>, <code>w-1/3</code>, <code>w-2/3</code>, <code>w-1/4</code>, <code>w-3/4</code>, fifths, and matching <code>basis-*</code>.</p></li>
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Breakpoints</span><p class="text-body-md">Now also cover grid columns and spans, basis, widths and gaps.</p></li>
+              </ul>
+            </div>
+          </section>
+        <section id="v0-1-0" class="grid grid-cols-1 md:grid-cols-4 gap-grid pt-sm border-t border-border">
+            <div class="flex flex-col gap-field">
+              <h2 class="text-heading-md">0.1.0</h2>
+              <time datetime="2026-11-25" class="text-caption fg-weak">2026-11-25</time>
+            </div>
+            <div class="md:col-span-3 flex flex-col gap-group min-w-0">
+              <p class="text-body-md">First release.</p>
+              <h3 class="text-subtitle">Theme</h3>
+              <ul role="list" class="flex flex-col gap-group">
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Colors</span><p class="text-body-md">Nine palettes on the radix-hct-colors scales: <code>accent-1</code> (blue), <code>accent-2</code> (violet), <code>accent-3</code> (plum), <code>accent-4</code> (crimson), <code>neutral</code> (slate), <code>danger</code> (red), <code>warning</code> (amber), <code>success</code> (green), <code>info</code> (indigo). Each has steps 1–12, alpha steps a1–a12 and a contrast color, all in <code>light-dark()</code>.</p></li>
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Color roles</span><p class="text-body-md"><code>bg</code>, <code>component</code>, <code>border</code>, <code>solid</code>, <code>on-solid</code> and <code>fg</code> for every palette, with <code>-weak</code> and <code>-strong</code> steps; Radix companions <code>surface</code>, <code>indicator</code>, <code>track</code>; <code class="whitespace-nowrap">--scrim</code> for backdrops.</p></li>
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Type</span><p class="text-body-md">A fluid Utopia scale <code class="whitespace-nowrap">--text-xs</code> … <code class="whitespace-nowrap">--text-6xl</code> with Tailwind v4 line-height companions; 29 semantic roles after Massimo (<code class="whitespace-nowrap">--heading-md</code>, <code class="whitespace-nowrap">--body-md</code>, <code class="whitespace-nowrap">--figure</code>, …); a kicker at three sizes.</p></li>
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Geometry</span><p class="text-body-md">Every length from one base size <code class="whitespace-nowrap">--F</code>, after Affine UI: slot, margin, inset, control height, radii, icon sizes, container levels and tiers. At the root <code class="whitespace-nowrap">--F</code> follows the fluid body size; a <code>.scope</code> or tier sets its own.</p></li>
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Space</span><p class="text-body-md"><code class="whitespace-nowrap">--space-3xs</code> … <code class="whitespace-nowrap">--space-4xl</code> as multiples of <code class="whitespace-nowrap">--F</code>.</p></li>
+                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">Shadows</span><p class="text-body-md">Compound casts and recesses after Massimo, <code class="whitespace-nowrap">--shadow-xs</code> … <code class="whitespace-nowrap">--shadow-xl</code> and <code class="whitespace-nowrap">--inset-shadow-xs</code>, <code class="whitespace-nowrap">--inset-shadow-sm</code>.</p></li>
+              </ul>
+              <h3 class="text-subtitle">Utilities</h3>
+              <ul role="list" class="flex flex-col gap-group">
+                <li><p class="text-body-md">About 1,200 Prewind-style classes with Tailwind v4 names where they overlap; <code>hover:</code> for role colors, opacity and cursor; <code>sm:</code> … <code>2xl:</code> for layout.</p></li>
+                <li><p class="text-body-md">Affine container levels (<code>p-surface</code>, <code>p-dialog</code>, <code>gap-field</code>, <code>gap-group</code>, …), tiers (<code>tier-content</code>, <code>tier-brand</code>), control and icon utilities for Phosphor icons.</p></li>
+                <li><p class="text-body-md">A 2026 reset in <code>@layer reset</code>, every selector in <code>:where()</code>.</p></li>
+              </ul>
+              <h3 class="text-subtitle">Tooling</h3>
+              <ul role="list" class="flex flex-col gap-group">
+                <li><p class="text-body-md"><code>dist/nowind.min.css</code>: the whole system in one file.</p></li>
+                <li><p class="text-body-md">Generators for the type and space scales, shadows, utilities and bundle; <code>scripts/check.mjs</code> with a self-test.</p></li>
+                <li><p class="text-body-md"><code>specimen.html</code>, <code>components.html</code>, <code>utilities.html</code> and <code>classes.md</code>.</p></li>
+              </ul>
+            </div>
+          </section>
+        <nav aria-label="Previous and next page" class="grid grid-cols-1 md:grid-cols-2 gap-grid">
+          <a href="classes.html" class="flex flex-col gap-3xs p-surface border border-border-weak hover:border-border-strong no-underline transition-colors">
+            <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><i class="icon icon-sm ph-bold ph-arrow-left"></i><span>Previous</span></span>
+            <span class="text-subtitle fg-accent-1-weak">Classes</span>
+          </a>
+          <a href="index.html" class="flex flex-col md:items-end gap-3xs p-surface border border-border-weak hover:border-border-strong no-underline md:text-right transition-colors">
+            <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><span>Next</span><i class="icon icon-sm ph-bold ph-arrow-right"></i></span>
+            <span class="text-subtitle fg-accent-1-weak">About these templates</span>
+          </a>
+        </nav>
+      </article>
+      <aside class="hidden xl:block xl:col-span-3">
+        <nav aria-label="Releases" class="sticky top-0 flex flex-col gap-field py-page">
+          <span class="text-kicker fg-weak">Releases</span>
+          <ol role="list" class="flex flex-col">
+            <li><a href="#v0-8-0" class="block py-3xs pl-sm border-l-2 border-border-weak hover:border-border-strong no-underline fg-weak hover:fg text-caption transition-colors">0.8.0</a></li>
+            <li><a href="#v0-7-0" class="block py-3xs pl-sm border-l-2 border-border-weak hover:border-border-strong no-underline fg-weak hover:fg text-caption transition-colors">0.7.0</a></li>
+            <li><a href="#v0-6-0" class="block py-3xs pl-sm border-l-2 border-border-weak hover:border-border-strong no-underline fg-weak hover:fg text-caption transition-colors">0.6.0</a></li>
+            <li><a href="#v0-5-0" class="block py-3xs pl-sm border-l-2 border-border-weak hover:border-border-strong no-underline fg-weak hover:fg text-caption transition-colors">0.5.0</a></li>
+            <li><a href="#v0-4-0" class="block py-3xs pl-sm border-l-2 border-border-weak hover:border-border-strong no-underline fg-weak hover:fg text-caption transition-colors">0.4.0</a></li>
+            <li><a href="#v0-3-0" class="block py-3xs pl-sm border-l-2 border-border-weak hover:border-border-strong no-underline fg-weak hover:fg text-caption transition-colors">0.3.0</a></li>
+            <li><a href="#v0-2-0" class="block py-3xs pl-sm border-l-2 border-border-weak hover:border-border-strong no-underline fg-weak hover:fg text-caption transition-colors">0.2.0</a></li>
+            <li><a href="#v0-1-0" class="block py-3xs pl-sm border-l-2 border-border-weak hover:border-border-strong no-underline fg-weak hover:fg text-caption transition-colors">0.1.0</a></li>
+          </ol>
+        </nav>
+      </aside>
+      </div></div>
+      <footer class="flex flex-col md:flex-row md:items-center justify-between gap-field px-grid py-surface border-t border-border-weak text-caption fg-weak">
+        <span>Nowind 0.8.0. Every page here is built from Nowind utility classes only.</span>
+        <span class="flex flex-wrap gap-row">
+          <a href="changelog.html" class="no-underline fg-weak hover:fg transition-colors">Changelog</a>
+          <a href="index.html" class="no-underline fg-weak hover:fg transition-colors">About these templates</a>
+          <a href="https://github.com/kimgranlund/nowind" class="no-underline fg-weak hover:fg transition-colors">GitHub</a>
+        </span>
+      </footer>
+    </main>
+  </div>
+</div>
+</body>
+</html>

@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """Stamp the Nowind docs templates (designed with the massimo-vignelli agent). Shared parts are defined once here.
-Usage: python3 scripts/templates.py [output-dir]   (default: templates/)"""
+Usage: python3 scripts/templates.py [output-dir]   (default: site/docs/)"""
 import html, os, re, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from component_docs import COMPONENTS  # noqa: E402
 
-OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "templates")
+OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "site", "docs")
 E = html.escape
 
 # ---------------------------------------------------------------- site map
@@ -14,6 +14,7 @@ PAGES = [
     ("docs-home.html", "Overview"),
     ("guide.html", "Lay out a docs page"),
     ("reference.html", "Page grid and shell"),
+    ("classes.html", "Classes"),
     ("changelog.html", "Changelog"),
     ("index.html", "About these templates"),
     ("components-index.html", "Components"),
@@ -24,6 +25,7 @@ NAV_GROUPS = [
     ("Getting started", [("docs-home.html", "Overview", "ph-house"),
                          ("guide.html", "Lay out a docs page", "ph-book-open")]),
     ("Reference", [("reference.html", "Page grid and shell", "ph-grid-four"),
+                   ("classes.html", "Classes", "ph-list-bullets"),
                    ("../components.html", "Showcase", "ph-squares-four"),
                    ("../specimen.html", "Specimen", "ph-palette")]),
     ("Components", [("components-index.html", "All components", "ph-stack")] +
@@ -33,7 +35,7 @@ NAV_GROUPS = [
 ]
 
 TOP_NAV = [("docs-home.html", "Docs"), ("guide.html", "Guide"), ("components-index.html", "Components"),
-           ("reference.html", "Reference"), ("changelog.html", "Changelog")]
+           ("reference.html", "Reference"), ("classes.html", "Classes"), ("changelog.html", "Changelog")]
 
 # ---------------------------------------------------------------- shared parts
 HEAD = """<!doctype html>
@@ -43,8 +45,8 @@ HEAD = """<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} · Nowind docs</title>
 <link rel="icon" href="data:,">
-<link rel="stylesheet" href="../theme.css">
-<link rel="stylesheet" href="../nowind.css">
+<link rel="stylesheet" href="../../theme.css">
+<link rel="stylesheet" href="../../nowind.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
 </head>
@@ -617,6 +619,95 @@ def index():
 
 
 
+# ---------------------------------------------------------------- class list
+ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
+
+def class_id(name):
+    return "class-" + re.sub(r"[^a-z0-9-]", "_", name)
+
+def read_classes():
+    """Categories from classes.md, the generated list: (title, [(class, declarations)])."""
+    cats, cur = [], None
+    for line in open(os.path.join(ROOT, "classes.md")):
+        if line.startswith("## "):
+            cur = (line[3:].strip(), [])
+            cats.append(cur)
+        elif cur and line.startswith("| `."):
+            m = re.match(r"\| `\.([^`]+)` \| `(.*)` \|$", line.strip())
+            if m:
+                cur[1].append((m.group(1), m.group(2)))
+    return cats
+
+PREVIEW = {
+    "Text color": lambda k: f'<span class="{k} text-title">Aa</span>',
+    "Background color": lambda k: f'<span class="block size-control rounded-xs border border-border-weak {k}"></span>',
+    "Border color": lambda k: f'<span class="block size-control rounded-xs border-2 bg-bg {k}"></span>',
+    "Borders, radius, shadow": lambda k: f'<span class="block size-control bg-bg-strong border border-border-weak {k}"></span>',
+}
+
+CLASS_FILTER = """<script>
+{
+  const input = document.getElementById("class-filter"), count = document.getElementById("class-count");
+  const sections = [...document.querySelectorAll("[data-classes]")];
+  input.addEventListener("input", () => {
+    const q = input.value.trim().toLowerCase();
+    let shown = 0;
+    for (const s of sections) {
+      let n = 0;
+      for (const r of s.querySelectorAll("tbody tr")) {
+        const hit = !q || r.textContent.toLowerCase().includes(q);
+        r.hidden = !hit;
+        n += hit;
+      }
+      s.hidden = n === 0;
+      shown += n;
+    }
+    count.textContent = q ? `${shown} matching` : count.dataset.all;
+  });
+}
+</script>
+"""
+
+def classes_page():
+    cats = read_classes()
+    total = sum(len(rows) for _, rows in cats)
+    sections, toc_items = [], []
+    for title, rows in cats:
+        sid = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
+        toc_items.append((sid, title))
+        prev = PREVIEW.get(title)
+        heads = ["Class", "Declarations"] + (["Preview"] if prev else [])
+        ths = "".join(f'<th scope="col" class="text-left px-sm py-xs border-b border-border text-label fg-weak whitespace-nowrap">{h}</th>' for h in heads)
+        trs = []
+        for k, decl in rows:
+            cells = [f'<td class="align-top px-sm py-xs border-b border-border-weak"><code class="whitespace-nowrap">.{E(k)}</code></td>',
+                     f'<td class="align-top px-sm py-xs border-b border-border-weak text-mono-sm fg-weak">{E(decl)}</td>']
+            if prev:
+                cells.append(f'<td class="align-top px-sm py-xs border-b border-border-weak">{prev(k)}</td>')
+            trs.append(f'                <tr id="{class_id(k)}">{"".join(cells)}</tr>')
+        sections.append(f"""<section id="{sid}" data-classes class="flex flex-col gap-group">
+          <h2 class="flex items-baseline justify-between gap-row text-heading-md pt-sm border-t border-border"><span>{title}</span><span class="text-caption fg-weak">{len(rows)} classes</span></h2>
+          <div class="overflow-x-auto border border-border-weak">
+            <table class="w-full text-body-md">
+              <thead class="bg-bg-strong"><tr>{ths}</tr></thead>
+              <tbody>
+{chr(10).join(trs)}
+              </tbody>
+            </table>
+          </div>
+        </section>""")
+    head = page_head("Reference", "Classes",
+        f"Every base class in <code>nowind.css</code> and what it declares, {total} in all, read from <code>classes.md</code>. "
+        "Colour, opacity and cursor classes also take <code>hover:</code> and the state variants; layout classes take <code>sm:</code> to <code>2xl:</code>.",
+        "Nowind __VERSION__ · generated from classes.md")
+    search = f"""<div class="sticky top-0 flex items-center gap-row py-xs bg-bg">
+          <input id="class-filter" type="search" placeholder="Filter by class or declaration" aria-label="Filter classes" class="grow min-w-0 h-control px-control rounded-sm border border-border hover:border-border-strong bg-bg text-control-md transition-colors">
+          <span id="class-count" data-all="{total} classes" aria-live="polite" class="text-caption fg-weak whitespace-nowrap">{total} classes</span>
+        </div>"""
+    art = "\n        ".join([head, search] + sections)
+    return doc_page("classes.html", "Classes", art, toc_items, wide=True).replace("</body>", CLASS_FILTER + "</body>", 1)
+
+
 # ---------------------------------------------------------------- component docs
 def classes_of(snippet):
     """The utility classes a snippet uses, sorted (Phosphor's icon classes left out)."""
@@ -627,7 +718,7 @@ def classes_of(snippet):
 def component_page(c):
     name = f"c-{c['slug']}.html"
     toc_items = [("example", "Example"), ("usage", "Usage"), ("classes", "Classes")]
-    chips = " ".join(f'<code class="inline-flex items-center h-nested px-nested rounded-xs bg-bg-strong border border-border-weak text-mono-sm whitespace-nowrap">{E(k)}</code>' for k in classes_of(c["html"]))
+    chips = " ".join(f'<a href="classes.html#{class_id(k.split(":")[-1])}" class="inline-flex items-center h-nested px-nested rounded-xs bg-bg-strong border border-border-weak hover:border-border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">{E(k)}</a>' for k in classes_of(c["html"]))
     use = "\n".join(f'            <li class="flex gap-gutter"><i class="icon icon-sm ph-bold ph-check fg-success-weak"></i><span>{t}</span></li>' for t in c["use"])
     avoid = "\n".join(f'            <li class="flex gap-gutter"><i class="icon icon-sm ph-bold ph-x fg-danger-weak"></i><span>{t}</span></li>' for t in c["avoid"])
     art = "\n        ".join([
@@ -649,7 +740,7 @@ def component_page(c):
           </div>""",
         ),
         section("classes", "Classes",
-            p(f"Every class in the example, {len(classes_of(c['html']))} in all. Look any of them up in <a href=\"../classes.md\">classes.md</a>."),
+            p(f"Every class in the example, {len(classes_of(c['html']))} in all. Each one links to its declarations in <a href=\"classes.html\">Classes</a>."),
             f'<div class="flex flex-wrap gap-2xs">{chips}</div>',
         ),
     ])
@@ -675,7 +766,7 @@ def components_index():
 def main():
     os.makedirs(OUT, exist_ok=True)
     files = {"guide.html": guide(), "reference.html": reference(), "changelog.html": changelog(),
-             "docs-home.html": docs_home(), "index.html": index(), "components-index.html": components_index()}
+             "docs-home.html": docs_home(), "index.html": index(), "components-index.html": components_index(), "classes.html": classes_page()}
     files.update({f"c-{c['slug']}.html": component_page(c) for c in COMPONENTS})
     for name, text in files.items():
         text = text.replace("<code>--", '<code class="whitespace-nowrap">--')
