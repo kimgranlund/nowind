@@ -209,6 +209,7 @@ add("anchor-bottom", `position-area: block-end span-inline-end; ${ANCHOR}`);
 add("anchor-top", `position-area: block-start span-inline-end; ${ANCHOR}`);
 add("anchor-end", `position-area: inline-end span-block-end; ${ANCHOR}`);
 add("anchor-start", `position-area: inline-start span-block-end; ${ANCHOR}`);
+add("anchor-bottom-end", `position-area: block-end span-inline-start; ${ANCHOR}`);
 add("anchor-center", `position-area: block-end center; ${ANCHOR}`);
 
 // The customizable select (appearance: base-select): the picker takes the theme's overlay look.
@@ -319,6 +320,7 @@ add("max-h-below-header", "max-height: calc(100dvh - var(--shell-header-height))
 add("max-w-measure", "max-width: var(--shell-measure)");
 
 // Tiers (after Affine's space tiers): each is a scope with its own font size and spacing multiplier.
+add("text-chrome", "font-size: var(--text-chrome); line-height: var(--leading-snug)");
 add("tier-product", "--tier: 1; --tier-text: 0px; font-size: var(--text-base)");
 add("tier-content", "--tier: var(--tier-content); --tier-text: var(--tier-content-text); font-size: var(--text-base)");
 add("tier-brand", "--tier: var(--tier-brand); --tier-text: var(--tier-brand-text); font-size: var(--text-base)");
@@ -776,9 +778,10 @@ const manifest = {
     levels: "p-surface, p-dialog (each minus the border), p-region, p-page, with px- and py- versions; gap-field, gap-row, gap-group, gap-section, gap-page; mt-section, mb-section. After Affine's container levels.",
     materials: "material-flat, -physical, -frosted, -glass, -outline set a region's material (nearest wins, by @scope); relief-raised, -raised-solid, -recessed, -field, -etched, -ground, -overlay say what a part is. After Massimo.",
     grid: "gap-grid, gap-x-grid (2M), p-grid-inset (M), px-grid (slot), px-grid-compact; shell: w-sidebar (16F + 16), w-rail, h-header, min-h-header, top-header (a sticky offset under the header), scroll-pt-header (on <html>, so in-page links land below a sticky header), h-below-header, max-h-below-header, max-w-measure (44F). After Affine.",
+    chrome: "text-chrome: a fixed 14px (--text-chrome) for a site's own settings panels; with scope, --F and every length inside are fixed too, whatever the root size or tier.",
     tiers: "tier-product (1×), tier-content (font +2px, spacing 1.5×), tier-brand (font +4px, spacing 2×). Each is a scope: it sets its font size to the base plus its own step (var(--text-base)), never to what it inherits, so a tier inside another tier replaces it rather than adding to it; --F and everything derived recompute inside it.",
     animation: "animate-spin, animate-pulse, animate-none (cut by the reset under reduced motion).",
-    anchor: "anchor-bottom, -top, -start, -end, -center: place a popover against its invoker with CSS anchor positioning, flipping at the screen edge.",
+    anchor: "anchor-bottom, -bottom-end (below, aligned to the invoker's end edge), -top, -start, -end, -center: place a popover against its invoker with CSS anchor positioning, flipping at the screen edge.",
     select: "select-base: the customizable select (appearance: base-select), its picker and options in the theme. The value is centred in the field and never wraps; a <button> holding <selectedcontent class=\"block truncate\"> lets a long value end in an ellipsis before the caret, which is drawn small and sits at the end. The highlighted option shows by its background, not a focus ring.",
     motion: "transition, transition-colors, -opacity, -shadow, -transform, -none (state-change length and easing by default); duration-fade, -snappy, -smooth, -bouncy; ease-smooth, -snappy, -bouncy (Massimo springs as linear()), ease-standard, -out, -in.",
     marks: "The reset draws checkboxes, radios, switches (<input type=checkbox role=switch>) and sliders at Affine's mark size (between F and the slot), filled with accent-1 when checked; mark-sm and mark-lg pick another size.",

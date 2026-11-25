@@ -80,7 +80,7 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 
 ## Motion, anchors and select
 
-32 classes.
+33 classes.
 
 | Class | Declarations |
 |---|---|
@@ -104,6 +104,7 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 | `.anchor-top` | `position-area: block-start span-inline-end; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: var(--space-3xs)` |
 | `.anchor-end` | `position-area: inline-end span-block-end; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: var(--space-3xs)` |
 | `.anchor-start` | `position-area: inline-start span-block-end; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: var(--space-3xs)` |
+| `.anchor-bottom-end` | `position-area: block-end span-inline-start; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: var(--space-3xs)` |
 | `.anchor-center` | `position-area: block-end center; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: var(--space-3xs)` |
 | `.select-base` | `appearance: base-select; align-items: center` |
 | `.duration-fade` | `--_duration: var(--duration-fade); transition-duration: var(--duration-fade)` |
@@ -139,7 +140,7 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 
 ## Type
 
-42 classes.
+43 classes.
 
 | Class | Declarations |
 |---|---|
@@ -184,6 +185,7 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 | `.text-mono-sm` | `font-size: var(--mono-sm); line-height: var(--mono-sm--line-height); font-weight: var(--mono-sm--font-weight); font-family: var(--mono-sm--font-family); font-variant-numeric: var(--mono-sm--font-variant-numeric)` |
 | `.text-code` | `font-size: var(--code); line-height: var(--code--line-height); font-weight: var(--code--font-weight); font-family: var(--code--font-family); font-variant-numeric: var(--code--font-variant-numeric); font-variant-ligatures: var(--code--font-variant-ligatures)` |
 | `.text-kbd` | `font-size: var(--kbd); line-height: var(--kbd--line-height); font-weight: var(--kbd--font-weight); font-family: var(--kbd--font-family); font-variant-numeric: var(--kbd--font-variant-numeric)` |
+| `.text-chrome` | `font-size: var(--text-chrome); line-height: var(--leading-snug)` |
 | `.caret` | `font-size: var(--icon-sm); --_caret: calc(var(--icon-sm) * 0.4); --_caret-stroke: max(1.5px, calc(var(--icon-sm) * 0.08))` |
 
 ## Text color

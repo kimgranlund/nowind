@@ -92,25 +92,6 @@
   document.querySelectorAll("[data-search-open]").forEach((b) => b.addEventListener("click", open));
 })();
 
-// Light and dark: the band's toggle flips the scheme and remembers it; the head script applies it before paint.
-(() => {
-  const root = document.documentElement, media = matchMedia("(prefers-color-scheme: dark)");
-  const current = () => root.dataset.colorMode || (media.matches ? "dark" : "light");
-  const show = () => document.querySelectorAll("[data-theme-toggle]").forEach((b) => {
-    const dark = current() === "dark";
-    b.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
-    b.querySelector("i").className = `icon ph ${dark ?"ph-sun" : "ph-moon"}`;
-  });
-  document.querySelectorAll("[data-theme-toggle]").forEach((b) => b.addEventListener("click", () => {
-    const next = current() === "dark" ? "light" : "dark";
-    root.dataset.colorMode = next;
-    try { localStorage.setItem("nowind-color-mode", next); } catch {}
-    show();
-  }));
-  media.addEventListener("change", show);
-  show();
-})();
-
 // The lens, after Apple's Liquid Glass: each .lens element gets its own displacement map, drawn at its size and corner
 // radius. A pixel inside the rim band shows the backdrop from further in, along the edge's inward normal, by an amount
 // that grows towards the edge (a convex rim); the centre is untouched. Red, green and blue bend by slightly different
@@ -198,48 +179,39 @@ document.querySelectorAll("[data-glass-slider]").forEach((box) => {
   place();
 });
 
-// Base size: the band's size button cycles the root font size through 12, 14, 16 and 18px and remembers it; the head script applies it before paint. Type, space and geometry follow, since they are rem and --F based.
+// Display settings: the band's panel sets the theme (light, dark or the system's), the root font size (12 to 18px) and
+// the tier (auto keeps each region's own; product, content or brand applies one to the main region and every example
+// frame, the tiers demo excepted). Each is remembered; the head script applies the theme and size before paint.
 (() => {
-  const root = document.documentElement, SIZES = [12, 14, 16, 18];
-  const current = () => Math.round(parseFloat(getComputedStyle(root).fontSize));
-  const show = () => document.querySelectorAll("[data-size-toggle]").forEach((b) => {
-    const now = current(), next = SIZES[(SIZES.indexOf(now) + 1) % SIZES.length] || 16;
-    b.querySelector("span").textContent = now;
-    b.setAttribute("aria-label", `Base font size ${now}px; switch to ${next}px`);
-  });
-  document.querySelectorAll("[data-size-toggle]").forEach((b) => b.addEventListener("click", () => {
-    const next = SIZES[(SIZES.indexOf(current()) + 1) % SIZES.length] || 16;
-    root.style.fontSize = `${next}px`;
-    try { localStorage.setItem("nowind-root-size", String(next)); } catch {}
+  const root = document.documentElement, media = matchMedia("(prefers-color-scheme: dark)");
+  const store = (k, v) => { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch {} };
+  const read = (k) => { try { return localStorage.getItem(k); } catch { return null; } };
+  const targets = [...document.querySelectorAll("#content, .tier-product, .tier-content, .tier-brand")].filter((e) => !e.closest("[data-semantic-demo], .text-chrome"));
+  targets.forEach((e) => { e.dataset.tierDefault = (e.className.match(/\btier-(product|content|brand)\b/) || [, ""])[1]; });
+  const state = {
+    theme: read("nowind-color-mode") || "system",
+    size: String(Math.round(parseFloat(getComputedStyle(root).fontSize))),
+    tier: read("nowind-tier") || "auto",
+  };
+  const apply = {
+    theme(v) { if (v === "system") delete root.dataset.colorMode; else root.dataset.colorMode = v; store("nowind-color-mode", v === "system" ? null : v); },
+    size(v) { root.style.fontSize = `${v}px`; store("nowind-root-size", v); },
+    tier(v) {
+      targets.forEach((e) => {
+        e.classList.remove("tier-product", "tier-content", "tier-brand");
+        const t = v === "auto" ? e.dataset.tierDefault : v;
+        if (t) e.classList.add(`tier-${t}`);
+      });
+      store("nowind-tier", v === "auto" ? null : v);
+    },
+  };
+  const show = () => document.querySelectorAll("[data-setting]").forEach((b) => b.setAttribute("aria-pressed", String(state[b.dataset.setting] === b.dataset.value)));
+  document.querySelectorAll("[data-setting]").forEach((b) => b.addEventListener("click", () => {
+    state[b.dataset.setting] = b.dataset.value;
+    apply[b.dataset.setting](b.dataset.value);
     show();
   }));
+  if (state.tier !== "auto") apply.tier(state.tier);
+  media.addEventListener("change", show);
   show();
-})();
-
-// Tier: the band's tier button cycles Auto (each region's own tier), product, content and brand, and remembers it.
-// It swaps the tier class on the main region and every example frame; the tiers demo keeps its own three.
-(() => {
-  const TIERS = ["auto", "product", "content", "brand"], KEY = "nowind-tier";
-  const targets = [...document.querySelectorAll("#content, .tier-product, .tier-content, .tier-brand")].filter((e) => !e.closest("[data-semantic-demo]"));
-  targets.forEach((e) => { e.dataset.tierDefault = (e.className.match(/\btier-(product|content|brand)\b/) || [, ""])[1]; });
-  let tier = "auto";
-  try { tier = localStorage.getItem(KEY) || "auto"; } catch {}
-  const apply = () => {
-    targets.forEach((e) => {
-      e.classList.remove("tier-product", "tier-content", "tier-brand");
-      const t = tier === "auto" ? e.dataset.tierDefault : tier;
-      if (t) e.classList.add(`tier-${t}`);
-    });
-    document.querySelectorAll("[data-tier-toggle]").forEach((b) => {
-      const next = TIERS[(TIERS.indexOf(tier) + 1) % TIERS.length];
-      b.querySelector("span").textContent = tier;
-      b.setAttribute("aria-label", `Tier: ${tier}; switch to ${next}`);
-    });
-  };
-  document.querySelectorAll("[data-tier-toggle]").forEach((b) => b.addEventListener("click", () => {
-    tier = TIERS[(TIERS.indexOf(tier) + 1) % TIERS.length];
-    try { localStorage.setItem(KEY, tier); } catch {}
-    apply();
-  }));
-  apply();
 })();

@@ -109,6 +109,7 @@
       "summary": "A set of mutually exclusive options. The pressed segment is styled by aria-pressed, not by a class.",
       "use": [
         "Two to five short options that change a view in place.",
+        "The box is h-control rounded-sm border-2 border-transparent: the transparent border is its only padding (2px), and the segments are h-full rounded-inner, so their corners follow the box exactly.",
         "Segments touch; the pressed one lifts with pressed:bg-neutral-1 pressed:shadow-xs."
       ],
       "avoid": [
@@ -119,28 +120,28 @@
         "icons"
       ],
       "classes": [
+        "aspect-square",
         "bg-neutral-3",
         "bg-transparent",
-        "border",
         "border-0",
+        "border-2",
         "border-transparent",
         "cursor-pointer",
         "fg-neutral-11",
         "font-medium",
-        "h-nested",
+        "h-control",
+        "h-full",
         "hover:bg-neutral-4",
         "icon",
         "inline-flex",
         "items-center",
         "justify-center",
-        "p-inset",
         "pressed:bg-neutral-1",
         "pressed:fg-neutral-12",
         "pressed:shadow-xs",
         "px-nested",
+        "rounded-inner",
         "rounded-sm",
-        "rounded-xs",
-        "size-nested",
         "text-base"
       ]
     },
@@ -176,6 +177,7 @@
         "flex-wrap",
         "font-medium",
         "gap-2xs",
+        "gap-3xs",
         "icon",
         "icon-sm",
         "inline-flex",

@@ -554,5 +554,12 @@
     ],
     "values": "384, 448, 512, 576, 672px (Tailwind v4's @sm to @2xl: 24, 28, 32, 36, 42rem at 16px)",
     "use": "@sm: to @2xl: apply a layout class when the nearest @container is at least that wide, so a component adapts to the slot it sits in rather than the window. In px like the breakpoints, because a query can't read a custom property; scripts/utilities.mjs reads these values."
+  },
+  "chrome": {
+    "tokens": [
+      "--text-chrome"
+    ],
+    "value": "14px",
+    "use": "A fixed size for a site's own settings and tool panels, which must not follow the root size or the tier. Put text-chrome with scope on the panel: --F becomes 14px there, so its controls, gaps and radii are fixed too (a 30px control)."
   }
 }

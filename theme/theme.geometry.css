@@ -48,6 +48,7 @@
   --container-lg: 512px;
   --container-xl: 576px;
   --container-2xl: 672px;
+  --text-chrome: 14px;
 }
 
 :root {
