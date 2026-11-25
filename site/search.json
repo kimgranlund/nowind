@@ -137,6 +137,7 @@
 ["Text on a solid", "docs/colour.html#solid", "Section", "Colour"],
 ["Light and dark", "docs/colour.html#modes", "Section", "Colour"],
 ["Type sizes", "docs/type-space.html#sizes", "Section", "Type and space"],
+["Where each size goes", "docs/type-space.html#contract", "Section", "Type and space"],
 ["Type roles", "docs/type-space.html#roles", "Section", "Type and space"],
 ["Faces", "docs/type-space.html#faces", "Section", "Type and space"],
 ["Space", "docs/type-space.html#space", "Section", "Type and space"],

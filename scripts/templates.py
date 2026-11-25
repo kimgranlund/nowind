@@ -817,12 +817,15 @@ def type_space_page():
     roles = [[f'<code>text-{r["role"][2:]}</code>', f'<code>{E(r["size"])}</code>', str(r.get("weight", "")), E(r.get("use", ""))] for r in tr["roles"]]
     space = [[f'<code>{t["token"][8:]}</code>', f'<code>p-{t["token"][8:]}</code> · <code>gap-{t["token"][8:]}</code>', f'{t["multiplier"]} × F', f'{t["minPx"]}–{t["maxPx"]}px'] for t in sp["sizes"]]
     faces = ul([f'<code>{E(f["token"])}</code>: {E(f["use"])}' for f in ty["faces"]])
-    toc = [("sizes", "Type sizes"), ("roles", "Type roles"), ("faces", "Faces"), ("space", "Space")]
+    toc = [("sizes", "Type sizes"), ("contract", "Where each size goes"), ("roles", "Type roles"), ("faces", "Faces"), ("space", "Space")]
     art = "\n        ".join([
         page_head("Docs", "Type and space",
                   "One fluid scale for each: sizes grow with the viewport between a phone and a wide screen, and every space step is a multiple of the base size, F. Sizes are the primitives; roles name a size, weight and face for a use."),
         section("sizes", "Type sizes", p("Each <code>text-*</code> class sets the size and its line height, as Tailwind v4 does. Sizes are measured at the smallest and largest viewport."),
                 table(["Class", "Sample", "Size", "Line height"], sizes)),
+        section("contract", "Where each size goes", p(E(tr["sizeContract"]["description"].split(". Every row")[0]) + ". The examples lint enforces it, and <code>?audit=type</code> on any page checks the rendered rules below."),
+                table(["Kind", "Identified by", "Size", "Icon"], [[E(k["kind"]), E(k["identify"]), E(k["size"]), E(k["icon"])] for k in tr["sizeContract"]["kinds"] if k["status"] == "decided"]),
+                p(" ".join(E(r) for r in tr["sizeContract"]["rules"]))),
         section("roles", "Type roles", p(f"{len(tr['roles'])} roles, each a size with its weight, face and leading, for a use. A role is semantic; in examples, write the size and weight instead."),
                 table(["Class", "Size", "Weight", "Use"], roles)),
         section("faces", "Faces", faces),
@@ -1138,6 +1141,9 @@ def lint_examples():
         if "data-semantic-demo" in sec[:80] or body not in sec:
             continue
         errors += bad(sec[sec.index(body) + len(body):], f"site/components.html #{m.group(1)}")
+    findings, unclassified = type_audit()
+    errors += [f"{w}: {k} text is text-{eff}; the size contract wants text-{want}. Fix: the contract's size (sizeContract in theme/theme.type-roles.manifest.json). {lab}" for w, k, eff, want, lab in findings]
+    errors += [f"{w}: {lab} sets text-{own} but has no kind in the size contract. Fix: give it a kind's classes, or let it inherit." for w, own, lab in unclassified]
     return sorted(set(errors))
 
 
