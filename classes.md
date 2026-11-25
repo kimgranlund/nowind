@@ -80,7 +80,7 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 
 ## Motion, anchors and select
 
-25 classes.
+32 classes.
 
 | Class | Declarations |
 |---|---|
@@ -90,6 +90,13 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 | `.transition-shadow` | `transition-property: box-shadow; transition-duration: var(--_duration, var(--motion-duration)); transition-timing-function: var(--_ease, var(--motion-easing))` |
 | `.transition-transform` | `transition-property: transform, translate, scale, rotate; transition-duration: var(--_duration, var(--motion-duration)); transition-timing-function: var(--_ease, var(--motion-easing))` |
 | `.transition-none` | `transition-property: none` |
+| `.rotate-0` | `rotate: 0deg` |
+| `.rotate-45` | `rotate: 45deg` |
+| `.rotate-90` | `rotate: 90deg` |
+| `.rotate-180` | `rotate: 180deg` |
+| `.-rotate-45` | `rotate: -45deg` |
+| `.-rotate-90` | `rotate: -90deg` |
+| `.-rotate-180` | `rotate: -180deg` |
 | `.animate-spin` | `animation: nw-spin 1s linear infinite` |
 | `.animate-pulse` | `animation: nw-pulse 2s var(--ease-standard) infinite` |
 | `.animate-none` | `animation: none` |

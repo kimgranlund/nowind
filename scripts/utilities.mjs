@@ -181,6 +181,8 @@ add("transition-opacity", `transition-property: opacity; ${T}`);
 add("transition-shadow", `transition-property: box-shadow; ${T}`);
 add("transition-transform", `transition-property: transform, translate, scale, rotate; ${T}`);
 add("transition-none", "transition-property: none");
+for (const d of [0, 45, 90, 180]) add(`rotate-${d}`, `rotate: ${d}deg`);
+for (const d of [45, 90, 180]) add(`-rotate-${d}`, `rotate: -${d}deg`);
 
 // Animations (Tailwind v4 names). The reset cuts them under prefers-reduced-motion.
 add("animate-spin", "animation: nw-spin 1s linear infinite");
@@ -351,6 +353,7 @@ const BREAKPOINTS = [...geometryCss.matchAll(/--breakpoint-([\w]+):\s*(\d+)px/g)
 
 const reset = `@layer reset {
   :where(*, *::before, *::after) { box-sizing: border-box; border-color: var(--border); }
+  :where(a, button, summary, input, select, textarea, label, [role="button"], [role="tab"], [role="option"], [role="menuitem"], [role="switch"]) { transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, translate, scale, rotate; transition-duration: var(--motion-duration); transition-timing-function: var(--motion-easing); }
   :where(*) { margin: 0; }
 
   :where(html) {
@@ -668,14 +671,15 @@ for (const [prefix, sel, list] of STATES) {
   for (const c of list) out.push(`  .${esc(`${prefix}:${c}`)}${sel} { ${D.get(c)}; }`);
 }
 
-// Group variants (Tailwind v4 names): a child reacts to its .group ancestor being hovered, focused or open, for
-// tooltips and reveal-on-hover parts. Opacity, visibility and the role colors of text only.
+// Group variants (Tailwind v4 names): a child reacts to its .group ancestor being hovered, focused or open (an open
+// details or popover, aria-expanded, or a group holding an open popover), for tooltips, reveals and carets that turn.
+// Opacity, visibility, rotation and the role colors of text only.
 add("group", "--_group: 1");
-const GROUP_CLASSES = [...D.keys()].filter((c) => /^opacity-|^(visible|invisible)$/.test(c) || (/^fg(-|$)/.test(c) && ROLE_COLORS.includes(c)));
+const GROUP_CLASSES = [...D.keys()].filter((c) => /^opacity-|^(visible|invisible)$|^-?rotate-/.test(c) || (/^fg(-|$)/.test(c) && ROLE_COLORS.includes(c)));
 const GROUP_VARIANTS = [
   ["group-hover", ".group:hover ", true],
   ["group-focus-within", ".group:focus-within ", false],
-  ["group-open", ".group:is([open], :popover-open, [aria-expanded=\"true\"]) ", false],
+  ["group-open", ".group:is([open], :popover-open, [aria-expanded=\"true\"], :has(> :popover-open)) ", false],
 ];
 for (const [prefix, pre, hoverOnly] of GROUP_VARIANTS) {
   if (hoverOnly) out.push("  @media (hover: hover) {");
@@ -745,7 +749,7 @@ const manifest = {
     "No m-full / p-full: margin and padding percentages are of the width, not a full size.",
     "Margins and padding x/y use logical properties (margin-inline, padding-block).",
     "text-{size} also sets the matching line height, as Tailwind v4.",
-    "The reset keeps link underlines and adds a 2026 baseline: :where() selectors (no specificity), interpolate-size, text-size-adjust, font-synthesis none, headings set from the type roles (h1 heading-xl … h6 title-sm), text-wrap balance/pretty, field-sizing content, accent and caret colours, :focus-visible ring, :target scroll margin, [hidden] enforced, role=list, tabular table figures, ::backdrop and ::selection from tokens, and reduced-motion handling, and a forced-colors (Windows High Contrast) block: controls and overlays keep an outline, selected, pressed and current items a Highlight outline, and checkboxes, radios, switches and sliders are redrawn in system colors. Focus: buttons, links and checkable controls get a 2px accent ring on :focus-visible; text fields (text-like inputs, textarea, select) get no ring and turn their border accent instead, with a Highlight outline in forced colours. Native controls without a base appearance are themed in the reset: the file input's button looks like a secondary button, progress is an accent bar on a component track, and meter turns success, warning or danger from its low, high and optimum attributes; each gets system colours in forced colours. field-sizing-content and field-sizing-fixed size a field to its content or not (textareas grow by default). Controls share one recipe in utilities, enforced by scripts/check.mjs: h-control (or size-control), px-control, a border width (border-transparent on solid fills, never border-0), rounded-control and a control type role. caret, on an icon box (icon caret), is the one disclosure chevron; select-base draws the same chevron as its picker icon, and both turn over when open. bg-dots paints a dot grid in currentColor (set the colour with fg-*), spaced by bg-dots-sm, -md or -lg. lens refracts the backdrop through an SVG displacement filter (id nowind-lens, a bend along the rim with an R/G/B fringe) when the page sets data-lens=\"on\" on the root; only Chromium applies an SVG filter in backdrop-filter, so the page sets it after checking the engine, and without it the material's own blur applies.",
+    "The reset keeps link underlines and adds a 2026 baseline: :where() selectors (no specificity), interpolate-size, text-size-adjust, font-synthesis none, headings set from the type roles (h1 heading-xl … h6 title-sm), text-wrap balance/pretty, field-sizing content, accent and caret colours, :focus-visible ring, :target scroll margin, [hidden] enforced, role=list, tabular table figures, ::backdrop and ::selection from tokens, and reduced-motion handling, and a forced-colors (Windows High Contrast) block: controls and overlays keep an outline, selected, pressed and current items a Highlight outline, and checkboxes, radios, switches and sliders are redrawn in system colors. Focus: buttons, links and checkable controls get a 2px accent ring on :focus-visible; text fields (text-like inputs, textarea, select) get no ring and turn their border accent instead, with a Highlight outline in forced colours. Native controls without a base appearance are themed in the reset: the file input's button looks like a secondary button, progress is an accent bar on a component track, and meter turns success, warning or danger from its low, high and optimum attributes; each gets system colours in forced colours. field-sizing-content and field-sizing-fixed size a field to its content or not (textareas grow by default). Controls share one recipe in utilities, enforced by scripts/check.mjs: h-control (or size-control), px-control, a border width (border-transparent on solid fills, never border-0), rounded-control and a control type role. caret, on an icon box (icon caret), is the one disclosure chevron; select-base draws the same chevron as its picker icon, and both turn over when open. bg-dots paints a dot grid in currentColor (set the colour with fg-*), spaced by bg-dots-sm, -md or -lg. lens refracts the backdrop through an SVG displacement filter (id nowind-lens, a bend along the rim with an R/G/B fringe) when the page sets data-lens=\"on\" on the root; only Chromium applies an SVG filter in backdrop-filter, so the page sets it after checking the engine, and without it the material's own blur applies. Every interactive element (links, buttons, summaries, fields, labels and the button, tab, option, menuitem and switch roles) transitions its colours, opacity, shadow and transforms by default, at the motion duration and easing; prefers-reduced-motion cuts it to nothing. Indicators turn with state: rotate-* classes and group-open:rotate-180 on a caret inside a .group.",
     "No outline-{colour} classes, no text-/border- classes for alpha steps, and no class that pairs a role with another property (no bg-fg-*, text-bg-*, bg-border-*). Text-color roles are named by their token alone: fg, fg-weak, fg-accent-1-weak.",
     "Tailwind v4 names where v4 renamed v3 ones: rounded-xs/sm, shadow-xs/sm, backdrop-blur-xs/sm; h-screen is 100vh with h-dvh/svh/lvh separate; a 2xl breakpoint; aliases max-w-prose and font-sans.",
     "Added: grid display, text-start/end, justify-evenly, items-baseline, tabular-nums, text-balance/pretty, w-fit, h-control, kicker and type-role classes.",
@@ -758,7 +762,7 @@ const GROUPS = [
   ["Controls and icons", (c) => /^(icon|mark-|h-control|h-nested|size-control|size-nested|min-w-control|min-w-nested|px-control|px-nested|gap-gutter)/.test(c)],
   ["Levels and tiers", (c) => /^(p[xy]?-(surface|dialog|region|page)|gap-(field|row|group|section|page)|m[tb]-section|tier-)/.test(c)],
   ["Materials", (c) => /^(material|relief)-/.test(c)],
-  ["Motion, anchors and select", (c) => /^(transition|duration-|ease-|animate-|anchor-|select-base)/.test(c)],
+  ["Motion, anchors and select", (c) => /^(transition|duration-|ease-|animate-|anchor-|select-base|-?rotate-)/.test(c)],
   ["Page grid and shell", (c) => /^(gap-(x-)?grid|p-grid-inset|px-grid|w-sidebar|w-rail|(min-)?h-header|top-header|(max-)?h-below-header|max-w-measure)/.test(c)],
   ["Type", (c, d) => /font-size/.test(d)],
   ["Text color", (c, d) => /^color:/.test(d)],

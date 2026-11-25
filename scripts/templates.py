@@ -787,8 +787,18 @@ def lint_examples():
     """Examples use regular (primitive) classes only. Returns one line per semantic class found in a component snippet
     or in a block of the showcase, except the showcase blocks marked data-semantic-demo."""
     cat = {k: t for t, rows in read_classes() for k, _ in rows}
+    variant = re.compile(r"^(hover|active|focus-visible|focus-within|selected|aria-current|aria-pressed|aria-expanded|open|aria-invalid|has-invalid|disabled|group-hover|group-open|group-focus-within):")
     def bad(html_, where):
         out = []
+        # An element that changes with state animates the change: interactive elements get it from the reset; any
+        # other element with a state or hover variant names a transition class.
+        for m in re.finditer(r'<(\w+)\b([^>]*?)\sclass="([^"]*)"([^>]*)>', html_):
+            tag, toks = m.group(1), m.group(3).split()
+            role = re.search(r'role="(\w+)"', m.group(2) + m.group(4))
+            if tag in ("a", "button", "summary", "input", "select", "textarea", "label") or (role and role.group(1) in ("button", "tab", "option", "menuitem", "switch")):
+                continue
+            if any(variant.match(t) for t in toks) and not any(t.startswith("transition") for t in toks):
+                out.append(f"{where}: <{tag}> changes with state but has no transition class. Fix: add transition.")
         for cls in re.findall(r'class="([^"]+)"', html_):
             for t in cls.split():
                 base = t.split(":")[-1]

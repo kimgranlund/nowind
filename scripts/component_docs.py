@@ -354,12 +354,14 @@ COMPONENTS = [
     {
         "slug": "menu", "name": "Popover menu", "icon": "ph-list", "group": "Overlays",
         "summary": "A menu that opens with <code>popovertarget</code> and sits against its button with <code>anchor-bottom</code>. No script.",
-        "html": f"""<button class="{BTN_SECONDARY}" popovertarget="doc-sort"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-sort-ascending"></i><span>Sort</span><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-caret-down" aria-hidden="true"></i></button>
+        "html": f"""<div class="group inline-block">
+<button class="{BTN_SECONDARY}" popovertarget="doc-sort"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-sort-ascending"></i><span>Sort</span><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-caret-down transition group-open:rotate-180" aria-hidden="true"></i></button>
 <div id="doc-sort" popover class="anchor-bottom w-fit p-3xs rounded-lg bg-neutral-1 border border-neutral-6 shadow-lg">
   <div class="flex flex-col" role="listbox" aria-label="Sort by">
     <a href="#" class="{MENU_ITEM}" role="option" aria-selected="true"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-clock"></i><span class="grow">Last edited</span></a>
     <a href="#" class="{MENU_ITEM}" role="option" aria-selected="false"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-text-aa"></i><span class="grow">Name</span></a>
   </div>
+</div>
 </div>""",
         "use": ["Put layout classes such as <code>flex</code> on an inner element: on the popover itself they would keep it visible when closed."],
         "avoid": ["A menu for the page's main navigation."],
@@ -385,12 +387,12 @@ COMPONENTS = [
         "slug": "accordion", "name": "Accordion", "icon": "ph-rows", "group": "Disclosure",
         "summary": "Sections that open and close, built from <code>&lt;details&gt;</code>.",
         "html": """<div class="max-w-form">
-  <details class="border-b border-neutral-6" open>
-    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-base font-semibold hover:fg-accent-1-11 transition-colors">Do I need a build step?<i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-caret-down fg-neutral-11" aria-hidden="true"></i></summary>
+  <details class="group border-b border-neutral-6" open>
+    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-base font-semibold hover:fg-accent-1-11 transition-colors">Do I need a build step?<i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-caret-down fg-neutral-11 transition group-open:rotate-180" aria-hidden="true"></i></summary>
     <p class="text-sm fg-neutral-11 pb-sm">No. Link one stylesheet; every class already exists.</p>
   </details>
-  <details class="border-b border-neutral-6">
-    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-base font-semibold hover:fg-accent-1-11 transition-colors">Does it work in a CMS?<i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-caret-down fg-neutral-11" aria-hidden="true"></i></summary>
+  <details class="group border-b border-neutral-6">
+    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-base font-semibold hover:fg-accent-1-11 transition-colors">Does it work in a CMS?<i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-caret-down fg-neutral-11 transition group-open:rotate-180" aria-hidden="true"></i></summary>
     <p class="text-sm fg-neutral-11 pb-sm">Yes. Any class works in any HTML.</p>
   </details>
 </div>""",
@@ -440,8 +442,8 @@ COMPONENTS = [
       <tr><th class="text-left px-md py-xs text-sm font-medium fg-neutral-11 border-b border-neutral-6">Invoice</th><th class="text-left px-md py-xs text-sm font-medium fg-neutral-11 border-b border-neutral-6">Status</th><th class="text-right px-md py-xs text-sm font-medium fg-neutral-11 border-b border-neutral-6">Amount</th></tr>
     </thead>
     <tbody>
-      <tr class="hover:bg-neutral-3"><td class="px-md py-sm text-sm font-mono border-b border-neutral-6">INV-1042</td><td class="px-md py-sm border-b border-neutral-6">Paid</td><td class="px-md py-sm text-right text-sm font-mono tabular-nums border-b border-neutral-6">$1,280.00</td></tr>
-      <tr class="hover:bg-neutral-3"><td class="px-md py-sm text-sm font-mono">INV-1043</td><td class="px-md py-sm">Pending</td><td class="px-md py-sm text-right text-sm font-mono tabular-nums">$640.50</td></tr>
+      <tr class="hover:bg-neutral-3 transition"><td class="px-md py-sm text-sm font-mono border-b border-neutral-6">INV-1042</td><td class="px-md py-sm border-b border-neutral-6">Paid</td><td class="px-md py-sm text-right text-sm font-mono tabular-nums border-b border-neutral-6">$1,280.00</td></tr>
+      <tr class="hover:bg-neutral-3 transition"><td class="px-md py-sm text-sm font-mono">INV-1043</td><td class="px-md py-sm">Pending</td><td class="px-md py-sm text-right text-sm font-mono tabular-nums">$640.50</td></tr>
     </tbody>
   </table>
 </div>""",
@@ -508,9 +510,9 @@ COMPONENTS = [
       </tr>
     </thead>
     <tbody>
-      <tr class="hover:bg-neutral-3"><td class="px-md py-sm border-b border-neutral-6">Contoso</td><td class="px-md py-sm text-right text-sm font-mono tabular-nums border-b border-neutral-6">48</td></tr>
-      <tr class="hover:bg-neutral-3"><td class="px-md py-sm border-b border-neutral-6">Fabrikam</td><td class="px-md py-sm text-right text-sm font-mono tabular-nums border-b border-neutral-6">12</td></tr>
-      <tr class="hover:bg-neutral-3"><td class="px-md py-sm">Northwind</td><td class="px-md py-sm text-right text-sm font-mono tabular-nums">7</td></tr>
+      <tr class="hover:bg-neutral-3 transition"><td class="px-md py-sm border-b border-neutral-6">Contoso</td><td class="px-md py-sm text-right text-sm font-mono tabular-nums border-b border-neutral-6">48</td></tr>
+      <tr class="hover:bg-neutral-3 transition"><td class="px-md py-sm border-b border-neutral-6">Fabrikam</td><td class="px-md py-sm text-right text-sm font-mono tabular-nums border-b border-neutral-6">12</td></tr>
+      <tr class="hover:bg-neutral-3 transition"><td class="px-md py-sm">Northwind</td><td class="px-md py-sm text-right text-sm font-mono tabular-nums">7</td></tr>
     </tbody>
   </table>
 </div>""",
