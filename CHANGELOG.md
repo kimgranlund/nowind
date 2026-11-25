@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Smaller:** raw palette steps are now background-only (`bg-accent-1-9`, `bg-neutral-a4`); their `text-` and `border-` classes are gone (215 classes). Text and borders use the roles. New `--border-page` (`border-border-page`) for rings in the page color.
+
 ## 0.6.0 (2026-11-25)
 
 - **Component docs:** a page per component in `templates/` (21 so far), each with the component live, its HTML to copy, when to use it and when not to, and the classes it uses; plus an index. Content lives in `scripts/component_docs.py`.

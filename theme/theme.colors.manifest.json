@@ -467,5 +467,10 @@
       "--fg-inverse-weak": "neutral 6"
     },
     "use": "Toasts, tooltips and a single selected item: the page's text colour as a fill, with the page colour as its text. Classes bg-bg-inverse, text-fg-inverse, text-fg-inverse-weak."
+  },
+  "borderPage": {
+    "token": "--border-page",
+    "value": "var(--bg)",
+    "use": "A border in the page color, to separate overlapping parts (an avatar group) or cut a ring; class border-border-page."
   }
 }

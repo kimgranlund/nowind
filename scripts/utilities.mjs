@@ -108,9 +108,9 @@ add("text-pretty", "text-wrap: pretty");
 const PALETTES = [...new Set(paletteProps.map((p) => p.match(/^--([a-z]+(?:-\d)?)-1$/)).filter(Boolean).map((m) => m[1]))];
 const step = (c) => PALETTES.some((p) => new RegExp(`^${p}-\\d+$`).test(c));
 const alphaStep = (c) => PALETTES.some((p) => new RegExp(`^${p}-a\\d+$`).test(c));
-const forText = (c) => step(c) || /^(fg|on-solid)(-|$)/.test(c);
+const forText = (c) => /^(fg|on-solid)(-|$)/.test(c);
 const forBg = (c) => step(c) || alphaStep(c) || /^(bg|component|solid|scrim)(-|$)/.test(c) || /-(surface|indicator|track)$/.test(c);
-const forBorder = (c) => step(c) || /^border(-|$)/.test(c);
+const forBorder = (c) => /^border(-|$)/.test(c);
 for (const c of COLORS) {
   if (forText(c)) add(`text-${c}`, `color: var(--${c})`);
   if (forBg(c)) add(`bg-${c}`, `background-color: var(--${c})`);
@@ -632,7 +632,7 @@ const manifest = {
     typeScale: `text-{${SIZES.join(", ")}} (sets size and line height)`,
     kicker: `text-{${KICKERS.join(", ")}} (size and the kicker style)`,
     typeRoles: `text-{${ROLES.filter((r) => !KICKERS.includes(r)).join(", ")}} (every role companion)`,
-    colors: "Each property takes only its own roles: text- with fg-* and on-solid-*; bg- with bg-*, component-*, solid-*, surface, indicator and track; border- with border-*. Raw palette steps (accent-1-9) work with all three; alpha steps (neutral-a4) with bg- only. No outline colour classes: the reset sets the focus ring.",
+    colors: "Each property takes only its own roles: text- with fg-* and on-solid-*; bg- with bg-*, component-*, solid-*, surface, indicator and track; border- with border-*. Raw palette steps (accent-1-9) and alpha steps (neutral-a4) are bg- only: text and borders use the roles. No outline colour classes: the reset sets the focus ring.",
     weights: "font-normal, font-medium, font-semibold, font-bold",
     faces: "font-body (alias font-sans), font-heading, font-mono, font-control",
     leading: "leading-none, tight, snug, normal, relaxed",
@@ -661,7 +661,7 @@ const manifest = {
     "Margins and padding x/y use logical properties (margin-inline, padding-block).",
     "text-{size} also sets the matching line height, as Tailwind v4.",
     "The reset keeps link underlines and adds a 2026 baseline: :where() selectors (no specificity), interpolate-size, text-size-adjust, font-synthesis none, headings set from the type roles (h1 heading-xl … h6 title-sm), text-wrap balance/pretty, field-sizing content, accent and caret colours, :focus-visible ring, :target scroll margin, [hidden] enforced, role=list, tabular table figures, ::backdrop and ::selection from tokens, and reduced-motion handling.",
-    "No outline-{colour} classes, no text-/border- classes for alpha steps, and no class that pairs a role with another property (no bg-fg-*, text-bg-*, bg-border-*).",
+    "No outline-{colour} classes, no text-/border- classes for raw palette steps, and no class that pairs a role with another property (no bg-fg-*, text-bg-*, bg-border-*).",
     "Tailwind v4 names where v4 renamed v3 ones: rounded-xs/sm, shadow-xs/sm, backdrop-blur-xs/sm; h-screen is 100vh with h-dvh/svh/lvh separate; a 2xl breakpoint; aliases max-w-prose and font-sans.",
     "Added: grid display, text-start/end, justify-evenly, items-baseline, tabular-nums, text-balance/pretty, w-fit, h-control, kicker and type-role classes.",
   ],
