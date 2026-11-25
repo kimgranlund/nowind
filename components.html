@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/light/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css">
 </head>
 <body class="bg-bg-strong">
 
@@ -18,11 +19,12 @@
     <a href="#" class="inline-flex items-center gap-gutter no-underline text-fg text-title">
       <i class="icon ph-bold ph-wind text-fg-accent-1-weak"></i><span>Nowind</span>
     </a>
-    <div class="hidden md:flex items-center gap-2xs">
+    <div class="hidden xl:flex items-center gap-2xs">
       <a href="#buttons" class="inline-flex items-center h-control px-control rounded-sm no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors">Buttons</a>
       <a href="#feedback" class="inline-flex items-center h-control px-control rounded-sm no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors">Feedback</a>
       <a href="#forms" class="inline-flex items-center h-control px-control rounded-sm no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors">Forms</a>
       <a href="#data" class="inline-flex items-center h-control px-control rounded-sm no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors">Data</a>
+      <a href="#disclosure" class="inline-flex items-center h-control px-control rounded-sm no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors">More</a>
       <a href="#materials" class="inline-flex items-center h-control px-control rounded-sm no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors">Materials</a>
       <a href="#shell" class="inline-flex items-center h-control px-control rounded-sm no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors">Shell</a>
       <a href="#navigation" class="inline-flex items-center h-control px-control rounded-sm no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors">Navigation</a>
@@ -541,6 +543,137 @@
             <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-neutral-1 bg-component text-fg-weak text-label -ml-2xs">+5</span>
             <span class="text-caption text-fg-weak ml-sm">9 people can edit</span>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Progress, steps and inputs -->
+  <section id="progress" class="mb-3xl">
+    <span class="text-kicker text-fg-accent-1-weak">Flow</span>
+    <h2 class="text-heading-lg mb-md">Progress, steps, input groups and details</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-group">
+      <div class="p-surface rounded-lg bg-bg border border-border-weak shadow-xs flex flex-col gap-group">
+        <h3 class="text-title">Storage</h3>
+          <div class="flex flex-col gap-field">
+            <div class="flex justify-between text-label"><span>Documents</span><span class="text-fg-weak tabular-nums">6.4 GB</span></div>
+            <div class="rounded-full bg-component overflow-hidden"><div class="w-2/3 py-3xs rounded-full bg-solid-accent-1"></div></div>
+          </div>
+          <div class="flex flex-col gap-field">
+            <div class="flex justify-between text-label"><span>Media</span><span class="text-fg-weak tabular-nums">3.1 GB</span></div>
+            <div class="rounded-full bg-component overflow-hidden"><div class="w-1/3 py-3xs rounded-full bg-solid-accent-2"></div></div>
+          </div>
+          <div class="flex flex-col gap-field">
+            <div class="flex justify-between text-label"><span>Backups</span><span class="text-fg-weak tabular-nums">7.9 GB</span></div>
+            <div class="rounded-full bg-component overflow-hidden"><div class="w-4/5 py-3xs rounded-full bg-solid-warning"></div></div>
+          </div>
+      </div>
+
+      <div class="p-surface rounded-lg bg-bg border border-border-weak shadow-xs flex flex-col gap-group">
+        <h3 class="text-title">Checkout</h3>
+        <ol role="list" class="grid grid-cols-3 gap-xs pb-sm border-b border-border-weak">
+          <li class="flex items-center gap-xs"><span class="inline-flex items-center justify-center size-nested rounded-full bg-solid-accent-1 text-on-solid-accent-1"><i class="icon icon-sm ph-bold ph-check"></i></span><span class="text-title-sm text-fg whitespace-nowrap">Cart</span></li>
+          <li class="flex items-center gap-xs" aria-current="step"><span class="inline-flex items-center justify-center size-nested rounded-full border-2 border-border-accent-1-strong text-fg-accent-1-weak text-numeral">2</span><span class="text-title-sm text-fg whitespace-nowrap">Shipping</span></li>
+          <li class="flex items-center gap-xs"><span class="inline-flex items-center justify-center size-nested rounded-full border border-border text-fg-weak text-numeral">3</span><span class="text-title-sm text-fg-weak whitespace-nowrap">Payment</span></li>
+        </ol>
+        <div class="flex flex-col gap-field">
+          <label for="site" class="text-label">Website</label>
+          <div class="flex items-stretch h-control rounded-sm border border-border hover:border-border-strong bg-bg overflow-hidden transition-colors">
+            <span class="inline-flex items-center px-control bg-bg-strong border-r border-border text-fg-weak text-control-md">https://</span>
+            <input id="site" class="grow min-w-0 px-control border-0 bg-transparent text-control-md" placeholder="example.com">
+          </div>
+        </div>
+        <div class="flex flex-col gap-field">
+          <label for="q" class="text-label">Search</label>
+          <div class="flex items-center h-control px-control gap-gutter rounded-sm border border-border hover:border-border-strong bg-bg transition-colors">
+            <i class="icon ph ph-magnifying-glass text-fg-weak"></i>
+            <input id="q" type="search" class="grow min-w-0 h-full border-0 bg-transparent text-control-md" placeholder="Search docs">
+            <kbd class="inline-flex items-center h-nested px-2xs rounded-xs border border-border bg-bg-strong text-kbd text-fg-weak">⌘K</kbd>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-surface rounded-lg bg-bg border border-border-weak shadow-xs">
+        <h3 class="text-title mb-sm">Description list</h3>
+        <dl class="grid grid-cols-1 sm:grid-cols-3 gap-x-grid gap-y-xs text-body-sm">
+          <dt class="text-fg-weak">Plan</dt><dd class="sm:col-span-2">Team, billed yearly</dd>
+          <dt class="text-fg-weak">Seats</dt><dd class="sm:col-span-2 tabular-nums">12 of 20 used</dd>
+          <dt class="text-fg-weak">Renews</dt><dd class="sm:col-span-2">March 1, 2027</dd>
+          <dt class="text-fg-weak">Owner</dt><dd class="sm:col-span-2">ada@example.com</dd>
+        </dl>
+      </div>
+
+      <div class="p-surface rounded-lg bg-bg border border-border-weak shadow-xs">
+        <h3 class="text-title mb-sm">Activity</h3>
+        <ul role="list" class="flex flex-col">
+          <li class="flex gap-sm pb-md">
+            <span class="flex flex-col items-center">
+              <span class="inline-flex items-center justify-center size-nested rounded-full bg-component-success-weak text-fg-success-weak"><i class="icon icon-sm ph-bold ph-rocket-launch"></i></span>
+              <span class="grow border-l border-border-weak mt-3xs"></span>
+            </span>
+            <span class="flex flex-col gap-3xs"><span class="text-body-sm">Deployed <span class="text-mono-sm">v0.3.0</span> to production</span><span class="text-caption text-fg-weak">2 minutes ago</span></span>
+          </li>
+          <li class="flex gap-sm pb-md">
+            <span class="flex flex-col items-center">
+              <span class="inline-flex items-center justify-center size-nested rounded-full bg-component-accent-1-weak text-fg-accent-1-weak"><i class="icon icon-sm ph-bold ph-git-pull-request"></i></span>
+              <span class="grow border-l border-border-weak mt-3xs"></span>
+            </span>
+            <span class="flex flex-col gap-3xs"><span class="text-body-sm">Grace opened a pull request</span><span class="text-caption text-fg-weak">1 hour ago</span></span>
+          </li>
+          <li class="flex gap-sm">
+            <span class="flex flex-col items-center">
+              <span class="inline-flex items-center justify-center size-nested rounded-full bg-component-accent-2-weak text-fg-accent-2-weak"><i class="icon icon-sm ph-bold ph-chat-circle"></i></span>
+              
+            </span>
+            <span class="flex flex-col gap-3xs"><span class="text-body-sm">Katherine commented on the release notes</span><span class="text-caption text-fg-weak">Yesterday</span></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing and input extras -->
+  <section id="pricing" class="mb-3xl">
+    <span class="text-kicker text-fg-accent-1-weak">Commerce</span>
+    <h2 class="text-heading-lg mb-md">Pricing, upload, tags and rating</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-group mb-lg">
+        <div class="flex flex-col gap-group p-surface rounded-lg bg-bg border border-border-weak shadow-xs">
+          <div class="flex items-center justify-between"><span class="text-title">Starter</span></div>
+          <div class="flex items-baseline gap-2xs"><span class="text-figure">$0</span><span class="text-caption text-fg-weak">per person / month</span></div>
+          <p class="text-body-sm text-fg-weak">For trying Nowind on a side project.</p>
+          <ul role="list" class="flex flex-col gap-xs grow"><li class="flex items-center gap-xs text-body-sm"><i class="icon icon-sm ph-bold ph-check text-fg-accent-1-weak"></i><span>1 project</span></li><li class="flex items-center gap-xs text-body-sm"><i class="icon icon-sm ph-bold ph-check text-fg-accent-1-weak"></i><span>Community support</span></li></ul>
+          <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border border-border bg-component-weak hover:bg-component active:bg-component-strong text-fg text-title-sm cursor-pointer transition-colors w-full"><span>Choose Starter</span></button>
+        </div>
+        <div class="flex flex-col gap-group p-surface rounded-lg bg-bg border-2 border-border-accent-1 shadow-xs">
+          <div class="flex items-center justify-between"><span class="text-title">Team</span><span class="inline-flex items-center h-nested px-nested rounded-full bg-solid-accent-1 text-on-solid-accent-1 text-label">Popular</span></div>
+          <div class="flex items-baseline gap-2xs"><span class="text-figure">$12</span><span class="text-caption text-fg-weak">per person / month</span></div>
+          <p class="text-body-sm text-fg-weak">For product teams shipping every week.</p>
+          <ul role="list" class="flex flex-col gap-xs grow"><li class="flex items-center gap-xs text-body-sm"><i class="icon icon-sm ph-bold ph-check text-fg-accent-1-weak"></i><span>Unlimited projects</span></li><li class="flex items-center gap-xs text-body-sm"><i class="icon icon-sm ph-bold ph-check text-fg-accent-1-weak"></i><span>Shared themes</span></li><li class="flex items-center gap-xs text-body-sm"><i class="icon icon-sm ph-bold ph-check text-fg-accent-1-weak"></i><span>Priority support</span></li></ul>
+          <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong active:bg-solid-accent-1-strong text-on-solid-accent-1 text-title-sm cursor-pointer transition-colors w-full"><span>Choose Team</span></button>
+        </div>
+        <div class="flex flex-col gap-group p-surface rounded-lg bg-bg border border-border-weak shadow-xs">
+          <div class="flex items-center justify-between"><span class="text-title">Business</span></div>
+          <div class="flex items-baseline gap-2xs"><span class="text-figure">$24</span><span class="text-caption text-fg-weak">per person / month</span></div>
+          <p class="text-body-sm text-fg-weak">For companies with many brands.</p>
+          <ul role="list" class="flex flex-col gap-xs grow"><li class="flex items-center gap-xs text-body-sm"><i class="icon icon-sm ph-bold ph-check text-fg-accent-1-weak"></i><span>Everything in Team</span></li><li class="flex items-center gap-xs text-body-sm"><i class="icon icon-sm ph-bold ph-check text-fg-accent-1-weak"></i><span>SSO and audit log</span></li><li class="flex items-center gap-xs text-body-sm"><i class="icon icon-sm ph-bold ph-check text-fg-accent-1-weak"></i><span>Custom palettes</span></li></ul>
+          <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border border-border bg-component-weak hover:bg-component active:bg-component-strong text-fg text-title-sm cursor-pointer transition-colors w-full"><span>Choose Business</span></button>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-group">
+      <label class="flex flex-col items-center justify-center gap-xs p-surface rounded-lg border-2 border-dashed border-border hover:border-border-accent-1 hover:bg-component-accent-1-weak text-center cursor-pointer transition-colors">
+        <span class="inline-flex items-center justify-center size-control rounded-full bg-component-weak text-fg-weak"><i class="icon ph ph-upload-simple"></i></span>
+        <span class="text-title-sm">Drop files to upload</span>
+        <span class="text-caption text-fg-weak">or click to choose. PNG, JPG or PDF, up to 10 MB.</span>
+        <input type="file" class="sr-only" multiple>
+      </label>
+      <div class="p-surface rounded-lg bg-bg border border-border-weak shadow-xs flex flex-col gap-group">
+        <div class="flex flex-col gap-field">
+          <span class="text-label">Tags</span>
+          <div class="flex flex-wrap items-center gap-2xs"><span class="inline-flex items-center h-nested pl-xs rounded-full bg-component-weak border border-border-weak text-label">design<button class="inline-flex items-center justify-center size-nested rounded-full border-0 bg-transparent hover:bg-component text-fg-weak cursor-pointer transition-colors" aria-label="Remove design"><i class="icon icon-sm ph-bold ph-x"></i></button></span><span class="inline-flex items-center h-nested pl-xs rounded-full bg-component-weak border border-border-weak text-label">tokens<button class="inline-flex items-center justify-center size-nested rounded-full border-0 bg-transparent hover:bg-component text-fg-weak cursor-pointer transition-colors" aria-label="Remove tokens"><i class="icon icon-sm ph-bold ph-x"></i></button></span><span class="inline-flex items-center h-nested pl-xs rounded-full bg-component-weak border border-border-weak text-label">css<button class="inline-flex items-center justify-center size-nested rounded-full border-0 bg-transparent hover:bg-component text-fg-weak cursor-pointer transition-colors" aria-label="Remove css"><i class="icon icon-sm ph-bold ph-x"></i></button></span></div>
+        </div>
+        <div class="flex flex-col gap-field">
+          <span class="text-label">Rating</span>
+          <div class="flex items-center gap-2xs"><i class="icon icon-sm ph-fill ph-star text-warning-9"></i><i class="icon icon-sm ph-fill ph-star text-warning-9"></i><i class="icon icon-sm ph-fill ph-star text-warning-9"></i><i class="icon icon-sm ph-fill ph-star text-warning-9"></i><i class="icon icon-sm ph-fill ph-star text-neutral-6"></i><span class="text-caption text-fg-weak ml-xs tabular-nums">4.0 from 128 reviews</span></div>
         </div>
       </div>
     </div>
