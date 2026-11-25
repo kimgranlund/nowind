@@ -3,7 +3,7 @@ rendered live and shown as code, with when to use it and when not to. Utility cl
 
 BTN = "inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm"
 BTN_PRIMARY = f"{BTN} state border border-transparent bg-accent-1-9 fg-accent-1-contrast text-base font-medium cursor-pointer"
-BTN_SECONDARY = f"{BTN} state border border-transparent bg-neutral-a3 fg-neutral-12 text-base font-medium cursor-pointer"
+BTN_SECONDARY = f"{BTN} state border border-transparent bg-neutral-a2 fg-neutral-12 text-base font-medium cursor-pointer"
 FIELD = "h-control px-control rounded-sm border hover:border-neutral-8 invalid:border-danger-7 bg-neutral-1 text-base w-full"
 BOX = "flex items-center gap-gutter h-control px-control rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition"
 BARE = "grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12"
@@ -32,7 +32,7 @@ COMPONENTS = [
         "slug": "icon-button", "name": "Icon button", "icon": "ph-plus-circle", "group": "Actions",
         "summary": "A button with only an icon. <code>size-control</code> makes it square and the same height as a text button; <code>size-nested</code> is the small size for inside a toolbar or field.",
         "html": f"""<div class="flex items-center gap-sm">
-  <button class="inline-flex items-center justify-center size-control gap-gutter rounded-sm state border border-transparent bg-neutral-a3 fg-neutral-12 cursor-pointer" aria-label="Settings"><i class="icon ph ph-gear"></i></button>
+  <button class="inline-flex items-center justify-center size-control gap-gutter rounded-sm state border border-transparent bg-neutral-a2 fg-neutral-12 cursor-pointer" aria-label="Settings"><i class="icon ph ph-gear"></i></button>
   <button class="inline-flex items-center justify-center size-control gap-gutter rounded-full state border border-transparent bg-accent-1-9 fg-accent-1-contrast cursor-pointer" aria-label="Add"><i class="icon ph-bold ph-plus"></i></button>
 </div>""",
         "examples": [
@@ -551,7 +551,7 @@ COMPONENTS = [
         "slug": "tooltip", "name": "Tooltip", "icon": "ph-chat-centered-text", "group": "Overlays",
         "summary": "A hint that shows when its trigger is hovered or focused. The wrapper is a <code>group</code>; the hint uses <code>group-hover:</code> and <code>group-focus-within:</code>. No script.",
         "html": """<span class="group relative inline-block">
-  <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-neutral-a3 fg-neutral-12 cursor-pointer" aria-label="Copy link" aria-describedby="doc-tip"><i class="icon ph ph-link"></i></button>
+  <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-neutral-a2 fg-neutral-12 cursor-pointer" aria-label="Copy link" aria-describedby="doc-tip"><i class="icon ph ph-link"></i></button>
   <span id="doc-tip" role="tooltip" class="absolute top-full start-0 z-20 mt-3xs px-xs py-3xs rounded-xs bg-neutral-12 fg-neutral-1 text-sm whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity">Copy link</span>
 </span>""",
         "use": ["A short label for an icon-only button, also given as its <code>aria-label</code>.", "<code>group-focus-within:</code> as well as <code>group-hover:</code>, so keyboard users see it."],

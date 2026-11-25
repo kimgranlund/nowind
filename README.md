@@ -139,7 +139,7 @@ A smaller or larger component is a region with a smaller or larger base: wrap it
 
 ```html
 <div class="scope text-sm">
-  <button class="inline-flex items-center h-control px-control gap-gutter rounded-sm border border-transparent bg-neutral-a3 font-medium">
+  <button class="inline-flex items-center h-control px-control gap-gutter rounded-sm border border-transparent bg-neutral-a2 font-medium">
     <i class="icon ph ph-download-simple"></i><span>Export</span>
   </button>
 </div>
@@ -210,7 +210,7 @@ Every example follows one size contract, enforced by the examples lint: controls
 There is no button or field component: each is a stack of classes, and the docs show every pattern. Wrap a label in a `<span>`, so `px-control` can find an icon at either edge and pad it one margin less.
 
 ```html
-<button class="inline-flex items-center h-control px-control gap-gutter rounded-sm state border border-transparent bg-neutral-a3 fg-neutral-12 font-medium">
+<button class="inline-flex items-center h-control px-control gap-gutter rounded-sm state border border-transparent bg-neutral-a2 fg-neutral-12 font-medium">
   <i class="icon ph ph-floppy-disk"></i><span>Save</span>
 </button>
 

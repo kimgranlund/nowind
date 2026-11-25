@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- **Secondary buttons, softer:** a translucent neutral tint (`bg-neutral-a3`) with no visible border (`border border-transparent`, so the height is unchanged) in place of a grey fill and a mid-grey border; the state layer gives hover and press. The file input's button matches.
+- **Secondary buttons, softer:** a light translucent neutral tint (`bg-neutral-a2`) with no visible border (`border border-transparent`, so the height is unchanged) in place of a grey fill and a mid-grey border; the state layer gives hover and press. The file input's button matches.
 - **Site map links work on the showcase:** the showcase's demo script, which moves `aria-current` on click, caught every link in a `role="list"` list, the site map's included, and cancelled the navigation. It now acts only on placeholder links (`href="#"`) inside the page's main content.
 - **Site map links:** each link is as wide as its label with the nested corner (`w-fit rounded-xs`), so a hover is a small wash rather than a full-column pill, and the current page is marked with an accent tint instead of the same grey as a hover.
 ## 0.9.0 (2026-11-25)

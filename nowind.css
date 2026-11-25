@@ -143,8 +143,8 @@
   :where(textarea) { field-sizing: content; resize: vertical; }
   :where(textarea:not([rows])) { min-block-size: 6lh; }
   :where(input[type="file"]) { max-inline-size: 100%; color: var(--fg-weak); }
-  :where(input[type="file"])::file-selector-button { font: inherit; font-weight: var(--title-sm--font-weight); color: var(--fg); block-size: var(--control-height); padding-inline: var(--control-padding); margin-inline-end: var(--gutter); border: var(--border-width) solid transparent; border-radius: var(--radius-control); background: var(--neutral-a3); cursor: pointer; transition: background-color var(--motion-duration) var(--motion-easing); }
-  :where(input[type="file"])::file-selector-button:hover { background: var(--neutral-a4); }
+  :where(input[type="file"])::file-selector-button { font: inherit; font-weight: var(--title-sm--font-weight); color: var(--fg); block-size: var(--control-height); padding-inline: var(--control-padding); margin-inline-end: var(--gutter); border: var(--border-width) solid transparent; border-radius: var(--radius-control); background: var(--neutral-a2); cursor: pointer; transition: background-color var(--motion-duration) var(--motion-easing); }
+  :where(input[type="file"])::file-selector-button:hover { background: var(--neutral-a3); }
   :where(progress, meter) { appearance: none; display: inline-block; inline-size: 100%; block-size: calc(var(--space-3xs) * 2); border: 0; border-radius: 9999px; background: var(--component-strong); overflow: hidden; vertical-align: middle; }
   :where(progress)::-webkit-progress-bar { background: var(--component-strong); border-radius: 9999px; }
   :where(progress)::-webkit-progress-value { background: var(--solid-accent-1); border-radius: 9999px; transition: inline-size var(--motion-duration) var(--motion-easing); }

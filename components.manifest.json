@@ -24,7 +24,7 @@
       "classes": [
         "bg-accent-1-9",
         "bg-danger-9",
-        "bg-neutral-a3",
+        "bg-neutral-a2",
         "bg-transparent",
         "border",
         "border-transparent",
@@ -77,7 +77,7 @@
         "aspect-square",
         "bg-accent-1-9",
         "bg-neutral-3",
-        "bg-neutral-a3",
+        "bg-neutral-a2",
         "bg-transparent",
         "border",
         "border-0",
@@ -594,7 +594,7 @@
       ],
       "classes": [
         "bg-neutral-1",
-        "bg-neutral-a3",
+        "bg-neutral-a2",
         "border",
         "border-neutral-6",
         "border-transparent",
@@ -809,7 +809,7 @@
       "classes": [
         "anchor-bottom",
         "bg-neutral-1",
-        "bg-neutral-a3",
+        "bg-neutral-a2",
         "border",
         "border-neutral-6",
         "border-transparent",
@@ -863,7 +863,7 @@
       "classes": [
         "bg-danger-9",
         "bg-neutral-1",
-        "bg-neutral-a3",
+        "bg-neutral-a2",
         "border",
         "border-0",
         "border-transparent",
@@ -916,7 +916,7 @@
       "classes": [
         "absolute",
         "bg-neutral-12",
-        "bg-neutral-a3",
+        "bg-neutral-a2",
         "border",
         "border-transparent",
         "cursor-pointer",
