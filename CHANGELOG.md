@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Icon classes are primitives:** `icon`, `icon-sm`, `icon-md` and `icon-lg` are lengths from the base size, so they count as regular classes and the examples use them: `<i class="icon ph ph-gear">` in place of five layout classes and a type size (which made icons about 18% too big). Carets are `icon icon-sm`. The examples lint requires every Phosphor icon to sit in an `icon` box.
 - **Square icon buttons:** every icon-only button in the examples pads the same on all sides (`p-xs`, or `p-3xs` when small), so it is square; the examples lint rejects uneven padding on one.
 - **Docs pages:** previous and next sit side by side at every width; table cells pad less on a phone; a class name in a table breaks only at a hyphen or colon, never mid-word.
 - **Radii nest, after Affine UI:** one unit runs the radius scale: `rounded-xs` (control − margin), `rounded-sm` (control), new `rounded-md` (control + margin), `rounded-lg` (+2 margins) and `rounded-xl` (+3). New `p-inset` (margin − border) pads between levels, so `rounded-md p-inset border` holds `rounded-sm` items concentrically. New `rounded-inner` gives any item the parent's radius minus its padding and border. Breaking: `rounded-lg` was the card radius and is now the dialog's; cards are `rounded-md`, dialogs `rounded-lg`.

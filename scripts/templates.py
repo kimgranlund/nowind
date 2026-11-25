@@ -679,6 +679,8 @@ SEMANTIC_WORDS = re.compile(r"-(surface|dialog|region|page|field|row|group|secti
 
 def is_semantic(cat, k):
     """Semantic classes name a role (p-surface, fg-weak, text-heading-md); regular ones a scale step or a property value (p-md, border-warning-7)."""
+    if k in ("icon", "icon-sm", "icon-md", "icon-lg"):
+        return False  # icon sizes are lengths derived from the base size, like the space scale, not roles
     if cat in SEMANTIC_CATS or (cat != "Layout and misc" and SEMANTIC_WORDS.search(k)):
         return True
     if cat in ("Text color", "Background color", "Border color"):
@@ -853,7 +855,7 @@ def states_page():
                 p("Every interactive element (links, buttons, summaries, fields, labels, and the button, tab, option, menuitem and switch roles) transitions its colours, opacity, shadow and transforms by default, at the motion duration and easing. Reduced motion cuts it. Anything else that changes with state names <code>transition</code>."),
                 p("Focus: buttons, links and checkable controls get a 2px accent ring on <code>:focus-visible</code>. Text fields get no ring; their border turns accent, and a field box shows its input's focus with <code>focus-within:</code>.")),
         section("indicators", "Indicators", p("An indicator follows the state it shows. A caret turns over when its disclosure or menu opens: put <code>group</code> on the <code>details</code> or on the wrapper holding the button and its popover."),
-                code("caret.html", "HTML", '<details class="group">\n  <summary class="flex items-center justify-between list-none">\n    Shipping <i class="ph ph-caret-down text-base transition group-open:rotate-180"></i>\n  </summary>\n  …\n</details>')),
+                code("caret.html", "HTML", '<details class="group">\n  <summary class="flex items-center justify-between list-none">\n    Shipping <i class="icon icon-sm ph ph-caret-down transition group-open:rotate-180"></i>\n  </summary>\n  …\n</details>')),
     ])
     return doc_page("states.html", "States and variants", art)
 
@@ -950,8 +952,10 @@ def lint_examples():
                 continue
             if tag in ("button", "a") and re.match(r"\s*<i\b[^>]*></i>\s*</" + tag + ">", html_[m.end():]) and (any(t.startswith(("px-", "py-")) for t in toks) or not any(re.fullmatch(r"p-[a-z0-9]+", t) for t in toks)):
                 out.append(f"{where}: an icon-only <{tag}> isn't square. Fix: one padding on all sides (p-xs, p-3xs), no px-/py-.")
-            if any(re.fullmatch(r"ph-caret-[a-z-]+", t) for t in toks) and "text-base" not in toks:
-                out.append(f"{where}: a caret isn't the small icon size. Fix: give it text-base.")
+            if any(re.fullmatch(r"ph-caret-[a-z-]+", t) for t in toks) and "icon-sm" not in toks:
+                out.append(f"{where}: a caret isn't the small icon size. Fix: give it icon icon-sm.")
+            if tag == "i" and any(t.startswith("ph-") for t in toks) and "icon" not in toks:
+                out.append(f"{where}: an icon isn't in an icon box. Fix: give it icon (and icon-sm or icon-lg for another size).")
             if any(variant.match(t) for t in toks) and not any(t.startswith("transition") for t in toks):
                 out.append(f"{where}: <{tag}> changes with state but has no transition class. Fix: add transition.")
         for cls in re.findall(r'class="([^"]+)"', html_):
