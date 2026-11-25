@@ -71,20 +71,24 @@
         <button class="inline-flex items-center justify-center h-control px-control gap-xs rounded-sm state border bg-neutral-3 fg-neutral-12 text-base font-medium cursor-pointer"><span>Continue</span><i class="icon ph ph-arrow-right"></i></button>
         <button class="inline-flex items-center justify-center size-control rounded-sm state border bg-neutral-3 fg-neutral-12 cursor-pointer" aria-label="Settings"><i class="icon ph ph-gear"></i></button>
         <button class="inline-flex items-center justify-center size-control rounded-full state border border-transparent bg-accent-1-9 fg-accent-1-contrast cursor-pointer" aria-label="Add"><i class="icon ph-bold ph-plus"></i></button>
-        <button class="inline-flex items-center justify-center h-nested px-nested gap-2xs rounded-xs state border bg-neutral-3 fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon icon-sm ph-bold ph-funnel"></i><span>Filter</span></button>
-        <button class="inline-flex items-center justify-center size-nested rounded-xs state border border-transparent fg-neutral-11 cursor-pointer" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
       </div>
 
       <div class="flex flex-wrap items-center gap-lg">
-        <div class="inline-flex" role="group" aria-label="Alignment">
-          <button class="inline-flex items-center justify-center size-control rounded-none state border bg-neutral-3 fg-neutral-12 cursor-pointer" aria-label="Align left" aria-pressed="true"><i class="icon ph ph-text-align-left"></i></button>
-          <button class="inline-flex items-center justify-center size-control rounded-none state border-y border-e bg-neutral-3 fg-neutral-12 cursor-pointer" aria-label="Align center"><i class="icon ph ph-text-align-center"></i></button>
-          <button class="inline-flex items-center justify-center size-control rounded-none state border-y border-e bg-neutral-3 fg-neutral-12 cursor-pointer" aria-label="Align right"><i class="icon ph ph-text-align-right"></i></button>
+        <div class="inline-flex items-center p-inset rounded-sm border border-transparent bg-neutral-3" role="group" aria-label="Alignment">
+          <button class="inline-flex items-center justify-center size-nested rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 cursor-pointer" aria-label="Align start" aria-pressed="true"><i class="icon ph ph-text-align-left"></i></button>
+          <button class="inline-flex items-center justify-center size-nested rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 cursor-pointer" aria-label="Align center" aria-pressed="false"><i class="icon ph ph-text-align-center"></i></button>
+          <button class="inline-flex items-center justify-center size-nested rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 cursor-pointer" aria-label="Align end" aria-pressed="false"><i class="icon ph ph-text-align-right"></i></button>
         </div>
-        <div class="inline-flex items-center gap-3xs p-inset rounded-sm border border-transparent bg-neutral-3">
-          <button aria-pressed="true" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer"><span>Day</span></button>
-          <button aria-pressed="false" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer"><span>Week</span></button>
-          <button aria-pressed="false" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer"><span>Month</span></button>
+        <div class="inline-flex items-center gap-3xs p-inset rounded-sm border bg-neutral-1" role="toolbar" aria-label="Table tools">
+          <button class="inline-flex items-center h-nested px-nested gap-3xs rounded-xs state border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon icon-sm ph-bold ph-funnel"></i><span>Filter</span></button>
+          <button class="inline-flex items-center h-nested px-nested gap-3xs rounded-xs state border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon icon-sm ph-bold ph-sort-ascending"></i><span>Sort</span></button>
+          <span class="self-stretch border-s border-neutral-6" aria-hidden="true"></span>
+          <button class="inline-flex items-center justify-center size-nested rounded-xs state border-0 bg-transparent fg-neutral-11 cursor-pointer" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
+        </div>
+        <div class="inline-flex items-center p-inset rounded-sm border border-transparent bg-neutral-3" role="group" aria-label="Range">
+          <button aria-pressed="true" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer"><span>Day</span></button>
+          <button aria-pressed="false" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer"><span>Week</span></button>
+          <button aria-pressed="false" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer"><span>Month</span></button>
         </div>
       </div>
     </div>

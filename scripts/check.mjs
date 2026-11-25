@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Checks the rules AGENTS.md states. Usage:
 //   node scripts/check.mjs              check this repository
-//   node scripts/check.mjs --self-test  break a copy ten ways and confirm each check fails
+//   node scripts/check.mjs --self-test  break a copy eleven ways and confirm each check fails
 import { readFileSync, readdirSync, statSync, cpSync, mkdtempSync, rmSync, writeFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join, relative } from "node:path";
@@ -99,7 +99,9 @@ function check(root) {
   try {
     execFileSync("python3", [join(root, "scripts", "templates.py"), "--lint"], { cwd: root, encoding: "utf8" });
   } catch (e) {
-    for (const line of String(e.stdout || "").split("\n").filter(Boolean)) errors.push(line);
+    const lines = String(e.stdout || "").split("\n").filter(Boolean);
+    if (lines.length) errors.push(...lines);
+    else errors.push(`scripts/templates.py --lint failed: ${String(e.stderr || e.message).trim().split("\n").pop()}`);
   }
 
   // 7. AGENTS.md names every file in the repo (by path, glob or directory), and every path it names exists.
@@ -153,6 +155,7 @@ if (process.argv.includes("--self-test")) {
     ["manifest names an undefined token", "theme/theme.geometry.manifest.json", (s) => s.replace('"--slot"', '"--slot-missing"')],
     ["hand-edited generated file", "nowind.css", (s) => s + "\n.hand-edit { color: red; }\n"],
     ["file AGENTS.md doesn't name", "site/unlisted.html", () => "<!doctype html>\n"],
+    ["small control beside full-size ones", "site/components.html", (s) => s.replace(/(<button class="inline-flex items-center justify-center size-control rounded-sm state border bg-neutral-3 fg-neutral-12 cursor-pointer" aria-label="Settings">.*?<\/button>)/, '$1<button class="size-nested" aria-label="X"><i class="icon icon-sm ph ph-x"></i></button>')],
     ["control sized by padding", "site/components.html", (s) => s.replace(/(md:col-span-9 min-w-0 flex flex-col gap-group">[\s\S]*?<button class="[^"]*?)\bh-control px-control\b/, "$1py-xs px-sm")],
     ["text padding at an icon edge", "site/components.html", (s) => s.replace(/(md:col-span-9 min-w-0 flex flex-col gap-group">[\s\S]*?class="[^"]*?)\bps-xs pe-sm\b/, "$1px-sm")],
     ["hover tint in place of state", "site/components.html", (s) => s.replace(/(md:col-span-9 min-w-0 flex flex-col gap-group">[\s\S]*?class="[^"]*?)\bstate\b/, "$1hover:bg-neutral-4")],

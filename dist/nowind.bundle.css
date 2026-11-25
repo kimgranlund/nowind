@@ -4659,6 +4659,9 @@
   .selected\:fg-inherit[aria-selected="true"] { color: inherit; }
   .selected\:fg-current[aria-selected="true"] { color: currentColor; }
   .selected\:bg-transparent[aria-selected="true"] { background-color: transparent; }
+  .selected\:shadow-xs[aria-selected="true"] { --_shadow: var(--shadow-xs); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000); }
+  .selected\:shadow-sm[aria-selected="true"] { --_shadow: var(--shadow-sm); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000); }
+  .selected\:shadow-none[aria-selected="true"] { --_shadow: 0 0 #0000; box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000); }
   .current\:fg-accent-1-1:is([aria-current]:not([aria-current="false"])) { color: var(--accent-1-1); }
   .current\:bg-accent-1-1:is([aria-current]:not([aria-current="false"])) { background-color: var(--accent-1-1); }
   .current\:border-accent-1-1:is([aria-current]:not([aria-current="false"])) { border-color: var(--accent-1-1); }
@@ -4926,6 +4929,9 @@
   .current\:fg-inherit:is([aria-current]:not([aria-current="false"])) { color: inherit; }
   .current\:fg-current:is([aria-current]:not([aria-current="false"])) { color: currentColor; }
   .current\:bg-transparent:is([aria-current]:not([aria-current="false"])) { background-color: transparent; }
+  .current\:shadow-xs:is([aria-current]:not([aria-current="false"])) { --_shadow: var(--shadow-xs); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000); }
+  .current\:shadow-sm:is([aria-current]:not([aria-current="false"])) { --_shadow: var(--shadow-sm); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000); }
+  .current\:shadow-none:is([aria-current]:not([aria-current="false"])) { --_shadow: 0 0 #0000; box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000); }
   .pressed\:fg-accent-1-1[aria-pressed="true"] { color: var(--accent-1-1); }
   .pressed\:bg-accent-1-1[aria-pressed="true"] { background-color: var(--accent-1-1); }
   .pressed\:border-accent-1-1[aria-pressed="true"] { border-color: var(--accent-1-1); }
@@ -5193,6 +5199,9 @@
   .pressed\:fg-inherit[aria-pressed="true"] { color: inherit; }
   .pressed\:fg-current[aria-pressed="true"] { color: currentColor; }
   .pressed\:bg-transparent[aria-pressed="true"] { background-color: transparent; }
+  .pressed\:shadow-xs[aria-pressed="true"] { --_shadow: var(--shadow-xs); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000); }
+  .pressed\:shadow-sm[aria-pressed="true"] { --_shadow: var(--shadow-sm); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000); }
+  .pressed\:shadow-none[aria-pressed="true"] { --_shadow: 0 0 #0000; box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000); }
   .expanded\:fg-accent-1-1[aria-expanded="true"] { color: var(--accent-1-1); }
   .expanded\:bg-accent-1-1[aria-expanded="true"] { background-color: var(--accent-1-1); }
   .expanded\:border-accent-1-1[aria-expanded="true"] { border-color: var(--accent-1-1); }
@@ -5727,6 +5736,9 @@
   .open\:fg-inherit:is([open], :popover-open) { color: inherit; }
   .open\:fg-current:is([open], :popover-open) { color: currentColor; }
   .open\:bg-transparent:is([open], :popover-open) { background-color: transparent; }
+  .open\:shadow-xs:is([open], :popover-open) { --_shadow: var(--shadow-xs); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000); }
+  .open\:shadow-sm:is([open], :popover-open) { --_shadow: var(--shadow-sm); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000); }
+  .open\:shadow-none:is([open], :popover-open) { --_shadow: 0 0 #0000; box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000); }
   .invalid\:fg-danger-1:is([aria-invalid="true"], :user-invalid) { color: var(--danger-1); }
   .invalid\:border-danger-1:is([aria-invalid="true"], :user-invalid) { border-color: var(--danger-1); }
   .invalid\:fg-danger-2:is([aria-invalid="true"], :user-invalid) { color: var(--danger-2); }
@@ -6134,6 +6146,9 @@
   .has-checked\:fg-inherit:has(:checked) { color: inherit; }
   .has-checked\:fg-current:has(:checked) { color: currentColor; }
   .has-checked\:bg-transparent:has(:checked) { background-color: transparent; }
+  .has-checked\:shadow-xs:has(:checked) { --_shadow: var(--shadow-xs); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000); }
+  .has-checked\:shadow-sm:has(:checked) { --_shadow: var(--shadow-sm); box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000); }
+  .has-checked\:shadow-none:has(:checked) { --_shadow: 0 0 #0000; box-shadow: var(--_inset-shadow, 0 0 #0000), var(--_shadow, 0 0 #0000); }
   .disabled\:fg-neutral-1:is(:disabled, [aria-disabled="true"]) { color: var(--neutral-1); }
   .disabled\:bg-neutral-1:is(:disabled, [aria-disabled="true"]) { background-color: var(--neutral-1); }
   .disabled\:border-neutral-1:is(:disabled, [aria-disabled="true"]) { border-color: var(--neutral-1); }

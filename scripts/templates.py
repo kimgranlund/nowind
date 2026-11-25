@@ -2,6 +2,7 @@
 """Stamp the Nowind docs templates (designed with the massimo-vignelli agent). Shared parts are defined once here.
 Usage: python3 scripts/templates.py [output-dir]   (default: site/docs/)"""
 import html, json, os, re, sys
+from html.parser import HTMLParser
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from component_docs import COMPONENTS  # noqa: E402
@@ -973,6 +974,21 @@ def lint_examples():
                 out.append(f"{where}: an icon isn't in an icon box. Fix: give it icon (and icon-sm or icon-lg for another size).")
             if any(variant.match(t) for t in toks) and not any(t.startswith("transition") for t in toks):
                 out.append(f"{where}: <{tag}> changes with state but has no transition class. Fix: add transition.")
+        # The small control size belongs inside an inset container (toolbar, field, segmented control), never beside
+        # full-size controls in one row.
+        class Rows(HTMLParser):
+            def __init__(self): super().__init__(); self.stack = [[]]; self.bad = 0
+            def handle_starttag(self, tag, attrs):
+                cls = (dict(attrs).get("class") or "").split()
+                self.stack[-1].append(cls)
+                if tag not in ("input", "img", "br", "hr", "meta", "link", "source", "wbr", "col"): self.stack.append([])
+            def handle_endtag(self, tag):
+                if len(self.stack) > 1:
+                    kids = self.stack.pop()
+                    if any({"h-nested", "size-nested"} & set(k) for k in kids) and any({"h-control", "size-control"} & set(k) for k in kids): self.bad += 1
+        rows = Rows(); rows.feed(html_)
+        if rows.bad:
+            out.append(f"{where}: a small control (h-nested, size-nested) sits beside full-size controls. Fix: put it in an inset container (p-inset rounded-sm), such as a toolbar, or use the full size.")
         for cls in re.findall(r'class="([^"]+)"', html_):
             for t in cls.split():
                 base = t.split(":")[-1]

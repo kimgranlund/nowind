@@ -52,42 +52,53 @@
       "name": "Icon button",
       "group": "Actions",
       "page": "site/docs/c-icon-button.html",
-      "summary": "A button with only an icon. One padding on all sides (p-xs, or p-3xs when small) around a square icon makes it square, the same height as a text button.",
+      "summary": "A button with only an icon. size-control makes it square and the same height as a text button; size-nested is the small size for inside a toolbar or field.",
       "use": [
         "Always give it an aria-label.",
-        "Use p-3xs and an icon icon-sm inside dense rows."
+        "size-control on its own; size-nested with icon icon-sm inside a toolbar, field or segmented control."
       ],
       "avoid": [
         "An icon whose meaning isn't obvious; add a text label instead."
       ],
       "examples": [
-        "example"
+        "example",
+        "toolbar"
       ],
       "classes": [
         "bg-accent-1-9",
+        "bg-neutral-1",
         "bg-neutral-3",
         "bg-transparent",
         "border",
         "border-0",
+        "border-neutral-6",
+        "border-s",
         "border-transparent",
         "cursor-pointer",
         "fg-accent-1-contrast",
         "fg-neutral-11",
         "fg-neutral-12",
         "flex",
+        "font-medium",
+        "gap-3xs",
         "gap-sm",
         "gap-xs",
+        "h-nested",
         "icon",
         "icon-sm",
         "inline-flex",
         "items-center",
         "justify-center",
+        "p-inset",
+        "px-nested",
         "rounded-full",
         "rounded-sm",
         "rounded-xs",
+        "self-stretch",
         "size-control",
         "size-nested",
-        "state"
+        "state",
+        "text-base"
       ]
     },
     {
@@ -97,13 +108,15 @@
       "page": "site/docs/c-segmented.html",
       "summary": "A set of mutually exclusive options. The pressed segment is styled by aria-pressed, not by a class.",
       "use": [
-        "Two to five short options that change a view in place."
+        "Two to five short options that change a view in place.",
+        "Segments touch; the pressed one lifts with pressed:bg-neutral-1 pressed:shadow-xs."
       ],
       "avoid": [
         "Options that navigate to another page; use tabs."
       ],
       "examples": [
-        "example"
+        "example",
+        "icons"
       ],
       "classes": [
         "bg-neutral-3",
@@ -114,17 +127,20 @@
         "cursor-pointer",
         "fg-neutral-11",
         "font-medium",
-        "gap-3xs",
         "h-nested",
         "hover:bg-neutral-4",
+        "icon",
         "inline-flex",
         "items-center",
+        "justify-center",
         "p-inset",
         "pressed:bg-neutral-1",
         "pressed:fg-neutral-12",
+        "pressed:shadow-xs",
         "px-nested",
         "rounded-sm",
         "rounded-xs",
+        "size-nested",
         "text-base"
       ]
     },

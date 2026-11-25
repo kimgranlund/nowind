@@ -685,18 +685,19 @@ const inPalettes = (pals) => (c) => {
 };
 const ROLE_STATE = HOVER.filter((c) => !/^opacity-|^cursor-/.test(c));
 const interactive = ROLE_STATE.filter(inPalettes(["neutral", "accent-1", "accent-2", "accent-3", "accent-4"]));
+const lifted = [...interactive, "shadow-xs", "shadow-sm", "shadow-none"];
 const STATES = [
   ["active", ":active", interactive],
   ["focus-visible", ":focus-visible", ROLE_STATE.filter((c) => /^border-/.test(c)).filter(inPalettes(["neutral", "accent-1", "accent-2", "accent-3", "accent-4"]))],
   ["focus-within", ":focus-within", ROLE_STATE.filter((c) => /^border-/.test(c)).filter(inPalettes(["neutral", "accent-1", "accent-2", "accent-3", "accent-4"]))],
-  ["selected", '[aria-selected="true"]', interactive],
-  ["current", ':is([aria-current]:not([aria-current="false"]))', interactive],
-  ["pressed", '[aria-pressed="true"]', interactive],
+  ["selected", '[aria-selected="true"]', lifted],
+  ["current", ':is([aria-current]:not([aria-current="false"]))', lifted],
+  ["pressed", '[aria-pressed="true"]', lifted],
   ["expanded", '[aria-expanded="true"]', interactive],
-  ["open", ":is([open], :popover-open)", interactive],
+  ["open", ":is([open], :popover-open)", lifted],
   ["invalid", ':is([aria-invalid="true"], :user-invalid)', ROLE_STATE.filter((c) => /^(text|border|fg)(-|$)/.test(c)).filter(inPalettes(["neutral", "danger"]))],
   ["has-invalid", ':has(:is([aria-invalid="true"], :user-invalid))', ROLE_STATE.filter((c) => /^(text|border|fg)(-|$)/.test(c)).filter(inPalettes(["neutral", "danger"]))],
-  ["has-checked", ":has(:checked)", interactive],
+  ["has-checked", ":has(:checked)", lifted],
   ["disabled", ':is(:disabled, [aria-disabled="true"])', [...ROLE_STATE.filter(inPalettes(["neutral"])), ...[...D.keys()].filter((c) => /^opacity-|^cursor-/.test(c))]],
 ];
 for (const [prefix, sel, list] of STATES) {

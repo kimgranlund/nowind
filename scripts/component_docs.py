@@ -30,24 +30,42 @@ COMPONENTS = [
     },
     {
         "slug": "icon-button", "name": "Icon button", "icon": "ph-plus-circle", "group": "Actions",
-        "summary": "A button with only an icon. One padding on all sides (<code>p-xs</code>, or <code>p-3xs</code> when small) around a square icon makes it square, the same height as a text button.",
+        "summary": "A button with only an icon. <code>size-control</code> makes it square and the same height as a text button; <code>size-nested</code> is the small size for inside a toolbar or field.",
         "html": f"""<div class="flex items-center gap-sm">
   <button class="inline-flex items-center justify-center size-control gap-xs rounded-sm state border bg-neutral-3 fg-neutral-12 cursor-pointer" aria-label="Settings"><i class="icon ph ph-gear"></i></button>
   <button class="inline-flex items-center justify-center size-control gap-xs rounded-full state border border-transparent bg-accent-1-9 fg-accent-1-contrast cursor-pointer" aria-label="Add"><i class="icon ph-bold ph-plus"></i></button>
-  <button class="inline-flex items-center justify-center size-nested rounded-xs state border-0 bg-transparent fg-neutral-11 cursor-pointer" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
 </div>""",
-        "use": ["Always give it an <code>aria-label</code>.", "Use <code>p-3xs</code> and an <code>icon icon-sm</code> inside dense rows."],
+        "examples": [
+            {"id": "toolbar", "label": "In a toolbar",
+             "summary": "The small size (<code>h-nested</code>, <code>size-nested</code>, <code>rounded-xs</code>) belongs inside a container padded <code>p-inset</code>: the bar is then a control's height and the corners nest. On its own, beside full-size buttons, it looks undersized and square.",
+             "html": """<div class="inline-flex items-center gap-3xs p-inset rounded-sm border bg-neutral-1" role="toolbar" aria-label="Table tools">
+  <button class="inline-flex items-center h-nested px-nested gap-3xs rounded-xs state border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon icon-sm ph-bold ph-funnel"></i><span>Filter</span></button>
+  <button class="inline-flex items-center h-nested px-nested gap-3xs rounded-xs state border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon icon-sm ph-bold ph-sort-ascending"></i><span>Sort</span></button>
+  <span class="self-stretch border-s border-neutral-6" aria-hidden="true"></span>
+  <button class="inline-flex items-center justify-center size-nested rounded-xs state border-0 bg-transparent fg-neutral-11 cursor-pointer" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
+</div>"""},
+        ],
+        "use": ["Always give it an <code>aria-label</code>.", "<code>size-control</code> on its own; <code>size-nested</code> with <code>icon icon-sm</code> inside a toolbar, field or segmented control."],
         "avoid": ["An icon whose meaning isn't obvious; add a text label instead."],
     },
     {
         "slug": "segmented", "name": "Segmented control", "icon": "ph-squares-four", "group": "Actions",
         "summary": "A set of mutually exclusive options. The pressed segment is styled by <code>aria-pressed</code>, not by a class.",
-        "html": """<div class="inline-flex items-center gap-3xs p-inset rounded-sm border border-transparent bg-neutral-3" role="group" aria-label="Range">
-  <button aria-pressed="true" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer"><span>Day</span></button>
-  <button aria-pressed="false" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer"><span>Week</span></button>
-  <button aria-pressed="false" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer"><span>Month</span></button>
+        "html": """<div class="inline-flex items-center p-inset rounded-sm border border-transparent bg-neutral-3" role="group" aria-label="Range">
+  <button aria-pressed="true" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer"><span>Day</span></button>
+  <button aria-pressed="false" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer"><span>Week</span></button>
+  <button aria-pressed="false" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer"><span>Month</span></button>
 </div>""",
-        "use": ["Two to five short options that change a view in place."],
+        "examples": [
+            {"id": "icons", "label": "Icons",
+             "summary": "Icon segments are <code>size-nested</code> squares in the same inset box, so the group is a control's height and its corners nest (<code>rounded-sm</code> outside, <code>rounded-xs</code> inside).",
+             "html": """<div class="inline-flex items-center p-inset rounded-sm border border-transparent bg-neutral-3" role="group" aria-label="Alignment">
+  <button class="inline-flex items-center justify-center size-nested rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 cursor-pointer" aria-label="Align start" aria-pressed="true"><i class="icon ph ph-text-align-left"></i></button>
+  <button class="inline-flex items-center justify-center size-nested rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 cursor-pointer" aria-label="Align center" aria-pressed="false"><i class="icon ph ph-text-align-center"></i></button>
+  <button class="inline-flex items-center justify-center size-nested rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 cursor-pointer" aria-label="Align end" aria-pressed="false"><i class="icon ph ph-text-align-right"></i></button>
+</div>"""},
+        ],
+        "use": ["Two to five short options that change a view in place.", "Segments touch; the pressed one lifts with <code>pressed:bg-neutral-1 pressed:shadow-xs</code>."],
         "avoid": ["Options that navigate to another page; use tabs."],
     },
     {
