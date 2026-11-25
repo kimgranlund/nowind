@@ -269,6 +269,9 @@ add("icon", "display: inline-flex; align-items: center; justify-content: center;
 add("icon-sm", "font-size: var(--icon-sm)");
 add("icon-md", "font-size: var(--icon-md)");
 add("icon-lg", "font-size: var(--icon-lg)");
+add("mark-sm", "--_mark: var(--mark-sm)");
+add("mark-md", "--_mark: var(--mark-md)");
+add("mark-lg", "--_mark: var(--mark-lg)");
 for (const s of ["none", "text", "all", "auto"]) add(`select-${s}`, `user-select: ${s}`);
 for (const a of ["baseline", "top", "middle", "bottom", "text-top", "text-bottom"]) add(`align-${a}`, `vertical-align: ${a}`);
 add("visible", "visibility: visible");
@@ -349,6 +352,96 @@ const reset = `@layer reset {
   :where(svg:not([fill])) { fill: currentColor; }
 
   :where(input, button, textarea, select) { font: inherit; color: inherit; letter-spacing: inherit; word-spacing: inherit; }
+
+  :where(input[type="checkbox"], input[type="radio"]) {
+    --_mark: var(--mark-md);
+    appearance: none;
+    display: inline-grid;
+    place-content: center;
+    flex: none;
+    box-sizing: border-box;
+    inline-size: var(--_mark);
+    block-size: var(--_mark);
+    margin: 0;
+    vertical-align: middle;
+    border: var(--border-width) solid var(--border);
+    background: var(--bg);
+    cursor: pointer;
+    transition: background-color var(--motion-duration) var(--motion-easing), border-color var(--motion-duration) var(--motion-easing);
+  }
+  :where(input[type="checkbox"]) { border-radius: calc(var(--mark-corner) * var(--_mark)); }
+  :where(input[type="radio"]) { border-radius: 50%; }
+  :where(input[type="checkbox"], input[type="radio"]):hover { border-color: var(--border-strong); }
+  :where(input[type="checkbox"], input[type="radio"])::before {
+    content: "";
+    background: var(--on-solid-accent-1);
+    transform: scale(0);
+    transition: transform var(--duration-snappy) var(--ease-snappy);
+  }
+  :where(input[type="checkbox"])::before {
+    inline-size: calc(var(--_mark) * 0.6);
+    block-size: calc(var(--_mark) * 0.6);
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  }
+  :where(input[type="checkbox"]:indeterminate)::before { clip-path: inset(40% 10%); transform: scale(1); }
+  :where(input[type="radio"])::before { inline-size: calc(var(--_mark) * 0.4); block-size: calc(var(--_mark) * 0.4); border-radius: 50%; }
+  :where(input[type="checkbox"], input[type="radio"]):is(:checked, :indeterminate) { background: var(--solid-accent-1); border-color: var(--solid-accent-1); }
+  :where(input[type="checkbox"], input[type="radio"]):checked::before { transform: scale(1); }
+
+  :where(input[type="checkbox"][role="switch"]) {
+    inline-size: calc(2 * var(--_mark) - 4 * var(--border-width));
+    border-radius: 9999px;
+    place-content: center start;
+    background: var(--component-strong);
+  }
+  :where(input[type="checkbox"][role="switch"])::before {
+    inline-size: calc(var(--_mark) - 4 * var(--border-width));
+    block-size: calc(var(--_mark) - 4 * var(--border-width));
+    margin-inline-start: var(--border-width);
+    border-radius: 50%;
+    clip-path: none;
+    background: var(--bg);
+    box-shadow: var(--shadow-xs);
+    transform: none;
+  }
+  :where(input[type="checkbox"][role="switch"]):checked::before {
+    transform: translateX(calc(var(--_mark) - 4 * var(--border-width)));
+    background: var(--on-solid-accent-1);
+  }
+  :where(input[type="checkbox"], input[type="radio"]):disabled { opacity: 0.5; cursor: not-allowed; }
+
+  :where(input[type="range"]) {
+    --_mark: var(--mark-md);
+    --_track: max(calc((var(--_mark) - var(--range-track-cut)) / var(--range-track-parts)), var(--border-width));
+    --_thumb: var(--_mark);
+    appearance: none;
+    block-size: var(--_mark);
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+  :where(input[type="range"])::-webkit-slider-runnable-track { block-size: var(--_track); border-radius: 9999px; background: var(--component-strong); }
+  :where(input[type="range"])::-moz-range-track { block-size: var(--_track); border-radius: 9999px; background: var(--component-strong); }
+  :where(input[type="range"])::-moz-range-progress { block-size: var(--_track); border-radius: 9999px; background: var(--solid-accent-1); }
+  :where(input[type="range"])::-webkit-slider-thumb {
+    appearance: none;
+    inline-size: var(--_thumb);
+    block-size: var(--_thumb);
+    margin-block-start: calc((var(--_track) - var(--_thumb)) / 2);
+    border: var(--border-width) solid var(--border-strong);
+    border-radius: 50%;
+    background: var(--bg);
+    box-shadow: var(--shadow-xs);
+  }
+  :where(input[type="range"])::-moz-range-thumb {
+    box-sizing: border-box;
+    inline-size: var(--_thumb);
+    block-size: var(--_thumb);
+    border: var(--border-width) solid var(--border-strong);
+    border-radius: 50%;
+    background: var(--bg);
+    box-shadow: var(--shadow-xs);
+  }
   :where(textarea) { field-sizing: content; resize: vertical; }
   :where(textarea:not([rows])) { min-block-size: 6lh; }
   :where(button, [role="button"], label[for], select, summary) { cursor: pointer; }
@@ -443,6 +536,7 @@ const manifest = {
     grid: "gap-grid, gap-x-grid (2M), p-grid-inset (M), px-grid (slot), px-grid-compact; shell: w-sidebar (16F + 16), w-rail, h-header, min-h-header, max-w-measure (44F). After Affine.",
     tiers: "tier-product (1×), tier-content (font +2px, spacing 1.5×), tier-brand (font +4px, spacing 2×). Each is a scope: --F and everything derived recompute inside it.",
     motion: "transition, transition-colors, -opacity, -shadow, -transform, -none (state-change length and easing by default); duration-fade, -snappy, -smooth, -bouncy; ease-smooth, -snappy, -bouncy (Massimo springs as linear()), ease-standard, -out, -in.",
+    marks: "The reset draws checkboxes, radios, switches (<input type=checkbox role=switch>) and sliders at Affine's mark size (between F and the slot), filled with accent-1 when checked; mark-sm and mark-lg pick another size.",
     icons: "icon (an S-square box, glyph --icon-md), icon-sm, icon-md, icon-lg. Glyphs: Phosphor web font (<i class=\"icon ph ph-floppy-disk\">; ph-bold at sm, ph-light at lg) or an inline <svg> inside .icon.",
     sizing: "w-, h-, min-/max- with 0, full, screen (100vw/100vh), fit; w-1/2, 1/3, 2/3, 1/4, 3/4 and fifths; h-dvh, h-svh, h-lvh and min-/max- versions; max-w-text (alias max-w-prose), max-w-form, max-w-container, h-control",
   },
@@ -462,7 +556,7 @@ writeFileSync(join(root, "nowind.manifest.json"), JSON.stringify(manifest, null,
 
 // ---- classes.md: every base class and its declarations, for readers without a local server ----
 const GROUPS = [
-  ["Controls and icons", (c) => /^(icon|h-control|h-nested|size-control|size-nested|min-w-control|min-w-nested|px-control|px-nested|gap-gutter)/.test(c)],
+  ["Controls and icons", (c) => /^(icon|mark-|h-control|h-nested|size-control|size-nested|min-w-control|min-w-nested|px-control|px-nested|gap-gutter)/.test(c)],
   ["Levels and tiers", (c) => /^(p[xy]?-(surface|dialog|region|page)|gap-(field|row|group|section|page)|m[tb]-section|tier-)/.test(c)],
   ["Page grid and shell", (c) => /^(gap-(x-)?grid|p-grid-inset|px-grid|w-sidebar|w-rail|(min-)?h-header|max-w-measure)/.test(c)],
   ["Type", (c, d) => /font-size/.test(d)],

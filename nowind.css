@@ -46,6 +46,96 @@
   :where(svg:not([fill])) { fill: currentColor; }
 
   :where(input, button, textarea, select) { font: inherit; color: inherit; letter-spacing: inherit; word-spacing: inherit; }
+
+  :where(input[type="checkbox"], input[type="radio"]) {
+    --_mark: var(--mark-md);
+    appearance: none;
+    display: inline-grid;
+    place-content: center;
+    flex: none;
+    box-sizing: border-box;
+    inline-size: var(--_mark);
+    block-size: var(--_mark);
+    margin: 0;
+    vertical-align: middle;
+    border: var(--border-width) solid var(--border);
+    background: var(--bg);
+    cursor: pointer;
+    transition: background-color var(--motion-duration) var(--motion-easing), border-color var(--motion-duration) var(--motion-easing);
+  }
+  :where(input[type="checkbox"]) { border-radius: calc(var(--mark-corner) * var(--_mark)); }
+  :where(input[type="radio"]) { border-radius: 50%; }
+  :where(input[type="checkbox"], input[type="radio"]):hover { border-color: var(--border-strong); }
+  :where(input[type="checkbox"], input[type="radio"])::before {
+    content: "";
+    background: var(--on-solid-accent-1);
+    transform: scale(0);
+    transition: transform var(--duration-snappy) var(--ease-snappy);
+  }
+  :where(input[type="checkbox"])::before {
+    inline-size: calc(var(--_mark) * 0.6);
+    block-size: calc(var(--_mark) * 0.6);
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  }
+  :where(input[type="checkbox"]:indeterminate)::before { clip-path: inset(40% 10%); transform: scale(1); }
+  :where(input[type="radio"])::before { inline-size: calc(var(--_mark) * 0.4); block-size: calc(var(--_mark) * 0.4); border-radius: 50%; }
+  :where(input[type="checkbox"], input[type="radio"]):is(:checked, :indeterminate) { background: var(--solid-accent-1); border-color: var(--solid-accent-1); }
+  :where(input[type="checkbox"], input[type="radio"]):checked::before { transform: scale(1); }
+
+  :where(input[type="checkbox"][role="switch"]) {
+    inline-size: calc(2 * var(--_mark) - 4 * var(--border-width));
+    border-radius: 9999px;
+    place-content: center start;
+    background: var(--component-strong);
+  }
+  :where(input[type="checkbox"][role="switch"])::before {
+    inline-size: calc(var(--_mark) - 4 * var(--border-width));
+    block-size: calc(var(--_mark) - 4 * var(--border-width));
+    margin-inline-start: var(--border-width);
+    border-radius: 50%;
+    clip-path: none;
+    background: var(--bg);
+    box-shadow: var(--shadow-xs);
+    transform: none;
+  }
+  :where(input[type="checkbox"][role="switch"]):checked::before {
+    transform: translateX(calc(var(--_mark) - 4 * var(--border-width)));
+    background: var(--on-solid-accent-1);
+  }
+  :where(input[type="checkbox"], input[type="radio"]):disabled { opacity: 0.5; cursor: not-allowed; }
+
+  :where(input[type="range"]) {
+    --_mark: var(--mark-md);
+    --_track: max(calc((var(--_mark) - var(--range-track-cut)) / var(--range-track-parts)), var(--border-width));
+    --_thumb: var(--_mark);
+    appearance: none;
+    block-size: var(--_mark);
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+  :where(input[type="range"])::-webkit-slider-runnable-track { block-size: var(--_track); border-radius: 9999px; background: var(--component-strong); }
+  :where(input[type="range"])::-moz-range-track { block-size: var(--_track); border-radius: 9999px; background: var(--component-strong); }
+  :where(input[type="range"])::-moz-range-progress { block-size: var(--_track); border-radius: 9999px; background: var(--solid-accent-1); }
+  :where(input[type="range"])::-webkit-slider-thumb {
+    appearance: none;
+    inline-size: var(--_thumb);
+    block-size: var(--_thumb);
+    margin-block-start: calc((var(--_track) - var(--_thumb)) / 2);
+    border: var(--border-width) solid var(--border-strong);
+    border-radius: 50%;
+    background: var(--bg);
+    box-shadow: var(--shadow-xs);
+  }
+  :where(input[type="range"])::-moz-range-thumb {
+    box-sizing: border-box;
+    inline-size: var(--_thumb);
+    block-size: var(--_thumb);
+    border: var(--border-width) solid var(--border-strong);
+    border-radius: 50%;
+    background: var(--bg);
+    box-shadow: var(--shadow-xs);
+  }
   :where(textarea) { field-sizing: content; resize: vertical; }
   :where(textarea:not([rows])) { min-block-size: 6lh; }
   :where(button, [role="button"], label[for], select, summary) { cursor: pointer; }
@@ -1353,6 +1443,9 @@
   .icon-sm { font-size: var(--icon-sm); }
   .icon-md { font-size: var(--icon-md); }
   .icon-lg { font-size: var(--icon-lg); }
+  .mark-sm { --_mark: var(--mark-sm); }
+  .mark-md { --_mark: var(--mark-md); }
+  .mark-lg { --_mark: var(--mark-lg); }
   .select-none { user-select: none; }
   .select-text { user-select: text; }
   .select-all { user-select: all; }

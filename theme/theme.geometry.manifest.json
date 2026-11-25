@@ -176,6 +176,26 @@
       "token": "--shell-measure-factor",
       "value": "44",
       "use": "× F: a column of text about 44 characters wide."
+    },
+    {
+      "token": "--mark-corner",
+      "value": "0.25",
+      "use": "Checkbox corner as a share of the mark."
+    },
+    {
+      "token": "--range-thumb-share",
+      "value": "0.5",
+      "use": "A slider's handle is this share of the mark."
+    },
+    {
+      "token": "--range-track-cut",
+      "value": "8px",
+      "use": "A slider's track is the mark minus this, over the parts below."
+    },
+    {
+      "token": "--range-track-parts",
+      "value": "3",
+      "use": "See --range-track-cut."
     }
   ],
   "control": [
@@ -464,6 +484,37 @@
         "formula": "sidebar + measure + 2 × page margin",
         "at16": "1052px",
         "use": "The page width at which the sidebar docks beside the content."
+      }
+    ]
+  },
+  "marks": {
+    "source": "affine-ui tokens/small",
+    "rule": "A mark (checkbox, radio, switch, slider) is an icon's drawing size: sm F, md between F and the slot (the default), lg the slot. The reset draws native inputs with these; classes mark-sm and mark-lg pick another size.",
+    "tokens": [
+      {
+        "token": "--mark-sm / --mark-md / --mark-lg",
+        "formula": "the icon sizes",
+        "at16": "16 / 20 / 24px"
+      },
+      {
+        "token": "--switch-width-md",
+        "formula": "2 × mark − 4B",
+        "at16": "36px"
+      },
+      {
+        "token": "--switch-thumb-md",
+        "formula": "mark − 4B",
+        "at16": "16px"
+      },
+      {
+        "token": "--range-thumb-md",
+        "formula": "share × mark",
+        "at16": "10px"
+      },
+      {
+        "token": "--range-track-md",
+        "formula": "(mark − cut) / parts, at least B",
+        "at16": "4px"
       }
     ]
   }

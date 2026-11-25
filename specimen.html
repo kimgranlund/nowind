@@ -426,7 +426,7 @@ function buildUtilities() {
   for (const sh of document.styleSheets) { try { if (/nowind\.css$/.test(sh.href || "")) walk(sh.cssRules, false); } catch {} }
 
   const GROUPS = [
-    ["Controls and icons", (c) => /^(icon|h-control|h-nested|size-control|size-nested|min-w-control|min-w-nested|px-control|px-nested|gap-gutter)/.test(c), "misc"],
+    ["Controls and icons", (c) => /^(icon|mark-|h-control|h-nested|size-control|size-nested|min-w-control|min-w-nested|px-control|px-nested|gap-gutter)/.test(c), "misc"],
     ["Levels and tiers", (c) => /^(p[xy]?-(surface|dialog|region|page)|gap-(field|row|group|section|page)|m[tb]-section|tier-)/.test(c), "misc"],
     ["Page grid and shell", (c) => /^(gap-(x-)?grid|p-grid-inset|px-grid|w-sidebar|w-rail|(min-)?h-header|max-w-measure)/.test(c), "misc"],
     ["Type", (c, d) => /font-size/.test(d), "type"],

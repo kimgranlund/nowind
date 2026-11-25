@@ -34,6 +34,10 @@
   --shell-sidebar-slope: 16;
   --shell-sidebar-offset: 16px;
   --shell-measure-factor: 44;
+  --mark-corner: 0.25;
+  --range-thumb-share: 0.5;
+  --range-track-cut: 8px;
+  --range-track-parts: 3;
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
@@ -67,6 +71,13 @@
   --icon-sm: var(--F);
   --icon-md: calc(var(--F) + var(--icon-md-blend) * (var(--slot) - var(--F)));
   --icon-lg: var(--slot);
+  --mark-sm: var(--icon-sm);
+  --mark-md: var(--icon-md);
+  --mark-lg: var(--icon-lg);
+  --switch-width-md: calc(2 * var(--mark-md) - 4 * var(--border-width));
+  --switch-thumb-md: calc(var(--mark-md) - 4 * var(--border-width));
+  --range-thumb-md: calc(var(--range-thumb-share) * var(--mark-md));
+  --range-track-md: max(calc((var(--mark-md) - var(--range-track-cut)) / var(--range-track-parts)), var(--border-width));
 
   --tier-inner: max(1, calc(var(--tier) / 2));
   --field-gap: calc(var(--field-gap-factor) * var(--margin));

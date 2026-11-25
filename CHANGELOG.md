@@ -5,6 +5,7 @@
 - **Fonts:** `theme.css` and the bundle load Inter, Inter Tight and IBM Plex Mono from Google Fonts. `--font-heading` is Inter Tight and `--font-mono` IBM Plex Mono.
 - **Motion:** Massimo's springs (`--ease-smooth`, `--ease-snappy`, `--ease-bouncy`) as CSS `linear()` easings with their durations, ease curves, and `transition-*`, `duration-*`, `ease-*` classes.
 - **Page grid and shell:** Affine's grid gutter, inset and edge margins, and shell lengths (sidebar, rail, header, measure, dock width) with `gap-grid`, `p-grid-inset`, `px-grid`, `w-sidebar`, `w-rail`, `h-header`, `max-w-measure`.
+- **Form marks:** the reset draws checkboxes, radios, switches (`role="switch"`) and sliders at Affine's mark sizes; `mark-sm`, `mark-lg`.
 - **Dev server:** `scripts/serve.mjs` serves previews with caching off.
 
 ## 0.2.0 (2026-11-25)

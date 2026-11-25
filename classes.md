@@ -8,7 +8,7 @@ Variants: `hover:` on the 162 role-colour, opacity and cursor classes (inside `@
 
 ## Controls and icons
 
-14 classes.
+17 classes.
 
 | Class | Declarations |
 |---|---|
@@ -26,6 +26,9 @@ Variants: `hover:` on the 162 role-colour, opacity and cursor classes (inside `@
 | `.icon-sm` | `font-size: var(--icon-sm)` |
 | `.icon-md` | `font-size: var(--icon-md)` |
 | `.icon-lg` | `font-size: var(--icon-lg)` |
+| `.mark-sm` | `--_mark: var(--mark-sm)` |
+| `.mark-md` | `--_mark: var(--mark-md)` |
+| `.mark-lg` | `--_mark: var(--mark-lg)` |
 
 ## Levels and tiers
 

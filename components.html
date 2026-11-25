@@ -170,6 +170,19 @@
         <label class="inline-flex items-center gap-xs text-body-md cursor-pointer"><input type="checkbox"> Weekly digest</label>
       </fieldset>
       <fieldset class="flex flex-col gap-xs border-0 p-0">
+        <legend class="text-label text-fg mb-2xs">Preferences</legend>
+        <label class="flex items-center justify-between gap-sm text-body-md cursor-pointer"><span>Email me about mentions</span><input type="checkbox" role="switch" checked></label>
+        <label class="flex items-center justify-between gap-sm text-body-md cursor-pointer"><span>Compact mode</span><input type="checkbox" role="switch"></label>
+        <label class="flex items-center justify-between gap-sm text-body-md text-fg-weak"><span>Beta features (admins only)</span><input type="checkbox" role="switch" disabled></label>
+        <label class="flex flex-col gap-field text-label text-fg mt-2xs"><span>Volume</span><input type="range" class="w-full" value="60"></label>
+        <div class="flex items-center gap-row mt-2xs text-caption text-fg-weak">
+          <span>Mark sizes</span>
+          <input type="checkbox" class="mark-sm" checked aria-label="small"><input type="checkbox" checked aria-label="medium"><input type="checkbox" class="mark-lg" checked aria-label="large">
+          <input type="radio" name="sz" class="mark-sm" checked aria-label="small radio"><input type="radio" name="sz" aria-label="medium radio"><input type="radio" name="sz" class="mark-lg" aria-label="large radio">
+          <input type="checkbox" role="switch" class="mark-sm" checked aria-label="small switch"><input type="checkbox" role="switch" class="mark-lg" checked aria-label="large switch">
+        </div>
+      </fieldset>
+      <fieldset class="flex flex-col gap-xs border-0 p-0">
         <legend class="text-label text-fg mb-2xs">Plan</legend>
         <label class="flex items-center gap-sm p-sm rounded border border-border-accent-1 bg-component-accent-1-weak cursor-pointer"><input type="radio" name="plan" checked><span class="flex flex-col grow"><span class="text-title-sm">Team</span><span class="text-caption text-fg-weak">Up to 20 people</span></span><span class="text-data">$12</span></label>
         <label class="flex items-center gap-sm p-sm rounded border border-border hover:border-border-strong cursor-pointer transition-colors"><input type="radio" name="plan"><span class="flex flex-col grow"><span class="text-title-sm">Business</span><span class="text-caption text-fg-weak">Unlimited people, SSO</span></span><span class="text-data">$24</span></label>
