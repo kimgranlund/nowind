@@ -63,7 +63,7 @@ Work global first, as in Prewind:
 3. **Inline styles** for any value the scale doesn't have (there is no bracket syntax).
 
 ```html
-<article class="max-w-form p-lg rounded-lg bg-bg border border-border-weak shadow-lg">
+<article class="max-w-form p-lg rounded-lg bg border border-weak shadow-lg">
   <span class="text-kicker fg-accent-1-weak">Release</span>
   <h3 class="text-title mt-3xs mb-2xs">Nowind 0.1</h3>
   <p class="text-body-md fg-weak">Fluid type, semantic roles and a light/dark palette.</p>
@@ -75,7 +75,7 @@ Work global first, as in Prewind:
 
 ### Class names
 
-Classes follow `property-value`. Color classes take the token name without `--`, and each property takes only its own roles. Text-color roles are named by the token alone (`fg`, `fg-weak`, `fg-accent-1-weak`), and `fg-` also takes the `on-solid-*` tokens and raw steps (`fg-on-solid-danger`, `fg-danger-11`); `bg-` the `bg-*`, `component-*` and `solid-*` tokens, `border-` the `border-*` tokens. Raw palette steps (`bg-accent-1-3`, `fg-danger-11`, `border-neutral-6`) work with all three; alpha steps only with `bg-`. The table shows examples; [classes.md](classes.md) lists every class with its declarations.
+Classes follow `property-value`. A color class is the property prefix plus the token name, minus the role group when it matches the prefix: `--fg-weak` is `fg-weak`, `--bg-accent-1` is `bg-accent-1`, `--border-weak` is `border-weak`, but `--component-accent-1` is `bg-component-accent-1`. Each property takes only its own roles: `fg-` the `fg-*` and `on-solid-*` tokens, `bg-` the `bg-*`, `component-*` and `solid-*` tokens, `border-` the `border-*` tokens. The reset draws every border in `--border`, so `border` alone needs no color class; `border-default` sets it back explicitly. Raw palette steps (`bg-accent-1-3`, `fg-danger-11`, `border-neutral-6`) work with all three; alpha steps only with `bg-`. The table shows examples; [classes.md](classes.md) lists every class with its declarations.
 
 | Group | Examples |
 |---|---|
@@ -83,8 +83,8 @@ Classes follow `property-value`. Color classes take the token name without `--`,
 | Type scale | `text-xs` … `text-6xl` (size and line height), `text-kicker-sm/md/lg` |
 | Type roles | `text-display`, `text-heading-md`, `text-title`, `text-body-md`, `text-caption`, `text-label`, `text-kicker`, `text-figure`, `text-mono`, … |
 | Text color | `fg`, `fg-weak`, `fg-subtle`, `fg-accent-1`, `fg-on-solid`, `fg-inverse` |
-| Background | `bg-bg`, `bg-bg-strong`, `bg-component`, `bg-solid-accent-1`, `bg-accent-1-3`, `bg-neutral-a4`, `bg-bg-inverse` (toasts, tooltips), `bg-scrim` |
-| Border | `border`, `border-2`, `border-t`, `border-border`, `border-border-accent-1-weak`, `rounded`, `rounded-lg` |
+| Background | `bg`, `bg-strong`, `bg-component`, `bg-solid-accent-1`, `bg-accent-1-3`, `bg-neutral-a4`, `bg-inverse` (toasts, tooltips), `bg-scrim` |
+| Border | `border`, `border-2`, `border-t`, `border-default`, `border-accent-1-weak`, `rounded`, `rounded-lg` |
 | Shadow | `shadow-xs` … `shadow-xl`, `inset-shadow-xs`, `inset-shadow-sm`, `shadow-none` (a cast and a recess on one element combine) |
 | Typography | `font-semibold`, `font-sans`, `font-heading`, `font-mono`, `leading-tight`, `tracking-wide`, `uppercase`, `tabular-nums`, `text-balance`, `truncate` |
 | Layout | `container`, `flex`, `flex-col`, `items-center`, `justify-between`, `grid`, `grid-cols-1` … `grid-cols-12`, `col-span-2`, `col-span-full`, `basis-1/2`, `hidden`, `relative`, `z-10` |
@@ -127,15 +127,15 @@ Icons use [Phosphor](https://phosphoricons.com)'s web font. Link the weights you
 
 ```html
 <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm
-               border border-border bg-component-weak hover:bg-component text-title-sm">
+               border bg-component-weak hover:bg-component text-title-sm">
   <i class="icon ph ph-floppy-disk"></i><span>Save</span>
 </button>
 
-<button class="inline-flex items-center justify-center h-control px-control rounded-sm border border-border" aria-label="Add">
+<button class="inline-flex items-center justify-center h-control px-control rounded-sm border" aria-label="Add">
   <i class="icon ph ph-plus"></i>
 </button>
 
-<button class="inline-flex items-center justify-center h-nested px-nested gap-gutter-half rounded-xs border border-border text-label">
+<button class="inline-flex items-center justify-center h-nested px-nested gap-gutter-half rounded-xs border text-label">
   <i class="icon icon-sm ph-bold ph-funnel"></i><span>Filter</span>
 </button>
 ```
@@ -160,7 +160,7 @@ After Massimo, a region picks a material and each part says what it is. The mate
 Parts: `relief-raised` (buttons), `relief-raised-solid` (primary buttons), `relief-field` (inputs), `relief-recessed` (tracks, wells), `relief-etched`, `relief-ground` (cards), `relief-overlay` (popovers, dialogs). The nearest material wins, so regions nest.
 
 ```html
-<div class="material-frosted relief-ground p-surface rounded-lg bg-bg">
+<div class="material-frosted relief-ground p-surface rounded-lg bg">
   <input class="relief-field …">
   <button class="relief-raised-solid …">Invite</button>
 </div>
@@ -192,12 +192,12 @@ Hover states animate when an element has a transition class. `transition-colors`
 
 ```html
 <button popovertarget="menu">Sort</button>
-<div id="menu" popover class="anchor-bottom p-3xs rounded-lg bg-bg border border-border-weak shadow-lg">…</div>
+<div id="menu" popover class="anchor-bottom p-3xs rounded-lg bg border border-weak shadow-lg">…</div>
 ```
 
 ### Variants
 
-- **Hover**: only on devices that can hover, as Tailwind v4. Text, background and border colors of the role tokens (not raw palette steps), opacity and cursor: `hover:bg-component`, `hover:fg`, `hover:border-border-strong`, `hover:opacity-100`.
+- **Hover**: only on devices that can hover, as Tailwind v4. Text, background and border colors of the role tokens (not raw palette steps), opacity and cursor: `hover:bg-component`, `hover:fg`, `hover:border-strong`, `hover:opacity-100`.
 - **Breakpoints**: `sm:` 640px, `md:` 768px, `lg:` 1024px, `xl:` 1280px, `2xl:` 1536px (the `--breakpoint-*` tokens), for layout: display, grid columns and spans, flex direction, wrap and basis, alignment, text alignment, widths (`md:w-1/3`) and gaps (`md:gap-lg`). Margins, color and type have no breakpoint variants; padding, position, `top-*`, overflow and heights do.
 
 ```html
@@ -211,7 +211,7 @@ Hover states animate when an element has a transition class. `transition-colors`
 
 ```html
 <button role="tab" aria-selected="true"
-        class="border-b-2 border-transparent aria-selected:border-border-accent-1-strong fg-weak aria-selected:fg">Profile</button>
+        class="border-b-2 border-transparent aria-selected:border-accent-1-strong fg-weak aria-selected:fg">Profile</button>
 ```
 
 - **Groups:** put `group` on a parent and `group-hover:`, `group-focus-within:` or `group-open:` on a child to change its opacity, visibility or text role, as a tooltip does.
@@ -255,7 +255,7 @@ The color roles, named by contrast against the page in both modes:
 | Solid | `--solid`, `--solid-strong` (hover), `--on-solid` (text on it) |
 | Text | `--fg-subtle`, `--fg-weak`, `--fg`, `--fg-strong` |
 
-So a field in error is `border-border-danger`, its message `fg-danger-weak`, and a destructive button `bg-solid-danger hover:bg-solid-danger-strong fg-on-solid-danger`.
+So a field in error is `border-danger`, its message `fg-danger-weak`, and a destructive button `bg-solid-danger hover:bg-solid-danger-strong fg-on-solid-danger`.
 
 The full list, with what each token is for, is in the manifests in `theme/`.
 

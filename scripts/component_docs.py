@@ -3,9 +3,9 @@ rendered live and shown as code, with when to use it and when not to. Utility cl
 
 BTN = "inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm"
 BTN_PRIMARY = f"{BTN} border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong active:bg-solid-accent-1-strong fg-on-solid-accent-1 text-title-sm cursor-pointer transition-colors"
-BTN_SECONDARY = f"{BTN} border border-border bg-component-weak hover:bg-component active:bg-component-strong fg text-title-sm cursor-pointer transition-colors"
-FIELD = "h-control px-control rounded-sm border border-border hover:border-border-strong aria-invalid:border-border-danger bg-bg text-control-md w-full transition-colors"
-CARD = "p-surface rounded-lg bg-bg border border-border-weak"
+BTN_SECONDARY = f"{BTN} border bg-component-weak hover:bg-component active:bg-component-strong fg text-title-sm cursor-pointer transition-colors"
+FIELD = "h-control px-control rounded-sm border hover:border-strong aria-invalid:border-danger bg text-control-md w-full transition-colors"
+CARD = "p-surface rounded-lg bg border border-weak"
 MENU_ITEM = "flex items-center gap-gutter h-control px-control rounded-sm no-underline fg hover:bg-component-weak aria-selected:bg-component-accent-1-weak aria-selected:fg-accent-1-weak transition-colors"
 
 COMPONENTS = [
@@ -25,7 +25,7 @@ COMPONENTS = [
         "slug": "icon-button", "name": "Icon button", "icon": "ph-plus-circle", "group": "Actions",
         "summary": "A button with only an icon. The same padding rules make it exactly one control height square.",
         "html": f"""<div class="flex items-center gap-row">
-  <button class="{BTN} border border-border bg-component-weak hover:bg-component fg cursor-pointer transition-colors" aria-label="Settings"><i class="icon ph ph-gear"></i></button>
+  <button class="{BTN} border bg-component-weak hover:bg-component fg cursor-pointer transition-colors" aria-label="Settings"><i class="icon ph ph-gear"></i></button>
   <button class="{BTN} rounded-full border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong fg-on-solid-accent-1 cursor-pointer transition-colors" aria-label="Add"><i class="icon ph-bold ph-plus"></i></button>
   <button class="inline-flex items-center justify-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-component-weak fg-weak cursor-pointer transition-colors" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
 </div>""",
@@ -36,9 +36,9 @@ COMPONENTS = [
         "slug": "segmented", "name": "Segmented control", "icon": "ph-squares-four", "group": "Actions",
         "summary": "A set of mutually exclusive options. The pressed segment is styled by <code>aria-pressed</code>, not by a class.",
         "html": """<div class="inline-flex items-center gap-3xs p-3xs rounded bg-component-weak" role="group" aria-label="Range">
-  <button aria-pressed="true" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-component aria-pressed:bg-bg fg-weak aria-pressed:fg text-title-sm cursor-pointer transition-colors"><span>Day</span></button>
-  <button aria-pressed="false" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-component aria-pressed:bg-bg fg-weak aria-pressed:fg text-title-sm cursor-pointer transition-colors"><span>Week</span></button>
-  <button aria-pressed="false" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-component aria-pressed:bg-bg fg-weak aria-pressed:fg text-title-sm cursor-pointer transition-colors"><span>Month</span></button>
+  <button aria-pressed="true" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-component aria-pressed:bg fg-weak aria-pressed:fg text-title-sm cursor-pointer transition-colors"><span>Day</span></button>
+  <button aria-pressed="false" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-component aria-pressed:bg fg-weak aria-pressed:fg text-title-sm cursor-pointer transition-colors"><span>Week</span></button>
+  <button aria-pressed="false" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-component aria-pressed:bg fg-weak aria-pressed:fg text-title-sm cursor-pointer transition-colors"><span>Month</span></button>
 </div>""",
         "use": ["Two to five short options that change a view in place."],
         "avoid": ["Options that navigate to another page; use tabs."],
@@ -47,9 +47,9 @@ COMPONENTS = [
         "slug": "badge", "name": "Badge", "icon": "ph-tag", "group": "Status",
         "summary": "A short label for a status or category, at the nested control size.",
         "html": """<div class="flex flex-wrap items-center gap-2xs">
-  <span class="inline-flex items-center h-nested px-nested gap-gutter-half rounded-full bg-component-weak border border-border-weak fg-weak text-label">Draft</span>
-  <span class="inline-flex items-center h-nested px-nested gap-gutter-half rounded-full bg-component-success-weak border border-border-success-weak fg-success-weak text-label"><i class="icon icon-sm ph-bold ph-check"></i><span>Paid</span></span>
-  <span class="inline-flex items-center h-nested px-nested gap-gutter-half rounded-full bg-component-warning-weak border border-border-warning-weak fg-warning-weak text-label"><i class="icon icon-sm ph-bold ph-clock"></i><span>Pending</span></span>
+  <span class="inline-flex items-center h-nested px-nested gap-gutter-half rounded-full bg-component-weak border border-weak fg-weak text-label">Draft</span>
+  <span class="inline-flex items-center h-nested px-nested gap-gutter-half rounded-full bg-component-success-weak border border-success-weak fg-success-weak text-label"><i class="icon icon-sm ph-bold ph-check"></i><span>Paid</span></span>
+  <span class="inline-flex items-center h-nested px-nested gap-gutter-half rounded-full bg-component-warning-weak border border-warning-weak fg-warning-weak text-label"><i class="icon icon-sm ph-bold ph-clock"></i><span>Pending</span></span>
   <span class="inline-flex items-center h-nested px-nested rounded-full bg-solid-info fg-on-solid-info text-label">New</span>
 </div>""",
         "use": ["Pair a status color with its word, never color alone."],
@@ -58,7 +58,7 @@ COMPONENTS = [
     {
         "slug": "alert", "name": "Alert", "icon": "ph-warning-circle", "group": "Status",
         "summary": "A message about the page or a task, tinted by its status.",
-        "html": """<div class="flex gap-gutter p-surface rounded-lg bg-component-warning-weak border border-border-warning-weak" role="status">
+        "html": """<div class="flex gap-gutter p-surface rounded-lg bg-component-warning-weak border border-warning-weak" role="status">
   <i class="icon ph ph-warning fg-warning-weak"></i>
   <div class="flex flex-col gap-3xs">
     <span class="text-title fg-warning">Your trial ends in 3 days</span>
@@ -71,7 +71,7 @@ COMPONENTS = [
     {
         "slug": "toast", "name": "Toast", "icon": "ph-bell-ringing", "group": "Status",
         "summary": "A brief confirmation on the inverse colors, with an optional action.",
-        "html": """<div class="flex items-center gap-sm p-sm pl-md w-fit rounded-lg bg-bg-inverse shadow-lg" role="status">
+        "html": """<div class="flex items-center gap-sm p-sm pl-md w-fit rounded-lg bg-inverse shadow-lg" role="status">
   <i class="icon ph ph-check-circle fg-inverse"></i>
   <span class="text-body-sm fg-inverse">Invite sent</span>
   <button class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent fg-accent-1-subtle text-title-sm cursor-pointer">Undo</button>
@@ -139,10 +139,10 @@ COMPONENTS = [
     {
         "slug": "tabs", "name": "Tabs", "icon": "ph-tabs", "group": "Navigation",
         "summary": "Switches between views of the same thing. The selected tab is styled by <code>aria-selected</code>.",
-        "html": """<div class="flex gap-md border-b border-border-weak overflow-x-auto" role="tablist">
-  <button role="tab" aria-selected="true" class="inline-flex items-center gap-gutter h-control border-0 border-b-2 border-transparent aria-selected:border-border-accent-1-strong bg-transparent fg-weak hover:fg aria-selected:fg text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-user"></i><span>Profile</span></button>
-  <button role="tab" aria-selected="false" class="inline-flex items-center gap-gutter h-control border-0 border-b-2 border-transparent aria-selected:border-border-accent-1-strong bg-transparent fg-weak hover:fg aria-selected:fg text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-credit-card"></i><span>Billing</span></button>
-  <button role="tab" aria-selected="false" class="inline-flex items-center gap-gutter h-control border-0 border-b-2 border-transparent aria-selected:border-border-accent-1-strong bg-transparent fg-weak hover:fg aria-selected:fg text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-users"></i><span>Members</span></button>
+        "html": """<div class="flex gap-md border-b border-weak overflow-x-auto" role="tablist">
+  <button role="tab" aria-selected="true" class="inline-flex items-center gap-gutter h-control border-0 border-b-2 border-transparent aria-selected:border-accent-1-strong bg-transparent fg-weak hover:fg aria-selected:fg text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-user"></i><span>Profile</span></button>
+  <button role="tab" aria-selected="false" class="inline-flex items-center gap-gutter h-control border-0 border-b-2 border-transparent aria-selected:border-accent-1-strong bg-transparent fg-weak hover:fg aria-selected:fg text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-credit-card"></i><span>Billing</span></button>
+  <button role="tab" aria-selected="false" class="inline-flex items-center gap-gutter h-control border-0 border-b-2 border-transparent aria-selected:border-accent-1-strong bg-transparent fg-weak hover:fg aria-selected:fg text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-users"></i><span>Members</span></button>
 </div>""",
         "use": ["Moving <code>aria-selected</code> is all the script a tab needs for its look."],
         "avoid": ["More than six tabs; use a sidebar."],
@@ -179,7 +179,7 @@ COMPONENTS = [
         "slug": "menu", "name": "Popover menu", "icon": "ph-list", "group": "Overlays",
         "summary": "A menu that opens with <code>popovertarget</code> and sits against its button with <code>anchor-bottom</code>. No script.",
         "html": f"""<button class="{BTN_SECONDARY}" popovertarget="doc-sort"><i class="icon ph ph-sort-ascending"></i><span>Sort</span><i class="icon icon-sm ph-bold ph-caret-down"></i></button>
-<div id="doc-sort" popover class="anchor-bottom w-sidebar p-3xs rounded-lg bg-bg border border-border-weak shadow-lg">
+<div id="doc-sort" popover class="anchor-bottom w-sidebar p-3xs rounded-lg bg border border-weak shadow-lg">
   <div class="flex flex-col" role="listbox" aria-label="Sort by">
     <a href="#" class="{MENU_ITEM}" role="option" aria-selected="true"><i class="icon ph ph-clock"></i><span class="grow">Last edited</span></a>
     <a href="#" class="{MENU_ITEM}" role="option" aria-selected="false"><i class="icon ph ph-text-aa"></i><span class="grow">Name</span></a>
@@ -192,7 +192,7 @@ COMPONENTS = [
         "slug": "dialog", "name": "Dialog", "icon": "ph-app-window", "group": "Overlays",
         "summary": "A modal <code>&lt;dialog&gt;</code> opened with the <code>command</code> attribute; the reset dims the page behind it.",
         "html": f"""<button class="{BTN_SECONDARY}" commandfor="doc-dialog" command="show-modal"><i class="icon ph ph-trash"></i><span>Delete project…</span></button>
-<dialog id="doc-dialog" class="m-auto p-dialog rounded-xl bg-bg border-0 shadow-xl max-w-form w-full" aria-labelledby="doc-dialog-title">
+<dialog id="doc-dialog" class="m-auto p-dialog rounded-xl bg border-0 shadow-xl max-w-form w-full" aria-labelledby="doc-dialog-title">
   <div class="flex flex-col gap-group">
     <h3 id="doc-dialog-title" class="text-title">Delete project?</h3>
     <p class="text-body-sm fg-weak">This removes the project for everyone. You can't undo this.</p>
@@ -209,11 +209,11 @@ COMPONENTS = [
         "slug": "accordion", "name": "Accordion", "icon": "ph-rows", "group": "Disclosure",
         "summary": "Sections that open and close, built from <code>&lt;details&gt;</code>.",
         "html": """<div class="max-w-form">
-  <details class="border-b border-border-weak" open>
+  <details class="border-b border-weak" open>
     <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-title hover:fg-accent-1-weak transition-colors">Do I need a build step?<i class="icon ph ph-caret-down fg-weak"></i></summary>
     <p class="text-body-sm fg-weak pb-sm">No. Link one stylesheet; every class already exists.</p>
   </details>
-  <details class="border-b border-border-weak">
+  <details class="border-b border-weak">
     <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-title hover:fg-accent-1-weak transition-colors">Does it work in a CMS?<i class="icon ph ph-caret-down fg-weak"></i></summary>
     <p class="text-body-sm fg-weak pb-sm">Yes. Any class works in any HTML.</p>
   </details>
@@ -248,13 +248,13 @@ COMPONENTS = [
     {
         "slug": "table", "name": "Table", "icon": "ph-table", "group": "Data display",
         "summary": "Rows of records in a surface that scrolls sideways on narrow screens.",
-        "html": """<div class="rounded-lg bg-bg border border-border-weak overflow-x-auto">
+        "html": """<div class="rounded-lg bg border border-weak overflow-x-auto">
   <table class="w-full text-body-sm">
-    <thead class="bg-bg-strong">
-      <tr><th class="text-left px-md py-xs text-label fg-weak border-b border-border-weak">Invoice</th><th class="text-left px-md py-xs text-label fg-weak border-b border-border-weak">Status</th><th class="text-right px-md py-xs text-label fg-weak border-b border-border-weak">Amount</th></tr>
+    <thead class="bg-strong">
+      <tr><th class="text-left px-md py-xs text-label fg-weak border-b border-weak">Invoice</th><th class="text-left px-md py-xs text-label fg-weak border-b border-weak">Status</th><th class="text-right px-md py-xs text-label fg-weak border-b border-weak">Amount</th></tr>
     </thead>
     <tbody>
-      <tr class="hover:bg-component-weak"><td class="px-md py-sm text-mono-sm border-b border-border-weak">INV-1042</td><td class="px-md py-sm border-b border-border-weak">Paid</td><td class="px-md py-sm text-right text-data border-b border-border-weak">$1,280.00</td></tr>
+      <tr class="hover:bg-component-weak"><td class="px-md py-sm text-mono-sm border-b border-weak">INV-1042</td><td class="px-md py-sm border-b border-weak">Paid</td><td class="px-md py-sm text-right text-data border-b border-weak">$1,280.00</td></tr>
       <tr class="hover:bg-component-weak"><td class="px-md py-sm text-mono-sm">INV-1043</td><td class="px-md py-sm">Pending</td><td class="px-md py-sm text-right text-data">$640.50</td></tr>
     </tbody>
   </table>
@@ -265,7 +265,7 @@ COMPONENTS = [
     {
         "slug": "empty-state", "name": "Empty state", "icon": "ph-folder-open", "group": "Feedback",
         "summary": "What a view shows before it has content, with the action that fills it.",
-        "html": f"""<div class="flex flex-col items-center justify-center text-center gap-xs p-2xl rounded-lg border-2 border-dashed border-border">
+        "html": f"""<div class="flex flex-col items-center justify-center text-center gap-xs p-2xl rounded-lg border-2 border-dashed">
   <span class="inline-flex items-center justify-center size-control rounded-full bg-component-weak fg-weak"><i class="icon ph ph-folder-open"></i></span>
   <h3 class="text-title">No projects yet</h3>
   <p class="text-body-sm fg-weak max-w-text">Create a project to collect designs, notes and feedback in one place.</p>
@@ -291,8 +291,8 @@ COMPONENTS = [
         "slug": "tooltip", "name": "Tooltip", "icon": "ph-chat-centered-text", "group": "Overlays",
         "summary": "A hint that shows when its trigger is hovered or focused. The wrapper is a <code>group</code>; the hint uses <code>group-hover:</code> and <code>group-focus-within:</code>. No script.",
         "html": """<span class="group relative inline-block">
-  <button class="inline-flex items-center justify-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component fg cursor-pointer transition-colors" aria-label="Copy link" aria-describedby="doc-tip"><i class="icon ph ph-link"></i></button>
-  <span id="doc-tip" role="tooltip" class="absolute top-full left-0 z-20 mt-3xs px-xs py-3xs rounded-xs bg-bg-inverse fg-inverse text-caption whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity">Copy link</span>
+  <button class="inline-flex items-center justify-center h-control px-control rounded-sm border bg-component-weak hover:bg-component fg cursor-pointer transition-colors" aria-label="Copy link" aria-describedby="doc-tip"><i class="icon ph ph-link"></i></button>
+  <span id="doc-tip" role="tooltip" class="absolute top-full left-0 z-20 mt-3xs px-xs py-3xs rounded-xs bg-inverse fg-inverse text-caption whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity">Copy link</span>
 </span>""",
         "use": ["A short label for an icon-only button, also given as its <code>aria-label</code>.", "<code>group-focus-within:</code> as well as <code>group-hover:</code>, so keyboard users see it."],
         "avoid": ["Anything people need to read to finish a task; put it on the page."],
@@ -313,17 +313,17 @@ COMPONENTS = [
     {
         "slug": "sortable-table", "name": "Sortable table", "icon": "ph-sort-ascending", "group": "Data display",
         "summary": "Column headers hold buttons; <code>aria-sort</code> on the header says which column sorts the rows and in which order.",
-        "html": """<div class="rounded-lg bg-bg border border-border-weak overflow-x-auto">
+        "html": """<div class="rounded-lg bg border border-weak overflow-x-auto">
   <table class="w-full text-body-sm">
-    <thead class="bg-bg-strong">
+    <thead class="bg-strong">
       <tr>
-        <th aria-sort="ascending" class="text-left px-md py-xs border-b border-border-weak"><button class="inline-flex items-center gap-gutter-half border-0 bg-transparent fg text-label cursor-pointer">Name<i class="icon icon-sm ph-bold ph-caret-up"></i></button></th>
-        <th aria-sort="none" class="text-right px-md py-xs border-b border-border-weak"><button class="inline-flex items-center gap-gutter-half border-0 bg-transparent fg-weak hover:fg text-label cursor-pointer transition-colors">Seats<i class="icon icon-sm ph-bold ph-caret-up-down"></i></button></th>
+        <th aria-sort="ascending" class="text-left px-md py-xs border-b border-weak"><button class="inline-flex items-center gap-gutter-half border-0 bg-transparent fg text-label cursor-pointer">Name<i class="icon icon-sm ph-bold ph-caret-up"></i></button></th>
+        <th aria-sort="none" class="text-right px-md py-xs border-b border-weak"><button class="inline-flex items-center gap-gutter-half border-0 bg-transparent fg-weak hover:fg text-label cursor-pointer transition-colors">Seats<i class="icon icon-sm ph-bold ph-caret-up-down"></i></button></th>
       </tr>
     </thead>
     <tbody>
-      <tr class="hover:bg-component-weak"><td class="px-md py-sm border-b border-border-weak">Contoso</td><td class="px-md py-sm text-right text-data border-b border-border-weak">48</td></tr>
-      <tr class="hover:bg-component-weak"><td class="px-md py-sm border-b border-border-weak">Fabrikam</td><td class="px-md py-sm text-right text-data border-b border-border-weak">12</td></tr>
+      <tr class="hover:bg-component-weak"><td class="px-md py-sm border-b border-weak">Contoso</td><td class="px-md py-sm text-right text-data border-b border-weak">48</td></tr>
+      <tr class="hover:bg-component-weak"><td class="px-md py-sm border-b border-weak">Fabrikam</td><td class="px-md py-sm text-right text-data border-b border-weak">12</td></tr>
       <tr class="hover:bg-component-weak"><td class="px-md py-sm">Northwind</td><td class="px-md py-sm text-right text-data">7</td></tr>
     </tbody>
   </table>

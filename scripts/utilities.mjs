@@ -114,11 +114,16 @@ const alphaStep = (c) => PALETTES.some((p) => new RegExp(`^${p}-a\\d+$`).test(c)
 const forText = (c) => step(c) || /^(fg|on-solid)(-|$)/.test(c);
 const forBg = (c) => step(c) || alphaStep(c) || /^(bg|component|solid|scrim)(-|$)/.test(c) || /-(surface|indicator|track)$/.test(c);
 const forBorder = (c) => step(c) || /^border(-|$)/.test(c);
+// A colour class is the property prefix plus the token name, minus the role group when it matches the prefix:
+// --fg-weak is fg-weak, --bg-accent-1 is bg-accent-1, --border-weak is border-weak. --border itself is border-default,
+// because border is the width class (the reset already draws borders in --border).
+const isRoleToken = (c) => !step(c) && !alphaStep(c) && !/^shadow/.test(c) && !/-(surface|indicator|track)$/.test(c);
+const ROLE_CLASSES = new Set();
+const colorAdd = (name, c, decl) => { add(name, decl); if (isRoleToken(c)) ROLE_CLASSES.add(name); };
 for (const c of COLORS) {
-  // fg roles are named by their token alone (fg-weak); raw steps and on-solid take fg- (fg-danger-9, fg-on-solid-danger).
-  if (forText(c)) add(/^fg(-|$)/.test(c) ? c : `fg-${c}`, `color: var(--${c})`);
-  if (forBg(c)) add(`bg-${c}`, `background-color: var(--${c})`);
-  if (forBorder(c)) add(`border-${c}`, `border-color: var(--${c})`);
+  if (forText(c)) colorAdd(/^fg(-|$)/.test(c) ? c : `fg-${c}`, c, `color: var(--${c})`);
+  if (forBg(c)) colorAdd(/^bg(-|$)/.test(c) ? c : `bg-${c}`, c, `background-color: var(--${c})`);
+  if (forBorder(c)) colorAdd(c === "border" ? "border-default" : /^border-/.test(c) ? c : `border-${c}`, c, `border-color: var(--${c})`);
 }
 add("text-inherit", "color: inherit");
 add("text-current", "color: currentColor");
@@ -326,15 +331,13 @@ add("revert", "all: revert");
 const esc = (c) => c.replace(/[:./]/g, (ch) => `\\${ch}`).replace(/^(\d)/, (d) => `\\3${d} `);
 const rule = (sel, decl) => `  .${esc(sel)} { ${decl}; }`;
 const ROLE_COLORS = colorProps.filter((p) => !/^--shadow/.test(p) && !/-(surface|indicator|track)$/.test(p)).map((p) => p.slice(2));
-const colorClass = new RegExp(`^(text|bg)-(${ROLE_COLORS.map((c) => c.replace(/[-]/g, "\\-")).join("|")}|inherit|current|transparent)$`);
-const fgRole = (c) => /^fg(-|$)/.test(c) && (ROLE_COLORS.includes(c) || (/^fg-on-solid(-|$)/.test(c) && ROLE_COLORS.includes(c.slice(3))));
-const HOVER = [...D.keys()].filter((c) => colorClass.test(c) || fgRole(c) || /^border-border(-|$)/.test(c) || /^opacity-|^cursor-/.test(c));
+const HOVER = [...D.keys()].filter((c) => ROLE_CLASSES.has(c) || /^(text|bg)-(inherit|current|transparent)$/.test(c) || /^opacity-|^cursor-/.test(c));
 const LAYOUT = [...D.keys()].filter((c) => /^(block|inline-block|inline|flex|inline-flex|grid|inline-grid|contents|hidden|flex-(row|col)(-reverse)?|flex-wrap|flex-nowrap|justify-|items-|self-|text-(left|center|right|justify|start|end)$|col-span-|w-(\d\/\d|full|auto|fit|sidebar|rail)$|basis-|gap-|p[xytb]?-|static$|relative$|absolute$|fixed$|sticky$|top-|overflow-|h-(full|auto|dvh|screen|below-header)$)/.test(c));
 const geometryCss = read("theme/theme.geometry.css");
 const BREAKPOINTS = [...geometryCss.matchAll(/--breakpoint-([\w]+):\s*(\d+)px/g)].map((m) => [m[1], Number(m[2])]);
 
 const reset = `@layer reset {
-  :where(*, *::before, *::after) { box-sizing: border-box; }
+  :where(*, *::before, *::after) { box-sizing: border-box; border-color: var(--border); }
   :where(*) { margin: 0; }
 
   :where(html) {
@@ -599,7 +602,7 @@ out.push("  }");
 const roleOf = (c) => c.replace(/^(text|bg|border)-/, "");
 const inPalettes = (pals) => (c) => {
   const r = roleOf(c);
-  const pal = r.match(/-(accent-\d|danger|warning|success|info)(-|$)/);
+  const pal = r.match(/(?:^|-)(accent-\d|danger|warning|success|info)(-|$)/);
   return pal ? pals.includes(pal[1]) : pals.includes("neutral");
 };
 const ROLE_STATE = HOVER.filter((c) => !/^opacity-|^cursor-/.test(c));
@@ -668,7 +671,7 @@ const manifest = {
     typeScale: `text-{${SIZES.join(", ")}} (sets size and line height)`,
     kicker: `text-{${KICKERS.join(", ")}} (size and the kicker style)`,
     typeRoles: `text-{${ROLES.filter((r) => !KICKERS.includes(r)).join(", ")}} (every role companion)`,
-    colors: "Each property takes only its own roles: text colour is fg-* (the fg roles by their token name, plus fg-on-solid-*); bg- with bg-*, component-*, solid-*, surface, indicator and track; border- with border-*. Raw palette steps (fg-accent-1-9, bg-accent-1-9, border-accent-1-9) work with all three; alpha steps (neutral-a4) with bg- only. No outline colour classes: the reset sets the focus ring.",
+    colors: "A colour class is the property prefix plus the token name, minus the role group when it matches the prefix (fg-weak, bg-accent-1, border-weak; bg-component-accent-1 keeps its group). --border is border-default, because border is the width class; the reset draws every border in --border. Each property takes only its own roles: fg- with fg-* and on-solid-*; bg- with bg-*, component-*, solid-*, surface, indicator and track; border- with border-*. Raw palette steps (fg-accent-1-9, bg-accent-1-9, border-accent-1-9) work with all three; alpha steps (neutral-a4) with bg- only. No outline colour classes: the reset sets the focus ring.",
     weights: "font-normal, font-medium, font-semibold, font-bold",
     faces: "font-body (alias font-sans), font-heading, font-mono, font-control",
     leading: "leading-none, tight, snug, normal, relaxed",

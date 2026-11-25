@@ -461,9 +461,9 @@ function buildUtilities() {
       let prev = "";
       if (kind === "type") prev = el("span", { class: cls + " truncate" }, "Aa");
       else if (kind === "color") prev = el("span", { class: cls + " text-title" }, "Aa");
-      else if (kind === "bg") prev = el("span", { class: cls + " u-box rounded-xs border border-border-weak" });
-      else if (kind === "bcolor") prev = el("span", { class: cls + " u-box rounded-xs border-2 bg-bg" });
-      else if (kind === "effect") prev = el("span", { class: cls + " u-box bg-component-weak" + (/border-(width|style)|outline-(width|style)/.test(decl) ? " border-border-strong outline-offset-2" : "") });
+      else if (kind === "bg") prev = el("span", { class: cls + " u-box rounded-xs border border-weak" });
+      else if (kind === "bcolor") prev = el("span", { class: cls + " u-box rounded-xs border-2 bg" });
+      else if (kind === "effect") prev = el("span", { class: cls + " u-box bg-component-weak" + (/border-(width|style)|outline-(width|style)/.test(decl) ? " border-strong outline-offset-2" : "") });
       const row = el("div", { class: "row u-row" }, el("code", { class: "tok" }, "." + cls), el("div", { class: "decl" }, decl), el("div", { class: "u-prev" }, prev));
       row.dataset.k = (cls + " " + decl).toLowerCase();
       box.append(row);

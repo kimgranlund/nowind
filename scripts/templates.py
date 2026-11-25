@@ -52,27 +52,27 @@ HEAD = """<!doctype html>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
 </head>
-<body class="bg-bg fg">
+<body class="bg fg">
 """
 
 def band():
-    return '<div class="shrink-0 py-3xs bg-bg-inverse" aria-hidden="true"></div>\n'
+    return '<div class="shrink-0 py-3xs bg-inverse" aria-hidden="true"></div>\n'
 
 def header(current):
     links = []
     for href, label in TOP_NAV:
         if href == current or (current == "index.html" and False):
-            links.append(f'      <a href="{href}" aria-current="page" class="inline-flex items-center h-control px-control border-b-2 border-border-accent-1-strong no-underline fg text-title-sm">{label}</a>')
+            links.append(f'      <a href="{href}" aria-current="page" class="inline-flex items-center h-control px-control border-b-2 border-accent-1-strong no-underline fg text-title-sm">{label}</a>')
         else:
-            links.append(f'      <a href="{href}" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline fg-weak hover:fg hover:border-border-strong text-title-sm transition-colors">{label}</a>')
-    return f"""<header class="flex items-center justify-between gap-row h-header shrink-0 px-grid border-b border-border-weak bg-bg">
+            links.append(f'      <a href="{href}" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline fg-weak hover:fg hover:border-strong text-title-sm transition-colors">{label}</a>')
+    return f"""<header class="flex items-center justify-between gap-row h-header shrink-0 px-grid border-b border-weak bg">
     <a href="docs-home.html" class="inline-flex items-center gap-gutter no-underline fg">
       <i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-weak">__VERSION__</span>
     </a>
     <nav aria-label="Main" class="hidden md:flex items-center gap-3xs">
 {chr(10).join(links)}
     </nav>
-    <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center h-control px-control gap-gutter border border-border bg-bg hover:bg-component-weak no-underline fg text-title-sm transition-colors" aria-label="Nowind on GitHub">
+    <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center h-control px-control gap-gutter border bg hover:bg-component-weak no-underline fg text-title-sm transition-colors" aria-label="Nowind on GitHub">
       <i class="icon ph ph-github-logo"></i><span class="hidden sm:inline">GitHub</span>
     </a>
   </header>
@@ -84,7 +84,7 @@ def nav_groups(current, indent="      "):
         lis = []
         for href, label, icon in items:
             if href == current:
-                lis.append(f'{indent}    <li><a href="{href}" aria-current="page" class="flex items-center h-control px-control gap-gutter border-l-2 border-border-accent-1-strong bg-component-weak no-underline fg text-title-sm"><i class="icon ph {icon}"></i><span class="truncate">{label}</span></a></li>')
+                lis.append(f'{indent}    <li><a href="{href}" aria-current="page" class="flex items-center h-control px-control gap-gutter border-l-2 border-accent-1-strong bg-component-weak no-underline fg text-title-sm"><i class="icon ph {icon}"></i><span class="truncate">{label}</span></a></li>')
             else:
                 lis.append(f'{indent}    <li><a href="{href}" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph {icon}"></i><span class="truncate">{label}</span></a></li>')
         out.append(f"""{indent}<div class="flex flex-col gap-field">
@@ -97,7 +97,7 @@ def nav_groups(current, indent="      "):
 
 def menu(current):
     """Phone and tablet navigation: a disclosure row under the header. No script."""
-    return f"""<details class="lg:hidden shrink min-h-0 overflow-y-auto border-b border-border-weak bg-bg-strong">
+    return f"""<details class="lg:hidden shrink min-h-0 overflow-y-auto border-b border-weak bg-strong">
     <summary class="flex items-center gap-gutter h-control px-grid list-none cursor-pointer fg text-title-sm"><i class="icon ph ph-list"></i><span>Menu</span></summary>
     <nav aria-label="Documentation" class="flex flex-col gap-group px-grid pt-2xs pb-md">
 {nav_groups(current)}
@@ -106,7 +106,7 @@ def menu(current):
 """
 
 def sidebar(current):
-    return f"""<aside class="hidden lg:flex flex-col shrink-0 w-sidebar overflow-y-auto p-region border-r border-border-weak bg-bg-strong">
+    return f"""<aside class="hidden lg:flex flex-col shrink-0 w-sidebar overflow-y-auto p-region border-r border-weak bg-strong">
       <nav aria-label="Documentation" class="flex flex-col gap-group">
 {nav_groups(current, "        ")}
       </nav>
@@ -115,7 +115,7 @@ def sidebar(current):
 
 def toc(items, label="On this page"):
     lis = "\n".join(
-        f'            <li><a href="#{i}" class="block py-3xs pl-sm border-l-2 border-border-weak hover:border-border-strong no-underline fg-weak hover:fg text-caption transition-colors">{E(t)}</a></li>'
+        f'            <li><a href="#{i}" class="block py-3xs pl-sm border-l-2 border-weak hover:border-strong no-underline fg-weak hover:fg text-caption transition-colors">{E(t)}</a></li>'
         for i, t in items)
     return f"""<aside class="hidden xl:block xl:col-span-3">
         <nav aria-label="{label}" class="sticky top-0 flex flex-col gap-field py-page">
@@ -128,7 +128,7 @@ def toc(items, label="On this page"):
 """
 
 def footer():
-    return """<footer class="flex flex-col md:flex-row md:items-center justify-between gap-field px-grid py-surface border-t border-border-weak text-caption fg-weak">
+    return """<footer class="flex flex-col md:flex-row md:items-center justify-between gap-field px-grid py-surface border-t border-weak text-caption fg-weak">
         <span>Nowind __VERSION__. Every page here is built from Nowind utility classes only.</span>
         <span class="flex flex-wrap gap-row">
           <a href="changelog.html" class="no-underline fg-weak hover:fg transition-colors">Changelog</a>
@@ -145,14 +145,14 @@ def prev_next(current):
     nxt = order[i + 1] if i < len(order) - 1 else None
     cells = []
     if prev:
-        cells.append(f"""          <a href="{prev}" class="flex flex-col gap-3xs p-surface border border-border-weak hover:border-border-strong no-underline transition-colors">
+        cells.append(f"""          <a href="{prev}" class="flex flex-col gap-3xs p-surface border border-weak hover:border-strong no-underline transition-colors">
             <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><i class="icon icon-sm ph-bold ph-arrow-left"></i><span>Previous</span></span>
             <span class="text-subtitle fg-accent-1-weak">{TITLES[prev]}</span>
           </a>""")
     else:
         cells.append('          <span class="hidden md:block"></span>')
     if nxt:
-        cells.append(f"""          <a href="{nxt}" class="flex flex-col md:items-end gap-3xs p-surface border border-border-weak hover:border-border-strong no-underline md:text-right transition-colors">
+        cells.append(f"""          <a href="{nxt}" class="flex flex-col md:items-end gap-3xs p-surface border border-weak hover:border-strong no-underline md:text-right transition-colors">
             <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><span>Next</span><i class="icon icon-sm ph-bold ph-arrow-right"></i></span>
             <span class="text-subtitle fg-accent-1-weak">{TITLES[nxt]}</span>
           </a>""")
@@ -166,7 +166,7 @@ CALLOUT = {
 
 def callout(kind, body_html):
     pal, icon, label = CALLOUT[kind]
-    return f"""<aside role="note" class="flex gap-gutter p-surface border-l-4 border-border-{pal} bg-component-{pal}-weak">
+    return f"""<aside role="note" class="flex gap-gutter p-surface border-l-4 border-{pal} bg-component-{pal}-weak">
             <i class="icon ph {icon} fg-{pal}-weak"></i>
             <div class="flex flex-col gap-3xs min-w-0">
               <span class="text-label fg-{pal}">{label}</span>
@@ -175,8 +175,8 @@ def callout(kind, body_html):
           </aside>"""
 
 def code(filename, lang, src):
-    return f"""<figure class="flex flex-col min-w-0 border border-border-weak bg-bg-strong">
-            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-border-weak">
+    return f"""<figure class="flex flex-col min-w-0 border border-weak bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">{E(filename)}</span><span class="text-kicker fg-subtle">{lang}</span>
             </figcaption>
             <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>{E(src.strip(chr(10)))}</code></pre>
@@ -184,17 +184,17 @@ def code(filename, lang, src):
 
 def table(headers, rows, align=None):
     align = align or ["left"] * len(headers)
-    ths = "".join(f'<th scope="col" class="text-{a} px-sm py-xs border-b border-border text-label fg-weak whitespace-nowrap">{h}</th>' for h, a in zip(headers, align))
+    ths = "".join(f'<th scope="col" class="text-{a} px-sm py-xs border-b text-label fg-weak whitespace-nowrap">{h}</th>' for h, a in zip(headers, align))
     trs = []
     for n, r in enumerate(rows):
         last = n == len(rows) - 1
-        b = "" if last else " border-b border-border-weak"
+        b = "" if last else " border-b border-weak"
         r = [re.sub(r"<code>([^< ]+)</code>", r'<code class="whitespace-nowrap">\1</code>', c) for c in r]
         tds = "".join(f'<td class="text-{a} align-top px-sm py-xs{b}{" whitespace-nowrap" if k == 0 else ""}">{c}</td>' for k, (c, a) in enumerate(zip(r, align)))
         trs.append(f"                <tr>{tds}</tr>")
-    return f"""<div class="overflow-x-auto border border-border-weak">
+    return f"""<div class="overflow-x-auto border border-weak">
             <table class="w-full text-body-md">
-              <thead class="bg-bg-strong"><tr>{ths}</tr></thead>
+              <thead class="bg-strong"><tr>{ths}</tr></thead>
               <tbody>
 {chr(10).join(trs)}
               </tbody>
@@ -212,7 +212,7 @@ def page_head(kicker, title, intro, meta=None):
 def section(sid, title, *blocks):
     inner = "\n          ".join(blocks)
     return f"""<section id="{sid}" class="flex flex-col gap-group">
-          <h2 class="text-heading-md pt-sm border-t border-border">{title}</h2>
+          <h2 class="text-heading-md pt-sm border-t">{title}</h2>
           {inner}
         </section>"""
 
@@ -259,8 +259,8 @@ def guide():
             p("A docs page has five parts, always in the same place: a band and a header across the top, a sidebar on the left, the content in the middle and an on-page table of contents on the right. The frame fills the viewport, and only the sidebar and the content scroll."),
             code("frame.html", "HTML", """
 <div class="flex flex-col h-dvh overflow-hidden">
-  <div class="shrink-0 py-3xs bg-bg-inverse"></div>
-  <header class="flex items-center justify-between h-header shrink-0 px-grid border-b border-border-weak">…</header>
+  <div class="shrink-0 py-3xs bg-inverse"></div>
+  <header class="flex items-center justify-between h-header shrink-0 px-grid border-b border-weak">…</header>
   <div class="flex flex-1 min-h-0">
     <aside class="hidden lg:flex flex-col shrink-0 w-sidebar overflow-y-auto p-region">…</aside>
     <main class="flex flex-col flex-1 min-w-0 overflow-y-auto">…</main>
@@ -302,7 +302,7 @@ def guide():
             callout("warning", "A callout interrupts the reader. Use at most one per section."),
             p("A code block is a figure: the file name and language in a caption, the code in a <code>pre</code> that scrolls sideways rather than wrapping. Tables sit in a bordered box that scrolls on a narrow screen."),
             code("callout.html", "HTML", """
-<aside role="note" class="flex gap-gutter p-surface border-l-4 border-border-info bg-component-info-weak">
+<aside role="note" class="flex gap-gutter p-surface border-l-4 border-info bg-component-info-weak">
   <i class="icon ph ph-info fg-info-weak"></i>
   <div class="flex flex-col gap-3xs">
     <span class="text-label fg-info">Note</span>
@@ -313,7 +313,7 @@ def guide():
         section("menu", "Navigation on a phone",
             p("Below 1024px the sidebar moves into a <code>details</code> element under the header. It opens and closes without a script, and the same list of links serves both places."),
             code("menu.html", "HTML", """
-<details class="lg:hidden shrink min-h-0 overflow-y-auto border-b border-border-weak bg-bg-strong">
+<details class="lg:hidden shrink min-h-0 overflow-y-auto border-b border-weak bg-strong">
   <summary class="flex items-center gap-gutter h-control px-grid list-none text-title-sm">
     <i class="icon ph ph-list"></i><span>Menu</span>
   </summary>
@@ -458,7 +458,7 @@ def changelog():
                 else:
                     lis.append(f"""                <li><p class="text-body-md">{text}</p></li>""")
             body.append('<ul role="list" class="flex flex-col gap-group">\n' + "\n".join(lis) + "\n              </ul>")
-        blocks.append(f"""<section id="v{v.replace('.', '-')}" class="grid grid-cols-1 md:grid-cols-4 gap-grid pt-sm border-t border-border">
+        blocks.append(f"""<section id="v{v.replace('.', '-')}" class="grid grid-cols-1 md:grid-cols-4 gap-grid pt-sm border-t">
             <div class="flex flex-col gap-field">
               <h2 class="text-heading-md">{v}</h2>
               <time datetime="{date}" class="text-caption fg-weak">{date}</time>{badge}
@@ -481,13 +481,13 @@ def docs_home():
         ("changelog.html", "ph-clock-counter-clockwise", "Changelog", "What changed in each release, newest first."),
         ("../components.html", "ph-squares-four", "Components", "Buttons, forms, tables and dialogs built only from utility classes."),
     ]
-    cards = "\n".join(f"""        <a href="{h}" class="col-span-4 md:col-span-6 xl:col-span-3 flex flex-col gap-field p-surface border border-border-weak hover:border-border-strong no-underline fg transition-colors">
+    cards = "\n".join(f"""        <a href="{h}" class="col-span-4 md:col-span-6 xl:col-span-3 flex flex-col gap-field p-surface border border-weak hover:border-strong no-underline fg transition-colors">
           <i class="icon ph {i} fg-accent-1-weak"></i>
           <span class="text-subtitle">{t}</span>
           <span class="text-body-md fg-weak">{d}</span>
         </a>""" for h, i, t, d in entries)
     figures = [("1,324", "utility classes"), ("660", "breakpoint variants"), ("162", "hover variants"), ("29", "type roles"), ("9", "colour palettes")]
-    figs = "\n".join(f"""            <div class="flex items-baseline justify-between gap-row py-xs border-b border-border-weak">
+    figs = "\n".join(f"""            <div class="flex items-baseline justify-between gap-row py-xs border-b border-weak">
               <dt class="text-body-md fg-weak">{l}</dt><dd class="text-heading-md tabular-nums">{n}</dd>
             </div>""" for n, l in figures)
     body = f"""<div class="flex flex-col h-dvh overflow-hidden">
@@ -500,18 +500,18 @@ def docs_home():
           <p class="text-body-md fg-weak max-w-measure">Theme tokens and utility classes in plain CSS. Link one file and every class already exists, so it works in any HTML, including what a CMS writes.</p>
           <div class="flex flex-wrap gap-row">
             <a href="guide.html" class="inline-flex items-center h-control px-control gap-gutter bg-solid-accent-1 hover:bg-solid-accent-1-strong no-underline fg-on-solid-accent-1 text-title-sm transition-colors"><span>Read the guide</span><i class="icon ph ph-arrow-right"></i></a>
-            <a href="reference.html" class="inline-flex items-center h-control px-control gap-gutter border border-border hover:bg-component-weak no-underline fg text-title-sm transition-colors"><span>Class reference</span></a>
+            <a href="reference.html" class="inline-flex items-center h-control px-control gap-gutter border hover:bg-component-weak no-underline fg text-title-sm transition-colors"><span>Class reference</span></a>
           </div>
         </header>
 {cards}
         <section id="start" class="col-span-4 md:col-span-12 xl:col-span-7 flex flex-col gap-group py-page">
-          <h2 class="text-heading-md pt-sm border-t border-border">Start in one line</h2>
+          <h2 class="text-heading-md pt-sm border-t">Start in one line</h2>
           <p class="text-body-md max-w-measure">Link the minified bundle from the CDN. The link pins release __VERSION__, so your site won't change until you change the version.</p>
           {code("index.html", "HTML", '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v__VERSION__/dist/nowind.min.css">')}
           {callout("note", "Put your own CSS in <code>@layer styles</code>, so a utility class always wins over it.")}
         </section>
         <section id="inside" class="col-span-4 md:col-span-12 xl:col-span-5 flex flex-col gap-group py-page">
-          <h2 class="text-heading-md pt-sm border-t border-border">In the box</h2>
+          <h2 class="text-heading-md pt-sm border-t">In the box</h2>
           <dl class="flex flex-col">
 {figs}
           </dl>
@@ -536,13 +536,13 @@ def index():
     grid_strip = f"""<div class="grid grid-cols-4 md:grid-cols-12 gap-grid" aria-hidden="true">
 {cols}
           </div>"""
-    frame_diagram = """<div class="flex flex-col border border-border" role="img" aria-label="Diagram of the frame: a band and header across the top, a sidebar on the left, the article in the middle and the table of contents on the right">
-            <div class="py-3xs bg-bg-inverse"></div>
-            <div class="flex items-center px-sm py-xs border-b border-border-weak text-label fg-weak">header · h-header</div>
+    frame_diagram = """<div class="flex flex-col border" role="img" aria-label="Diagram of the frame: a band and header across the top, a sidebar on the left, the article in the middle and the table of contents on the right">
+            <div class="py-3xs bg-inverse"></div>
+            <div class="flex items-center px-sm py-xs border-b border-weak text-label fg-weak">header · h-header</div>
             <div class="grid grid-cols-12">
-              <div class="col-span-3 p-sm border-r border-border-weak bg-bg-strong text-label fg-weak">sidebar · w-sidebar</div>
+              <div class="col-span-3 p-sm border-r border-weak bg-strong text-label fg-weak">sidebar · w-sidebar</div>
               <div class="col-span-6 p-sm text-label fg-weak">article · 9 columns · max-w-measure</div>
-              <div class="col-span-3 p-sm border-l border-border-weak text-label fg-weak">contents · 3</div>
+              <div class="col-span-3 p-sm border-l border-weak text-label fg-weak">contents · 3</div>
             </div>
           </div>"""
     type_rows = [
@@ -552,20 +552,20 @@ def index():
         ('<span class="text-caption">Aa</span>', "Small", "<code>text-caption</code> · <code>text-label</code> · <code>text-kicker</code> · <code>text-mono-sm</code>", "<code>--text-sm</code>", "Metadata, labels, code"),
     ]
     parts = [
-        ["Band", "<code>py-3xs bg-bg-inverse</code>"],
-        ["Header", "<code>flex items-center justify-between h-header px-grid border-b border-border-weak</code>"],
-        ["Header link", "<code>inline-flex items-center h-control px-control border-b-2 text-title-sm</code>; current: <code>border-border-accent-1-strong fg</code>"],
+        ["Band", "<code>py-3xs bg-inverse</code>"],
+        ["Header", "<code>flex items-center justify-between h-header px-grid border-b border-weak</code>"],
+        ["Header link", "<code>inline-flex items-center h-control px-control border-b-2 text-title-sm</code>; current: <code>border-accent-1-strong fg</code>"],
         ["Menu (phone)", "<code>details</code> with <code>lg:hidden shrink min-h-0 overflow-y-auto</code>"],
-        ["Sidebar", "<code>hidden lg:flex flex-col w-sidebar p-region border-r bg-bg-strong</code>"],
-        ["Sidebar link", "<code>flex items-center h-control px-control gap-gutter border-l-2 text-title-sm</code>; current: <code>border-border-accent-1-strong bg-component-weak fg</code>"],
+        ["Sidebar", "<code>hidden lg:flex flex-col w-sidebar p-region border-r bg-strong</code>"],
+        ["Sidebar link", "<code>flex items-center h-control px-control gap-gutter border-l-2 text-title-sm</code>; current: <code>border-accent-1-strong bg-component-weak fg</code>"],
         ["Main grid", "<code>grid grid-cols-4 md:grid-cols-12 gap-grid px-grid</code>"],
         ["Article", "<code>xl:col-span-9 tier-content flex flex-col gap-section py-page max-w-measure</code>"],
-        ["Section heading", "<code>text-heading-md pt-sm border-t border-border</code>"],
+        ["Section heading", "<code>text-heading-md pt-sm border-t</code>"],
         ["Table of contents", "<code>hidden xl:block xl:col-span-3</code>, inner <code>sticky top-0</code>; links <code>pl-sm border-l-2 text-caption</code>"],
-        ["Callout", "<code>flex gap-gutter p-surface border-l-4 border-border-info bg-component-info-weak</code>"],
-        ["Code block", "<code>figure</code> with <code>border bg-bg-strong</code>; <code>pre</code> with <code>p-surface overflow-x-auto whitespace-pre text-mono-sm</code>"],
+        ["Callout", "<code>flex gap-gutter p-surface border-l-4 border-info bg-component-info-weak</code>"],
+        ["Code block", "<code>figure</code> with <code>border bg-strong</code>; <code>pre</code> with <code>p-surface overflow-x-auto whitespace-pre text-mono-sm</code>"],
         ["Table", "Box <code>overflow-x-auto border</code>; <code>th</code> <code>px-sm py-xs text-label</code>; <code>td</code> <code>px-sm py-xs border-b</code>"],
-        ["Previous and next", "<code>grid grid-cols-1 md:grid-cols-2 gap-grid</code>; each <code>p-surface border hover:border-border-strong</code>"],
+        ["Previous and next", "<code>grid grid-cols-1 md:grid-cols-2 gap-grid</code>; each <code>p-surface border hover:border-strong</code>"],
         ["Footer", "<code>flex flex-col md:flex-row gap-field px-grid py-surface border-t text-caption</code>"],
     ]
     tpls = [
@@ -574,7 +574,7 @@ def index():
         ("reference.html", "Reference", "Tables of classes and declarations, with code."),
         ("changelog.html", "Changelog", "Releases as rows on a 1 + 3 grid, with a release index in place of the contents."),
     ]
-    tpl_list = "\n".join(f"""            <li><a href="{h}" class="flex items-center justify-between gap-row py-sm border-b border-border-weak no-underline fg hover:fg-accent-1 transition-colors"><span class="flex flex-col gap-3xs"><span class="text-subtitle">{t}</span><span class="text-body-md fg-weak">{d}</span></span><i class="icon ph ph-arrow-right fg-weak"></i></a></li>""" for h, t, d in tpls)
+    tpl_list = "\n".join(f"""            <li><a href="{h}" class="flex items-center justify-between gap-row py-sm border-b border-weak no-underline fg hover:fg-accent-1 transition-colors"><span class="flex flex-col gap-3xs"><span class="text-subtitle">{t}</span><span class="text-body-md fg-weak">{d}</span></span><i class="icon ph ph-arrow-right fg-weak"></i></a></li>""" for h, t, d in tpls)
     art = "\n        ".join([
         page_head("Templates", "A documentation system for Nowind",
                   "Four page templates for a docs site, built only from Nowind's utility classes. One frame, one grid, four type sizes, one accent. Copy a page and replace the words.",
@@ -597,7 +597,7 @@ def index():
         ),
         section("colour", "Colour and form",
             ul([
-                "Neutral roles for everything: <code>bg-bg</code>, <code>bg-bg-strong</code>, <code>fg</code>, <code>fg-weak</code>, <code>border-border-weak</code>.",
+                "Neutral roles for everything: <code>bg</code>, <code>bg-strong</code>, <code>fg</code>, <code>fg-weak</code>, <code>border-weak</code>.",
                 "One accent, <code>accent-1</code>, for links, the current page, the primary button, entry icons and the Latest release badge.",
                 "Status colours only in callouts, each paired with its word: Note, Tip, Warning.",
                 "Square corners and no shadows. Rules and white space do the separating.",
@@ -608,7 +608,7 @@ def index():
             table(["Part", "Classes"], parts),
         ),
         section("templates", "The templates",
-            f'<ul role="list" class="flex flex-col border-t border-border-weak">\n{tpl_list}\n          </ul>',
+            f'<ul role="list" class="flex flex-col border-t border-weak">\n{tpl_list}\n          </ul>',
         ),
         section("limits", "Known limits",
             ul([
@@ -642,9 +642,9 @@ def read_classes():
 
 PREVIEW = {
     "Text color": lambda k: f'<span class="{k} text-title">Aa</span>',
-    "Background color": lambda k: f'<span class="block size-control rounded-xs border border-border-weak {k}"></span>',
-    "Border color": lambda k: f'<span class="block size-control rounded-xs border-2 bg-bg {k}"></span>',
-    "Borders, radius, shadow": lambda k: f'<span class="block size-control bg-bg-strong border border-border-weak {k}"></span>',
+    "Background color": lambda k: f'<span class="block size-control rounded-xs border border-weak {k}"></span>',
+    "Border color": lambda k: f'<span class="block size-control rounded-xs border-2 bg {k}"></span>',
+    "Borders, radius, shadow": lambda k: f'<span class="block size-control bg-strong border border-weak {k}"></span>',
 }
 
 CLASS_FILTER = """<script>
@@ -713,19 +713,19 @@ def classes_page(semantic=False):
         toc_items.append((sid, title))
         prev = PREVIEW.get(title)
         heads = ["Class", "Declarations"] + (["Preview"] if prev else [])
-        ths = "".join(f'<th scope="col" class="text-left px-sm py-xs border-b border-border text-label fg-weak whitespace-nowrap">{h}</th>' for h in heads)
+        ths = "".join(f'<th scope="col" class="text-left px-sm py-xs border-b text-label fg-weak whitespace-nowrap">{h}</th>' for h in heads)
         trs = []
         for k, decl in rows:
-            cells = [f'<td class="align-top px-sm py-xs border-b border-border-weak"><code class="whitespace-nowrap">.{E(k)}</code></td>',
-                     f'<td class="align-top px-sm py-xs border-b border-border-weak text-mono-sm fg-weak">{E(decl)}</td>']
+            cells = [f'<td class="align-top px-sm py-xs border-b border-weak"><code class="whitespace-nowrap">.{E(k)}</code></td>',
+                     f'<td class="align-top px-sm py-xs border-b border-weak text-mono-sm fg-weak">{E(decl)}</td>']
             if prev:
-                cells.append(f'<td class="align-top px-sm py-xs border-b border-border-weak">{prev(k)}</td>')
+                cells.append(f'<td class="align-top px-sm py-xs border-b border-weak">{prev(k)}</td>')
             trs.append(f'                <tr id="{class_id(k)}">{"".join(cells)}</tr>')
         sections.append(f"""<section id="{sid}" data-classes class="flex flex-col gap-group">
-          <h2 class="flex items-baseline justify-between gap-row text-heading-md pt-sm border-t border-border"><span>{title}</span><span class="text-caption fg-weak">{len(rows)} classes</span></h2>
-          <div class="overflow-x-auto border border-border-weak">
+          <h2 class="flex items-baseline justify-between gap-row text-heading-md pt-sm border-t"><span>{title}</span><span class="text-caption fg-weak">{len(rows)} classes</span></h2>
+          <div class="overflow-x-auto border border-weak">
             <table class="w-full text-body-md">
-              <thead class="bg-bg-strong"><tr>{ths}</tr></thead>
+              <thead class="bg-strong"><tr>{ths}</tr></thead>
               <tbody>
 {chr(10).join(trs)}
               </tbody>
@@ -737,12 +737,12 @@ def classes_page(semantic=False):
         f"The rest are in <a href=\"{other}\">{other_title}</a>. "
         "Colour, opacity and cursor classes also take <code>hover:</code> and the state variants; layout classes take <code>sm:</code> to <code>2xl:</code>.",
         "Nowind __VERSION__ · generated from classes.md")
-    search = f"""<div class="sticky top-0 flex items-center gap-row py-xs bg-bg">
-          <input id="class-filter" type="search" placeholder="Filter by class or declaration" aria-label="Filter classes" class="grow min-w-0 h-control px-control rounded-sm border border-border hover:border-border-strong bg-bg text-control-md transition-colors">
+    search = f"""<div class="sticky top-0 flex items-center gap-row py-xs bg">
+          <input id="class-filter" type="search" placeholder="Filter by class or declaration" aria-label="Filter classes" class="grow min-w-0 h-control px-control rounded-sm border hover:border-strong bg text-control-md transition-colors">
           <span id="class-count" data-all="{total} classes" aria-live="polite" class="text-caption fg-weak whitespace-nowrap">{total} classes</span>
         </div>"""
     cards = "\n".join(
-        f"""            <a href="#{sid}" class="flex items-baseline justify-between gap-row p-surface border border-border-weak hover:border-border-strong hover:bg-component-weak no-underline fg transition-colors">
+        f"""            <a href="#{sid}" class="flex items-baseline justify-between gap-row p-surface border border-weak hover:border-strong hover:bg-component-weak no-underline fg transition-colors">
               <span class="text-subtitle">{title}</span><span class="text-caption fg-weak whitespace-nowrap">{len(rows)}</span>
             </a>""" for (sid, title), (_, rows) in zip(toc_items, cats))
     groups = f"""<nav aria-label="Class groups" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-grid">
@@ -762,13 +762,13 @@ def classes_of(snippet):
 def component_page(c):
     name = f"c-{c['slug']}.html"
     toc_items = [("example", "Example"), ("usage", "Usage"), ("classes", "Classes")]
-    chips = " ".join(f'<a href="{class_page_of(k.split(":")[-1])}#{class_id(k.split(":")[-1])}" class="inline-flex items-center h-nested px-nested rounded-xs bg-bg-strong border border-border-weak hover:border-border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">{E(k)}</a>' for k in classes_of(c["html"]))
+    chips = " ".join(f'<a href="{class_page_of(k.split(":")[-1])}#{class_id(k.split(":")[-1])}" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">{E(k)}</a>' for k in classes_of(c["html"]))
     use = "\n".join(f'            <li class="flex gap-gutter"><i class="icon icon-sm ph-bold ph-check fg-success-weak"></i><span>{t}</span></li>' for t in c["use"])
     avoid = "\n".join(f'            <li class="flex gap-gutter"><i class="icon icon-sm ph-bold ph-x fg-danger-weak"></i><span>{t}</span></li>' for t in c["avoid"])
     art = "\n        ".join([
         page_head(c["group"], c["name"], c["summary"]),
         section("example", "Example",
-            f"""<div class="tier-product p-surface rounded-lg border border-border-weak bg-bg-strong overflow-x-auto">
+            f"""<div class="tier-product p-surface rounded-lg border border-weak bg-strong overflow-x-auto">
 {c["html"]}
           </div>""",
             code(f"{c['slug']}.html", "HTML", c["html"]),
@@ -795,7 +795,7 @@ def components_index():
     groups = []
     for g in dict.fromkeys(c["group"] for c in COMPONENTS):
         cards = "\n".join(
-            f"""            <a href="c-{c['slug']}.html" class="flex flex-col gap-3xs p-surface border border-border-weak hover:border-border-strong hover:bg-component-weak no-underline fg transition-colors">
+            f"""            <a href="c-{c['slug']}.html" class="flex flex-col gap-3xs p-surface border border-weak hover:border-strong hover:bg-component-weak no-underline fg transition-colors">
               <span class="inline-flex items-center gap-gutter text-subtitle"><i class="icon ph {c['icon']} fg-accent-1-weak"></i><span>{c['name']}</span></span>
               <span class="text-body-sm fg-weak">{c['summary']}</span>
             </a>""" for c in COMPONENTS if c["group"] == g)

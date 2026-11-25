@@ -18,7 +18,7 @@
     "classes": 1349,
     "hover": 162,
     "responsive": 1210,
-    "bytes": 242234
+    "bytes": 240854
   },
   "naming": "property-value, as Prewind and Tailwind: p-md, gap-lg, bg-solid-accent-1. Colour classes take the token name without --; text-color roles are the token name alone (fg-weak, fg-accent-1).",
   "variants": {
@@ -40,7 +40,7 @@
     "typeScale": "text-{xs, sm, base, lg, xl, 2xl, 3xl, 4xl, 5xl, 6xl} (sets size and line height)",
     "kicker": "text-{kicker-sm, kicker-md, kicker-lg} (size and the kicker style)",
     "typeRoles": "text-{display-lg, display-md, display-sm, display, heading-xl, heading-lg, heading-md, heading-sm, figure, lead, quote, title, subtitle, body-lg, body-md, body-sm, caption, footnote, title-sm, control-md, data, label, kicker, numeral, mono, mono-sm, code, kbd} (every role companion)",
-    "colors": "Each property takes only its own roles: text colour is fg-* (the fg roles by their token name, plus fg-on-solid-*); bg- with bg-*, component-*, solid-*, surface, indicator and track; border- with border-*. Raw palette steps (fg-accent-1-9, bg-accent-1-9, border-accent-1-9) work with all three; alpha steps (neutral-a4) with bg- only. No outline colour classes: the reset sets the focus ring.",
+    "colors": "A colour class is the property prefix plus the token name, minus the role group when it matches the prefix (fg-weak, bg-accent-1, border-weak; bg-component-accent-1 keeps its group). --border is border-default, because border is the width class; the reset draws every border in --border. Each property takes only its own roles: fg- with fg-* and on-solid-*; bg- with bg-*, component-*, solid-*, surface, indicator and track; border- with border-*. Raw palette steps (fg-accent-1-9, bg-accent-1-9, border-accent-1-9) work with all three; alpha steps (neutral-a4) with bg- only. No outline colour classes: the reset sets the focus ring.",
     "weights": "font-normal, font-medium, font-semibold, font-bold",
     "faces": "font-body (alias font-sans), font-heading, font-mono, font-control",
     "leading": "leading-none, tight, snug, normal, relaxed",
