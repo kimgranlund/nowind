@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Component docs:** a page per component in `templates/` (21 so far), each with the component live, its HTML to copy, when to use it and when not to, and the classes it uses; plus an index. Content lives in `scripts/component_docs.py`.
+
 ## 0.5.0 (2026-11-25)
 
 - **Tiers grow the type:** inside `tier-content` and `tier-brand` the whole type scale and the type roles grow with the tier's body size.

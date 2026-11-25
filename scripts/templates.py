@@ -3,6 +3,9 @@
 Usage: python3 scripts/templates.py [output-dir]   (default: templates/)"""
 import html, os, re, sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from component_docs import COMPONENTS  # noqa: E402
+
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "templates")
 E = html.escape
 
@@ -13,20 +16,23 @@ PAGES = [
     ("reference.html", "Page grid and shell"),
     ("changelog.html", "Changelog"),
     ("index.html", "About these templates"),
-]
+    ("components-index.html", "Components"),
+] + [(f"c-{c['slug']}.html", c["name"]) for c in COMPONENTS]
 TITLES = dict(PAGES)
 
 NAV_GROUPS = [
     ("Getting started", [("docs-home.html", "Overview", "ph-house"),
                          ("guide.html", "Lay out a docs page", "ph-book-open")]),
     ("Reference", [("reference.html", "Page grid and shell", "ph-grid-four"),
-                   ("../components.html", "Components", "ph-squares-four"),
+                   ("../components.html", "Showcase", "ph-squares-four"),
                    ("../specimen.html", "Specimen", "ph-palette")]),
+    ("Components", [("components-index.html", "All components", "ph-stack")] +
+                   [(f"c-{c['slug']}.html", c["name"], c["icon"]) for c in COMPONENTS]),
     ("Project", [("changelog.html", "Changelog", "ph-clock-counter-clockwise"),
                  ("index.html", "Templates", "ph-ruler")]),
 ]
 
-TOP_NAV = [("docs-home.html", "Docs"), ("guide.html", "Guide"),
+TOP_NAV = [("docs-home.html", "Docs"), ("guide.html", "Guide"), ("components-index.html", "Components"),
            ("reference.html", "Reference"), ("changelog.html", "Changelog")]
 
 # ---------------------------------------------------------------- shared parts
@@ -610,10 +616,67 @@ def index():
     return doc_page("index.html", "About these templates", art, toc_items)
 
 
+
+# ---------------------------------------------------------------- component docs
+def classes_of(snippet):
+    """The utility classes a snippet uses, sorted (Phosphor's icon classes left out)."""
+    found = {c for cls in re.findall(r'class="([^"]+)"', snippet) for c in cls.split() if not c.startswith("ph")}
+    return sorted(found)
+
+
+def component_page(c):
+    name = f"c-{c['slug']}.html"
+    toc_items = [("example", "Example"), ("usage", "Usage"), ("classes", "Classes")]
+    chips = " ".join(f'<code class="inline-flex items-center h-nested px-nested rounded-xs bg-bg-strong border border-border-weak text-mono-sm whitespace-nowrap">{E(k)}</code>' for k in classes_of(c["html"]))
+    use = "\n".join(f'            <li class="flex gap-gutter"><i class="icon icon-sm ph-bold ph-check text-fg-success-weak"></i><span>{t}</span></li>' for t in c["use"])
+    avoid = "\n".join(f'            <li class="flex gap-gutter"><i class="icon icon-sm ph-bold ph-x text-fg-danger-weak"></i><span>{t}</span></li>' for t in c["avoid"])
+    art = "\n        ".join([
+        page_head(c["group"], c["name"], c["summary"]),
+        section("example", "Example",
+            f"""<div class="tier-product p-surface rounded-lg border border-border-weak bg-bg-strong overflow-x-auto">
+{c["html"]}
+          </div>""",
+            code(f"{c['slug']}.html", "HTML", c["html"]),
+        ),
+        section("usage", "Usage",
+            f"""<div class="grid grid-cols-1 md:grid-cols-2 gap-grid">
+            <div class="flex flex-col gap-field"><span class="text-label text-fg-success-weak">Use</span><ul role="list" class="flex flex-col gap-xs text-body-md">
+{use}
+            </ul></div>
+            <div class="flex flex-col gap-field"><span class="text-label text-fg-danger-weak">Avoid</span><ul role="list" class="flex flex-col gap-xs text-body-md">
+{avoid}
+            </ul></div>
+          </div>""",
+        ),
+        section("classes", "Classes",
+            p(f"Every class in the example, {len(classes_of(c['html']))} in all. Look any of them up in <a href=\"../classes.md\">classes.md</a>."),
+            f'<div class="flex flex-wrap gap-2xs">{chips}</div>',
+        ),
+    ])
+    return doc_page(name, c["name"], art, toc_items)
+
+
+def components_index():
+    groups = []
+    for g in dict.fromkeys(c["group"] for c in COMPONENTS):
+        cards = "\n".join(
+            f"""            <a href="c-{c['slug']}.html" class="flex flex-col gap-3xs p-surface border border-border-weak hover:border-border-strong hover:bg-component-weak no-underline text-fg transition-colors">
+              <span class="inline-flex items-center gap-gutter text-subtitle"><i class="icon ph {c['icon']} text-fg-accent-1-weak"></i><span>{c['name']}</span></span>
+              <span class="text-body-sm text-fg-weak">{c['summary']}</span>
+            </a>""" for c in COMPONENTS if c["group"] == g)
+        sid = g.lower().replace(" ", "-")
+        groups.append((sid, g, f'<div class="grid grid-cols-1 md:grid-cols-2 gap-grid">\n{cards}\n          </div>'))
+    art = "\n        ".join(
+        [page_head("Components", "Components",
+                   f"{len(COMPONENTS)} components, each a single snippet of HTML built only from Nowind utility classes. Every page shows the component live, its code to copy, when to use it and the classes it uses.")]
+        + [section(sid, g, body) for sid, g, body in groups])
+    return doc_page("components-index.html", "Components", art, [(sid, g) for sid, g, _ in groups], wide=True)
+
 def main():
     os.makedirs(OUT, exist_ok=True)
     files = {"guide.html": guide(), "reference.html": reference(), "changelog.html": changelog(),
-             "docs-home.html": docs_home(), "index.html": index()}
+             "docs-home.html": docs_home(), "index.html": index(), "components-index.html": components_index()}
+    files.update({f"c-{c['slug']}.html": component_page(c) for c in COMPONENTS})
     for name, text in files.items():
         text = text.replace("<code>--", '<code class="whitespace-nowrap">--')
         text = text.replace("__VERSION__", VERSION)

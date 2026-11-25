@@ -24,7 +24,8 @@ Read `README.md` for what Nowind is and how people use it. This file says how to
 | `classes.md` | Every class and its declarations | no, `scripts/utilities.mjs` |
 | `specimen.html` | Every token, the reset and every class, read live from the stylesheets | yes |
 | `utilities.html` | Demo page built only from classes | yes |
-| `templates/*.html` | Docs-site templates (designed with the massimo-vignelli agent): home, guide, reference, changelog | no, `python3 scripts/templates.py` |
+| `templates/*.html` | Docs site (designed with the massimo-vignelli agent): home, guide, reference, changelog and a `c-*.html` page per component | no, `python3 scripts/templates.py` |
+| `scripts/component_docs.py` | Each component's snippet (rendered live and shown as code), summary, use and avoid | yes |
 | `components.html` | Component showcase built only from classes: no `<style>`, no `style=` | yes |
 
 Manifests: [`theme/theme.typography.manifest.json`](theme/theme.typography.manifest.json), [`theme/theme.space.manifest.json`](theme/theme.space.manifest.json), [`theme/theme.shadows.manifest.json`](theme/theme.shadows.manifest.json) and [`nowind.manifest.json`](nowind.manifest.json) are written by their scripts; change the script, not the file. These are hand-written; update them in the same change as their CSS:
@@ -82,6 +83,10 @@ Then check the result in `specimen.html` through the dev server (`node scripts/s
 2. Import it in `theme/theme.colors.css` and copy one palette's companion and role block with the new name.
 3. Add it to `palettes` in `theme/theme.colors.manifest.json`.
 4. Run `node scripts/utilities.mjs`, `node scripts/bundle.mjs` and `node scripts/check.mjs`. The specimen finds it by itself.
+
+## Adding a component page
+
+Add an entry to `COMPONENTS` in `scripts/component_docs.py`: a `slug`, `name`, Phosphor `icon`, `group`, `summary`, one `html` snippet using utility classes only, and `use` and `avoid` lists. Then run `python3 scripts/templates.py` and `node scripts/check.mjs`. The page, its sidebar entry, its index card and its class list are generated.
 
 ## Adding a type role
 
