@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Tag chips:** the remove button sits the same distance (`3xs`) from the chip's top, bottom and end edges, with `gap-3xs` before it.
 - **Timeline:** the rail runs unbroken from one marker to the next (the item gap moved from the row to the text), at 2px.
 - **Control gaps:** buttons, fields, selects, menu items and toolbar items space their icon and label by the control gap, `gap-gutter` (one margin, 7px at 16) or `gap-gutter-half` when nested, in place of `gap-xs` (12px); both count as regular classes now. `px-control` and `px-nested` also drop to the icon padding at a trailing icon (a field's warning icon had the text padding). The examples lint enforces the gap (self-test: twelve breaks).
 - **Badges:** icon and label sit `gap-3xs` apart (they were `gap-2xs`, which with the icon box's own side space read as a wide gap).
