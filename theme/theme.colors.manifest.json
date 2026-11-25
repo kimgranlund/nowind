@@ -53,21 +53,24 @@
       "family": "red",
       "use": "Errors, destructive actions, failed states",
       "steps": "--danger-1..12 → --colors-red-1..12; --danger-a1..a12 → --colors-red-a1..a12",
-      "contrast": "light-dark(var(--danger-contrast-white), var(--danger-contrast-black))"
+      "contrast": "var(--danger-contrast-white)",
+      "contrastNote": "Light text in both modes by choice. The library's solidLabel for red is light then dark, but light text reads better on Nowind's dark-mode danger solid."
     },
     "warning": {
       "file": "colors-semantic/warning.css",
       "family": "amber",
       "use": "Caution, pending risk, degraded states",
       "steps": "--warning-1..12 → --colors-amber-1..12; --warning-a1..a12 → --colors-amber-a1..a12",
-      "contrast": "var(--warning-contrast-black)"
+      "contrast": "var(--warning-contrast-white)",
+      "contrastNote": "Light text in both modes by choice. The library's solidLabel for amber is dark in both modes."
     },
     "success": {
       "file": "colors-semantic/success.css",
       "family": "green",
       "use": "Completed, valid, healthy states",
       "steps": "--success-1..12 → --colors-green-1..12; --success-a1..a12 → --colors-green-a1..a12",
-      "contrast": "light-dark(var(--success-contrast-white), var(--success-contrast-black))"
+      "contrast": "var(--success-contrast-white)",
+      "contrastNote": "Light text in both modes by choice. The library's solidLabel for green is light then dark, but light text reads better on Nowind's dark-mode success solid."
     },
     "info": {
       "file": "colors-semantic/info.css",
@@ -301,7 +304,7 @@
     ],
     "rule": "Each status has the full accent role set with the status name in place of 'accent-N': --bg-danger, --component-danger-weak, --border-danger, --solid-danger, --on-solid-danger, --fg-danger-weak, plus --danger-surface, --danger-indicator and --danger-track.",
     "info": "Info uses blue rather than the library's cyan.",
-    "warning": "Amber takes dark text on its solid in both modes, so --warning-contrast is --warning-contrast-black in light and dark.",
+    "warning": "Warning takes light text on its solid in both modes by choice, overriding the library's dark label for amber.",
     "pattern": "--{group}-{status}[-weak|-strong]"
   },
   "accents": {

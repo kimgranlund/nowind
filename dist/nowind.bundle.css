@@ -773,7 +773,7 @@
 
   --danger-contrast-white: oklch(0.9397 0 202.2);
   --danger-contrast-black: oklch(0.1806 0 30.32);
-  --danger-contrast: light-dark(var(--danger-contrast-white), var(--danger-contrast-black));
+  --danger-contrast: var(--danger-contrast-white);
 }
 
 :root {
@@ -898,7 +898,7 @@
 
   --warning-contrast-white: oklch(0.9397 0 202.2);
   --warning-contrast-black: oklch(0.1806 0 30.32);
-  --warning-contrast: var(--warning-contrast-black);
+  --warning-contrast: var(--warning-contrast-white);
 }
 
 :root {
@@ -1025,7 +1025,7 @@
 
   --success-contrast-white: oklch(0.9397 0 202.2);
   --success-contrast-black: oklch(0.1806 0 30.32);
-  --success-contrast: light-dark(var(--success-contrast-white), var(--success-contrast-black));
+  --success-contrast: var(--success-contrast-white);
 }
 
 :root {

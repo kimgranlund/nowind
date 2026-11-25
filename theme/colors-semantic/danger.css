@@ -29,5 +29,5 @@
 
   --danger-contrast-white: oklch(0.9397 0 202.2);
   --danger-contrast-black: oklch(0.1806 0 30.32);
-  --danger-contrast: light-dark(var(--danger-contrast-white), var(--danger-contrast-black));
+  --danger-contrast: var(--danger-contrast-white);
 }

@@ -29,5 +29,5 @@
 
   --success-contrast-white: oklch(0.9397 0 202.2);
   --success-contrast-black: oklch(0.1806 0 30.32);
-  --success-contrast: light-dark(var(--success-contrast-white), var(--success-contrast-black));
+  --success-contrast: var(--success-contrast-white);
 }
