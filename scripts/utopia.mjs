@@ -1,13 +1,13 @@
 #!/usr/bin/env node
-// Generates the fluid type and space scales (Utopia method) into theme/.
-// Usage: node scripts/utopia.mjs [--min-vw 360 --max-vw 1240 --min-base 14 --max-base 18 --min-ratio 1.2 --max-ratio 1.25]
+// Generates the type and space scales into theme/: Tailwind v4's steps as fractions of a fluid Utopia base.
+// Usage: node scripts/utopia.mjs [--min-vw 360 --max-vw 1240 --min-base 14 --max-base 18]
 import { writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 
-const defaults = { minVw: 360, maxVw: 1240, minBase: 14, maxBase: 18, minRatio: 1.2, maxRatio: 1.25, rem: 16 };
+const defaults = { minVw: 360, maxVw: 1240, minBase: 14, maxBase: 18, rem: 16 };
 const args = process.argv.slice(2);
 const flag = (name) => {
   const i = args.indexOf(`--${name}`);
@@ -16,14 +16,16 @@ const flag = (name) => {
 const cfg = {
   ...defaults,
   ...Object.fromEntries(
-    [["minVw", "min-vw"], ["maxVw", "max-vw"], ["minBase", "min-base"], ["maxBase", "max-base"], ["minRatio", "min-ratio"], ["maxRatio", "max-ratio"]]
+    [["minVw", "min-vw"], ["maxVw", "max-vw"], ["minBase", "min-base"], ["maxBase", "max-base"]]
       .map(([k, f]) => [k, flag(f)])
       .filter(([, v]) => v !== undefined && !Number.isNaN(v)),
   ),
 };
 
 const TEXT_STEPS = [["xs", -2], ["sm", -1], ["base", 0], ["lg", 1], ["xl", 2], ["2xl", 3], ["3xl", 4], ["4xl", 5], ["5xl", 6], ["6xl", 7]];
-const LINE_HEIGHTS = { xs: 1.5, sm: 1.5, base: 1.5, lg: 1.4, xl: 1.35, "2xl": 1.3, "3xl": 1.2, "4xl": 1.1, "5xl": 1.05, "6xl": 1 };
+// Tailwind v4's type scale: each step as a fraction of base, and its line height (Tailwind writes them as these calc()s).
+const TAILWIND = { xs: 0.75, sm: 0.875, base: 1, lg: 1.125, xl: 1.25, "2xl": 1.5, "3xl": 1.875, "4xl": 2.25, "5xl": 3, "6xl": 3.75 };
+const LINE_HEIGHTS = { xs: "calc(1 / 0.75)", sm: "calc(1.25 / 0.875)", base: "calc(1.5 / 1)", lg: "calc(1.75 / 1.125)", xl: "calc(1.75 / 1.25)", "2xl": "calc(2 / 1.5)", "3xl": "calc(2.25 / 1.875)", "4xl": "calc(2.5 / 2.25)", "5xl": "1", "6xl": "1" };
 const KICKERS = [["sm", "xs"], ["md", "sm"], ["lg", "base"]];
 const KICKER_FACTOR = 0.92;
 const TEXT_FLOOR = 9;
@@ -42,13 +44,12 @@ function fluid(minPx, maxPx) {
   return { css, min: round(minPx, 2), max: round(maxPx, 2) };
 }
 
-// Below base the steps are fixed fractions of base (Tailwind's 14/16 and 12/16), not Utopia ratios: one ratio step
-// down (base / 1.2) is too big a drop for supporting text set beside body text.
-const SMALL = { sm: 0.875, xs: 0.75 };
+// Every step is Tailwind's fraction of base. Nowind's systems then act on base itself: Utopia's fluid range (minBase at
+// minVw to maxBase at maxVw), the root size (--vw), tiers (--tier-text, scaled by the step's fraction) and --F.
 const text = TEXT_STEPS.map(([name, step]) => {
-  const f = SMALL[name];
-  const v = f ? fluid(cfg.minBase * f, cfg.maxBase * f) : fluid(cfg.minBase * cfg.minRatio ** step, cfg.maxBase * cfg.maxRatio ** step);
-  return { name, step, ...v, lineHeight: LINE_HEIGHTS[name], tierFactor: f ?? Number((((cfg.minRatio + cfg.maxRatio) / 2) ** step).toFixed(3)) };
+  const f = TAILWIND[name];
+  const v = fluid(cfg.minBase * f, cfg.maxBase * f);
+  return { name, step, ...v, lineHeight: LINE_HEIGHTS[name], tierFactor: f };
 });
 const byName = Object.fromEntries(text.map((t) => [t.name, t]));
 const kicker = KICKERS.map(([name, beside]) => {
@@ -112,15 +113,15 @@ ${space.map((s) => `  --space-${s.name}: calc(${s.factor} * var(--F));`).join("\
 `;
 
 const viewport = { minVw: cfg.minVw, maxVw: cfg.maxVw, unit: "px", rem: cfg.rem };
-const regenerate = "node scripts/utopia.mjs --min-vw 360 --max-vw 1240 --min-base 14 --max-base 18 --min-ratio 1.2 --max-ratio 1.25";
+const regenerate = "node scripts/utopia.mjs --min-vw 360 --max-vw 1240 --min-base 14 --max-base 18";
 
 const typeManifest = {
   file: "theme.typography.css",
   generated: "scripts/utopia.mjs",
   description: "Nowind type: a fluid Utopia scale with Tailwind/Prewind names. Each size is a clamp() from its size at the minimum viewport to its size at the maximum, so it grows with the viewport without media queries.",
-  method: "Utopia (utopia.fyi): size(step) = base × ratio^step at each end, interpolated linearly in vw between minVw and maxVw, for base and the steps above it. Below base the steps are fixed fractions, sm 0.875 × base and xs 0.75 × base (Tailwind's 14/16 and 12/16), since a full ratio step down was too big a drop for supporting text.",
+  method: "Tailwind v4's scale on a Utopia base: size(step) = Tailwind's fraction × base, where base is fluid (minBase at minVw to maxBase at maxVw, interpolated linearly in vw). The fractions are xs 0.75, sm 0.875, base 1, lg 1.125, xl 1.25, 2xl 1.5, 3xl 1.875, 4xl 2.25, 5xl 3, 6xl 3.75, with Tailwind's line heights; at a 16px base every step is Tailwind's exactly, and the whole scale grows with the viewport, the root size and the tier.",
   regenerate,
-  config: { ...viewport, minBase: cfg.minBase, maxBase: cfg.maxBase, minRatio: cfg.minRatio, maxRatio: cfg.maxRatio },
+  config: { ...viewport, minBase: cfg.minBase, maxBase: cfg.maxBase },
   naming: {
     sizes: "Tailwind v4 / Prewind: --text-xs … --text-6xl. base is step 0.",
     lineHeights: "Tailwind v4 pattern: --text-{size}--line-height, unitless.",
@@ -145,7 +146,7 @@ const typeManifest = {
   tracking: ["--tracking-tight: -0.01em", "--tracking-normal: 0em", "--tracking-wide: 0.025em", "--tracking-widest: 0.16em"],
   leading: ["--leading-none: 1", "--leading-tight: 1.25", "--leading-snug: 1.375", "--leading-normal: 1.5", "--leading-relaxed: 1.625"],
   notes: [
-    "Sizes are viewport-fluid. Inside a tier each step grows by the tier's text step (--tier-text: 2px content, 4px brand) times the scale's mean ratio to that step's power, so the whole scale grows with the tier's body size. A .scope with its own font-size does not resize them.",
+    "Sizes are viewport-fluid. Inside a tier each step grows by the tier's text step (--tier-text: 2px content, 4px brand) times the step's Tailwind fraction, so the whole scale grows with the tier's body size. A .scope with its own font-size does not resize them.",
     "The vw part is --vw: 1vw scaled by the root size over 16px (calc(1vw * (1rem / 16px)), CSS typed arithmetic), so the whole clamp scales with the root font size: a 12px root gives exactly 0.75 of every size at 16px, at any width. Browsers without typed arithmetic keep plain 1vw, where the vw part does not follow the root or zoom; keep maxBase / minBase under about 2.5 (WCAG 1.4.4).",
   ],
 };

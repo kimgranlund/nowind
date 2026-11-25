@@ -106,9 +106,13 @@ The full list, with what each token is for, is in the manifests in `theme/`.
 
 ## Fluid sizing
 
-Sizes are t-shirt steps: `3xs`, `2xs`, `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, `4xl` for space, `xs` to `6xl` for type. As in Prewind, they are generated with Utopia's math: each step is a CSS `clamp()` that grows with the viewport, and the ratio between steps holds at every width (1.2 on a phone, 1.25 on a wide screen).
+Nowind starts from Tailwind's scales and then runs them through its own systems.
 
-Nowind adds three things on top:
+**Tailwind's steps.** Type is Tailwind v4's scale as fractions of the base, with Tailwind's line heights: `text-xs` 0.75, `sm` 0.875, `base` 1, `lg` 1.125, `xl` 1.25, `2xl` 1.5, `3xl` 1.875, `4xl` 2.25, `5xl` 3, `6xl` 3.75. Space is Tailwind's spacing unit in t-shirt names: `3xs` 1, `2xs` 2, `xs` 3, `sm` 4, `md` 6, `lg` 8, `xl` 12, `2xl` 16, `3xl` 24, `4xl` 32 (× 0.25 of the base). Breakpoints and container widths are Tailwind's. At a 16px base every step is Tailwind's exactly.
+
+**Utopia's base.** The base itself is fluid, as in Prewind: a CSS `clamp()` from 14px on a phone to 18px on a wide screen, so every step grows with the viewport and keeps its ratio to the base.
+
+Nowind's own systems act on that base:
 
 - **One input.** Space steps are multiples of `--F`, the body size, and so is every control length. At the root `--F` is the fluid body size; inside a `.scope` or a tier it is that element's own font size, so a region with smaller type spaces itself to match.
 - **Affine's geometry.** From `--F` (n) come the slot (2n − 8, the icon box and small control), the margin (n − 9), the control height (slot + 2 margins, 4n − 26), the inset (margin − border) and the gutter. Controls, fields, segmented controls, toolbars, table rows and menu items share one height.
@@ -242,10 +246,10 @@ Icons use [Phosphor](https://phosphoricons.com)'s web font; link the weights you
 
 **Colors.** Each palette is one file in `theme/colors-semantic/`. Switch a palette's family by changing its import, and set its contrast token from the family's `solidLabel`. [AGENTS.md](AGENTS.md) has the steps for adding a palette.
 
-**Type and space.** Regenerate the fluid scales with your own viewport range, base sizes and ratios:
+**Type and space.** Regenerate the fluid base with your own viewport range and base sizes (the step fractions are Tailwind's, in `scripts/utopia.mjs`):
 
 ```bash
-node scripts/utopia.mjs --min-vw 360 --max-vw 1240 --min-base 14 --max-base 18 --min-ratio 1.2 --max-ratio 1.25
+node scripts/utopia.mjs --min-vw 360 --max-vw 1240 --min-base 14 --max-base 18
 ```
 
 **Geometry.** The slopes and offsets in `theme/theme.geometry.css` set the control height, margin and radius curves. The defaults are Affine's, with corners 2px softer (`--radius-offset: -4px`); raise or lower that one token to change every corner at once, and nesting stays exact.

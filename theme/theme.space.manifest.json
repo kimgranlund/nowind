@@ -7,7 +7,7 @@
     "theme.geometry.css (--F)",
     "theme.typography.css (--text-base, which --F follows at the root)"
   ],
-  "regenerate": "node scripts/utopia.mjs --min-vw 360 --max-vw 1240 --min-base 14 --max-base 18 --min-ratio 1.2 --max-ratio 1.25",
+  "regenerate": "node scripts/utopia.mjs --min-vw 360 --max-vw 1240 --min-base 14 --max-base 18",
   "config": {
     "minVw": 360,
     "maxVw": 1240,

@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Tailwind's scales, then Nowind's systems:** every type step is Tailwind v4's fraction of the base (xs 0.75 … 6xl 3.75) with Tailwind's line heights, so at a 16px base the sizes are Tailwind's exactly; Utopia's fluid base, the root size, tiers and `--F` then act on that base. The Utopia ratio options (`--min-ratio`, `--max-ratio`) are gone. Space, breakpoints and container widths already matched Tailwind's. Large steps grow in proportion to the base now, rather than faster than it on wide screens.
 - **A gentler small step:** `text-sm` is 0.875 × base and `text-xs` 0.75 × base (14 and 12px at 16, Tailwind's ratios) at every width, instead of one and two Utopia ratio steps down (13.3 and 11px), which made supporting text drop too far below body text. The steps above base keep Utopia's ratio; `icon-sm` follows text-sm (0.875 F).
 - **Select picker in Phosphor, nested:** the select's caret, the `caret` class and the selected option's checkmark are Phosphor's caret-down and check (bold), inlined as mask tokens (`--glyph-caret`, `--glyph-check`), so nothing extra loads. The picker is `rounded-md` padded by the inset and its options are a control tall, `rounded-sm`, so their corners nest concentrically. 
 - **Breadcrumbs at the navigation size:** `text-base`, like the tabs and links around them; the size contract gains a navigation row.

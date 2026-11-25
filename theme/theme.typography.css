@@ -21,15 +21,15 @@
   --leading-normal: 1.5;
   --leading-relaxed: 1.625;
 
-  --text-xs--line-height: 1.5;
-  --text-sm--line-height: 1.5;
-  --text-base--line-height: 1.5;
-  --text-lg--line-height: 1.4;
-  --text-xl--line-height: 1.35;
-  --text-2xl--line-height: 1.3;
-  --text-3xl--line-height: 1.2;
-  --text-4xl--line-height: 1.1;
-  --text-5xl--line-height: 1.05;
+  --text-xs--line-height: calc(1 / 0.75);
+  --text-sm--line-height: calc(1.25 / 0.875);
+  --text-base--line-height: calc(1.5 / 1);
+  --text-lg--line-height: calc(1.75 / 1.125);
+  --text-xl--line-height: calc(1.75 / 1.25);
+  --text-2xl--line-height: calc(2 / 1.5);
+  --text-3xl--line-height: calc(2.25 / 1.875);
+  --text-4xl--line-height: calc(2.5 / 2.25);
+  --text-5xl--line-height: 1;
   --text-6xl--line-height: 1;
 
   --kicker-font: var(--font-mono);
@@ -49,13 +49,13 @@
   --text-xs: calc(clamp(0.6563rem, 0.5795rem + 0.3409 * var(--vw), 0.8438rem) + var(--tier-text, 0px) * 0.75);
   --text-sm: calc(clamp(0.7656rem, 0.6761rem + 0.3977 * var(--vw), 0.9844rem) + var(--tier-text, 0px) * 0.875);
   --text-base: calc(clamp(0.875rem, 0.7727rem + 0.4545 * var(--vw), 1.125rem) + var(--tier-text, 0px) * 1);
-  --text-lg: calc(clamp(1.05rem, 0.9043rem + 0.6477 * var(--vw), 1.4063rem) + var(--tier-text, 0px) * 1.225);
-  --text-xl: calc(clamp(1.26rem, 1.0563rem + 0.9051 * var(--vw), 1.7578rem) + var(--tier-text, 0px) * 1.501);
-  --text-2xl: calc(clamp(1.512rem, 1.2317rem + 1.2459 * var(--vw), 2.1973rem) + var(--tier-text, 0px) * 1.838);
-  --text-3xl: calc(clamp(1.8144rem, 1.4331rem + 1.6949 * var(--vw), 2.7466rem) + var(--tier-text, 0px) * 2.252);
-  --text-4xl: calc(clamp(2.1773rem, 1.6635rem + 2.2835 * var(--vw), 3.4332rem) + var(--tier-text, 0px) * 2.759);
-  --text-5xl: calc(clamp(2.6127rem, 1.926rem + 3.0524 * var(--vw), 4.2915rem) + var(--tier-text, 0px) * 3.379);
-  --text-6xl: calc(clamp(3.1353rem, 2.2234rem + 4.053 * var(--vw), 5.3644rem) + var(--tier-text, 0px) * 4.14);
+  --text-lg: calc(clamp(0.9844rem, 0.8693rem + 0.5114 * var(--vw), 1.2656rem) + var(--tier-text, 0px) * 1.125);
+  --text-xl: calc(clamp(1.0938rem, 0.9659rem + 0.5682 * var(--vw), 1.4063rem) + var(--tier-text, 0px) * 1.25);
+  --text-2xl: calc(clamp(1.3125rem, 1.1591rem + 0.6818 * var(--vw), 1.6875rem) + var(--tier-text, 0px) * 1.5);
+  --text-3xl: calc(clamp(1.6406rem, 1.4489rem + 0.8523 * var(--vw), 2.1094rem) + var(--tier-text, 0px) * 1.875);
+  --text-4xl: calc(clamp(1.9688rem, 1.7386rem + 1.0227 * var(--vw), 2.5313rem) + var(--tier-text, 0px) * 2.25);
+  --text-5xl: calc(clamp(2.625rem, 2.3182rem + 1.3636 * var(--vw), 3.375rem) + var(--tier-text, 0px) * 3);
+  --text-6xl: calc(clamp(3.2813rem, 2.8977rem + 1.7045 * var(--vw), 4.2188rem) + var(--tier-text, 0px) * 3.75);
 
   --kicker-sm: max(calc(var(--text-xs) * 0.92), 9px);
   --kicker-md: max(calc(var(--text-sm) * 0.92), 9px);
