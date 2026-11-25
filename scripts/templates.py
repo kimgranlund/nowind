@@ -57,7 +57,7 @@ def header(current):
             links.append(f'      <a href="{href}" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline text-fg-weak hover:text-fg hover:border-border-strong text-title-sm transition-colors">{label}</a>')
     return f"""<header class="flex items-center justify-between gap-row h-header shrink-0 px-grid border-b border-border-weak bg-bg">
     <a href="docs-home.html" class="inline-flex items-center gap-gutter no-underline text-fg">
-      <i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker text-fg-weak">0.3.0</span>
+      <i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker text-fg-weak">__VERSION__</span>
     </a>
     <nav aria-label="Main" class="hidden md:flex items-center gap-3xs">
 {chr(10).join(links)}
@@ -119,7 +119,7 @@ def toc(items, label="On this page"):
 
 def footer():
     return """<footer class="flex flex-col md:flex-row md:items-center justify-between gap-field px-grid py-surface border-t border-border-weak text-caption text-fg-weak">
-        <span>Nowind 0.3.0. Every page here is built from Nowind utility classes only.</span>
+        <span>Nowind __VERSION__. Every page here is built from Nowind utility classes only.</span>
         <span class="flex flex-wrap gap-row">
           <a href="changelog.html" class="no-underline text-fg-weak hover:text-fg transition-colors">Changelog</a>
           <a href="index.html" class="no-underline text-fg-weak hover:text-fg transition-colors">About these templates</a>
@@ -244,7 +244,7 @@ def guide():
     art = "\n        ".join([
         page_head("Guide", "Lay out a docs page",
                   "Build a documentation page from Nowind's shell lengths, its 12-column grid and four type roles. Every part on this page is the template you can copy.",
-                  "Applies to Nowind 0.3.0"),
+                  "Applies to Nowind __VERSION__"),
         section("frame", "The frame",
             p("A docs page has five parts, always in the same place: a band and a header across the top, a sidebar on the left, the content in the middle and an on-page table of contents on the right. The frame fills the viewport, and only the sidebar and the content scroll."),
             code("frame.html", "HTML", """
@@ -320,7 +320,7 @@ def reference():
     art = "\n        ".join([
         page_head("Reference", "Page grid and shell",
                   "The classes that place a page: the column gutter and edge padding, the shell's sidebar, header and reading measure, the container levels and the tiers. Each length is derived from the base size <code class=\"whitespace-nowrap\">--F</code>.",
-                  "Nowind 0.3.0 · from classes.md"),
+                  "Nowind __VERSION__ · from classes.md"),
         section("grid", "Page grid",
             p("Grid columns are <code>grid-cols-1</code> to <code>grid-cols-12</code> with <code>col-span-*</code>. These classes set the space between and around them."),
             table(["Class", "Declaration", "Derived from"], [
@@ -383,58 +383,61 @@ def reference():
     return doc_page("reference.html", "Page grid and shell", art, toc_items)
 
 
-RELEASES = [
-    ("0.3.0", "2026-11-25", True, [
-        (None, [
-            ("Fonts", "<code>theme.css</code> and the bundle load Inter, Inter Tight and IBM Plex Mono from Google Fonts. <code>--font-heading</code> is Inter Tight and <code>--font-mono</code> IBM Plex Mono."),
-            ("Motion", "Massimo's springs (<code>--ease-smooth</code>, <code>--ease-snappy</code>, <code>--ease-bouncy</code>) as CSS <code>linear()</code> easings with their durations, ease curves, and <code>transition-*</code>, <code>duration-*</code>, <code>ease-*</code> classes."),
-            ("Page grid and shell", "Affine's grid gutter, inset and edge margins, and shell lengths (sidebar, rail, header, measure, dock width) with <code>gap-grid</code>, <code>p-grid-inset</code>, <code>px-grid</code>, <code>w-sidebar</code>, <code>w-rail</code>, <code>h-header</code>, <code>max-w-measure</code>."),
-            ("Form marks", "The reset draws checkboxes, radios, switches (<code>role=\"switch\"</code>) and sliders at Affine's mark sizes; <code>mark-sm</code>, <code>mark-lg</code>."),
-            ("Materials", "Massimo's flat, physical, frosted, glass and outline materials (<code>material-*</code> on a region, <code>relief-*</code> on a part), with generated paint tokens."),
-            ("Dev server", "<code>scripts/serve.mjs</code> serves previews with caching off."),
-        ])]),
-    ("0.2.0", "2026-11-25", False, [
-        (None, [
-            ("Inverse colors", "<code>--bg-inverse</code>, <code>--fg-inverse</code>, <code>--fg-inverse-weak</code> and their classes, for toasts and tooltips."),
-            ("Hover borders", "<code>hover:border-*</code> for the border roles (<code>hover:border-border-strong</code>)."),
-            ("Grid", "<code>grid-cols-1</code> … <code>grid-cols-12</code>, <code>grid-cols-none</code>, <code>col-span-1</code> … <code>col-span-12</code>, <code>col-span-full</code>."),
-            ("Fractions", "<code>w-1/2</code>, <code>w-1/3</code>, <code>w-2/3</code>, <code>w-1/4</code>, <code>w-3/4</code>, fifths, and matching <code>basis-*</code>."),
-            ("Breakpoints", "Now also cover grid columns and spans, basis, widths and gaps."),
-        ])]),
-    ("0.1.0", "2026-11-25", False, [
-        ("Theme", [
-            ("Colors", "Nine palettes on the radix-hct-colors scales: <code>accent-1</code> (blue), <code>accent-2</code> (violet), <code>accent-3</code> (plum), <code>accent-4</code> (crimson), <code>neutral</code> (slate), <code>danger</code> (red), <code>warning</code> (amber), <code>success</code> (green), <code>info</code> (indigo). Each has steps 1–12, alpha steps a1–a12 and a contrast color, all in <code>light-dark()</code>."),
-            ("Color roles", "<code>bg</code>, <code>component</code>, <code>border</code>, <code>solid</code>, <code>on-solid</code> and <code>fg</code> for every palette, with <code>-weak</code> and <code>-strong</code> steps; Radix companions <code>surface</code>, <code>indicator</code>, <code>track</code>; <code>--scrim</code> for backdrops."),
-            ("Type", "A fluid Utopia scale <code>--text-xs</code> … <code>--text-6xl</code> with Tailwind v4 line-height companions; 29 semantic roles after Massimo (<code>--heading-md</code>, <code>--body-md</code>, <code>--figure</code>, …); a kicker at three sizes."),
-            ("Geometry", "Every length from one base size <code>--F</code>, after Affine UI: slot, margin, inset, control height, radii, icon sizes, container levels and tiers. At the root <code>--F</code> follows the fluid body size; a <code>.scope</code> or tier sets its own."),
-            ("Space", "<code>--space-3xs</code> … <code>--space-4xl</code> as multiples of <code>--F</code>."),
-            ("Shadows", "Compound casts and recesses after Massimo, <code>--shadow-xs</code> … <code>--shadow-xl</code> and <code>--inset-shadow-xs</code>, <code>--inset-shadow-sm</code>."),
-        ]),
-        ("Utilities", [
-            (None, "About 1,200 Prewind-style classes with Tailwind v4 names where they overlap; <code>hover:</code> for role colors, opacity and cursor; <code>sm:</code> … <code>2xl:</code> for layout."),
-            (None, "Affine container levels (<code>p-surface</code>, <code>p-dialog</code>, <code>gap-field</code>, <code>gap-group</code>, …), tiers (<code>tier-content</code>, <code>tier-brand</code>), control and icon utilities for Phosphor icons."),
-            (None, "A 2026 reset in <code>@layer reset</code>, every selector in <code>:where()</code>."),
-        ]),
-        ("Tooling", [
-            (None, "<code>dist/nowind.min.css</code>: the whole system in one file."),
-            (None, "Generators for the type and space scales, shadows, utilities and bundle; <code>scripts/check.mjs</code> with a self-test."),
-            (None, "<code>specimen.html</code>, <code>components.html</code>, <code>utilities.html</code> and <code>classes.md</code>."),
-        ]),
-    ]),
-]
+# ---------------------------------------------------------------- releases, read from CHANGELOG.md
+ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
+
+
+def inline_md(text):
+    """Escape, then turn `code` into <code> and **bold** into <strong>."""
+    text = E(text, quote=False)
+    text = re.sub(r"`([^`]+)`", r"<code>\1</code>", text)
+    return re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", text)
+
+
+def read_releases():
+    """[(version, date, latest, intro, [(group or None, [(name or None, html)])])], newest first, Unreleased skipped."""
+    releases, cur = [], None
+    for line in open(os.path.join(ROOT, "CHANGELOG.md"), encoding="utf-8").read().splitlines():
+        m = re.match(r"^## (\d+\.\d+\.\d+) \((\d{4}-\d{2}-\d{2})\)", line)
+        if m:
+            cur = [m.group(1), m.group(2), False, [], [[None, []]]]
+            releases.append(cur)
+            continue
+        if line.startswith("## "):
+            cur = None
+            continue
+        if cur is None or not line.strip():
+            continue
+        if line.startswith("### "):
+            cur[4].append([line[4:].strip(), []])
+        elif line.startswith("- "):
+            item = line[2:].strip()
+            m = re.match(r"^\*\*([^*]+?):?\*\*:?\s*(.*)$", item)
+            name, text = (m.group(1), m.group(2)) if m else (None, item)
+            if name and text[:1].islower():
+                text = text[0].upper() + text[1:]
+            cur[4][-1][1].append((name, inline_md(text)))
+        else:
+            cur[3].append(inline_md(line.strip()))
+    for r in releases:
+        r[4] = [g for g in r[4] if g[1]]
+    if releases:
+        releases[0][2] = True
+    return [tuple(r) for r in releases]
+
+
+RELEASES = read_releases()
+VERSION = RELEASES[0][0] if RELEASES else "0.0.0"
 
 def changelog():
     toc_items = [("v" + v.replace(".", "-"), v) for v, *_ in RELEASES]
     blocks = [page_head("Changelog", "Release notes",
                         "What changed in each release of Nowind, newest first. Pin a release in the CDN link and your site changes only when you change the version.")]
     blocks.append(code("index.html", "HTML", """
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.3.0/dist/nowind.min.css">"""))
-    for v, date, latest, groups in RELEASES:
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v__VERSION__/dist/nowind.min.css">"""))
+    for v, date, latest, intro, groups in RELEASES:
         badge = '\n              <span class="inline-flex items-center w-fit h-nested px-nested bg-solid-accent-1 text-on-solid-accent-1 text-label">Latest</span>' if latest else ""
-        first = v == "0.1.0"
-        body = []
-        if first:
-            body.append(p("First release."))
+        body = [p(t) for t in intro]
         for g, entries in groups:
             if g:
                 body.append(subhead(g))
@@ -465,7 +468,7 @@ def docs_home():
     entries = [
         ("guide.html", "ph-book-open", "Guide", "Lay out a docs page: the frame, the grid, the reading column and four type sizes."),
         ("reference.html", "ph-grid-four", "Reference", "Every grid, shell, level and tier class with its declaration and where it comes from."),
-        ("changelog.html", "ph-clock-counter-clockwise", "Changelog", "What changed in 0.1.0, 0.2.0 and 0.3.0, newest first."),
+        ("changelog.html", "ph-clock-counter-clockwise", "Changelog", "What changed in each release, newest first."),
         ("../components.html", "ph-squares-four", "Components", "Buttons, forms, tables and dialogs built only from utility classes."),
     ]
     cards = "\n".join(f"""        <a href="{h}" class="col-span-4 md:col-span-6 xl:col-span-3 flex flex-col gap-field p-surface border border-border-weak hover:border-border-strong no-underline text-fg transition-colors">
@@ -482,7 +485,7 @@ def docs_home():
     <main id="content" class="flex flex-col flex-1 min-w-0 overflow-y-auto">
       <div class="grow"><div class="grid grid-cols-4 md:grid-cols-12 gap-grid px-grid">
         <header class="col-span-4 md:col-span-12 tier-brand flex flex-col gap-group py-page">
-          <span class="text-kicker text-fg-weak">Documentation · 0.3.0</span>
+          <span class="text-kicker text-fg-weak">Documentation · __VERSION__</span>
           <h1 class="text-display-sm text-balance">Nowind documentation</h1>
           <p class="text-body-md text-fg-weak max-w-measure">Theme tokens and utility classes in plain CSS. Link one file and every class already exists, so it works in any HTML, including what a CMS writes.</p>
           <div class="flex flex-wrap gap-row">
@@ -493,8 +496,8 @@ def docs_home():
 {cards}
         <section id="start" class="col-span-4 md:col-span-12 xl:col-span-7 flex flex-col gap-group py-page">
           <h2 class="text-heading-md pt-sm border-t border-border">Start in one line</h2>
-          <p class="text-body-md max-w-measure">Link the minified bundle from the CDN. The link pins release 0.3.0, so your site won't change until you change the version.</p>
-          {code("index.html", "HTML", '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.3.0/dist/nowind.min.css">')}
+          <p class="text-body-md max-w-measure">Link the minified bundle from the CDN. The link pins release __VERSION__, so your site won't change until you change the version.</p>
+          {code("index.html", "HTML", '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v__VERSION__/dist/nowind.min.css">')}
           {callout("note", "Put your own CSS in <code>@layer styles</code>, so a utility class always wins over it.")}
         </section>
         <section id="inside" class="col-span-4 md:col-span-12 xl:col-span-5 flex flex-col gap-group py-page">
@@ -616,6 +619,7 @@ def main():
              "docs-home.html": docs_home(), "index.html": index()}
     for name, text in files.items():
         text = text.replace("<code>--", '<code class="whitespace-nowrap">--')
+        text = text.replace("__VERSION__", VERSION)
         with open(os.path.join(OUT, name), "w") as f:
             f.write(text)
         print("wrote", name, len(text))

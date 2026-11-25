@@ -44,7 +44,7 @@ node scripts/motion.mjs      # only if the springs or curves changed
 node scripts/materials.mjs   # only if the paint roles or glass faces changed
 node scripts/utilities.mjs   # after any token change, so classes follow
 node scripts/bundle.mjs      # always last
-python3 scripts/templates.py # if the docs templates' content or shared parts changed
+python3 scripts/templates.py # after a release (it reads CHANGELOG.md) or a change to the templates
 node scripts/check.mjs       # before every commit
 ```
 
