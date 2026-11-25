@@ -206,13 +206,17 @@ add("animate-none", "animation: none");
 
 // Anchor positioning: a popover placed against its invoker (the implicit anchor of popovertarget), flipping when it
 // would leave the screen. Where anchor positioning is missing, the popover falls back to the browser's centred box.
-const ANCHOR = "position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: var(--space-3xs)";
-add("anchor-bottom", `position-area: block-end span-inline-end; ${ANCHOR}`);
-add("anchor-top", `position-area: block-start span-inline-end; ${ANCHOR}`);
-add("anchor-end", `position-area: inline-end span-block-end; ${ANCHOR}`);
-add("anchor-start", `position-area: inline-start span-block-end; ${ANCHOR}`);
-add("anchor-bottom-end", `position-area: block-end span-inline-start; ${ANCHOR}`);
-add("anchor-center", `position-area: block-end center; ${ANCHOR}`);
+// Anchored popovers start flush with their trigger's edge, are at least as wide (or tall) as it, sit one 3xs gap away
+// on the side facing it, and flip at the screen edge.
+const ANCHOR = "position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: 0";
+const BLOCK = `${ANCHOR}; margin-block: var(--space-3xs); min-inline-size: anchor-size(width)`;
+const INLINE = `${ANCHOR}; margin-inline: var(--space-3xs); min-block-size: anchor-size(height)`;
+add("anchor-bottom", `position-area: block-end span-inline-end; ${BLOCK}`);
+add("anchor-top", `position-area: block-start span-inline-end; ${BLOCK}`);
+add("anchor-end", `position-area: inline-end span-block-end; ${INLINE}`);
+add("anchor-start", `position-area: inline-start span-block-end; ${INLINE}`);
+add("anchor-bottom-end", `position-area: block-end span-inline-start; ${BLOCK}`);
+add("anchor-center", `position-area: block-end center; ${BLOCK}`);
 
 // The customizable select (appearance: base-select): the picker takes the theme's overlay look.
 add("select-base", "appearance: base-select; align-items: center");
@@ -607,7 +611,9 @@ out.push("  .icon > svg { width: 1em; height: 1em; fill: currentColor; }");
 out.push("  .list-none::-webkit-details-marker { display: none; }");
 out.push("  @keyframes nw-spin { to { rotate: 360deg; } }");
 out.push("  @keyframes nw-pulse { 50% { opacity: 0.5; } }");
-out.push("  .select-base::picker(select) { appearance: base-select; margin-block: var(--space-3xs); padding: var(--inset); border: var(--border-width) solid var(--border-weak); border-radius: var(--radius-md); background: var(--bg); box-shadow: var(--shadow-lg); }");
+out.push("  .cursor-text:has(> .select-base) { anchor-name: --nw-field; anchor-scope: --nw-field; }");
+out.push("  .cursor-text > .select-base::picker(select) { position-anchor: --nw-field; }");
+out.push("  .select-base::picker(select) { appearance: base-select; position-area: block-end span-inline-end; position-try-fallbacks: flip-block; inset: auto; margin: 0; margin-block: var(--space-3xs); min-inline-size: anchor-size(width); padding: var(--inset); border: var(--border-width) solid var(--border-weak); border-radius: var(--radius-md); background: var(--bg); box-shadow: var(--shadow-lg); }");
 out.push("  .select-base option { display: flex; align-items: center; gap: var(--gutter); min-block-size: var(--control-height); padding-inline: var(--control-icon-padding) var(--control-padding); border: var(--border-width) solid transparent; border-radius: var(--radius-sm); }");
 out.push("  .select-base option::checkmark { content: \"\"; flex: none; inline-size: var(--icon-box); block-size: var(--icon-sm); background: currentColor; mask: var(--glyph-check) center / var(--icon-sm) no-repeat; }");
 out.push("  .select-base option:hover, .select-base option:focus-visible { background: var(--component-weak); outline: none; }");
@@ -789,8 +795,8 @@ const manifest = {
     chrome: "text-chrome: a fixed 14px (--text-chrome) for a site's own settings panels; with scope, --F and every length inside are fixed too, whatever the root size or tier.",
     tiers: "tier-product (1×), tier-content (font +2px, spacing 1.5×), tier-brand (font +4px, spacing 2×). Each is a scope: it sets its font size to the base plus its own step (var(--text-base)), never to what it inherits, so a tier inside another tier replaces it rather than adding to it; --F and everything derived recompute inside it.",
     animation: "animate-spin, animate-pulse, animate-none (cut by the reset under reduced motion).",
-    anchor: "anchor-bottom, -bottom-end (below, aligned to the invoker's end edge), -top, -start, -end, -center: place a popover against its invoker with CSS anchor positioning, flipping at the screen edge.",
-    select: "select-base: the customizable select (appearance: base-select), its picker and options in the theme: the picker is rounded-md padded by the inset, so its options (control height, rounded-sm, a Phosphor check on the selected one) nest concentrically, and the picker icon is Phosphor's caret. The value is centred in the field and never wraps; a <button> holding <selectedcontent class=\"block truncate\"> lets a long value end in an ellipsis before the caret, which is drawn small and sits at the end. The highlighted option shows by its background, not a focus ring.",
+    anchor: "anchor-bottom, -bottom-end (below, aligned to the invoker's end edge), -top, -start, -end, -center: each starts flush with its invoker's edge, is at least the invoker's width (or height, beside it), sits a 3xs gap away. They place a popover against its invoker with CSS anchor positioning, flipping at the screen edge.",
+    select: "select-base: the customizable select (appearance: base-select), its picker and options in the theme: the picker is rounded-md padded by the inset, opens below the field flush with its edge and at least its width (inside a field box, cursor-text, it anchors to the box, not the bare select), so its options (control height, rounded-sm, a Phosphor check on the selected one) nest concentrically, and the picker icon is Phosphor's caret. The value is centred in the field and never wraps; a <button> holding <selectedcontent class=\"block truncate\"> lets a long value end in an ellipsis before the caret, which is drawn small and sits at the end. The highlighted option shows by its background, not a focus ring.",
     motion: "transition, transition-colors, -opacity, -shadow, -transform, -none (state-change length and easing by default); duration-fade, -snappy, -smooth, -bouncy; ease-smooth, -snappy, -bouncy (Massimo springs as linear()), ease-standard, -out, -in.",
     marks: "The reset draws checkboxes, radios, switches (<input type=checkbox role=switch>) and sliders at Affine's mark size (between F and the slot), filled with accent-1 when checked; mark-sm and mark-lg pick another size.",
     state: "state: a state layer. An ::after wash of currentColor under the content, at --state-hover (0.12), --state-focus (0.14), --state-selected (0.16, also pressed, expanded, current and a checked child) and --state-active (0.2); none when disabled. One class covers every state in any palette, in place of a hover: and active: class per step; the element keeps its own radius.",

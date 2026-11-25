@@ -100,12 +100,12 @@ Variants: `hover:` on the 207 role-colour, opacity and cursor classes (inside `@
 | `.animate-spin` | `animation: nw-spin 1s linear infinite` |
 | `.animate-pulse` | `animation: nw-pulse 2s var(--ease-standard) infinite` |
 | `.animate-none` | `animation: none` |
-| `.anchor-bottom` | `position-area: block-end span-inline-end; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: var(--space-3xs)` |
-| `.anchor-top` | `position-area: block-start span-inline-end; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: var(--space-3xs)` |
-| `.anchor-end` | `position-area: inline-end span-block-end; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: var(--space-3xs)` |
-| `.anchor-start` | `position-area: inline-start span-block-end; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: var(--space-3xs)` |
-| `.anchor-bottom-end` | `position-area: block-end span-inline-start; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: var(--space-3xs)` |
-| `.anchor-center` | `position-area: block-end center; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: var(--space-3xs)` |
+| `.anchor-bottom` | `position-area: block-end span-inline-end; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: 0; margin-block: var(--space-3xs); min-inline-size: anchor-size(width)` |
+| `.anchor-top` | `position-area: block-start span-inline-end; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: 0; margin-block: var(--space-3xs); min-inline-size: anchor-size(width)` |
+| `.anchor-end` | `position-area: inline-end span-block-end; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: 0; margin-inline: var(--space-3xs); min-block-size: anchor-size(height)` |
+| `.anchor-start` | `position-area: inline-start span-block-end; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: 0; margin-inline: var(--space-3xs); min-block-size: anchor-size(height)` |
+| `.anchor-bottom-end` | `position-area: block-end span-inline-start; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: 0; margin-block: var(--space-3xs); min-inline-size: anchor-size(width)` |
+| `.anchor-center` | `position-area: block-end center; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: 0; margin-block: var(--space-3xs); min-inline-size: anchor-size(width)` |
 | `.select-base` | `appearance: base-select; align-items: center` |
 | `.duration-fade` | `--_duration: var(--duration-fade); transition-duration: var(--duration-fade)` |
 | `.duration-snappy` | `--_duration: var(--duration-snappy); transition-duration: var(--duration-snappy)` |

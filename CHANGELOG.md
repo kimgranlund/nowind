@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Menus anchor to their trigger:** the select's picker and every `anchor-*` popover start flush with the trigger's edge and are at least as wide as it (`anchor-size(width)`), with the 3xs gap only on the side facing it; before, the gap applied on every side and the picker floated inset and narrower than its field.
 - **Lighter field borders:** text fields, selects and textareas keep their white face and a visible border, lighter now: `border-neutral-5` at rest, `hover:border-neutral-7`, accent on focus (was 6 and 8); the reset gives a bare field `--border-weak`.
 - **Nested parts, one geometry:** badges, the actions inside alerts and toasts, and toolbar items are all the small control: `h-nested` with `px-nested` (which steps in at an icon), and the alert's secondary action is a soft tint (`bg-danger-a3`) instead of bare text. A count badge and the stepper's numbers are 1:1 circles (`size-nested`, `text-xs`), with a count row in the size contract. The toolbar and segmented containers take the secondary buttons' light tint (`bg-neutral-a2`).
 - **Badges share one geometry:** every badge is `h-nested`, `rounded-full` and bordered (transparent on solid fills), padded `px-2xs`, or `ps-3xs pe-2xs` with a leading icon; a count is `min-w-nested` so it stays round. Outlined and solid badges were different heights, and the Beta tag a different shape.
