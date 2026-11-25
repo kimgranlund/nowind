@@ -61,7 +61,7 @@ Then check the result in `specimen.html` through a local server (`python3 -m htt
 - **Palettes:** `accent-1` (blue), `accent-2` (violet), `accent-3` (plum), `accent-4` (crimson), `neutral` (slate), `danger` (red), `warning` (amber), `success` (green), `info` (indigo). Steps: `--accent-1-9`, `--neutral-a4`.
 - **Colour roles:** `--{group}[-{palette}][-weak|-strong]`, where the bare name is the middle of its group. Groups: `bg` (1–2), `component` (3–5), `border` (6–8), `solid` (9–10), `fg` (8, 11, 12 and a strong value). No palette name means neutral.
 - **Type:** `--text-{xs…6xl}` and `--text-{size}--line-height` (Tailwind v4). Roles are `--{role}` with `--{role}--{property}` companions, outside `--text-*`, so they never clash with sizes.
-- **Space:** `--space-{3xs…4xl}` (Prewind).
+- **Space:** `--space-{3xs…4xl}` (Prewind names), each `multiplier × var(--F)`, declared on `:root, .scope`. At the root that equals a Utopia space scale, because `--F` is the fluid `--text-base`.
 - **Classes:** `property-value`; colour classes take the token name without `--` (`bg-solid-accent-1`, `text-fg-weak`). Tailwind v4 names where Tailwind has the same thing: `rounded-xs/sm`, `shadow-xs/sm`, `h-dvh`, `2xl:`.
 - **Shadows:** `--shadow-{xs…xl}` and `--inset-shadow-{xs,sm}` (Tailwind v4 names) for Massimo's levels, each a stack of 4–6 generated layers in multiples of `--q`. Change the constants in `scripts/shadows.mjs`, never a layer by hand.
 - **Controls and icons:** utilities only (`h-control`, `px-control`, `gap-gutter`, `icon`, …), after Affine UI's button and icon geometry. The icon-edge padding is a `:has(> .icon:first-child)` rule in the generator, so labels must be wrapped in a `<span>`. Glyphs come from Phosphor's web font, linked by the page, not bundled.

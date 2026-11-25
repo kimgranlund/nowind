@@ -3,7 +3,7 @@
 Prewind-style utility classes over a themeable token system, in plain CSS. No build step for the people using it: every class already exists, so it works in any HTML, including CMS output.
 
 - **Colors**: Radix 12-step scales regenerated in HCT, mapped to semantic roles for a neutral, four brand accents (accent-1 to accent-4) and four statuses (danger, warning, success, info), light and dark through `light-dark()`.
-- **Type and space**: fluid Utopia scales with Tailwind/Prewind names (`text-lg`, `p-md`), plus semantic type roles after Massimo (`text-heading-md`, `text-body-md`) and a kicker.
+- **Type and space**: fluid Utopia scales with Tailwind/Prewind names; space is a multiple of `--F`, so it also follows a `.scope`'s font size (`text-lg`, `p-md`), plus semantic type roles after Massimo (`text-heading-md`, `text-body-md`) and a kicker.
 - **Geometry**: control sizes, radii, icons, shadows and container spacing built from one input, `--F`, after Affine UI. At the root `--F` is the fluid body size, so a button is 30px tall on a phone and 46px on a wide screen; an element with the `scope` class pins its own size from its `font-size`.
 - **Utilities**: Prewind-style classes with Tailwind v4 names where they overlap, plus hover and breakpoint variants, in `nowind.css`. Every class is listed in [classes.md](classes.md); the counts are in [nowind.manifest.json](nowind.manifest.json).
 

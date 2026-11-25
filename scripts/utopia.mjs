@@ -89,8 +89,10 @@ ${kicker.map((k) => `  --kicker-${k.name}: max(calc(var(--text-${k.beside}) * ${
 }
 `;
 
-const spaceCss = `${header}:root {
-${space.map((s) => `  --space-${s.name}: ${s.css};`).join("\n")}
+// Space is a multiple of --F, as all of Affine's spacing is. At the root --F is --text-base, the same fluid clamp the
+// Utopia space scale would use, so root values match it exactly; inside a .scope, space follows that scope's font size.
+const spaceCss = `${header}:root, .scope {
+${space.map((s) => `  --space-${s.name}: calc(${s.factor} * var(--F));`).join("\n")}
 }
 `;
 
@@ -135,12 +137,13 @@ const typeManifest = {
 const spaceManifest = {
   file: "theme.space.css",
   generated: "scripts/utopia.mjs",
-  description: "Nowind space: a fluid Utopia space scale with Prewind names. Each step is a multiple of the base text size at each end of the viewport range.",
-  method: "Utopia: space(step) = base × multiplier at minVw and at maxVw, interpolated linearly in vw.",
+  description: "Nowind space: a Utopia-style space scale with Prewind names, written as multiples of --F so it follows the font size like Affine's spacing. At the root --F is the fluid body size, so the values match a Utopia space scale exactly; inside a .scope they follow that scope's font size.",
+  method: "space(step) = multiplier × --F. At the root --F = --text-base = Utopia's base (minBase at minVw to maxBase at maxVw), so space(step) = base × multiplier, interpolated linearly in vw.",
+  depends: ["theme.geometry.css (--F)", "theme.typography.css (--text-base, which --F follows at the root)"],
   regenerate,
   config: { ...viewport, minBase: cfg.minBase, maxBase: cfg.maxBase },
-  sizes: space.map((s) => ({ token: `--space-${s.name}`, multiplier: s.factor, minPx: s.min, maxPx: s.max, value: s.css })),
-  notes: ["For utility classes and page layout. Inside components use the --F geometry in theme.geometry.css, which follows the scope's font size."],
+  sizes: space.map((s) => ({ token: `--space-${s.name}`, multiplier: s.factor, minPx: s.min, maxPx: s.max, value: `calc(${s.factor} * var(--F))` })),
+  notes: ["minPx and maxPx are the root values at minVw and maxVw. Inside a .scope the value is multiplier × that scope's font size."],
 };
 
 writeFileSync(join(root, "theme/theme.typography.css"), typeCss);
