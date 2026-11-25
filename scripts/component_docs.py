@@ -37,12 +37,12 @@ COMPONENTS = [
 </div>""",
         "examples": [
             {"id": "toolbar", "label": "In a toolbar",
-             "summary": "The small size (<code>h-nested</code>, <code>size-nested</code>, <code>rounded-xs</code>) belongs inside a container padded <code>p-inset</code>: the bar is then a control's height and the corners nest. On its own, beside full-size buttons, it looks undersized and square.",
-             "html": """<div class="inline-flex items-center gap-3xs p-inset rounded-sm border bg-neutral-1" role="toolbar" aria-label="Table tools">
-  <button class="inline-flex items-center h-nested px-nested gap-gutter-half rounded-xs state border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon icon-sm ph-bold ph-funnel"></i><span>Filter</span></button>
-  <button class="inline-flex items-center h-nested px-nested gap-gutter-half rounded-xs state border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon icon-sm ph-bold ph-sort-ascending"></i><span>Sort</span></button>
-  <span class="self-stretch border-s border-neutral-6" aria-hidden="true"></span>
-  <button class="inline-flex items-center justify-center size-nested rounded-xs state border-0 bg-transparent fg-neutral-11 cursor-pointer" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
+             "summary": "The toolbar is built like the segmented control: <code>h-control rounded-sm border-2 border-transparent</code>, a 2px inset, with <code>h-full rounded-inner</code> items (<code>aspect-square</code> for an icon) that touch, and a divider between groups. On its own, beside full-size buttons, it looks undersized and square.",
+             "html": """<div class="inline-flex h-control rounded-sm border-2 border-transparent bg-neutral-3" role="toolbar" aria-label="Table tools">
+  <button class="inline-flex items-center h-full px-nested gap-gutter-half rounded-inner state border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon icon-sm ph-bold ph-funnel"></i><span>Filter</span></button>
+  <button class="inline-flex items-center h-full px-nested gap-gutter-half rounded-inner state border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon icon-sm ph-bold ph-sort-ascending"></i><span>Sort</span></button>
+  <span class="mx-3xs my-2xs border-s border-neutral-6" aria-hidden="true"></span>
+  <button class="inline-flex items-center justify-center h-full aspect-square rounded-inner state border-0 bg-transparent fg-neutral-11 cursor-pointer" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
 </div>"""},
         ],
         "use": ["Always give it an <code>aria-label</code>.", "<code>size-control</code> on its own; <code>size-nested</code> with <code>icon icon-sm</code> inside a toolbar, field or segmented control."],

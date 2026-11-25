@@ -93,11 +93,11 @@
           <button class="inline-flex items-center justify-center h-full aspect-square rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 cursor-pointer" aria-label="Align center" aria-pressed="false"><i class="icon ph ph-text-align-center"></i></button>
           <button class="inline-flex items-center justify-center h-full aspect-square rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 cursor-pointer" aria-label="Align end" aria-pressed="false"><i class="icon ph ph-text-align-right"></i></button>
         </div>
-        <div class="inline-flex items-center gap-3xs p-inset rounded-sm border bg-neutral-1" role="toolbar" aria-label="Table tools">
-          <button class="inline-flex items-center h-nested px-nested gap-gutter-half rounded-xs state border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon icon-sm ph-bold ph-funnel"></i><span>Filter</span></button>
-          <button class="inline-flex items-center h-nested px-nested gap-gutter-half rounded-xs state border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon icon-sm ph-bold ph-sort-ascending"></i><span>Sort</span></button>
-          <span class="self-stretch border-s border-neutral-6" aria-hidden="true"></span>
-          <button class="inline-flex items-center justify-center size-nested rounded-xs state border-0 bg-transparent fg-neutral-11 cursor-pointer" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
+        <div class="inline-flex h-control rounded-sm border-2 border-transparent bg-neutral-3" role="toolbar" aria-label="Table tools">
+          <button class="inline-flex items-center h-full px-nested gap-gutter-half rounded-inner state border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon icon-sm ph-bold ph-funnel"></i><span>Filter</span></button>
+          <button class="inline-flex items-center h-full px-nested gap-gutter-half rounded-inner state border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon icon-sm ph-bold ph-sort-ascending"></i><span>Sort</span></button>
+          <span class="mx-3xs my-2xs border-s border-neutral-6" aria-hidden="true"></span>
+          <button class="inline-flex items-center justify-center h-full aspect-square rounded-inner state border-0 bg-transparent fg-neutral-11 cursor-pointer" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
         </div>
         <div class="inline-flex items-center h-control rounded-sm border-2 border-transparent bg-neutral-3" role="group" aria-label="Range">
           <button aria-pressed="true" class="inline-flex items-center h-full px-nested rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 pressed:shadow-xs fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer"><span>Day</span></button>
@@ -885,7 +885,7 @@
         <div class="flex flex-col gap-md p-lg rounded-lg bg-neutral-1 shadow-xl max-w-form w-full" role="dialog" aria-labelledby="dlg-title">
           <div class="flex items-start justify-between gap-sm">
             <h3 id="dlg-title" class="text-base font-semibold">Delete project?</h3>
-            <button class="inline-flex items-center justify-center size-nested rounded-xs state border-0 bg-transparent fg-neutral-11 cursor-pointer" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
+            <button class="inline-flex items-center justify-center h-full aspect-square rounded-inner state border-0 bg-transparent fg-neutral-11 cursor-pointer" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
           </div>
           <p class="text-sm fg-neutral-11">This removes the project and its 14 files for everyone. You can't undo this.</p>
           <div class="flex flex-wrap justify-end gap-sm">

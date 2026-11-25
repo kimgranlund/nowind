@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Toolbar on the segmented geometry:** `h-control rounded-sm border-2 border-transparent bg-neutral-3` with touching `h-full rounded-inner` items and an inset divider, so the toolbar, the alignment group and the segmented control share one inset, height and corner.
 - **Display figures:** prices and metrics set in `font-display` (Inter Tight, new) at `font-extrabold` (800, new) with `tracking-tight`; the price caption stays on one line.
 - **Sidebar nav on the segmented geometry:** `rounded-sm border-2 border-transparent` with touching `rounded-inner` items, as the segmented control.
 - **One keycap:** every `<kbd>` is `h-nested min-w-nested px-2xs rounded-xs border`, so a single key is square and a chord sits `gap-3xs` apart.
