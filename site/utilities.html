@@ -20,13 +20,13 @@
   <div class="flex items-center gap-lg h-header px-grid">
     <a href="index.html" class="inline-flex items-center gap-gutter-half no-underline fg-inverse"><i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-inverse-weak">0.8.0</span></a>
     <nav aria-label="Sections" class="hidden md:flex items-center gap-lg"><a href="docs/docs-home.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Docs</a><a href="docs/components-index.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Components</a><a href="specimen.html" aria-current="true" class="inline-flex items-center h-header border-b-2 border-accent-1 no-underline fg-inverse text-title-sm">Specimen</a><a href="docs/classes.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Classes</a></nav>
-    <button type="button" data-theme-toggle class="inline-flex items-center justify-center size-nested ml-auto rounded-nested border border-transparent bg-transparent fg-inverse-weak hover:fg-inverse cursor-pointer transition-colors" aria-label="Switch to dark mode"><i class="icon ph ph-moon"></i></button>
+    <button type="button" data-theme-toggle class="inline-flex items-center justify-center size-nested ml-auto rounded-xs border border-transparent bg-transparent fg-inverse-weak hover:fg-inverse cursor-pointer transition-colors" aria-label="Switch to dark mode"><i class="icon ph ph-moon"></i></button>
     <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center size-nested no-underline fg-inverse-weak hover:fg-inverse transition-colors" aria-label="Nowind on GitHub"><i class="icon ph ph-github-logo"></i></a>
   </div>
 </header>
 <div class="flex items-center gap-xs px-grid py-2xs border-b-2 border-strong bg">
-  <button type="button" popovertarget="site-map" class="inline-flex items-center gap-gutter-half min-w-0 h-control px-control rounded-control border hover:bg-component-weak bg text-title-sm cursor-pointer transition-colors" aria-label="Site map: Specimen"><span class="fg-weak">Specimen</span><span class="fg-subtle">/</span><span class="truncate">Utilities demo</span><i class="icon caret fg-weak" aria-hidden="true"></i></button>
-  <button type="button" data-search-open class="inline-flex items-center gap-gutter grow min-w-0 max-w-form h-control px-control rounded-control border hover:border-strong bg-strong fg-subtle text-control-md cursor-text transition-colors" aria-label="Search the site"><i class="icon ph ph-magnifying-glass"></i><span class="grow truncate text-left">Search pages, components and classes</span><kbd class="hidden sm:inline text-mono-sm">⌘K</kbd></button>
+  <button type="button" popovertarget="site-map" class="inline-flex items-center gap-gutter-half min-w-0 h-control px-control rounded-sm border hover:bg-component-weak bg text-title-sm cursor-pointer transition-colors" aria-label="Site map: Specimen"><span class="fg-weak">Specimen</span><span class="fg-subtle">/</span><span class="truncate">Utilities demo</span><i class="icon caret fg-weak" aria-hidden="true"></i></button>
+  <button type="button" data-search-open class="inline-flex items-center gap-gutter grow min-w-0 max-w-form h-control px-control rounded-sm border hover:border-strong bg-strong fg-subtle text-control-md cursor-text transition-colors" aria-label="Search the site"><i class="icon ph ph-magnifying-glass"></i><span class="grow truncate text-left">Search pages, components and classes</span><kbd class="hidden sm:inline text-mono-sm">⌘K</kbd></button>
   <span class="flex-1 hidden lg:block"></span>
   <span class="hidden sm:flex items-center gap-3xs"><a href="specimen.html" class="inline-flex items-center justify-center size-control rounded-sm border hover:bg-component-weak no-underline fg transition-colors" aria-label="Previous: Specimen"><i class="icon ph ph-arrow-left"></i></a><a href="docs/classes.html" class="inline-flex items-center justify-center size-control rounded-sm border hover:bg-component-weak no-underline fg transition-colors" aria-label="Next: Classes"><i class="icon ph ph-arrow-right"></i></a></span>
 </div>
@@ -63,12 +63,12 @@
     <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
     <p class="text-caption fg-weak mb-sm max-w-text">After Affine UI: the button is one control height tall; a side with text pads by the text edge, a side whose first or last child is an <code>.icon</code> pads one margin less, so the icon box sits one margin from the edge. Wrap the label in a span. An icon alone makes a square.</p>
     <div class="flex flex-wrap items-center gap-sm mb-sm">
-      <button id="b-text" class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-control border bg-component-weak hover:bg-component text-title-sm cursor-pointer"><span>Save</span></button>
-      <button id="b-start" class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-control border bg-component-weak hover:bg-component text-title-sm cursor-pointer"><i class="icon ph ph-floppy-disk"></i><span>Save</span></button>
-      <button id="b-end" class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-control border bg-component-weak hover:bg-component text-title-sm cursor-pointer"><span>Next</span><i class="icon ph ph-arrow-right"></i></button>
-      <button id="b-only" class="inline-flex items-center justify-center h-control px-control rounded-control border bg-component-weak hover:bg-component cursor-pointer" aria-label="Add"><i class="icon ph ph-plus"></i></button>
-      <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-control border border-transparent bg-solid-accent-1 hover:bg-solid-accent-1-strong fg-on-solid-accent-1 text-title-sm cursor-pointer"><i class="icon ph ph-paper-plane-tilt"></i><span>Send</span></button>
-      <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-control border border-transparent bg-solid-danger hover:bg-solid-danger-strong fg-on-solid-danger text-title-sm cursor-pointer"><i class="icon ph ph-trash"></i><span>Delete</span></button>
+      <button id="b-text" class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border bg-component-weak hover:bg-component text-title-sm cursor-pointer"><span>Save</span></button>
+      <button id="b-start" class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border bg-component-weak hover:bg-component text-title-sm cursor-pointer"><i class="icon ph ph-floppy-disk"></i><span>Save</span></button>
+      <button id="b-end" class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border bg-component-weak hover:bg-component text-title-sm cursor-pointer"><span>Next</span><i class="icon ph ph-arrow-right"></i></button>
+      <button id="b-only" class="inline-flex items-center justify-center h-control px-control rounded-sm border bg-component-weak hover:bg-component cursor-pointer" aria-label="Add"><i class="icon ph ph-plus"></i></button>
+      <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border border-transparent bg-solid-accent-1 hover:bg-solid-accent-1-strong fg-on-solid-accent-1 text-title-sm cursor-pointer"><i class="icon ph ph-paper-plane-tilt"></i><span>Send</span></button>
+      <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border border-transparent bg-solid-danger hover:bg-solid-danger-strong fg-on-solid-danger text-title-sm cursor-pointer"><i class="icon ph ph-trash"></i><span>Delete</span></button>
     </div>
     <div class="flex flex-wrap items-center gap-sm mb-sm">
       <button id="b-sm" class="inline-flex items-center justify-center h-nested px-nested gap-gutter-half rounded-xs border bg-component-weak hover:bg-component text-label cursor-pointer"><i class="icon icon-sm ph-bold ph-funnel"></i><span>Filter</span></button>
@@ -82,9 +82,9 @@
     <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Hover</h2></div>
     <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
     <div class="flex flex-wrap items-center gap-sm">
-      <button id="btn" class="h-control px-control rounded-control border border-transparent bg-solid-accent-1 hover:bg-solid-accent-1-strong fg-on-solid-accent-1 text-title-sm cursor-pointer">Primary</button>
-      <button class="h-control px-control rounded-control border bg-component-weak hover:bg-component fg text-title-sm cursor-pointer">Secondary</button>
-      <span class="p-xs rounded opacity-50 hover:opacity-100 bg-strong transition-colors">opacity-50 hover:opacity-100</span>
+      <button id="btn" class="h-control px-control rounded-sm border border-transparent bg-solid-accent-1 hover:bg-solid-accent-1-strong fg-on-solid-accent-1 text-title-sm cursor-pointer">Primary</button>
+      <button class="h-control px-control rounded-sm border bg-component-weak hover:bg-component fg text-title-sm cursor-pointer">Secondary</button>
+      <span class="p-xs rounded-sm opacity-50 hover:opacity-100 bg-strong transition-colors">opacity-50 hover:opacity-100</span>
       <a href="#" class="fg-accent-1-weak hover:fg-accent-1">hover:fg-accent-1</a>
     </div>
     </div>

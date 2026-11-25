@@ -89,7 +89,7 @@ function check(root) {
       if (!t.includes("h-control") && !t.includes("size-control")) continue;
       const miss = [];
       if (t.includes("border-0") || !t.some((x) => /^border(-[xytblr])?(-[24])?$/.test(x))) miss.push("a border width (border, with border-transparent on a fill)");
-      if (!t.some((x) => /^rounded(-|$)/.test(x))) miss.push("a radius (rounded-control)");
+      if (!t.some((x) => /^rounded(-|$)/.test(x))) miss.push("a radius (rounded-sm)");
       if (t.includes("h-control") && !t.includes("px-control") && !t.includes("w-full")) miss.push("px-control");
       if (miss.length) errors.push(`${rel(file)}: <${m[1]} class="${m[2].slice(0, 60)}…"> lacks ${miss.join(", ")}. Fix: follow the control recipe in AGENTS.md.`);
     }

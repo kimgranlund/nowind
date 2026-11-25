@@ -67,7 +67,7 @@ Work global first, as in Prewind:
   <span class="text-kicker fg-accent-1-weak">Release</span>
   <h3 class="text-title mt-3xs mb-2xs">Nowind 0.1</h3>
   <p class="text-body-md fg-weak">Fluid type, semantic roles and a light/dark palette.</p>
-  <button class="h-control px-md rounded border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong fg-on-solid-accent-1">
+  <button class="h-control px-md rounded-sm border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong fg-on-solid-accent-1">
     Read more
   </button>
 </article>
@@ -166,7 +166,7 @@ Parts: `relief-raised` (buttons), `relief-raised-solid` (primary buttons), `reli
 </div>
 ```
 
-**The lens.** Add `lens` to a glass part and its backdrop refracts: the edge bends like rounded glass, the body magnifies slightly, and the rim fringes. It needs the `#nowind-lens` SVG filter in the page and `data-lens="on"` on `<html>`; this site's `site.js` draws a filter per element at its size and corner radius and sets the attribute in Chromium, the only engine that applies an SVG filter behind an element. Elsewhere glass keeps its blur.
+**The lens.** Add `lens` to a glass part and its backdrop refracts: the edge bends like rounded-sm glass, the body magnifies slightly, and the rim fringes. It needs the `#nowind-lens` SVG filter in the page and `data-lens="on"` on `<html>`; this site's `site.js` draws a filter per element at its size and corner radius and sets the attribute in Chromium, the only engine that applies an SVG filter behind an element. Elsewhere glass keeps its blur.
 
 **Backdrops.** `bg-dots` paints a dot grid in `currentColor` (set it with `fg-*`), spaced by `bg-dots-sm`, `-md` or `-lg`. Glass needs something behind it to bend.
 

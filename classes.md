@@ -820,7 +820,7 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 
 ## Borders, radius, shadow
 
-66 classes.
+63 classes.
 
 | Class | Declarations |
 |---|---|
@@ -859,9 +859,6 @@ Variants: `hover:` on the 387 role-colour, opacity and cursor classes (inside `@
 | `.rounded-none` | `border-radius: 0px; --_nest: max(0px, calc(0px - var(--_inset) - var(--_bw)))` |
 | `.rounded-xs` | `border-radius: var(--radius-xs); --_nest: max(0px, calc(var(--radius-xs) - var(--_inset) - var(--_bw)))` |
 | `.rounded-sm` | `border-radius: var(--radius-sm); --_nest: max(0px, calc(var(--radius-sm) - var(--_inset) - var(--_bw)))` |
-| `.rounded` | `border-radius: var(--radius-sm); --_nest: max(0px, calc(var(--radius-sm) - var(--_inset) - var(--_bw)))` |
-| `.rounded-control` | `border-radius: var(--radius-control); --_nest: max(0px, calc(var(--radius-control) - var(--_inset) - var(--_bw)))` |
-| `.rounded-nested` | `border-radius: var(--radius-nested); --_nest: max(0px, calc(var(--radius-nested) - var(--_inset) - var(--_bw)))` |
 | `.rounded-md` | `border-radius: var(--radius-md); --_nest: max(0px, calc(var(--radius-md) - var(--_inset) - var(--_bw)))` |
 | `.rounded-lg` | `border-radius: var(--radius-lg); --_nest: max(0px, calc(var(--radius-lg) - var(--_inset) - var(--_bw)))` |
 | `.rounded-xl` | `border-radius: var(--radius-xl); --_nest: max(0px, calc(var(--radius-xl) - var(--_inset) - var(--_bw)))` |

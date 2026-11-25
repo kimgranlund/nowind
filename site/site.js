@@ -141,7 +141,7 @@
       if (qx > 0 && qy > 0) { const l = Math.hypot(qx, qy) || 1; dist = l - r; nx = qx / l; ny = qy / l; }
       else if (qx > qy) { dist = qx - r; nx = 1; ny = 0; } else { dist = qy - r; nx = 0; ny = 1; }
       const depth = -dist, s = Math.min(Math.max(depth / band, 0), 1);
-      // Refraction through a rounded glass edge: the surface is a quarter circle across the band, and the bend follows
+      // Refraction through a rounded-sm glass edge: the surface is a quarter circle across the band, and the bend follows
       // its slope, steep at the rim and easing towards the flat centre.
       const z = Math.sqrt(Math.max(1 - (1 - s) * (1 - s), 1e-4));
       const m = depth > 0 && s < 1 ? Math.min(((1 - s) / z) * 0.35, 1) : 0;
