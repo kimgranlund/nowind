@@ -28,10 +28,10 @@ COMPONENTS = [
     },
     {
         "slug": "icon-button", "name": "Icon button", "icon": "ph-plus-circle", "group": "Actions",
-        "summary": "A button with only an icon. The same padding rules make it exactly one control height square.",
+        "summary": "A button with only an icon. One padding on all sides (<code>p-xs</code>, or <code>p-3xs</code> when small) around a square icon makes it square, the same height as a text button.",
         "html": f"""<div class="flex items-center gap-sm">
   <button class="inline-flex items-center justify-center p-xs gap-xs rounded-sm border bg-neutral-3 hover:bg-neutral-4 fg-neutral-12 cursor-pointer transition-colors" aria-label="Settings"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-gear"></i></button>
-  <button class="inline-flex items-center justify-center p-xs gap-xs rounded-sm rounded-full border border-transparent bg-accent-1-9 hover:bg-accent-1-10 fg-accent-1-contrast cursor-pointer transition-colors" aria-label="Add"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph-bold ph-plus"></i></button>
+  <button class="inline-flex items-center justify-center p-xs gap-xs rounded-full border border-transparent bg-accent-1-9 hover:bg-accent-1-10 fg-accent-1-contrast cursor-pointer transition-colors" aria-label="Add"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph-bold ph-plus"></i></button>
   <button class="inline-flex items-center justify-center p-3xs rounded-xs border-0 bg-transparent hover:bg-neutral-3 fg-neutral-11 cursor-pointer transition-colors" aria-label="Close"><i class="inline-flex items-center justify-center shrink-0 text-base leading-none ph-bold ph-x"></i></button>
 </div>""",
         "use": ["Always give it an <code>aria-label</code>.", "Use <code>p-3xs</code> and a <code>text-base</code> icon inside dense rows."],

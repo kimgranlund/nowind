@@ -38,7 +38,7 @@
         <header class="col-span-12 flex flex-col gap-field pt-page pb-xl">
             <span class="text-kicker fg-weak">Actions</span>
             <h1 class="text-display-sm text-balance">Icon button</h1>
-            <p class="text-body-md fg-weak max-w-measure">A button with only an icon. The same padding rules make it exactly one control height square.</p>
+            <p class="text-body-md fg-weak max-w-measure">A button with only an icon. One padding on all sides (<code>p-xs</code>, or <code>p-3xs</code> when small) around a square icon makes it square, the same height as a text button.</p>
           </header>
         <section id="example" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Example</h2></div>
@@ -46,7 +46,7 @@
           <div class="tier-product p-surface rounded-md border border-weak bg-strong">
 <div class="flex items-center gap-sm">
   <button class="inline-flex items-center justify-center p-xs gap-xs rounded-sm border bg-neutral-3 hover:bg-neutral-4 fg-neutral-12 cursor-pointer transition-colors" aria-label="Settings"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-gear"></i></button>
-  <button class="inline-flex items-center justify-center p-xs gap-xs rounded-sm rounded-full border border-transparent bg-accent-1-9 hover:bg-accent-1-10 fg-accent-1-contrast cursor-pointer transition-colors" aria-label="Add"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph-bold ph-plus"></i></button>
+  <button class="inline-flex items-center justify-center p-xs gap-xs rounded-full border border-transparent bg-accent-1-9 hover:bg-accent-1-10 fg-accent-1-contrast cursor-pointer transition-colors" aria-label="Add"><i class="inline-flex items-center justify-center shrink-0 text-xl leading-none ph-bold ph-plus"></i></button>
   <button class="inline-flex items-center justify-center p-3xs rounded-xs border-0 bg-transparent hover:bg-neutral-3 fg-neutral-11 cursor-pointer transition-colors" aria-label="Close"><i class="inline-flex items-center justify-center shrink-0 text-base leading-none ph-bold ph-x"></i></button>
 </div>
           </div>
@@ -56,7 +56,7 @@
             </figcaption>
             <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;flex items-center gap-sm&quot;&gt;
   &lt;button class=&quot;inline-flex items-center justify-center p-xs gap-xs rounded-sm border bg-neutral-3 hover:bg-neutral-4 fg-neutral-12 cursor-pointer transition-colors&quot; aria-label=&quot;Settings&quot;&gt;&lt;i class=&quot;inline-flex items-center justify-center shrink-0 text-xl leading-none ph ph-gear&quot;&gt;&lt;/i&gt;&lt;/button&gt;
-  &lt;button class=&quot;inline-flex items-center justify-center p-xs gap-xs rounded-sm rounded-full border border-transparent bg-accent-1-9 hover:bg-accent-1-10 fg-accent-1-contrast cursor-pointer transition-colors&quot; aria-label=&quot;Add&quot;&gt;&lt;i class=&quot;inline-flex items-center justify-center shrink-0 text-xl leading-none ph-bold ph-plus&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;button class=&quot;inline-flex items-center justify-center p-xs gap-xs rounded-full border border-transparent bg-accent-1-9 hover:bg-accent-1-10 fg-accent-1-contrast cursor-pointer transition-colors&quot; aria-label=&quot;Add&quot;&gt;&lt;i class=&quot;inline-flex items-center justify-center shrink-0 text-xl leading-none ph-bold ph-plus&quot;&gt;&lt;/i&gt;&lt;/button&gt;
   &lt;button class=&quot;inline-flex items-center justify-center p-3xs rounded-xs border-0 bg-transparent hover:bg-neutral-3 fg-neutral-11 cursor-pointer transition-colors&quot; aria-label=&quot;Close&quot;&gt;&lt;i class=&quot;inline-flex items-center justify-center shrink-0 text-base leading-none ph-bold ph-x&quot;&gt;&lt;/i&gt;&lt;/button&gt;
 &lt;/div&gt;</code></pre>
           </figure>

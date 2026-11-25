@@ -41,7 +41,7 @@
 ["Classes", "docs/classes.html", "Page", "Classes"],
 ["Semantic classes", "docs/semantic.html", "Page", "Classes"],
 ["Button", "docs/c-button.html", "Component", "Starts an action. One control height tall, padded by the text edge, with an icon side that steps in by one margin."],
-["Icon button", "docs/c-icon-button.html", "Component", "A button with only an icon. The same padding rules make it exactly one control height square."],
+["Icon button", "docs/c-icon-button.html", "Component", "A button with only an icon. One padding on all sides (p-xs, or p-3xs when small) around a square icon makes it square, the same height as a text button."],
 ["Segmented control", "docs/c-segmented.html", "Component", "A set of mutually exclusive options. The pressed segment is styled by aria-pressed, not by a class."],
 ["Badge", "docs/c-badge.html", "Component", "A short label for a status or category, at the nested control size."],
 ["Alert", "docs/c-alert.html", "Component", "A message about the page or a task, tinted by its status."],

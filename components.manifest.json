@@ -60,7 +60,7 @@
       "name": "Icon button",
       "group": "Actions",
       "page": "site/docs/c-icon-button.html",
-      "summary": "A button with only an icon. The same padding rules make it exactly one control height square.",
+      "summary": "A button with only an icon. One padding on all sides (p-xs, or p-3xs when small) around a square icon makes it square, the same height as a text button.",
       "use": [
         "Always give it an aria-label.",
         "Use p-3xs and a text-base icon inside dense rows."
