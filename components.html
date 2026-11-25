@@ -124,9 +124,9 @@
       </div>
     </div>
 
-    <div class="flex items-center gap-sm p-sm pl-md rounded-lg bg-neutral-12 w-fit shadow-lg" role="status">
-      <i class="icon ph ph-check-circle text-neutral-1"></i>
-      <span class="text-body-md text-neutral-1">Changes saved</span>
+    <div class="flex items-center gap-sm p-sm pl-md rounded-lg bg-bg-inverse w-fit shadow-lg" role="status">
+      <i class="icon ph ph-check-circle text-fg-inverse"></i>
+      <span class="text-body-md text-fg-inverse">Changes saved</span>
       <button class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent text-fg-accent-1-subtle text-title-sm cursor-pointer"><span>Undo</span></button>
     </div>
   </section>
@@ -139,7 +139,7 @@
     <form class="max-w-form p-surface rounded-lg bg-bg border border-border-weak shadow-sm flex flex-col gap-group" onsubmit="return false">
       <div class="flex flex-col gap-field">
         <label for="name" class="text-label text-fg">Full name</label>
-        <input id="name" class="h-control px-control rounded-sm border border-border bg-bg text-control-md w-full" placeholder="Ada Lovelace">
+        <input id="name" class="h-control px-control rounded-sm border border-border hover:border-border-strong bg-bg text-control-md w-full" placeholder="Ada Lovelace">
       </div>
       <div class="flex flex-col gap-field">
         <label for="email" class="text-label text-fg">Email</label>
@@ -149,18 +149,18 @@
       <div class="flex flex-col md:flex-row gap-group">
         <div class="flex flex-col gap-field flex-1">
           <label for="role" class="text-label text-fg">Role</label>
-          <select id="role" class="h-control px-control rounded-sm border border-border bg-bg text-control-md w-full">
+          <select id="role" class="h-control px-control rounded-sm border border-border hover:border-border-strong bg-bg text-control-md w-full">
             <option>Designer</option><option>Engineer</option><option>Manager</option>
           </select>
         </div>
         <div class="flex flex-col gap-field flex-1">
           <label for="team" class="text-label text-fg">Team size</label>
-          <input id="team" type="number" class="h-control px-control rounded-sm border border-border bg-bg text-control-md tabular-nums w-full" value="12">
+          <input id="team" type="number" class="h-control px-control rounded-sm border border-border hover:border-border-strong bg-bg text-control-md tabular-nums w-full" value="12">
         </div>
       </div>
       <div class="flex flex-col gap-field">
         <label for="bio" class="text-label text-fg">Bio</label>
-        <textarea id="bio" class="p-xs rounded-sm border border-border bg-bg text-control-md w-full" placeholder="A sentence or two"></textarea>
+        <textarea id="bio" class="p-xs rounded-sm border border-border hover:border-border-strong bg-bg text-control-md w-full" placeholder="A sentence or two"></textarea>
         <span class="text-caption text-fg-weak">Shown on your public profile.</span>
       </div>
       <fieldset class="flex flex-col gap-xs border-0 p-0">
@@ -171,7 +171,7 @@
       <fieldset class="flex flex-col gap-xs border-0 p-0">
         <legend class="text-label text-fg mb-2xs">Plan</legend>
         <label class="flex items-center gap-sm p-sm rounded border border-border-accent-1 bg-component-accent-1-weak cursor-pointer"><input type="radio" name="plan" checked><span class="flex flex-col grow"><span class="text-title-sm">Team</span><span class="text-caption text-fg-weak">Up to 20 people</span></span><span class="text-data">$12</span></label>
-        <label class="flex items-center gap-sm p-sm rounded border border-border cursor-pointer"><input type="radio" name="plan"><span class="flex flex-col grow"><span class="text-title-sm">Business</span><span class="text-caption text-fg-weak">Unlimited people, SSO</span></span><span class="text-data">$24</span></label>
+        <label class="flex items-center gap-sm p-sm rounded border border-border hover:border-border-strong cursor-pointer"><input type="radio" name="plan"><span class="flex flex-col grow"><span class="text-title-sm">Business</span><span class="text-caption text-fg-weak">Unlimited people, SSO</span></span><span class="text-data">$24</span></label>
       </fieldset>
       <div class="flex justify-end gap-row pt-sm border-t border-border-weak">
         <button type="button" class="inline-flex items-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component text-fg text-title-sm cursor-pointer"><span>Cancel</span></button>
@@ -185,22 +185,22 @@
     <span class="text-kicker text-fg-accent-1-weak">Display</span>
     <h2 class="text-heading-lg mb-md">Cards, stats, lists and tables</h2>
 
-    <div class="flex flex-col md:flex-row gap-md mb-lg">
-      <div class="flex-1 p-surface rounded-lg bg-bg border border-border-weak shadow-xs">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-group mb-lg">
+      <div class="p-surface rounded-lg bg-bg border border-border-weak shadow-xs">
         <span class="text-label text-fg-weak">Revenue</span>
         <div class="flex items-baseline gap-xs mt-2xs">
           <span class="text-figure">$48,210</span>
           <span class="inline-flex items-center text-caption text-fg-success-weak"><i class="icon icon-sm ph-bold ph-trend-up"></i><span>12%</span></span>
         </div>
       </div>
-      <div class="flex-1 p-surface rounded-lg bg-bg border border-border-weak shadow-xs">
+      <div class="p-surface rounded-lg bg-bg border border-border-weak shadow-xs">
         <span class="text-label text-fg-weak">Active users</span>
         <div class="flex items-baseline gap-xs mt-2xs">
           <span class="text-figure">2,318</span>
           <span class="inline-flex items-center text-caption text-fg-danger-weak"><i class="icon icon-sm ph-bold ph-trend-down"></i><span>3%</span></span>
         </div>
       </div>
-      <div class="flex-1 p-surface rounded-lg bg-bg border border-border-weak shadow-xs">
+      <div class="p-surface rounded-lg bg-bg border border-border-weak shadow-xs">
         <span class="text-label text-fg-weak">Uptime</span>
         <div class="flex items-baseline gap-xs mt-2xs">
           <span class="text-figure">99.98%</span>
@@ -305,7 +305,7 @@
       </div>
 
       <div class="flex flex-col md:flex-row gap-lg">
-        <ul role="list" class="flex flex-col gap-3xs p-2xs rounded-lg bg-bg-strong">
+        <ul role="list" class="flex flex-col gap-3xs p-2xs rounded-lg bg-bg-strong md:w-1/4">
           <li><a href="#" class="flex items-center h-control px-control gap-gutter rounded-sm bg-component-accent-1-weak text-fg-accent-1-weak no-underline text-title-sm"><i class="icon ph ph-house"></i><span>Overview</span></a></li>
           <li><a href="#" class="flex items-center h-control px-control gap-gutter rounded-sm text-fg-weak hover:text-fg hover:bg-component-weak no-underline text-title-sm"><i class="icon ph ph-chart-line-up"></i><span>Analytics</span></a></li>
           <li><a href="#" class="flex items-center h-control px-control gap-gutter rounded-sm text-fg-weak hover:text-fg hover:bg-component-weak no-underline text-title-sm"><i class="icon ph ph-gear"></i><span>Settings</span></a></li>

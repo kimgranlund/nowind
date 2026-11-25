@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- **Inverse colors:** `--bg-inverse`, `--fg-inverse`, `--fg-inverse-weak` and their classes, for toasts and tooltips.
+- **Hover borders:** `hover:border-*` for the border roles (`hover:border-border-strong`).
+- **Grid:** `grid-cols-1` … `grid-cols-12`, `grid-cols-none`, `col-span-1` … `col-span-12`, `col-span-full`.
+- **Fractions:** `w-1/2`, `w-1/3`, `w-2/3`, `w-1/4`, `w-3/4`, fifths, and matching `basis-*`.
+- **Breakpoints** now also cover grid columns and spans, basis, widths and gaps.
+
 ## 0.1.0 (2026-11-25)
 
 First release.

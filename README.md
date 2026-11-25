@@ -82,13 +82,13 @@ Classes follow `property-value`. Color classes take the token name without `--`,
 | Spacing | `p-md`, `px-lg`, `mt-xs`, `-mt-sm`, `mx-auto`, `gap-sm` (sizes `0`, `3xs` … `4xl`) |
 | Type scale | `text-xs` … `text-6xl` (size and line height), `text-kicker-sm/md/lg` |
 | Type roles | `text-display`, `text-heading-md`, `text-title`, `text-body-md`, `text-caption`, `text-label`, `text-kicker`, `text-figure`, `text-mono`, … |
-| Text color | `text-fg`, `text-fg-weak`, `text-fg-subtle`, `text-fg-accent-1`, `text-on-solid` |
-| Background | `bg-bg`, `bg-bg-strong`, `bg-component`, `bg-solid-accent-1`, `bg-accent-1-3`, `bg-neutral-a4` |
+| Text color | `text-fg`, `text-fg-weak`, `text-fg-subtle`, `text-fg-accent-1`, `text-on-solid`, `text-fg-inverse` |
+| Background | `bg-bg`, `bg-bg-strong`, `bg-component`, `bg-solid-accent-1`, `bg-accent-1-3`, `bg-neutral-a4`, `bg-bg-inverse` (toasts, tooltips), `bg-scrim` |
 | Border | `border`, `border-2`, `border-t`, `border-border`, `border-border-accent-1-weak`, `rounded`, `rounded-lg` |
 | Shadow | `shadow-xs` … `shadow-xl`, `inset-shadow-xs`, `inset-shadow-sm`, `shadow-none` (a cast and a recess on one element combine) |
 | Typography | `font-semibold`, `font-sans`, `font-heading`, `font-mono`, `leading-tight`, `tracking-wide`, `uppercase`, `tabular-nums`, `text-balance`, `truncate` |
-| Layout | `container`, `flex`, `flex-col`, `items-center`, `justify-between`, `grid`, `hidden`, `relative`, `z-10` |
-| Sizing | `w-full`, `w-fit`, `h-control`, `max-w-text` (or `max-w-prose`), `max-w-form`, `min-h-screen`, `min-h-dvh` |
+| Layout | `container`, `flex`, `flex-col`, `items-center`, `justify-between`, `grid`, `grid-cols-1` … `grid-cols-12`, `col-span-2`, `col-span-full`, `basis-1/2`, `hidden`, `relative`, `z-10` |
+| Sizing | `w-full`, `w-fit`, `w-1/2`, `w-1/3`, `w-2/3`, `w-1/4`, `w-3/4`, fifths, `h-control`, `max-w-text` (or `max-w-prose`), `max-w-form`, `min-h-screen`, `min-h-dvh` |
 
 ### Container levels and tiers
 
@@ -147,13 +147,13 @@ Icons use [Phosphor](https://phosphoricons.com)'s web font. Link the weights you
 
 ### Variants
 
-- **Hover**: only on devices that can hover, as Tailwind v4. Text and background colors of the role tokens (not raw palette steps), opacity and cursor only: `hover:bg-component`, `hover:text-fg`, `hover:opacity-100`.
-- **Breakpoints**: `sm:` 640px, `md:` 768px, `lg:` 1024px, `xl:` 1280px, `2xl:` 1536px (the `--breakpoint-*` tokens), for layout only: display, flex direction and wrap, justify, align and text alignment.
+- **Hover**: only on devices that can hover, as Tailwind v4. Text, background and border colors of the role tokens (not raw palette steps), opacity and cursor: `hover:bg-component`, `hover:text-fg`, `hover:border-border-strong`, `hover:opacity-100`.
+- **Breakpoints**: `sm:` 640px, `md:` 768px, `lg:` 1024px, `xl:` 1280px, `2xl:` 1536px (the `--breakpoint-*` tokens), for layout: display, grid columns and spans, flex direction, wrap and basis, alignment, text alignment, widths (`md:w-1/3`) and gaps (`md:gap-lg`). Padding, color and type have no breakpoint variants.
 
 ```html
-<div class="flex flex-col md:flex-row gap-sm">
-  <div class="flex-1">…</div>
-  <div class="flex-1 hidden lg:block">…</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-sm md:gap-lg">
+  <div class="md:col-span-2">…</div>
+  <div class="hidden lg:block">…</div>
 </div>
 ```
 

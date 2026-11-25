@@ -66,7 +66,7 @@ Then check the result in `specimen.html` through a local server (`python3 -m htt
 - **Shadows:** `--shadow-{xs…xl}` and `--inset-shadow-{xs,sm}` (Tailwind v4 names) for Massimo's levels, each a stack of 4–6 generated layers in multiples of `--q`. Change the constants in `scripts/shadows.mjs`, never a layer by hand.
 - **Levels and tiers:** `p-surface`, `p-dialog`, `p-region`, `p-page`, `gap-field`, `gap-row`, `gap-group`, `gap-section` after Affine's container levels; `tier-product`, `tier-content`, `tier-brand` are scopes, listed beside `.scope` in the selectors of `theme.geometry.css`, `scripts/utopia.mjs` and `scripts/shadows.mjs`. A new scope-like class goes in all three.
 - **Controls and icons:** utilities only (`h-control`, `px-control`, `gap-gutter`, `icon`, …), after Affine UI's button and icon geometry. The icon-edge padding is a `:has(> .icon:first-child)` rule in the generator, so labels must be wrapped in a `<span>`. Glyphs come from Phosphor's web font, linked by the page, not bundled.
-- **Variants:** `hover:` for role-token colours, opacity and cursor, inside `@media (hover: hover)`; `sm:` to `2xl:` for layout only. No other variants.
+- **Variants:** `hover:` for role-token text, background and border colours, opacity and cursor, inside `@media (hover: hover)`; `sm:` to `2xl:` for layout only (display, grid, flex, basis, alignment, widths, gaps). No other variants.
 
 ## Adding a palette
 

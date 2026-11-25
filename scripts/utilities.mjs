@@ -49,6 +49,10 @@ for (const s of ["0", ...SPACE]) {
 // Layout
 add("container", "width: min(100%, var(--container-max)); margin-inline: auto; padding-inline: var(--container-padding)");
 for (const d of ["block", "inline-block", "inline", "flex", "inline-flex", "grid", "inline-grid", "contents"]) add(d, `display: ${d}`);
+for (let n = 1; n <= 12; n++) add(`grid-cols-${n}`, `grid-template-columns: repeat(${n}, minmax(0, 1fr))`);
+add("grid-cols-none", "grid-template-columns: none");
+for (let n = 1; n <= 12; n++) add(`col-span-${n}`, `grid-column: span ${n} / span ${n}`);
+add("col-span-full", "grid-column: 1 / -1");
 add("hidden", "display: none");
 for (const d of ["row", "col", "row-reverse", "col-reverse"]) add(`flex-${d}`, `flex-direction: ${d.replace("col", "column")}`);
 add("flex-wrap", "flex-wrap: wrap");
@@ -188,6 +192,12 @@ for (const [d, p, u] of [["min-w", "min-width", "vw"], ["max-w", "max-width", "v
 for (const [d, p] of [["h", "height"], ["min-h", "min-height"], ["max-h", "max-height"]]) {
   for (const u of ["dvh", "svh", "lvh"]) add(`${d}-${u}`, `${p}: 100${u}`);
 }
+for (const [f, v] of [["1/2", "50%"], ["1/3", "33.333333%"], ["2/3", "66.666667%"], ["1/4", "25%"], ["3/4", "75%"], ["1/5", "20%"], ["2/5", "40%"], ["3/5", "60%"], ["4/5", "80%"]]) {
+  add(`w-${f}`, `width: ${v}`);
+  add(`basis-${f}`, `flex-basis: ${v}`);
+}
+add("basis-full", "flex-basis: 100%");
+add("basis-auto", "flex-basis: auto");
 add("max-w-text", "max-width: var(--max-w-text)");
 add("max-w-prose", "max-width: var(--max-w-text)");
 add("max-w-form", "max-width: var(--max-w-form)");
@@ -264,8 +274,8 @@ const esc = (c) => c.replace(/[:./]/g, (ch) => `\\${ch}`).replace(/^(\d)/, (d) =
 const rule = (sel, decl) => `  .${esc(sel)} { ${decl}; }`;
 const ROLE_COLORS = colorProps.filter((p) => !/^--shadow/.test(p) && !/-(surface|indicator|track)$/.test(p)).map((p) => p.slice(2));
 const colorClass = new RegExp(`^(text|bg)-(${ROLE_COLORS.map((c) => c.replace(/[-]/g, "\\-")).join("|")}|inherit|current|transparent)$`);
-const HOVER = [...D.keys()].filter((c) => colorClass.test(c) || /^opacity-|^cursor-/.test(c));
-const LAYOUT = [...D.keys()].filter((c) => /^(block|inline-block|inline|flex|inline-flex|grid|inline-grid|contents|hidden|flex-(row|col)(-reverse)?|flex-wrap|flex-nowrap|justify-|items-|self-|text-(left|center|right|justify|start|end)$)/.test(c));
+const HOVER = [...D.keys()].filter((c) => colorClass.test(c) || /^border-border(-|$)/.test(c) || /^opacity-|^cursor-/.test(c));
+const LAYOUT = [...D.keys()].filter((c) => /^(block|inline-block|inline|flex|inline-flex|grid|inline-grid|contents|hidden|flex-(row|col)(-reverse)?|flex-wrap|flex-nowrap|justify-|items-|self-|text-(left|center|right|justify|start|end)$|col-span-|w-(\d\/\d|full|auto|fit)$|basis-|gap-)/.test(c));
 const geometryCss = read("theme/theme.geometry.css");
 const BREAKPOINTS = [...geometryCss.matchAll(/--breakpoint-([\w]+):\s*(\d+)px/g)].map((m) => [m[1], Number(m[2])]);
 
@@ -385,9 +395,9 @@ const manifest = {
   counts: { classes: D.size, hover: HOVER.length, responsive: LAYOUT.length * BREAKPOINTS.length, bytes: Buffer.byteLength(css) },
   naming: "property-value, as Prewind and Tailwind: p-md, gap-lg, text-fg-weak, bg-solid-accent-1. Colour classes take the token name without --.",
   variants: {
-    hover: "Inside @media (hover: hover), as Tailwind v4, so taps on touch screens don't stick. hover:text-* and hover:bg-* for the colour role tokens only (bg, component, border, solid, on-solid, fg and their palette versions), hover:opacity-*, hover:cursor-*. Raw palette steps and alpha steps have no hover class.",
+    hover: "Inside @media (hover: hover), as Tailwind v4, so taps on touch screens don't stick. hover:border-* for the border roles, hover:text-* and hover:bg-* for the colour role tokens only (bg, component, border, solid, on-solid, fg and their palette versions), hover:opacity-*, hover:cursor-*. Raw palette steps and alpha steps have no hover class.",
     breakpoints: Object.fromEntries(BREAKPOINTS.map(([b, w]) => [b, `${w}px`])),
-    responsive: "sm:, md:, lg:, xl:, 2xl: (read from the --breakpoint-* tokens) apply to display, flex direction, wrap, justify, align and text alignment only, as Prewind.",
+    responsive: "sm:, md:, lg:, xl:, 2xl: (read from the --breakpoint-* tokens) apply to layout: display, grid columns and spans, flex direction, wrap, basis, justify, align, text alignment, widths (fractions, full, auto, fit) and gaps. Spacing other than gaps, colours and type have no breakpoint variants.",
     none: "No focus:, active:, group- or dark: variants. Dark mode comes from the theme's light-dark() tokens.",
   },
   categories: {
@@ -403,12 +413,12 @@ const manifest = {
     radius: "rounded-none, rounded-xs (nested), rounded-sm and rounded (control), rounded-lg (surface), rounded-xl (dialog), rounded-full. Tailwind v4 names.",
     shadows: "shadow-xs, shadow-sm (and bare shadow), shadow-md, shadow-lg, shadow-xl, shadow-none; inset-shadow-xs, inset-shadow-sm, inset-shadow-none. Compound shadows after Massimo (theme.shadows.css); a cast and a recess on one element compose, as in Tailwind v4.",
     borders: "border, border-0, -2, -4, with sides t r b l x y; border-solid/dashed/dotted/none",
-    layout: "container, display, flex, position, inset, z-",
+    layout: "container, display, grid-cols-1…12, col-span-1…12 and -full, flex, basis fractions, position, inset, z-",
     controls: "h-control, h-nested (an .icon inside it shrinks by the two borders so it fits), size-control, size-nested, min-w-control, min-w-nested, px-control and px-nested (padding steps in by one margin on a side whose first or last child is .icon; wrap the label in a <span>), gap-gutter, gap-gutter-half",
     levels: "p-surface, p-dialog (each minus the border), p-region, p-page, with px- and py- versions; gap-field, gap-row, gap-group, gap-section, gap-page; mt-section, mb-section. After Affine's container levels.",
     tiers: "tier-product (1×), tier-content (font +2px, spacing 1.5×), tier-brand (font +4px, spacing 2×). Each is a scope: --F and everything derived recompute inside it.",
     icons: "icon (an S-square box, glyph --icon-md), icon-sm, icon-md, icon-lg. Glyphs: Phosphor web font (<i class=\"icon ph ph-floppy-disk\">; ph-bold at sm, ph-light at lg) or an inline <svg> inside .icon.",
-    sizing: "w-, h-, min-/max- with 0, full, screen (100vw/100vh), fit; h-dvh, h-svh, h-lvh and min-/max- versions; max-w-text (alias max-w-prose), max-w-form, max-w-container, h-control",
+    sizing: "w-, h-, min-/max- with 0, full, screen (100vw/100vh), fit; w-1/2, 1/3, 2/3, 1/4, 3/4 and fifths; h-dvh, h-svh, h-lvh and min-/max- versions; max-w-text (alias max-w-prose), max-w-form, max-w-container, h-control",
   },
   changesFromPrewind: [
     "container: width min(100%, --container-max), so it never overflows a narrow screen (Prewind's 360px minimum did).",

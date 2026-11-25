@@ -459,5 +459,13 @@
     "token": "--scrim",
     "value": "light-dark(rgb(27 28 32 / 0.45), rgb(0 0 0 / 0.65))",
     "use": "The dimming layer behind a dialog or drawer, and the reset's ::backdrop. Dark in both modes: the neutral alpha steps lighten in dark mode, so they can't dim a page there. Class bg-scrim."
+  },
+  "inverse": {
+    "tokens": {
+      "--bg-inverse": "neutral 12",
+      "--fg-inverse": "neutral 1",
+      "--fg-inverse-weak": "neutral 6"
+    },
+    "use": "Toasts, tooltips and a single selected item: the page's text colour as a fill, with the page colour as its text. Classes bg-bg-inverse, text-fg-inverse, text-fg-inverse-weak."
   }
 }
