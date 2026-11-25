@@ -60,7 +60,7 @@ const levels = [
   ...INSETS.map(([name, massimo, s, keys]) => ({ name, massimo, s, keys, kind: "inset", layers: insetLayers(s, keys) })),
 ];
 
-const css = `:root, .scope {
+const css = `:root, .scope, .tier-product, .tier-content, .tier-brand {
 ${levels.map((l) => `  --${l.name}:\n    ${shadowCss(l.layers)};`).join("\n")}
 }
 `;

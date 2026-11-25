@@ -204,6 +204,32 @@ add("min-w-nested", "min-width: var(--nested-height)");
 add("px-control", "padding-inline: var(--control-padding)");
 add("px-nested", "padding-inline: var(--nested-padding)");
 add("gap-gutter", "gap: var(--gutter)");
+
+// Container levels (after Affine UI): padding and gaps by what a box is, not by a size. A bordered level pads by its
+// level minus the border, as Affine does, so content lands on the same line with or without a border.
+const LEVEL_PAD = {
+  surface: "calc(var(--surface-padding) - var(--border-width))",
+  dialog: "calc(var(--dialog-padding) - var(--border-width))",
+  region: "var(--region-padding)",
+  page: "var(--page-margin)",
+};
+for (const [lv, v] of Object.entries(LEVEL_PAD)) {
+  add(`p-${lv}`, `padding: ${v}`);
+  add(`px-${lv}`, `padding-inline: ${v}`);
+  add(`py-${lv}`, `padding-block: ${v}`);
+}
+add("gap-field", "gap: var(--field-gap)");
+add("gap-row", "gap: var(--row-gap)");
+add("gap-group", "gap: var(--group-gap)");
+add("gap-section", "gap: var(--section-gap)");
+add("gap-page", "gap: var(--page-margin)");
+add("mt-section", "margin-top: var(--section-gap)");
+add("mb-section", "margin-bottom: var(--section-gap)");
+
+// Tiers (after Affine's space tiers): each is a scope with its own font size and spacing multiplier.
+add("tier-product", "--tier: 1");
+add("tier-content", "--tier: var(--tier-content); font-size: calc(1em + var(--tier-content-text))");
+add("tier-brand", "--tier: var(--tier-brand); font-size: calc(1em + var(--tier-brand-text))");
 add("gap-gutter-half", "gap: calc(var(--gutter) / 2)");
 add("icon", "display: inline-flex; align-items: center; justify-content: center; flex: none; width: var(--icon-box); height: var(--icon-box); font-size: var(--icon-md); line-height: 1");
 add("icon-sm", "font-size: var(--icon-sm)");
@@ -379,6 +405,8 @@ const manifest = {
     borders: "border, border-0, -2, -4, with sides t r b l x y; border-solid/dashed/dotted/none",
     layout: "container, display, flex, position, inset, z-",
     controls: "h-control, h-nested (an .icon inside it shrinks by the two borders so it fits), size-control, size-nested, min-w-control, min-w-nested, px-control and px-nested (padding steps in by one margin on a side whose first or last child is .icon; wrap the label in a <span>), gap-gutter, gap-gutter-half",
+    levels: "p-surface, p-dialog (each minus the border), p-region, p-page, with px- and py- versions; gap-field, gap-row, gap-group, gap-section, gap-page; mt-section, mb-section. After Affine's container levels.",
+    tiers: "tier-product (1×), tier-content (font +2px, spacing 1.5×), tier-brand (font +4px, spacing 2×). Each is a scope: --F and everything derived recompute inside it.",
     icons: "icon (an S-square box, glyph --icon-md), icon-sm, icon-md, icon-lg. Glyphs: Phosphor web font (<i class=\"icon ph ph-floppy-disk\">; ph-bold at sm, ph-light at lg) or an inline <svg> inside .icon.",
     sizing: "w-, h-, min-/max- with 0, full, screen (100vw/100vh), fit; h-dvh, h-svh, h-lvh and min-/max- versions; max-w-text (alias max-w-prose), max-w-form, max-w-container, h-control",
   },
@@ -399,6 +427,7 @@ writeFileSync(join(root, "nowind.manifest.json"), JSON.stringify(manifest, null,
 // ---- classes.md: every base class and its declarations, for readers without a local server ----
 const GROUPS = [
   ["Controls and icons", (c) => /^(icon|h-control|h-nested|size-control|size-nested|min-w-control|min-w-nested|px-control|px-nested|gap-gutter)/.test(c)],
+  ["Levels and tiers", (c) => /^(p[xy]?-(surface|dialog|region|page)|gap-(field|row|group|section|page)|m[tb]-section|tier-)/.test(c)],
   ["Type", (c, d) => /font-size/.test(d)],
   ["Text color", (c, d) => /^color:/.test(d)],
   ["Background color", (c, d) => /^background-color:/.test(d)],

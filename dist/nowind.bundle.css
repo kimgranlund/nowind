@@ -1394,6 +1394,10 @@
   --region-factor: 1;
   --page-factor: 1;
   --tier: 1;
+  --tier-content: 1.5;
+  --tier-brand: 2;
+  --tier-content-text: 2px;
+  --tier-brand-text: 4px;
   --radius-slope: 1;
   --radius-offset: -6px;
   --corner-factor: 1;
@@ -1411,11 +1415,11 @@
   --F: var(--text-base);
 }
 
-.scope {
+.scope, .tier-product, .tier-content, .tier-brand {
   --F: 1em;
 }
 
-:root, .scope {
+:root, .scope, .tier-product, .tier-content, .tier-brand {
   --slot: calc(var(--slot-slope) * var(--F) + var(--slot-offset));
   --q: calc(var(--q-slope) * var(--F) + var(--q-offset));
   --margin: max(calc(var(--mg) * (var(--slot) - var(--F) + var(--margin-offset))), var(--border-width));
@@ -1452,7 +1456,7 @@
   --container-padding: var(--page-margin);
 }
 
-:root, .scope {
+:root, .scope, .tier-product, .tier-content, .tier-brand {
   --shadow-xs:
     0 calc(var(--q) * 0.0625) calc(var(--q) * 0.125) 0 light-dark(rgb(27 28 32 / 0.192), rgb(0 0 0 / 0.48)),
     0 calc(var(--q) * 0.125) calc(var(--q) * 0.25) calc(var(--q) * -0.0313) light-dark(rgb(27 28 32 / 0.098), rgb(0 0 0 / 0.251)),
@@ -1495,7 +1499,7 @@
     inset 0 calc(var(--q) * 0.5) calc(var(--q) * 1) 0 light-dark(rgb(27 28 32 / 0.029), rgb(0 0 0 / 0.057));
 }
 
-:root, .scope {
+:root, .scope, .tier-product, .tier-content, .tier-brand {
   --space-3xs: calc(0.25 * var(--F));
   --space-2xs: calc(0.5 * var(--F));
   --space-xs: calc(0.75 * var(--F));
@@ -2981,6 +2985,28 @@
   .px-control { padding-inline: var(--control-padding); }
   .px-nested { padding-inline: var(--nested-padding); }
   .gap-gutter { gap: var(--gutter); }
+  .p-surface { padding: calc(var(--surface-padding) - var(--border-width)); }
+  .px-surface { padding-inline: calc(var(--surface-padding) - var(--border-width)); }
+  .py-surface { padding-block: calc(var(--surface-padding) - var(--border-width)); }
+  .p-dialog { padding: calc(var(--dialog-padding) - var(--border-width)); }
+  .px-dialog { padding-inline: calc(var(--dialog-padding) - var(--border-width)); }
+  .py-dialog { padding-block: calc(var(--dialog-padding) - var(--border-width)); }
+  .p-region { padding: var(--region-padding); }
+  .px-region { padding-inline: var(--region-padding); }
+  .py-region { padding-block: var(--region-padding); }
+  .p-page { padding: var(--page-margin); }
+  .px-page { padding-inline: var(--page-margin); }
+  .py-page { padding-block: var(--page-margin); }
+  .gap-field { gap: var(--field-gap); }
+  .gap-row { gap: var(--row-gap); }
+  .gap-group { gap: var(--group-gap); }
+  .gap-section { gap: var(--section-gap); }
+  .gap-page { gap: var(--page-margin); }
+  .mt-section { margin-top: var(--section-gap); }
+  .mb-section { margin-bottom: var(--section-gap); }
+  .tier-product { --tier: 1; }
+  .tier-content { --tier: var(--tier-content); font-size: calc(1em + var(--tier-content-text)); }
+  .tier-brand { --tier: var(--tier-brand); font-size: calc(1em + var(--tier-brand-text)); }
   .gap-gutter-half { gap: calc(var(--gutter) / 2); }
   .icon { display: inline-flex; align-items: center; justify-content: center; flex: none; width: var(--icon-box); height: var(--icon-box); font-size: var(--icon-md); line-height: 1; }
   .icon-sm { font-size: var(--icon-sm); }

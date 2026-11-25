@@ -1,4 +1,4 @@
-:root, .scope {
+:root, .scope, .tier-product, .tier-content, .tier-brand {
   --shadow-xs:
     0 calc(var(--q) * 0.0625) calc(var(--q) * 0.125) 0 light-dark(rgb(27 28 32 / 0.192), rgb(0 0 0 / 0.48)),
     0 calc(var(--q) * 0.125) calc(var(--q) * 0.25) calc(var(--q) * -0.0313) light-dark(rgb(27 28 32 / 0.098), rgb(0 0 0 / 0.251)),

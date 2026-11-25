@@ -91,7 +91,7 @@ ${kicker.map((k) => `  --kicker-${k.name}: max(calc(var(--text-${k.beside}) * ${
 
 // Space is a multiple of --F, as all of Affine's spacing is. At the root --F is --text-base, the same fluid clamp the
 // Utopia space scale would use, so root values match it exactly; inside a .scope, space follows that scope's font size.
-const spaceCss = `${header}:root, .scope {
+const spaceCss = `${header}:root, .scope, .tier-product, .tier-content, .tier-brand {
 ${space.map((s) => `  --space-${s.name}: calc(${s.factor} * var(--F));`).join("\n")}
 }
 `;

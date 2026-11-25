@@ -19,6 +19,10 @@
   --region-factor: 1;
   --page-factor: 1;
   --tier: 1;
+  --tier-content: 1.5;
+  --tier-brand: 2;
+  --tier-content-text: 2px;
+  --tier-brand-text: 4px;
   --radius-slope: 1;
   --radius-offset: -6px;
   --corner-factor: 1;
@@ -36,11 +40,11 @@
   --F: var(--text-base);
 }
 
-.scope {
+.scope, .tier-product, .tier-content, .tier-brand {
   --F: 1em;
 }
 
-:root, .scope {
+:root, .scope, .tier-product, .tier-content, .tier-brand {
   --slot: calc(var(--slot-slope) * var(--F) + var(--slot-offset));
   --q: calc(var(--q-slope) * var(--F) + var(--q-offset));
   --margin: max(calc(var(--mg) * (var(--slot) - var(--F) + var(--margin-offset))), var(--border-width));

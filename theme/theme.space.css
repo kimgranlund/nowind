@@ -1,4 +1,4 @@
-:root, .scope {
+:root, .scope, .tier-product, .tier-content, .tier-brand {
   --space-3xs: calc(0.25 * var(--F));
   --space-2xs: calc(0.5 * var(--F));
   --space-xs: calc(0.75 * var(--F));

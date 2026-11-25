@@ -1251,6 +1251,28 @@
   .px-control { padding-inline: var(--control-padding); }
   .px-nested { padding-inline: var(--nested-padding); }
   .gap-gutter { gap: var(--gutter); }
+  .p-surface { padding: calc(var(--surface-padding) - var(--border-width)); }
+  .px-surface { padding-inline: calc(var(--surface-padding) - var(--border-width)); }
+  .py-surface { padding-block: calc(var(--surface-padding) - var(--border-width)); }
+  .p-dialog { padding: calc(var(--dialog-padding) - var(--border-width)); }
+  .px-dialog { padding-inline: calc(var(--dialog-padding) - var(--border-width)); }
+  .py-dialog { padding-block: calc(var(--dialog-padding) - var(--border-width)); }
+  .p-region { padding: var(--region-padding); }
+  .px-region { padding-inline: var(--region-padding); }
+  .py-region { padding-block: var(--region-padding); }
+  .p-page { padding: var(--page-margin); }
+  .px-page { padding-inline: var(--page-margin); }
+  .py-page { padding-block: var(--page-margin); }
+  .gap-field { gap: var(--field-gap); }
+  .gap-row { gap: var(--row-gap); }
+  .gap-group { gap: var(--group-gap); }
+  .gap-section { gap: var(--section-gap); }
+  .gap-page { gap: var(--page-margin); }
+  .mt-section { margin-top: var(--section-gap); }
+  .mb-section { margin-bottom: var(--section-gap); }
+  .tier-product { --tier: 1; }
+  .tier-content { --tier: var(--tier-content); font-size: calc(1em + var(--tier-content-text)); }
+  .tier-brand { --tier: var(--tier-brand); font-size: calc(1em + var(--tier-brand-text)); }
   .gap-gutter-half { gap: calc(var(--gutter) / 2); }
   .icon { display: inline-flex; align-items: center; justify-content: center; flex: none; width: var(--icon-box); height: var(--icon-box); font-size: var(--icon-md); line-height: 1; }
   .icon-sm { font-size: var(--icon-sm); }

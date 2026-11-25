@@ -3,7 +3,7 @@
   "description": "Nowind geometry: every length derives from one input, --F, after Affine UI. At the root --F is the fluid body size (--text-base, 14px at a 360px viewport to 18px at 1240px), so controls, radii, icons and shadows grow with the type. A .scope sets --F to its own font size (1em), so a part of the page can be pinned or resized.",
   "source": "affine-ui tokens/control, tokens/levels, tokens/tiers, tokens/radius",
   "scopes": {
-    "selector": ":root, .scope",
+    "selector": ":root, .scope, .tier-product, .tier-content, .tier-brand",
     "rule": "--F is declared twice: :root { --F: var(--text-base) } follows the fluid type scale; .scope { --F: 1em } follows the scope's font-size. Everything derived is declared on :root and on every .scope, so it recomputes in both. --F is registered with @property as a <length>, so it resolves to px."
   },
   "inputs": [
@@ -131,6 +131,26 @@
       "token": "--q-offset",
       "value": "-6.75px",
       "use": "See --q-slope."
+    },
+    {
+      "token": "--tier-content",
+      "value": "1.5",
+      "use": "--tier inside .tier-content: page, section, surface and dialog spacing grow 1.5×."
+    },
+    {
+      "token": "--tier-brand",
+      "value": "2",
+      "use": "--tier inside .tier-brand."
+    },
+    {
+      "token": "--tier-content-text",
+      "value": "2px",
+      "use": ".tier-content sets its font size this much above its parent's."
+    },
+    {
+      "token": "--tier-brand-text",
+      "value": "4px",
+      "use": ".tier-brand sets its font size this much above its parent's."
     }
   ],
   "control": [
@@ -353,5 +373,9 @@
       "margin": "9px",
       "controlHeight": "46px"
     }
+  },
+  "tiers": {
+    "rule": "After Affine's space tiers. .tier-product (1×, the default), .tier-content (font +2px, spacing 1.5×) and .tier-brand (font +4px, spacing 2×) are scopes: --F and everything derived from it recompute inside them. --tier multiplies --page-margin and --section-gap; --tier-inner (half strength, at least 1) multiplies --surface-padding and --dialog-padding.",
+    "selectors": ".scope, .tier-product, .tier-content, .tier-brand share the scope declarations in theme.geometry.css, theme.space.css and theme.shadows.css."
   }
 }

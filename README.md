@@ -88,6 +88,29 @@ Classes follow `property-value`. Color classes take the token name without `--`,
 | Layout | `container`, `flex`, `flex-col`, `items-center`, `justify-between`, `grid`, `hidden`, `relative`, `z-10` |
 | Sizing | `w-full`, `w-fit`, `h-control`, `max-w-text` (or `max-w-prose`), `max-w-form`, `min-h-screen`, `min-h-dvh` |
 
+### Container levels and tiers
+
+Affine pads by what a box is, not by a size. These classes read the geometry tokens, so they grow with the type and follow a `.scope`:
+
+| Class | Use | At 16px |
+|---|---|---|
+| `p-surface` | Card or panel (slot − border) | 23px |
+| `p-dialog` | Dialog (control height − border) | 37px |
+| `p-region` | Sidebar | 24px |
+| `p-page` | Page content area (tier × control height) | 38px |
+| `gap-field` | Label to control, control to help | 7px |
+| `gap-row` | Controls side by side | 14px |
+| `gap-group` | Field to field | 19px |
+| `gap-section`, `mt-section`, `mb-section` | Before a new section (tier × slot) | 24px |
+
+Each padding class also has `px-` and `py-` versions.
+
+Tiers change the rhythm of a whole region. `tier-content` raises the font size by 2px and multiplies page and section spacing by 1.5; `tier-brand` adds 4px and 2×. `tier-product` is the default. Every size inside a tier recomputes, as inside a `.scope`.
+
+```html
+<article class="tier-content">…</article>
+```
+
 ### Buttons and icons
 
 Nowind has no button component; a button is a stack of utilities. The geometry follows Affine UI: one control height tall, text padded by the text edge, and a side that holds an icon padded one margin less, so the icon's box sits one margin from the edge. An icon alone makes a square.

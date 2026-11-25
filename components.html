@@ -39,8 +39,8 @@
     <span class="text-kicker text-fg-accent-1-weak">Actions</span>
     <h2 class="text-heading-lg mb-md">Buttons</h2>
 
-    <div class="p-lg rounded-lg bg-bg border border-border-weak shadow-sm flex flex-col gap-lg">
-      <div class="flex flex-wrap items-center gap-sm">
+    <div class="p-surface rounded-lg bg-bg border border-border-weak shadow-sm flex flex-col gap-group">
+      <div class="flex flex-wrap items-center gap-row">
         <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong text-on-solid-accent-1 text-title-sm cursor-pointer"><span>Primary</span></button>
         <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border border-border bg-component-weak hover:bg-component text-fg text-title-sm cursor-pointer"><span>Secondary</span></button>
         <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border-0 bg-transparent hover:bg-component-weak text-fg text-title-sm cursor-pointer"><span>Ghost</span></button>
@@ -49,7 +49,7 @@
         <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border border-border bg-component-weak text-fg text-title-sm opacity-50 cursor-not-allowed" disabled><span>Disabled</span></button>
       </div>
 
-      <div class="flex flex-wrap items-center gap-sm">
+      <div class="flex flex-wrap items-center gap-row">
         <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border border-border bg-component-weak hover:bg-component text-fg text-title-sm cursor-pointer"><i class="icon ph ph-download-simple"></i><span>Download</span></button>
         <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border border-border bg-component-weak hover:bg-component text-fg text-title-sm cursor-pointer"><span>Continue</span><i class="icon ph ph-arrow-right"></i></button>
         <button class="inline-flex items-center justify-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component text-fg cursor-pointer" aria-label="Settings"><i class="icon ph ph-gear"></i></button>
@@ -90,28 +90,28 @@
     </div>
 
     <div class="flex flex-col gap-sm mb-lg max-w-form">
-      <div class="flex gap-sm p-md rounded-lg bg-component-info-weak border border-border-info-weak" role="status">
+      <div class="flex gap-gutter p-surface rounded-lg bg-component-info-weak border border-border-info-weak" role="status">
         <i class="icon ph ph-info text-fg-info-weak"></i>
         <div class="flex flex-col gap-3xs">
           <span class="text-title text-fg-info">A new version is available</span>
           <span class="text-body-sm text-fg-info-weak">Reload to get the latest fixes. Your work is saved.</span>
         </div>
       </div>
-      <div class="flex gap-sm p-md rounded-lg bg-component-success-weak border border-border-success-weak" role="status">
+      <div class="flex gap-gutter p-surface rounded-lg bg-component-success-weak border border-border-success-weak" role="status">
         <i class="icon ph ph-check-circle text-fg-success-weak"></i>
         <div class="flex flex-col gap-3xs">
           <span class="text-title text-fg-success">Payment received</span>
           <span class="text-body-sm text-fg-success-weak">We emailed a receipt to the billing contact.</span>
         </div>
       </div>
-      <div class="flex gap-sm p-md rounded-lg bg-component-warning-weak border border-border-warning-weak" role="status">
+      <div class="flex gap-gutter p-surface rounded-lg bg-component-warning-weak border border-border-warning-weak" role="status">
         <i class="icon ph ph-warning text-fg-warning-weak"></i>
         <div class="flex flex-col gap-3xs">
           <span class="text-title text-fg-warning">Your trial ends in 3 days</span>
           <span class="text-body-sm text-fg-warning-weak">Add a payment method to keep your projects active.</span>
         </div>
       </div>
-      <div class="flex gap-sm p-md rounded-lg bg-component-danger-weak border border-border-danger-weak" role="alert">
+      <div class="flex gap-gutter p-surface rounded-lg bg-component-danger-weak border border-border-danger-weak" role="alert">
         <i class="icon ph ph-warning-octagon text-fg-danger-weak"></i>
         <div class="flex flex-col gap-3xs grow">
           <span class="text-title text-fg-danger">Deployment failed</span>
@@ -136,29 +136,29 @@
     <span class="text-kicker text-fg-accent-1-weak">Input</span>
     <h2 class="text-heading-lg mb-md">Forms</h2>
 
-    <form class="max-w-form p-lg rounded-lg bg-bg border border-border-weak shadow-sm flex flex-col gap-md" onsubmit="return false">
-      <div class="flex flex-col gap-2xs">
+    <form class="max-w-form p-surface rounded-lg bg-bg border border-border-weak shadow-sm flex flex-col gap-group" onsubmit="return false">
+      <div class="flex flex-col gap-field">
         <label for="name" class="text-label text-fg">Full name</label>
         <input id="name" class="h-control px-control rounded-sm border border-border bg-bg text-control-md w-full" placeholder="Ada Lovelace">
       </div>
-      <div class="flex flex-col gap-2xs">
+      <div class="flex flex-col gap-field">
         <label for="email" class="text-label text-fg">Email</label>
         <input id="email" type="email" class="h-control px-control rounded-sm border border-border-danger bg-bg text-control-md w-full" value="ada@" aria-invalid="true" aria-describedby="email-error">
         <span id="email-error" class="inline-flex items-center gap-3xs text-caption text-fg-danger-weak"><i class="icon icon-sm ph-bold ph-warning-circle"></i><span>Enter a complete email address.</span></span>
       </div>
-      <div class="flex flex-col md:flex-row gap-md">
-        <div class="flex flex-col gap-2xs flex-1">
+      <div class="flex flex-col md:flex-row gap-group">
+        <div class="flex flex-col gap-field flex-1">
           <label for="role" class="text-label text-fg">Role</label>
           <select id="role" class="h-control px-control rounded-sm border border-border bg-bg text-control-md w-full">
             <option>Designer</option><option>Engineer</option><option>Manager</option>
           </select>
         </div>
-        <div class="flex flex-col gap-2xs flex-1">
+        <div class="flex flex-col gap-field flex-1">
           <label for="team" class="text-label text-fg">Team size</label>
           <input id="team" type="number" class="h-control px-control rounded-sm border border-border bg-bg text-control-md tabular-nums w-full" value="12">
         </div>
       </div>
-      <div class="flex flex-col gap-2xs">
+      <div class="flex flex-col gap-field">
         <label for="bio" class="text-label text-fg">Bio</label>
         <textarea id="bio" class="p-xs rounded-sm border border-border bg-bg text-control-md w-full" placeholder="A sentence or two"></textarea>
         <span class="text-caption text-fg-weak">Shown on your public profile.</span>
@@ -173,7 +173,7 @@
         <label class="flex items-center gap-sm p-sm rounded border border-border-accent-1 bg-component-accent-1-weak cursor-pointer"><input type="radio" name="plan" checked><span class="flex flex-col grow"><span class="text-title-sm">Team</span><span class="text-caption text-fg-weak">Up to 20 people</span></span><span class="text-data">$12</span></label>
         <label class="flex items-center gap-sm p-sm rounded border border-border cursor-pointer"><input type="radio" name="plan"><span class="flex flex-col grow"><span class="text-title-sm">Business</span><span class="text-caption text-fg-weak">Unlimited people, SSO</span></span><span class="text-data">$24</span></label>
       </fieldset>
-      <div class="flex justify-end gap-sm pt-sm border-t border-border-weak">
+      <div class="flex justify-end gap-row pt-sm border-t border-border-weak">
         <button type="button" class="inline-flex items-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component text-fg text-title-sm cursor-pointer"><span>Cancel</span></button>
         <button type="submit" class="inline-flex items-center h-control px-control rounded-sm border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong text-on-solid-accent-1 text-title-sm cursor-pointer"><span>Save profile</span></button>
       </div>
@@ -186,21 +186,21 @@
     <h2 class="text-heading-lg mb-md">Cards, stats, lists and tables</h2>
 
     <div class="flex flex-col md:flex-row gap-md mb-lg">
-      <div class="flex-1 p-lg rounded-lg bg-bg border border-border-weak shadow-xs">
+      <div class="flex-1 p-surface rounded-lg bg-bg border border-border-weak shadow-xs">
         <span class="text-label text-fg-weak">Revenue</span>
         <div class="flex items-baseline gap-xs mt-2xs">
           <span class="text-figure">$48,210</span>
           <span class="inline-flex items-center text-caption text-fg-success-weak"><i class="icon icon-sm ph-bold ph-trend-up"></i><span>12%</span></span>
         </div>
       </div>
-      <div class="flex-1 p-lg rounded-lg bg-bg border border-border-weak shadow-xs">
+      <div class="flex-1 p-surface rounded-lg bg-bg border border-border-weak shadow-xs">
         <span class="text-label text-fg-weak">Active users</span>
         <div class="flex items-baseline gap-xs mt-2xs">
           <span class="text-figure">2,318</span>
           <span class="inline-flex items-center text-caption text-fg-danger-weak"><i class="icon icon-sm ph-bold ph-trend-down"></i><span>3%</span></span>
         </div>
       </div>
-      <div class="flex-1 p-lg rounded-lg bg-bg border border-border-weak shadow-xs">
+      <div class="flex-1 p-surface rounded-lg bg-bg border border-border-weak shadow-xs">
         <span class="text-label text-fg-weak">Uptime</span>
         <div class="flex items-baseline gap-xs mt-2xs">
           <span class="text-figure">99.98%</span>
@@ -212,34 +212,34 @@
     <div class="flex flex-col md:flex-row gap-md mb-lg">
       <article class="flex-1 flex flex-col rounded-lg bg-bg border border-border-weak shadow-sm overflow-hidden">
         <div class="aspect-video bg-accent-2-a4 flex items-center justify-center text-fg-accent-2-weak"><i class="icon icon-lg ph-light ph-mountains"></i></div>
-        <div class="flex flex-col gap-2xs p-lg grow">
+        <div class="flex flex-col gap-field p-surface grow">
           <span class="text-kicker text-fg-accent-2-weak">Guide</span>
           <h3 class="text-title">Designing with fluid type</h3>
           <p class="text-body-sm text-fg-weak">Sizes that grow with the screen, without a single media query.</p>
         </div>
-        <div class="flex items-center justify-between px-lg py-sm border-t border-border-weak">
+        <div class="flex items-center justify-between px-surface py-sm border-t border-border-weak">
           <span class="text-caption text-fg-weak">6 min read</span>
           <a href="#" class="inline-flex items-center gap-3xs text-title-sm text-fg-accent-1-weak hover:text-fg-accent-1 no-underline"><span>Read</span><i class="icon icon-sm ph-bold ph-arrow-right"></i></a>
         </div>
       </article>
 
       <div class="flex-1 rounded-lg bg-bg border border-border-weak shadow-sm overflow-hidden">
-        <div class="flex items-center justify-between px-lg py-sm border-b border-border-weak">
+        <div class="flex items-center justify-between px-surface py-sm border-b border-border-weak">
           <h3 class="text-title">Team</h3>
           <button class="inline-flex items-center h-nested px-nested gap-gutter-half rounded-xs border border-border bg-component-weak hover:bg-component text-label cursor-pointer"><i class="icon icon-sm ph-bold ph-plus"></i><span>Invite</span></button>
         </div>
         <ul role="list" class="flex flex-col">
-          <li class="flex items-center gap-sm px-lg py-sm hover:bg-component-weak">
+          <li class="flex items-center gap-sm px-surface py-sm hover:bg-component-weak">
             <span class="inline-flex items-center justify-center size-control rounded-full bg-solid-accent-1 text-on-solid-accent-1 text-title-sm">AL</span>
             <span class="flex flex-col grow min-w-0"><span class="text-subtitle truncate">Ada Lovelace</span><span class="text-caption text-fg-weak truncate">ada@example.com</span></span>
             <span class="px-xs rounded-full bg-component-accent-1-weak text-fg-accent-1-weak text-label">Owner</span>
           </li>
-          <li class="flex items-center gap-sm px-lg py-sm border-t border-border-weak hover:bg-component-weak">
+          <li class="flex items-center gap-sm px-surface py-sm border-t border-border-weak hover:bg-component-weak">
             <span class="inline-flex items-center justify-center size-control rounded-full bg-solid-accent-3 text-on-solid-accent-3 text-title-sm">GH</span>
             <span class="flex flex-col grow min-w-0"><span class="text-subtitle truncate">Grace Hopper</span><span class="text-caption text-fg-weak truncate">grace@example.com</span></span>
             <span class="px-xs rounded-full bg-component-weak text-fg-weak text-label">Editor</span>
           </li>
-          <li class="flex items-center gap-sm px-lg py-sm border-t border-border-weak hover:bg-component-weak">
+          <li class="flex items-center gap-sm px-surface py-sm border-t border-border-weak hover:bg-component-weak">
             <span class="inline-flex items-center justify-center size-control rounded-full bg-solid-accent-4 text-on-solid-accent-4 text-title-sm">KJ</span>
             <span class="flex flex-col grow min-w-0"><span class="text-subtitle truncate">Katherine Johnson</span><span class="text-caption text-fg-weak truncate">katherine@example.com</span></span>
             <span class="px-xs rounded-full bg-component-weak text-fg-weak text-label">Viewer</span>
@@ -287,7 +287,7 @@
     <span class="text-kicker text-fg-accent-1-weak">Wayfinding</span>
     <h2 class="text-heading-lg mb-md">Navigation</h2>
 
-    <div class="p-lg rounded-lg bg-bg border border-border-weak shadow-sm flex flex-col gap-lg">
+    <div class="p-surface rounded-lg bg-bg border border-border-weak shadow-sm flex flex-col gap-group">
       <nav aria-label="Breadcrumb">
         <ol role="list" class="flex flex-wrap items-center gap-2xs text-body-sm text-fg-weak">
           <li><a href="#" class="text-fg-weak hover:text-fg no-underline">Projects</a></li>
@@ -333,12 +333,45 @@
     </div>
   </section>
 
+  <!-- Tiers -->
+  <section id="tiers" class="mb-3xl">
+    <span class="text-kicker text-fg-accent-1-weak">Rhythm</span>
+    <h2 class="text-heading-lg mb-xs">Container levels and tiers</h2>
+    <p class="text-body-sm text-fg-weak max-w-text mb-md">The same card in each of Affine's tiers. Padding comes from <code>p-surface</code> and gaps from <code>gap-field</code> and <code>gap-row</code>; a tier raises the font size and multiplies the spacing.</p>
+    <div class="flex flex-col md:flex-row items-start gap-group">
+      <div class="tier-product flex-1">
+        <span class="text-kicker text-fg-weak">tier-product</span>
+        <div class="flex flex-col gap-field p-surface mt-2xs rounded-lg bg-bg border border-border-weak shadow-sm">
+          <h3 class="text-title">Invite your team</h3>
+          <p class="text-body-sm text-fg-weak">Members can edit every project.</p>
+          <div class="flex gap-row"><button class="inline-flex items-center h-control px-control rounded-sm border-0 bg-solid-accent-1 text-on-solid-accent-1 text-title-sm cursor-pointer"><span>Invite</span></button></div>
+        </div>
+      </div>
+      <div class="tier-content flex-1">
+        <span class="text-kicker text-fg-weak">tier-content</span>
+        <div class="flex flex-col gap-field p-surface mt-2xs rounded-lg bg-bg border border-border-weak shadow-sm">
+          <h3 class="text-title">Invite your team</h3>
+          <p class="text-body-sm text-fg-weak">Members can edit every project.</p>
+          <div class="flex gap-row"><button class="inline-flex items-center h-control px-control rounded-sm border-0 bg-solid-accent-1 text-on-solid-accent-1 text-title-sm cursor-pointer"><span>Invite</span></button></div>
+        </div>
+      </div>
+      <div class="tier-brand flex-1">
+        <span class="text-kicker text-fg-weak">tier-brand</span>
+        <div class="flex flex-col gap-field p-surface mt-2xs rounded-lg bg-bg border border-border-weak shadow-sm">
+          <h3 class="text-title">Invite your team</h3>
+          <p class="text-body-sm text-fg-weak">Members can edit every project.</p>
+          <div class="flex gap-row"><button class="inline-flex items-center h-control px-control rounded-sm border-0 bg-solid-accent-1 text-on-solid-accent-1 text-title-sm cursor-pointer"><span>Invite</span></button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Empty state and dialog -->
   <section id="overlays" class="mb-2xl">
     <span class="text-kicker text-fg-accent-1-weak">Surfaces</span>
     <h2 class="text-heading-lg mb-md">Empty state and dialog</h2>
 
-    <div class="flex flex-col md:flex-row gap-md">
+    <div class="flex flex-col md:flex-row gap-group">
       <div class="flex-1 flex flex-col items-center justify-center text-center gap-xs p-2xl rounded-lg border-2 border-dashed border-border">
         <span class="inline-flex items-center justify-center size-control rounded-full bg-component-weak text-fg-weak"><i class="icon ph ph-folder-open"></i></span>
         <h3 class="text-title">No projects yet</h3>
@@ -346,14 +379,14 @@
         <button class="inline-flex items-center h-control px-control gap-gutter rounded-sm border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong text-on-solid-accent-1 text-title-sm cursor-pointer mt-xs"><i class="icon ph ph-plus"></i><span>New project</span></button>
       </div>
 
-      <div class="flex-1 flex items-center justify-center p-lg rounded-lg bg-scrim">
-        <div class="flex flex-col gap-md p-lg rounded-xl bg-bg shadow-xl max-w-form w-full" role="dialog" aria-labelledby="dlg-title">
+      <div class="flex-1 flex items-center justify-center p-surface rounded-lg bg-scrim">
+        <div class="flex flex-col gap-group p-dialog rounded-xl bg-bg shadow-xl max-w-form w-full" role="dialog" aria-labelledby="dlg-title">
           <div class="flex items-start justify-between gap-sm">
             <h3 id="dlg-title" class="text-title">Delete project?</h3>
             <button class="inline-flex items-center justify-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-component-weak text-fg-weak cursor-pointer" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
           </div>
           <p class="text-body-sm text-fg-weak">This removes the project and its 14 files for everyone. You can't undo this.</p>
-          <div class="flex justify-end gap-sm">
+          <div class="flex justify-end gap-row">
             <button class="inline-flex items-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component text-fg text-title-sm cursor-pointer"><span>Cancel</span></button>
             <button class="inline-flex items-center h-control px-control gap-gutter rounded-sm border-0 bg-solid-danger hover:bg-solid-danger-strong text-on-solid-danger text-title-sm cursor-pointer"><i class="icon ph ph-trash"></i><span>Delete</span></button>
           </div>
