@@ -1470,12 +1470,12 @@
   .animate-spin { animation: nw-spin 1s linear infinite; }
   .animate-pulse { animation: nw-pulse 2s var(--ease-standard) infinite; }
   .animate-none { animation: none; }
-  .anchor-bottom { position-area: block-end span-inline-end; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: 0; margin-block: var(--space-3xs); min-inline-size: anchor-size(width); }
-  .anchor-top { position-area: block-start span-inline-end; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: 0; margin-block: var(--space-3xs); min-inline-size: anchor-size(width); }
-  .anchor-end { position-area: inline-end span-block-end; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: 0; margin-inline: var(--space-3xs); min-block-size: anchor-size(height); }
-  .anchor-start { position-area: inline-start span-block-end; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: 0; margin-inline: var(--space-3xs); min-block-size: anchor-size(height); }
-  .anchor-bottom-end { position-area: block-end span-inline-start; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: 0; margin-block: var(--space-3xs); min-inline-size: anchor-size(width); }
-  .anchor-center { position-area: block-end center; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: 0; margin-block: var(--space-3xs); min-inline-size: anchor-size(width); }
+  .anchor-bottom { position-area: block-end span-inline-end; position-try-fallbacks: flip-block, flip-inline; position-try-order: normal; inset: auto; margin: 0; margin-block: var(--space-3xs); min-inline-size: anchor-size(width); }
+  .anchor-top { position-area: block-start span-inline-end; position-try-fallbacks: flip-block, flip-inline; position-try-order: normal; inset: auto; margin: 0; margin-block: var(--space-3xs); min-inline-size: anchor-size(width); }
+  .anchor-end { position-area: inline-end span-block-end; position-try-fallbacks: flip-block, flip-inline; position-try-order: normal; inset: auto; margin: 0; margin-inline: var(--space-3xs); min-block-size: anchor-size(height); }
+  .anchor-start { position-area: inline-start span-block-end; position-try-fallbacks: flip-block, flip-inline; position-try-order: normal; inset: auto; margin: 0; margin-inline: var(--space-3xs); min-block-size: anchor-size(height); }
+  .anchor-bottom-end { position-area: block-end span-inline-start; position-try-fallbacks: flip-block, flip-inline; position-try-order: normal; inset: auto; margin: 0; margin-block: var(--space-3xs); min-inline-size: anchor-size(width); }
+  .anchor-center { position-area: block-end center; position-try-fallbacks: flip-block, flip-inline; position-try-order: normal; inset: auto; margin: 0; margin-block: var(--space-3xs); min-inline-size: anchor-size(width); }
   .select-base { appearance: base-select; align-items: center; }
   .duration-fade { --_duration: var(--duration-fade); transition-duration: var(--duration-fade); }
   .duration-snappy { --_duration: var(--duration-snappy); transition-duration: var(--duration-snappy); }
@@ -1705,7 +1705,7 @@
   @keyframes nw-pulse { 50% { opacity: 0.5; } }
   .cursor-text:has(> .select-base) { anchor-name: --nw-field; anchor-scope: --nw-field; }
   .cursor-text > .select-base::picker(select) { position-anchor: --nw-field; }
-  .select-base::picker(select) { appearance: base-select; position-area: block-end span-inline-end; position-try-fallbacks: flip-block; inset: auto; margin: 0; margin-block: var(--space-3xs); min-inline-size: anchor-size(width); padding: var(--inset); border: var(--border-width) solid var(--border-weak); border-radius: var(--radius-md); background: var(--bg); box-shadow: var(--shadow-lg); }
+  .select-base::picker(select) { appearance: base-select; position-area: block-end span-inline-end; position-try-fallbacks: flip-block; position-try-order: normal; inset: auto; margin: 0; margin-block: var(--space-3xs); min-inline-size: anchor-size(width); padding: var(--inset); border: var(--border-width) solid var(--border-weak); border-radius: var(--radius-md); background: var(--bg); box-shadow: var(--shadow-lg); }
   .select-base option { display: flex; align-items: center; gap: var(--gutter); min-block-size: var(--control-height); padding-inline: var(--control-icon-padding) var(--control-padding); border: var(--border-width) solid transparent; border-radius: var(--radius-sm); }
   .select-base option::checkmark { content: ""; flex: none; inline-size: var(--icon-box); block-size: var(--icon-sm); background: currentColor; mask: var(--glyph-check) center / var(--icon-sm) no-repeat; }
   .select-base option:hover, .select-base option:focus-visible { background: var(--component-weak); outline: none; }

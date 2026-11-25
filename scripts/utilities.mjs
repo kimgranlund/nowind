@@ -210,7 +210,7 @@ add("animate-none", "animation: none");
 // would leave the screen. Where anchor positioning is missing, the popover falls back to the browser's centred box.
 // Anchored popovers start flush with their trigger's edge, are at least as wide (or tall) as it, sit one 3xs gap away
 // on the side facing it, and flip at the screen edge.
-const ANCHOR = "position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: 0";
+const ANCHOR = "position-try-fallbacks: flip-block, flip-inline; position-try-order: normal; inset: auto; margin: 0";
 const BLOCK = `${ANCHOR}; margin-block: var(--space-3xs); min-inline-size: anchor-size(width)`;
 const INLINE = `${ANCHOR}; margin-inline: var(--space-3xs); min-block-size: anchor-size(height)`;
 add("anchor-bottom", `position-area: block-end span-inline-end; ${BLOCK}`);
@@ -616,7 +616,7 @@ out.push("  @keyframes nw-spin { to { rotate: 360deg; } }");
 out.push("  @keyframes nw-pulse { 50% { opacity: 0.5; } }");
 out.push("  .cursor-text:has(> .select-base) { anchor-name: --nw-field; anchor-scope: --nw-field; }");
 out.push("  .cursor-text > .select-base::picker(select) { position-anchor: --nw-field; }");
-out.push("  .select-base::picker(select) { appearance: base-select; position-area: block-end span-inline-end; position-try-fallbacks: flip-block; inset: auto; margin: 0; margin-block: var(--space-3xs); min-inline-size: anchor-size(width); padding: var(--inset); border: var(--border-width) solid var(--border-weak); border-radius: var(--radius-md); background: var(--bg); box-shadow: var(--shadow-lg); }");
+out.push("  .select-base::picker(select) { appearance: base-select; position-area: block-end span-inline-end; position-try-fallbacks: flip-block; position-try-order: normal; inset: auto; margin: 0; margin-block: var(--space-3xs); min-inline-size: anchor-size(width); padding: var(--inset); border: var(--border-width) solid var(--border-weak); border-radius: var(--radius-md); background: var(--bg); box-shadow: var(--shadow-lg); }");
 out.push("  .select-base option { display: flex; align-items: center; gap: var(--gutter); min-block-size: var(--control-height); padding-inline: var(--control-icon-padding) var(--control-padding); border: var(--border-width) solid transparent; border-radius: var(--radius-sm); }");
 out.push("  .select-base option::checkmark { content: \"\"; flex: none; inline-size: var(--icon-box); block-size: var(--icon-sm); background: currentColor; mask: var(--glyph-check) center / var(--icon-sm) no-repeat; }");
 out.push("  .select-base option:hover, .select-base option:focus-visible { background: var(--component-weak); outline: none; }");
