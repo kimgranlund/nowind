@@ -171,14 +171,14 @@
     <form class="max-w-form p-md rounded-md bg-neutral-1 border border-neutral-6 shadow-sm flex flex-col gap-md" onsubmit="return false">
       <div class="flex flex-col gap-2xs">
         <label for="name" class="text-sm font-medium fg-neutral-12">Full name</label>
-        <div class="flex items-center gap-gutter h-control px-control rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition">
+        <div class="flex items-center gap-gutter h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition">
           <i class="icon ph fg-neutral-11 ph-user-circle" aria-hidden="true"></i>
           <input id="name" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12" autocomplete="name" placeholder="Ada Lovelace">
         </div>
       </div>
       <div class="flex flex-col gap-2xs">
         <label for="email" class="text-sm font-medium fg-neutral-12">Email</label>
-        <div class="flex items-center gap-gutter h-control px-control rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition">
+        <div class="flex items-center gap-gutter h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition">
           <i class="icon ph fg-neutral-11 ph-envelope-simple" aria-hidden="true"></i>
           <input id="email" type="email" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12" autocomplete="email" value="ada@" aria-invalid="true" aria-describedby="email-error">
           <i class="icon ph ph-warning-circle fg-danger-11" aria-hidden="true"></i>
@@ -188,7 +188,7 @@
       <div class="flex flex-col md:flex-row gap-md">
         <div class="flex flex-col gap-2xs flex-1 min-w-0">
           <label for="role" class="text-sm font-medium fg-neutral-12">Role</label>
-          <div class="flex items-center gap-gutter h-control px-control rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition">
+          <div class="flex items-center gap-gutter h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition">
             <i class="icon ph fg-neutral-11 ph-briefcase" aria-hidden="true"></i>
             <select id="role" class="select-base grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 cursor-pointer">
               <button class="grow min-w-0 p-0 border-0 bg-transparent text-start"><selectedcontent class="block truncate"></selectedcontent></button>
@@ -198,7 +198,7 @@
         </div>
         <div class="flex flex-col gap-2xs flex-1 min-w-0">
           <label for="team" class="text-sm font-medium fg-neutral-12">Team size</label>
-          <div class="flex items-center gap-gutter h-control px-control rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition">
+          <div class="flex items-center gap-gutter h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition">
             <i class="icon ph fg-neutral-11 ph-users-three" aria-hidden="true"></i>
             <input id="team" type="number" min="1" step="1" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 tabular-nums" value="12">
             <span class="fg-neutral-11" aria-hidden="true">people</span>
@@ -207,7 +207,7 @@
       </div>
       <div class="flex flex-col gap-2xs">
         <label for="bio" class="text-sm font-medium fg-neutral-12">Bio</label>
-        <textarea id="bio" maxlength="160" class="py-xs px-sm rounded-sm border hover:border-neutral-8 bg-neutral-1 fg-neutral-12 text-base w-full" placeholder="A sentence or two" aria-describedby="bio-help"></textarea>
+        <textarea id="bio" maxlength="160" class="py-xs px-sm rounded-sm border border-neutral-5 hover:border-neutral-7 bg-neutral-1 fg-neutral-12 text-base w-full" placeholder="A sentence or two" aria-describedby="bio-help"></textarea>
         <div class="flex justify-between gap-sm text-sm fg-neutral-11"><span id="bio-help">Shown on your public profile.</span><span class="tabular-nums">0/160</span></div>
       </div>
       <fieldset class="min-w-0 flex flex-col gap-xs border-0 p-0">
@@ -224,8 +224,8 @@
       </fieldset>
       <fieldset class="min-w-0 flex flex-col gap-xs border-0 p-0">
         <legend class="text-sm font-medium fg-neutral-12 mb-2xs">Plan</legend>
-        <label class="flex items-center gap-sm p-sm rounded-sm border hover:border-neutral-8 has-checked:border-accent-1-7 has-checked:bg-accent-1-3 cursor-pointer"><input type="radio" name="plan" checked><span class="flex flex-col grow"><span class="text-base font-medium">Team</span><span class="text-sm fg-neutral-11">Up to 20 people</span></span><span class="text-sm font-mono tabular-nums fg-neutral-11">$12</span></label>
-        <label class="flex items-center gap-sm p-sm rounded-sm border hover:border-neutral-8 has-checked:border-accent-1-7 has-checked:bg-accent-1-3 cursor-pointer"><input type="radio" name="plan"><span class="flex flex-col grow"><span class="text-base font-medium">Business</span><span class="text-sm fg-neutral-11">Unlimited people, SSO</span></span><span class="text-sm font-mono tabular-nums fg-neutral-11">$24</span></label>
+        <label class="flex items-center gap-sm p-sm rounded-sm border border-neutral-5 hover:border-neutral-7 has-checked:border-accent-1-7 has-checked:bg-accent-1-3 cursor-pointer"><input type="radio" name="plan" checked><span class="flex flex-col grow"><span class="text-base font-medium">Team</span><span class="text-sm fg-neutral-11">Up to 20 people</span></span><span class="text-sm font-mono tabular-nums fg-neutral-11">$12</span></label>
+        <label class="flex items-center gap-sm p-sm rounded-sm border border-neutral-5 hover:border-neutral-7 has-checked:border-accent-1-7 has-checked:bg-accent-1-3 cursor-pointer"><input type="radio" name="plan"><span class="flex flex-col grow"><span class="text-base font-medium">Business</span><span class="text-sm fg-neutral-11">Unlimited people, SSO</span></span><span class="text-sm font-mono tabular-nums fg-neutral-11">$24</span></label>
       </fieldset>
       <div class="flex flex-wrap justify-end gap-sm pt-sm border-t border-neutral-6">
         <button type="button" class="inline-flex items-center h-control px-control rounded-sm state border border-transparent bg-neutral-a2 fg-neutral-12 text-base font-medium cursor-pointer"><span>Cancel</span></button>
@@ -629,14 +629,14 @@
         </ol>
         <div class="flex flex-col gap-2xs">
           <label for="site" class="text-sm font-medium">Website</label>
-          <div class="flex items-center gap-gutter h-control px-control rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 bg-neutral-1 text-base cursor-text transition">
+          <div class="flex items-center gap-gutter h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 focus-within:border-accent-1-8 bg-neutral-1 text-base cursor-text transition">
             <span class="fg-neutral-11 whitespace-nowrap" aria-hidden="true">https://</span>
             <input id="site" type="text" inputmode="url" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12" autocomplete="url" spellcheck="false" placeholder="example.com">
           </div>
         </div>
         <div class="flex flex-col gap-2xs">
           <label for="q" class="text-sm font-medium">Search</label>
-          <div class="flex items-center gap-gutter h-control px-control rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 bg-neutral-1 text-base cursor-text transition">
+          <div class="flex items-center gap-gutter h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 focus-within:border-accent-1-8 bg-neutral-1 text-base cursor-text transition">
             <i class="icon ph ph-magnifying-glass fg-neutral-11" aria-hidden="true"></i>
             <input id="q" type="search" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12" placeholder="Search docs">
             <kbd class="inline-flex items-center justify-center h-nested min-w-nested px-2xs rounded-xs border border-neutral-6 bg-neutral-2 fg-neutral-11 text-sm font-mono">⌘K</kbd>
@@ -752,14 +752,14 @@
         </div>
         <div class="flex flex-col gap-2xs">
           <label for="tz" class="text-sm font-medium">Time zone</label>
-          <select id="tz" class="select-base h-control px-control rounded-sm border hover:border-neutral-8 bg-neutral-1 text-base w-full">
+          <select id="tz" class="select-base h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 bg-neutral-1 text-base w-full">
             <button class="grow min-w-0 p-0 border-0 bg-transparent text-start"><selectedcontent class="block truncate"></selectedcontent></button>
             <option>Europe/Helsinki (UTC+2)</option><option>Europe/London (UTC+0)</option><option>America/New_York (UTC−5)</option><option>Asia/Tokyo (UTC+9)</option>
           </select>
         </div>
         <div class="flex flex-col gap-2xs">
           <label for="due" class="text-sm font-medium">Due date</label>
-          <input id="due" type="date" class="h-control px-control rounded-sm border hover:border-neutral-8 bg-neutral-1 text-base w-full" value="2027-03-01">
+          <input id="due" type="date" class="h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 bg-neutral-1 text-base w-full" value="2027-03-01">
         </div>
       </div>
 

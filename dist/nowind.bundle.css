@@ -1844,7 +1844,7 @@
 @layer reset {
   :where(*, *::before, *::after) { box-sizing: border-box; border-width: 0; border-style: solid; border-color: var(--border); --_inset: 0px; --_bw: 0px; }
   :where(hr) { block-size: 0; border-block-start-width: var(--border-width); color: inherit; }
-  :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"], [type="hidden"]), textarea, select) { border-width: var(--border-width); }
+  :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"], [type="hidden"]), textarea, select) { border-width: var(--border-width); border-color: var(--border-weak); }
   :where(button, select, input) { white-space: nowrap; }
   :where(a, button, summary, input, select, textarea, label, [role="button"], [role="tab"], [role="option"], [role="menuitem"], [role="switch"]) { transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, translate, scale, rotate; transition-duration: var(--motion-duration); transition-timing-function: var(--motion-easing); }
   :where(*) { margin: 0; }
