@@ -1335,6 +1335,16 @@
   .gap-page { gap: var(--page-margin); }
   .mt-section { margin-top: var(--section-gap); }
   .mb-section { margin-bottom: var(--section-gap); }
+  .gap-grid { gap: var(--grid-gutter); }
+  .gap-x-grid { column-gap: var(--grid-gutter); }
+  .p-grid-inset { padding: var(--grid-inset); }
+  .px-grid { padding-inline: var(--grid-margin-regular); }
+  .px-grid-compact { padding-inline: var(--grid-margin-compact); }
+  .w-sidebar { width: var(--shell-sidebar-width); }
+  .w-rail { width: var(--shell-rail-width); }
+  .h-header { height: var(--shell-header-height); }
+  .min-h-header { min-height: var(--shell-header-height); }
+  .max-w-measure { max-width: var(--shell-measure); }
   .tier-product { --tier: 1; }
   .tier-content { --tier: var(--tier-content); font-size: calc(1em + var(--tier-content-text)); }
   .tier-brand { --tier: var(--tier-brand); font-size: calc(1em + var(--tier-brand-text)); }
@@ -1678,6 +1688,8 @@
     .sm\:gap-group { gap: var(--group-gap); }
     .sm\:gap-section { gap: var(--section-gap); }
     .sm\:gap-page { gap: var(--page-margin); }
+    .sm\:gap-grid { gap: var(--grid-gutter); }
+    .sm\:gap-x-grid { column-gap: var(--grid-gutter); }
     .sm\:gap-gutter-half { gap: calc(var(--gutter) / 2); }
   }
   @media (min-width: 768px) {
@@ -1810,6 +1822,8 @@
     .md\:gap-group { gap: var(--group-gap); }
     .md\:gap-section { gap: var(--section-gap); }
     .md\:gap-page { gap: var(--page-margin); }
+    .md\:gap-grid { gap: var(--grid-gutter); }
+    .md\:gap-x-grid { column-gap: var(--grid-gutter); }
     .md\:gap-gutter-half { gap: calc(var(--gutter) / 2); }
   }
   @media (min-width: 1024px) {
@@ -1942,6 +1956,8 @@
     .lg\:gap-group { gap: var(--group-gap); }
     .lg\:gap-section { gap: var(--section-gap); }
     .lg\:gap-page { gap: var(--page-margin); }
+    .lg\:gap-grid { gap: var(--grid-gutter); }
+    .lg\:gap-x-grid { column-gap: var(--grid-gutter); }
     .lg\:gap-gutter-half { gap: calc(var(--gutter) / 2); }
   }
   @media (min-width: 1280px) {
@@ -2074,6 +2090,8 @@
     .xl\:gap-group { gap: var(--group-gap); }
     .xl\:gap-section { gap: var(--section-gap); }
     .xl\:gap-page { gap: var(--page-margin); }
+    .xl\:gap-grid { gap: var(--grid-gutter); }
+    .xl\:gap-x-grid { column-gap: var(--grid-gutter); }
     .xl\:gap-gutter-half { gap: calc(var(--gutter) / 2); }
   }
   @media (min-width: 1536px) {
@@ -2206,6 +2224,8 @@
     .\32 xl\:gap-group { gap: var(--group-gap); }
     .\32 xl\:gap-section { gap: var(--section-gap); }
     .\32 xl\:gap-page { gap: var(--page-margin); }
+    .\32 xl\:gap-grid { gap: var(--grid-gutter); }
+    .\32 xl\:gap-x-grid { column-gap: var(--grid-gutter); }
     .\32 xl\:gap-gutter-half { gap: calc(var(--gutter) / 2); }
   }
 }

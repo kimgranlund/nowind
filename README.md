@@ -145,6 +145,10 @@ Icons use [Phosphor](https://phosphoricons.com)'s web font. Link the weights you
 - An inline `<svg>` inside `.icon` also works; it takes the glyph size and `currentColor`.
 - Classes: `h-control`, `h-nested`, `size-control`, `size-nested`, `min-w-control`, `px-control`, `px-nested`, `gap-gutter`, `gap-gutter-half`, `icon`, `icon-sm`, `icon-md`, `icon-lg`.
 
+### Page grid and app shell
+
+After Affine: `gap-grid` is the column gutter (2M), `p-grid-inset` pads a placed element by half a gutter, and `px-grid` / `px-grid-compact` are the page's edge padding. For an app frame, `w-sidebar` (16F + 16), `w-rail` (collapsed), `h-header` and `max-w-measure` (a 44-character reading column) all grow with the type.
+
 ### Motion
 
 Hover states animate when an element has a transition class. `transition-colors` (and `transition`, `transition-opacity`, `transition-shadow`, `transition-transform`) use Affine's single state change: 160ms on Apple's standard ease. Swap in one of Massimo's springs for movement: `duration-snappy ease-snappy` for a toggle, `duration-smooth ease-smooth` for a sliding sheet, `ease-bouncy` for playful moments. The springs are real spring curves sampled into CSS `linear()`. The reset turns all motion off for people who ask for reduced motion.

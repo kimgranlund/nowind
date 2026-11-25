@@ -29,6 +29,11 @@
   --container-max: 1280px;
   --max-w-text: 68ch;
   --max-w-form: 32rem;
+  --grid-columns: 12;
+  --grid-gutter-factor: 2;
+  --shell-sidebar-slope: 16;
+  --shell-sidebar-offset: 16px;
+  --shell-measure-factor: 44;
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
@@ -79,4 +84,15 @@
   --radius-surface: calc(var(--radius-control) + var(--corner-factor) * var(--margin));
   --radius-dialog: calc(var(--radius-control) + 2 * var(--corner-factor) * var(--margin));
   --container-padding: var(--page-margin);
+
+  --grid-gutter: calc(var(--grid-gutter-factor) * var(--margin));
+  --grid-inset: calc(var(--grid-gutter) / 2);
+  --grid-margin-regular: var(--slot);
+  --grid-margin-compact: max(var(--grid-gutter), calc(var(--slot) / 2));
+
+  --shell-sidebar-width: calc(var(--shell-sidebar-slope) * var(--F) + var(--shell-sidebar-offset));
+  --shell-rail-width: calc(var(--control-height) + 2 * var(--slot));
+  --shell-header-height: calc(var(--control-height) + var(--slot));
+  --shell-measure: calc(var(--shell-measure-factor) * var(--F));
+  --shell-dock-width: calc(var(--shell-sidebar-width) + var(--shell-measure) + 2 * var(--page-margin));
 }

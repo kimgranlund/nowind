@@ -248,6 +248,18 @@ add("gap-page", "gap: var(--page-margin)");
 add("mt-section", "margin-top: var(--section-gap)");
 add("mb-section", "margin-bottom: var(--section-gap)");
 
+// Page grid and app shell (after Affine UI).
+add("gap-grid", "gap: var(--grid-gutter)");
+add("gap-x-grid", "column-gap: var(--grid-gutter)");
+add("p-grid-inset", "padding: var(--grid-inset)");
+add("px-grid", "padding-inline: var(--grid-margin-regular)");
+add("px-grid-compact", "padding-inline: var(--grid-margin-compact)");
+add("w-sidebar", "width: var(--shell-sidebar-width)");
+add("w-rail", "width: var(--shell-rail-width)");
+add("h-header", "height: var(--shell-header-height)");
+add("min-h-header", "min-height: var(--shell-header-height)");
+add("max-w-measure", "max-width: var(--shell-measure)");
+
 // Tiers (after Affine's space tiers): each is a scope with its own font size and spacing multiplier.
 add("tier-product", "--tier: 1");
 add("tier-content", "--tier: var(--tier-content); font-size: calc(1em + var(--tier-content-text))");
@@ -428,6 +440,7 @@ const manifest = {
     layout: "container, display, grid-cols-1…12, col-span-1…12 and -full, flex, basis fractions, position, inset, z-",
     controls: "h-control, h-nested (an .icon inside it shrinks by the two borders so it fits), size-control, size-nested, min-w-control, min-w-nested, px-control and px-nested (padding steps in by one margin on a side whose first or last child is .icon; wrap the label in a <span>), gap-gutter, gap-gutter-half",
     levels: "p-surface, p-dialog (each minus the border), p-region, p-page, with px- and py- versions; gap-field, gap-row, gap-group, gap-section, gap-page; mt-section, mb-section. After Affine's container levels.",
+    grid: "gap-grid, gap-x-grid (2M), p-grid-inset (M), px-grid (slot), px-grid-compact; shell: w-sidebar (16F + 16), w-rail, h-header, min-h-header, max-w-measure (44F). After Affine.",
     tiers: "tier-product (1×), tier-content (font +2px, spacing 1.5×), tier-brand (font +4px, spacing 2×). Each is a scope: --F and everything derived recompute inside it.",
     motion: "transition, transition-colors, -opacity, -shadow, -transform, -none (state-change length and easing by default); duration-fade, -snappy, -smooth, -bouncy; ease-smooth, -snappy, -bouncy (Massimo springs as linear()), ease-standard, -out, -in.",
     icons: "icon (an S-square box, glyph --icon-md), icon-sm, icon-md, icon-lg. Glyphs: Phosphor web font (<i class=\"icon ph ph-floppy-disk\">; ph-bold at sm, ph-light at lg) or an inline <svg> inside .icon.",
@@ -451,6 +464,7 @@ writeFileSync(join(root, "nowind.manifest.json"), JSON.stringify(manifest, null,
 const GROUPS = [
   ["Controls and icons", (c) => /^(icon|h-control|h-nested|size-control|size-nested|min-w-control|min-w-nested|px-control|px-nested|gap-gutter)/.test(c)],
   ["Levels and tiers", (c) => /^(p[xy]?-(surface|dialog|region|page)|gap-(field|row|group|section|page)|m[tb]-section|tier-)/.test(c)],
+  ["Page grid and shell", (c) => /^(gap-(x-)?grid|p-grid-inset|px-grid|w-sidebar|w-rail|(min-)?h-header|max-w-measure)/.test(c)],
   ["Type", (c, d) => /font-size/.test(d)],
   ["Text color", (c, d) => /^color:/.test(d)],
   ["Background color", (c, d) => /^background-color:/.test(d)],

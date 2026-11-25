@@ -15,10 +15,10 @@
     "rule": "Put your own global CSS in @layer styles. Unlayered CSS beats every utility."
   },
   "counts": {
-    "classes": 1299,
+    "classes": 1309,
     "hover": 162,
-    "responsive": 650,
-    "bytes": 124392
+    "responsive": 660,
+    "bytes": 125444
   },
   "naming": "property-value, as Prewind and Tailwind: p-md, gap-lg, text-fg-weak, bg-solid-accent-1. Colour classes take the token name without --.",
   "variants": {
@@ -49,6 +49,7 @@
     "layout": "container, display, grid-cols-1…12, col-span-1…12 and -full, flex, basis fractions, position, inset, z-",
     "controls": "h-control, h-nested (an .icon inside it shrinks by the two borders so it fits), size-control, size-nested, min-w-control, min-w-nested, px-control and px-nested (padding steps in by one margin on a side whose first or last child is .icon; wrap the label in a <span>), gap-gutter, gap-gutter-half",
     "levels": "p-surface, p-dialog (each minus the border), p-region, p-page, with px- and py- versions; gap-field, gap-row, gap-group, gap-section, gap-page; mt-section, mb-section. After Affine's container levels.",
+    "grid": "gap-grid, gap-x-grid (2M), p-grid-inset (M), px-grid (slot), px-grid-compact; shell: w-sidebar (16F + 16), w-rail, h-header, min-h-header, max-w-measure (44F). After Affine.",
     "tiers": "tier-product (1×), tier-content (font +2px, spacing 1.5×), tier-brand (font +4px, spacing 2×). Each is a scope: --F and everything derived recompute inside it.",
     "motion": "transition, transition-colors, -opacity, -shadow, -transform, -none (state-change length and easing by default); duration-fade, -snappy, -smooth, -bouncy; ease-smooth, -snappy, -bouncy (Massimo springs as linear()), ease-standard, -out, -in.",
     "icons": "icon (an S-square box, glyph --icon-md), icon-sm, icon-md, icon-lg. Glyphs: Phosphor web font (<i class=\"icon ph ph-floppy-disk\">; ph-bold at sm, ph-light at lg) or an inline <svg> inside .icon.",

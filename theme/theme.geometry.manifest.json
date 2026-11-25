@@ -151,6 +151,31 @@
       "token": "--tier-brand-text",
       "value": "4px",
       "use": ".tier-brand sets its font size this much above its parent's."
+    },
+    {
+      "token": "--grid-columns",
+      "value": "12",
+      "use": "Columns in the page grid."
+    },
+    {
+      "token": "--grid-gutter-factor",
+      "value": "2",
+      "use": "× margin: the gutter between two columns."
+    },
+    {
+      "token": "--shell-sidebar-slope",
+      "value": "16",
+      "use": "sidebar width = slope × F + offset."
+    },
+    {
+      "token": "--shell-sidebar-offset",
+      "value": "16px",
+      "use": "See --shell-sidebar-slope."
+    },
+    {
+      "token": "--shell-measure-factor",
+      "value": "44",
+      "use": "× F: a column of text about 44 characters wide."
     }
   ],
   "control": [
@@ -377,5 +402,69 @@
   "tiers": {
     "rule": "After Affine's space tiers. .tier-product (1×, the default), .tier-content (font +2px, spacing 1.5×) and .tier-brand (font +4px, spacing 2×) are scopes: --F and everything derived from it recompute inside them. --tier multiplies --page-margin and --section-gap; --tier-inner (half strength, at least 1) multiplies --surface-padding and --dialog-padding.",
     "selectors": ".scope, .tier-product, .tier-content, .tier-brand share the scope declarations in theme.geometry.css, theme.space.css and theme.shadows.css."
+  },
+  "grid": {
+    "source": "affine-ui tokens/grid",
+    "tokens": [
+      {
+        "token": "--grid-gutter",
+        "formula": "2M",
+        "at16": "14px",
+        "use": "Between two columns; class gap-grid."
+      },
+      {
+        "token": "--grid-inset",
+        "formula": "gutter / 2 (M)",
+        "at16": "7px",
+        "use": "A placed element pads itself by this, so two neighbours make one gutter; class p-grid-inset."
+      },
+      {
+        "token": "--grid-margin-regular",
+        "formula": "slot",
+        "at16": "24px",
+        "use": "Page edge padding where there is room; class px-grid. No tier multiplies it."
+      },
+      {
+        "token": "--grid-margin-compact",
+        "formula": "max(gutter, slot / 2)",
+        "at16": "14px",
+        "use": "Page edge padding on narrow screens; class px-grid-compact."
+      }
+    ]
+  },
+  "shell": {
+    "source": "affine-ui tokens/shell",
+    "tokens": [
+      {
+        "token": "--shell-sidebar-width",
+        "formula": "16F + 16",
+        "at16": "272px",
+        "use": "The app's sidebar; class w-sidebar."
+      },
+      {
+        "token": "--shell-rail-width",
+        "formula": "H + 2S",
+        "at16": "86px",
+        "use": "The collapsed sidebar rail; class w-rail."
+      },
+      {
+        "token": "--shell-header-height",
+        "formula": "H + S",
+        "at16": "62px",
+        "use": "The app header; class h-header."
+      },
+      {
+        "token": "--shell-measure",
+        "formula": "44F",
+        "at16": "704px",
+        "use": "A column of text; class max-w-measure."
+      },
+      {
+        "token": "--shell-dock-width",
+        "formula": "sidebar + measure + 2 × page margin",
+        "at16": "1052px",
+        "use": "The page width at which the sidebar docks beside the content."
+      }
+    ]
   }
 }

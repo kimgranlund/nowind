@@ -23,6 +23,7 @@
       <a href="#feedback" class="inline-flex items-center h-control px-control rounded-sm no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors">Feedback</a>
       <a href="#forms" class="inline-flex items-center h-control px-control rounded-sm no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors">Forms</a>
       <a href="#data" class="inline-flex items-center h-control px-control rounded-sm no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors">Data</a>
+      <a href="#shell" class="inline-flex items-center h-control px-control rounded-sm no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors">Shell</a>
       <a href="#navigation" class="inline-flex items-center h-control px-control rounded-sm no-underline text-fg-weak hover:text-fg hover:bg-component-weak text-title-sm transition-colors">Navigation</a>
     </div>
     <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong text-on-solid-accent-1 text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-github-logo"></i><span>GitHub</span></button>
@@ -330,6 +331,44 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- App shell -->
+  <section id="shell" class="mb-3xl">
+    <span class="text-kicker text-fg-accent-1-weak">Layout</span>
+    <h2 class="text-heading-lg mb-xs">App shell and page grid</h2>
+    <p class="text-body-sm text-fg-weak max-w-text mb-md">Affine's shell lengths: <code>w-sidebar</code> (16F + 16), <code>w-rail</code>, <code>h-header</code> and a reading column of <code>max-w-measure</code> (44F). Below it, the 12-column page grid with <code>gap-grid</code> (2M).</p>
+    <div class="flex rounded-lg bg-bg border border-border-weak shadow-sm overflow-hidden mb-lg">
+      <aside class="hidden lg:flex flex-col shrink-0 w-sidebar bg-bg-strong border-r border-border-weak p-region gap-3xs">
+        <span class="text-kicker-sm text-fg-weak px-control mb-2xs">Workspace</span>
+        <a href="#" class="flex items-center h-control px-control gap-gutter rounded-sm bg-component-accent-1-weak text-fg-accent-1-weak no-underline text-title-sm"><i class="icon ph ph-house"></i><span>Home</span></a>
+        <a href="#" class="flex items-center h-control px-control gap-gutter rounded-sm text-fg-weak hover:text-fg hover:bg-component-weak no-underline text-title-sm transition-colors"><i class="icon ph ph-folder"></i><span>Projects</span></a>
+        <a href="#" class="flex items-center h-control px-control gap-gutter rounded-sm text-fg-weak hover:text-fg hover:bg-component-weak no-underline text-title-sm transition-colors"><i class="icon ph ph-users"></i><span>Team</span></a>
+      </aside>
+      <aside class="hidden md:flex lg:hidden flex-col items-center shrink-0 w-rail bg-bg-strong border-r border-border-weak py-region gap-3xs">
+        <a href="#" class="inline-flex items-center justify-center size-control rounded-sm bg-component-accent-1-weak text-fg-accent-1-weak" aria-label="Home"><i class="icon ph ph-house"></i></a>
+        <a href="#" class="inline-flex items-center justify-center size-control rounded-sm text-fg-weak hover:bg-component-weak transition-colors" aria-label="Projects"><i class="icon ph ph-folder"></i></a>
+        <a href="#" class="inline-flex items-center justify-center size-control rounded-sm text-fg-weak hover:bg-component-weak transition-colors" aria-label="Team"><i class="icon ph ph-users"></i></a>
+      </aside>
+      <div class="flex flex-col grow min-w-0">
+        <div class="flex items-center justify-between h-header px-grid border-b border-border-weak">
+          <h3 class="text-title">Home</h3>
+          <span class="inline-flex items-center justify-center size-control rounded-full bg-solid-accent-3 text-on-solid-accent-3 text-title-sm">AL</span>
+        </div>
+        <div class="px-grid py-surface">
+          <p class="text-body-md max-w-measure">The reading column stops at about 44 characters per line at the page's size, so long text stays comfortable on a wide screen while the shell fills the rest.</p>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-4 md:grid-cols-12 gap-grid">
+      <div class="col-span-4 md:col-span-12 p-grid-inset rounded-xs bg-component-accent-1-weak text-fg-accent-1-weak text-label text-center">12</div>
+      <div class="col-span-2 md:col-span-6 p-grid-inset rounded-xs bg-component-accent-1-weak text-fg-accent-1-weak text-label text-center">6</div>
+      <div class="col-span-2 md:col-span-6 p-grid-inset rounded-xs bg-component-accent-1-weak text-fg-accent-1-weak text-label text-center">6</div>
+      <div class="col-span-1 md:col-span-3 p-grid-inset rounded-xs bg-component-accent-1-weak text-fg-accent-1-weak text-label text-center">3</div>
+      <div class="col-span-1 md:col-span-3 p-grid-inset rounded-xs bg-component-accent-1-weak text-fg-accent-1-weak text-label text-center">3</div>
+      <div class="col-span-1 md:col-span-3 p-grid-inset rounded-xs bg-component-accent-1-weak text-fg-accent-1-weak text-label text-center">3</div>
+      <div class="col-span-1 md:col-span-3 p-grid-inset rounded-xs bg-component-accent-1-weak text-fg-accent-1-weak text-label text-center">3</div>
     </div>
   </section>
 
