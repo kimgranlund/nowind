@@ -485,7 +485,12 @@ def docs_home():
               <span class="text-subtitle">{t}</span>
               <span class="text-body-md fg-weak">{d}</span>
             </a>""" for h, i, t, d in entries)
-    figures = [("1,360", "utility classes"), ("1,210", "breakpoint variants"), ("162", "hover variants"), ("29", "type roles"), ("9", "colour palettes")]
+    counts = json.load(open(os.path.join(ROOT, "nowind.manifest.json")))["counts"]
+    roles = json.load(open(os.path.join(ROOT, "theme", "theme.type-roles.manifest.json")))["roles"]
+    palettes = json.load(open(os.path.join(ROOT, "theme", "theme.colors.manifest.json")))["palettes"]
+    figures = [(f"{counts['classes']:,}", "utility classes"), (f"{counts['hover']:,}", "hover variants"),
+               (f"{counts['state']:,}", "state variants"), (f"{counts['group']:,}", "group variants"),
+               (f"{counts['responsive']:,}", "breakpoint variants"), (str(len(roles)), "type roles"), (str(len(palettes)), "colour palettes")]
     figs = "\n".join(f"""            <div class="flex items-baseline justify-between gap-row py-xs border-b border-weak">
               <dt class="text-body-md fg-weak">{l}</dt><dd class="text-heading-md tabular-nums">{n}</dd>
             </div>""" for n, l in figures)
@@ -498,7 +503,7 @@ def docs_home():
             code("index.html", "HTML", '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v__VERSION__/dist/nowind.min.css">'),
             callout("note", "Put your own CSS in <code>@layer styles</code>, so a utility class always wins over it.")),
         section("inside", "In the box", f'<dl class="flex flex-col max-w-measure">\n{figs}\n          </dl>',
-            '<p class="text-caption fg-weak">Counts from <code>nowind.manifest.json</code> and the type-role manifest.</p>'),
+            '<p class="text-caption fg-weak">Read from <code>nowind.manifest.json</code>, the type-role manifest and the colour manifest when the pages are built.</p>'),
     ])
     return doc_page("docs-home.html", "Overview", art)
 
@@ -787,7 +792,7 @@ def lint_examples():
     """Examples use regular (primitive) classes only. Returns one line per semantic class found in a component snippet
     or in a block of the showcase, except the showcase blocks marked data-semantic-demo."""
     cat = {k: t for t, rows in read_classes() for k, _ in rows}
-    variant = re.compile(r"^(hover|active|focus-visible|focus-within|selected|current|pressed|expanded|open|invalid|has-invalid|disabled|group-hover|group-open|group-focus-within):")
+    variant = re.compile(r"^(hover|active|focus-visible|focus-within|selected|current|pressed|expanded|open|invalid|has-invalid|has-checked|disabled|group-hover|group-open|group-focus-within):")
     def bad(html_, where):
         out = []
         # An element that changes with state animates the change: interactive elements get it from the reset; any
@@ -858,6 +863,19 @@ def main():
     with open(os.path.join(site, "search.json"), "w") as f:
         f.write("[\n" + ",\n".join(json.dumps(r, ensure_ascii=False) for r in rows) + "\n]\n")
     print("wrote search.json", len(rows), "entries")
+    # The component manifest: each component's contract as data, from the same source as its pages.
+    comp = {"file": "site/docs/c-*.html", "generated": "scripts/templates.py from scripts/component_docs.py",
+            "description": "Every component Nowind documents: where its page is, what it is for, when to use it and not, and the classes its examples use. Examples use regular classes only.",
+            "components": [{"slug": c["slug"], "name": c["name"], "group": c["group"], "page": f"site/docs/c-{c['slug']}.html",
+                            "summary": html.unescape(re.sub(r"<[^>]+>", "", c["summary"])),
+                            "use": [html.unescape(re.sub(r"<[^>]+>", "", t)) for t in c["use"]],
+                            "avoid": [html.unescape(re.sub(r"<[^>]+>", "", t)) for t in c["avoid"]],
+                            "examples": ["example"] + [x["id"] for x in c.get("examples", [])],
+                            "classes": classes_of(c["html"] + "".join(x["html"] for x in c.get("examples", [])))}
+                           for c in BY_GROUP]}
+    with open(os.path.join(site, "..", "components.manifest.json"), "w") as f:
+        f.write(json.dumps(comp, indent=2, ensure_ascii=False) + "\n")
+    print("wrote components.manifest.json", len(comp["components"]), "components")
 
 if "--lint" in sys.argv:
     problems = lint_examples()

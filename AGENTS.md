@@ -24,6 +24,7 @@ Read `README.md` for what Nowind is and how people use it. This file says how to
 | `classes.md` | Every class and its declarations | no, `scripts/utilities.mjs` |
 | `index.html`, `site/index.html` | The root redirects to `site/`; `site/index.html` is the GitHub Pages landing page | yes, except between the `<!--nowind:top-->` and `<!--nowind:bottom-->` markers |
 | `site/site.js` | The one script every page loads: ⌘K search over `site/search.json`, the light/dark toggle (saved in `localStorage`, applied before paint by a head script) and lens detection (`data-lens` on the root) | yes |
+| `components.manifest.json` | Every component as data: page, group, summary, use, avoid, example ids and the classes its examples use | no, `python3 scripts/templates.py` |
 | `site/search.json` | Search index: every page, block heading, component and class | no, `python3 scripts/templates.py` |
 | `site/specimen.html` | Every token, the reset and every class, read live from the stylesheets | yes, except between the `<!--nowind:` markers, which `scripts/templates.py` stamps |
 | `site/utilities.html` | Demo page built only from classes | yes, except between the `<!--nowind:` markers, which `scripts/templates.py` stamps |
@@ -31,7 +32,7 @@ Read `README.md` for what Nowind is and how people use it. This file says how to
 | `scripts/component_docs.py` | Each component's snippet (rendered live and shown as code), summary, use and avoid | yes |
 | `site/components.html` | Component showcase built only from classes: no `<style>`, no `style=` | yes, except between the `<!--nowind:` markers, which `scripts/templates.py` stamps |
 
-Manifests: [`theme/theme.typography.manifest.json`](theme/theme.typography.manifest.json), [`theme/theme.space.manifest.json`](theme/theme.space.manifest.json), [`theme/theme.shadows.manifest.json`](theme/theme.shadows.manifest.json) and [`nowind.manifest.json`](nowind.manifest.json) are written by their scripts; change the script, not the file. These are hand-written; update them in the same change as their CSS:
+Manifests: [`theme/theme.typography.manifest.json`](theme/theme.typography.manifest.json), [`theme/theme.space.manifest.json`](theme/theme.space.manifest.json), [`theme/theme.shadows.manifest.json`](theme/theme.shadows.manifest.json), [`nowind.manifest.json`](nowind.manifest.json) and [`components.manifest.json`](components.manifest.json) are written by their scripts; change the script, not the file. These are hand-written; update them in the same change as their CSS:
 
 - [`theme/theme.colors.manifest.json`](theme/theme.colors.manifest.json): palettes, families, contrast, roles, and each library family's `solidLabel`.
 - [`theme/theme.geometry.manifest.json`](theme/theme.geometry.manifest.json): `--F` inputs, derived lengths, radius, container, breakpoints.

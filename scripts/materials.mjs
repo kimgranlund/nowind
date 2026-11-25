@@ -77,7 +77,8 @@ const manifest = {
   glass: {
     tokens: ["--glass-face-frosted", "--glass-face-clear"],
     rule: `The neutral fill (${family}) at ${GLASS_FACE.frosted * 100}% (frosted) or ${GLASS_FACE.clear * 100}% (clear): step 1 in light, step 3 in dark, so the glass sits lighter than the page.`,
-    notDone: ["Massimo's glass band (a contrast and brightness filter per scheme that presses the backdrop into a readable band) and its lens and frost texture are not ported."],
+    lens: "The lens class refracts the backdrop of a glass part through an SVG displacement filter: site/site.js draws a map per element at its size and corner radius (a rounded-edge bend along the rim, a slight overall magnification, an R/G/B fringe) and sets data-lens=\"on\" on the root in Chromium, the only engine that applies an SVG filter in backdrop-filter. Elsewhere glass keeps its blur. A page outside this site supplies the filter itself.",
+    notDone: ["Massimo's glass band (a contrast and brightness filter per scheme that presses the backdrop into a readable band) and the frost texture are not ported."],
   },
   materials: {
     flat: "No paint: the default. Overlays still cast.",

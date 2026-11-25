@@ -17,8 +17,10 @@
   "counts": {
     "classes": 1386,
     "hover": 387,
+    "state": 2238,
+    "group": 174,
     "responsive": 1210,
-    "bytes": 389910
+    "bytes": 412340
   },
   "naming": "property-value, as Prewind and Tailwind: p-md, gap-lg, bg-solid-accent-1. Colour classes take the token name without --; text-color roles are the token name alone (fg-weak, fg-accent-1).",
   "variants": {
@@ -31,8 +33,8 @@
       "2xl": "1536px"
     },
     "responsive": "sm:, md:, lg:, xl:, 2xl: (read from the --breakpoint-* tokens) apply to layout: display, grid columns and spans, flex direction, wrap, basis, justify, align, text alignment, widths, heights, position, top, overflow, padding and gaps. Margins, colours and type have no breakpoint variants.",
-    "groups": "group on a parent; group-hover:, group-focus-within: and group-open: on a child, for opacity, visibility and text roles (tooltips, reveal-on-hover).",
-    "states": "active:, focus-visible:, focus-within: (a field wrapper whose input has focus), selected: (aria-selected=\"true\"), current: (aria-current), pressed: (aria-pressed=\"true\"), expanded: (aria-expanded=\"true\"), open: (details, popovers), invalid: (aria-invalid=\"true\" or :user-invalid), has-invalid: (a wrapper holding an invalid input) and disabled: (also aria-disabled). Colors only (plus opacity and cursor for disabled), for the neutral and accent roles; aria-invalid for neutral and danger.",
+    "groups": "group on a parent; group-hover:, group-focus-within: and group-open: on a child, for opacity, visibility, rotation and the fg roles. group-open matches an open details or popover, aria-expanded=\"true\", or a group holding an open popover, so a caret with transition group-open:rotate-180 turns when its disclosure or menu opens.",
+    "states": "active:, focus-visible:, focus-within: (a field wrapper whose input has focus), selected: (aria-selected=\"true\"), current: (aria-current), pressed: (aria-pressed=\"true\"), expanded: (aria-expanded=\"true\"), open: (details, popovers), invalid: (aria-invalid=\"true\" or :user-invalid), has-invalid: (a wrapper holding an invalid input), has-checked: (a wrapper holding a checked radio or checkbox, such as a choice card) and disabled: (also aria-disabled). Colors only (plus opacity and cursor for disabled), for the neutral and accent roles and the raw steps of neutral, accent-1 to accent-4 and danger; invalid: and has-invalid: for neutral and danger.",
     "none": "No group- or dark: variants. Dark mode comes from the theme's light-dark() tokens."
   },
   "categories": {
@@ -40,7 +42,7 @@
     "typeScale": "text-{xs, sm, base, lg, xl, 2xl, 3xl, 4xl, 5xl, 6xl} (sets size and line height)",
     "kicker": "text-{kicker-sm, kicker-md, kicker-lg} (size and the kicker style)",
     "typeRoles": "text-{display-lg, display-md, display-sm, display, heading-xl, heading-lg, heading-md, heading-sm, figure, lead, quote, title, subtitle, body-lg, body-md, body-sm, caption, footnote, title-sm, control-md, data, label, kicker, numeral, mono, mono-sm, code, kbd} (every role companion)",
-    "colors": "A colour class is the property prefix plus the token name, minus the role group when it matches the prefix (fg-weak, bg-accent-1, border-weak; bg-component-accent-1 keeps its group). --border is border-default, because border is the width class; the reset draws every border in --border. Each property takes only its own roles: fg- with fg-* and on-solid-*; bg- with bg-*, component-*, solid-*, surface, indicator and track; border- with border-*. Raw palette steps (fg-accent-1-9, bg-accent-1-9, border-accent-1-9) work with all three; alpha steps (neutral-a4) with bg- only. No outline colour classes: the reset sets the focus ring.",
+    "colors": "A colour class is the property prefix plus the token name, minus the role group when it matches the prefix (fg-weak, bg-accent-1, border-weak; bg-component-accent-1 keeps its group). --border is border-default, because border is the width class; the reset draws every border in --border. Each property takes only its own roles: fg- with fg-*, on-solid-* and each palette's contrast (fg-accent-1-contrast, the primitive for text on a solid); bg- with bg-*, component-*, solid-*, surface, indicator and track; border- with border-*. Raw palette steps (fg-accent-1-9, bg-accent-1-9, border-accent-1-9) work with all three; alpha steps (neutral-a4) with bg- only. No outline colour classes: the reset sets the focus ring.",
     "weights": "font-normal, font-medium, font-semibold, font-bold",
     "faces": "font-body (alias font-sans), font-heading, font-mono, font-control",
     "leading": "leading-none, tight, snug, normal, relaxed",

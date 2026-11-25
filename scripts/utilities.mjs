@@ -573,7 +573,7 @@ out.push("  .select-base option { padding: var(--margin) var(--text-edge); borde
 out.push("  .select-base option:hover, .select-base option:focus-visible { background: var(--component-weak); outline: none; }");
 out.push("  .caret::before, .select-base::picker-icon { content: \"\"; flex: none; inline-size: var(--_caret); block-size: var(--_caret); border-inline-end: var(--_caret-stroke) solid currentColor; border-block-end: var(--_caret-stroke) solid currentColor; rotate: 45deg; translate: 0 -25%; transition: rotate var(--motion-duration) var(--motion-easing), translate var(--motion-duration) var(--motion-easing); }");
 out.push("  .select-base { --_caret: calc(var(--icon-md) * 0.4); --_caret-stroke: max(1.5px, calc(var(--icon-md) * 0.08)); }");
-out.push("  .select-base::picker-icon { color: var(--fg-weak); margin-inline: calc((var(--icon-box) - var(--_caret)) / 2); }");
+out.push("  .select-base::picker-icon { color: var(--fg-weak); margin-inline: auto calc((var(--icon-box) - var(--_caret)) / 2); }");
 out.push("  .select-base.px-control { padding-inline-end: var(--control-icon-padding); }");
 out.push("  :is([open] > summary, [aria-expanded=\"true\"]) .caret::before, .select-base:open::picker-icon { rotate: 225deg; translate: 0 25%; }");
 out.push("  :root[data-lens=\"on\"] .lens { -webkit-backdrop-filter: var(--_lens-filter, url(#nowind-lens)) saturate(1.8) brightness(1.05); backdrop-filter: var(--_lens-filter, url(#nowind-lens)) saturate(1.8) brightness(1.05); }");
@@ -665,6 +665,7 @@ const STATES = [
   ["open", ":is([open], :popover-open)", interactive],
   ["invalid", ':is([aria-invalid="true"], :user-invalid)', ROLE_STATE.filter((c) => /^(text|border|fg)(-|$)/.test(c)).filter(inPalettes(["neutral", "danger"]))],
   ["has-invalid", ':has(:is([aria-invalid="true"], :user-invalid))', ROLE_STATE.filter((c) => /^(text|border|fg)(-|$)/.test(c)).filter(inPalettes(["neutral", "danger"]))],
+  ["has-checked", ":has(:checked)", interactive],
   ["disabled", ':is(:disabled, [aria-disabled="true"])', [...ROLE_STATE.filter(inPalettes(["neutral"])), ...[...D.keys()].filter((c) => /^opacity-|^cursor-/.test(c))]],
 ];
 for (const [prefix, sel, list] of STATES) {
@@ -706,14 +707,14 @@ const manifest = {
     bundle: "node scripts/bundle.mjs writes dist/nowind.bundle.css and dist/nowind.min.css: theme.css with every @import inlined, then this file. Run it after this script.",
     rule: "Put your own global CSS in @layer styles. Unlayered CSS beats every utility.",
   },
-  counts: { classes: D.size, hover: HOVER.length, responsive: LAYOUT.length * BREAKPOINTS.length, bytes: Buffer.byteLength(css) },
+  counts: { classes: D.size, hover: HOVER.length, state: STATES.reduce((n, [, , l]) => n + l.length, 0), group: GROUP_CLASSES.length * GROUP_VARIANTS.length, responsive: LAYOUT.length * BREAKPOINTS.length, bytes: Buffer.byteLength(css) },
   naming: "property-value, as Prewind and Tailwind: p-md, gap-lg, bg-solid-accent-1. Colour classes take the token name without --; text-color roles are the token name alone (fg-weak, fg-accent-1).",
   variants: {
     hover: "Inside @media (hover: hover), as Tailwind v4, so taps on touch screens don't stick. hover:border-* for the border roles, hover:fg-* and hover:bg-* for the colour role tokens only (bg, component, border, solid, on-solid, fg and their palette versions), hover:opacity-*, hover:cursor-*. Raw steps of neutral, accent-1 to accent-4 and danger take hover too (hover:bg-neutral-4), so examples can use primitives only; alpha steps and the status palettes' steps have no hover class.",
     breakpoints: Object.fromEntries(BREAKPOINTS.map(([b, w]) => [b, `${w}px`])),
     responsive: "sm:, md:, lg:, xl:, 2xl: (read from the --breakpoint-* tokens) apply to layout: display, grid columns and spans, flex direction, wrap, basis, justify, align, text alignment, widths, heights, position, top, overflow, padding and gaps. Margins, colours and type have no breakpoint variants.",
-    groups: "group on a parent; group-hover:, group-focus-within: and group-open: on a child, for opacity, visibility and text roles (tooltips, reveal-on-hover).",
-    states: "active:, focus-visible:, focus-within: (a field wrapper whose input has focus), selected: (aria-selected=\"true\"), current: (aria-current), pressed: (aria-pressed=\"true\"), expanded: (aria-expanded=\"true\"), open: (details, popovers), invalid: (aria-invalid=\"true\" or :user-invalid), has-invalid: (a wrapper holding an invalid input) and disabled: (also aria-disabled). Colors only (plus opacity and cursor for disabled), for the neutral and accent roles; aria-invalid for neutral and danger.",
+    groups: "group on a parent; group-hover:, group-focus-within: and group-open: on a child, for opacity, visibility, rotation and the fg roles. group-open matches an open details or popover, aria-expanded=\"true\", or a group holding an open popover, so a caret with transition group-open:rotate-180 turns when its disclosure or menu opens.",
+    states: "active:, focus-visible:, focus-within: (a field wrapper whose input has focus), selected: (aria-selected=\"true\"), current: (aria-current), pressed: (aria-pressed=\"true\"), expanded: (aria-expanded=\"true\"), open: (details, popovers), invalid: (aria-invalid=\"true\" or :user-invalid), has-invalid: (a wrapper holding an invalid input), has-checked: (a wrapper holding a checked radio or checkbox, such as a choice card) and disabled: (also aria-disabled). Colors only (plus opacity and cursor for disabled), for the neutral and accent roles and the raw steps of neutral, accent-1 to accent-4 and danger; invalid: and has-invalid: for neutral and danger.",
     none: "No group- or dark: variants. Dark mode comes from the theme's light-dark() tokens.",
   },
   categories: {
@@ -721,7 +722,7 @@ const manifest = {
     typeScale: `text-{${SIZES.join(", ")}} (sets size and line height)`,
     kicker: `text-{${KICKERS.join(", ")}} (size and the kicker style)`,
     typeRoles: `text-{${ROLES.filter((r) => !KICKERS.includes(r)).join(", ")}} (every role companion)`,
-    colors: "A colour class is the property prefix plus the token name, minus the role group when it matches the prefix (fg-weak, bg-accent-1, border-weak; bg-component-accent-1 keeps its group). --border is border-default, because border is the width class; the reset draws every border in --border. Each property takes only its own roles: fg- with fg-* and on-solid-*; bg- with bg-*, component-*, solid-*, surface, indicator and track; border- with border-*. Raw palette steps (fg-accent-1-9, bg-accent-1-9, border-accent-1-9) work with all three; alpha steps (neutral-a4) with bg- only. No outline colour classes: the reset sets the focus ring.",
+    colors: "A colour class is the property prefix plus the token name, minus the role group when it matches the prefix (fg-weak, bg-accent-1, border-weak; bg-component-accent-1 keeps its group). --border is border-default, because border is the width class; the reset draws every border in --border. Each property takes only its own roles: fg- with fg-*, on-solid-* and each palette's contrast (fg-accent-1-contrast, the primitive for text on a solid); bg- with bg-*, component-*, solid-*, surface, indicator and track; border- with border-*. Raw palette steps (fg-accent-1-9, bg-accent-1-9, border-accent-1-9) work with all three; alpha steps (neutral-a4) with bg- only. No outline colour classes: the reset sets the focus ring.",
     weights: "font-normal, font-medium, font-semibold, font-bold",
     faces: "font-body (alias font-sans), font-heading, font-mono, font-control",
     leading: "leading-none, tight, snug, normal, relaxed",

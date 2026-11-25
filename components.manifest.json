@@ -1,0 +1,1184 @@
+{
+  "file": "site/docs/c-*.html",
+  "generated": "scripts/templates.py from scripts/component_docs.py",
+  "description": "Every component Nowind documents: where its page is, what it is for, when to use it and not, and the classes its examples use. Examples use regular classes only.",
+  "components": [
+    {
+      "slug": "button",
+      "name": "Button",
+      "group": "Actions",
+      "page": "site/docs/c-button.html",
+      "summary": "Starts an action. One control height tall, padded by the text edge, with an icon side that steps in by one margin.",
+      "use": [
+        "One primary button per view, for the action most people take.",
+        "Wrap the label in a <span>, and put the icon in its own <i> beside it."
+      ],
+      "avoid": [
+        "A button for navigation; use a link styled the same way.",
+        "Two primary buttons side by side; make the second secondary."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "active:bg-accent-1-10",
+        "active:bg-neutral-5",
+        "bg-accent-1-9",
+        "bg-danger-9",
+        "bg-neutral-3",
+        "bg-transparent",
+        "border",
+        "border-transparent",
+        "cursor-pointer",
+        "fg-accent-1-contrast",
+        "fg-danger-contrast",
+        "fg-neutral-12",
+        "flex",
+        "flex-wrap",
+        "font-medium",
+        "gap-sm",
+        "gap-xs",
+        "hover:bg-accent-1-10",
+        "hover:bg-danger-10",
+        "hover:bg-neutral-3",
+        "hover:bg-neutral-4",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "leading-none",
+        "px-sm",
+        "py-xs",
+        "rounded-sm",
+        "shrink-0",
+        "text-base",
+        "text-xl",
+        "transition-colors"
+      ]
+    },
+    {
+      "slug": "icon-button",
+      "name": "Icon button",
+      "group": "Actions",
+      "page": "site/docs/c-icon-button.html",
+      "summary": "A button with only an icon. The same padding rules make it exactly one control height square.",
+      "use": [
+        "Always give it an aria-label.",
+        "Use p-3xs and a text-base icon inside dense rows."
+      ],
+      "avoid": [
+        "An icon whose meaning isn't obvious; add a text label instead."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-accent-1-9",
+        "bg-neutral-3",
+        "bg-transparent",
+        "border",
+        "border-0",
+        "border-transparent",
+        "cursor-pointer",
+        "fg-accent-1-contrast",
+        "fg-neutral-11",
+        "fg-neutral-12",
+        "flex",
+        "gap-sm",
+        "gap-xs",
+        "hover:bg-accent-1-10",
+        "hover:bg-neutral-3",
+        "hover:bg-neutral-4",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "leading-none",
+        "px-2xs",
+        "px-sm",
+        "py-3xs",
+        "py-xs",
+        "rounded-full",
+        "rounded-sm",
+        "rounded-xs",
+        "shrink-0",
+        "text-base",
+        "text-xl",
+        "transition-colors"
+      ]
+    },
+    {
+      "slug": "segmented",
+      "name": "Segmented control",
+      "group": "Actions",
+      "page": "site/docs/c-segmented.html",
+      "summary": "A set of mutually exclusive options. The pressed segment is styled by aria-pressed, not by a class.",
+      "use": [
+        "Two to five short options that change a view in place."
+      ],
+      "avoid": [
+        "Options that navigate to another page; use tabs."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-neutral-3",
+        "bg-transparent",
+        "border-0",
+        "cursor-pointer",
+        "fg-neutral-11",
+        "font-medium",
+        "gap-3xs",
+        "hover:bg-neutral-4",
+        "inline-flex",
+        "items-center",
+        "p-3xs",
+        "pressed:bg-neutral-1",
+        "pressed:fg-neutral-12",
+        "px-2xs",
+        "py-3xs",
+        "rounded",
+        "rounded-xs",
+        "text-base",
+        "transition-colors"
+      ]
+    },
+    {
+      "slug": "badge",
+      "name": "Badge",
+      "group": "Status",
+      "page": "site/docs/c-badge.html",
+      "summary": "A short label for a status or category, at the nested control size.",
+      "use": [
+        "Pair a status color with its word, never color alone."
+      ],
+      "avoid": [
+        "A badge as a button; badges aren't interactive."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-info-9",
+        "bg-neutral-3",
+        "bg-success-3",
+        "bg-warning-3",
+        "border",
+        "border-neutral-6",
+        "border-success-6",
+        "border-warning-6",
+        "fg-info-contrast",
+        "fg-neutral-11",
+        "fg-success-11",
+        "fg-warning-11",
+        "flex",
+        "flex-wrap",
+        "font-medium",
+        "gap-2xs",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "leading-none",
+        "px-2xs",
+        "py-3xs",
+        "rounded-full",
+        "shrink-0",
+        "text-base",
+        "text-sm"
+      ]
+    },
+    {
+      "slug": "alert",
+      "name": "Alert",
+      "group": "Status",
+      "page": "site/docs/c-alert.html",
+      "summary": "A message about the page or a task, tinted by its status.",
+      "use": [
+        "role=\"status\" for information, role=\"alert\" only for errors that need attention now."
+      ],
+      "avoid": [
+        "Stacking several alerts; merge them into one."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-warning-3",
+        "border",
+        "border-warning-6",
+        "fg-warning-11",
+        "fg-warning-12",
+        "flex",
+        "flex-col",
+        "font-semibold",
+        "gap-3xs",
+        "gap-xs",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "leading-none",
+        "p-md",
+        "rounded-lg",
+        "shrink-0",
+        "text-base",
+        "text-sm",
+        "text-xl"
+      ]
+    },
+    {
+      "slug": "toast",
+      "name": "Toast",
+      "group": "Status",
+      "page": "site/docs/c-toast.html",
+      "summary": "A brief confirmation on the inverse colors, with an optional action.",
+      "use": [
+        "Confirm an action that already happened, with Undo when it can be reversed."
+      ],
+      "avoid": [
+        "Errors the person must fix; use an alert near the problem."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-neutral-12",
+        "bg-transparent",
+        "border-0",
+        "cursor-pointer",
+        "fg-accent-1-8",
+        "fg-neutral-1",
+        "flex",
+        "font-medium",
+        "gap-sm",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "leading-none",
+        "p-sm",
+        "pl-md",
+        "px-2xs",
+        "py-3xs",
+        "rounded-lg",
+        "rounded-xs",
+        "shadow-lg",
+        "shrink-0",
+        "text-base",
+        "text-sm",
+        "text-xl",
+        "w-fit"
+      ]
+    },
+    {
+      "slug": "text-field",
+      "name": "Text field",
+      "group": "Forms",
+      "page": "site/docs/c-text-field.html",
+      "summary": "A labelled field built from slots: a leading icon that says what kind of value it takes, a prefix, the input, a suffix and a trailing action. The box is the control; the input inside is bare.",
+      "use": [
+        "A leading icon for the kind of value, so a long form scans by shape.",
+        "Prefixes and suffixes for parts the person doesn't type: a scheme, a currency sign, a unit.",
+        "gap-2xs between label, box and help; gap-md between fields."
+      ],
+      "avoid": [
+        "A placeholder instead of a label.",
+        "A unit inside the value (\"72.5 kg\"): it breaks number keyboards and parsing.",
+        "More than one trailing action in a box."
+      ],
+      "examples": [
+        "example",
+        "slots",
+        "types",
+        "states"
+      ],
+      "classes": [
+        "bg-neutral-1",
+        "bg-neutral-2",
+        "bg-neutral-3",
+        "bg-transparent",
+        "border",
+        "border-0",
+        "border-transparent",
+        "cursor-not-allowed",
+        "cursor-pointer",
+        "cursor-text",
+        "fg-danger-11",
+        "fg-neutral-11",
+        "fg-neutral-12",
+        "fg-neutral-8",
+        "flex",
+        "flex-col",
+        "focus-within:border-accent-1-8",
+        "font-medium",
+        "font-mono",
+        "gap-2xs",
+        "gap-md",
+        "gap-xs",
+        "grid",
+        "grid-cols-1",
+        "grow",
+        "has-invalid:border-danger-7",
+        "hover:bg-neutral-3",
+        "hover:border-neutral-8",
+        "hover:fg-neutral-12",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "leading-none",
+        "max-w-form",
+        "md:grid-cols-2",
+        "min-w-0",
+        "opacity-50",
+        "p-0",
+        "p-3xs",
+        "pressed:bg-neutral-4",
+        "px-2xs",
+        "px-sm",
+        "py-3xs",
+        "py-xs",
+        "rounded-sm",
+        "rounded-xs",
+        "select-base",
+        "self-stretch",
+        "shrink-0",
+        "tabular-nums",
+        "text-base",
+        "text-sm",
+        "text-xl",
+        "transition-colors",
+        "whitespace-nowrap"
+      ]
+    },
+    {
+      "slug": "select",
+      "name": "Select",
+      "group": "Forms",
+      "page": "site/docs/c-select.html",
+      "summary": "A native select. select-base turns on the customizable select, so the picker takes the theme.",
+      "use": [
+        "Five or more options; fewer fit a segmented control or radios."
+      ],
+      "avoid": [
+        "Options people need to compare side by side."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-neutral-1",
+        "border",
+        "flex",
+        "flex-col",
+        "font-medium",
+        "gap-2xs",
+        "hover:border-neutral-8",
+        "invalid:border-danger-7",
+        "max-w-form",
+        "px-sm",
+        "py-xs",
+        "rounded-sm",
+        "select-base",
+        "text-base",
+        "text-sm",
+        "transition-colors",
+        "w-full"
+      ]
+    },
+    {
+      "slug": "form-controls",
+      "name": "Checkbox, radio and switch",
+      "group": "Forms",
+      "page": "site/docs/c-form-controls.html",
+      "summary": "Native inputs drawn by the reset at Affine's mark size. A switch is a checkbox with role=\"switch\".",
+      "use": [
+        "A switch for a setting that applies at once; a checkbox for one that waits for Save.",
+        "Wrap each one in its label, so the text is part of the target."
+      ],
+      "avoid": [
+        "Wrapping inputs in custom elements; the reset styles the native ones."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "cursor-pointer",
+        "flex",
+        "flex-col",
+        "gap-sm",
+        "gap-xs",
+        "inline-flex",
+        "items-center",
+        "justify-between",
+        "max-w-form",
+        "text-base"
+      ]
+    },
+    {
+      "slug": "combobox",
+      "name": "Combobox",
+      "group": "Forms",
+      "page": "site/docs/c-combobox.html",
+      "summary": "A text field with suggestions, using the native list attribute and a <datalist>.",
+      "use": [
+        "Long lists where typing is faster than scrolling, and free text is allowed."
+      ],
+      "avoid": [
+        "A fixed set of five or fewer; use radios or a segmented control."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-neutral-1",
+        "border",
+        "flex",
+        "flex-col",
+        "font-medium",
+        "gap-2xs",
+        "hover:border-neutral-8",
+        "invalid:border-danger-7",
+        "max-w-form",
+        "px-sm",
+        "py-xs",
+        "rounded-sm",
+        "text-base",
+        "text-sm",
+        "transition-colors",
+        "w-full"
+      ]
+    },
+    {
+      "slug": "date-range",
+      "name": "Date range",
+      "group": "Forms",
+      "page": "site/docs/c-date-range.html",
+      "summary": "Two native date fields grouped as one, with their own labels.",
+      "use": [
+        "Native date inputs: they bring the platform's picker and keyboard support."
+      ],
+      "avoid": [
+        "A single text field for both dates."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-neutral-1",
+        "border",
+        "border-0",
+        "fg-neutral-11",
+        "flex",
+        "flex-col",
+        "font-medium",
+        "gap-2xs",
+        "gap-sm",
+        "grid",
+        "grid-cols-1",
+        "hover:border-neutral-8",
+        "invalid:border-danger-7",
+        "max-w-form",
+        "mb-2xs",
+        "p-0",
+        "px-sm",
+        "py-xs",
+        "rounded-sm",
+        "sm:grid-cols-2",
+        "text-base",
+        "text-sm",
+        "transition-colors",
+        "w-full"
+      ]
+    },
+    {
+      "slug": "card",
+      "name": "Card",
+      "group": "Layout",
+      "page": "site/docs/c-card.html",
+      "summary": "A surface that groups related content, padded at the surface level.",
+      "use": [
+        "p-md for padding, the same on every card."
+      ],
+      "avoid": [
+        "Cards inside cards; use a divider or a subtle background instead."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "active:bg-neutral-5",
+        "bg-neutral-1",
+        "bg-neutral-3",
+        "border",
+        "border-neutral-6",
+        "cursor-pointer",
+        "fg-accent-1-11",
+        "fg-neutral-11",
+        "fg-neutral-12",
+        "flex",
+        "flex-col",
+        "font-medium",
+        "font-mono",
+        "font-semibold",
+        "gap-2xs",
+        "gap-sm",
+        "gap-xs",
+        "hover:bg-neutral-4",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "max-w-form",
+        "p-md",
+        "pt-xs",
+        "px-sm",
+        "py-xs",
+        "rounded-lg",
+        "rounded-sm",
+        "shadow-sm",
+        "text-base",
+        "text-sm",
+        "text-xs",
+        "tracking-widest",
+        "transition-colors",
+        "uppercase"
+      ]
+    },
+    {
+      "slug": "media-card",
+      "name": "Media card",
+      "group": "Layout",
+      "page": "site/docs/c-media-card.html",
+      "summary": "A card led by a 16:9 media area, then a title, a line of detail and its author.",
+      "use": [
+        "aspect-video keeps the media area's shape before the image loads."
+      ],
+      "avoid": [
+        "Text over the image without a scrim."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "aspect-video",
+        "bg-accent-2-a4",
+        "bg-accent-3-9",
+        "bg-neutral-1",
+        "border",
+        "border-neutral-6",
+        "fg-accent-2-11",
+        "fg-accent-3-contrast",
+        "fg-neutral-11",
+        "flex",
+        "flex-col",
+        "font-medium",
+        "font-mono",
+        "font-semibold",
+        "gap-2xs",
+        "gap-xs",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "leading-none",
+        "max-w-form",
+        "overflow-hidden",
+        "p-0",
+        "p-3xs",
+        "p-md",
+        "pt-2xs",
+        "rounded-full",
+        "rounded-lg",
+        "shrink-0",
+        "text-2xl",
+        "text-base",
+        "text-sm",
+        "text-xs",
+        "tracking-widest",
+        "uppercase"
+      ]
+    },
+    {
+      "slug": "tabs",
+      "name": "Tabs",
+      "group": "Navigation",
+      "page": "site/docs/c-tabs.html",
+      "summary": "Switches between views of the same thing. The selected tab is styled by aria-selected.",
+      "use": [
+        "Moving aria-selected is all the script a tab needs for its look."
+      ],
+      "avoid": [
+        "More than six tabs; use a sidebar."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-transparent",
+        "border",
+        "border-b",
+        "border-b-2",
+        "border-neutral-6",
+        "border-transparent",
+        "cursor-pointer",
+        "fg-neutral-11",
+        "flex",
+        "font-medium",
+        "gap-md",
+        "gap-xs",
+        "hover:fg-neutral-12",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "leading-none",
+        "overflow-x-auto",
+        "px-sm",
+        "py-xs",
+        "rounded-none",
+        "selected:border-accent-1-8",
+        "selected:fg-neutral-12",
+        "shrink-0",
+        "text-base",
+        "text-xl",
+        "transition-colors"
+      ]
+    },
+    {
+      "slug": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "group": "Navigation",
+      "page": "site/docs/c-breadcrumbs.html",
+      "summary": "Shows where a page sits in the hierarchy.",
+      "use": [
+        "Three or more levels deep."
+      ],
+      "avoid": [
+        "Repeating the page title right below it."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "fg-neutral-11",
+        "fg-neutral-12",
+        "fg-neutral-8",
+        "flex",
+        "flex-wrap",
+        "gap-2xs",
+        "hover:fg-neutral-12",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "leading-none",
+        "no-underline",
+        "shrink-0",
+        "text-base",
+        "text-sm",
+        "transition-colors"
+      ]
+    },
+    {
+      "slug": "pagination",
+      "name": "Pagination",
+      "group": "Navigation",
+      "page": "site/docs/c-pagination.html",
+      "summary": "Moves through pages of results. The current page is styled by aria-current.",
+      "use": [
+        "Long lists where people jump to a page; show the total near it."
+      ],
+      "avoid": [
+        "Feeds people scroll through; load more instead."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "border",
+        "border-transparent",
+        "current:bg-accent-1-9",
+        "current:fg-accent-1-contrast",
+        "fg-neutral-11",
+        "font-medium",
+        "gap-3xs",
+        "hover:bg-neutral-3",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "leading-none",
+        "no-underline",
+        "p-xs",
+        "rounded-sm",
+        "shrink-0",
+        "tabular-nums",
+        "text-base",
+        "text-xl",
+        "transition-colors"
+      ]
+    },
+    {
+      "slug": "menu",
+      "name": "Popover menu",
+      "group": "Overlays",
+      "page": "site/docs/c-menu.html",
+      "summary": "A menu that opens with popovertarget and sits against its button with anchor-bottom. No script.",
+      "use": [
+        "Put layout classes such as flex on an inner element: on the popover itself they would keep it visible when closed."
+      ],
+      "avoid": [
+        "A menu for the page's main navigation."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "active:bg-neutral-5",
+        "anchor-bottom",
+        "bg-neutral-1",
+        "bg-neutral-3",
+        "border",
+        "border-neutral-6",
+        "border-transparent",
+        "cursor-pointer",
+        "fg-neutral-12",
+        "flex",
+        "flex-col",
+        "font-medium",
+        "gap-xs",
+        "group",
+        "group-open:rotate-180",
+        "grow",
+        "hover:bg-neutral-3",
+        "hover:bg-neutral-4",
+        "inline-block",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "leading-none",
+        "no-underline",
+        "p-3xs",
+        "px-sm",
+        "py-xs",
+        "rounded-lg",
+        "rounded-sm",
+        "selected:bg-accent-1-3",
+        "selected:fg-accent-1-11",
+        "shadow-lg",
+        "shrink-0",
+        "text-base",
+        "text-xl",
+        "transition",
+        "transition-colors",
+        "w-fit"
+      ]
+    },
+    {
+      "slug": "dialog",
+      "name": "Dialog",
+      "group": "Overlays",
+      "page": "site/docs/c-dialog.html",
+      "summary": "A modal <dialog> opened with the command attribute; the reset dims the page behind it.",
+      "use": [
+        "m-auto centers it; the reset zeroes margins.",
+        "Confirm destructive actions with the action's own word, not OK."
+      ],
+      "avoid": [
+        "Dialogs that open on page load."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "active:bg-neutral-5",
+        "bg-danger-9",
+        "bg-neutral-1",
+        "bg-neutral-3",
+        "border",
+        "border-0",
+        "border-transparent",
+        "cursor-pointer",
+        "fg-danger-contrast",
+        "fg-neutral-11",
+        "fg-neutral-12",
+        "flex",
+        "flex-col",
+        "font-medium",
+        "font-semibold",
+        "gap-md",
+        "gap-sm",
+        "gap-xs",
+        "hover:bg-danger-10",
+        "hover:bg-neutral-4",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "justify-end",
+        "leading-none",
+        "m-auto",
+        "max-w-form",
+        "p-lg",
+        "px-sm",
+        "py-xs",
+        "rounded-sm",
+        "rounded-xl",
+        "shadow-xl",
+        "shrink-0",
+        "text-base",
+        "text-sm",
+        "text-xl",
+        "transition-colors",
+        "w-full"
+      ]
+    },
+    {
+      "slug": "tooltip",
+      "name": "Tooltip",
+      "group": "Overlays",
+      "page": "site/docs/c-tooltip.html",
+      "summary": "A hint that shows when its trigger is hovered or focused. The wrapper is a group; the hint uses group-hover: and group-focus-within:. No script.",
+      "use": [
+        "A short label for an icon-only button, also given as its aria-label.",
+        "group-focus-within: as well as group-hover:, so keyboard users see it."
+      ],
+      "avoid": [
+        "Anything people need to read to finish a task; put it on the page."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "absolute",
+        "bg-neutral-12",
+        "bg-neutral-3",
+        "border",
+        "cursor-pointer",
+        "fg-neutral-1",
+        "fg-neutral-12",
+        "group",
+        "group-focus-within:opacity-100",
+        "group-focus-within:visible",
+        "group-hover:opacity-100",
+        "group-hover:visible",
+        "hover:bg-neutral-4",
+        "inline-block",
+        "inline-flex",
+        "invisible",
+        "items-center",
+        "justify-center",
+        "leading-none",
+        "left-0",
+        "mt-3xs",
+        "opacity-0",
+        "px-sm",
+        "px-xs",
+        "py-3xs",
+        "py-xs",
+        "relative",
+        "rounded-sm",
+        "rounded-xs",
+        "shrink-0",
+        "text-sm",
+        "text-xl",
+        "top-full",
+        "transition-colors",
+        "transition-opacity",
+        "whitespace-nowrap",
+        "z-20"
+      ]
+    },
+    {
+      "slug": "accordion",
+      "name": "Accordion",
+      "group": "Disclosure",
+      "page": "site/docs/c-accordion.html",
+      "summary": "Sections that open and close, built from <details>.",
+      "use": [
+        "list-none on the summary hides the marker, including Safari's."
+      ],
+      "avoid": [
+        "Hiding content most people need; show it."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "border-b",
+        "border-neutral-6",
+        "cursor-pointer",
+        "fg-neutral-11",
+        "flex",
+        "font-semibold",
+        "gap-sm",
+        "group",
+        "group-open:rotate-180",
+        "hover:fg-accent-1-11",
+        "inline-flex",
+        "items-center",
+        "justify-between",
+        "justify-center",
+        "leading-none",
+        "list-none",
+        "max-w-form",
+        "pb-sm",
+        "py-sm",
+        "shrink-0",
+        "text-base",
+        "text-sm",
+        "text-xl",
+        "transition",
+        "transition-colors"
+      ]
+    },
+    {
+      "slug": "avatar",
+      "name": "Avatar and group",
+      "group": "Data display",
+      "page": "site/docs/c-avatar.html",
+      "summary": "Initials on an accent solid, one control height square; a group overlaps them.",
+      "use": [
+        "A border in the page color separates overlapping avatars."
+      ],
+      "avoid": [
+        "More than five in a row; end with a count."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "-ml-2xs",
+        "bg-accent-1-9",
+        "bg-accent-2-9",
+        "bg-accent-3-9",
+        "bg-neutral-4",
+        "border-2",
+        "border-neutral-1",
+        "fg-accent-1-contrast",
+        "fg-accent-2-contrast",
+        "fg-accent-3-contrast",
+        "fg-neutral-11",
+        "flex",
+        "font-medium",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "p-xs",
+        "rounded-full",
+        "text-sm"
+      ]
+    },
+    {
+      "slug": "progress",
+      "name": "Progress bar",
+      "group": "Data display",
+      "page": "site/docs/c-progress.html",
+      "summary": "Native progress and meter, themed by the reset, or a track and a fill sized with a fraction class.",
+      "use": [
+        "Always print the value next to the bar.",
+        "progress for a task under way; meter for a level within a range, which turns warning or danger past its high and low."
+      ],
+      "avoid": [
+        "A bar for something that isn't a share of a whole."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-accent-1-9",
+        "bg-neutral-4",
+        "fg-neutral-11",
+        "flex",
+        "flex-col",
+        "font-medium",
+        "gap-2xs",
+        "gap-md",
+        "justify-between",
+        "max-w-form",
+        "overflow-hidden",
+        "py-3xs",
+        "rounded-full",
+        "tabular-nums",
+        "text-sm",
+        "w-2/3"
+      ]
+    },
+    {
+      "slug": "table",
+      "name": "Table",
+      "group": "Data display",
+      "page": "site/docs/c-table.html",
+      "summary": "Rows of records in a surface that scrolls sideways on narrow screens.",
+      "use": [
+        "font-mono tabular-nums for figures so columns line up."
+      ],
+      "avoid": [
+        "A table for layout."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-neutral-1",
+        "bg-neutral-2",
+        "border",
+        "border-b",
+        "border-neutral-6",
+        "fg-neutral-11",
+        "font-medium",
+        "font-mono",
+        "hover:bg-neutral-3",
+        "overflow-x-auto",
+        "px-md",
+        "py-sm",
+        "py-xs",
+        "rounded-lg",
+        "tabular-nums",
+        "text-left",
+        "text-right",
+        "text-sm",
+        "transition",
+        "w-full"
+      ]
+    },
+    {
+      "slug": "sortable-table",
+      "name": "Sortable table",
+      "group": "Data display",
+      "page": "site/docs/c-sortable-table.html",
+      "summary": "Column headers hold buttons; aria-sort on the header says which column sorts the rows and in which order.",
+      "use": [
+        "Show the sort direction with an icon and in aria-sort.",
+        "Sorting itself is a script's job; the classes only show the state."
+      ],
+      "avoid": [
+        "Sorting columns nobody compares."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-neutral-1",
+        "bg-neutral-2",
+        "bg-transparent",
+        "border",
+        "border-0",
+        "border-b",
+        "border-neutral-6",
+        "cursor-pointer",
+        "fg-neutral-11",
+        "fg-neutral-12",
+        "font-medium",
+        "font-mono",
+        "gap-2xs",
+        "hover:bg-neutral-3",
+        "hover:fg-neutral-12",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "leading-none",
+        "overflow-x-auto",
+        "px-md",
+        "py-sm",
+        "py-xs",
+        "rounded-lg",
+        "shrink-0",
+        "tabular-nums",
+        "text-base",
+        "text-left",
+        "text-right",
+        "text-sm",
+        "transition",
+        "transition-colors",
+        "w-full"
+      ]
+    },
+    {
+      "slug": "empty-state",
+      "name": "Empty state",
+      "group": "Feedback",
+      "page": "site/docs/c-empty-state.html",
+      "summary": "What a view shows before it has content, with the action that fills it.",
+      "use": [
+        "Say what will appear here and how to start."
+      ],
+      "avoid": [
+        "Jokes or illustrations that hide the action."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "active:bg-accent-1-10",
+        "bg-accent-1-9",
+        "bg-neutral-3",
+        "border",
+        "border-2",
+        "border-dashed",
+        "border-transparent",
+        "cursor-pointer",
+        "fg-accent-1-contrast",
+        "fg-neutral-11",
+        "flex",
+        "flex-col",
+        "font-medium",
+        "font-semibold",
+        "gap-xs",
+        "hover:bg-accent-1-10",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "leading-none",
+        "max-w-text",
+        "mt-xs",
+        "p-2xl",
+        "p-xs",
+        "px-sm",
+        "py-xs",
+        "rounded-full",
+        "rounded-lg",
+        "rounded-sm",
+        "shrink-0",
+        "text-base",
+        "text-center",
+        "text-sm",
+        "text-xl",
+        "transition-colors"
+      ]
+    },
+    {
+      "slug": "loading",
+      "name": "Spinner and skeleton",
+      "group": "Feedback",
+      "page": "site/docs/c-loading.html",
+      "summary": "animate-spin for a short wait, animate-pulse placeholders for content that's on its way.",
+      "use": [
+        "Shape skeletons like the content that replaces them."
+      ],
+      "avoid": [
+        "A spinner for a wait longer than a few seconds; show progress."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "animate-pulse",
+        "animate-spin",
+        "bg-neutral-4",
+        "fg-accent-1-11",
+        "fg-neutral-11",
+        "flex",
+        "flex-col",
+        "gap-2xs",
+        "gap-md",
+        "gap-sm",
+        "grow",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "leading-none",
+        "max-w-form",
+        "p-xs",
+        "py-2xs",
+        "rounded-full",
+        "shrink-0",
+        "text-sm",
+        "text-xl",
+        "w-1/2",
+        "w-3/4"
+      ]
+    }
+  ]
+}
