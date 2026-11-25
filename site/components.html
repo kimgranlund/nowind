@@ -360,11 +360,9 @@
   <section id="materials" data-semantic-demo class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
     <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><span class="text-kicker fg-accent-1-weak">Surfaces</span><h2 class="text-subtitle text-balance">Materials</h2></div>
     <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-    <p class="text-body-sm fg-weak max-w-text mb-md">Massimo's materials, one per region: <code>material-flat</code>, <code>-physical</code>, <code>-frosted</code>, <code>-glass</code> and <code>-outline</code>. Each part names its relief (<code>relief-ground</code>, <code>relief-raised</code>, <code>relief-raised-solid</code>, <code>relief-field</code>); the material decides how it is lit, lined or made of glass. The colored blocks behind show what the glass blurs.</p>
+    <p class="text-body-sm fg-weak max-w-text mb-md">Massimo's materials, one per region: <code>material-flat</code>, <code>-physical</code>, <code>-frosted</code>, <code>-glass</code> and <code>-outline</code>. Each part names its relief (<code>relief-ground</code>, <code>relief-raised</code>, <code>relief-raised-solid</code>, <code>relief-field</code>); the material decides how it is lit, lined or made of glass. The dot grid behind (<code>bg-dots</code>) shows how much each material blurs.</p>
     <div class="relative rounded-xl overflow-hidden">
-      <div class="absolute inset-0 grid grid-cols-4" aria-hidden="true">
-        <div class="bg-solid-accent-1"></div><div class="bg-solid-accent-3"></div><div class="bg-solid-warning"></div><div class="bg-solid-accent-2"></div>
-      </div>
+      <div class="absolute inset-0 rounded-lg bg-neutral-2 fg-accent-1-9 bg-dots bg-dots-md" aria-hidden="true"></div>
       <div class="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-group p-surface">
       <div class="material-flat flex flex-col gap-field p-surface rounded-lg relief-ground bg border border-weak">
         <span class="text-kicker fg-weak">flat</span>
