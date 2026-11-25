@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.4.0 (2026-11-25)
 
 - **Popovers, select, animation:** `anchor-*` (CSS anchor positioning for popovers), `select-base` (customizable select), `animate-spin`, `animate-pulse`.
 - **Showcase components:** accordion, dropdown, modal dialog, avatar group, progress, stepper, input groups, description list, activity, pricing, dropzone, tags, rating, popover menu and info, toast stack, loading states, toolbar, notifications, command palette.
