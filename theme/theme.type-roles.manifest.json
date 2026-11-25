@@ -361,5 +361,115 @@
       "use": "A key on a keycap",
       "massimo": "host − 1px"
     }
-  ]
+  ],
+  "sizeContract": {
+    "description": "Which size each kind of text in an example takes. Sizes follow from what an element is, not from where it sits. the examples lint (scripts/templates.py) will classify each element by the 'identify' rule and check its size against this table; a rendered pass will check rows, hierarchy and icon pairing. Status 'decided' rows are settled; 'open' rows wait for the owner.",
+    "kinds": [
+      {
+        "kind": "control",
+        "identify": "button, select, a field box (cursor-text), h-control or h-nested, role tab/option/menuitem, segment",
+        "size": "text-base",
+        "icon": "icon (icon-sm in a nested control)",
+        "status": "decided",
+        "current": "99 text-base, 86 inherit (inherit resolves to text-base)"
+      },
+      {
+        "kind": "cell",
+        "identify": "td",
+        "size": "text-base (inherited)",
+        "icon": "icon",
+        "status": "decided",
+        "current": "all text-base since the table change"
+      },
+      {
+        "kind": "header",
+        "identify": "th",
+        "size": "text-sm font-medium",
+        "icon": "icon-sm",
+        "status": "open",
+        "question": "Table headers at text-sm (supporting) or text-base like their cells?",
+        "current": "text-sm"
+      },
+      {
+        "kind": "field label",
+        "identify": "label, legend",
+        "size": "text-sm font-medium",
+        "icon": "icon-sm",
+        "status": "open",
+        "question": "Field labels at text-sm (35 today) or text-base (9 today)?",
+        "current": "35 text-sm, 9 text-base, 4 inherit"
+      },
+      {
+        "kind": "supporting",
+        "identify": "help and error text, timestamps, captions, secondary lines (fg-neutral-11 span or p under a title)",
+        "size": "text-sm",
+        "icon": "icon-sm",
+        "status": "decided",
+        "current": "mostly text-sm"
+      },
+      {
+        "kind": "body",
+        "identify": "p in a surface (dialog, card, alert, toast, empty state)",
+        "size": "text-base",
+        "icon": "icon",
+        "status": "open",
+        "question": "Body copy at text-base everywhere (as the dialog now is), or text-sm in compact surfaces such as toasts and cards?",
+        "current": "12 text-sm, 5 text-base"
+      },
+      {
+        "kind": "surface title",
+        "identify": "h2/h3 heading a surface",
+        "size": "text-lg font-semibold in a dialog; text-base font-semibold in cards, lists, alerts and toasts",
+        "icon": "icon-lg on a title row",
+        "status": "open",
+        "question": "Card titles at text-base (matching list names) or text-lg?",
+        "current": "19 text-base, 3 text-lg"
+      },
+      {
+        "kind": "badge",
+        "identify": "rounded-full span with text, tag chips, status pills, counts",
+        "size": "text-sm font-medium",
+        "icon": "icon-sm",
+        "status": "decided",
+        "current": "39 text-sm, 26 inherit (markers and avatars)"
+      },
+      {
+        "kind": "keycap",
+        "identify": "kbd",
+        "size": "text-xs font-mono",
+        "icon": "none",
+        "status": "decided",
+        "current": "9 text-xs"
+      },
+      {
+        "kind": "kicker",
+        "identify": "uppercase eyebrow over a title",
+        "size": "text-xs font-mono uppercase tracking-widest",
+        "icon": "none",
+        "status": "decided",
+        "current": "6 text-xs"
+      },
+      {
+        "kind": "figure",
+        "identify": "price or metric",
+        "size": "text-3xl font-display font-extrabold tracking-tight tabular-nums",
+        "icon": "none",
+        "status": "decided",
+        "current": "6 text-3xl"
+      },
+      {
+        "kind": "unclassified",
+        "identify": "div, span, li or a with no kind above",
+        "size": "inherit",
+        "icon": "matches its text",
+        "status": "review",
+        "current": "~250 elements, mostly wrappers that inherit; about 50 set text-sm or text-base and need a kind"
+      }
+    ],
+    "rules": [
+      "Side by side in one row, text shares a size, unless one side is a figure, a badge or a keycap.",
+      "Within a surface: title >= body >= supporting; a dialog title is larger than its buttons.",
+      "An icon takes the step of the text beside it: icon with text-base, icon-sm with text-sm, icon-lg on a title row."
+    ]
+  }
 }
