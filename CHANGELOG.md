@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- **Geometry audit:** `python3 scripts/templates.py --geometry-report` checks each example part's height, padding, gap and corner against the geometry contract, and `?audit=geometry` on any page measures the rendered examples: corners that should nest, uneven insets at a container's end, text against a painted edge, side-by-side controls of different heights, squares and circles that aren't, and clipped content. Both report nothing on the showcase and all 26 component pages at 375, 716 and 1280px.
+- **The reset zeroes button padding,** as Tailwind's preflight does: icon items in segmented controls and toolbars (`h-full aspect-square`) had kept the browser's 1px 6px and come out 35 × 32px instead of square.
 - **Geometry contract:** a table in the geometry manifest (`geometryContract`) gives each kind of part its height, padding, gap and corner. Following it, one-line alerts space icon and text `gap-gutter` like toasts, and the tooltip pads `py-2xs px-xs`.
 - **Callouts in primitives:** the docs' callouts and the callout sample are `p-md border-s-4 border-{palette}-7 bg-{palette}-3` with `fg-{palette}-11` icons, `text-sm font-medium fg-{palette}-12` labels and `text-base` text, in place of role classes; the block sample's heading is `text-heading-md`, as the pages use.
 - **One corner for alerts:** one-line alerts are `rounded-md`, like titled alerts and toasts.

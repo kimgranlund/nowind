@@ -277,3 +277,85 @@ document.querySelectorAll("[data-glass-slider]").forEach((box) => {
   window.addEventListener("load", run);
   window.nowindRunTypeAudit = run;
 })();
+
+// Geometry audit (open any page with ?audit=geometry): measures the rendered examples against the geometry contract's
+// rules (geometryContract.rules in theme/theme.geometry.manifest.json) and logs what breaks them; window.nowindGeometryAudit
+// holds the list. Nesting: a part tucked into a rounded container's corner has that radius less its offset. Insets: a
+// part at a container's end sits the same distance from each edge it faces. Edges: no text within 2px of a painted box's
+// edge. Heights: controls side by side share a height. Shape: squares and circles are square. Clipping: no clipping box
+// hides its content.
+(() => {
+  if (new URLSearchParams(location.search).get("audit") !== "geometry") return;
+  const run = () => {
+    const out = [];
+    const R = (e) => e.getBoundingClientRect();
+    const cs = (e) => getComputedStyle(e);
+    const px = (v) => parseFloat(v) || 0;
+    const frames = [...document.querySelectorAll("[data-example]")];
+    const sections = [...document.querySelectorAll("main section[id]")].filter((s) => !s.matches("[data-semantic-demo]"));
+    const inScope = (el) => (frames.length ? !!el.closest("[data-example]") : sections.some((s) => s.contains(el)) && !el.closest("[data-semantic-demo]")) && !el.closest(".scope");
+    const where = (el) => { const s = el.closest("section[id]"); return `#${s ? s.id : "?"} ${el.tagName.toLowerCase()}.${[...el.classList].slice(0, 5).join(".")} “${el.textContent.trim().slice(0, 24)}”`; };
+    const radius = (e) => { const r = R(e); return Math.min(px(cs(e).borderTopLeftRadius), r.width / 2, r.height / 2); };
+    const painted = (e) => { const c = cs(e); return (c.backgroundColor !== "rgba(0, 0, 0, 0)" && c.backgroundColor !== "transparent") || (["Top", "Right", "Bottom", "Left"].every((sd) => px(c[`border${sd}Width`]) > 0) && c.borderTopColor !== "rgba(0, 0, 0, 0)"); };
+    const all = [...document.querySelectorAll("main *")].filter((e) => inScope(e) && cs(e).display !== "none" && R(e).width > 0);
+    for (const e of all) {
+      const c = cs(e), r = R(e);
+      // Nesting: e tucked into the corner of its nearest painted, rounded ancestor.
+      if (radius(e) > 0 && painted(e)) {
+        let a = e.parentElement;
+        while (a && !(radius(a) > 0 && painted(a))) a = a.parentElement;
+        if (a && inScope(a)) {
+          const ar = R(a), ra = radius(a), bw = px(cs(a).borderTopWidth);
+          const corners = [[r.top - ar.top, r.left - ar.left], [r.top - ar.top, ar.right - r.right], [ar.bottom - r.bottom, r.left - ar.left], [ar.bottom - r.bottom, ar.right - r.right]];
+          for (const [dy, dx] of corners) {
+            if (Math.abs(dy - dx) < 1 && dy < ra && dy >= 0) {
+              const want = Math.max(0, ra - dy), have = radius(e);
+              if (Math.abs(have - want) > 1.5) out.push({ rule: "nesting", where: where(e), detail: `radius ${have.toFixed(1)}px in a ${ra.toFixed(1)}px corner ${dy.toFixed(1)}px in (want ${want.toFixed(1)}px)` });
+              break;
+            }
+          }
+        }
+      }
+      // Insets: a sized part at the end of a rounded flex row container faces three edges evenly.
+      const p = e.parentElement;
+      if (p && e === p.lastElementChild && e.matches(".size-nested, .size-control, .h-full, kbd") && radius(p) > 0 && cs(p).display.includes("flex") && cs(p).flexDirection === "row" && painted(p)) {
+        const pr = R(p), bw = px(cs(p).borderTopWidth);
+        const centred = cs(p).alignItems === "center" || cs(p).alignItems === "normal";
+        const gaps = centred ? [r.top - pr.top - bw, pr.bottom - r.bottom - bw, pr.right - r.right - bw] : [r.top - pr.top - bw, pr.right - r.right - bw];
+        if (Math.max(...gaps) - Math.min(...gaps) > 1.5) out.push({ rule: "insets", where: where(e), detail: gaps.map((g) => g.toFixed(1) + "px").join(", ") });
+      }
+      // Edges: text whose nearest painted box is e sits clear of e's sides.
+      if (painted(e) && !/auto|scroll/.test(c.overflowX) && !e.matches("input, textarea, select, option, code, kbd, progress, meter, .rounded-full.size-nested, .rounded-full.size-control")) {
+        const walker = document.createTreeWalker(e, NodeFilter.SHOW_TEXT);
+        for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+          if (!n.textContent.trim()) continue;
+          let host = n.parentElement;
+          while (host && host !== e && !painted(host)) host = host.parentElement;
+          if (host !== e || n.parentElement.closest("code, kbd, input, select, textarea")) continue;
+          const rg = document.createRange(); rg.selectNodeContents(n); const t = rg.getBoundingClientRect();
+          if (!t.width) continue;
+          const s0 = t.left - r.left - px(c.borderLeftWidth), en = r.right - t.right - px(c.borderRightWidth);
+          if (s0 < 2 || en < 2) { out.push({ rule: "edges", where: where(e), detail: `text ${s0.toFixed(1)}px from the start, ${en.toFixed(1)}px from the end` }); break; }
+        }
+      }
+      // Shape: squares and circles.
+      if (e.matches(".aspect-square, .size-nested, .size-control") && Math.abs(r.width - r.height) > 1) out.push({ rule: "shape", where: where(e), detail: `${r.width.toFixed(1)}×${r.height.toFixed(1)}px` });
+      // Clipping.
+      if (c.overflow === "hidden" || c.overflowY === "hidden") {
+        if (e.scrollHeight > e.clientHeight + 1 || e.scrollWidth > e.clientWidth + 1) out.push({ rule: "clipping", where: where(e), detail: `content ${e.scrollWidth}×${e.scrollHeight} in ${e.clientWidth}×${e.clientHeight}` });
+      }
+      // Heights: full-size controls side by side.
+      if (c.display.includes("flex") && c.flexDirection === "row" && !e.matches(".flex-wrap")) {
+        const ctrls = [...e.children].filter((k) => k.matches(".h-control, .size-control"));
+        const hs = [...new Set(ctrls.map((k) => Math.round(R(k).height)))];
+        if (hs.length > 1) out.push({ rule: "heights", where: where(e), detail: `controls at ${hs.join(", ")}px` });
+      }
+    }
+    window.nowindGeometryAudit = out;
+    console.log(`Geometry audit: ${out.length} finding(s)`);
+    if (out.length) console.table(out);
+    return out;
+  };
+  window.addEventListener("load", run);
+  window.nowindRunGeometryAudit = run;
+})();
