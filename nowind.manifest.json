@@ -16,12 +16,12 @@
   },
   "counts": {
     "classes": 1489,
-    "hover": 387,
-    "state": 2253,
+    "hover": 207,
+    "state": 953,
     "group": 174,
-    "responsive": 1240,
-    "container": 1240,
-    "bytes": 495289
+    "responsive": 940,
+    "container": 333,
+    "bytes": 303070
   },
   "naming": "property-value, as Prewind and Tailwind: p-md, gap-lg, bg-solid-accent-1. Colour classes take the token name without --; text-color roles are the token name alone (fg-weak, fg-accent-1).",
   "variants": {
@@ -33,8 +33,8 @@
       "xl": "1280px",
       "2xl": "1536px"
     },
-    "responsive": "sm:, md:, lg:, xl:, 2xl: (read from the --breakpoint-* tokens) apply to layout: display, grid columns and spans, flex direction, wrap, basis, justify, align, text alignment, widths, heights, position, top, overflow, padding and gaps. Margins, colours and type have no breakpoint variants.",
-    "container": "@sm:, @md:, @lg:, @xl:, @2xl: (384, 448, 512, 576 and 672px, read from the --container-* tokens) apply the same layout classes when the nearest ancestor with @container (container-type: inline-size) is at least that wide, so a component lays itself out by its own width rather than the viewport's.",
+    "responsive": "sm:, md:, lg:, xl:, 2xl: (read from the --breakpoint-* tokens) apply to layout: display, grid columns and spans, flex direction, wrap, basis, justify, align, text alignment, widths, inline and all-side padding and gaps. Margins, colours, type, position, heights and overflow have no breakpoint variants.",
+    "container": "@sm:, @md:, @lg: (384, 448 and 512px, read from the --container-* tokens) apply a component's layout classes (display, flex direction and wrap, grid columns and spans, basis, gaps, alignment, text alignment) when the nearest ancestor with @container (container-type: inline-size) is at least that wide, so a component lays itself out by its own width rather than the viewport's.",
     "groups": "group on a parent; group-hover:, group-focus-within: and group-open: on a child, for opacity, visibility, rotation and the fg roles. group-open matches an open details or popover, aria-expanded=\"true\", or a group holding an open popover, so a caret with transition group-open:rotate-180 turns when its disclosure or menu opens.",
     "states": "active:, focus-visible:, focus-within: (a field wrapper whose input has focus), selected: (aria-selected=\"true\"), current: (aria-current), pressed: (aria-pressed=\"true\"), expanded: (aria-expanded=\"true\"), open: (details, popovers), invalid: (aria-invalid=\"true\" or :user-invalid), has-invalid: (a wrapper holding an invalid input), has-checked: (a wrapper holding a checked radio or checkbox, such as a choice card) and disabled: (also aria-disabled). Colors only (plus opacity and cursor for disabled), for the neutral and accent roles and the raw steps of neutral, accent-1 to accent-4 and danger; invalid: and has-invalid: for neutral and danger.",
     "none": "No group- or dark: variants. Dark mode comes from the theme's light-dark() tokens."
@@ -64,7 +64,7 @@
     "select": "select-base: the customizable select (appearance: base-select), its picker and options in the theme: the picker is rounded-md padded by the inset, so its options (control height, rounded-sm, a Phosphor check on the selected one) nest concentrically, and the picker icon is Phosphor's caret. The value is centred in the field and never wraps; a <button> holding <selectedcontent class=\"block truncate\"> lets a long value end in an ellipsis before the caret, which is drawn small and sits at the end. The highlighted option shows by its background, not a focus ring.",
     "motion": "transition, transition-colors, -opacity, -shadow, -transform, -none (state-change length and easing by default); duration-fade, -snappy, -smooth, -bouncy; ease-smooth, -snappy, -bouncy (Massimo springs as linear()), ease-standard, -out, -in.",
     "marks": "The reset draws checkboxes, radios, switches (<input type=checkbox role=switch>) and sliders at Affine's mark size (between F and the slot), filled with accent-1 when checked; mark-sm and mark-lg pick another size.",
-    "state": "state: a state layer. An ::after wash of currentColor under the content, at --state-hover (0.08), --state-focus (0.1), --state-selected (0.12, also pressed, expanded, current and a checked child) and --state-active (0.16); none when disabled. One class covers every state in any palette, in place of a hover: and active: class per step; the element keeps its own radius.",
+    "state": "state: a state layer. An ::after wash of currentColor under the content, at --state-hover (0.12), --state-focus (0.14), --state-selected (0.16, also pressed, expanded, current and a checked child) and --state-active (0.2); none when disabled. One class covers every state in any palette, in place of a hover: and active: class per step; the element keeps its own radius.",
     "icons": "icon (a slot-square box, glyph --icon-md), icon-sm, icon-md, icon-lg: lengths from the base size, so they count as regular classes and examples use them. Every Phosphor glyph sits in an icon box (<i class=\"icon ph ph-floppy-disk\">); carets are icon icon-sm. Or an inline <svg> inside .icon.",
     "sizing": "w-, h-, min-/max- with 0, full, screen (100vw/100vh), fit; w-1/2, 1/3, 2/3, 1/4, 3/4 and fifths; h-dvh, h-svh, h-lvh and min-/max- versions; max-w-text (alias max-w-prose), max-w-form, max-w-container, h-control"
   },

@@ -364,12 +364,16 @@ const esc = (c) => c.replace(/[:./@]/g, (ch) => `\\${ch}`).replace(/^(\d)/, (d) 
 const rule = (sel, decl) => `  .${esc(sel)} { ${decl}; }`;
 const ROLE_COLORS = colorProps.filter((p) => !/^--shadow/.test(p) && !/-(surface|indicator|track)$/.test(p)).map((p) => p.slice(2));
 // Raw steps of the interactive palettes take hover and state variants too, so an example can be written in primitives only.
-const STEP_STATES = /^(fg|bg|border)-(neutral|accent-[1-4]|danger)-(\d+|contrast)$/;
+// The raw steps that take hover and state variants: the steps a control or item moves between (surfaces 1–5 and solids
+// 9–10, text 11–12 and contrast, borders 6–8) in neutral, accent-1 and danger. The state class covers tints elsewhere.
+const STEP_STATES = /^(bg-(neutral|accent-1|danger)-([1-5]|9|10)|fg-(neutral|accent-1|danger)-(11|12|contrast)|border-(neutral|accent-1|danger)-[6-8])$/;
 const HOVER = [...D.keys()].filter((c) => ROLE_CLASSES.has(c) || STEP_STATES.test(c) || /^(fg|bg)-(inherit|current|transparent)$/.test(c) || /^opacity-|^cursor-/.test(c));
-const LAYOUT = [...D.keys()].filter((c) => /^(block|inline-block|inline|flex|inline-flex|grid|inline-grid|contents|hidden|flex-(row|col)(-reverse)?|flex-wrap|flex-nowrap|justify-|items-|self-|text-(left|center|right|justify|start|end)$|col-span-|w-(\d\/\d|full|auto|fit|sidebar|rail)$|basis-|gap-|p[xytb]?-|static$|relative$|absolute$|fixed$|sticky$|top-|overflow-|h-(full|auto|dvh|screen|below-header)$)/.test(c));
+const LAYOUT = [...D.keys()].filter((c) => /^(block|inline-block|inline|flex|inline-flex|grid|inline-grid|contents|hidden|flex-(row|col)(-reverse)?|flex-wrap|flex-nowrap|justify-|items-|self-|text-(left|center|right|justify|start|end)$|col-span-|w-(\d\/\d|full|auto|fit|sidebar|rail)$|basis-|gap-|p[xy]?-)/.test(c));
+// Container queries cover the classes that change a component's own layout; breakpoints cover the page's (LAYOUT).
+const CQ_LAYOUT = LAYOUT.filter((c) => /^(block|inline-block|inline|flex|inline-flex|grid|hidden|flex-(row|col)(-reverse)?|flex-wrap|flex-nowrap|grid-cols-|col-span-|basis-|gap-|items-|justify-|text-(start|center|end)$)/.test(c));
 const geometryCss = read("theme/theme.geometry.css");
 const BREAKPOINTS = [...geometryCss.matchAll(/--breakpoint-([\w]+):\s*(\d+)px/g)].map((m) => [m[1], Number(m[2])]);
-const CONTAINERS = [...geometryCss.matchAll(/--container-(sm|md|lg|xl|2xl):\s*(\d+)px/g)].map((m) => [m[1], Number(m[2])]);
+const CONTAINERS = [...geometryCss.matchAll(/--container-(sm|md|lg):\s*(\d+)px/g)].map((m) => [m[1], Number(m[2])]);
 
 const reset = `@layer reset {
   :where(*, *::before, *::after) { box-sizing: border-box; border-width: 0; border-style: solid; border-color: var(--border); --_inset: 0px; --_bw: 0px; }
@@ -735,7 +739,7 @@ for (const [bp, w] of BREAKPOINTS) {
 // the nearest one is at least that wide, so a component adapts to its slot, not the window.
 for (const [cq, w] of CONTAINERS) {
   out.push(`  @container (min-width: ${w}px) {`);
-  for (const c of LAYOUT) out.push(`  ${rule(`@${cq}:${c}`, D.get(c))}`);
+  for (const c of CQ_LAYOUT) out.push(`  ${rule(`@${cq}:${c}`, D.get(c))}`);
   out.push("  }");
 }
 out.push("}");
@@ -753,13 +757,13 @@ const manifest = {
     bundle: "node scripts/bundle.mjs writes dist/nowind.bundle.css and dist/nowind.min.css: theme.css with every @import inlined, then this file. Run it after this script.",
     rule: "Put your own global CSS in @layer styles. Unlayered CSS beats every utility.",
   },
-  counts: { classes: D.size, hover: HOVER.length, state: STATES.reduce((n, [, , l]) => n + l.length, 0), group: GROUP_CLASSES.length * GROUP_VARIANTS.length, responsive: LAYOUT.length * BREAKPOINTS.length, container: LAYOUT.length * CONTAINERS.length, bytes: Buffer.byteLength(css) },
+  counts: { classes: D.size, hover: HOVER.length, state: STATES.reduce((n, [, , l]) => n + l.length, 0), group: GROUP_CLASSES.length * GROUP_VARIANTS.length, responsive: LAYOUT.length * BREAKPOINTS.length, container: CQ_LAYOUT.length * CONTAINERS.length, bytes: Buffer.byteLength(css) },
   naming: "property-value, as Prewind and Tailwind: p-md, gap-lg, bg-solid-accent-1. Colour classes take the token name without --; text-color roles are the token name alone (fg-weak, fg-accent-1).",
   variants: {
     hover: "Inside @media (hover: hover), as Tailwind v4, so taps on touch screens don't stick. hover:border-* for the border roles, hover:fg-* and hover:bg-* for the colour role tokens only (bg, component, border, solid, on-solid, fg and their palette versions), hover:opacity-*, hover:cursor-*. Raw steps of neutral, accent-1 to accent-4 and danger take hover too (hover:bg-neutral-4), so examples can use primitives only; alpha steps and the status palettes' steps have no hover class.",
     breakpoints: Object.fromEntries(BREAKPOINTS.map(([b, w]) => [b, `${w}px`])),
-    responsive: "sm:, md:, lg:, xl:, 2xl: (read from the --breakpoint-* tokens) apply to layout: display, grid columns and spans, flex direction, wrap, basis, justify, align, text alignment, widths, heights, position, top, overflow, padding and gaps. Margins, colours and type have no breakpoint variants.",
-    container: "@sm:, @md:, @lg:, @xl:, @2xl: (384, 448, 512, 576 and 672px, read from the --container-* tokens) apply the same layout classes when the nearest ancestor with @container (container-type: inline-size) is at least that wide, so a component lays itself out by its own width rather than the viewport's.",
+    responsive: "sm:, md:, lg:, xl:, 2xl: (read from the --breakpoint-* tokens) apply to layout: display, grid columns and spans, flex direction, wrap, basis, justify, align, text alignment, widths, inline and all-side padding and gaps. Margins, colours, type, position, heights and overflow have no breakpoint variants.",
+    container: "@sm:, @md:, @lg: (384, 448 and 512px, read from the --container-* tokens) apply a component's layout classes (display, flex direction and wrap, grid columns and spans, basis, gaps, alignment, text alignment) when the nearest ancestor with @container (container-type: inline-size) is at least that wide, so a component lays itself out by its own width rather than the viewport's.",
     groups: "group on a parent; group-hover:, group-focus-within: and group-open: on a child, for opacity, visibility, rotation and the fg roles. group-open matches an open details or popover, aria-expanded=\"true\", or a group holding an open popover, so a caret with transition group-open:rotate-180 turns when its disclosure or menu opens.",
     states: "active:, focus-visible:, focus-within: (a field wrapper whose input has focus), selected: (aria-selected=\"true\"), current: (aria-current), pressed: (aria-pressed=\"true\"), expanded: (aria-expanded=\"true\"), open: (details, popovers), invalid: (aria-invalid=\"true\" or :user-invalid), has-invalid: (a wrapper holding an invalid input), has-checked: (a wrapper holding a checked radio or checkbox, such as a choice card) and disabled: (also aria-disabled). Colors only (plus opacity and cursor for disabled), for the neutral and accent roles and the raw steps of neutral, accent-1 to accent-4 and danger; invalid: and has-invalid: for neutral and danger.",
     none: "No group- or dark: variants. Dark mode comes from the theme's light-dark() tokens.",
@@ -789,7 +793,7 @@ const manifest = {
     select: "select-base: the customizable select (appearance: base-select), its picker and options in the theme: the picker is rounded-md padded by the inset, so its options (control height, rounded-sm, a Phosphor check on the selected one) nest concentrically, and the picker icon is Phosphor's caret. The value is centred in the field and never wraps; a <button> holding <selectedcontent class=\"block truncate\"> lets a long value end in an ellipsis before the caret, which is drawn small and sits at the end. The highlighted option shows by its background, not a focus ring.",
     motion: "transition, transition-colors, -opacity, -shadow, -transform, -none (state-change length and easing by default); duration-fade, -snappy, -smooth, -bouncy; ease-smooth, -snappy, -bouncy (Massimo springs as linear()), ease-standard, -out, -in.",
     marks: "The reset draws checkboxes, radios, switches (<input type=checkbox role=switch>) and sliders at Affine's mark size (between F and the slot), filled with accent-1 when checked; mark-sm and mark-lg pick another size.",
-    state: "state: a state layer. An ::after wash of currentColor under the content, at --state-hover (0.08), --state-focus (0.1), --state-selected (0.12, also pressed, expanded, current and a checked child) and --state-active (0.16); none when disabled. One class covers every state in any palette, in place of a hover: and active: class per step; the element keeps its own radius.",
+    state: "state: a state layer. An ::after wash of currentColor under the content, at --state-hover (0.12), --state-focus (0.14), --state-selected (0.16, also pressed, expanded, current and a checked child) and --state-active (0.2); none when disabled. One class covers every state in any palette, in place of a hover: and active: class per step; the element keeps its own radius.",
     icons: "icon (a slot-square box, glyph --icon-md), icon-sm, icon-md, icon-lg: lengths from the base size, so they count as regular classes and examples use them. Every Phosphor glyph sits in an icon box (<i class=\"icon ph ph-floppy-disk\">); carets are icon icon-sm. Or an inline <svg> inside .icon.",
     sizing: "w-, h-, min-/max- with 0, full, screen (100vw/100vh), fit; w-1/2, 1/3, 2/3, 1/4, 3/4 and fifths; h-dvh, h-svh, h-lvh and min-/max- versions; max-w-text (alias max-w-prose), max-w-form, max-w-container, h-control",
   },

@@ -471,12 +471,12 @@
   },
   "stateLayer": {
     "tokens": {
-      "--state-hover": 0.08,
-      "--state-focus": 0.1,
-      "--state-selected": 0.12,
-      "--state-active": 0.16
+      "--state-hover": 0.12,
+      "--state-focus": 0.14,
+      "--state-selected": 0.16,
+      "--state-active": 0.2
     },
     "use": "Opacity of the .state layer, a wash of currentColor over the element under its content. Selected also covers pressed, expanded, current and a checked child. Disabled shows none.",
-    "derivation": "After Material's state layers (hover 8%, focus 10%, pressed 10 to 16%), raised for selected so a chosen item reads at rest."
+    "derivation": "After Material's state layers, raised by about half again (hover 8% → 12%) because the 8% wash read as too subtle on Nowind's light surfaces."
   }
 }

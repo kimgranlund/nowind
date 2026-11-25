@@ -227,13 +227,13 @@ Icons use [Phosphor](https://phosphoricons.com)'s web font; link the weights you
 
 | Prefix | Covers | Example |
 |---|---|---|
-| `hover:` | Colors of roles and steps, opacity, cursor (only on devices that can hover) | `hover:bg-neutral-4` |
+| `hover:` | Colour roles, the control steps of neutral, accent-1 and danger, opacity, cursor (only on devices that can hover); `state` covers the rest | `hover:bg-neutral-4` |
 | `active:`, `focus-visible:`, `focus-within:` | Colors; borders for focus | `focus-within:border-accent-1-8` |
 | `selected:`, `current:`, `pressed:`, `expanded:`, `open:`, `has-checked:` | Colors, and `shadow-xs`/`-sm`/`-none` to lift a chosen item | `pressed:bg-neutral-1 pressed:shadow-xs` |
 | `invalid:`, `has-invalid:`, `disabled:` | Colors; opacity and cursor for disabled | `has-invalid:border-danger-7` |
 | `group-hover:`, `group-focus-within:`, `group-open:` | Opacity, visibility, rotation, text color | `group-open:rotate-180` |
-| `sm:` 640, `md:` 768, `lg:` 1024, `xl:` 1280, `2xl:` 1536 | Layout: display, grid, flex, alignment, widths, heights, padding, position, overflow, gaps | `md:grid-cols-3` |
-| `@sm:` 384 … `@2xl:` 672 | The same layout classes, against the nearest `@container` | `@md:flex-row` |
+| `sm:` 640, `md:` 768, `lg:` 1024, `xl:` 1280, `2xl:` 1536 | Layout: display, grid, flex, alignment, widths, inline padding, gaps | `md:grid-cols-3` |
+| `@sm:` 384, `@md:` 448, `@lg:` 512 | A component's layout (display, direction, grid, basis, gaps, alignment), against the nearest `@container` | `@md:flex-row` |
 
 ```html
 <button role="tab" aria-selected="true"

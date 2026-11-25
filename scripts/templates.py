@@ -82,15 +82,15 @@ def site_map(path):
     """The popover behind the bar's menu button: every section and its pages, the current page marked."""
     def links(pages, two=False):
         lis = "".join(
-            f'<li><a href="{rel(pp, path)}"{CUR_PAGE if pp == path else ""} class="block py-3xs no-underline text-body-sm {"fg font-semibold" if pp == path else "fg-weak hover:fg"} transition-colors">{label}</a></li>'
+            f'<li><a href="{rel(pp, path)}"{CUR_PAGE if pp == path else ""} class="flex items-center h-nested px-nested rounded-sm state no-underline text-body-sm {"fg font-semibold" if pp == path else "fg-weak hover:fg"}">{label}</a></li>'
             for pp, label in pages)
         return f'<ul role="list" class="grid {"grid-cols-2 gap-x-md" if two else "grid-cols-1"}">{lis}</ul>'
     def col(name, pages, two=False, span=""):
-        return f'<div class="{span} flex flex-col gap-2xs min-w-0"><span class="text-kicker fg-weak">{name}</span>{links(pages, two)}</div>'
+        return f'<div class="{span} flex flex-col gap-2xs min-w-0"><span class="px-nested text-kicker fg-weak">{name}</span>{links(pages, two)}</div>'
     sec = dict(SECTIONS)
     lead = [pp for pp in sec["Components"] if not pp[0].startswith("docs/c-")]
     def group(g):
-        return (f'<div class="flex flex-col gap-3xs min-w-0"><span class="text-label fg-subtle">{g}</span>'
+        return (f'<div class="flex flex-col gap-3xs min-w-0"><span class="px-nested text-label fg-subtle">{g}</span>'
                 f'{links([(f"docs/c-{c['slug']}.html", c["name"]) for c in BY_GROUP if c["group"] == g])}</div>')
     sizes = [sum(c["group"] == g for c in COMPONENTS) + 1 for g in GROUP_ORDER]
     half, run, cut = sum(sizes) / 2, 0, len(GROUP_ORDER)
@@ -101,7 +101,7 @@ def site_map(path):
         run += n
     stacks = [GROUP_ORDER[:cut], GROUP_ORDER[cut:]]
     groups = "".join(f'<div class="flex flex-col gap-sm min-w-0">{"".join(group(g) for g in st)}</div>' for st in stacks)
-    components = (f'<div class="md:col-span-2 flex flex-col gap-2xs min-w-0"><span class="text-kicker fg-weak">Components</span>'
+    components = (f'<div class="md:col-span-2 flex flex-col gap-2xs min-w-0"><span class="px-nested text-kicker fg-weak">Components</span>'
                   f'{links(lead, two=True)}<div class="grid grid-cols-2 gap-x-md gap-y-sm pt-2xs">{groups}</div></div>')
     return f"""<div id="site-map" popover class="anchor-bottom w-full max-w-measure max-h-below-header overflow-y-auto p-surface rounded-md bg fg border shadow-lg">
   <nav aria-label="Site map" class="grid grid-cols-1 md:grid-cols-4 gap-group">
@@ -214,7 +214,7 @@ def callout(kind, body_html):
 def code(filename, lang, src):
     return f"""<figure class="flex flex-col min-w-0 border border-weak bg-strong">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
-              <span class="text-mono-sm fg-weak truncate">{E(filename)}</span><span class="text-kicker fg-subtle">{lang}</span>
+              <span class="text-mono-sm fg-weak truncate">{E(filename)}</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">{lang}</span>
             </figcaption>
             <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>{E(src.strip(chr(10)))}</code></pre>
           </figure>"""
@@ -920,8 +920,8 @@ def component_page(c):
 {html_}
           </div>""",
             code(f"{c['slug']}-{sid}.html" if sid != "example" else f"{c['slug']}.html", "HTML", html_))
-    use = "\n".join(f'            <li class="flex gap-gutter"><i class="icon icon-sm ph-bold ph-check fg-success-weak"></i><span>{t}</span></li>' for t in c["use"])
-    avoid = "\n".join(f'            <li class="flex gap-gutter"><i class="icon icon-sm ph-bold ph-x fg-danger-weak"></i><span>{t}</span></li>' for t in c["avoid"])
+    use = "\n".join(f'            <li class="flex gap-gutter"><i class="icon ph ph-check fg-success-weak"></i><span>{t}</span></li>' for t in c["use"])
+    avoid = "\n".join(f'            <li class="flex gap-gutter"><i class="icon ph ph-x fg-danger-weak"></i><span>{t}</span></li>' for t in c["avoid"])
     art = "\n        ".join([
         page_head(c["group"], c["name"], c["summary"]),
         example("example", "Example", c["html"]),
