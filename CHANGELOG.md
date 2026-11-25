@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Leaner examples:** 232 interactive elements drop `transition-colors`/`transition`, which the reset already gives them; only elements that aren't interactive name a transition.
 - **Borders start in the reset:** as in Tailwind's preflight, every element starts with a zero-width solid border, so `border`, `border-t`, `border-b-2` and the rest set only a width, and `border-dashed` or `border-dotted` combine with any of them. Text fields, textareas and selects keep a default border and `hr` keeps its line. Tabs in the examples are underlined only (they had a stray full border).
 - **Context kept current:** `AGENTS.md` has a rule that every change updates its manifest, entry files, docs and changelog in the same commit, and `scripts/check.mjs` now fails when `AGENTS.md` stops naming a repo file or names a path that doesn't exist (self-test: seven breaks). The class manifest's radius, icon, select, spacing and layout descriptions are brought up to date.
 - **Icon classes are primitives:** `icon`, `icon-sm`, `icon-md` and `icon-lg` are lengths from the base size, so they count as regular classes and the examples use them: `<i class="icon ph ph-gear">` in place of five layout classes and a type size (which made icons about 18% too big). Carets are `icon icon-sm`. The examples lint requires every Phosphor icon to sit in an `icon` box.

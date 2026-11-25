@@ -2,16 +2,16 @@
 rendered live and shown as code, with when to use it and when not to. Utility classes only."""
 
 BTN = "inline-flex items-center justify-center py-xs px-sm gap-xs rounded-sm"
-BTN_PRIMARY = f"{BTN} border border-transparent bg-accent-1-9 hover:bg-accent-1-10 active:bg-accent-1-10 fg-accent-1-contrast text-base font-medium cursor-pointer transition-colors"
-BTN_SECONDARY = f"{BTN} border bg-neutral-3 hover:bg-neutral-4 active:bg-neutral-5 fg-neutral-12 text-base font-medium cursor-pointer transition-colors"
-FIELD = "py-xs px-sm rounded-sm border hover:border-neutral-8 invalid:border-danger-7 bg-neutral-1 text-base w-full transition-colors"
-BOX = "flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition-colors"
+BTN_PRIMARY = f"{BTN} border border-transparent bg-accent-1-9 hover:bg-accent-1-10 active:bg-accent-1-10 fg-accent-1-contrast text-base font-medium cursor-pointer"
+BTN_SECONDARY = f"{BTN} border bg-neutral-3 hover:bg-neutral-4 active:bg-neutral-5 fg-neutral-12 text-base font-medium cursor-pointer"
+FIELD = "py-xs px-sm rounded-sm border hover:border-neutral-8 invalid:border-danger-7 bg-neutral-1 text-base w-full"
+BOX = "flex items-center gap-xs py-xs px-sm rounded-sm border hover:border-neutral-8 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition"
 BARE = "grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12"
 KBD = "inline-flex items-center py-3xs px-2xs rounded-xs border fg-neutral-11 text-sm font-mono"
 NESTED_SELECT = "select-base py-3xs px-2xs rounded-xs border border-transparent bg-transparent hover:bg-neutral-3 fg-neutral-12 text-base cursor-pointer"
-NESTED_ICON = "inline-flex items-center justify-center p-3xs rounded-xs border border-transparent bg-transparent hover:bg-neutral-3 pressed:bg-neutral-4 fg-neutral-11 hover:fg-neutral-12 cursor-pointer transition-colors"
+NESTED_ICON = "inline-flex items-center justify-center p-3xs rounded-xs border border-transparent bg-transparent hover:bg-neutral-3 pressed:bg-neutral-4 fg-neutral-11 hover:fg-neutral-12 cursor-pointer"
 CARD = "p-md rounded-md bg-neutral-1 border border-neutral-6"
-MENU_ITEM = "flex items-center gap-xs py-xs px-sm border border-transparent rounded-sm no-underline fg-neutral-12 hover:bg-neutral-3 selected:bg-accent-1-3 selected:fg-accent-1-11 transition-colors"
+MENU_ITEM = "flex items-center gap-xs py-xs px-sm border border-transparent rounded-sm no-underline fg-neutral-12 hover:bg-neutral-3 selected:bg-accent-1-3 selected:fg-accent-1-11"
 
 COMPONENTS = [
     {
@@ -20,8 +20,8 @@ COMPONENTS = [
         "html": f"""<div class="flex flex-wrap items-center gap-sm">
   <button class="{BTN_PRIMARY}"><span>Save changes</span></button>
   <button class="{BTN_SECONDARY}"><i class="icon ph ph-download-simple"></i><span>Export</span></button>
-  <button class="{BTN} border border-transparent bg-transparent hover:bg-neutral-3 fg-neutral-12 text-base font-medium cursor-pointer transition-colors"><span>Cancel</span></button>
-  <button class="{BTN} border border-transparent bg-danger-9 hover:bg-danger-10 fg-danger-contrast text-base font-medium cursor-pointer transition-colors"><i class="icon ph ph-trash"></i><span>Delete</span></button>
+  <button class="{BTN} border border-transparent bg-transparent hover:bg-neutral-3 fg-neutral-12 text-base font-medium cursor-pointer"><span>Cancel</span></button>
+  <button class="{BTN} border border-transparent bg-danger-9 hover:bg-danger-10 fg-danger-contrast text-base font-medium cursor-pointer"><i class="icon ph ph-trash"></i><span>Delete</span></button>
 </div>""",
         "use": ["One primary button per view, for the action most people take.", "Wrap the label in a <code>&lt;span&gt;</code>, and put the icon in its own <code>&lt;i&gt;</code> beside it."],
         "avoid": ["A button for navigation; use a link styled the same way.", "Two primary buttons side by side; make the second secondary."],
@@ -30,9 +30,9 @@ COMPONENTS = [
         "slug": "icon-button", "name": "Icon button", "icon": "ph-plus-circle", "group": "Actions",
         "summary": "A button with only an icon. One padding on all sides (<code>p-xs</code>, or <code>p-3xs</code> when small) around a square icon makes it square, the same height as a text button.",
         "html": f"""<div class="flex items-center gap-sm">
-  <button class="inline-flex items-center justify-center p-xs gap-xs rounded-sm border bg-neutral-3 hover:bg-neutral-4 fg-neutral-12 cursor-pointer transition-colors" aria-label="Settings"><i class="icon ph ph-gear"></i></button>
-  <button class="inline-flex items-center justify-center p-xs gap-xs rounded-full border border-transparent bg-accent-1-9 hover:bg-accent-1-10 fg-accent-1-contrast cursor-pointer transition-colors" aria-label="Add"><i class="icon ph-bold ph-plus"></i></button>
-  <button class="inline-flex items-center justify-center p-3xs rounded-xs border-0 bg-transparent hover:bg-neutral-3 fg-neutral-11 cursor-pointer transition-colors" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
+  <button class="inline-flex items-center justify-center p-xs gap-xs rounded-sm border bg-neutral-3 hover:bg-neutral-4 fg-neutral-12 cursor-pointer" aria-label="Settings"><i class="icon ph ph-gear"></i></button>
+  <button class="inline-flex items-center justify-center p-xs gap-xs rounded-full border border-transparent bg-accent-1-9 hover:bg-accent-1-10 fg-accent-1-contrast cursor-pointer" aria-label="Add"><i class="icon ph-bold ph-plus"></i></button>
+  <button class="inline-flex items-center justify-center p-3xs rounded-xs border-0 bg-transparent hover:bg-neutral-3 fg-neutral-11 cursor-pointer" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
 </div>""",
         "use": ["Always give it an <code>aria-label</code>.", "Use <code>p-3xs</code> and an <code>icon icon-sm</code> inside dense rows."],
         "avoid": ["An icon whose meaning isn't obvious; add a text label instead."],
@@ -41,9 +41,9 @@ COMPONENTS = [
         "slug": "segmented", "name": "Segmented control", "icon": "ph-squares-four", "group": "Actions",
         "summary": "A set of mutually exclusive options. The pressed segment is styled by <code>aria-pressed</code>, not by a class.",
         "html": """<div class="inline-flex items-center gap-3xs p-inset rounded-sm border border-transparent bg-neutral-3" role="group" aria-label="Range">
-  <button aria-pressed="true" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer transition-colors"><span>Day</span></button>
-  <button aria-pressed="false" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer transition-colors"><span>Week</span></button>
-  <button aria-pressed="false" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer transition-colors"><span>Month</span></button>
+  <button aria-pressed="true" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer"><span>Day</span></button>
+  <button aria-pressed="false" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer"><span>Week</span></button>
+  <button aria-pressed="false" class="inline-flex items-center py-3xs px-2xs rounded-xs border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-1 fg-neutral-11 pressed:fg-neutral-12 text-base font-medium cursor-pointer"><span>Month</span></button>
 </div>""",
         "use": ["Two to five short options that change a view in place."],
         "avoid": ["Options that navigate to another page; use tabs."],
@@ -317,9 +317,9 @@ COMPONENTS = [
         "slug": "tabs", "name": "Tabs", "icon": "ph-tabs", "group": "Navigation",
         "summary": "Switches between views of the same thing. The selected tab is styled by <code>aria-selected</code>.",
         "html": """<div class="flex gap-md border-b border-neutral-6 overflow-x-auto" role="tablist">
-  <button role="tab" aria-selected="true" class="inline-flex items-center gap-xs py-xs px-sm border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer transition-colors rounded-none"><i class="icon ph ph-user"></i><span>Profile</span></button>
-  <button role="tab" aria-selected="false" class="inline-flex items-center gap-xs py-xs px-sm border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer transition-colors rounded-none"><i class="icon ph ph-credit-card"></i><span>Billing</span></button>
-  <button role="tab" aria-selected="false" class="inline-flex items-center gap-xs py-xs px-sm border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer transition-colors rounded-none"><i class="icon ph ph-users"></i><span>Members</span></button>
+  <button role="tab" aria-selected="true" class="inline-flex items-center gap-xs py-xs px-sm border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none"><i class="icon ph ph-user"></i><span>Profile</span></button>
+  <button role="tab" aria-selected="false" class="inline-flex items-center gap-xs py-xs px-sm border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none"><i class="icon ph ph-credit-card"></i><span>Billing</span></button>
+  <button role="tab" aria-selected="false" class="inline-flex items-center gap-xs py-xs px-sm border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none"><i class="icon ph ph-users"></i><span>Members</span></button>
 </div>""",
         "use": ["Moving <code>aria-selected</code> is all the script a tab needs for its look."],
         "avoid": ["More than six tabs; use a sidebar."],
@@ -329,9 +329,9 @@ COMPONENTS = [
         "summary": "Shows where a page sits in the hierarchy.",
         "html": """<nav aria-label="Breadcrumb">
   <ol role="list" class="flex flex-wrap items-center gap-2xs text-sm fg-neutral-11">
-    <li><a href="#" class="fg-neutral-11 hover:fg-neutral-12 no-underline transition-colors">Projects</a></li>
+    <li><a href="#" class="fg-neutral-11 hover:fg-neutral-12 no-underline">Projects</a></li>
     <li class="inline-flex" aria-hidden="true"><i class="icon icon-sm ph-bold ph-caret-right fg-neutral-8"></i></li>
-    <li><a href="#" class="fg-neutral-11 hover:fg-neutral-12 no-underline transition-colors">Nowind</a></li>
+    <li><a href="#" class="fg-neutral-11 hover:fg-neutral-12 no-underline">Nowind</a></li>
     <li class="inline-flex" aria-hidden="true"><i class="icon icon-sm ph-bold ph-caret-right fg-neutral-8"></i></li>
     <li class="fg-neutral-12" aria-current="page">Settings</li>
   </ol>
@@ -343,11 +343,11 @@ COMPONENTS = [
         "slug": "pagination", "name": "Pagination", "icon": "ph-dots-three", "group": "Navigation",
         "summary": "Moves through pages of results. The current page is styled by <code>aria-current</code>.",
         "html": """<nav aria-label="Pagination" class="inline-flex items-center gap-3xs">
-  <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 no-underline transition-colors" aria-label="Previous"><i class="icon icon-sm ph ph-caret-left"></i></a>
-  <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums transition-colors">2</a>
-  <a href="#" aria-current="page" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums transition-colors">3</a>
-  <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums transition-colors">4</a>
-  <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 no-underline transition-colors" aria-label="Next"><i class="icon icon-sm ph ph-caret-right"></i></a>
+  <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 no-underline" aria-label="Previous"><i class="icon icon-sm ph ph-caret-left"></i></a>
+  <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums">2</a>
+  <a href="#" aria-current="page" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums">3</a>
+  <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums">4</a>
+  <a href="#" class="inline-flex items-center justify-center p-xs border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 no-underline" aria-label="Next"><i class="icon icon-sm ph ph-caret-right"></i></a>
 </nav>""",
         "use": ["Long lists where people jump to a page; show the total near it."],
         "avoid": ["Feeds people scroll through; load more instead."],
@@ -377,7 +377,7 @@ COMPONENTS = [
     <p class="text-sm fg-neutral-11">This removes the project for everyone. You can't undo this.</p>
     <div class="flex justify-end gap-sm">
       <button class="{BTN_SECONDARY}" commandfor="doc-dialog" command="close"><span>Cancel</span></button>
-      <button class="{BTN} border border-transparent bg-danger-9 hover:bg-danger-10 fg-danger-contrast text-base font-medium cursor-pointer transition-colors" commandfor="doc-dialog" command="close"><span>Delete</span></button>
+      <button class="{BTN} border border-transparent bg-danger-9 hover:bg-danger-10 fg-danger-contrast text-base font-medium cursor-pointer" commandfor="doc-dialog" command="close"><span>Delete</span></button>
     </div>
   </div>
 </dialog>""",
@@ -389,11 +389,11 @@ COMPONENTS = [
         "summary": "Sections that open and close, built from <code>&lt;details&gt;</code>.",
         "html": """<div class="max-w-form">
   <details class="group border-b border-neutral-6" open>
-    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-base font-semibold hover:fg-accent-1-11 transition-colors">Do I need a build step?<i class="icon icon-sm ph ph-caret-down fg-neutral-11 transition group-open:rotate-180" aria-hidden="true"></i></summary>
+    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-base font-semibold hover:fg-accent-1-11">Do I need a build step?<i class="icon icon-sm ph ph-caret-down fg-neutral-11 transition group-open:rotate-180" aria-hidden="true"></i></summary>
     <p class="text-sm fg-neutral-11 pb-sm">No. Link one stylesheet; every class already exists.</p>
   </details>
   <details class="group border-b border-neutral-6">
-    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-base font-semibold hover:fg-accent-1-11 transition-colors">Does it work in a CMS?<i class="icon icon-sm ph ph-caret-down fg-neutral-11 transition group-open:rotate-180" aria-hidden="true"></i></summary>
+    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-base font-semibold hover:fg-accent-1-11">Does it work in a CMS?<i class="icon icon-sm ph ph-caret-down fg-neutral-11 transition group-open:rotate-180" aria-hidden="true"></i></summary>
     <p class="text-sm fg-neutral-11 pb-sm">Yes. Any class works in any HTML.</p>
   </details>
 </div>""",
@@ -480,7 +480,7 @@ COMPONENTS = [
         "slug": "tooltip", "name": "Tooltip", "icon": "ph-chat-centered-text", "group": "Overlays",
         "summary": "A hint that shows when its trigger is hovered or focused. The wrapper is a <code>group</code>; the hint uses <code>group-hover:</code> and <code>group-focus-within:</code>. No script.",
         "html": """<span class="group relative inline-block">
-  <button class="inline-flex items-center justify-center p-xs rounded-sm border bg-neutral-3 hover:bg-neutral-4 fg-neutral-12 cursor-pointer transition-colors" aria-label="Copy link" aria-describedby="doc-tip"><i class="icon ph ph-link"></i></button>
+  <button class="inline-flex items-center justify-center p-xs rounded-sm border bg-neutral-3 hover:bg-neutral-4 fg-neutral-12 cursor-pointer" aria-label="Copy link" aria-describedby="doc-tip"><i class="icon ph ph-link"></i></button>
   <span id="doc-tip" role="tooltip" class="absolute top-full left-0 z-20 mt-3xs px-xs py-3xs rounded-xs bg-neutral-12 fg-neutral-1 text-sm whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity">Copy link</span>
 </span>""",
         "use": ["A short label for an icon-only button, also given as its <code>aria-label</code>.", "<code>group-focus-within:</code> as well as <code>group-hover:</code>, so keyboard users see it."],
@@ -507,7 +507,7 @@ COMPONENTS = [
     <thead class="bg-neutral-2">
       <tr>
         <th aria-sort="ascending" class="text-left px-md py-xs border-b border-neutral-6"><button class="inline-flex items-center gap-2xs border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer">Name<i class="icon icon-sm ph-bold ph-caret-up"></i></button></th>
-        <th aria-sort="none" class="text-right px-md py-xs border-b border-neutral-6"><button class="inline-flex items-center gap-2xs border-0 bg-transparent fg-neutral-11 hover:fg-neutral-12 text-base font-medium cursor-pointer transition-colors">Seats<i class="icon icon-sm ph-bold ph-caret-up-down"></i></button></th>
+        <th aria-sort="none" class="text-right px-md py-xs border-b border-neutral-6"><button class="inline-flex items-center gap-2xs border-0 bg-transparent fg-neutral-11 hover:fg-neutral-12 text-base font-medium cursor-pointer">Seats<i class="icon icon-sm ph-bold ph-caret-up-down"></i></button></th>
       </tr>
     </thead>
     <tbody>

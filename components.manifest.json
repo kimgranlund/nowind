@@ -49,8 +49,7 @@
         "px-sm",
         "py-xs",
         "rounded-sm",
-        "text-base",
-        "transition-colors"
+        "text-base"
       ]
     },
     {
@@ -95,8 +94,7 @@
         "p-xs",
         "rounded-full",
         "rounded-sm",
-        "rounded-xs",
-        "transition-colors"
+        "rounded-xs"
       ]
     },
     {
@@ -134,8 +132,7 @@
         "py-3xs",
         "rounded-sm",
         "rounded-xs",
-        "text-base",
-        "transition-colors"
+        "text-base"
       ]
     },
     {
@@ -331,7 +328,7 @@
         "tabular-nums",
         "text-base",
         "text-sm",
-        "transition-colors",
+        "transition",
         "whitespace-nowrap"
       ]
     },
@@ -373,7 +370,6 @@
         "text-base",
         "text-left",
         "text-sm",
-        "transition-colors",
         "truncate",
         "w-full"
       ]
@@ -437,7 +433,6 @@
         "rounded-sm",
         "text-base",
         "text-sm",
-        "transition-colors",
         "w-full"
       ]
     },
@@ -479,7 +474,6 @@
         "sm:grid-cols-2",
         "text-base",
         "text-sm",
-        "transition-colors",
         "w-full"
       ]
     },
@@ -532,7 +526,6 @@
         "text-sm",
         "text-xs",
         "tracking-widest",
-        "transition-colors",
         "uppercase"
       ]
     },
@@ -625,8 +618,7 @@
         "rounded-none",
         "selected:border-accent-1-8",
         "selected:fg-neutral-12",
-        "text-base",
-        "transition-colors"
+        "text-base"
       ]
     },
     {
@@ -657,8 +649,7 @@
         "inline-flex",
         "items-center",
         "no-underline",
-        "text-sm",
-        "transition-colors"
+        "text-sm"
       ]
     },
     {
@@ -694,8 +685,7 @@
         "p-xs",
         "rounded-sm",
         "tabular-nums",
-        "text-base",
-        "transition-colors"
+        "text-base"
       ]
     },
     {
@@ -749,7 +739,6 @@
         "shadow-lg",
         "text-base",
         "transition",
-        "transition-colors",
         "w-fit"
       ]
     },
@@ -805,7 +794,6 @@
         "shadow-xl",
         "text-base",
         "text-sm",
-        "transition-colors",
         "w-full"
       ]
     },
@@ -856,7 +844,6 @@
         "rounded-xs",
         "text-sm",
         "top-full",
-        "transition-colors",
         "transition-opacity",
         "whitespace-nowrap",
         "z-20"
@@ -898,8 +885,7 @@
         "py-sm",
         "text-base",
         "text-sm",
-        "transition",
-        "transition-colors"
+        "transition"
       ]
     },
     {
@@ -1059,7 +1045,6 @@
         "text-right",
         "text-sm",
         "transition",
-        "transition-colors",
         "w-full"
       ]
     },
@@ -1110,8 +1095,7 @@
         "rounded-sm",
         "text-base",
         "text-center",
-        "text-sm",
-        "transition-colors"
+        "text-sm"
       ]
     },
     {
