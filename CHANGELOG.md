@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.7.0 (2026-11-25)
 
 - **Renamed:** text-color role classes drop `text-`: `text-fg-weak` is now `fg-weak`, `text-fg-accent-1` is `fg-accent-1`, with their variants (`hover:fg`, `aria-selected:fg`). `text-on-solid-*` and the raw-step `text-*` classes are unchanged.
 
