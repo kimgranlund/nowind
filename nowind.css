@@ -155,7 +155,7 @@
   :where(pre) { white-space: pre-wrap; }
 
   :where(dialog, [popover]) { color: inherit; font: inherit; }
-  ::backdrop { background: var(--scrim); }
+  dialog::backdrop { background: var(--scrim); }
   ::selection { background: var(--accent-1-a5); color: var(--fg); }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1289,6 +1289,15 @@
   .transition-shadow { transition-property: box-shadow; transition-duration: var(--_duration, var(--motion-duration)); transition-timing-function: var(--_ease, var(--motion-easing)); }
   .transition-transform { transition-property: transform, translate, scale, rotate; transition-duration: var(--_duration, var(--motion-duration)); transition-timing-function: var(--_ease, var(--motion-easing)); }
   .transition-none { transition-property: none; }
+  .animate-spin { animation: nw-spin 1s linear infinite; }
+  .animate-pulse { animation: nw-pulse 2s var(--ease-standard) infinite; }
+  .animate-none { animation: none; }
+  .anchor-bottom { position-area: block-end span-inline-end; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: var(--space-3xs); }
+  .anchor-top { position-area: block-start span-inline-end; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: var(--space-3xs); }
+  .anchor-end { position-area: inline-end span-block-end; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: var(--space-3xs); }
+  .anchor-start { position-area: inline-start span-block-end; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: var(--space-3xs); }
+  .anchor-center { position-area: block-end center; position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: var(--space-3xs); }
+  .select-base { appearance: base-select; }
   .duration-fade { --_duration: var(--duration-fade); transition-duration: var(--duration-fade); }
   .duration-snappy { --_duration: var(--duration-snappy); transition-duration: var(--duration-snappy); }
   .duration-smooth { --_duration: var(--duration-smooth); transition-duration: var(--duration-smooth); }
@@ -1482,6 +1491,12 @@
   .debug { outline: 1px dashed red; }
   .revert { all: revert; }
   .icon > svg { width: 1em; height: 1em; fill: currentColor; }
+  @keyframes nw-spin { to { rotate: 360deg; } }
+  @keyframes nw-pulse { 50% { opacity: 0.5; } }
+  .select-base::picker(select) { appearance: base-select; margin-block: var(--space-3xs); padding: var(--space-3xs); border: var(--border-width) solid var(--border-weak); border-radius: var(--radius-surface); background: var(--bg); box-shadow: var(--shadow-lg); }
+  .select-base option { padding: var(--margin) var(--text-edge); border-radius: var(--radius-nested); }
+  .select-base option:hover, .select-base option:focus-visible { background: var(--component-weak); }
+  .select-base option:checked { background: var(--component-accent-1-weak); color: var(--fg-accent-1-weak); }
   .h-nested > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }
   .px-control:where(:has(> .icon:first-child)) { padding-inline-start: var(--control-icon-padding); }
   .px-control:where(:has(> .icon:last-child)) { padding-inline-end: var(--control-icon-padding); }

@@ -679,6 +679,125 @@
     </div>
   </section>
 
+  <!-- Popovers, select, toasts, loading, palette -->
+  <section id="overlays-2" class="mb-3xl">
+    <span class="text-kicker text-fg-accent-1-weak">Overlays and feedback</span>
+    <h2 class="text-heading-lg mb-xs">Popovers, select, toasts, loading and commands</h2>
+    <p class="text-body-sm text-fg-weak max-w-text mb-md">Popovers open with <code>popovertarget</code> and sit against their button with <code>anchor-bottom</code> (CSS anchor positioning, flipping at the screen edge). The select is the customizable <code>select-base</code>. Spinner and skeleton use <code>animate-spin</code> and <code>animate-pulse</code>. No script.</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-group">
+      <div class="p-surface rounded-lg bg-bg border border-border-weak shadow-xs flex flex-col gap-group">
+        <h3 class="text-title">Popover menu and info</h3>
+        <div class="flex flex-wrap items-center gap-row">
+          <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border border-border bg-component-weak hover:bg-component active:bg-component-strong text-fg text-title-sm cursor-pointer transition-colors" popovertarget="sort-menu"><i class="icon ph ph-sort-ascending"></i><span>Sort</span><i class="icon icon-sm ph-bold ph-caret-down"></i></button>
+          <div id="sort-menu" popover class="anchor-bottom w-sidebar p-3xs rounded-lg bg-bg border border-border-weak shadow-lg"><div class="flex flex-col" role="listbox" aria-label="Sort by">
+            <a href="#" class="flex items-center gap-gutter h-control px-control rounded-sm no-underline text-fg hover:bg-component-weak aria-selected:bg-component-accent-1-weak aria-selected:text-fg-accent-1-weak transition-colors" role="option" aria-selected="true"><i class="icon ph ph-clock"></i><span class="grow">Last edited</span><i class="icon icon-sm ph-bold ph-check"></i></a>
+            <a href="#" class="flex items-center gap-gutter h-control px-control rounded-sm no-underline text-fg hover:bg-component-weak aria-selected:bg-component-accent-1-weak aria-selected:text-fg-accent-1-weak transition-colors" role="option" aria-selected="false"><i class="icon ph ph-text-aa"></i><span class="grow">Name</span></a>
+            <a href="#" class="flex items-center gap-gutter h-control px-control rounded-sm no-underline text-fg hover:bg-component-weak aria-selected:bg-component-accent-1-weak aria-selected:text-fg-accent-1-weak transition-colors" role="option" aria-selected="false"><i class="icon ph ph-calendar-blank"></i><span class="grow">Created</span></a>
+          </div></div>
+          <button class="inline-flex items-center justify-center size-control rounded-full border-0 bg-transparent hover:bg-component-weak text-fg-weak cursor-pointer transition-colors" popovertarget="seat-info" aria-label="About seats"><i class="icon ph ph-info"></i></button>
+          <div id="seat-info" popover class="anchor-top max-w-form p-sm rounded bg-bg-inverse text-fg-inverse text-caption shadow-lg">A seat is one person who can edit. Viewers are free.</div>
+        </div>
+        <div class="flex flex-col gap-field">
+          <label for="tz" class="text-label">Time zone</label>
+          <select id="tz" class="select-base h-control px-control rounded-sm border border-border hover:border-border-strong bg-bg text-control-md w-full transition-colors">
+            <option>Europe/Helsinki (UTC+2)</option><option>Europe/London (UTC+0)</option><option>America/New_York (UTC−5)</option><option>Asia/Tokyo (UTC+9)</option>
+          </select>
+        </div>
+        <div class="flex flex-col gap-field">
+          <label for="due" class="text-label">Due date</label>
+          <input id="due" type="date" class="h-control px-control rounded-sm border border-border hover:border-border-strong bg-bg text-control-md w-full transition-colors" value="2027-03-01">
+        </div>
+      </div>
+
+      <div class="p-surface rounded-lg bg-bg border border-border-weak shadow-xs flex flex-col gap-group">
+        <h3 class="text-title">Toast stack</h3>
+        <div class="flex flex-col gap-2xs">
+          <div class="flex items-center gap-sm p-sm pl-md rounded-lg bg-bg-inverse shadow-lg" role="status">
+            <i class="icon ph ph-check-circle text-success-9"></i><span class="grow text-body-sm text-fg-inverse">Invite sent to grace@example.com</span><button class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent text-fg-accent-1-subtle text-title-sm cursor-pointer">Undo</button>
+            <button class="inline-flex items-center justify-center h-nested px-nested rounded-xs border-0 bg-transparent text-fg-inverse-weak cursor-pointer" aria-label="Dismiss"><i class="icon icon-sm ph-bold ph-x"></i></button>
+          </div>
+          <div class="flex items-center gap-sm p-sm pl-md rounded-lg bg-bg-inverse shadow-lg" role="status">
+            <i class="icon ph ph-warning text-warning-9"></i><span class="grow text-body-sm text-fg-inverse">You're offline. Changes will sync later.</span>
+            <button class="inline-flex items-center justify-center h-nested px-nested rounded-xs border-0 bg-transparent text-fg-inverse-weak cursor-pointer" aria-label="Dismiss"><i class="icon icon-sm ph-bold ph-x"></i></button>
+          </div>
+          <div class="flex items-center gap-sm p-sm pl-md rounded-lg bg-bg-inverse shadow-lg" role="status">
+            <i class="icon ph ph-x-circle text-danger-9"></i><span class="grow text-body-sm text-fg-inverse">Upload failed: file is over 10 MB</span><button class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent text-fg-accent-1-subtle text-title-sm cursor-pointer">Retry</button>
+            <button class="inline-flex items-center justify-center h-nested px-nested rounded-xs border-0 bg-transparent text-fg-inverse-weak cursor-pointer" aria-label="Dismiss"><i class="icon icon-sm ph-bold ph-x"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-surface rounded-lg bg-bg border border-border-weak shadow-xs flex flex-col gap-group">
+        <h3 class="text-title">Loading</h3>
+        <div class="flex items-center gap-row">
+          <i class="icon ph-bold ph-circle-notch animate-spin text-fg-accent-1-weak" aria-hidden="true"></i>
+          <span class="text-body-sm text-fg-weak">Saving changes…</span>
+          <button class="inline-flex items-center h-control px-control gap-gutter rounded-sm border-0 bg-solid-accent-1 text-on-solid-accent-1 text-title-sm opacity-70 cursor-wait" disabled><i class="icon ph-bold ph-spinner animate-spin"></i><span>Publishing</span></button>
+        </div>
+        <div class="flex items-center gap-sm animate-pulse" aria-hidden="true">
+          <span class="size-control rounded-full bg-component"></span>
+          <span class="flex flex-col gap-2xs grow"><span class="w-1/2 py-2xs rounded-full bg-component"></span><span class="w-3/4 py-2xs rounded-full bg-component"></span></span>
+        </div>
+        <div class="flex flex-col gap-2xs animate-pulse" aria-hidden="true">
+          <span class="w-full py-2xs rounded-full bg-component"></span><span class="w-4/5 py-2xs rounded-full bg-component"></span><span class="w-2/5 py-2xs rounded-full bg-component"></span>
+        </div>
+      </div>
+
+      <div class="p-surface rounded-lg bg-bg border border-border-weak shadow-xs flex flex-col gap-group">
+        <h3 class="text-title">Toolbar</h3>
+        <div class="inline-flex flex-wrap items-center gap-3xs p-3xs w-fit rounded-lg border border-border-weak bg-bg-strong" role="toolbar" aria-label="Formatting">
+          <button class="inline-flex items-center justify-center h-control px-control rounded-sm border-0 bg-transparent hover:bg-component-weak aria-pressed:bg-component-strong text-fg cursor-pointer transition-colors" aria-pressed="true" aria-label="Bold"><i class="icon ph-bold ph-text-b"></i></button>
+          <button class="inline-flex items-center justify-center h-control px-control rounded-sm border-0 bg-transparent hover:bg-component-weak aria-pressed:bg-component-strong text-fg cursor-pointer transition-colors" aria-pressed="false" aria-label="Italic"><i class="icon ph ph-text-italic"></i></button>
+          <button class="inline-flex items-center justify-center h-control px-control rounded-sm border-0 bg-transparent hover:bg-component-weak aria-pressed:bg-component-strong text-fg cursor-pointer transition-colors" aria-pressed="false" aria-label="Underline"><i class="icon ph ph-text-underline"></i></button>
+          <span class="self-stretch my-2xs border-l border-border-weak" aria-hidden="true"></span>
+          <button class="inline-flex items-center justify-center h-control px-control rounded-sm border-0 bg-transparent hover:bg-component-weak aria-pressed:bg-component-strong text-fg cursor-pointer transition-colors" aria-label="Link"><i class="icon ph ph-link"></i></button>
+          <button class="inline-flex items-center justify-center h-control px-control rounded-sm border-0 bg-transparent hover:bg-component-weak aria-pressed:bg-component-strong text-fg cursor-pointer transition-colors" aria-label="Code"><i class="icon ph ph-code"></i></button>
+          <span class="self-stretch my-2xs border-l border-border-weak" aria-hidden="true"></span>
+          <button class="inline-flex items-center justify-center h-control px-control rounded-sm border-0 bg-transparent hover:bg-component-weak aria-pressed:bg-component-strong text-fg cursor-pointer transition-colors" aria-label="Undo"><i class="icon ph ph-arrow-counter-clockwise"></i></button>
+        </div>
+      </div>
+
+      <div class="rounded-lg bg-bg border border-border-weak shadow-xs overflow-hidden">
+        <div class="flex items-center justify-between px-surface py-sm">
+          <h3 class="text-title">Notifications</h3>
+          <a href="#" class="text-caption text-fg-accent-1-weak no-underline hover:text-fg-accent-1 transition-colors">Mark all read</a>
+        </div>
+        <ul role="list">
+          <li class="flex items-start gap-sm px-surface py-sm border-t border-border-weak hover:bg-component-weak transition-colors">
+            <span class="inline-flex items-center justify-center size-control shrink-0 rounded-full bg-solid-accent-2 text-on-solid-accent-2 text-label">GH</span>
+            <span class="flex flex-col gap-3xs grow min-w-0"><span class="text-body-sm"><span class="text-title-sm">Grace Hopper</span> mentioned you in <span class="text-mono-sm">tokens.md</span></span><span class="text-caption text-fg-weak">2 min ago</span></span>
+            <span class="pt-xs"><span class="p-3xs rounded-full bg-solid-accent-1" aria-label="Unread"></span></span>
+          </li>
+          <li class="flex items-start gap-sm px-surface py-sm border-t border-border-weak hover:bg-component-weak transition-colors">
+            <span class="inline-flex items-center justify-center size-control shrink-0 rounded-full bg-solid-accent-4 text-on-solid-accent-4 text-label">KJ</span>
+            <span class="flex flex-col gap-3xs grow min-w-0"><span class="text-body-sm"><span class="text-title-sm">Katherine Johnson</span> approved your pull request</span><span class="text-caption text-fg-weak">1 hour ago</span></span>
+            <span class="pt-xs"><span class="p-3xs rounded-full bg-solid-accent-1" aria-label="Unread"></span></span>
+          </li>
+          <li class="flex items-start gap-sm px-surface py-sm border-t border-border-weak hover:bg-component-weak transition-colors">
+            <span class="inline-flex items-center justify-center size-control shrink-0 rounded-full bg-solid-accent-1 text-on-solid-accent-1 text-label">AL</span>
+            <span class="flex flex-col gap-3xs grow min-w-0"><span class="text-body-sm"><span class="text-title-sm">Ada Lovelace</span> shared the Q3 roadmap</span><span class="text-caption text-fg-weak">Yesterday</span></span>
+            <span class="pt-xs"><span class="p-3xs"></span></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="relief-overlay rounded-xl bg-bg border border-border-weak shadow-xl overflow-hidden" role="dialog" aria-label="Command palette">
+        <div class="flex items-center gap-gutter h-header px-surface border-b border-border-weak">
+          <i class="icon ph ph-magnifying-glass text-fg-weak"></i>
+          <input class="grow min-w-0 h-full border-0 bg-transparent text-body-md" placeholder="Type a command or search…" value="new">
+          <kbd class="inline-flex items-center h-nested px-2xs rounded-xs border border-border bg-bg-strong text-kbd text-fg-weak">esc</kbd>
+        </div>
+        <div class="flex flex-col p-2xs" role="listbox" aria-label="Commands">
+          <span class="text-kicker-sm text-fg-weak px-control pt-2xs pb-3xs">Create</span>
+          <a href="#" class="flex items-center gap-gutter h-control px-control rounded-sm no-underline text-fg hover:bg-component-weak aria-selected:bg-component-accent-1-weak aria-selected:text-fg-accent-1-weak transition-colors" role="option" aria-selected="true"><i class="icon ph ph-file-plus"></i><span class="grow">New document</span><kbd class="text-kbd text-fg-weak">⌘N</kbd></a>
+          <a href="#" class="flex items-center gap-gutter h-control px-control rounded-sm no-underline text-fg hover:bg-component-weak aria-selected:bg-component-accent-1-weak aria-selected:text-fg-accent-1-weak transition-colors" role="option" aria-selected="false"><i class="icon ph ph-folder-plus"></i><span class="grow">New project</span><kbd class="text-kbd text-fg-weak">⇧⌘N</kbd></a>
+          <span class="text-kicker-sm text-fg-weak px-control pt-xs pb-3xs">Navigate</span>
+          <a href="#" class="flex items-center gap-gutter h-control px-control rounded-sm no-underline text-fg hover:bg-component-weak aria-selected:bg-component-accent-1-weak aria-selected:text-fg-accent-1-weak transition-colors" role="option" aria-selected="false"><i class="icon ph ph-users"></i><span class="grow">New member invite</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Empty state and dialog -->
   <section id="overlays" class="mb-2xl">
     <span class="text-kicker text-fg-accent-1-weak">Surfaces</span>

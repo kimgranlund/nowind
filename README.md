@@ -184,6 +184,17 @@ After Affine: `gap-grid` is the column gutter (2M), `p-grid-inset` pads a placed
 
 Hover states animate when an element has a transition class. `transition-colors` (and `transition`, `transition-opacity`, `transition-shadow`, `transition-transform`) use Affine's single state change: 160ms on Apple's standard ease. Swap in one of Massimo's springs for movement: `duration-snappy ease-snappy` for a toggle, `duration-smooth ease-smooth` for a sliding sheet, `ease-bouncy` for playful moments. The springs are real spring curves sampled into CSS `linear()`. The reset turns all motion off for people who ask for reduced motion.
 
+### Popovers, select and animation
+
+- `anchor-bottom`, `anchor-top`, `anchor-start`, `anchor-end` and `anchor-center` place a popover against the button that opens it (`popovertarget`), with CSS anchor positioning that flips at the screen edge. No script.
+- `select-base` turns a `<select>` into the customizable select: its picker and options take the theme.
+- `animate-spin` and `animate-pulse` for spinners and skeletons; the reset stops them for people who ask for reduced motion.
+
+```html
+<button popovertarget="menu">Sort</button>
+<div id="menu" popover class="anchor-bottom p-3xs rounded-lg bg-bg border border-border-weak shadow-lg">…</div>
+```
+
 ### Variants
 
 - **Hover**: only on devices that can hover, as Tailwind v4. Text, background and border colors of the role tokens (not raw palette steps), opacity and cursor: `hover:bg-component`, `hover:text-fg`, `hover:border-border-strong`, `hover:opacity-100`.

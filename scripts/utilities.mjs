@@ -165,6 +165,23 @@ add("transition-opacity", `transition-property: opacity; ${T}`);
 add("transition-shadow", `transition-property: box-shadow; ${T}`);
 add("transition-transform", `transition-property: transform, translate, scale, rotate; ${T}`);
 add("transition-none", "transition-property: none");
+
+// Animations (Tailwind v4 names). The reset cuts them under prefers-reduced-motion.
+add("animate-spin", "animation: nw-spin 1s linear infinite");
+add("animate-pulse", "animation: nw-pulse 2s var(--ease-standard) infinite");
+add("animate-none", "animation: none");
+
+// Anchor positioning: a popover placed against its invoker (the implicit anchor of popovertarget), flipping when it
+// would leave the screen. Where anchor positioning is missing, the popover falls back to the browser's centred box.
+const ANCHOR = "position-try-fallbacks: flip-block, flip-inline; inset: auto; margin: var(--space-3xs)";
+add("anchor-bottom", `position-area: block-end span-inline-end; ${ANCHOR}`);
+add("anchor-top", `position-area: block-start span-inline-end; ${ANCHOR}`);
+add("anchor-end", `position-area: inline-end span-block-end; ${ANCHOR}`);
+add("anchor-start", `position-area: inline-start span-block-end; ${ANCHOR}`);
+add("anchor-center", `position-area: block-end center; ${ANCHOR}`);
+
+// The customizable select (appearance: base-select): the picker takes the theme's overlay look.
+add("select-base", "appearance: base-select");
 for (const d of ["fade", "snappy", "smooth", "bouncy"]) add(`duration-${d}`, `--_duration: var(--duration-${d}); transition-duration: var(--duration-${d})`);
 for (const e of ["smooth", "snappy", "bouncy", "standard", "out", "in"]) add(`ease-${e}`, `--_ease: var(--ease-${e}); transition-timing-function: var(--ease-${e})`);
 for (const lv of ["xs", "sm"]) add(`inset-shadow-${lv}`, `--_inset-shadow: var(--inset-shadow-${lv}); ${SHADOW_BOX}`);
@@ -461,7 +478,7 @@ const reset = `@layer reset {
   :where(pre) { white-space: pre-wrap; }
 
   :where(dialog, [popover]) { color: inherit; font: inherit; }
-  ::backdrop { background: var(--scrim); }
+  dialog::backdrop { background: var(--scrim); }
   ::selection { background: var(--accent-1-a5); color: var(--fg); }
 
   @media (prefers-reduced-motion: reduce) {
@@ -481,6 +498,12 @@ out.push(reset);
 out.push("@layer nowind {");
 for (const [c, d] of D) out.push(rule(c, d));
 out.push("  .icon > svg { width: 1em; height: 1em; fill: currentColor; }");
+out.push("  @keyframes nw-spin { to { rotate: 360deg; } }");
+out.push("  @keyframes nw-pulse { 50% { opacity: 0.5; } }");
+out.push("  .select-base::picker(select) { appearance: base-select; margin-block: var(--space-3xs); padding: var(--space-3xs); border: var(--border-width) solid var(--border-weak); border-radius: var(--radius-surface); background: var(--bg); box-shadow: var(--shadow-lg); }");
+out.push("  .select-base option { padding: var(--margin) var(--text-edge); border-radius: var(--radius-nested); }");
+out.push("  .select-base option:hover, .select-base option:focus-visible { background: var(--component-weak); }");
+out.push("  .select-base option:checked { background: var(--component-accent-1-weak); color: var(--fg-accent-1-weak); }");
 out.push("  .h-nested > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }");
 for (const [cls, pad] of [["px-control", "--control-icon-padding"], ["px-nested", "--nested-icon-padding"]]) {
   out.push(`  .${cls}:where(:has(> .icon:first-child)) { padding-inline-start: var(${pad}); }`);
@@ -616,6 +639,9 @@ const manifest = {
     materials: "material-flat, -physical, -frosted, -glass, -outline set a region's material (nearest wins, by @scope); relief-raised, -raised-solid, -recessed, -field, -etched, -ground, -overlay say what a part is. After Massimo.",
     grid: "gap-grid, gap-x-grid (2M), p-grid-inset (M), px-grid (slot), px-grid-compact; shell: w-sidebar (16F + 16), w-rail, h-header, min-h-header, max-w-measure (44F). After Affine.",
     tiers: "tier-product (1×), tier-content (font +2px, spacing 1.5×), tier-brand (font +4px, spacing 2×). Each is a scope: --F and everything derived recompute inside it.",
+    animation: "animate-spin, animate-pulse, animate-none (cut by the reset under reduced motion).",
+    anchor: "anchor-bottom, -top, -start, -end, -center: place a popover against its invoker with CSS anchor positioning, flipping at the screen edge.",
+    select: "select-base: the customizable select (appearance: base-select), its picker and options in the theme.",
     motion: "transition, transition-colors, -opacity, -shadow, -transform, -none (state-change length and easing by default); duration-fade, -snappy, -smooth, -bouncy; ease-smooth, -snappy, -bouncy (Massimo springs as linear()), ease-standard, -out, -in.",
     marks: "The reset draws checkboxes, radios, switches (<input type=checkbox role=switch>) and sliders at Affine's mark size (between F and the slot), filled with accent-1 when checked; mark-sm and mark-lg pick another size.",
     icons: "icon (an S-square box, glyph --icon-md), icon-sm, icon-md, icon-lg. Glyphs: Phosphor web font (<i class=\"icon ph ph-floppy-disk\">; ph-bold at sm, ph-light at lg) or an inline <svg> inside .icon.",
@@ -640,6 +666,7 @@ const GROUPS = [
   ["Controls and icons", (c) => /^(icon|mark-|h-control|h-nested|size-control|size-nested|min-w-control|min-w-nested|px-control|px-nested|gap-gutter)/.test(c)],
   ["Levels and tiers", (c) => /^(p[xy]?-(surface|dialog|region|page)|gap-(field|row|group|section|page)|m[tb]-section|tier-)/.test(c)],
   ["Materials", (c) => /^(material|relief)-/.test(c)],
+  ["Motion, anchors and select", (c) => /^(transition|duration-|ease-|animate-|anchor-|select-base)/.test(c)],
   ["Page grid and shell", (c) => /^(gap-(x-)?grid|p-grid-inset|px-grid|w-sidebar|w-rail|(min-)?h-header|max-w-measure)/.test(c)],
   ["Type", (c, d) => /font-size/.test(d)],
   ["Text color", (c, d) => /^color:/.test(d)],
