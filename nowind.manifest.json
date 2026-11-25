@@ -18,9 +18,9 @@
     "classes": 1344,
     "hover": 162,
     "responsive": 1205,
-    "bytes": 227906
+    "bytes": 226786
   },
-  "naming": "property-value, as Prewind and Tailwind: p-md, gap-lg, text-fg-weak, bg-solid-accent-1. Colour classes take the token name without --.",
+  "naming": "property-value, as Prewind and Tailwind: p-md, gap-lg, bg-solid-accent-1. Colour classes take the token name without --; text-color roles are the token name alone (fg-weak, fg-accent-1).",
   "variants": {
     "hover": "Inside @media (hover: hover), as Tailwind v4, so taps on touch screens don't stick. hover:border-* for the border roles, hover:text-* and hover:bg-* for the colour role tokens only (bg, component, border, solid, on-solid, fg and their palette versions), hover:opacity-*, hover:cursor-*. Raw palette steps and alpha steps have no hover class.",
     "breakpoints": {
@@ -68,7 +68,7 @@
     "Margins and padding x/y use logical properties (margin-inline, padding-block).",
     "text-{size} also sets the matching line height, as Tailwind v4.",
     "The reset keeps link underlines and adds a 2026 baseline: :where() selectors (no specificity), interpolate-size, text-size-adjust, font-synthesis none, headings set from the type roles (h1 heading-xl … h6 title-sm), text-wrap balance/pretty, field-sizing content, accent and caret colours, :focus-visible ring, :target scroll margin, [hidden] enforced, role=list, tabular table figures, ::backdrop and ::selection from tokens, and reduced-motion handling.",
-    "No outline-{colour} classes, no text-/border- classes for alpha steps, and no class that pairs a role with another property (no bg-fg-*, text-bg-*, bg-border-*).",
+    "No outline-{colour} classes, no text-/border- classes for alpha steps, and no class that pairs a role with another property (no bg-fg-*, text-bg-*, bg-border-*). Text-color roles are named by their token alone: fg, fg-weak, fg-accent-1-weak.",
     "Tailwind v4 names where v4 renamed v3 ones: rounded-xs/sm, shadow-xs/sm, backdrop-blur-xs/sm; h-screen is 100vh with h-dvh/svh/lvh separate; a 2xl breakpoint; aliases max-w-prose and font-sans.",
     "Added: grid display, text-start/end, justify-evenly, items-baseline, tabular-nums, text-balance/pretty, w-fit, h-control, kicker and type-role classes."
   ]

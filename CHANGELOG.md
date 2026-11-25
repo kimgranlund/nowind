@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Renamed:** text-color role classes drop `text-`: `text-fg-weak` is now `fg-weak`, `text-fg-accent-1` is `fg-accent-1`, with their variants (`hover:fg`, `aria-selected:fg`). `text-on-solid-*` and the raw-step `text-*` classes are unchanged.
+
 ## 0.6.0 (2026-11-25)
 
 - **Component docs:** a page per component in `templates/` (21 so far), each with the component live, its HTML to copy, when to use it and when not to, and the classes it uses; plus an index. Content lives in `scripts/component_docs.py`.

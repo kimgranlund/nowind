@@ -112,7 +112,8 @@ const forText = (c) => step(c) || /^(fg|on-solid)(-|$)/.test(c);
 const forBg = (c) => step(c) || alphaStep(c) || /^(bg|component|solid|scrim)(-|$)/.test(c) || /-(surface|indicator|track)$/.test(c);
 const forBorder = (c) => step(c) || /^border(-|$)/.test(c);
 for (const c of COLORS) {
-  if (forText(c)) add(`text-${c}`, `color: var(--${c})`);
+  // fg roles are named by their token alone (fg-weak); other text colors keep text- (text-on-solid-danger, text-danger-9).
+  if (forText(c)) add(/^fg(-|$)/.test(c) ? c : `text-${c}`, `color: var(--${c})`);
   if (forBg(c)) add(`bg-${c}`, `background-color: var(--${c})`);
   if (forBorder(c)) add(`border-${c}`, `border-color: var(--${c})`);
 }
@@ -323,7 +324,7 @@ const esc = (c) => c.replace(/[:./]/g, (ch) => `\\${ch}`).replace(/^(\d)/, (d) =
 const rule = (sel, decl) => `  .${esc(sel)} { ${decl}; }`;
 const ROLE_COLORS = colorProps.filter((p) => !/^--shadow/.test(p) && !/-(surface|indicator|track)$/.test(p)).map((p) => p.slice(2));
 const colorClass = new RegExp(`^(text|bg)-(${ROLE_COLORS.map((c) => c.replace(/[-]/g, "\\-")).join("|")}|inherit|current|transparent)$`);
-const HOVER = [...D.keys()].filter((c) => colorClass.test(c) || /^border-border(-|$)/.test(c) || /^opacity-|^cursor-/.test(c));
+const HOVER = [...D.keys()].filter((c) => colorClass.test(c) || (/^fg(-|$)/.test(c) && ROLE_COLORS.includes(c)) || /^border-border(-|$)/.test(c) || /^opacity-|^cursor-/.test(c));
 const LAYOUT = [...D.keys()].filter((c) => /^(block|inline-block|inline|flex|inline-flex|grid|inline-grid|contents|hidden|flex-(row|col)(-reverse)?|flex-wrap|flex-nowrap|justify-|items-|self-|text-(left|center|right|justify|start|end)$|col-span-|w-(\d\/\d|full|auto|fit|sidebar|rail)$|basis-|gap-|p[xytb]?-|static$|relative$|absolute$|fixed$|sticky$|top-|overflow-|h-(full|auto|dvh|screen|below-header)$)/.test(c));
 const geometryCss = read("theme/theme.geometry.css");
 const BREAKPOINTS = [...geometryCss.matchAll(/--breakpoint-([\w]+):\s*(\d+)px/g)].map((m) => [m[1], Number(m[2])]);
@@ -592,7 +593,7 @@ const STATES = [
   ["aria-pressed", '[aria-pressed="true"]', interactive],
   ["aria-expanded", '[aria-expanded="true"]', interactive],
   ["open", ":is([open], :popover-open)", interactive],
-  ["aria-invalid", ':is([aria-invalid="true"], :user-invalid)', ROLE_STATE.filter((c) => /^(text|border)-/.test(c)).filter(inPalettes(["neutral", "danger"]))],
+  ["aria-invalid", ':is([aria-invalid="true"], :user-invalid)', ROLE_STATE.filter((c) => /^(text|border|fg)(-|$)/.test(c)).filter(inPalettes(["neutral", "danger"]))],
   ["disabled", ':is(:disabled, [aria-disabled="true"])', [...ROLE_STATE.filter(inPalettes(["neutral"])), ...[...D.keys()].filter((c) => /^opacity-|^cursor-/.test(c))]],
 ];
 for (const [prefix, sel, list] of STATES) {
@@ -619,7 +620,7 @@ const manifest = {
     rule: "Put your own global CSS in @layer styles. Unlayered CSS beats every utility.",
   },
   counts: { classes: D.size, hover: HOVER.length, responsive: LAYOUT.length * BREAKPOINTS.length, bytes: Buffer.byteLength(css) },
-  naming: "property-value, as Prewind and Tailwind: p-md, gap-lg, text-fg-weak, bg-solid-accent-1. Colour classes take the token name without --.",
+  naming: "property-value, as Prewind and Tailwind: p-md, gap-lg, bg-solid-accent-1. Colour classes take the token name without --; text-color roles are the token name alone (fg-weak, fg-accent-1).",
   variants: {
     hover: "Inside @media (hover: hover), as Tailwind v4, so taps on touch screens don't stick. hover:border-* for the border roles, hover:text-* and hover:bg-* for the colour role tokens only (bg, component, border, solid, on-solid, fg and their palette versions), hover:opacity-*, hover:cursor-*. Raw palette steps and alpha steps have no hover class.",
     breakpoints: Object.fromEntries(BREAKPOINTS.map(([b, w]) => [b, `${w}px`])),
@@ -661,7 +662,7 @@ const manifest = {
     "Margins and padding x/y use logical properties (margin-inline, padding-block).",
     "text-{size} also sets the matching line height, as Tailwind v4.",
     "The reset keeps link underlines and adds a 2026 baseline: :where() selectors (no specificity), interpolate-size, text-size-adjust, font-synthesis none, headings set from the type roles (h1 heading-xl … h6 title-sm), text-wrap balance/pretty, field-sizing content, accent and caret colours, :focus-visible ring, :target scroll margin, [hidden] enforced, role=list, tabular table figures, ::backdrop and ::selection from tokens, and reduced-motion handling.",
-    "No outline-{colour} classes, no text-/border- classes for alpha steps, and no class that pairs a role with another property (no bg-fg-*, text-bg-*, bg-border-*).",
+    "No outline-{colour} classes, no text-/border- classes for alpha steps, and no class that pairs a role with another property (no bg-fg-*, text-bg-*, bg-border-*). Text-color roles are named by their token alone: fg, fg-weak, fg-accent-1-weak.",
     "Tailwind v4 names where v4 renamed v3 ones: rounded-xs/sm, shadow-xs/sm, backdrop-blur-xs/sm; h-screen is 100vh with h-dvh/svh/lvh separate; a 2xl breakpoint; aliases max-w-prose and font-sans.",
     "Added: grid display, text-start/end, justify-evenly, items-baseline, tabular-nums, text-balance/pretty, w-fit, h-control, kicker and type-role classes.",
   ],

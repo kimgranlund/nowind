@@ -64,9 +64,9 @@ Work global first, as in Prewind:
 
 ```html
 <article class="max-w-form p-lg rounded-lg bg-bg border border-border-weak shadow-lg">
-  <span class="text-kicker text-fg-accent-1-weak">Release</span>
+  <span class="text-kicker fg-accent-1-weak">Release</span>
   <h3 class="text-title mt-3xs mb-2xs">Nowind 0.1</h3>
-  <p class="text-body-md text-fg-weak">Fluid type, semantic roles and a light/dark palette.</p>
+  <p class="text-body-md fg-weak">Fluid type, semantic roles and a light/dark palette.</p>
   <button class="h-control px-md rounded border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong text-on-solid-accent-1">
     Read more
   </button>
@@ -75,14 +75,14 @@ Work global first, as in Prewind:
 
 ### Class names
 
-Classes follow `property-value`. Color classes take the token name without `--`, and each property takes only its own roles: `text-` the `fg-*` and `on-solid-*` tokens, `bg-` the `bg-*`, `component-*` and `solid-*` tokens, `border-` the `border-*` tokens. Raw palette steps (`bg-accent-1-3`, `text-danger-11`) work with all three; alpha steps only with `bg-`. The table shows examples; [classes.md](classes.md) lists every class with its declarations.
+Classes follow `property-value`. Color classes take the token name without `--`, and each property takes only its own roles. Text-color roles are named by the token alone (`fg`, `fg-weak`, `fg-accent-1-weak`); `text-` takes the `on-solid-*` tokens; `bg-` the `bg-*`, `component-*` and `solid-*` tokens, `border-` the `border-*` tokens. Raw palette steps (`bg-accent-1-3`, `text-danger-11`) work with all three; alpha steps only with `bg-`. The table shows examples; [classes.md](classes.md) lists every class with its declarations.
 
 | Group | Examples |
 |---|---|
 | Spacing | `p-md`, `px-lg`, `mt-xs`, `-mt-sm`, `mx-auto`, `gap-sm` (sizes `0`, `3xs` … `4xl`) |
 | Type scale | `text-xs` … `text-6xl` (size and line height), `text-kicker-sm/md/lg` |
 | Type roles | `text-display`, `text-heading-md`, `text-title`, `text-body-md`, `text-caption`, `text-label`, `text-kicker`, `text-figure`, `text-mono`, … |
-| Text color | `text-fg`, `text-fg-weak`, `text-fg-subtle`, `text-fg-accent-1`, `text-on-solid`, `text-fg-inverse` |
+| Text color | `fg`, `fg-weak`, `fg-subtle`, `fg-accent-1`, `text-on-solid`, `fg-inverse` |
 | Background | `bg-bg`, `bg-bg-strong`, `bg-component`, `bg-solid-accent-1`, `bg-accent-1-3`, `bg-neutral-a4`, `bg-bg-inverse` (toasts, tooltips), `bg-scrim` |
 | Border | `border`, `border-2`, `border-t`, `border-border`, `border-border-accent-1-weak`, `rounded`, `rounded-lg` |
 | Shadow | `shadow-xs` … `shadow-xl`, `inset-shadow-xs`, `inset-shadow-sm`, `shadow-none` (a cast and a recess on one element combine) |
@@ -197,7 +197,7 @@ Hover states animate when an element has a transition class. `transition-colors`
 
 ### Variants
 
-- **Hover**: only on devices that can hover, as Tailwind v4. Text, background and border colors of the role tokens (not raw palette steps), opacity and cursor: `hover:bg-component`, `hover:text-fg`, `hover:border-border-strong`, `hover:opacity-100`.
+- **Hover**: only on devices that can hover, as Tailwind v4. Text, background and border colors of the role tokens (not raw palette steps), opacity and cursor: `hover:bg-component`, `hover:fg`, `hover:border-border-strong`, `hover:opacity-100`.
 - **Breakpoints**: `sm:` 640px, `md:` 768px, `lg:` 1024px, `xl:` 1280px, `2xl:` 1536px (the `--breakpoint-*` tokens), for layout: display, grid columns and spans, flex direction, wrap and basis, alignment, text alignment, widths (`md:w-1/3`) and gaps (`md:gap-lg`). Margins, color and type have no breakpoint variants; padding, position, `top-*`, overflow and heights do.
 
 ```html
@@ -211,7 +211,7 @@ Hover states animate when an element has a transition class. `transition-colors`
 
 ```html
 <button role="tab" aria-selected="true"
-        class="border-b-2 border-transparent aria-selected:border-border-accent-1-strong text-fg-weak aria-selected:text-fg">Profile</button>
+        class="border-b-2 border-transparent aria-selected:border-border-accent-1-strong fg-weak aria-selected:fg">Profile</button>
 ```
 
 There are no `group-` or `dark:` variants. Dark mode needs no variant: every color token switches by itself.
@@ -253,7 +253,7 @@ The color roles, named by contrast against the page in both modes:
 | Solid | `--solid`, `--solid-strong` (hover), `--on-solid` (text on it) |
 | Text | `--fg-subtle`, `--fg-weak`, `--fg`, `--fg-strong` |
 
-So a field in error is `border-border-danger`, its message `text-fg-danger-weak`, and a destructive button `bg-solid-danger hover:bg-solid-danger-strong text-on-solid-danger`.
+So a field in error is `border-border-danger`, its message `fg-danger-weak`, and a destructive button `bg-solid-danger hover:bg-solid-danger-strong text-on-solid-danger`.
 
 The full list, with what each token is for, is in the manifests in `theme/`.
 

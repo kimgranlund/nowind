@@ -3,10 +3,10 @@ rendered live and shown as code, with when to use it and when not to. Utility cl
 
 BTN = "inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm"
 BTN_PRIMARY = f"{BTN} border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong active:bg-solid-accent-1-strong text-on-solid-accent-1 text-title-sm cursor-pointer transition-colors"
-BTN_SECONDARY = f"{BTN} border border-border bg-component-weak hover:bg-component active:bg-component-strong text-fg text-title-sm cursor-pointer transition-colors"
+BTN_SECONDARY = f"{BTN} border border-border bg-component-weak hover:bg-component active:bg-component-strong fg text-title-sm cursor-pointer transition-colors"
 FIELD = "h-control px-control rounded-sm border border-border hover:border-border-strong aria-invalid:border-border-danger bg-bg text-control-md w-full transition-colors"
 CARD = "p-surface rounded-lg bg-bg border border-border-weak"
-MENU_ITEM = "flex items-center gap-gutter h-control px-control rounded-sm no-underline text-fg hover:bg-component-weak aria-selected:bg-component-accent-1-weak aria-selected:text-fg-accent-1-weak transition-colors"
+MENU_ITEM = "flex items-center gap-gutter h-control px-control rounded-sm no-underline fg hover:bg-component-weak aria-selected:bg-component-accent-1-weak aria-selected:fg-accent-1-weak transition-colors"
 
 COMPONENTS = [
     {
@@ -15,7 +15,7 @@ COMPONENTS = [
         "html": f"""<div class="flex flex-wrap items-center gap-row">
   <button class="{BTN_PRIMARY}"><span>Save changes</span></button>
   <button class="{BTN_SECONDARY}"><i class="icon ph ph-download-simple"></i><span>Export</span></button>
-  <button class="{BTN} border-0 bg-transparent hover:bg-component-weak text-fg text-title-sm cursor-pointer transition-colors"><span>Cancel</span></button>
+  <button class="{BTN} border-0 bg-transparent hover:bg-component-weak fg text-title-sm cursor-pointer transition-colors"><span>Cancel</span></button>
   <button class="{BTN} border-0 bg-solid-danger hover:bg-solid-danger-strong text-on-solid-danger text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-trash"></i><span>Delete</span></button>
 </div>""",
         "use": ["One primary button per view, for the action most people take.", "Wrap the label in a <code>&lt;span&gt;</code> so <code>px-control</code> can find an icon at either edge."],
@@ -25,9 +25,9 @@ COMPONENTS = [
         "slug": "icon-button", "name": "Icon button", "icon": "ph-plus-circle", "group": "Actions",
         "summary": "A button with only an icon. The same padding rules make it exactly one control height square.",
         "html": f"""<div class="flex items-center gap-row">
-  <button class="{BTN} border border-border bg-component-weak hover:bg-component text-fg cursor-pointer transition-colors" aria-label="Settings"><i class="icon ph ph-gear"></i></button>
+  <button class="{BTN} border border-border bg-component-weak hover:bg-component fg cursor-pointer transition-colors" aria-label="Settings"><i class="icon ph ph-gear"></i></button>
   <button class="{BTN} rounded-full border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong text-on-solid-accent-1 cursor-pointer transition-colors" aria-label="Add"><i class="icon ph-bold ph-plus"></i></button>
-  <button class="inline-flex items-center justify-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-component-weak text-fg-weak cursor-pointer transition-colors" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
+  <button class="inline-flex items-center justify-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-component-weak fg-weak cursor-pointer transition-colors" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
 </div>""",
         "use": ["Always give it an <code>aria-label</code>.", "Use <code>h-nested px-nested</code> and <code>icon-sm</code> inside dense rows."],
         "avoid": ["An icon whose meaning isn't obvious; add a text label instead."],
@@ -36,9 +36,9 @@ COMPONENTS = [
         "slug": "segmented", "name": "Segmented control", "icon": "ph-squares-four", "group": "Actions",
         "summary": "A set of mutually exclusive options. The pressed segment is styled by <code>aria-pressed</code>, not by a class.",
         "html": """<div class="inline-flex items-center gap-3xs p-3xs rounded bg-component-weak" role="group" aria-label="Range">
-  <button aria-pressed="true" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-component aria-pressed:bg-bg text-fg-weak aria-pressed:text-fg text-title-sm cursor-pointer transition-colors"><span>Day</span></button>
-  <button aria-pressed="false" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-component aria-pressed:bg-bg text-fg-weak aria-pressed:text-fg text-title-sm cursor-pointer transition-colors"><span>Week</span></button>
-  <button aria-pressed="false" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-component aria-pressed:bg-bg text-fg-weak aria-pressed:text-fg text-title-sm cursor-pointer transition-colors"><span>Month</span></button>
+  <button aria-pressed="true" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-component aria-pressed:bg-bg fg-weak aria-pressed:fg text-title-sm cursor-pointer transition-colors"><span>Day</span></button>
+  <button aria-pressed="false" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-component aria-pressed:bg-bg fg-weak aria-pressed:fg text-title-sm cursor-pointer transition-colors"><span>Week</span></button>
+  <button aria-pressed="false" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-component aria-pressed:bg-bg fg-weak aria-pressed:fg text-title-sm cursor-pointer transition-colors"><span>Month</span></button>
 </div>""",
         "use": ["Two to five short options that change a view in place."],
         "avoid": ["Options that navigate to another page; use tabs."],
@@ -47,9 +47,9 @@ COMPONENTS = [
         "slug": "badge", "name": "Badge", "icon": "ph-tag", "group": "Status",
         "summary": "A short label for a status or category, at the nested control size.",
         "html": """<div class="flex flex-wrap items-center gap-2xs">
-  <span class="inline-flex items-center h-nested px-nested gap-gutter-half rounded-full bg-component-weak border border-border-weak text-fg-weak text-label">Draft</span>
-  <span class="inline-flex items-center h-nested px-nested gap-gutter-half rounded-full bg-component-success-weak border border-border-success-weak text-fg-success-weak text-label"><i class="icon icon-sm ph-bold ph-check"></i><span>Paid</span></span>
-  <span class="inline-flex items-center h-nested px-nested gap-gutter-half rounded-full bg-component-warning-weak border border-border-warning-weak text-fg-warning-weak text-label"><i class="icon icon-sm ph-bold ph-clock"></i><span>Pending</span></span>
+  <span class="inline-flex items-center h-nested px-nested gap-gutter-half rounded-full bg-component-weak border border-border-weak fg-weak text-label">Draft</span>
+  <span class="inline-flex items-center h-nested px-nested gap-gutter-half rounded-full bg-component-success-weak border border-border-success-weak fg-success-weak text-label"><i class="icon icon-sm ph-bold ph-check"></i><span>Paid</span></span>
+  <span class="inline-flex items-center h-nested px-nested gap-gutter-half rounded-full bg-component-warning-weak border border-border-warning-weak fg-warning-weak text-label"><i class="icon icon-sm ph-bold ph-clock"></i><span>Pending</span></span>
   <span class="inline-flex items-center h-nested px-nested rounded-full bg-solid-info text-on-solid-info text-label">New</span>
 </div>""",
         "use": ["Pair a status color with its word, never color alone."],
@@ -59,10 +59,10 @@ COMPONENTS = [
         "slug": "alert", "name": "Alert", "icon": "ph-warning-circle", "group": "Status",
         "summary": "A message about the page or a task, tinted by its status.",
         "html": """<div class="flex gap-gutter p-surface rounded-lg bg-component-warning-weak border border-border-warning-weak" role="status">
-  <i class="icon ph ph-warning text-fg-warning-weak"></i>
+  <i class="icon ph ph-warning fg-warning-weak"></i>
   <div class="flex flex-col gap-3xs">
-    <span class="text-title text-fg-warning">Your trial ends in 3 days</span>
-    <span class="text-body-sm text-fg-warning-weak">Add a payment method to keep your projects active.</span>
+    <span class="text-title fg-warning">Your trial ends in 3 days</span>
+    <span class="text-body-sm fg-warning-weak">Add a payment method to keep your projects active.</span>
   </div>
 </div>""",
         "use": ["<code>role=\"status\"</code> for information, <code>role=\"alert\"</code> only for errors that need attention now."],
@@ -72,9 +72,9 @@ COMPONENTS = [
         "slug": "toast", "name": "Toast", "icon": "ph-bell-ringing", "group": "Status",
         "summary": "A brief confirmation on the inverse colors, with an optional action.",
         "html": """<div class="flex items-center gap-sm p-sm pl-md w-fit rounded-lg bg-bg-inverse shadow-lg" role="status">
-  <i class="icon ph ph-check-circle text-fg-inverse"></i>
-  <span class="text-body-sm text-fg-inverse">Invite sent</span>
-  <button class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent text-fg-accent-1-subtle text-title-sm cursor-pointer">Undo</button>
+  <i class="icon ph ph-check-circle fg-inverse"></i>
+  <span class="text-body-sm fg-inverse">Invite sent</span>
+  <button class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent fg-accent-1-subtle text-title-sm cursor-pointer">Undo</button>
 </div>""",
         "use": ["Confirm an action that already happened, with Undo when it can be reversed."],
         "avoid": ["Errors the person must fix; use an alert near the problem."],
@@ -86,12 +86,12 @@ COMPONENTS = [
   <div class="flex flex-col gap-field">
     <label for="doc-name" class="text-label">Full name</label>
     <input id="doc-name" class="{FIELD}" placeholder="Ada Lovelace">
-    <span class="text-caption text-fg-weak">Shown on your profile.</span>
+    <span class="text-caption fg-weak">Shown on your profile.</span>
   </div>
   <div class="flex flex-col gap-field">
     <label for="doc-email" class="text-label">Email</label>
     <input id="doc-email" type="email" class="{FIELD}" value="ada@" aria-invalid="true" aria-describedby="doc-email-error">
-    <span id="doc-email-error" class="text-caption text-fg-danger-weak">Enter a complete email address.</span>
+    <span id="doc-email-error" class="text-caption fg-danger-weak">Enter a complete email address.</span>
   </div>
 </div>""",
         "use": ["<code>gap-field</code> between label, control and help; <code>gap-group</code> between fields."],
@@ -128,9 +128,9 @@ COMPONENTS = [
         "slug": "card", "name": "Card", "icon": "ph-cards", "group": "Layout",
         "summary": "A surface that groups related content, padded at the surface level.",
         "html": f"""<article class="flex flex-col gap-field {CARD} shadow-sm max-w-form">
-  <span class="text-kicker text-fg-accent-1-weak">Guide</span>
+  <span class="text-kicker fg-accent-1-weak">Guide</span>
   <h3 class="text-title">Designing with fluid type</h3>
-  <p class="text-body-sm text-fg-weak">Sizes that grow with the screen, without a single media query.</p>
+  <p class="text-body-sm fg-weak">Sizes that grow with the screen, without a single media query.</p>
   <div class="flex gap-row pt-xs"><button class="{BTN_SECONDARY}"><span>Read</span></button></div>
 </article>""",
         "use": ["<code>p-surface</code> for padding; it already subtracts the border."],
@@ -140,9 +140,9 @@ COMPONENTS = [
         "slug": "tabs", "name": "Tabs", "icon": "ph-tabs", "group": "Navigation",
         "summary": "Switches between views of the same thing. The selected tab is styled by <code>aria-selected</code>.",
         "html": """<div class="flex gap-md border-b border-border-weak overflow-x-auto" role="tablist">
-  <button role="tab" aria-selected="true" class="inline-flex items-center gap-gutter h-control border-0 border-b-2 border-transparent aria-selected:border-border-accent-1-strong bg-transparent text-fg-weak hover:text-fg aria-selected:text-fg text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-user"></i><span>Profile</span></button>
-  <button role="tab" aria-selected="false" class="inline-flex items-center gap-gutter h-control border-0 border-b-2 border-transparent aria-selected:border-border-accent-1-strong bg-transparent text-fg-weak hover:text-fg aria-selected:text-fg text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-credit-card"></i><span>Billing</span></button>
-  <button role="tab" aria-selected="false" class="inline-flex items-center gap-gutter h-control border-0 border-b-2 border-transparent aria-selected:border-border-accent-1-strong bg-transparent text-fg-weak hover:text-fg aria-selected:text-fg text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-users"></i><span>Members</span></button>
+  <button role="tab" aria-selected="true" class="inline-flex items-center gap-gutter h-control border-0 border-b-2 border-transparent aria-selected:border-border-accent-1-strong bg-transparent fg-weak hover:fg aria-selected:fg text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-user"></i><span>Profile</span></button>
+  <button role="tab" aria-selected="false" class="inline-flex items-center gap-gutter h-control border-0 border-b-2 border-transparent aria-selected:border-border-accent-1-strong bg-transparent fg-weak hover:fg aria-selected:fg text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-credit-card"></i><span>Billing</span></button>
+  <button role="tab" aria-selected="false" class="inline-flex items-center gap-gutter h-control border-0 border-b-2 border-transparent aria-selected:border-border-accent-1-strong bg-transparent fg-weak hover:fg aria-selected:fg text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-users"></i><span>Members</span></button>
 </div>""",
         "use": ["Moving <code>aria-selected</code> is all the script a tab needs for its look."],
         "avoid": ["More than six tabs; use a sidebar."],
@@ -151,12 +151,12 @@ COMPONENTS = [
         "slug": "breadcrumbs", "name": "Breadcrumbs", "icon": "ph-caret-right", "group": "Navigation",
         "summary": "Shows where a page sits in the hierarchy.",
         "html": """<nav aria-label="Breadcrumb">
-  <ol role="list" class="flex flex-wrap items-center gap-2xs text-body-sm text-fg-weak">
-    <li><a href="#" class="text-fg-weak hover:text-fg no-underline transition-colors">Projects</a></li>
-    <li class="inline-flex" aria-hidden="true"><i class="icon icon-sm ph-bold ph-caret-right text-fg-subtle"></i></li>
-    <li><a href="#" class="text-fg-weak hover:text-fg no-underline transition-colors">Nowind</a></li>
-    <li class="inline-flex" aria-hidden="true"><i class="icon icon-sm ph-bold ph-caret-right text-fg-subtle"></i></li>
-    <li class="text-fg" aria-current="page">Settings</li>
+  <ol role="list" class="flex flex-wrap items-center gap-2xs text-body-sm fg-weak">
+    <li><a href="#" class="fg-weak hover:fg no-underline transition-colors">Projects</a></li>
+    <li class="inline-flex" aria-hidden="true"><i class="icon icon-sm ph-bold ph-caret-right fg-subtle"></i></li>
+    <li><a href="#" class="fg-weak hover:fg no-underline transition-colors">Nowind</a></li>
+    <li class="inline-flex" aria-hidden="true"><i class="icon icon-sm ph-bold ph-caret-right fg-subtle"></i></li>
+    <li class="fg" aria-current="page">Settings</li>
   </ol>
 </nav>""",
         "use": ["Three or more levels deep."],
@@ -166,11 +166,11 @@ COMPONENTS = [
         "slug": "pagination", "name": "Pagination", "icon": "ph-dots-three", "group": "Navigation",
         "summary": "Moves through pages of results. The current page is styled by <code>aria-current</code>.",
         "html": """<nav aria-label="Pagination" class="inline-flex items-center gap-3xs">
-  <a href="#" class="inline-flex items-center justify-center size-control rounded-sm text-fg-weak hover:bg-component-weak no-underline transition-colors" aria-label="Previous"><i class="icon ph ph-caret-left"></i></a>
-  <a href="#" class="inline-flex items-center justify-center size-control rounded-sm text-fg-weak hover:bg-component-weak aria-current:bg-solid-accent-1 aria-current:text-on-solid-accent-1 no-underline text-numeral transition-colors">2</a>
-  <a href="#" aria-current="page" class="inline-flex items-center justify-center size-control rounded-sm text-fg-weak hover:bg-component-weak aria-current:bg-solid-accent-1 aria-current:text-on-solid-accent-1 no-underline text-numeral transition-colors">3</a>
-  <a href="#" class="inline-flex items-center justify-center size-control rounded-sm text-fg-weak hover:bg-component-weak aria-current:bg-solid-accent-1 aria-current:text-on-solid-accent-1 no-underline text-numeral transition-colors">4</a>
-  <a href="#" class="inline-flex items-center justify-center size-control rounded-sm text-fg-weak hover:bg-component-weak no-underline transition-colors" aria-label="Next"><i class="icon ph ph-caret-right"></i></a>
+  <a href="#" class="inline-flex items-center justify-center size-control rounded-sm fg-weak hover:bg-component-weak no-underline transition-colors" aria-label="Previous"><i class="icon ph ph-caret-left"></i></a>
+  <a href="#" class="inline-flex items-center justify-center size-control rounded-sm fg-weak hover:bg-component-weak aria-current:bg-solid-accent-1 aria-current:text-on-solid-accent-1 no-underline text-numeral transition-colors">2</a>
+  <a href="#" aria-current="page" class="inline-flex items-center justify-center size-control rounded-sm fg-weak hover:bg-component-weak aria-current:bg-solid-accent-1 aria-current:text-on-solid-accent-1 no-underline text-numeral transition-colors">3</a>
+  <a href="#" class="inline-flex items-center justify-center size-control rounded-sm fg-weak hover:bg-component-weak aria-current:bg-solid-accent-1 aria-current:text-on-solid-accent-1 no-underline text-numeral transition-colors">4</a>
+  <a href="#" class="inline-flex items-center justify-center size-control rounded-sm fg-weak hover:bg-component-weak no-underline transition-colors" aria-label="Next"><i class="icon ph ph-caret-right"></i></a>
 </nav>""",
         "use": ["Long lists where people jump to a page; show the total near it."],
         "avoid": ["Feeds people scroll through; load more instead."],
@@ -195,7 +195,7 @@ COMPONENTS = [
 <dialog id="doc-dialog" class="m-auto p-dialog rounded-xl bg-bg border-0 shadow-xl max-w-form w-full" aria-labelledby="doc-dialog-title">
   <div class="flex flex-col gap-group">
     <h3 id="doc-dialog-title" class="text-title">Delete project?</h3>
-    <p class="text-body-sm text-fg-weak">This removes the project for everyone. You can't undo this.</p>
+    <p class="text-body-sm fg-weak">This removes the project for everyone. You can't undo this.</p>
     <div class="flex justify-end gap-row">
       <button class="{BTN_SECONDARY}" commandfor="doc-dialog" command="close"><span>Cancel</span></button>
       <button class="{BTN} border-0 bg-solid-danger hover:bg-solid-danger-strong text-on-solid-danger text-title-sm cursor-pointer transition-colors" commandfor="doc-dialog" command="close"><span>Delete</span></button>
@@ -210,12 +210,12 @@ COMPONENTS = [
         "summary": "Sections that open and close, built from <code>&lt;details&gt;</code>.",
         "html": """<div class="max-w-form">
   <details class="border-b border-border-weak" open>
-    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-title hover:text-fg-accent-1-weak transition-colors">Do I need a build step?<i class="icon ph ph-caret-down text-fg-weak"></i></summary>
-    <p class="text-body-sm text-fg-weak pb-sm">No. Link one stylesheet; every class already exists.</p>
+    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-title hover:fg-accent-1-weak transition-colors">Do I need a build step?<i class="icon ph ph-caret-down fg-weak"></i></summary>
+    <p class="text-body-sm fg-weak pb-sm">No. Link one stylesheet; every class already exists.</p>
   </details>
   <details class="border-b border-border-weak">
-    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-title hover:text-fg-accent-1-weak transition-colors">Does it work in a CMS?<i class="icon ph ph-caret-down text-fg-weak"></i></summary>
-    <p class="text-body-sm text-fg-weak pb-sm">Yes. Any class works in any HTML.</p>
+    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-title hover:fg-accent-1-weak transition-colors">Does it work in a CMS?<i class="icon ph ph-caret-down fg-weak"></i></summary>
+    <p class="text-body-sm fg-weak pb-sm">Yes. Any class works in any HTML.</p>
   </details>
 </div>""",
         "use": ["<code>list-none</code> on the summary hides the marker, including Safari's."],
@@ -228,7 +228,7 @@ COMPONENTS = [
   <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-neutral-1 bg-solid-accent-1 text-on-solid-accent-1 text-label">AL</span>
   <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-neutral-1 bg-solid-accent-2 text-on-solid-accent-2 text-label -ml-2xs">GH</span>
   <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-neutral-1 bg-solid-accent-3 text-on-solid-accent-3 text-label -ml-2xs">KJ</span>
-  <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-neutral-1 bg-component text-fg-weak text-label -ml-2xs">+5</span>
+  <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-neutral-1 bg-component fg-weak text-label -ml-2xs">+5</span>
 </div>""",
         "use": ["A border in the page color separates overlapping avatars."],
         "avoid": ["More than five in a row; end with a count."],
@@ -237,7 +237,7 @@ COMPONENTS = [
         "slug": "progress", "name": "Progress bar", "icon": "ph-chart-bar-horizontal", "group": "Data display",
         "summary": "A track and a fill sized with a fraction class.",
         "html": """<div class="flex flex-col gap-field max-w-form">
-  <div class="flex justify-between text-label"><span>Storage</span><span class="text-fg-weak tabular-nums">6.4 of 10 GB</span></div>
+  <div class="flex justify-between text-label"><span>Storage</span><span class="fg-weak tabular-nums">6.4 of 10 GB</span></div>
   <div class="rounded-full bg-component overflow-hidden" role="progressbar" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100" aria-label="Storage used">
     <div class="w-2/3 py-3xs rounded-full bg-solid-accent-1"></div>
   </div>
@@ -251,7 +251,7 @@ COMPONENTS = [
         "html": """<div class="rounded-lg bg-bg border border-border-weak overflow-x-auto">
   <table class="w-full text-body-sm">
     <thead class="bg-bg-strong">
-      <tr><th class="text-left px-md py-xs text-label text-fg-weak border-b border-border-weak">Invoice</th><th class="text-left px-md py-xs text-label text-fg-weak border-b border-border-weak">Status</th><th class="text-right px-md py-xs text-label text-fg-weak border-b border-border-weak">Amount</th></tr>
+      <tr><th class="text-left px-md py-xs text-label fg-weak border-b border-border-weak">Invoice</th><th class="text-left px-md py-xs text-label fg-weak border-b border-border-weak">Status</th><th class="text-right px-md py-xs text-label fg-weak border-b border-border-weak">Amount</th></tr>
     </thead>
     <tbody>
       <tr class="hover:bg-component-weak"><td class="px-md py-sm text-mono-sm border-b border-border-weak">INV-1042</td><td class="px-md py-sm border-b border-border-weak">Paid</td><td class="px-md py-sm text-right text-data border-b border-border-weak">$1,280.00</td></tr>
@@ -266,9 +266,9 @@ COMPONENTS = [
         "slug": "empty-state", "name": "Empty state", "icon": "ph-folder-open", "group": "Feedback",
         "summary": "What a view shows before it has content, with the action that fills it.",
         "html": f"""<div class="flex flex-col items-center justify-center text-center gap-xs p-2xl rounded-lg border-2 border-dashed border-border">
-  <span class="inline-flex items-center justify-center size-control rounded-full bg-component-weak text-fg-weak"><i class="icon ph ph-folder-open"></i></span>
+  <span class="inline-flex items-center justify-center size-control rounded-full bg-component-weak fg-weak"><i class="icon ph ph-folder-open"></i></span>
   <h3 class="text-title">No projects yet</h3>
-  <p class="text-body-sm text-fg-weak max-w-text">Create a project to collect designs, notes and feedback in one place.</p>
+  <p class="text-body-sm fg-weak max-w-text">Create a project to collect designs, notes and feedback in one place.</p>
   <button class="{BTN_PRIMARY} mt-xs"><i class="icon ph ph-plus"></i><span>New project</span></button>
 </div>""",
         "use": ["Say what will appear here and how to start."],
@@ -278,7 +278,7 @@ COMPONENTS = [
         "slug": "loading", "name": "Spinner and skeleton", "icon": "ph-circle-notch", "group": "Feedback",
         "summary": "<code>animate-spin</code> for a short wait, <code>animate-pulse</code> placeholders for content that's on its way.",
         "html": """<div class="flex flex-col gap-group max-w-form">
-  <div class="flex items-center gap-row"><i class="icon ph-bold ph-circle-notch animate-spin text-fg-accent-1-weak" aria-hidden="true"></i><span class="text-body-sm text-fg-weak">Saving changes…</span></div>
+  <div class="flex items-center gap-row"><i class="icon ph-bold ph-circle-notch animate-spin fg-accent-1-weak" aria-hidden="true"></i><span class="text-body-sm fg-weak">Saving changes…</span></div>
   <div class="flex items-center gap-sm animate-pulse" aria-hidden="true">
     <span class="size-control rounded-full bg-component"></span>
     <span class="flex flex-col gap-2xs grow"><span class="w-1/2 py-2xs rounded-full bg-component"></span><span class="w-3/4 py-2xs rounded-full bg-component"></span></span>
