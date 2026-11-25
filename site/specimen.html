@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-pt-header">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,6 +7,8 @@
 <link rel="icon" href="data:,">
 <link rel="stylesheet" href="../theme.css">
 <link rel="stylesheet" href="../nowind.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
 <style>
   *, *::before, *::after { box-sizing: border-box; }
   html { background: var(--bg); color: var(--fg); }
@@ -18,19 +20,19 @@
     background: var(--bg);
     color: var(--fg);
   }
-  header {
-    position: sticky; top: 0; z-index: 2;
+  #spec-tools {
+    position: sticky; top: var(--shell-header-height); z-index: 2;
     display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-xs) var(--space-md);
     padding: var(--space-xs) var(--space-md);
     background: var(--bg); border-bottom: 1px solid var(--border-weak);
   }
-  header h1 {
+  #spec-tools h1 {
     margin: 0; font-family: var(--title--font-family); font-size: var(--title);
     line-height: var(--title--line-height); font-weight: var(--title--font-weight);
   }
-  header nav { display: flex; flex-wrap: wrap; gap: var(--space-2xs) var(--space-sm); flex: 1; }
-  header a { color: var(--fg-weak); text-decoration: none; font-size: var(--caption); }
-  header a:hover { color: var(--fg); }
+  #spec-tools nav { display: flex; flex-wrap: wrap; gap: var(--space-2xs) var(--space-sm); flex: 1; }
+  #spec-tools a { color: var(--fg-weak); text-decoration: none; font-size: var(--caption); }
+  #spec-tools a:hover { color: var(--fg); }
   .modes { display: flex; gap: var(--space-3xs); }
   .modes button {
     font: inherit; font-size: var(--label); font-weight: var(--label--font-weight);
@@ -66,6 +68,7 @@
   code, .mono { font-family: var(--font-mono); font-size: var(--mono-sm); }
   .tok { color: var(--fg); }
   .val { color: var(--fg-weak); word-break: break-all; }
+  .tok, .val { white-space: normal; overflow-wrap: anywhere; }
 
   .ramp { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2px; margin-bottom: var(--space-2xs); }
   .ramp .sw { aspect-ratio: 1 / 1; border-radius: 4px; position: relative; }
@@ -109,6 +112,7 @@
   @media (max-width: 640px) {
     .row { grid-template-columns: minmax(0, 1fr) auto; }
     .row .sample, .row .bar-wrap { grid-column: 1 / -1; grid-row: 2; }
+    .row .px { white-space: normal; overflow-wrap: anywhere; }
   }
   [hidden] { display: none !important; }
   .u-tools { display: flex; flex-wrap: wrap; gap: var(--space-xs); align-items: center; margin-bottom: var(--space-sm); }
@@ -132,9 +136,24 @@
   @media (max-width: 640px) { .u-row { grid-template-columns: minmax(0, 1fr) auto; } .u-row .decl { grid-column: 1 / -1; grid-row: 2; } }
 </style>
 </head>
-<body>
-<header>
-  <h1>Nowind</h1>
+<body class="bg fg">
+<!--nowind:top-->
+<header class="sticky top-0 z-30 bg-inverse fg-inverse">
+  <div class="flex items-center gap-lg h-header px-grid">
+    <a href="index.html" class="inline-flex items-center gap-gutter-half no-underline fg-inverse"><i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-inverse-weak">0.8.0</span></a>
+    <nav aria-label="Sections" class="hidden md:flex items-center gap-lg"><a href="docs/docs-home.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Docs</a><a href="docs/components-index.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Components</a><a href="specimen.html" aria-current="true" class="inline-flex items-center h-header border-b-2 border-accent-1 no-underline fg-inverse text-title-sm">Specimen</a><a href="docs/classes.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Classes</a></nav>
+    <span class="flex items-center gap-xs ml-auto">
+      <button type="button" data-search-open class="inline-flex items-center gap-gutter-half h-nested px-nested rounded-xs border border-strong bg-transparent fg-inverse-weak hover:fg-inverse text-label cursor-pointer transition-colors" aria-label="Search the site"><i class="icon icon-sm ph ph-magnifying-glass"></i><span class="hidden sm:inline">Search</span><kbd class="hidden sm:inline text-mono-sm">⌘K</kbd></button>
+      <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center size-nested no-underline fg-inverse-weak hover:fg-inverse transition-colors" aria-label="Nowind on GitHub"><i class="icon ph ph-github-logo"></i></a>
+    </span>
+  </div>
+</header>
+<nav aria-label="Specimen" class="flex flex-col gap-2xs px-grid py-xs border-b-2 border-strong bg">
+  <div class="flex md:hidden flex-wrap gap-x-md gap-y-3xs pb-2xs border-b border-weak"><a href="docs/docs-home.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Docs</a><a href="docs/components-index.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Components</a><a href="specimen.html" aria-current="true" class="no-underline fg text-title-sm font-semibold">Specimen</a><a href="docs/classes.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Classes</a></div>
+  <div class="flex flex-wrap gap-x-md gap-y-3xs"><a href="specimen.html" aria-current="page" class="no-underline fg text-title-sm font-semibold">Tokens</a><a href="utilities.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Utilities demo</a></div>
+</nav>
+<!--/nowind:top-->
+<div id="spec-tools">
   <nav id="nav"></nav>
   <span class="vw" id="vw"></span>
   <div class="modes" role="group" aria-label="Color mode">
@@ -142,8 +161,19 @@
     <button type="button" data-mode="light" aria-pressed="false">Light</button>
     <button type="button" data-mode="dark" aria-pressed="false">Dark</button>
   </div>
-</header>
+</div>
 <main id="main"></main>
+<!--nowind:bottom-->
+<footer class="flex flex-col md:flex-row md:items-center justify-between gap-field px-grid py-surface border-t-2 border-strong text-caption fg-weak">
+  <span>Nowind 0.8.0. Every page here is built from Nowind utility classes only.</span>
+  <span class="flex flex-wrap gap-row">
+    <a href="docs/changelog.html" class="no-underline fg-weak hover:fg transition-colors">Changelog</a>
+    <a href="docs/index.html" class="no-underline fg-weak hover:fg transition-colors">About these templates</a>
+    <a href="https://github.com/kimgranlund/nowind" class="no-underline fg-weak hover:fg transition-colors">GitHub</a>
+  </span>
+</footer>
+<script src="search.js" defer></script>
+<!--/nowind:bottom-->
 
 <script>
 const main = document.getElementById("main");

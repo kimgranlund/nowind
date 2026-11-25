@@ -22,12 +22,14 @@ Read `README.md` for what Nowind is and how people use it. This file says how to
 | `dist/` | One-file bundle and its minified copy | no, `scripts/bundle.mjs` |
 | `theme/*.manifest.json`, `nowind.manifest.json` | What each token or class is, how it is derived, what to use it for | see below |
 | `classes.md` | Every class and its declarations | no, `scripts/utilities.mjs` |
-| `index.html`, `site/index.html` | The root redirects to `site/`; `site/index.html` is the GitHub Pages landing page | yes |
-| `site/specimen.html` | Every token, the reset and every class, read live from the stylesheets | yes |
-| `site/utilities.html` | Demo page built only from classes | yes |
-| `site/docs/*.html` | Docs site (designed with the massimo-vignelli agent): home, guide, reference, regular and semantic class lists (`classes.html`, `semantic.html`, read from `classes.md` and sorted by `is_semantic` in `scripts/templates.py`), changelog and a `c-*.html` page per component | no, `python3 scripts/templates.py` |
+| `index.html`, `site/index.html` | The root redirects to `site/`; `site/index.html` is the GitHub Pages landing page | yes, except between the `<!--nowind:top-->` and `<!--nowind:bottom-->` markers |
+| `site/search.js` | ⌘K search over `site/search.json` | yes |
+| `site/search.json` | Search index: every page, block heading, component and class | no, `python3 scripts/templates.py` |
+| `site/specimen.html` | Every token, the reset and every class, read live from the stylesheets | yes, except between the `<!--nowind:` markers, which `scripts/templates.py` stamps |
+| `site/utilities.html` | Demo page built only from classes | yes, except between the `<!--nowind:` markers, which `scripts/templates.py` stamps |
+| `site/docs/*.html` | Docs site, in the one page template every page shares (band, section row, label-column blocks; section map in `SECTIONS` in `scripts/templates.py`): home, guide, reference, regular and semantic class lists (`classes.html`, `semantic.html`, read from `classes.md` and sorted by `is_semantic` in `scripts/templates.py`), changelog and a `c-*.html` page per component | no, `python3 scripts/templates.py` |
 | `scripts/component_docs.py` | Each component's snippet (rendered live and shown as code), summary, use and avoid | yes |
-| `site/components.html` | Component showcase built only from classes: no `<style>`, no `style=` | yes |
+| `site/components.html` | Component showcase built only from classes: no `<style>`, no `style=` | yes, except between the `<!--nowind:` markers, which `scripts/templates.py` stamps |
 
 Manifests: [`theme/theme.typography.manifest.json`](theme/theme.typography.manifest.json), [`theme/theme.space.manifest.json`](theme/theme.space.manifest.json), [`theme/theme.shadows.manifest.json`](theme/theme.shadows.manifest.json) and [`nowind.manifest.json`](nowind.manifest.json) are written by their scripts; change the script, not the file. These are hand-written; update them in the same change as their CSS:
 

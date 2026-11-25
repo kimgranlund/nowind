@@ -43,6 +43,11 @@ const GENERATED = [
   "dist/nowind.bundle.css",
   "dist/nowind.min.css",
   ...readdirSync(join(repo, "site", "docs")).filter((n) => n.endsWith(".html")).map((n) => `site/docs/${n}`),
+  "site/search.json",
+  "site/index.html",
+  "site/components.html",
+  "site/specimen.html",
+  "site/utilities.html",
 ];
 
 function check(root) {

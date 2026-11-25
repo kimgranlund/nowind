@@ -1,0 +1,806 @@
+<title>One Nowind Page Template</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column for the argument; each variant is a real page mock at its true width, built from one shared fixture, switched by one page-kind control. */
+:root {
+  --bg: #f1f1f4; --panel: #fdfdfc; --ink: #1c2024; --muted: #5b606a; --quiet: #868a94;
+  --line: #dcdde3; --fill: #e9e9ee; --focus: #3d4fc9;
+  --sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --display: "Inter Tight", Inter, ui-sans-serif, system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --mockw: 760px;
+  /* Nowind stand-in values for the mocks (slate neutral, blue accent-1) */
+  --m-bg: #fcfcfd; --m-bg-strong: #f6f7f9; --m-inverse: #1c2024; --m-on-inverse: #fcfcfd;
+  --m-comp-weak: #eff0f3; --m-comp: #e7e8ec; --m-border-weak: #e0e1e6; --m-border: #cdced6; --m-border-strong: #8b8d98;
+  --m-fg: #1c2024; --m-fg-weak: #60646c; --m-fg-subtle: #8b8d98;
+  --m-acc-weak-bg: #e6f2fe; --m-acc-border: #8ec8f6; --m-acc-solid: #0b78e3; --m-acc-solid-strong: #0a68c6; --m-acc-fg: #0b63b8; --m-on-solid: #ffffff;
+  --m-danger-solid: #dc3e42;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #111113; --panel: #1a1a1d; --ink: #edeef0; --muted: #b3b6bd; --quiet: #7c808a;
+  --line: #2f3136; --fill: #232428; --focus: #9aa5ff; color-scheme: dark;
+  --m-bg: #111113; --m-bg-strong: #18191b; --m-inverse: #edeef0; --m-on-inverse: #111113;
+  --m-comp-weak: #212225; --m-comp: #272a2d; --m-border-weak: #2e3135; --m-border: #43484e; --m-border-strong: #696e77;
+  --m-fg: #edeef0; --m-fg-weak: #b0b4ba; --m-fg-subtle: #777b84;
+  --m-acc-weak-bg: #0d2847; --m-acc-border: #205d9e; --m-acc-solid: #0b78e3; --m-acc-solid-strong: #3b8fe6; --m-acc-fg: #70b8ff; --m-on-solid: #ffffff;
+  --m-danger-solid: #e5484d; } }
+:root[data-theme="dark"] {
+  --bg: #111113; --panel: #1a1a1d; --ink: #edeef0; --muted: #b3b6bd; --quiet: #7c808a;
+  --line: #2f3136; --fill: #232428; --focus: #9aa5ff; color-scheme: dark;
+  --m-bg: #111113; --m-bg-strong: #18191b; --m-inverse: #edeef0; --m-on-inverse: #111113;
+  --m-comp-weak: #212225; --m-comp: #272a2d; --m-border-weak: #2e3135; --m-border: #43484e; --m-border-strong: #696e77;
+  --m-fg: #edeef0; --m-fg-weak: #b0b4ba; --m-fg-subtle: #777b84;
+  --m-acc-weak-bg: #0d2847; --m-acc-border: #205d9e; --m-acc-solid: #0b78e3; --m-acc-solid-strong: #3b8fe6; --m-acc-fg: #70b8ff; --m-on-solid: #ffffff;
+  --m-danger-solid: #e5484d; }
+
+body { background: var(--bg); color: var(--ink); font: 400 15px/1.55 var(--sans);
+  padding-block: 40px 72px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.page { max-width: 820px; margin-inline: auto; display: grid; gap: 44px; }
+h1 { font: 600 30px/1.15 var(--display); margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+h2 { font: 600 20px/1.25 var(--display); margin: 0; text-wrap: balance; }
+p { margin: 0; max-width: 66ch; }
+.lede { color: var(--muted); }
+.kicker { font: 500 12px/1 var(--mono); color: var(--quiet); letter-spacing: 0.06em; text-transform: uppercase; }
+header.top, .opt, .opt-head { display: grid; gap: 12px; }
+.opt { gap: 16px; } .opt-head { gap: 6px; }
+.today { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; }
+.today div { background: var(--panel); border-radius: 10px; padding: 10px 12px; display: grid; gap: 2px; }
+.today b { font: 500 13px/1.3 var(--sans); } .today span { font-size: 13px; color: var(--muted); }
+.control { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding: 12px 14px; background: var(--panel); border-radius: 14px; box-shadow: 0 1px 0 var(--line); }
+.control > span { font-weight: 500; }
+.seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.seg button { font: 500 13px/1 var(--sans); color: var(--ink); background: var(--fill); border: 0; border-radius: 8px; padding: 8px 11px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--panel); }
+.stage { background: var(--panel); border-radius: 16px; padding: 14px; overflow-x: auto; }
+.mockwrap { width: var(--mockw); max-width: none; margin-inline: auto; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px 24px; }
+.facts div { display: grid; gap: 2px; align-content: start; }
+.facts b { font: 500 12px/1.3 var(--mono); color: var(--quiet); letter-spacing: 0.04em; text-transform: uppercase; }
+.facts span { color: var(--muted); font-size: 14px; }
+.tablewrap { overflow-x: auto; background: var(--panel); border-radius: 16px; padding: 8px 16px; }
+table.cmp { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+.cmp th, .cmp td { text-align: start; padding: 9px 12px 9px 0; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--muted); }
+.cmp tr:last-child td { border-bottom: 0; }
+.cmp th { font: 500 12px/1.3 var(--mono); color: var(--quiet); letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; }
+.cmp td:first-child { font-weight: 500; white-space: nowrap; color: var(--ink); }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+details.tech summary { cursor: pointer; color: var(--muted); font-size: 14px; }
+details.tech pre { font: 12.5px/1.5 var(--mono); color: var(--muted); white-space: pre-wrap; margin: 8px 0 0; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* ---------- the mock pages: Nowind stand-in values ---------- */
+.m { background: var(--m-bg); color: var(--m-fg); font: 400 14px/1.5 var(--sans); border: 1px solid var(--m-border-weak); overflow: hidden; }
+.m * { box-sizing: border-box; }
+.m code, .m .mono { font-family: var(--mono); font-size: 12px; }
+.m a { color: inherit; text-decoration: none; }
+.m .k { font: 500 10.5px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--m-fg-weak); }
+.m .t-display { font: 600 34px/1.08 var(--display); letter-spacing: -0.015em; }
+.m .t-heading { font: 600 18px/1.25 var(--display); }
+.m .t-sub { font: 600 14px/1.4 var(--sans); }
+.m .weak { color: var(--m-fg-weak); }
+.m .btn { display: inline-flex; align-items: center; height: 30px; padding: 0 12px; font: 500 13px/1 var(--sans); border: 1px solid transparent; border-radius: 4px; }
+.m .btn.p { background: var(--m-acc-solid); color: var(--m-on-solid); }
+.m .btn.s { background: var(--m-comp-weak); border-color: var(--m-border); color: var(--m-fg); }
+.m .btn.g { color: var(--m-fg); }
+.m .btn.d { background: var(--m-danger-solid); color: var(--m-on-solid); }
+.m .btn.x { background: var(--m-comp-weak); color: var(--m-fg-subtle); }
+.m .demo { display: flex; flex-wrap: wrap; gap: 8px; padding: 16px; background: var(--m-bg-strong); border: 1px solid var(--m-border-weak); }
+.m .chips { display: flex; flex-wrap: wrap; gap: 4px; }
+.m .chip { font: 400 11px/1 var(--mono); padding: 5px 6px; border: 1px solid var(--m-border-weak); background: var(--m-bg-strong); border-radius: 3px; }
+.m ul.li { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+.m ul.li li { display: flex; gap: 8px; } .m ul.li li::before { content: ""; flex: none; width: 6px; height: 6px; margin-top: 7px; border-radius: 50%; background: var(--m-fg-subtle); }
+.m ul.li.no li::before { border-radius: 0; background: none; border: 1.5px solid var(--m-fg-subtle); width: 7px; height: 7px; }
+.m .sw { display: grid; gap: 4px; } .m .sw i { display: block; height: 34px; border: 1px solid var(--m-border-weak); }
+.m .rows { display: grid; } .m .row { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 2fr) 40px; gap: 12px; align-items: center; padding: 7px 0; border-top: 1px solid var(--m-border-weak); }
+.m .row .pv { width: 28px; height: 20px; border: 1px solid var(--m-border-weak); }
+.m.phone .row { grid-template-columns: minmax(0, 1fr) 32px; } .m.phone .row .decl { grid-column: 1; }
+.m .cur { font-weight: 600; color: var(--m-fg); }
+
+/* A · Vignelli unigrid */
+.va .band { background: var(--m-inverse); color: var(--m-on-inverse); display: flex; align-items: center; gap: 18px; padding: 0 20px; height: 40px; }
+.va .band b { font: 700 15px/1 var(--display); letter-spacing: -0.01em; margin-inline-end: auto; }
+.va .band a { font: 500 12px/1 var(--sans); opacity: .65; } .va .band a.on { opacity: 1; box-shadow: inset 0 -2px 0 var(--m-acc-solid); padding-block: 13px; }
+.va .sub { display: flex; gap: 16px; padding: 10px 20px; border-bottom: 3px solid var(--m-fg); font: 500 12px/1 var(--sans); color: var(--m-fg-weak); overflow-x: auto; white-space: nowrap; }
+.va .sub .on { color: var(--m-fg); }
+.va .grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 16px; padding: 0 20px; }
+.va .title { grid-column: 1 / -1; padding: 26px 0 22px; display: grid; gap: 8px; }
+.va .blk { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; border-top: 1px solid var(--m-fg); padding: 12px 0 18px; }
+.va .blk > .lab { grid-column: 1 / 4; font: 600 12px/1.3 var(--sans); }
+.va .blk > .body { grid-column: 4 / -1; min-width: 0; }
+.va.phone .blk > .lab, .va.phone .blk > .body { grid-column: 1 / -1; } .va.phone .blk > .lab { margin-bottom: 8px; }
+.va.phone .band a:not(.on) { display: none; }
+
+/* B · Gerstner programme */
+.vb { background: var(--m-bg-strong); }
+.vb .bar { display: flex; align-items: center; gap: 14px; padding: 0 16px; height: 38px; background: var(--m-bg); border-bottom: 1px solid var(--m-border-weak); font: 500 12px/1 var(--sans); }
+.vb .bar b { font: 700 14px/1 var(--display); margin-inline-end: auto; }
+.vb .bar .on { color: var(--m-acc-fg); }
+.vb .tiles { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; padding: 6px; }
+.vb .tile { background: var(--m-bg); padding: 12px; min-width: 0; display: grid; gap: 8px; align-content: start; }
+.vb .tile.idx { padding: 8px 10px; font: 500 12px/1.2 var(--sans); color: var(--m-fg-weak); }
+.vb .tile.idx.on { background: var(--m-inverse); color: var(--m-on-inverse); }
+.vb .s1 { grid-column: span 1; } .vb .s2 { grid-column: span 2; } .vb .s3 { grid-column: span 3; } .vb .s4 { grid-column: span 4; } .vb .s6 { grid-column: span 6; }
+.vb .tile .big { font: 700 26px/1 var(--display); letter-spacing: -0.02em; }
+.vb.phone .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.vb.phone .s3, .vb.phone .s4, .vb.phone .s6 { grid-column: span 2; }
+
+/* C · Müller-Brockmann index + sheet */
+.vc { display: grid; grid-template-columns: 168px minmax(0, 1fr); }
+.vc .idx { border-right: 1px solid var(--m-border-weak); padding: 16px 14px; display: grid; gap: 14px; align-content: start; background: var(--m-bg-strong); }
+.vc .idx b { font: 700 15px/1 var(--display); }
+.vc .idx .grp { display: grid; gap: 4px; font: 400 12.5px/1.35 var(--sans); color: var(--m-fg-weak); }
+.vc .idx .grp .k { margin-bottom: 2px; }
+.vc .idx .grp .cur { padding-left: 8px; box-shadow: inset 2px 0 0 var(--m-acc-solid); }
+.vc .sheet { padding: 22px 24px 26px; display: grid; grid-template-columns: 110px minmax(0, 1fr); column-gap: 20px; row-gap: 18px; align-content: start; }
+.vc .sheet .title { grid-column: 2; display: grid; gap: 8px; padding-bottom: 6px; }
+.vc .sheet .lab { grid-column: 1; font: 500 11.5px/1.3 var(--sans); color: var(--m-fg-weak); text-align: right; padding-top: 2px; }
+.vc .sheet .body { grid-column: 2; min-width: 0; }
+.vc .phonebar { display: none; }
+.vc.phone { grid-template-columns: minmax(0, 1fr); }
+.vc.phone .idx { display: none; }
+.vc.phone .phonebar { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid var(--m-border-weak); background: var(--m-bg-strong); font: 500 12px/1 var(--sans); }
+.vc.phone .phonebar b { font: 700 14px/1 var(--display); }
+.vc.phone .sheet { grid-template-columns: minmax(0, 1fr); padding: 18px 14px; }
+.vc.phone .sheet .title, .vc.phone .sheet .lab, .vc.phone .sheet .body { grid-column: 1; text-align: left; }
+
+/* D · Ledger */
+.vd .bar { display: flex; align-items: center; gap: 12px; padding: 0 18px; height: 40px; border-bottom: 1px solid var(--m-border); font: 500 12px/1 var(--sans); color: var(--m-fg-weak); }
+.vd .bar b { font: 700 14px/1 var(--display); color: var(--m-fg); margin-inline-end: 8px; }
+.vd .bar .sep { color: var(--m-fg-subtle); }
+.vd .head { padding: 20px 18px 14px; display: grid; gap: 6px; }
+.vd .head .t-display { font-size: 26px; }
+.vd .filter { margin: 0 18px 12px; height: 30px; border: 1px solid var(--m-border); display: flex; align-items: center; padding: 0 10px; color: var(--m-fg-subtle); font-size: 12.5px; }
+.vd table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.vd th { text-align: left; font: 500 10.5px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--m-fg-weak); padding: 8px 18px; background: var(--m-bg-strong); border-block: 1px solid var(--m-border); }
+.vd td { padding: 9px 18px; border-bottom: 1px solid var(--m-border-weak); vertical-align: middle; }
+.vd td.n { font-family: var(--mono); font-size: 12px; white-space: nowrap; }
+.vd td.d { color: var(--m-fg-weak); }
+.vd.phone tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; padding: 8px 14px; border-bottom: 1px solid var(--m-border-weak); }
+.vd.phone td { padding: 0; border: 0; } .vd.phone td.d { grid-column: 1; grid-row: 2; font-size: 12px; } .vd.phone td.s { grid-row: 1 / 3; grid-column: 2; align-self: center; }
+.vd.phone thead { display: none; }
+
+/* E · Focus: list and one item */
+.ve .bar { display: flex; align-items: center; gap: 14px; padding: 0 16px; height: 38px; border-bottom: 1px solid var(--m-border-weak); font: 500 12px/1 var(--sans); color: var(--m-fg-weak); }
+.ve .bar b { font: 700 14px/1 var(--display); color: var(--m-fg); margin-inline-end: auto; } .ve .bar .on { color: var(--m-fg); }
+.ve .split { display: grid; grid-template-columns: 200px minmax(0, 1fr); min-height: 380px; }
+.ve .list { border-right: 1px solid var(--m-border-weak); display: grid; align-content: start; max-height: 420px; overflow: auto; }
+.ve .list button { all: unset; box-sizing: border-box; display: flex; justify-content: space-between; gap: 8px; padding: 8px 14px; font: 400 12.5px/1.3 var(--sans); color: var(--m-fg-weak); cursor: pointer; border-bottom: 1px solid var(--m-border-weak); }
+.ve .list button .mono { font-size: 11.5px; }
+.ve .list button[aria-current="true"] { background: var(--m-acc-weak-bg); color: var(--m-fg); box-shadow: inset 3px 0 0 var(--m-acc-solid); }
+.ve .list button:focus-visible { outline: 2px solid var(--m-acc-solid); outline-offset: -2px; }
+.ve .detail { padding: 22px 24px; display: grid; gap: 16px; align-content: start; min-width: 0; }
+.ve .back { display: none; }
+.ve.phone .split { grid-template-columns: minmax(0, 1fr); }
+.ve.phone .split.showlist .detail, .ve.phone .split:not(.showlist) .list { display: none; }
+.ve.phone .back { display: inline-flex; font: 500 12px/1 var(--sans); color: var(--m-acc-fg); background: none; border: 0; padding: 0; cursor: pointer; }
+
+/*@begin feedback.css*/
+/* Feedback capture. Reads --fb-panel, --fb-fill, --fb-ink, --fb-muted, --fb-quiet, --fb-focus and --fb-bg, each falling back to the page's token of the same name without the prefix. */
+.fb { display: grid; gap: 10px; padding: 14px 16px; background: var(--fb-panel, var(--panel)); border-radius: 14px; margin: 0; }
+.fb-row { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 6px 12px; align-items: start; }
+.fb-l { font: 500 12px/26px ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--fb-quiet, var(--quiet)); letter-spacing: 0.04em; text-transform: uppercase; }
+.fb-set { display: flex; flex-wrap: wrap; gap: 6px; min-width: 0; }
+.fb-pill { position: relative; display: inline-flex; cursor: pointer; }
+.fb-pill input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.fb-pill span { font-family: inherit; font-weight: 500; font-size: 13px; line-height: 26px; padding: 0 10px; border-radius: 8px; background: var(--fb-fill, var(--fill)); color: var(--fb-muted, var(--muted)); white-space: nowrap; }
+.fb-pill:hover span { color: var(--fb-ink, var(--ink)); }
+.fb-pill input:checked + span { background: var(--fb-ink, var(--ink)); color: var(--fb-panel, var(--panel)); }
+.fb-pill input:focus-visible + span { outline: 2px solid var(--fb-focus, var(--focus)); outline-offset: 2px; }
+.fb textarea, .fb-json textarea { width: 100%; box-sizing: border-box; min-width: 0; font: inherit; font-size: 14px; line-height: 1.45; color: var(--fb-ink, var(--ink)); background: var(--fb-fill, var(--fill)); border: 0; border-radius: 8px; padding: 8px 10px; resize: vertical; }
+.fb textarea::placeholder { color: var(--fb-quiet, var(--quiet)); }
+.fb textarea:focus-visible, .fb-json textarea:focus-visible { outline: 2px solid var(--fb-focus, var(--focus)); outline-offset: 2px; }
+.fb-overall { display: grid; gap: 14px; }
+.fb-overall h2 { margin: 0; }
+.fb-sum { color: var(--fb-muted, var(--muted)); margin: 0; }
+.fb-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+.fb-actions button { font-family: inherit; font-weight: 500; font-size: 14px; line-height: 36px; padding: 0 16px; border: 0; border-radius: 10px; cursor: pointer; background: var(--fb-fill, var(--fill)); color: var(--fb-ink, var(--ink)); }
+.fb-actions .fb-copy { background: var(--fb-ink, var(--ink)); color: var(--fb-panel, var(--panel)); }
+.fb-actions button:focus-visible { outline: 2px solid var(--fb-focus, var(--focus)); outline-offset: 2px; }
+.fb-status { color: var(--fb-muted, var(--muted)); font-size: 14px; }
+.fb-json summary { cursor: pointer; color: var(--fb-muted, var(--muted)); font-size: 14px; }
+.fb-json textarea { margin-top: 8px; font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; }
+@media (max-width: 520px) { .fb-row { grid-template-columns: minmax(0, 1fr); } .fb-l { line-height: 1.4; } }
+
+/* Compare: every variant of one moment side by side, live, in a modal dialog. */
+.fb-cmp-open, .fb-cmp-all, .fb-cmp-head button { font-family: inherit; font-weight: 500; font-size: 13px; line-height: 28px; padding: 0 12px; border: 0; border-radius: 8px; cursor: pointer; background: var(--fb-fill, var(--fill)); color: var(--fb-ink, var(--ink)); }
+.fb-cmp-open { position: fixed; right: max(16px, env(safe-area-inset-right, 0px)); bottom: 16px; z-index: 10; line-height: 36px; padding: 0 16px; border-radius: 10px; background: var(--fb-ink, var(--ink)); color: var(--fb-panel, var(--panel)); }
+.fb-cmp-all { justify-self: start; align-self: start; }
+.fb-cmp-head button[aria-pressed="true"] { background: var(--fb-ink, var(--ink)); color: var(--fb-panel, var(--panel)); }
+.fb-cmp-open:focus-visible, .fb-cmp-all:focus-visible, .fb-cmp :focus-visible { outline: 2px solid var(--fb-focus, var(--focus)); outline-offset: 2px; }
+.fb-cmp { width: calc(100vw - 32px); height: calc(100dvh - 32px); max-width: none; max-height: none; box-sizing: border-box; padding: 0; border: 0; border-radius: 16px; background: var(--fb-bg, var(--bg, var(--fb-fill, var(--fb-fill, var(--fill))))); color: var(--fb-ink, var(--ink)); }
+.fb-cmp[open] { display: grid; grid-template-rows: auto auto minmax(0, 1fr); }
+.fb-cmp::backdrop { background: rgb(0 0 0 / 0.5); }
+.fb-cmp [hidden] { display: none; }
+.fb-cmp-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; padding: 12px 16px 8px; }
+.fb-cmp-head h2 { margin: 0; font-size: 17px; }
+.fb-cmp-head label { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--fb-muted, var(--muted)); }
+.fb-cmp-head select { font: inherit; font-size: 13px; line-height: 28px; height: 28px; padding: 0 8px; border: 0; border-radius: 8px; background: var(--fb-fill, var(--fill)); color: var(--fb-ink, var(--ink)); }
+.fb-cmp-head input[type=range] { width: 140px; accent-color: var(--fb-focus, var(--focus)); }
+.fb-cmp-controls { display: contents; }
+.fb-cmp-group { display: inline-flex; gap: 4px; }
+.fb-cmp-close { margin-inline-start: auto; }
+.fb-cmp-count { margin: 0; max-width: none; padding: 0 16px 8px; font-size: 13px; color: var(--fb-muted, var(--muted)); }
+.fb-cmp-track { display: flex; align-items: flex-start; gap: 16px; overflow: auto; padding: 4px 16px 16px; scroll-snap-type: x proximity; scroll-padding-inline: 16px; overscroll-behavior: contain; }
+.fb-cmp-card { flex: 0 0 auto; display: grid; gap: 8px; max-width: calc(100vw - 64px); scroll-snap-align: start; }
+.fb-cmp-card > header { contain: inline-size; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: 14px; }
+.fb-cmp-meta { font: 500 12px/1.3 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--fb-quiet, var(--quiet)); }
+.fb-cmp-body { min-width: 240px; }
+@media (max-width: 600px) { .fb-cmp-track { flex-direction: column; align-items: stretch; scroll-snap-type: none; } .fb-cmp-card { max-width: none; } }
+.fb-rounds { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+.fb-rounds-n { font-size: 13px; color: var(--fb-muted, var(--muted)); }
+.fb-this-round [data-fb-older] { display: none !important; }
+/*@end feedback.css*/
+</style>
+
+<div class="page" data-explore data-round="1"
+     data-question="Which single page template should every Nowind page share: the component docs, the colour and type specimen, and the class lists?"
+     data-aspects="One frame for every kind of page,Easy to reach another page,Works on a phone,Copes with very long lists,Shows live examples well,Feels like Nowind,Quick to build with Nowind classes">
+
+  <header class="top">
+    <span class="kicker">Nowind site · one page, four kinds of content</span>
+    <h1>Five page templates for every Nowind page</h1>
+    <p class="lede">Today the site has four frames. Each new page copies one of them, so fixes made to one frame never reach the others. Each option below is a single template, shown on the same real content. Switch the page kind to see how each one handles a component, a colour specimen, a class list and a phone.</p>
+    <div class="today">
+      <div><b>Docs pages</b><span>Header, side index, on-page contents</span></div>
+      <div><b>Components showcase</b><span>One long column, logo bar on top</span></div>
+      <div><b>Specimen</b><span>Its own style block, left list, script-built</span></div>
+      <div><b>Landing, utilities demo</b><span>A centred container, no navigation</span></div>
+    </div>
+  </header>
+
+  <div class="control" data-fb-control-group="page">
+    <span>Page kind</span>
+    <div class="seg" role="group" aria-label="Page kind">
+      <button type="button" data-kind="component" aria-pressed="true">Component: Button</button>
+      <button type="button" data-kind="colour" aria-pressed="false">Specimen: Accent 1 colours</button>
+      <button type="button" data-kind="classes" aria-pressed="false">Class list: backgrounds</button>
+      <button type="button" data-kind="phone" aria-pressed="false">Class list on a phone</button>
+    </div>
+  </div>
+
+  <section class="opt" id="unigrid" data-variant="unigrid" data-moment="page-template">
+    <div class="opt-head"><span class="kicker">Option A · after Vignelli</span><h2>A black band on top, and every block hung from a label column</h2>
+      <p class="lede">The site's sections sit in a black band, and the pages of the current section in a row below a heavy rule. Every block on every page has a label in the first three of twelve columns and its content in the other nine, so a component, a palette and a class list all share one grid.</p></div>
+    <div class="stage"><div class="mockwrap"><div class="m va" id="mA"></div></div></div>
+    <div class="facts">
+      <div><b>Keeps</b><span>One scroll, one grid and one block shape on every page, including the showcase and the specimen.</span></div>
+      <div><b>Gives up</b><span>A side index: you see only the current section's pages, so jumping to another section takes two steps.</span></div>
+      <div><b>Breaks when</b><span>A section has more pages than fit in one row: the 26 component pages scroll sideways in the sub-row.</span></div>
+    </div>
+  </section>
+
+  <section class="opt" id="programme" data-variant="programme" data-moment="page-template">
+    <div class="opt-head"><span class="kicker">Option B · after Gerstner</span><h2>A programme of tiles: each kind of content takes a fixed number of units</h2>
+      <p class="lede">The page is a six-unit grid of tiles on a tinted ground. A rule decides how many units each kind of block takes: a title four, a live example four, a list two, a swatch one, a class one. The section's other pages are tiles too, at the top.</p></div>
+    <div class="stage"><div class="mockwrap"><div class="m vb" id="mB"></div></div></div>
+    <div class="facts">
+      <div><b>Keeps</b><span>Specimens and examples read at a glance, and the same rule lays out any new kind of content.</span></div>
+      <div><b>Gives up</b><span>Reading order: prose and use-and-avoid lists get chopped into tiles of equal weight.</span></div>
+      <div><b>Breaks when</b><span>A list runs to a thousand classes: a thousand tiles is a wall, not an index.</span></div>
+    </div>
+  </section>
+
+  <section class="opt" id="index-sheet" data-variant="index-sheet" data-moment="page-template">
+    <div class="opt-head"><span class="kicker">Option C · after Müller-Brockmann</span><h2>A fixed index of the whole site beside an asymmetric sheet</h2>
+      <p class="lede">A narrow column lists every section and page, always open, with the current page marked. The sheet beside it has a narrow margin column for labels, set flush right, and one wide column for the content. On a phone the index folds into a bar.</p></div>
+    <div class="stage"><div class="mockwrap"><div class="m vc" id="mC"></div></div></div>
+    <div class="facts">
+      <div><b>Keeps</b><span>Every page is one click away, and it's closest to today's docs pages, so the least changes.</span></div>
+      <div><b>Gives up</b><span>About a fifth of the width to the index, so live examples and wide tables have less room.</span></div>
+      <div><b>Breaks when</b><span>The index outgrows the window (34 pages today): it needs its own scrolling, the one nested scroller left.</span></div>
+    </div>
+  </section>
+
+  <section class="opt" id="ledger" data-variant="ledger" data-moment="page-template">
+    <div class="opt-head"><span class="kicker">Option D · a ledger</span><h2>Every page is one filterable table of name, rule and sample</h2>
+      <p class="lede">Each page has a short head, a filter and one table. A component page lists its variants as rows, the specimen lists the colour steps, the class list lists the classes. Use and avoid become rows too. A breadcrumb replaces the menu.</p></div>
+    <div class="stage"><div class="mockwrap"><div class="m vd" id="mD"></div></div></div>
+    <div class="facts">
+      <div><b>Keeps</b><span>The most uniform option: one table pattern, one filter script, every page searchable the same way.</span></div>
+      <div><b>Gives up</b><span>Explanation: guidance and prose have no natural place, and a component is never seen whole.</span></div>
+      <div><b>Breaks when</b><span>A page is mostly writing, like the guide, or an example needs room, like a dialog or a card.</span></div>
+    </div>
+  </section>
+
+  <section class="opt" id="focus" data-variant="focus" data-moment="page-template">
+    <div class="opt-head"><span class="kicker">Option E · list and one item</span><h2>A list of the section's items, and one item at a time beside it</h2>
+      <p class="lede">The section's items run down a list, and choosing one shows it alone in the detail pane: a component with its example, one colour step with its roles, one class with its declarations. Try it: the list in the mock works. On a phone the list and the item take turns.</p></div>
+    <div class="stage"><div class="mockwrap"><div class="m ve" id="mE"></div></div></div>
+    <div class="facts">
+      <div><b>Keeps</b><span>Focus: one thing, full size, nothing competing; good for comparing a component's states.</span></div>
+      <div><b>Gives up</b><span>Overview and find-in-page: you can't scan all twelve steps or every class at once.</span></div>
+      <div><b>Breaks when</b><span>The list is long: a thousand classes in a narrow list is the nested scroller you just removed.</span></div>
+      <div><b>Depends on</b><span>A small script on every page to swap the item and keep a link to it (assumed acceptable).</span></div>
+    </div>
+  </section>
+
+  <section class="opt">
+    <div class="opt-head"><span class="kicker">Side by side</span><h2>How each one copes</h2></div>
+    <div class="tablewrap"><table class="cmp">
+      <thead><tr><th>Option</th><th>One frame for all four</th><th>Reach another page</th><th>Phone</th><th>1,000-row list</th><th>Live examples</th><th>Change from today*</th></tr></thead>
+      <tbody>
+        <tr><td>A · Black band, label column</td><td>Yes</td><td>Two steps</td><td>Good, label stacks</td><td>Good, one scroll</td><td>Good, nine columns</td><td>Medium</td></tr>
+        <tr><td>B · Tile programme</td><td>Yes</td><td>Two steps</td><td>Fair, two units</td><td>Poor</td><td>Very good</td><td>Large</td></tr>
+        <tr><td>C · Index and sheet</td><td>Yes</td><td>One click</td><td>Good, index folds</td><td>Good, one scroll</td><td>Fair, less width</td><td>Small</td></tr>
+        <tr><td>D · Ledger</td><td>Yes, rigidly</td><td>Breadcrumb</td><td>Good, rows stack</td><td>Very good, filter</td><td>Poor, tiny samples</td><td>Medium</td></tr>
+        <tr><td>E · List and one item</td><td>Mostly</td><td>Two steps</td><td>Fair, turn-taking</td><td>Poor, nested list</td><td>Very good</td><td>Large, needs script</td></tr>
+      </tbody>
+    </table></div>
+    <p class="lede" style="font-size:13px">* Estimated from the number of templates and page scripts each would change; not measured.</p>
+  </section>
+
+  <section class="opt">
+    <div class="opt-head"><span class="kicker">Reading</span><h2>C for the frame, with A's label column inside the sheet, and D's table only for lists</h2>
+      <p class="lede">I'd pick the index and sheet (C) as the one frame: a site of 34 pages needs every page one click away, and it's the smallest change from what works today. Inside the sheet I'd use A's rule of a label beside every block, so a component, a palette and a guide section all have the same shape. The class lists and the specimen tables would use D's filterable table as a block, not as the page. B and E show content well, but they fail on the 1,000-row class list, which the site has to carry.</p></div>
+    <details class="tech"><summary>Technical details</summary>
+<pre>Frame: doc_page() in scripts/templates.py would also render site/components.html, specimen.html and utilities.html (generated, not hand-written).
+C maps onto existing classes: w-sidebar sticky top-header h-below-header overflow-y-auto (index), grid with a label column (new? or grid-cols-12 col-span-3 / col-span-9).
+A's label column = md:col-span-3 / md:col-span-9 inside the article; no new class needed.
+Mock colours are stand-ins for Nowind's slate neutral and blue accent-1, not the computed tokens.</pre></details>
+  </section>
+</div>
+
+<script>
+// One fixture for every variant: real Nowind content.
+const NAV = {
+  Docs: ["Overview", "Guide", "Reference"],
+  Components: ["Button", "Badge", "Dialog", "Tabs", "Text field", "Menu"],
+  Specimen: ["Colour", "Type", "Space"],
+  Classes: ["Regular", "Semantic"],
+};
+const BTN_DEMO = `<span class="btn p">Save changes</span><span class="btn s">Cancel</span><span class="btn g">Learn more</span><span class="btn d">Delete</span><span class="btn x">Disabled</span>`;
+const COMPONENT = {
+  section: "Components", current: "Button", kicker: "Components · Actions", title: "Button",
+  summary: "Starts an action. Use one primary button for the main action on a view; secondary and ghost buttons for the rest.",
+  use: ["One primary action per view", "Verbs that say what happens: Save, Delete", "Ghost buttons for low-weight actions in toolbars"],
+  avoid: ["Two primary buttons side by side", "A button that navigates to another page; use a link", "Labels longer than three words"],
+  classes: ["inline-flex", "h-control", "px-control", "gap-gutter", "rounded-sm", "bg-solid-accent-1", "hover:bg-solid-accent-1-strong", "fg-on-solid-accent-1", "text-title-sm", "transition-colors"],
+  variants: [["Primary", "bg-solid-accent-1 fg-on-solid-accent-1", "p", "Save changes"], ["Secondary", "border bg-component-weak", "s", "Cancel"], ["Ghost", "hover:bg-component-weak", "g", "Learn more"], ["Danger", "bg-solid-danger fg-on-solid-danger", "d", "Delete"], ["Disabled", "disabled:opacity-50", "x", "Disabled"]],
+  others: { Badge: "A short status label beside a title or in a table cell.", Dialog: "A modal layer for a decision that blocks the page until answered.", Tabs: "Switches between views of the same object without leaving the page.", "Text field": "One line of text with its label, hint and error.", Menu: "A list of actions that opens from a button." },
+};
+const ROLE = ["Page background", "Raised background", "Component", "Component hover", "Component pressed", "Weak border", "Border", "Strong border", "Solid", "Solid hover", "Weak text", "Text"];
+const STEP_COLORS = ["#fbfdff", "#f4faff", "#e6f4fe", "#d5efff", "#c2e5ff", "#acd8fc", "#8ec8f6", "#5eb1ef", "#0090ff", "#0588f0", "#0d74ce", "#113264"];
+const COLOUR = {
+  section: "Specimen", current: "Colour", kicker: "Specimen · Colour", title: "Accent 1 · Blue",
+  summary: "Twelve steps from page background to text. Each role names the step it uses, so a role can move without touching the pages.",
+  steps: STEP_COLORS.map((c, i) => ({ n: i + 1, c, role: ROLE[i], token: `--accent-1-${i + 1}` })),
+};
+const CLASSES = {
+  section: "Classes", current: "Semantic", kicker: "Classes · Semantic", title: "Background colour",
+  summary: "80 of 1,360 classes. Each sets a background from a colour role, so it follows the theme in light and dark.",
+  rows: [["bg", "--bg", "var(--m-bg)"], ["bg-strong", "--bg-strong", "var(--m-bg-strong)"], ["bg-inverse", "--bg-inverse", "var(--m-inverse)"], ["bg-accent-1", "--bg-accent-1", "var(--m-acc-weak-bg)"], ["bg-component-weak", "--component-weak", "var(--m-comp-weak)"], ["bg-component", "--component", "var(--m-comp)"], ["bg-solid-accent-1", "--solid-accent-1", "var(--m-acc-solid)"], ["bg-solid-accent-1-strong", "--solid-accent-1-strong", "var(--m-acc-solid-strong)"], ["bg-solid-danger", "--solid-danger", "var(--m-danger-solid)"], ["bg-scrim", "--scrim", "rgba(0,0,0,.45)"]].map(([k, t, v]) => ({ k, decl: `background-color: var(${t})`, v })),
+};
+let kind = "component";
+const phone = () => kind === "phone";
+const data = () => (kind === "component" ? COMPONENT : kind === "colour" ? COLOUR : CLASSES);
+
+const lis = (a, no) => `<ul class="li${no ? " no" : ""}">${a.map((x) => `<li>${x}</li>`).join("")}</ul>`;
+const chips = (a) => `<div class="chips">${a.map((c) => `<code class="chip">${c}</code>`).join("")}</div>`;
+const swatches = (cols) => `<div style="display:grid;grid-template-columns:repeat(${cols},minmax(0,1fr));gap:6px">${COLOUR.steps.map((s) => `<div class="sw"><i style="background:${s.c}"></i><span class="mono">${s.n}</span><span class="weak" style="font-size:11px;line-height:1.25">${s.role}</span></div>`).join("")}</div>`;
+const rows = (r) => `<div class="rows">${r.map((x) => `<div class="row"><code>.${x.k}</code><span class="decl mono weak">${x.decl}</span><span class="pv" style="background:${x.v}"></span></div>`).join("")}<div class="row"><span class="weak" style="grid-column:1/-1;font-size:12px">… 70 more</span></div></div>`;
+
+function blocks() {
+  const d = data();
+  if (kind === "component") return [["Example", `<div class="demo">${BTN_DEMO}</div>`], ["Use", lis(d.use)], ["Avoid", lis(d.avoid, true)], ["Classes", chips(d.classes)]];
+  if (kind === "colour") return [["Steps", swatches(phone() ? 4 : 6)], ["Roles", `<p class="weak">Backgrounds 1–2, components 3–5, borders 6–8, solids 9–10, text 11–12.</p>`], ["Tokens", chips(COLOUR.steps.slice(0, 6).map((s) => s.token).concat("…"))]];
+  return [["Classes", rows(d.rows)], ["Variants", `<p class="weak">Every class here also takes <code>hover:</code> and the state variants.</p>`]];
+}
+
+// A · Vignelli
+function renderA() {
+  const d = data(), el = document.getElementById("mA");
+  el.className = "m va" + (phone() ? " phone" : "");
+  el.innerHTML = `<div class="band"><b>Nowind</b>${Object.keys(NAV).map((s) => `<a class="${s === d.section ? "on" : ""}">${s}</a>`).join("")}</div>
+  <div class="sub">${NAV[d.section].map((p) => `<span class="${p === d.current ? "on" : ""}">${p}</span>`).join("")}</div>
+  <div class="grid"><div class="title"><span class="k">${d.kicker}</span><div class="t-display">${d.title}</div><p class="weak" style="max-width:52ch">${d.summary}</p></div>
+  ${blocks().map(([l, b]) => `<div class="blk"><div class="lab">${l}</div><div class="body">${b}</div></div>`).join("")}</div>`;
+}
+// B · Gerstner
+function renderB() {
+  const d = data(), el = document.getElementById("mB");
+  el.className = "m vb" + (phone() ? " phone" : "");
+  let t = NAV[d.section].slice(0, 6).map((p) => `<div class="tile idx s1 ${p === d.current ? "on" : ""}">${p}</div>`).join("");
+  t += `<div class="tile s4"><span class="k">${d.kicker}</span><div class="t-display" style="font-size:30px">${d.title}</div></div><div class="tile s2"><p class="weak" style="font-size:12.5px">${d.summary}</p></div>`;
+  if (kind === "component") t += `<div class="tile s4"><span class="k">Example</span><div class="demo">${BTN_DEMO}</div></div><div class="tile s2"><span class="k">Classes</span>${chips(d.classes.slice(0, 6))}</div><div class="tile s3"><span class="k">Use</span>${lis(d.use)}</div><div class="tile s3"><span class="k">Avoid</span>${lis(d.avoid, true)}</div>`;
+  else if (kind === "colour") t += d.steps.map((s) => `<div class="tile s1" style="background:${s.c};color:${s.n > 8 ? "#fff" : "#1c2024"}"><span class="big">${s.n}</span><span style="font-size:11px;line-height:1.2">${s.role}</span></div>`).join("");
+  else t += d.rows.map((x) => `<div class="tile s2"><div style="display:flex;gap:8px;align-items:center"><span class="pv" style="width:22px;height:22px;border:1px solid var(--m-border-weak);background:${x.v}"></span><code>.${x.k}</code></div><span class="mono weak" style="font-size:11px">${x.decl}</span></div>`).join("") + `<div class="tile s6 weak" style="font-size:12px">… 70 more tiles</div>`;
+  el.innerHTML = `<div class="bar"><b>Nowind</b>${Object.keys(NAV).map((s) => `<span class="${s === d.section ? "on" : ""}">${s}</span>`).join("")}</div><div class="tiles">${t}</div>`;
+}
+// C · Müller-Brockmann
+function renderC() {
+  const d = data(), el = document.getElementById("mC");
+  el.className = "m vc" + (phone() ? " phone" : "");
+  const idx = Object.entries(NAV).map(([s, ps]) => `<div class="grp"><span class="k">${s}</span>${ps.map((p) => `<span class="${s === d.section && p === d.current ? "cur" : ""}">${p}</span>`).join("")}</div>`).join("");
+  el.innerHTML = `<div class="idx"><b>Nowind</b>${idx}</div><div style="min-width:0"><div class="phonebar"><b>Nowind</b><span>☰ Index · ${d.section} / ${d.current}</span></div>
+  <div class="sheet"><div class="title"><span class="k">${d.kicker}</span><div class="t-display">${d.title}</div><p class="weak" style="max-width:50ch">${d.summary}</p></div>
+  ${blocks().map(([l, b]) => `<div class="lab">${l}</div><div class="body">${b}</div>`).join("")}</div></div>`;
+}
+// D · Ledger
+function renderD() {
+  const d = data(), el = document.getElementById("mD");
+  el.className = "m vd" + (phone() ? " phone" : "");
+  let head = ["Name", "Rule", "Sample"], body = "";
+  if (kind === "component") {
+    body = d.variants.map(([n, c, k, l]) => `<tr><td class="n">${n}</td><td class="d"><code>${c}</code></td><td class="s"><span class="btn ${k}">${l}</span></td></tr>`).join("")
+      + `<tr><td class="n">Use when</td><td class="d">${d.use[0]}; ${d.use[1].toLowerCase()}</td><td class="s"></td></tr><tr><td class="n">Avoid</td><td class="d">${d.avoid[0]}; ${d.avoid[1].toLowerCase()}</td><td class="s"></td></tr>`;
+  } else if (kind === "colour") {
+    head = ["Step", "Role", "Sample"];
+    body = d.steps.map((s) => `<tr><td class="n">${s.token}</td><td class="d">${s.role}</td><td class="s"><span style="display:block;width:44px;height:20px;border:1px solid var(--m-border-weak);background:${s.c}"></span></td></tr>`).join("");
+  } else {
+    head = ["Class", "Declaration", "Sample"];
+    body = d.rows.map((x) => `<tr><td class="n">.${x.k}</td><td class="d"><code>${x.decl}</code></td><td class="s"><span style="display:block;width:28px;height:20px;border:1px solid var(--m-border-weak);background:${x.v}"></span></td></tr>`).join("") + `<tr><td class="d" colspan="3">… 70 more rows</td></tr>`;
+  }
+  el.innerHTML = `<div class="bar"><b>Nowind</b><span>${d.section}</span><span class="sep">/</span><span style="color:var(--m-fg)">${d.current}</span></div>
+  <div class="head"><span class="k">${d.kicker}</span><div class="t-display">${d.title}</div><p class="weak" style="max-width:56ch">${d.summary}</p></div>
+  <div class="filter">Filter ${d.title.toLowerCase()}…</div>
+  <table><thead><tr>${head.map((h) => `<th>${h}</th>`).join("")}</tr></thead><tbody>${body}</tbody></table>`;
+}
+// E · Focus (operable)
+let focusIdx = 0, showList = false;
+function renderE() {
+  const d = data(), el = document.getElementById("mE");
+  el.className = "m ve" + (phone() ? " phone" : "");
+  let items, detail;
+  if (kind === "component") {
+    items = NAV.Components.map((n) => ({ label: n, sub: "" }));
+    const n = items[focusIdx]?.label ?? "Button";
+    detail = n === "Button"
+      ? `<span class="k">${d.kicker}</span><div class="t-display" style="font-size:28px">Button</div><p class="weak">${d.summary}</p><div class="demo">${BTN_DEMO}</div><div class="t-sub">Use</div>${lis(d.use)}`
+      : `<span class="k">Components</span><div class="t-display" style="font-size:28px">${n}</div><p class="weak">${d.others[n]}</p><div class="demo weak" style="font-size:12px">Live example of ${n.toLowerCase()} here</div>`;
+  } else if (kind === "colour") {
+    items = d.steps.map((s) => ({ label: `Step ${s.n}`, sub: s.role }));
+    const s = d.steps[focusIdx] ?? d.steps[0];
+    detail = `<span class="k">${d.kicker}</span><div class="t-display" style="font-size:28px">Step ${s.n}</div><div style="height:120px;background:${s.c};border:1px solid var(--m-border-weak)"></div><p><code>${s.token}</code> · ${s.role}</p><p class="weak">Used by <code>bg-accent-1-${s.n}</code>, <code>fg-accent-1-${s.n}</code> and <code>border-accent-1-${s.n}</code>.</p>`;
+  } else {
+    items = d.rows.map((x) => ({ label: `.${x.k}`, sub: "", mono: true }));
+    const x = d.rows[focusIdx] ?? d.rows[0];
+    detail = `<span class="k">${d.kicker}</span><div class="t-display" style="font-size:24px;font-family:var(--mono)">.${x.k}</div><code>${x.decl}</code><div style="height:90px;background:${x.v};border:1px solid var(--m-border-weak)"></div><p class="weak">Also <code>hover:${x.k}</code>, <code>aria-selected:${x.k}</code> and 7 more state variants.</p>`;
+  }
+  if (focusIdx >= items.length) focusIdx = 0;
+  el.innerHTML = `<div class="bar"><b>Nowind</b>${Object.keys(NAV).map((s) => `<span class="${s === d.section ? "on" : ""}">${s}</span>`).join("")}</div>
+  <div class="split${showList ? " showlist" : ""}"><div class="list">${items.map((it, i) => `<button type="button" data-i="${i}" aria-current="${i === focusIdx}"><span class="${it.mono ? "mono" : ""}">${it.label}</span><span class="weak" style="font-size:11px">${it.sub}</span></button>`).join("")}<div class="weak" style="padding:8px 14px;font-size:11.5px">${kind === "classes" ? "… 70 more" : ""}</div></div>
+  <div class="detail"><button type="button" class="back">‹ All ${d.section === "Specimen" ? "steps" : d.section.toLowerCase()}</button>${detail}</div></div>`;
+  el.querySelectorAll(".list button").forEach((b) => b.addEventListener("click", () => { focusIdx = +b.dataset.i; showList = false; renderE(); }));
+  el.querySelector(".back").addEventListener("click", () => { showList = true; renderE(); });
+}
+
+function renderAll() {
+  document.documentElement.style.setProperty("--mockw", phone() ? "375px" : "760px");
+  renderA(); renderB(); renderC(); renderD(); renderE();
+}
+document.querySelectorAll("[data-kind]").forEach((b) => b.addEventListener("click", () => {
+  kind = b.dataset.kind; focusIdx = 0; showList = false;
+  document.querySelectorAll("[data-kind]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+  renderAll();
+}));
+renderAll();
+</script>
+<script>
+/*@begin feedback.js*/
+// Feedback capture for an exploration page. Vanilla, no dependencies.
+// Finds every `section[data-variant]`, adds a verdict, "works" and "does not work" choices and a note to each, adds an
+// overall block after the last section of `[data-explore]`, and copies one JSON object the reader pastes back in chat.
+// Reads from `[data-explore]`: data-question, data-round, data-aspects (comma list; a section or a wrapper around a
+// moment's sections may carry its own, and the nearest wins). Controls marked `data-fb-control`
+// (a width slider, a time scrubber) are recorded with their current values, so the feedback says what was on screen.
+// Compare: each section may carry data-moment (the one decision it answers) and, when kept from an earlier
+// round, its own data-round. A corner button, the key C and a "Compare all" button in each variant open a modal dialog
+// that holds every variant of one moment side by side, live: the variant's `.stage` is moved into its card and put back
+// on close, with a placeholder of the same height left in the page. Compare is a view; the JSON gains nothing.
+// Rounds: when the page holds anything marked with a data-round lower than the container's (a variant kept from an
+// earlier round, or that round's table or reading), a control above the first variant shows the current round only,
+// or all rounds. The page opens on the current round. Hidden variants stay in the JSON with the verdicts they hold.
+// The leading semicolon ends a page script's last statement, so the module is never read as a call on it.
+;(function () {
+  const root = document.querySelector('[data-explore]');
+  if (!root) return;
+  const sections = [...root.querySelectorAll('section[data-variant]')];
+  if (!sections.length) return;
+  const KEY = 'explore-variants:' + document.title + ':' + (root.dataset.round || '1');
+  const DEFAULT_VERDICTS = [['pursue', 'Pursue'], ['parts', 'Keep parts'], ['drop', 'Drop']];
+  const NEXT = [['refine', 'Refine the picks'], ['combine', 'Combine the picks'], ['more', 'Explore further'], ['build', 'Build it']];
+  const DEFAULT_ASPECTS = 'Clear,Fits the need,Worth its cost'; // a fallback only: a page names its own
+  // the nearest data-aspects wins: the variant's own, a wrapper around one moment's variants, then the container's
+  const aspectsOf = (s) => {
+    const host = s.closest('[data-aspects]');
+    return ((host && root.contains(host) ? host : root).dataset.aspects || DEFAULT_ASPECTS).split(',').map((a) => a.trim()).filter(Boolean);
+  };
+  const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  // data-verdicts on the container names the page's own verdicts: a comma list of labels, or key:Label pairs
+  // ("keep:Keep,revert:Go back"). The first is the positive one. Fewer than two leaves the default three.
+  const OWN_VERDICTS = (root.dataset.verdicts || '').split(',').map((x) => x.trim()).filter(Boolean)
+    .map((x) => { const i = x.indexOf(':'); return i < 0 ? [slug(x), x] : [slug(x.slice(0, i)), x.slice(i + 1).trim()]; });
+  const VERDICTS = OWN_VERDICTS.length >= 2 ? OWN_VERDICTS : DEFAULT_VERDICTS;
+  let state = { variants: {}, overall: {} };
+  let roundsNote = ''; // set by the rounds control: how many variants are hidden
+  try { state = JSON.parse(localStorage.getItem(KEY)) || state; } catch (e) { /* no storage: start empty */ }
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* draft not kept */ } refresh(); };
+  const nameOf = (s) => s.dataset.name || (s.querySelector('h2') || {}).textContent || s.dataset.variant;
+
+  const pill = (type, name, value, label, checked) =>
+    `<label class="fb-pill"><input type="${type}" name="${name}" value="${value}" id="${name}-${slug(value)}"${checked ? ' checked' : ''}><span>${label}</span></label>`;
+
+  // data-pick="one" on the container, a wrapper or a variant (the nearest wins): in that moment the first verdict
+  // goes to one variant only. Giving it to one moves every other variant of the moment that is not judged, or that
+  // held it, to the last verdict; a middle verdict is left alone.
+  const pickOne = (s) => { const h = s.closest('[data-pick]'); return !!h && root.contains(h) && h.dataset.pick === 'one'; };
+  const FIRST = VERDICTS[0][0], LAST = VERDICTS[VERDICTS.length - 1][0];
+
+  for (const s of sections) {
+    const id = s.dataset.variant, v = (state.variants[id] = state.variants[id] || { verdict: null, works: [], doesnt: [], note: '' });
+    const ASPECTS = aspectsOf(s);
+    const f = document.createElement('form');
+    f.className = 'fb'; f.setAttribute('aria-label', 'Feedback on ' + nameOf(s));
+    f.innerHTML =
+      `<div class="fb-row"><span class="fb-l">Verdict</span><div class="fb-set">${VERDICTS.map(([k, l]) => pill('radio', `fb-${id}-verdict`, k, l, v.verdict === k)).join('')}</div></div>` +
+      `<div class="fb-row"><span class="fb-l">Works</span><div class="fb-set">${ASPECTS.map((a) => pill('checkbox', `fb-${id}-works`, a, a, v.works.includes(a))).join('')}</div></div>` +
+      `<div class="fb-row"><span class="fb-l">Does not</span><div class="fb-set">${ASPECTS.map((a) => pill('checkbox', `fb-${id}-doesnt`, a, a, v.doesnt.includes(a))).join('')}</div></div>` +
+      `<div class="fb-row"><label class="fb-l" for="fb-${id}-note">Note</label><textarea id="fb-${id}-note" rows="2" placeholder="What to change, keep or try">${(v.note || '').replace(/</g, '&lt;')}</textarea></div>`;
+    f.addEventListener('submit', (e) => e.preventDefault());
+    f.addEventListener('input', (e) => {
+      v.verdict = (f.querySelector(`[name="fb-${id}-verdict"]:checked`) || {}).value || null;
+      if (e.target.name === `fb-${id}-verdict` && v.verdict === FIRST && pickOne(s)) {
+        for (const other of sections) {
+          const oid = other.dataset.variant, ov = state.variants[oid];
+          if (other === s || (other.dataset.moment || '') !== (s.dataset.moment || '') || !pickOne(other) || !ov || (ov.verdict && ov.verdict !== FIRST)) continue;
+          ov.verdict = LAST;
+          other.querySelectorAll(`.fb [name="fb-${oid}-verdict"]`).forEach((r) => { r.checked = r.value === LAST; });
+        }
+      }
+      v.works = [...f.querySelectorAll(`[name="fb-${id}-works"]:checked`)].map((i) => i.value);
+      v.doesnt = [...f.querySelectorAll(`[name="fb-${id}-doesnt"]:checked`)].map((i) => i.value);
+      v.note = f.querySelector('textarea').value;
+      save();
+    });
+    s.appendChild(f);
+  }
+
+  const o = state.overall = Object.assign({ next: null, note: '' }, state.overall);
+  const box = document.createElement('section');
+  box.className = 'fb-overall'; box.id = 'feedback';
+  box.innerHTML =
+    `<h2>Send feedback</h2>` +
+    `<p class="fb-sum" aria-live="polite"></p>` +
+    `<form class="fb" aria-label="Overall feedback">` +
+    `<div class="fb-row"><span class="fb-l">Next</span><div class="fb-set">${NEXT.map(([k, l]) => pill('radio', 'fb-next', k, l, o.next === k)).join('')}</div></div>` +
+    `<div class="fb-row"><label class="fb-l" for="fb-overall-note">Overall</label><textarea id="fb-overall-note" rows="3" placeholder="How the picks should combine, what is missing, questions">${(o.note || '').replace(/</g, '&lt;')}</textarea></div>` +
+    `</form>` +
+    `<div class="fb-actions"><button type="button" class="fb-copy">Copy feedback JSON</button><button type="button" class="fb-clear">Clear</button><span class="fb-status" role="status"></span></div>` +
+    `<details class="fb-json"><summary>Preview the JSON</summary><textarea readonly rows="10" aria-label="Feedback JSON"></textarea></details>`;
+  // At the container's end, never inside the last variant's wrapper: from round 2 that wrapper can be an earlier
+  // round's moment, hidden while the page shows the current round, and the form would hide with it.
+  root.appendChild(box);
+  const of = box.querySelector('form'), out = box.querySelector('.fb-json textarea'), status = box.querySelector('.fb-status'), sum = box.querySelector('.fb-sum');
+  of.addEventListener('submit', (e) => e.preventDefault());
+  of.addEventListener('input', () => { o.next = (of.querySelector('[name="fb-next"]:checked') || {}).value || null; o.note = of.querySelector('textarea').value; save(); });
+
+  function payload() {
+    const controls = {};
+    document.querySelectorAll('[data-fb-control]').forEach((c) => { controls[c.dataset.fbControl || c.id] = c.type === 'checkbox' ? c.checked : c.value; });
+    document.querySelectorAll('[data-fb-control-group] [aria-pressed="true"]').forEach((b) => { controls[b.closest('[data-fb-control-group]').dataset.fbControlGroup] = b.textContent.trim(); });
+    return {
+      skill: 'explore-variants', schema: 1,
+      exploration: document.title, question: root.dataset.question || null, round: Number(root.dataset.round || 1),
+      controls,
+      ...(VERDICTS === OWN_VERDICTS ? { verdicts: VERDICTS.map(([k]) => k) } : {}), // only when the page named its own
+      // offered: the aspects this variant showed, so a reader can tell one not ticked from one never asked
+      variants: sections.map((s) => Object.assign({ id: s.dataset.variant, name: nameOf(s).trim(), offered: aspectsOf(s) }, state.variants[s.dataset.variant])),
+      overall: { next: o.next, note: o.note },
+      capturedAt: new Date().toISOString(),
+    };
+  }
+  function refresh() {
+    const p = payload(); out.value = JSON.stringify(p, null, 2);
+    const by = (k) => p.variants.filter((v) => v.verdict === k).map((v) => v.name);
+    const judged = p.variants.filter((v) => v.verdict).length;
+    sum.textContent = judged
+      ? `${judged} of ${p.variants.length} judged. ${VERDICTS.map(([k, l]) => `${l}: ${by(k).join(', ') || 'none'}`).join('. ')}.`
+      : `Give each variant a verdict above, then copy the JSON and paste it in the chat.`;
+    sum.textContent += roundsNote;
+  }
+  box.querySelector('.fb-copy').addEventListener('click', () => {
+    refresh();
+    const done = () => { status.textContent = 'Copied. Paste it in the chat.'; };
+    const fallback = () => { box.querySelector('.fb-json').open = true; out.focus(); out.select(); status.textContent = 'Copy was refused here. The JSON is selected: copy it by hand.'; };
+    try { navigator.clipboard.writeText(out.value).then(done, fallback); } catch (e) { fallback(); }
+  });
+  let armed = false;
+  box.querySelector('.fb-clear').addEventListener('click', (e) => {
+    if (!armed) { armed = true; e.target.textContent = 'Clear everything?'; setTimeout(() => { armed = false; e.target.textContent = 'Clear'; }, 3000); return; }
+    try { localStorage.removeItem(KEY); } catch (err) { /* nothing stored */ }
+    root.querySelectorAll('.fb input').forEach((i) => { i.checked = false; }); root.querySelectorAll('.fb textarea').forEach((t) => { t.value = ''; });
+    for (const k of Object.keys(state.variants)) state.variants[k] = { verdict: null, works: [], doesnt: [], note: '' };
+    o.next = null; o.note = ''; armed = false; e.target.textContent = 'Clear'; status.textContent = 'Cleared.'; refresh();
+  });
+  document.addEventListener('input', (e) => { if (e.target.matches && e.target.matches('[data-fb-control]')) refresh(); });
+  document.addEventListener('click', (e) => { if (e.target.closest && e.target.closest('[data-fb-control-group]')) setTimeout(refresh, 0); });
+  refresh();
+
+  // ---- Rounds ----
+  const curRound = Number(root.dataset.round || 1);
+  const older = [...root.querySelectorAll('[data-round]')].filter((el) => Number(el.dataset.round) < curRound);
+  if (older.length) {
+    const RKEY = KEY + ':rounds';
+    let all = false;
+    try { all = localStorage.getItem(RKEY) === 'all'; } catch (e) { /* no storage: open on the current round */ }
+    for (const el of older) el.setAttribute('data-fb-older', '');
+    const hiddenVariants = older.filter((el) => el.matches('section[data-variant]')).length;
+    const bar = document.createElement('div');
+    bar.className = 'fb-rounds'; bar.setAttribute('role', 'group'); bar.setAttribute('aria-label', 'Rounds shown');
+    bar.innerHTML = `<span class="fb-l">Showing</span><div class="fb-set">${pill('radio', 'fb-rounds', 'current', `Round ${curRound}`, !all)}${pill('radio', 'fb-rounds', 'all', 'All rounds', all)}</div><span class="fb-rounds-n" aria-live="polite"></span>`;
+    let top = sections.find((s) => !older.includes(s)) || sections[0];
+    while (top.parentNode !== root && root.contains(top.parentNode)) top = top.parentNode;
+    top.parentNode.insertBefore(bar, top);
+    const show = () => {
+      root.classList.toggle('fb-this-round', !all);
+      const n = hiddenVariants === 1 ? '1 variant' : `${hiddenVariants} variants`;
+      bar.querySelector('.fb-rounds-n').textContent = all ? '' : `${n} from earlier rounds hidden.`;
+      roundsNote = all || !hiddenVariants ? '' : ` ${n} from earlier rounds ${hiddenVariants === 1 ? 'is' : 'are'} hidden and ${hiddenVariants === 1 ? 'keeps its verdict' : 'keep their verdicts'}.`;
+      refresh();
+    };
+    bar.addEventListener('change', (e) => {
+      all = e.target.value === 'all';
+      try { localStorage.setItem(RKEY, all ? 'all' : 'current'); } catch (err) { /* choice not kept */ }
+      show();
+    });
+    show();
+  }
+
+  // ---- Compare ----
+  if (sections.length < 2 || !window.HTMLDialogElement) return;
+  const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+  const momentOf = (s) => s.dataset.moment || '';
+  const roundOf = (s) => s.dataset.round || root.dataset.round || '1';
+  const momentName = (m) => (m ? m.replace(/[-_]+/g, ' ') : 'All variants');
+  const moments = [...new Set(sections.map(momentOf))];
+  const rounds = [...new Set(sections.map(roundOf))].sort((a, b) => a - b);
+  const VIRTUAL = 24; // beyond this many cards, only those near the view hold their stage
+  const KEYPREF = 'explore-variants:compare-key';
+  const opt = (v, l) => `<option value="${esc(v)}">${esc(l)}</option>`;
+
+  const dlg = document.createElement('dialog');
+  dlg.className = 'fb-cmp'; dlg.setAttribute('aria-labelledby', 'fb-cmp-title');
+  dlg.innerHTML =
+    `<header class="fb-cmp-head"><h2 id="fb-cmp-title">Compare</h2>` +
+    `<label${moments.length > 1 ? '' : ' hidden'}>Moment <select class="fb-cmp-moment">${moments.map((m) => opt(m, momentName(m))).join('')}</select></label>` +
+    `<label${rounds.length > 1 ? '' : ' hidden'}>Round <select class="fb-cmp-round">${opt('', 'All')}${rounds.map((r) => opt(r, r)).join('')}</select></label>` +
+    `<label>Verdict <select class="fb-cmp-verdict">${opt('', 'All')}${VERDICTS.map(([k, l]) => opt(k, l)).join('')}${opt('none', 'Not judged')}</select></label>` +
+    `<button type="button" class="fb-cmp-fit" aria-pressed="false">Fit to width</button>` +
+    `<span class="fb-cmp-controls"></span>` +
+    `<label class="fb-cmp-key"><input type="checkbox"> Key C opens Compare</label>` +
+    `<button type="button" class="fb-cmp-close">Close</button></header>` +
+    `<p class="fb-cmp-count" role="status"></p>` +
+    `<div class="fb-cmp-track" tabindex="0" role="group" aria-label="Variants side by side"></div>`;
+  document.body.appendChild(dlg);
+  const q = (c) => dlg.querySelector(c);
+  const mSel = q('.fb-cmp-moment'), rSel = q('.fb-cmp-round'), vSel = q('.fb-cmp-verdict'), fitBtn = q('.fb-cmp-fit');
+  const track = q('.fb-cmp-track'), count = q('.fb-cmp-count'), keyBox = q('.fb-cmp-key input'), mirror = q('.fb-cmp-controls');
+
+  // One card per variant, built once. A verdict chosen on a card is written through the variant's own form.
+  const cards = sections.map((s) => {
+    const id = s.dataset.variant, el = document.createElement('article');
+    el.className = 'fb-cmp-card'; el.setAttribute('aria-label', nameOf(s).trim());
+    el.innerHTML = `<header><b>${esc(nameOf(s).trim())}</b><span class="fb-cmp-meta"></span>` +
+      `<div class="fb-set" role="group" aria-label="Verdict">${VERDICTS.map(([k, l]) => pill('radio', `cmp-${id}-verdict`, k, l, false)).join('')}</div></header><div class="fb-cmp-body"></div>`;
+    el.addEventListener('input', (e) => {
+      if (!e.target.matches('[type=radio]')) return;
+      const i = [...s.querySelectorAll('.fb [type=radio]')].find((r) => r.name === `fb-${id}-verdict` && r.value === e.target.value);
+      if (i) { i.checked = true; i.dispatchEvent(new Event('input', { bubbles: true })); }
+    });
+    track.appendChild(el);
+    return { s, id, el, body: el.querySelector('.fb-cmp-body'), meta: el.querySelector('.fb-cmp-meta'), stage: s.querySelector('.stage'), hold: null };
+  });
+  const mount = (c) => {
+    if (c.hold || !c.stage) return;
+    c.hold = document.createElement('div'); c.hold.className = 'fb-cmp-hold'; c.hold.setAttribute('aria-hidden', 'true');
+    c.hold.style.height = c.stage.getBoundingClientRect().height + 'px';
+    c.stage.replaceWith(c.hold); c.body.style.minWidth = c.body.style.minHeight = ''; c.body.appendChild(c.stage);
+  };
+  const unmount = (c) => {
+    if (!c.hold) return;
+    const r = c.body.getBoundingClientRect(); c.body.style.minWidth = r.width + 'px'; c.body.style.minHeight = r.height + 'px';
+    c.body.style.zoom = ''; c.hold.replaceWith(c.stage); c.hold = null;
+  };
+  const fitOn = () => fitBtn.getAttribute('aria-pressed') === 'true';
+  function fit() {
+    const live = cards.filter((c) => !c.el.hidden && c.hold);
+    for (const c of live) c.body.style.zoom = '';
+    const w = live.length ? Math.max(200, (track.clientWidth - 32 - 16 * (live.length - 1)) / live.length) : 0;
+    for (const c of live) {
+      const z = fitOn() ? Math.min(1, w / c.el.offsetWidth) : 1;
+      c.body.style.zoom = z < 1 ? z : '';
+      c.meta.textContent = `Round ${roundOf(c.s)}` + (z < 1 ? ` · scaled to ${Math.round(z * 100)}%` : '');
+    }
+  }
+  let io = null;
+  function show() {
+    const m = mSel.value, r = rSel.value, v = vSel.value;
+    if (io) { io.disconnect(); io = null; }
+    for (const c of cards) {
+      const verdict = (state.variants[c.id] || {}).verdict || null;
+      c.el.hidden = !(momentOf(c.s) === m && (!r || roundOf(c.s) === r) && (!v || (v === 'none' ? !verdict : verdict === v)));
+      c.el.querySelectorAll('header [type=radio]').forEach((i) => { i.checked = i.value === verdict; });
+      c.meta.textContent = `Round ${roundOf(c.s)}`;
+      if (c.el.hidden) { unmount(c); c.body.style.minWidth = c.body.style.minHeight = ''; }
+    }
+    const live = cards.filter((c) => !c.el.hidden);
+    if (live.length > VIRTUAL && window.IntersectionObserver) {
+      io = new IntersectionObserver((es) => { for (const e of es) { const c = cards.find((x) => x.el === e.target); if (e.isIntersecting) mount(c); else unmount(c); } fit(); }, { root: track, rootMargin: '50%' });
+      live.slice(0, VIRTUAL).forEach(mount); live.slice(VIRTUAL).forEach((c) => io.observe(c.el));
+    } else live.forEach(mount);
+    const all = cards.filter((c) => momentOf(c.s) === m).length;
+    count.textContent = live.length ? `${live.length} of ${all} variants${moments.length > 1 ? ' of ' + momentName(m) : ''}, at ${fitOn() ? 'fitted' : 'natural'} size.` : 'No variant matches these filters.';
+    fit();
+  }
+
+  // A copy of each shared control, bound to the page's own, so the stress applies in the dialog too.
+  const pulls = [];
+  document.querySelectorAll('[data-fb-control]').forEach((c) => {
+    if (!/^(INPUT|SELECT)$/.test(c.tagName) || c.type === 'radio') return;
+    const k = c.cloneNode(true), lab = c.id && document.querySelector(`label[for="${c.id}"]`), wrap = document.createElement('label');
+    k.removeAttribute('id'); k.removeAttribute('data-fb-control');
+    wrap.append((lab ? lab.textContent.trim() : c.dataset.fbControl || c.id) + ' ', k); mirror.appendChild(wrap);
+    const pull = () => { if (c.type === 'checkbox') k.checked = c.checked; else k.value = c.value; };
+    k.addEventListener('input', () => {
+      if (c.type === 'checkbox') c.checked = k.checked; else c.value = k.value;
+      c.dispatchEvent(new Event('input', { bubbles: true })); c.dispatchEvent(new Event('change', { bubbles: true }));
+      requestAnimationFrame(fit);
+    });
+    c.addEventListener('input', pull); pulls.push(pull);
+  });
+  document.querySelectorAll('[data-fb-control-group]').forEach((g) => {
+    const wrap = document.createElement('span'); wrap.className = 'fb-cmp-group'; wrap.setAttribute('role', 'group'); wrap.setAttribute('aria-label', g.dataset.fbControlGroup);
+    g.querySelectorAll('button').forEach((b) => {
+      const k = document.createElement('button'); k.type = 'button'; k.textContent = b.textContent.trim();
+      k.addEventListener('click', () => { b.click(); setTimeout(() => { pulls.forEach((p) => p()); fit(); }, 0); });
+      pulls.push(() => k.setAttribute('aria-pressed', b.getAttribute('aria-pressed') || 'false')); wrap.appendChild(k);
+    });
+    mirror.appendChild(wrap);
+  });
+
+  let opener = null;
+  function openCompare(moment, id) {
+    if (dlg.open) return;
+    opener = document.activeElement;
+    if (moment != null) mSel.value = moment;
+    pulls.forEach((p) => p()); dlg.showModal(); show();
+    const c = id && cards.find((x) => x.id === id);
+    if (c && !c.el.hidden) c.el.scrollIntoView({ inline: 'start', block: 'nearest' });
+  }
+  // Escape is the dialog's own (a layer open inside a variant that takes Escape first must cancel the keydown).
+  dlg.addEventListener('close', () => {
+    if (io) { io.disconnect(); io = null; }
+    for (const c of cards) { unmount(c); c.body.style.minWidth = c.body.style.minHeight = ''; }
+    if (opener && opener.focus) opener.focus();
+    refresh();
+  });
+  q('.fb-cmp-close').addEventListener('click', () => dlg.close());
+  fitBtn.addEventListener('click', () => { fitBtn.setAttribute('aria-pressed', String(!fitOn())); show(); });
+  for (const sel of [mSel, rSel, vSel]) sel.addEventListener('change', show);
+
+  const fab = document.createElement('button');
+  fab.type = 'button'; fab.className = 'fb-cmp-open'; fab.textContent = 'Compare';
+  fab.addEventListener('click', () => openCompare());
+  document.body.appendChild(fab);
+  for (const s of sections) {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'fb-cmp-all'; b.textContent = 'Compare all';
+    b.setAttribute('aria-label', `Compare all variants${momentOf(s) ? ' of ' + momentName(momentOf(s)) : ''}, from ${nameOf(s).trim()}`);
+    b.addEventListener('click', () => openCompare(momentOf(s), s.dataset.variant));
+    (s.querySelector('.opt-head') || s).appendChild(b);
+  }
+  // A one-key shortcut can be turned off (WCAG 2.1.4); the choice is kept in the reader's browser.
+  let keyOn = true;
+  try { keyOn = localStorage.getItem(KEYPREF) !== 'off'; } catch (e) { /* no storage: on */ }
+  const tellKey = () => { keyBox.checked = keyOn; if (keyOn) fab.setAttribute('aria-keyshortcuts', 'C'); else fab.removeAttribute('aria-keyshortcuts'); fab.title = keyOn ? 'Compare variants side by side (C)' : 'Compare variants side by side'; };
+  keyBox.addEventListener('change', () => { keyOn = keyBox.checked; try { localStorage.setItem(KEYPREF, keyOn ? 'on' : 'off'); } catch (e) { /* not kept */ } tellKey(); });
+  tellKey();
+  document.addEventListener('keydown', (e) => {
+    if (!keyOn || dlg.open || e.defaultPrevented || e.ctrlKey || e.metaKey || e.altKey || (e.key || '').toLowerCase() !== 'c') return;
+    if (e.target.closest && e.target.closest('input, textarea, select, [contenteditable], [role="textbox"]')) return;
+    e.preventDefault(); openCompare();
+  });
+})();
+/*@end feedback.js*/
+</script>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Overview · Nowind docs</title>
+<title>Overview · Nowind</title>
 <link rel="icon" href="data:,">
 <link rel="stylesheet" href="../../theme.css">
 <link rel="stylesheet" href="../../nowind.css">
@@ -11,117 +11,57 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
 </head>
 <body class="bg fg">
-<div class="shrink-0 py-3xs bg-inverse" aria-hidden="true"></div>
-<header class="sticky top-0 z-30 flex items-center justify-between gap-row h-header px-grid border-b border-weak bg">
-    <a href="docs-home.html" class="inline-flex items-center gap-gutter no-underline fg">
-      <i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-weak">0.8.0</span>
-    </a>
-    <nav aria-label="Main" class="hidden lg:flex items-center gap-3xs">
-      <a href="docs-home.html" aria-current="page" class="inline-flex items-center h-control px-control border-b-2 border-accent-1-strong no-underline fg text-title-sm">Docs</a>
-      <a href="guide.html" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline fg-weak hover:fg hover:border-strong text-title-sm transition-colors">Guide</a>
-      <a href="components-index.html" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline fg-weak hover:fg hover:border-strong text-title-sm transition-colors">Components</a>
-      <a href="reference.html" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline fg-weak hover:fg hover:border-strong text-title-sm transition-colors">Reference</a>
-      <a href="classes.html" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline fg-weak hover:fg hover:border-strong text-title-sm transition-colors">Classes</a>
-      <a href="changelog.html" class="inline-flex items-center h-control px-control border-b-2 border-transparent no-underline fg-weak hover:fg hover:border-strong text-title-sm transition-colors">Changelog</a>
-    </nav>
-    <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center h-control px-control gap-gutter border bg hover:bg-component-weak no-underline fg text-title-sm transition-colors" aria-label="Nowind on GitHub">
-      <i class="icon ph ph-github-logo"></i><span class="hidden xl:inline">GitHub</span>
-    </a>
-  </header>
-<details class="lg:hidden border-b border-weak bg-strong">
-    <summary class="flex items-center gap-gutter h-control px-grid list-none cursor-pointer fg text-title-sm"><i class="icon ph ph-list"></i><span>Menu</span></summary>
-    <nav aria-label="Documentation" class="flex flex-col gap-group px-grid pt-2xs pb-md">
-      <div class="flex flex-col gap-field">
-        <span class="text-kicker fg-weak">Getting started</span>
-        <ul role="list" class="flex flex-col gap-3xs">
-          <li><a href="docs-home.html" aria-current="page" class="flex items-center h-control px-control gap-gutter border-l-2 border-accent-1-strong bg-component-weak no-underline fg text-title-sm"><i class="icon ph ph-house"></i><span class="truncate">Overview</span></a></li>
-          <li><a href="guide.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-book-open"></i><span class="truncate">Lay out a docs page</span></a></li>
-        </ul>
-      </div>
-      <div class="flex flex-col gap-field">
-        <span class="text-kicker fg-weak">Reference</span>
-        <ul role="list" class="flex flex-col gap-3xs">
-          <li><a href="reference.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-grid-four"></i><span class="truncate">Page grid and shell</span></a></li>
-          <li><a href="classes.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-list-bullets"></i><span class="truncate">Classes</span></a></li>
-          <li><a href="semantic.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-tag"></i><span class="truncate">Semantic classes</span></a></li>
-          <li><a href="../components.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-squares-four"></i><span class="truncate">Showcase</span></a></li>
-          <li><a href="../specimen.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-palette"></i><span class="truncate">Specimen</span></a></li>
-        </ul>
-      </div>
-      <div class="flex flex-col gap-field">
-        <span class="text-kicker fg-weak">Components</span>
-        <ul role="list" class="flex flex-col gap-3xs">
-          <li><a href="components-index.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-stack"></i><span class="truncate">All components</span></a></li>
-          <li><a href="c-button.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-cursor-click"></i><span class="truncate">Button</span></a></li>
-          <li><a href="c-icon-button.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-plus-circle"></i><span class="truncate">Icon button</span></a></li>
-          <li><a href="c-segmented.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-squares-four"></i><span class="truncate">Segmented control</span></a></li>
-          <li><a href="c-badge.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-tag"></i><span class="truncate">Badge</span></a></li>
-          <li><a href="c-alert.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-warning-circle"></i><span class="truncate">Alert</span></a></li>
-          <li><a href="c-toast.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-bell-ringing"></i><span class="truncate">Toast</span></a></li>
-          <li><a href="c-text-field.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-textbox"></i><span class="truncate">Text field</span></a></li>
-          <li><a href="c-select.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-list-dashes"></i><span class="truncate">Select</span></a></li>
-          <li><a href="c-form-controls.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-toggle-right"></i><span class="truncate">Checkbox, radio and switch</span></a></li>
-          <li><a href="c-card.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-cards"></i><span class="truncate">Card</span></a></li>
-          <li><a href="c-tabs.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-tabs"></i><span class="truncate">Tabs</span></a></li>
-          <li><a href="c-breadcrumbs.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-caret-right"></i><span class="truncate">Breadcrumbs</span></a></li>
-          <li><a href="c-pagination.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-dots-three"></i><span class="truncate">Pagination</span></a></li>
-          <li><a href="c-menu.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-list"></i><span class="truncate">Popover menu</span></a></li>
-          <li><a href="c-dialog.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-app-window"></i><span class="truncate">Dialog</span></a></li>
-          <li><a href="c-accordion.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-rows"></i><span class="truncate">Accordion</span></a></li>
-          <li><a href="c-avatar.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-user-circle"></i><span class="truncate">Avatar and group</span></a></li>
-          <li><a href="c-progress.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-chart-bar-horizontal"></i><span class="truncate">Progress bar</span></a></li>
-          <li><a href="c-table.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-table"></i><span class="truncate">Table</span></a></li>
-          <li><a href="c-empty-state.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-folder-open"></i><span class="truncate">Empty state</span></a></li>
-          <li><a href="c-loading.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-circle-notch"></i><span class="truncate">Spinner and skeleton</span></a></li>
-          <li><a href="c-tooltip.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-chat-centered-text"></i><span class="truncate">Tooltip</span></a></li>
-          <li><a href="c-combobox.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-magnifying-glass"></i><span class="truncate">Combobox</span></a></li>
-          <li><a href="c-sortable-table.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-sort-ascending"></i><span class="truncate">Sortable table</span></a></li>
-          <li><a href="c-date-range.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-calendar-blank"></i><span class="truncate">Date range</span></a></li>
-          <li><a href="c-media-card.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-image"></i><span class="truncate">Media card</span></a></li>
-        </ul>
-      </div>
-      <div class="flex flex-col gap-field">
-        <span class="text-kicker fg-weak">Project</span>
-        <ul role="list" class="flex flex-col gap-3xs">
-          <li><a href="changelog.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-clock-counter-clockwise"></i><span class="truncate">Changelog</span></a></li>
-          <li><a href="index.html" class="flex items-center h-control px-control gap-gutter border-l-2 border-transparent no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors"><i class="icon ph ph-ruler"></i><span class="truncate">Templates</span></a></li>
-        </ul>
-      </div>
-    </nav>
-  </details>
-<main id="content" class="flex flex-col">
-      <div class="grid grid-cols-4 md:grid-cols-12 gap-grid px-grid">
-        <header class="col-span-4 md:col-span-12 tier-brand flex flex-col gap-group py-page">
-          <span class="text-kicker fg-weak">Documentation · 0.8.0</span>
-          <h1 class="text-display-sm text-balance">Nowind documentation</h1>
-          <p class="text-body-md fg-weak max-w-measure">Theme tokens and utility classes in plain CSS. Link one file and every class already exists, so it works in any HTML, including what a CMS writes.</p>
-          <div class="flex flex-wrap gap-row">
-            <a href="guide.html" class="inline-flex items-center h-control px-control gap-gutter bg-solid-accent-1 hover:bg-solid-accent-1-strong no-underline fg-on-solid-accent-1 text-title-sm transition-colors"><span>Read the guide</span><i class="icon ph ph-arrow-right"></i></a>
-            <a href="reference.html" class="inline-flex items-center h-control px-control gap-gutter border hover:bg-component-weak no-underline fg text-title-sm transition-colors"><span>Class reference</span></a>
+<header class="sticky top-0 z-30 bg-inverse fg-inverse">
+  <div class="flex items-center gap-lg h-header px-grid">
+    <a href="../index.html" class="inline-flex items-center gap-gutter-half no-underline fg-inverse"><i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-inverse-weak">0.8.0</span></a>
+    <nav aria-label="Sections" class="hidden md:flex items-center gap-lg"><a href="docs-home.html" aria-current="true" class="inline-flex items-center h-header border-b-2 border-accent-1 no-underline fg-inverse text-title-sm">Docs</a><a href="components-index.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Components</a><a href="../specimen.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Specimen</a><a href="classes.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Classes</a></nav>
+    <span class="flex items-center gap-xs ml-auto">
+      <button type="button" data-search-open class="inline-flex items-center gap-gutter-half h-nested px-nested rounded-xs border border-strong bg-transparent fg-inverse-weak hover:fg-inverse text-label cursor-pointer transition-colors" aria-label="Search the site"><i class="icon icon-sm ph ph-magnifying-glass"></i><span class="hidden sm:inline">Search</span><kbd class="hidden sm:inline text-mono-sm">⌘K</kbd></button>
+      <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center size-nested no-underline fg-inverse-weak hover:fg-inverse transition-colors" aria-label="Nowind on GitHub"><i class="icon ph ph-github-logo"></i></a>
+    </span>
+  </div>
+</header>
+<nav aria-label="Docs" class="flex flex-col gap-2xs px-grid py-xs border-b-2 border-strong bg">
+  <div class="flex md:hidden flex-wrap gap-x-md gap-y-3xs pb-2xs border-b border-weak"><a href="docs-home.html" aria-current="true" class="no-underline fg text-title-sm font-semibold">Docs</a><a href="components-index.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Components</a><a href="../specimen.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Specimen</a><a href="classes.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Classes</a></div>
+  <div class="flex flex-wrap gap-x-md gap-y-3xs"><a href="docs-home.html" aria-current="page" class="no-underline fg text-title-sm font-semibold">Overview</a><a href="guide.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Guide</a><a href="reference.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Reference</a><a href="changelog.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Changelog</a><a href="index.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Templates</a></div>
+</nav>
+<main id="content" class="tier-content px-grid">
+  <div class="grid grid-cols-12 gap-x-grid">
+        <header class="col-span-12 flex flex-col gap-field pt-page pb-xl">
+            <span class="text-kicker fg-weak">Documentation · 0.8.0</span>
+            <h1 class="text-display-sm text-balance">Nowind documentation</h1>
+            <p class="text-body-md fg-weak max-w-measure">Theme tokens and utility classes in plain CSS. Link one file and every class already exists, so it works in any HTML, including what a CMS writes. Press ⌘K on any page to search every page, component and class.</p>
+          </header>
+        <section id="sections" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-field pt-sm pb-xl border-t border-strong">
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Where to go</h2></div>
+          <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-grid">
+            <a href="guide.html" class="flex flex-col gap-field p-surface border border-weak hover:border-strong no-underline fg transition-colors">
+              <i class="icon ph ph-book-open fg-accent-1-weak"></i>
+              <span class="text-subtitle">Guide</span>
+              <span class="text-body-md fg-weak">Lay out a docs page: the band, the grid, the label column and four type sizes.</span>
+            </a>
+            <a href="reference.html" class="flex flex-col gap-field p-surface border border-weak hover:border-strong no-underline fg transition-colors">
+              <i class="icon ph ph-grid-four fg-accent-1-weak"></i>
+              <span class="text-subtitle">Reference</span>
+              <span class="text-body-md fg-weak">Every grid, shell, level and tier class with its declaration and where it comes from.</span>
+            </a>
+            <a href="classes.html" class="flex flex-col gap-field p-surface border border-weak hover:border-strong no-underline fg transition-colors">
+              <i class="icon ph ph-list-bullets fg-accent-1-weak"></i>
+              <span class="text-subtitle">Classes</span>
+              <span class="text-body-md fg-weak">Every class and what it declares, regular and semantic, with a filter.</span>
+            </a>
+            <a href="components-index.html" class="flex flex-col gap-field p-surface border border-weak hover:border-strong no-underline fg transition-colors">
+              <i class="icon ph ph-squares-four fg-accent-1-weak"></i>
+              <span class="text-subtitle">Components</span>
+              <span class="text-body-md fg-weak">Buttons, forms, tables and dialogs built only from utility classes.</span>
+            </a>
           </div>
-        </header>
-        <a href="guide.html" class="col-span-4 md:col-span-6 xl:col-span-3 flex flex-col gap-field p-surface border border-weak hover:border-strong no-underline fg transition-colors">
-          <i class="icon ph ph-book-open fg-accent-1-weak"></i>
-          <span class="text-subtitle">Guide</span>
-          <span class="text-body-md fg-weak">Lay out a docs page: the frame, the grid, the reading column and four type sizes.</span>
-        </a>
-        <a href="reference.html" class="col-span-4 md:col-span-6 xl:col-span-3 flex flex-col gap-field p-surface border border-weak hover:border-strong no-underline fg transition-colors">
-          <i class="icon ph ph-grid-four fg-accent-1-weak"></i>
-          <span class="text-subtitle">Reference</span>
-          <span class="text-body-md fg-weak">Every grid, shell, level and tier class with its declaration and where it comes from.</span>
-        </a>
-        <a href="changelog.html" class="col-span-4 md:col-span-6 xl:col-span-3 flex flex-col gap-field p-surface border border-weak hover:border-strong no-underline fg transition-colors">
-          <i class="icon ph ph-clock-counter-clockwise fg-accent-1-weak"></i>
-          <span class="text-subtitle">Changelog</span>
-          <span class="text-body-md fg-weak">What changed in each release, newest first.</span>
-        </a>
-        <a href="../components.html" class="col-span-4 md:col-span-6 xl:col-span-3 flex flex-col gap-field p-surface border border-weak hover:border-strong no-underline fg transition-colors">
-          <i class="icon ph ph-squares-four fg-accent-1-weak"></i>
-          <span class="text-subtitle">Components</span>
-          <span class="text-body-md fg-weak">Buttons, forms, tables and dialogs built only from utility classes.</span>
-        </a>
-        <section id="start" class="col-span-4 md:col-span-12 xl:col-span-7 flex flex-col gap-group py-page">
-          <h2 class="text-heading-md pt-sm border-t">Start in one line</h2>
+          </div>
+        </section>
+        <section id="start" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-field pt-sm pb-xl border-t border-strong">
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">Start in one line</h2></div>
+          <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-measure">Link the minified bundle from the CDN. The link pins release 0.8.0, so your site won't change until you change the version.</p>
           <figure class="flex flex-col min-w-0 border border-weak bg-strong">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
@@ -136,15 +76,17 @@
               <p class="text-body-md">Put your own CSS in <code>@layer styles</code>, so a utility class always wins over it.</p>
             </div>
           </aside>
+          </div>
         </section>
-        <section id="inside" class="col-span-4 md:col-span-12 xl:col-span-5 flex flex-col gap-group py-page">
-          <h2 class="text-heading-md pt-sm border-t">In the box</h2>
-          <dl class="flex flex-col">
+        <section id="inside" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-field pt-sm pb-xl border-t border-strong">
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle text-balance">In the box</h2></div>
+          <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
+          <dl class="flex flex-col max-w-measure">
             <div class="flex items-baseline justify-between gap-row py-xs border-b border-weak">
-              <dt class="text-body-md fg-weak">utility classes</dt><dd class="text-heading-md tabular-nums">1,324</dd>
+              <dt class="text-body-md fg-weak">utility classes</dt><dd class="text-heading-md tabular-nums">1,360</dd>
             </div>
             <div class="flex items-baseline justify-between gap-row py-xs border-b border-weak">
-              <dt class="text-body-md fg-weak">breakpoint variants</dt><dd class="text-heading-md tabular-nums">660</dd>
+              <dt class="text-body-md fg-weak">breakpoint variants</dt><dd class="text-heading-md tabular-nums">1,210</dd>
             </div>
             <div class="flex items-baseline justify-between gap-row py-xs border-b border-weak">
               <dt class="text-body-md fg-weak">hover variants</dt><dd class="text-heading-md tabular-nums">162</dd>
@@ -157,16 +99,25 @@
             </div>
           </dl>
           <p class="text-caption fg-weak">Counts from <code>nowind.manifest.json</code> and the type-role manifest.</p>
+          </div>
         </section>
-      </div>
-      <footer class="flex flex-col md:flex-row md:items-center justify-between gap-field px-grid py-surface border-t border-weak text-caption fg-weak">
-        <span>Nowind 0.8.0. Every page here is built from Nowind utility classes only.</span>
-        <span class="flex flex-wrap gap-row">
-          <a href="changelog.html" class="no-underline fg-weak hover:fg transition-colors">Changelog</a>
-          <a href="index.html" class="no-underline fg-weak hover:fg transition-colors">About these templates</a>
-          <a href="https://github.com/kimgranlund/nowind" class="no-underline fg-weak hover:fg transition-colors">GitHub</a>
-        </span>
-      </footer>
+        <nav aria-label="Previous and next page" class="col-span-12 grid grid-cols-1 md:grid-cols-2 gap-grid py-page border-t border-strong">
+          <span class="hidden md:block"></span>
+          <a href="guide.html" class="flex flex-col md:items-end gap-3xs p-surface border border-weak hover:border-strong no-underline md:text-right transition-colors">
+            <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><span>Next</span><i class="icon icon-sm ph-bold ph-arrow-right"></i></span>
+            <span class="text-subtitle fg-accent-1-weak">Lay out a docs page</span>
+          </a>
+        </nav>
+  </div>
 </main>
+<footer class="flex flex-col md:flex-row md:items-center justify-between gap-field px-grid py-surface border-t-2 border-strong text-caption fg-weak">
+  <span>Nowind 0.8.0. Every page here is built from Nowind utility classes only.</span>
+  <span class="flex flex-wrap gap-row">
+    <a href="changelog.html" class="no-underline fg-weak hover:fg transition-colors">Changelog</a>
+    <a href="index.html" class="no-underline fg-weak hover:fg transition-colors">About these templates</a>
+    <a href="https://github.com/kimgranlund/nowind" class="no-underline fg-weak hover:fg transition-colors">GitHub</a>
+  </span>
+</footer>
+<script src="../search.js" defer></script>
 </body>
 </html>

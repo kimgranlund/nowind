@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- **One page template:** every page (docs, component pages, the showcase, the specimen, the utilities demo, the landing page) shares one frame after Vignelli's Unigrid: an inverse band with the four sections, a row of the current section's pages under a heavy rule, and blocks with their label in three of twelve columns. The docs sidebar, phone menu and on-page contents are gone.
+- **Search:** press ⌘K, Ctrl+K or `/` on any page to search every page, block heading, component and class. `site/search.json` is written with the pages.
+- **Class lists:** roles named after `accent-1` to `accent-4` (`bg-accent-1`, `bg-component-accent-4`) now list as semantic, not regular.
 - **Docs frame:** the page scrolls as a whole. The header is sticky, the sidebar sticks under it, and `main` is no longer a scroll box. Below 1024px only the Menu row shows, the GitHub button is icon-only below 1280px, tables wrap instead of scrolling sideways, and the class lists become two-line rows on a phone. New `scroll-pt-header` and `scroll-mt-*` keep linked rows clear of sticky bars.
 - **Breaking, background and border role classes:** the role group is dropped when it matches the prefix, as `fg-` already did: `bg-bg` is `bg`, `bg-bg-accent-1` is `bg-accent-1`, `border-border-weak` is `border-weak`. Plain `border-border` is `border-default`, and the reset now draws every border in `--border`, so `border` alone needs no colour class.
 - **Breaking, text colour classes:** raw steps and on-solid now take `fg-` like the text roles: `text-accent-1-11` is `fg-accent-1-11`, `text-on-solid-danger` is `fg-on-solid-danger`. `text-inherit` and `text-current` are `fg-inherit` and `fg-current`. Every text colour class now starts with `fg`.

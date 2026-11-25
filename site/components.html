@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-pt-header">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,36 +12,37 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/light/style.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/fill/style.css">
 </head>
-<body class="bg-strong">
+<body class="bg fg">
 
-<header class="sticky top-0 z-10 bg border-b border-weak">
-  <nav class="container flex items-center justify-between gap-md py-xs">
-    <a href="#" class="inline-flex items-center gap-gutter no-underline fg text-title">
-      <i class="icon ph-bold ph-wind fg-accent-1-weak"></i><span>Nowind</span>
-    </a>
-    <div class="hidden xl:flex items-center gap-2xs">
-      <a href="#buttons" class="inline-flex items-center h-control px-control rounded-sm no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors">Buttons</a>
-      <a href="#feedback" class="inline-flex items-center h-control px-control rounded-sm no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors">Feedback</a>
-      <a href="#forms" class="inline-flex items-center h-control px-control rounded-sm no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors">Forms</a>
-      <a href="#data" class="inline-flex items-center h-control px-control rounded-sm no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors">Data</a>
-      <a href="#disclosure" class="inline-flex items-center h-control px-control rounded-sm no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors">More</a>
-      <a href="#materials" class="inline-flex items-center h-control px-control rounded-sm no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors">Materials</a>
-      <a href="#shell" class="inline-flex items-center h-control px-control rounded-sm no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors">Shell</a>
-      <a href="#navigation" class="inline-flex items-center h-control px-control rounded-sm no-underline fg-weak hover:fg hover:bg-component-weak text-title-sm transition-colors">Navigation</a>
-    </div>
-    <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong fg-on-solid-accent-1 text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-github-logo"></i><span>GitHub</span></button>
-  </nav>
+<!--nowind:top-->
+<header class="sticky top-0 z-30 bg-inverse fg-inverse">
+  <div class="flex items-center gap-lg h-header px-grid">
+    <a href="index.html" class="inline-flex items-center gap-gutter-half no-underline fg-inverse"><i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-inverse-weak">0.8.0</span></a>
+    <nav aria-label="Sections" class="hidden md:flex items-center gap-lg"><a href="docs/docs-home.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Docs</a><a href="docs/components-index.html" aria-current="true" class="inline-flex items-center h-header border-b-2 border-accent-1 no-underline fg-inverse text-title-sm">Components</a><a href="specimen.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Specimen</a><a href="docs/classes.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Classes</a></nav>
+    <span class="flex items-center gap-xs ml-auto">
+      <button type="button" data-search-open class="inline-flex items-center gap-gutter-half h-nested px-nested rounded-xs border border-strong bg-transparent fg-inverse-weak hover:fg-inverse text-label cursor-pointer transition-colors" aria-label="Search the site"><i class="icon icon-sm ph ph-magnifying-glass"></i><span class="hidden sm:inline">Search</span><kbd class="hidden sm:inline text-mono-sm">⌘K</kbd></button>
+      <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center size-nested no-underline fg-inverse-weak hover:fg-inverse transition-colors" aria-label="Nowind on GitHub"><i class="icon ph ph-github-logo"></i></a>
+    </span>
+  </div>
 </header>
+<nav aria-label="Components" class="flex flex-col gap-2xs px-grid py-xs border-b-2 border-strong bg">
+  <div class="flex md:hidden flex-wrap gap-x-md gap-y-3xs pb-2xs border-b border-weak"><a href="docs/docs-home.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Docs</a><a href="docs/components-index.html" aria-current="true" class="no-underline fg text-title-sm font-semibold">Components</a><a href="specimen.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Specimen</a><a href="docs/classes.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Classes</a></div>
+  <div class="flex flex-wrap gap-x-md gap-y-3xs"><a href="docs/components-index.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">All components</a><a href="components.html" aria-current="page" class="no-underline fg text-title-sm font-semibold">Showcase</a><a href="docs/c-button.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Button</a><a href="docs/c-icon-button.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Icon button</a><a href="docs/c-segmented.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Segmented control</a><a href="docs/c-badge.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Badge</a><a href="docs/c-alert.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Alert</a><a href="docs/c-toast.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Toast</a><a href="docs/c-text-field.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Text field</a><a href="docs/c-select.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Select</a><a href="docs/c-form-controls.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Checkbox, radio and switch</a><a href="docs/c-card.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Card</a><a href="docs/c-tabs.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Tabs</a><a href="docs/c-breadcrumbs.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Breadcrumbs</a><a href="docs/c-pagination.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Pagination</a><a href="docs/c-menu.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Popover menu</a><a href="docs/c-dialog.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Dialog</a><a href="docs/c-accordion.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Accordion</a><a href="docs/c-avatar.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Avatar and group</a><a href="docs/c-progress.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Progress bar</a><a href="docs/c-table.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Table</a><a href="docs/c-empty-state.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Empty state</a><a href="docs/c-loading.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Spinner and skeleton</a><a href="docs/c-tooltip.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Tooltip</a><a href="docs/c-combobox.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Combobox</a><a href="docs/c-sortable-table.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Sortable table</a><a href="docs/c-date-range.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Date range</a><a href="docs/c-media-card.html" class="no-underline fg-weak hover:fg text-title-sm transition-colors">Media card</a></div>
+</nav>
+<!--/nowind:top-->
 
-<main class="container py-2xl">
-  <span class="text-kicker fg-weak">components.html</span>
-  <h1 class="text-display-sm mb-xs">Components</h1>
-  <p class="text-lead fg-weak max-w-text mb-2xl">Common interface parts built only from Nowind utility classes. No element on this page has its own CSS or a style attribute.</p>
+<main id="content" class="tier-content px-grid">
+<div class="grid grid-cols-12 gap-x-grid">
+  <header class="col-span-12 flex flex-col gap-field pt-page pb-xl">
+    <span class="text-kicker fg-weak">Components · Showcase</span>
+    <h1 class="text-display-sm text-balance">Every component on one page</h1>
+    <p class="text-body-md fg-weak max-w-measure">Common interface parts built only from Nowind utility classes. No element on this page has its own CSS or a style attribute.</p>
+  </header>
 
   <!-- Buttons -->
-  <section id="buttons" class="mb-3xl">
-    <span class="text-kicker fg-accent-1-weak">Actions</span>
-    <h2 class="text-heading-lg mb-md">Buttons</h2>
+  <section id="buttons" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-field pt-sm pb-xl border-t border-strong">
+    <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><span class="text-kicker fg-accent-1-weak">Actions</span><h2 class="text-subtitle text-balance">Buttons</h2></div>
+    <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
 
     <div class="p-surface rounded-lg bg border border-weak shadow-sm flex flex-col gap-group">
       <div class="flex flex-wrap items-center gap-row">
@@ -75,12 +76,13 @@
         </div>
       </div>
     </div>
+    </div>
   </section>
 
   <!-- Badges and feedback -->
-  <section id="feedback" class="mb-3xl">
-    <span class="text-kicker fg-accent-1-weak">Status</span>
-    <h2 class="text-heading-lg mb-md">Badges, alerts and toasts</h2>
+  <section id="feedback" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-field pt-sm pb-xl border-t border-strong">
+    <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><span class="text-kicker fg-accent-1-weak">Status</span><h2 class="text-subtitle text-balance">Badges, alerts and toasts</h2></div>
+    <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
 
     <div class="flex flex-wrap items-center gap-2xs mb-lg">
       <span class="inline-flex items-center h-nested px-nested gap-gutter-half rounded-full bg-component-weak border border-weak fg-weak text-label">Neutral</span>
@@ -133,12 +135,13 @@
       <span class="text-body-md fg-inverse">Changes saved</span>
       <button class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent fg-accent-1-subtle text-title-sm cursor-pointer"><span>Undo</span></button>
     </div>
+    </div>
   </section>
 
   <!-- Forms -->
-  <section id="forms" class="mb-3xl">
-    <span class="text-kicker fg-accent-1-weak">Input</span>
-    <h2 class="text-heading-lg mb-md">Forms</h2>
+  <section id="forms" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-field pt-sm pb-xl border-t border-strong">
+    <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><span class="text-kicker fg-accent-1-weak">Input</span><h2 class="text-subtitle text-balance">Forms</h2></div>
+    <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
 
     <form class="max-w-form p-surface rounded-lg bg border border-weak shadow-sm flex flex-col gap-group" onsubmit="return false">
       <div class="flex flex-col gap-field">
@@ -167,25 +170,25 @@
         <textarea id="bio" class="p-xs rounded-sm border hover:border-strong bg text-control-md w-full transition-colors" placeholder="A sentence or two"></textarea>
         <span class="text-caption fg-weak">Shown on your public profile.</span>
       </div>
-      <fieldset class="flex flex-col gap-xs border-0 p-0">
+      <fieldset class="min-w-0 flex flex-col gap-xs border-0 p-0">
         <legend class="text-label fg mb-2xs">Notifications</legend>
         <label class="inline-flex items-center gap-xs text-body-md cursor-pointer"><input type="checkbox" checked> Product updates</label>
         <label class="inline-flex items-center gap-xs text-body-md cursor-pointer"><input type="checkbox"> Weekly digest</label>
       </fieldset>
-      <fieldset class="flex flex-col gap-xs border-0 p-0">
+      <fieldset class="min-w-0 flex flex-col gap-xs border-0 p-0">
         <legend class="text-label fg mb-2xs">Preferences</legend>
         <label class="flex items-center justify-between gap-sm text-body-md cursor-pointer"><span>Email me about mentions</span><input type="checkbox" role="switch" checked></label>
         <label class="flex items-center justify-between gap-sm text-body-md cursor-pointer"><span>Compact mode</span><input type="checkbox" role="switch"></label>
         <label class="flex items-center justify-between gap-sm text-body-md fg-weak"><span>Beta features (admins only)</span><input type="checkbox" role="switch" disabled></label>
         <label class="flex flex-col gap-field text-label fg mt-2xs"><span>Volume</span><input type="range" class="w-full" value="60"></label>
-        <div class="flex items-center gap-row mt-2xs text-caption fg-weak">
+        <div class="flex flex-wrap items-center gap-row mt-2xs text-caption fg-weak">
           <span>Mark sizes</span>
           <input type="checkbox" class="mark-sm" checked aria-label="small"><input type="checkbox" checked aria-label="medium"><input type="checkbox" class="mark-lg" checked aria-label="large">
           <input type="radio" name="sz" class="mark-sm" checked aria-label="small radio"><input type="radio" name="sz" aria-label="medium radio"><input type="radio" name="sz" class="mark-lg" aria-label="large radio">
           <input type="checkbox" role="switch" class="mark-sm" checked aria-label="small switch"><input type="checkbox" role="switch" class="mark-lg" checked aria-label="large switch">
         </div>
       </fieldset>
-      <fieldset class="flex flex-col gap-xs border-0 p-0">
+      <fieldset class="min-w-0 flex flex-col gap-xs border-0 p-0">
         <legend class="text-label fg mb-2xs">Plan</legend>
         <label class="flex items-center gap-sm p-sm rounded border border-accent-1 bg-component-accent-1-weak cursor-pointer"><input type="radio" name="plan" checked><span class="flex flex-col grow"><span class="text-title-sm">Team</span><span class="text-caption fg-weak">Up to 20 people</span></span><span class="text-data">$12</span></label>
         <label class="flex items-center gap-sm p-sm rounded border hover:border-strong cursor-pointer transition-colors"><input type="radio" name="plan"><span class="flex flex-col grow"><span class="text-title-sm">Business</span><span class="text-caption fg-weak">Unlimited people, SSO</span></span><span class="text-data">$24</span></label>
@@ -195,12 +198,13 @@
         <button type="submit" class="inline-flex items-center h-control px-control rounded-sm border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong fg-on-solid-accent-1 text-title-sm cursor-pointer transition-colors"><span>Save profile</span></button>
       </div>
     </form>
+    </div>
   </section>
 
   <!-- Data display -->
-  <section id="data" class="mb-3xl">
-    <span class="text-kicker fg-accent-1-weak">Display</span>
-    <h2 class="text-heading-lg mb-md">Cards, stats, lists and tables</h2>
+  <section id="data" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-field pt-sm pb-xl border-t border-strong">
+    <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><span class="text-kicker fg-accent-1-weak">Display</span><h2 class="text-subtitle text-balance">Cards, stats, lists and tables</h2></div>
+    <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-group mb-lg">
       <div class="p-surface rounded-lg bg border border-weak shadow-xs">
@@ -297,12 +301,13 @@
         </tbody>
       </table>
     </div>
+    </div>
   </section>
 
   <!-- Navigation -->
-  <section id="navigation" class="mb-3xl">
-    <span class="text-kicker fg-accent-1-weak">Wayfinding</span>
-    <h2 class="text-heading-lg mb-md">Navigation</h2>
+  <section id="navigation" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-field pt-sm pb-xl border-t border-strong">
+    <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><span class="text-kicker fg-accent-1-weak">Wayfinding</span><h2 class="text-subtitle text-balance">Navigation</h2></div>
+    <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
 
     <div class="p-surface rounded-lg bg border border-weak shadow-sm flex flex-col gap-group">
       <nav aria-label="Breadcrumb">
@@ -348,12 +353,13 @@
         </div>
       </div>
     </div>
+    </div>
   </section>
 
   <!-- Materials -->
-  <section id="materials" class="mb-3xl">
-    <span class="text-kicker fg-accent-1-weak">Surfaces</span>
-    <h2 class="text-heading-lg mb-xs">Materials</h2>
+  <section id="materials" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-field pt-sm pb-xl border-t border-strong">
+    <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><span class="text-kicker fg-accent-1-weak">Surfaces</span><h2 class="text-subtitle text-balance">Materials</h2></div>
+    <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
     <p class="text-body-sm fg-weak max-w-text mb-md">Massimo's materials, one per region: <code>material-flat</code>, <code>-physical</code>, <code>-frosted</code>, <code>-glass</code> and <code>-outline</code>. Each part names its relief (<code>relief-ground</code>, <code>relief-raised</code>, <code>relief-raised-solid</code>, <code>relief-field</code>); the material decides how it is lit, lined or made of glass. The colored blocks behind show what the glass blurs.</p>
     <div class="relative rounded-xl overflow-hidden">
       <div class="absolute inset-0 grid grid-cols-4" aria-hidden="true">
@@ -407,12 +413,13 @@
       </div>
       </div>
     </div>
+    </div>
   </section>
 
   <!-- App shell -->
-  <section id="shell" class="mb-3xl">
-    <span class="text-kicker fg-accent-1-weak">Layout</span>
-    <h2 class="text-heading-lg mb-xs">App shell and page grid</h2>
+  <section id="shell" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-field pt-sm pb-xl border-t border-strong">
+    <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><span class="text-kicker fg-accent-1-weak">Layout</span><h2 class="text-subtitle text-balance">App shell and page grid</h2></div>
+    <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
     <p class="text-body-sm fg-weak max-w-text mb-md">Affine's shell lengths: <code>w-sidebar</code> (16F + 16), <code>w-rail</code>, <code>h-header</code> and a reading column of <code>max-w-measure</code> (44F). Below it, the 12-column page grid with <code>gap-grid</code> (2M).</p>
     <div class="flex rounded-lg bg border border-weak shadow-sm overflow-hidden mb-lg">
       <aside class="hidden lg:flex flex-col shrink-0 w-sidebar bg-strong border-r border-weak p-region gap-3xs">
@@ -445,12 +452,13 @@
       <div class="col-span-1 md:col-span-3 p-grid-inset rounded-xs bg-component-accent-1-weak fg-accent-1-weak text-label text-center">3</div>
       <div class="col-span-1 md:col-span-3 p-grid-inset rounded-xs bg-component-accent-1-weak fg-accent-1-weak text-label text-center">3</div>
     </div>
+    </div>
   </section>
 
   <!-- Tiers -->
-  <section id="tiers" class="mb-3xl">
-    <span class="text-kicker fg-accent-1-weak">Rhythm</span>
-    <h2 class="text-heading-lg mb-xs">Container levels and tiers</h2>
+  <section id="tiers" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-field pt-sm pb-xl border-t border-strong">
+    <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><span class="text-kicker fg-accent-1-weak">Rhythm</span><h2 class="text-subtitle text-balance">Container levels and tiers</h2></div>
+    <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
     <p class="text-body-sm fg-weak max-w-text mb-md">The same card in each of Affine's tiers. Padding comes from <code>p-surface</code> and gaps from <code>gap-field</code> and <code>gap-row</code>; a tier raises the font size and multiplies the spacing.</p>
     <div class="flex flex-col md:flex-row items-start gap-group">
       <div class="tier-product flex-1">
@@ -478,12 +486,13 @@
         </div>
       </div>
     </div>
+    </div>
   </section>
 
   <!-- Disclosure and overlays -->
-  <section id="disclosure" class="mb-3xl">
-    <span class="text-kicker fg-accent-1-weak">Disclosure</span>
-    <h2 class="text-heading-lg mb-xs">Accordion, menu, dialog and avatars</h2>
+  <section id="disclosure" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-field pt-sm pb-xl border-t border-strong">
+    <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><span class="text-kicker fg-accent-1-weak">Disclosure</span><h2 class="text-subtitle text-balance">Accordion, menu, dialog and avatars</h2></div>
+    <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
     <p class="text-body-sm fg-weak max-w-text mb-md">Native elements and no script: the accordion and the menu are <code>&lt;details&gt;</code>, and the dialog opens with the <code>command</code> attribute. <code>open:</code> and <code>aria-current:</code> style their states.</p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-group">
@@ -546,12 +555,13 @@
         </div>
       </div>
     </div>
+    </div>
   </section>
 
   <!-- Progress, steps and inputs -->
-  <section id="progress" class="mb-3xl">
-    <span class="text-kicker fg-accent-1-weak">Flow</span>
-    <h2 class="text-heading-lg mb-md">Progress, steps, input groups and details</h2>
+  <section id="progress" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-field pt-sm pb-xl border-t border-strong">
+    <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><span class="text-kicker fg-accent-1-weak">Flow</span><h2 class="text-subtitle text-balance">Progress, steps, input groups and details</h2></div>
+    <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-group">
       <div class="p-surface rounded-lg bg border border-weak shadow-xs flex flex-col gap-group">
         <h3 class="text-title">Storage</h3>
@@ -630,12 +640,13 @@
         </ul>
       </div>
     </div>
+    </div>
   </section>
 
   <!-- Pricing and input extras -->
-  <section id="pricing" class="mb-3xl">
-    <span class="text-kicker fg-accent-1-weak">Commerce</span>
-    <h2 class="text-heading-lg mb-md">Pricing, upload, tags and rating</h2>
+  <section id="pricing" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-field pt-sm pb-xl border-t border-strong">
+    <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><span class="text-kicker fg-accent-1-weak">Commerce</span><h2 class="text-subtitle text-balance">Pricing, upload, tags and rating</h2></div>
+    <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-group mb-lg">
         <div class="flex flex-col gap-group p-surface rounded-lg bg border border-weak shadow-xs">
           <div class="flex items-center justify-between"><span class="text-title">Starter</span></div>
@@ -677,12 +688,13 @@
         </div>
       </div>
     </div>
+    </div>
   </section>
 
   <!-- Popovers, select, toasts, loading, palette -->
-  <section id="overlays-2" class="mb-3xl">
-    <span class="text-kicker fg-accent-1-weak">Overlays and feedback</span>
-    <h2 class="text-heading-lg mb-xs">Popovers, select, toasts, loading and commands</h2>
+  <section id="overlays-2" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-field pt-sm pb-xl border-t border-strong">
+    <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><span class="text-kicker fg-accent-1-weak">Overlays and feedback</span><h2 class="text-subtitle text-balance">Popovers, select, toasts, loading and commands</h2></div>
+    <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
     <p class="text-body-sm fg-weak max-w-text mb-md">Popovers open with <code>popovertarget</code> and sit against their button with <code>anchor-bottom</code> (CSS anchor positioning, flipping at the screen edge). The select is the customizable <code>select-base</code>. Spinner and skeleton use <code>animate-spin</code> and <code>animate-pulse</code>. No script.</p>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-group">
       <div class="p-surface rounded-lg bg border border-weak shadow-xs flex flex-col gap-group">
@@ -796,12 +808,13 @@
         </div>
       </div>
     </div>
+    </div>
   </section>
 
   <!-- Empty state and dialog -->
-  <section id="overlays" class="mb-2xl">
-    <span class="text-kicker fg-accent-1-weak">Surfaces</span>
-    <h2 class="text-heading-lg mb-md">Empty state and dialog</h2>
+  <section id="overlays" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-field pt-sm pb-xl border-t border-strong">
+    <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><span class="text-kicker fg-accent-1-weak">Surfaces</span><h2 class="text-subtitle text-balance">Empty state and dialog</h2></div>
+    <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
 
     <div class="flex flex-col md:flex-row gap-group">
       <div class="flex-1 flex flex-col items-center justify-center text-center gap-xs p-2xl rounded-lg border-2 border-dashed">
@@ -825,8 +838,22 @@
         </div>
       </div>
     </div>
+    </div>
   </section>
+</div>
 </main>
+<!--nowind:bottom-->
+<footer class="flex flex-col md:flex-row md:items-center justify-between gap-field px-grid py-surface border-t-2 border-strong text-caption fg-weak">
+  <span>Nowind 0.8.0. Every page here is built from Nowind utility classes only.</span>
+  <span class="flex flex-wrap gap-row">
+    <a href="docs/changelog.html" class="no-underline fg-weak hover:fg transition-colors">Changelog</a>
+    <a href="docs/index.html" class="no-underline fg-weak hover:fg transition-colors">About these templates</a>
+    <a href="https://github.com/kimgranlund/nowind" class="no-underline fg-weak hover:fg transition-colors">GitHub</a>
+  </span>
+</footer>
+<script src="search.js" defer></script>
+<!--/nowind:bottom-->
+
 
 <footer class="border-t border-weak bg">
   <div class="container flex flex-col md:flex-row items-center justify-between gap-sm py-lg text-caption fg-weak">
