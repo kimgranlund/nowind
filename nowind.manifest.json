@@ -18,7 +18,7 @@
     "classes": 1324,
     "hover": 162,
     "responsive": 660,
-    "bytes": 195827
+    "bytes": 195811
   },
   "naming": "property-value, as Prewind and Tailwind: p-md, gap-lg, text-fg-weak, bg-solid-accent-1. Colour classes take the token name without --.",
   "variants": {

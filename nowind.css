@@ -155,8 +155,8 @@
   :where(pre) { white-space: pre-wrap; }
 
   :where(dialog, [popover]) { color: inherit; font: inherit; }
-  :where(::backdrop) { background: var(--scrim); }
-  :where(::selection) { background: var(--accent-1-a5); color: var(--fg); }
+  ::backdrop { background: var(--scrim); }
+  ::selection { background: var(--accent-1-a5); color: var(--fg); }
 
   @media (prefers-reduced-motion: reduce) {
     :where(*, *::before, *::after) {

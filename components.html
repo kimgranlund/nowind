@@ -478,6 +478,74 @@
     </div>
   </section>
 
+  <!-- Disclosure and overlays -->
+  <section id="disclosure" class="mb-3xl">
+    <span class="text-kicker text-fg-accent-1-weak">Disclosure</span>
+    <h2 class="text-heading-lg mb-xs">Accordion, menu, dialog and avatars</h2>
+    <p class="text-body-sm text-fg-weak max-w-text mb-md">Native elements and no script: the accordion and the menu are <code>&lt;details&gt;</code>, and the dialog opens with the <code>command</code> attribute. <code>open:</code> and <code>aria-current:</code> style their states.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-group">
+      <div class="p-surface rounded-lg bg-bg border border-border-weak shadow-xs">
+        <h3 class="text-title mb-2xs">Frequently asked</h3>
+        <details class="border-b border-border-weak" open>
+          <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-title hover:text-fg-accent-1-weak transition-colors">Do I need a build step?<i class="icon ph ph-caret-down text-fg-weak"></i></summary>
+          <p class="text-body-sm text-fg-weak pb-sm max-w-measure">No. Link one stylesheet; every class already exists.</p>
+        </details>
+        <details class="border-b border-border-weak">
+          <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-title hover:text-fg-accent-1-weak transition-colors">Does it work in a CMS?<i class="icon ph ph-caret-down text-fg-weak"></i></summary>
+          <p class="text-body-sm text-fg-weak pb-sm max-w-measure">Yes. Any class works in any HTML, including what a CMS writes.</p>
+        </details>
+        <details class="border-b border-border-weak">
+          <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-title hover:text-fg-accent-1-weak transition-colors">How do I change the brand color?<i class="icon ph ph-caret-down text-fg-weak"></i></summary>
+          <p class="text-body-sm text-fg-weak pb-sm max-w-measure">Point accent-1 at another color family in its palette file and rebuild the bundle.</p>
+        </details>
+      </div>
+
+      <div class="flex flex-col gap-group">
+        <div class="p-surface rounded-lg bg-bg border border-border-weak shadow-xs">
+          <h3 class="text-title mb-sm">Dropdown menu</h3>
+          <details class="relative inline-block">
+            <summary class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border border-border bg-component-weak hover:bg-component active:bg-component-strong text-fg text-title-sm cursor-pointer transition-colors list-none open:bg-component-strong"><span>Options</span><i class="icon icon-sm ph-bold ph-caret-down"></i></summary>
+            <div class="absolute z-20 mt-3xs flex flex-col p-3xs rounded-lg bg-bg border border-border-weak shadow-lg relief-overlay w-sidebar">
+              <a href="#" class="flex items-center gap-gutter h-control px-control rounded-sm no-underline text-fg hover:bg-component-weak transition-colors"><i class="icon ph ph-pencil-simple"></i><span class="grow">Rename</span><kbd class="text-kbd text-fg-weak">R</kbd></a>
+              <a href="#" class="flex items-center gap-gutter h-control px-control rounded-sm no-underline text-fg hover:bg-component-weak transition-colors"><i class="icon ph ph-copy"></i><span class="grow">Duplicate</span><kbd class="text-kbd text-fg-weak">D</kbd></a>
+              <a href="#" class="flex items-center gap-gutter h-control px-control rounded-sm no-underline text-fg hover:bg-component-weak transition-colors"><i class="icon ph ph-share-network"></i><span class="grow">Share</span></a>
+              <div class="my-3xs border-t border-border-weak"></div>
+              <a href="#" class="flex items-center gap-gutter h-control px-control rounded-sm no-underline text-fg-danger-weak hover:bg-component-weak transition-colors"><i class="icon ph ph-trash"></i><span class="grow">Delete</span></a>
+            </div>
+          </details>
+        </div>
+
+        <div class="p-surface rounded-lg bg-bg border border-border-weak shadow-xs">
+          <h3 class="text-title mb-sm">Modal dialog</h3>
+          <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border border-border bg-component-weak hover:bg-component active:bg-component-strong text-fg text-title-sm cursor-pointer transition-colors" commandfor="confirm-dialog" command="show-modal"><i class="icon ph ph-trash"></i><span>Delete project…</span></button>
+          <dialog id="confirm-dialog" class="m-auto p-dialog rounded-xl bg-bg border-0 shadow-xl max-w-form w-full" aria-labelledby="confirm-title">
+            <div class="flex flex-col gap-group">
+              <h3 id="confirm-title" class="text-title">Delete project?</h3>
+              <p class="text-body-sm text-fg-weak">This removes the project and its 14 files for everyone. You can't undo this.</p>
+              <div class="flex justify-end gap-row">
+                <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border border-border bg-component-weak hover:bg-component active:bg-component-strong text-fg text-title-sm cursor-pointer transition-colors" commandfor="confirm-dialog" command="close"><span>Cancel</span></button>
+                <button class="inline-flex items-center h-control px-control gap-gutter rounded-sm border-0 bg-solid-danger hover:bg-solid-danger-strong text-on-solid-danger text-title-sm cursor-pointer transition-colors" commandfor="confirm-dialog" command="close"><i class="icon ph ph-trash"></i><span>Delete</span></button>
+              </div>
+            </div>
+          </dialog>
+        </div>
+
+        <div class="p-surface rounded-lg bg-bg border border-border-weak shadow-xs">
+          <h3 class="text-title mb-sm">Avatar group</h3>
+          <div class="flex items-center">
+            <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-neutral-1 bg-solid-accent-1 text-on-solid-accent-1 text-label">AL</span>
+            <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-neutral-1 bg-solid-accent-2 text-on-solid-accent-2 text-label -ml-2xs">GH</span>
+            <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-neutral-1 bg-solid-accent-3 text-on-solid-accent-3 text-label -ml-2xs">KJ</span>
+            <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-neutral-1 bg-solid-accent-4 text-on-solid-accent-4 text-label -ml-2xs">MH</span>
+            <span class="inline-flex items-center justify-center size-control rounded-full border-2 border-neutral-1 bg-component text-fg-weak text-label -ml-2xs">+5</span>
+            <span class="text-caption text-fg-weak ml-sm">9 people can edit</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Empty state and dialog -->
   <section id="overlays" class="mb-2xl">
     <span class="text-kicker text-fg-accent-1-weak">Surfaces</span>
