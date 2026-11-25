@@ -529,9 +529,6 @@
   .bg-accent-1-a10 { background-color: var(--accent-1-a10); }
   .bg-accent-1-a11 { background-color: var(--accent-1-a11); }
   .bg-accent-1-a12 { background-color: var(--accent-1-a12); }
-  .text-accent-1-contrast { color: var(--accent-1-contrast); }
-  .bg-accent-1-contrast { background-color: var(--accent-1-contrast); }
-  .border-accent-1-contrast { border-color: var(--accent-1-contrast); }
   .text-accent-2-1 { color: var(--accent-2-1); }
   .bg-accent-2-1 { background-color: var(--accent-2-1); }
   .border-accent-2-1 { border-color: var(--accent-2-1); }
@@ -580,9 +577,6 @@
   .bg-accent-2-a10 { background-color: var(--accent-2-a10); }
   .bg-accent-2-a11 { background-color: var(--accent-2-a11); }
   .bg-accent-2-a12 { background-color: var(--accent-2-a12); }
-  .text-accent-2-contrast { color: var(--accent-2-contrast); }
-  .bg-accent-2-contrast { background-color: var(--accent-2-contrast); }
-  .border-accent-2-contrast { border-color: var(--accent-2-contrast); }
   .text-accent-3-1 { color: var(--accent-3-1); }
   .bg-accent-3-1 { background-color: var(--accent-3-1); }
   .border-accent-3-1 { border-color: var(--accent-3-1); }
@@ -631,9 +625,6 @@
   .bg-accent-3-a10 { background-color: var(--accent-3-a10); }
   .bg-accent-3-a11 { background-color: var(--accent-3-a11); }
   .bg-accent-3-a12 { background-color: var(--accent-3-a12); }
-  .text-accent-3-contrast { color: var(--accent-3-contrast); }
-  .bg-accent-3-contrast { background-color: var(--accent-3-contrast); }
-  .border-accent-3-contrast { border-color: var(--accent-3-contrast); }
   .text-accent-4-1 { color: var(--accent-4-1); }
   .bg-accent-4-1 { background-color: var(--accent-4-1); }
   .border-accent-4-1 { border-color: var(--accent-4-1); }
@@ -682,9 +673,6 @@
   .bg-accent-4-a10 { background-color: var(--accent-4-a10); }
   .bg-accent-4-a11 { background-color: var(--accent-4-a11); }
   .bg-accent-4-a12 { background-color: var(--accent-4-a12); }
-  .text-accent-4-contrast { color: var(--accent-4-contrast); }
-  .bg-accent-4-contrast { background-color: var(--accent-4-contrast); }
-  .border-accent-4-contrast { border-color: var(--accent-4-contrast); }
   .text-danger-1 { color: var(--danger-1); }
   .bg-danger-1 { background-color: var(--danger-1); }
   .border-danger-1 { border-color: var(--danger-1); }
@@ -733,9 +721,6 @@
   .bg-danger-a10 { background-color: var(--danger-a10); }
   .bg-danger-a11 { background-color: var(--danger-a11); }
   .bg-danger-a12 { background-color: var(--danger-a12); }
-  .text-danger-contrast { color: var(--danger-contrast); }
-  .bg-danger-contrast { background-color: var(--danger-contrast); }
-  .border-danger-contrast { border-color: var(--danger-contrast); }
   .text-info-1 { color: var(--info-1); }
   .bg-info-1 { background-color: var(--info-1); }
   .border-info-1 { border-color: var(--info-1); }
@@ -784,9 +769,6 @@
   .bg-info-a10 { background-color: var(--info-a10); }
   .bg-info-a11 { background-color: var(--info-a11); }
   .bg-info-a12 { background-color: var(--info-a12); }
-  .text-info-contrast { color: var(--info-contrast); }
-  .bg-info-contrast { background-color: var(--info-contrast); }
-  .border-info-contrast { border-color: var(--info-contrast); }
   .text-neutral-1 { color: var(--neutral-1); }
   .bg-neutral-1 { background-color: var(--neutral-1); }
   .border-neutral-1 { border-color: var(--neutral-1); }
@@ -835,9 +817,6 @@
   .bg-neutral-a10 { background-color: var(--neutral-a10); }
   .bg-neutral-a11 { background-color: var(--neutral-a11); }
   .bg-neutral-a12 { background-color: var(--neutral-a12); }
-  .text-neutral-contrast { color: var(--neutral-contrast); }
-  .bg-neutral-contrast { background-color: var(--neutral-contrast); }
-  .border-neutral-contrast { border-color: var(--neutral-contrast); }
   .text-success-1 { color: var(--success-1); }
   .bg-success-1 { background-color: var(--success-1); }
   .border-success-1 { border-color: var(--success-1); }
@@ -886,9 +865,6 @@
   .bg-success-a10 { background-color: var(--success-a10); }
   .bg-success-a11 { background-color: var(--success-a11); }
   .bg-success-a12 { background-color: var(--success-a12); }
-  .text-success-contrast { color: var(--success-contrast); }
-  .bg-success-contrast { background-color: var(--success-contrast); }
-  .border-success-contrast { border-color: var(--success-contrast); }
   .text-warning-1 { color: var(--warning-1); }
   .bg-warning-1 { background-color: var(--warning-1); }
   .border-warning-1 { border-color: var(--warning-1); }
@@ -937,495 +913,168 @@
   .bg-warning-a10 { background-color: var(--warning-a10); }
   .bg-warning-a11 { background-color: var(--warning-a11); }
   .bg-warning-a12 { background-color: var(--warning-a12); }
-  .text-warning-contrast { color: var(--warning-contrast); }
-  .bg-warning-contrast { background-color: var(--warning-contrast); }
-  .border-warning-contrast { border-color: var(--warning-contrast); }
-  .text-neutral-surface { color: var(--neutral-surface); }
   .bg-neutral-surface { background-color: var(--neutral-surface); }
-  .border-neutral-surface { border-color: var(--neutral-surface); }
-  .text-neutral-indicator { color: var(--neutral-indicator); }
   .bg-neutral-indicator { background-color: var(--neutral-indicator); }
-  .border-neutral-indicator { border-color: var(--neutral-indicator); }
-  .text-neutral-track { color: var(--neutral-track); }
   .bg-neutral-track { background-color: var(--neutral-track); }
-  .border-neutral-track { border-color: var(--neutral-track); }
-  .text-bg { color: var(--bg); }
   .bg-bg { background-color: var(--bg); }
-  .border-bg { border-color: var(--bg); }
-  .text-bg-strong { color: var(--bg-strong); }
   .bg-bg-strong { background-color: var(--bg-strong); }
-  .border-bg-strong { border-color: var(--bg-strong); }
-  .text-component-weak { color: var(--component-weak); }
   .bg-component-weak { background-color: var(--component-weak); }
-  .border-component-weak { border-color: var(--component-weak); }
-  .text-component { color: var(--component); }
   .bg-component { background-color: var(--component); }
-  .border-component { border-color: var(--component); }
-  .text-component-strong { color: var(--component-strong); }
   .bg-component-strong { background-color: var(--component-strong); }
-  .border-component-strong { border-color: var(--component-strong); }
-  .text-border-weak { color: var(--border-weak); }
-  .bg-border-weak { background-color: var(--border-weak); }
   .border-border-weak { border-color: var(--border-weak); }
-  .text-border { color: var(--border); }
-  .bg-border { background-color: var(--border); }
   .border-border { border-color: var(--border); }
-  .text-border-strong { color: var(--border-strong); }
-  .bg-border-strong { background-color: var(--border-strong); }
   .border-border-strong { border-color: var(--border-strong); }
-  .text-solid { color: var(--solid); }
   .bg-solid { background-color: var(--solid); }
-  .border-solid { border-style: solid; }
-  .text-solid-strong { color: var(--solid-strong); }
   .bg-solid-strong { background-color: var(--solid-strong); }
-  .border-solid-strong { border-color: var(--solid-strong); }
   .text-on-solid { color: var(--on-solid); }
-  .bg-on-solid { background-color: var(--on-solid); }
-  .border-on-solid { border-color: var(--on-solid); }
   .text-fg-subtle { color: var(--fg-subtle); }
-  .bg-fg-subtle { background-color: var(--fg-subtle); }
-  .border-fg-subtle { border-color: var(--fg-subtle); }
   .text-fg-weak { color: var(--fg-weak); }
-  .bg-fg-weak { background-color: var(--fg-weak); }
-  .border-fg-weak { border-color: var(--fg-weak); }
   .text-fg { color: var(--fg); }
-  .bg-fg { background-color: var(--fg); }
-  .border-fg { border-color: var(--fg); }
   .text-fg-strong { color: var(--fg-strong); }
-  .bg-fg-strong { background-color: var(--fg-strong); }
-  .border-fg-strong { border-color: var(--fg-strong); }
-  .text-accent-1-surface { color: var(--accent-1-surface); }
   .bg-accent-1-surface { background-color: var(--accent-1-surface); }
-  .border-accent-1-surface { border-color: var(--accent-1-surface); }
-  .text-accent-1-indicator { color: var(--accent-1-indicator); }
   .bg-accent-1-indicator { background-color: var(--accent-1-indicator); }
-  .border-accent-1-indicator { border-color: var(--accent-1-indicator); }
-  .text-accent-1-track { color: var(--accent-1-track); }
   .bg-accent-1-track { background-color: var(--accent-1-track); }
-  .border-accent-1-track { border-color: var(--accent-1-track); }
-  .text-bg-accent-1 { color: var(--bg-accent-1); }
   .bg-bg-accent-1 { background-color: var(--bg-accent-1); }
-  .border-bg-accent-1 { border-color: var(--bg-accent-1); }
-  .text-bg-accent-1-strong { color: var(--bg-accent-1-strong); }
   .bg-bg-accent-1-strong { background-color: var(--bg-accent-1-strong); }
-  .border-bg-accent-1-strong { border-color: var(--bg-accent-1-strong); }
-  .text-component-accent-1-weak { color: var(--component-accent-1-weak); }
   .bg-component-accent-1-weak { background-color: var(--component-accent-1-weak); }
-  .border-component-accent-1-weak { border-color: var(--component-accent-1-weak); }
-  .text-component-accent-1 { color: var(--component-accent-1); }
   .bg-component-accent-1 { background-color: var(--component-accent-1); }
-  .border-component-accent-1 { border-color: var(--component-accent-1); }
-  .text-component-accent-1-strong { color: var(--component-accent-1-strong); }
   .bg-component-accent-1-strong { background-color: var(--component-accent-1-strong); }
-  .border-component-accent-1-strong { border-color: var(--component-accent-1-strong); }
-  .text-border-accent-1-weak { color: var(--border-accent-1-weak); }
-  .bg-border-accent-1-weak { background-color: var(--border-accent-1-weak); }
   .border-border-accent-1-weak { border-color: var(--border-accent-1-weak); }
-  .text-border-accent-1 { color: var(--border-accent-1); }
-  .bg-border-accent-1 { background-color: var(--border-accent-1); }
   .border-border-accent-1 { border-color: var(--border-accent-1); }
-  .text-border-accent-1-strong { color: var(--border-accent-1-strong); }
-  .bg-border-accent-1-strong { background-color: var(--border-accent-1-strong); }
   .border-border-accent-1-strong { border-color: var(--border-accent-1-strong); }
-  .text-solid-accent-1 { color: var(--solid-accent-1); }
   .bg-solid-accent-1 { background-color: var(--solid-accent-1); }
-  .border-solid-accent-1 { border-color: var(--solid-accent-1); }
-  .text-solid-accent-1-strong { color: var(--solid-accent-1-strong); }
   .bg-solid-accent-1-strong { background-color: var(--solid-accent-1-strong); }
-  .border-solid-accent-1-strong { border-color: var(--solid-accent-1-strong); }
   .text-on-solid-accent-1 { color: var(--on-solid-accent-1); }
-  .bg-on-solid-accent-1 { background-color: var(--on-solid-accent-1); }
-  .border-on-solid-accent-1 { border-color: var(--on-solid-accent-1); }
   .text-fg-accent-1-subtle { color: var(--fg-accent-1-subtle); }
-  .bg-fg-accent-1-subtle { background-color: var(--fg-accent-1-subtle); }
-  .border-fg-accent-1-subtle { border-color: var(--fg-accent-1-subtle); }
   .text-fg-accent-1-weak { color: var(--fg-accent-1-weak); }
-  .bg-fg-accent-1-weak { background-color: var(--fg-accent-1-weak); }
-  .border-fg-accent-1-weak { border-color: var(--fg-accent-1-weak); }
   .text-fg-accent-1 { color: var(--fg-accent-1); }
-  .bg-fg-accent-1 { background-color: var(--fg-accent-1); }
-  .border-fg-accent-1 { border-color: var(--fg-accent-1); }
   .text-fg-accent-1-strong { color: var(--fg-accent-1-strong); }
-  .bg-fg-accent-1-strong { background-color: var(--fg-accent-1-strong); }
-  .border-fg-accent-1-strong { border-color: var(--fg-accent-1-strong); }
-  .text-accent-2-surface { color: var(--accent-2-surface); }
   .bg-accent-2-surface { background-color: var(--accent-2-surface); }
-  .border-accent-2-surface { border-color: var(--accent-2-surface); }
-  .text-accent-2-indicator { color: var(--accent-2-indicator); }
   .bg-accent-2-indicator { background-color: var(--accent-2-indicator); }
-  .border-accent-2-indicator { border-color: var(--accent-2-indicator); }
-  .text-accent-2-track { color: var(--accent-2-track); }
   .bg-accent-2-track { background-color: var(--accent-2-track); }
-  .border-accent-2-track { border-color: var(--accent-2-track); }
-  .text-bg-accent-2 { color: var(--bg-accent-2); }
   .bg-bg-accent-2 { background-color: var(--bg-accent-2); }
-  .border-bg-accent-2 { border-color: var(--bg-accent-2); }
-  .text-bg-accent-2-strong { color: var(--bg-accent-2-strong); }
   .bg-bg-accent-2-strong { background-color: var(--bg-accent-2-strong); }
-  .border-bg-accent-2-strong { border-color: var(--bg-accent-2-strong); }
-  .text-component-accent-2-weak { color: var(--component-accent-2-weak); }
   .bg-component-accent-2-weak { background-color: var(--component-accent-2-weak); }
-  .border-component-accent-2-weak { border-color: var(--component-accent-2-weak); }
-  .text-component-accent-2 { color: var(--component-accent-2); }
   .bg-component-accent-2 { background-color: var(--component-accent-2); }
-  .border-component-accent-2 { border-color: var(--component-accent-2); }
-  .text-component-accent-2-strong { color: var(--component-accent-2-strong); }
   .bg-component-accent-2-strong { background-color: var(--component-accent-2-strong); }
-  .border-component-accent-2-strong { border-color: var(--component-accent-2-strong); }
-  .text-border-accent-2-weak { color: var(--border-accent-2-weak); }
-  .bg-border-accent-2-weak { background-color: var(--border-accent-2-weak); }
   .border-border-accent-2-weak { border-color: var(--border-accent-2-weak); }
-  .text-border-accent-2 { color: var(--border-accent-2); }
-  .bg-border-accent-2 { background-color: var(--border-accent-2); }
   .border-border-accent-2 { border-color: var(--border-accent-2); }
-  .text-border-accent-2-strong { color: var(--border-accent-2-strong); }
-  .bg-border-accent-2-strong { background-color: var(--border-accent-2-strong); }
   .border-border-accent-2-strong { border-color: var(--border-accent-2-strong); }
-  .text-solid-accent-2 { color: var(--solid-accent-2); }
   .bg-solid-accent-2 { background-color: var(--solid-accent-2); }
-  .border-solid-accent-2 { border-color: var(--solid-accent-2); }
-  .text-solid-accent-2-strong { color: var(--solid-accent-2-strong); }
   .bg-solid-accent-2-strong { background-color: var(--solid-accent-2-strong); }
-  .border-solid-accent-2-strong { border-color: var(--solid-accent-2-strong); }
   .text-on-solid-accent-2 { color: var(--on-solid-accent-2); }
-  .bg-on-solid-accent-2 { background-color: var(--on-solid-accent-2); }
-  .border-on-solid-accent-2 { border-color: var(--on-solid-accent-2); }
   .text-fg-accent-2-subtle { color: var(--fg-accent-2-subtle); }
-  .bg-fg-accent-2-subtle { background-color: var(--fg-accent-2-subtle); }
-  .border-fg-accent-2-subtle { border-color: var(--fg-accent-2-subtle); }
   .text-fg-accent-2-weak { color: var(--fg-accent-2-weak); }
-  .bg-fg-accent-2-weak { background-color: var(--fg-accent-2-weak); }
-  .border-fg-accent-2-weak { border-color: var(--fg-accent-2-weak); }
   .text-fg-accent-2 { color: var(--fg-accent-2); }
-  .bg-fg-accent-2 { background-color: var(--fg-accent-2); }
-  .border-fg-accent-2 { border-color: var(--fg-accent-2); }
   .text-fg-accent-2-strong { color: var(--fg-accent-2-strong); }
-  .bg-fg-accent-2-strong { background-color: var(--fg-accent-2-strong); }
-  .border-fg-accent-2-strong { border-color: var(--fg-accent-2-strong); }
-  .text-accent-3-surface { color: var(--accent-3-surface); }
   .bg-accent-3-surface { background-color: var(--accent-3-surface); }
-  .border-accent-3-surface { border-color: var(--accent-3-surface); }
-  .text-accent-3-indicator { color: var(--accent-3-indicator); }
   .bg-accent-3-indicator { background-color: var(--accent-3-indicator); }
-  .border-accent-3-indicator { border-color: var(--accent-3-indicator); }
-  .text-accent-3-track { color: var(--accent-3-track); }
   .bg-accent-3-track { background-color: var(--accent-3-track); }
-  .border-accent-3-track { border-color: var(--accent-3-track); }
-  .text-bg-accent-3 { color: var(--bg-accent-3); }
   .bg-bg-accent-3 { background-color: var(--bg-accent-3); }
-  .border-bg-accent-3 { border-color: var(--bg-accent-3); }
-  .text-bg-accent-3-strong { color: var(--bg-accent-3-strong); }
   .bg-bg-accent-3-strong { background-color: var(--bg-accent-3-strong); }
-  .border-bg-accent-3-strong { border-color: var(--bg-accent-3-strong); }
-  .text-component-accent-3-weak { color: var(--component-accent-3-weak); }
   .bg-component-accent-3-weak { background-color: var(--component-accent-3-weak); }
-  .border-component-accent-3-weak { border-color: var(--component-accent-3-weak); }
-  .text-component-accent-3 { color: var(--component-accent-3); }
   .bg-component-accent-3 { background-color: var(--component-accent-3); }
-  .border-component-accent-3 { border-color: var(--component-accent-3); }
-  .text-component-accent-3-strong { color: var(--component-accent-3-strong); }
   .bg-component-accent-3-strong { background-color: var(--component-accent-3-strong); }
-  .border-component-accent-3-strong { border-color: var(--component-accent-3-strong); }
-  .text-border-accent-3-weak { color: var(--border-accent-3-weak); }
-  .bg-border-accent-3-weak { background-color: var(--border-accent-3-weak); }
   .border-border-accent-3-weak { border-color: var(--border-accent-3-weak); }
-  .text-border-accent-3 { color: var(--border-accent-3); }
-  .bg-border-accent-3 { background-color: var(--border-accent-3); }
   .border-border-accent-3 { border-color: var(--border-accent-3); }
-  .text-border-accent-3-strong { color: var(--border-accent-3-strong); }
-  .bg-border-accent-3-strong { background-color: var(--border-accent-3-strong); }
   .border-border-accent-3-strong { border-color: var(--border-accent-3-strong); }
-  .text-solid-accent-3 { color: var(--solid-accent-3); }
   .bg-solid-accent-3 { background-color: var(--solid-accent-3); }
-  .border-solid-accent-3 { border-color: var(--solid-accent-3); }
-  .text-solid-accent-3-strong { color: var(--solid-accent-3-strong); }
   .bg-solid-accent-3-strong { background-color: var(--solid-accent-3-strong); }
-  .border-solid-accent-3-strong { border-color: var(--solid-accent-3-strong); }
   .text-on-solid-accent-3 { color: var(--on-solid-accent-3); }
-  .bg-on-solid-accent-3 { background-color: var(--on-solid-accent-3); }
-  .border-on-solid-accent-3 { border-color: var(--on-solid-accent-3); }
   .text-fg-accent-3-subtle { color: var(--fg-accent-3-subtle); }
-  .bg-fg-accent-3-subtle { background-color: var(--fg-accent-3-subtle); }
-  .border-fg-accent-3-subtle { border-color: var(--fg-accent-3-subtle); }
   .text-fg-accent-3-weak { color: var(--fg-accent-3-weak); }
-  .bg-fg-accent-3-weak { background-color: var(--fg-accent-3-weak); }
-  .border-fg-accent-3-weak { border-color: var(--fg-accent-3-weak); }
   .text-fg-accent-3 { color: var(--fg-accent-3); }
-  .bg-fg-accent-3 { background-color: var(--fg-accent-3); }
-  .border-fg-accent-3 { border-color: var(--fg-accent-3); }
   .text-fg-accent-3-strong { color: var(--fg-accent-3-strong); }
-  .bg-fg-accent-3-strong { background-color: var(--fg-accent-3-strong); }
-  .border-fg-accent-3-strong { border-color: var(--fg-accent-3-strong); }
-  .text-accent-4-surface { color: var(--accent-4-surface); }
   .bg-accent-4-surface { background-color: var(--accent-4-surface); }
-  .border-accent-4-surface { border-color: var(--accent-4-surface); }
-  .text-accent-4-indicator { color: var(--accent-4-indicator); }
   .bg-accent-4-indicator { background-color: var(--accent-4-indicator); }
-  .border-accent-4-indicator { border-color: var(--accent-4-indicator); }
-  .text-accent-4-track { color: var(--accent-4-track); }
   .bg-accent-4-track { background-color: var(--accent-4-track); }
-  .border-accent-4-track { border-color: var(--accent-4-track); }
-  .text-bg-accent-4 { color: var(--bg-accent-4); }
   .bg-bg-accent-4 { background-color: var(--bg-accent-4); }
-  .border-bg-accent-4 { border-color: var(--bg-accent-4); }
-  .text-bg-accent-4-strong { color: var(--bg-accent-4-strong); }
   .bg-bg-accent-4-strong { background-color: var(--bg-accent-4-strong); }
-  .border-bg-accent-4-strong { border-color: var(--bg-accent-4-strong); }
-  .text-component-accent-4-weak { color: var(--component-accent-4-weak); }
   .bg-component-accent-4-weak { background-color: var(--component-accent-4-weak); }
-  .border-component-accent-4-weak { border-color: var(--component-accent-4-weak); }
-  .text-component-accent-4 { color: var(--component-accent-4); }
   .bg-component-accent-4 { background-color: var(--component-accent-4); }
-  .border-component-accent-4 { border-color: var(--component-accent-4); }
-  .text-component-accent-4-strong { color: var(--component-accent-4-strong); }
   .bg-component-accent-4-strong { background-color: var(--component-accent-4-strong); }
-  .border-component-accent-4-strong { border-color: var(--component-accent-4-strong); }
-  .text-border-accent-4-weak { color: var(--border-accent-4-weak); }
-  .bg-border-accent-4-weak { background-color: var(--border-accent-4-weak); }
   .border-border-accent-4-weak { border-color: var(--border-accent-4-weak); }
-  .text-border-accent-4 { color: var(--border-accent-4); }
-  .bg-border-accent-4 { background-color: var(--border-accent-4); }
   .border-border-accent-4 { border-color: var(--border-accent-4); }
-  .text-border-accent-4-strong { color: var(--border-accent-4-strong); }
-  .bg-border-accent-4-strong { background-color: var(--border-accent-4-strong); }
   .border-border-accent-4-strong { border-color: var(--border-accent-4-strong); }
-  .text-solid-accent-4 { color: var(--solid-accent-4); }
   .bg-solid-accent-4 { background-color: var(--solid-accent-4); }
-  .border-solid-accent-4 { border-color: var(--solid-accent-4); }
-  .text-solid-accent-4-strong { color: var(--solid-accent-4-strong); }
   .bg-solid-accent-4-strong { background-color: var(--solid-accent-4-strong); }
-  .border-solid-accent-4-strong { border-color: var(--solid-accent-4-strong); }
   .text-on-solid-accent-4 { color: var(--on-solid-accent-4); }
-  .bg-on-solid-accent-4 { background-color: var(--on-solid-accent-4); }
-  .border-on-solid-accent-4 { border-color: var(--on-solid-accent-4); }
   .text-fg-accent-4-subtle { color: var(--fg-accent-4-subtle); }
-  .bg-fg-accent-4-subtle { background-color: var(--fg-accent-4-subtle); }
-  .border-fg-accent-4-subtle { border-color: var(--fg-accent-4-subtle); }
   .text-fg-accent-4-weak { color: var(--fg-accent-4-weak); }
-  .bg-fg-accent-4-weak { background-color: var(--fg-accent-4-weak); }
-  .border-fg-accent-4-weak { border-color: var(--fg-accent-4-weak); }
   .text-fg-accent-4 { color: var(--fg-accent-4); }
-  .bg-fg-accent-4 { background-color: var(--fg-accent-4); }
-  .border-fg-accent-4 { border-color: var(--fg-accent-4); }
   .text-fg-accent-4-strong { color: var(--fg-accent-4-strong); }
-  .bg-fg-accent-4-strong { background-color: var(--fg-accent-4-strong); }
-  .border-fg-accent-4-strong { border-color: var(--fg-accent-4-strong); }
-  .text-danger-surface { color: var(--danger-surface); }
   .bg-danger-surface { background-color: var(--danger-surface); }
-  .border-danger-surface { border-color: var(--danger-surface); }
-  .text-danger-indicator { color: var(--danger-indicator); }
   .bg-danger-indicator { background-color: var(--danger-indicator); }
-  .border-danger-indicator { border-color: var(--danger-indicator); }
-  .text-danger-track { color: var(--danger-track); }
   .bg-danger-track { background-color: var(--danger-track); }
-  .border-danger-track { border-color: var(--danger-track); }
-  .text-bg-danger { color: var(--bg-danger); }
   .bg-bg-danger { background-color: var(--bg-danger); }
-  .border-bg-danger { border-color: var(--bg-danger); }
-  .text-bg-danger-strong { color: var(--bg-danger-strong); }
   .bg-bg-danger-strong { background-color: var(--bg-danger-strong); }
-  .border-bg-danger-strong { border-color: var(--bg-danger-strong); }
-  .text-component-danger-weak { color: var(--component-danger-weak); }
   .bg-component-danger-weak { background-color: var(--component-danger-weak); }
-  .border-component-danger-weak { border-color: var(--component-danger-weak); }
-  .text-component-danger { color: var(--component-danger); }
   .bg-component-danger { background-color: var(--component-danger); }
-  .border-component-danger { border-color: var(--component-danger); }
-  .text-component-danger-strong { color: var(--component-danger-strong); }
   .bg-component-danger-strong { background-color: var(--component-danger-strong); }
-  .border-component-danger-strong { border-color: var(--component-danger-strong); }
-  .text-border-danger-weak { color: var(--border-danger-weak); }
-  .bg-border-danger-weak { background-color: var(--border-danger-weak); }
   .border-border-danger-weak { border-color: var(--border-danger-weak); }
-  .text-border-danger { color: var(--border-danger); }
-  .bg-border-danger { background-color: var(--border-danger); }
   .border-border-danger { border-color: var(--border-danger); }
-  .text-border-danger-strong { color: var(--border-danger-strong); }
-  .bg-border-danger-strong { background-color: var(--border-danger-strong); }
   .border-border-danger-strong { border-color: var(--border-danger-strong); }
-  .text-solid-danger { color: var(--solid-danger); }
   .bg-solid-danger { background-color: var(--solid-danger); }
-  .border-solid-danger { border-color: var(--solid-danger); }
-  .text-solid-danger-strong { color: var(--solid-danger-strong); }
   .bg-solid-danger-strong { background-color: var(--solid-danger-strong); }
-  .border-solid-danger-strong { border-color: var(--solid-danger-strong); }
   .text-on-solid-danger { color: var(--on-solid-danger); }
-  .bg-on-solid-danger { background-color: var(--on-solid-danger); }
-  .border-on-solid-danger { border-color: var(--on-solid-danger); }
   .text-fg-danger-subtle { color: var(--fg-danger-subtle); }
-  .bg-fg-danger-subtle { background-color: var(--fg-danger-subtle); }
-  .border-fg-danger-subtle { border-color: var(--fg-danger-subtle); }
   .text-fg-danger-weak { color: var(--fg-danger-weak); }
-  .bg-fg-danger-weak { background-color: var(--fg-danger-weak); }
-  .border-fg-danger-weak { border-color: var(--fg-danger-weak); }
   .text-fg-danger { color: var(--fg-danger); }
-  .bg-fg-danger { background-color: var(--fg-danger); }
-  .border-fg-danger { border-color: var(--fg-danger); }
   .text-fg-danger-strong { color: var(--fg-danger-strong); }
-  .bg-fg-danger-strong { background-color: var(--fg-danger-strong); }
-  .border-fg-danger-strong { border-color: var(--fg-danger-strong); }
-  .text-warning-surface { color: var(--warning-surface); }
   .bg-warning-surface { background-color: var(--warning-surface); }
-  .border-warning-surface { border-color: var(--warning-surface); }
-  .text-warning-indicator { color: var(--warning-indicator); }
   .bg-warning-indicator { background-color: var(--warning-indicator); }
-  .border-warning-indicator { border-color: var(--warning-indicator); }
-  .text-warning-track { color: var(--warning-track); }
   .bg-warning-track { background-color: var(--warning-track); }
-  .border-warning-track { border-color: var(--warning-track); }
-  .text-bg-warning { color: var(--bg-warning); }
   .bg-bg-warning { background-color: var(--bg-warning); }
-  .border-bg-warning { border-color: var(--bg-warning); }
-  .text-bg-warning-strong { color: var(--bg-warning-strong); }
   .bg-bg-warning-strong { background-color: var(--bg-warning-strong); }
-  .border-bg-warning-strong { border-color: var(--bg-warning-strong); }
-  .text-component-warning-weak { color: var(--component-warning-weak); }
   .bg-component-warning-weak { background-color: var(--component-warning-weak); }
-  .border-component-warning-weak { border-color: var(--component-warning-weak); }
-  .text-component-warning { color: var(--component-warning); }
   .bg-component-warning { background-color: var(--component-warning); }
-  .border-component-warning { border-color: var(--component-warning); }
-  .text-component-warning-strong { color: var(--component-warning-strong); }
   .bg-component-warning-strong { background-color: var(--component-warning-strong); }
-  .border-component-warning-strong { border-color: var(--component-warning-strong); }
-  .text-border-warning-weak { color: var(--border-warning-weak); }
-  .bg-border-warning-weak { background-color: var(--border-warning-weak); }
   .border-border-warning-weak { border-color: var(--border-warning-weak); }
-  .text-border-warning { color: var(--border-warning); }
-  .bg-border-warning { background-color: var(--border-warning); }
   .border-border-warning { border-color: var(--border-warning); }
-  .text-border-warning-strong { color: var(--border-warning-strong); }
-  .bg-border-warning-strong { background-color: var(--border-warning-strong); }
   .border-border-warning-strong { border-color: var(--border-warning-strong); }
-  .text-solid-warning { color: var(--solid-warning); }
   .bg-solid-warning { background-color: var(--solid-warning); }
-  .border-solid-warning { border-color: var(--solid-warning); }
-  .text-solid-warning-strong { color: var(--solid-warning-strong); }
   .bg-solid-warning-strong { background-color: var(--solid-warning-strong); }
-  .border-solid-warning-strong { border-color: var(--solid-warning-strong); }
   .text-on-solid-warning { color: var(--on-solid-warning); }
-  .bg-on-solid-warning { background-color: var(--on-solid-warning); }
-  .border-on-solid-warning { border-color: var(--on-solid-warning); }
   .text-fg-warning-subtle { color: var(--fg-warning-subtle); }
-  .bg-fg-warning-subtle { background-color: var(--fg-warning-subtle); }
-  .border-fg-warning-subtle { border-color: var(--fg-warning-subtle); }
   .text-fg-warning-weak { color: var(--fg-warning-weak); }
-  .bg-fg-warning-weak { background-color: var(--fg-warning-weak); }
-  .border-fg-warning-weak { border-color: var(--fg-warning-weak); }
   .text-fg-warning { color: var(--fg-warning); }
-  .bg-fg-warning { background-color: var(--fg-warning); }
-  .border-fg-warning { border-color: var(--fg-warning); }
   .text-fg-warning-strong { color: var(--fg-warning-strong); }
-  .bg-fg-warning-strong { background-color: var(--fg-warning-strong); }
-  .border-fg-warning-strong { border-color: var(--fg-warning-strong); }
-  .text-success-surface { color: var(--success-surface); }
   .bg-success-surface { background-color: var(--success-surface); }
-  .border-success-surface { border-color: var(--success-surface); }
-  .text-success-indicator { color: var(--success-indicator); }
   .bg-success-indicator { background-color: var(--success-indicator); }
-  .border-success-indicator { border-color: var(--success-indicator); }
-  .text-success-track { color: var(--success-track); }
   .bg-success-track { background-color: var(--success-track); }
-  .border-success-track { border-color: var(--success-track); }
-  .text-bg-success { color: var(--bg-success); }
   .bg-bg-success { background-color: var(--bg-success); }
-  .border-bg-success { border-color: var(--bg-success); }
-  .text-bg-success-strong { color: var(--bg-success-strong); }
   .bg-bg-success-strong { background-color: var(--bg-success-strong); }
-  .border-bg-success-strong { border-color: var(--bg-success-strong); }
-  .text-component-success-weak { color: var(--component-success-weak); }
   .bg-component-success-weak { background-color: var(--component-success-weak); }
-  .border-component-success-weak { border-color: var(--component-success-weak); }
-  .text-component-success { color: var(--component-success); }
   .bg-component-success { background-color: var(--component-success); }
-  .border-component-success { border-color: var(--component-success); }
-  .text-component-success-strong { color: var(--component-success-strong); }
   .bg-component-success-strong { background-color: var(--component-success-strong); }
-  .border-component-success-strong { border-color: var(--component-success-strong); }
-  .text-border-success-weak { color: var(--border-success-weak); }
-  .bg-border-success-weak { background-color: var(--border-success-weak); }
   .border-border-success-weak { border-color: var(--border-success-weak); }
-  .text-border-success { color: var(--border-success); }
-  .bg-border-success { background-color: var(--border-success); }
   .border-border-success { border-color: var(--border-success); }
-  .text-border-success-strong { color: var(--border-success-strong); }
-  .bg-border-success-strong { background-color: var(--border-success-strong); }
   .border-border-success-strong { border-color: var(--border-success-strong); }
-  .text-solid-success { color: var(--solid-success); }
   .bg-solid-success { background-color: var(--solid-success); }
-  .border-solid-success { border-color: var(--solid-success); }
-  .text-solid-success-strong { color: var(--solid-success-strong); }
   .bg-solid-success-strong { background-color: var(--solid-success-strong); }
-  .border-solid-success-strong { border-color: var(--solid-success-strong); }
   .text-on-solid-success { color: var(--on-solid-success); }
-  .bg-on-solid-success { background-color: var(--on-solid-success); }
-  .border-on-solid-success { border-color: var(--on-solid-success); }
   .text-fg-success-subtle { color: var(--fg-success-subtle); }
-  .bg-fg-success-subtle { background-color: var(--fg-success-subtle); }
-  .border-fg-success-subtle { border-color: var(--fg-success-subtle); }
   .text-fg-success-weak { color: var(--fg-success-weak); }
-  .bg-fg-success-weak { background-color: var(--fg-success-weak); }
-  .border-fg-success-weak { border-color: var(--fg-success-weak); }
   .text-fg-success { color: var(--fg-success); }
-  .bg-fg-success { background-color: var(--fg-success); }
-  .border-fg-success { border-color: var(--fg-success); }
   .text-fg-success-strong { color: var(--fg-success-strong); }
-  .bg-fg-success-strong { background-color: var(--fg-success-strong); }
-  .border-fg-success-strong { border-color: var(--fg-success-strong); }
-  .text-info-surface { color: var(--info-surface); }
   .bg-info-surface { background-color: var(--info-surface); }
-  .border-info-surface { border-color: var(--info-surface); }
-  .text-info-indicator { color: var(--info-indicator); }
   .bg-info-indicator { background-color: var(--info-indicator); }
-  .border-info-indicator { border-color: var(--info-indicator); }
-  .text-info-track { color: var(--info-track); }
   .bg-info-track { background-color: var(--info-track); }
-  .border-info-track { border-color: var(--info-track); }
-  .text-bg-info { color: var(--bg-info); }
   .bg-bg-info { background-color: var(--bg-info); }
-  .border-bg-info { border-color: var(--bg-info); }
-  .text-bg-info-strong { color: var(--bg-info-strong); }
   .bg-bg-info-strong { background-color: var(--bg-info-strong); }
-  .border-bg-info-strong { border-color: var(--bg-info-strong); }
-  .text-component-info-weak { color: var(--component-info-weak); }
   .bg-component-info-weak { background-color: var(--component-info-weak); }
-  .border-component-info-weak { border-color: var(--component-info-weak); }
-  .text-component-info { color: var(--component-info); }
   .bg-component-info { background-color: var(--component-info); }
-  .border-component-info { border-color: var(--component-info); }
-  .text-component-info-strong { color: var(--component-info-strong); }
   .bg-component-info-strong { background-color: var(--component-info-strong); }
-  .border-component-info-strong { border-color: var(--component-info-strong); }
-  .text-border-info-weak { color: var(--border-info-weak); }
-  .bg-border-info-weak { background-color: var(--border-info-weak); }
   .border-border-info-weak { border-color: var(--border-info-weak); }
-  .text-border-info { color: var(--border-info); }
-  .bg-border-info { background-color: var(--border-info); }
   .border-border-info { border-color: var(--border-info); }
-  .text-border-info-strong { color: var(--border-info-strong); }
-  .bg-border-info-strong { background-color: var(--border-info-strong); }
   .border-border-info-strong { border-color: var(--border-info-strong); }
-  .text-solid-info { color: var(--solid-info); }
   .bg-solid-info { background-color: var(--solid-info); }
-  .border-solid-info { border-color: var(--solid-info); }
-  .text-solid-info-strong { color: var(--solid-info-strong); }
   .bg-solid-info-strong { background-color: var(--solid-info-strong); }
-  .border-solid-info-strong { border-color: var(--solid-info-strong); }
   .text-on-solid-info { color: var(--on-solid-info); }
-  .bg-on-solid-info { background-color: var(--on-solid-info); }
-  .border-on-solid-info { border-color: var(--on-solid-info); }
   .text-fg-info-subtle { color: var(--fg-info-subtle); }
-  .bg-fg-info-subtle { background-color: var(--fg-info-subtle); }
-  .border-fg-info-subtle { border-color: var(--fg-info-subtle); }
   .text-fg-info-weak { color: var(--fg-info-weak); }
-  .bg-fg-info-weak { background-color: var(--fg-info-weak); }
-  .border-fg-info-weak { border-color: var(--fg-info-weak); }
   .text-fg-info { color: var(--fg-info); }
-  .bg-fg-info { background-color: var(--fg-info); }
-  .border-fg-info { border-color: var(--fg-info); }
   .text-fg-info-strong { color: var(--fg-info-strong); }
-  .bg-fg-info-strong { background-color: var(--fg-info-strong); }
-  .border-fg-info-strong { border-color: var(--fg-info-strong); }
   .text-inherit { color: inherit; }
   .text-current { color: currentColor; }
   .bg-transparent { background-color: transparent; }
@@ -1489,6 +1138,7 @@
   .border-l-4 { border-left-width: 4px; border-left-style: solid; }
   .border-x-4 { border-inline-width: 4px; border-inline-style: solid; }
   .border-y-4 { border-block-width: 4px; border-block-style: solid; }
+  .border-solid { border-style: solid; }
   .border-dashed { border-style: dashed; }
   .border-dotted { border-style: dotted; }
   .border-none { border-style: none; }
@@ -1642,276 +1292,114 @@
   .px-nested:where(:has(> .icon:first-child)) { padding-inline-start: var(--nested-icon-padding); }
   .px-nested:where(:has(> .icon:last-child)) { padding-inline-end: var(--nested-icon-padding); }
   @media (hover: hover) {
-    .hover\:text-bg:hover { color: var(--bg); }
     .hover\:bg-bg:hover { background-color: var(--bg); }
-    .hover\:text-bg-strong:hover { color: var(--bg-strong); }
     .hover\:bg-bg-strong:hover { background-color: var(--bg-strong); }
-    .hover\:text-component-weak:hover { color: var(--component-weak); }
     .hover\:bg-component-weak:hover { background-color: var(--component-weak); }
-    .hover\:text-component:hover { color: var(--component); }
     .hover\:bg-component:hover { background-color: var(--component); }
-    .hover\:text-component-strong:hover { color: var(--component-strong); }
     .hover\:bg-component-strong:hover { background-color: var(--component-strong); }
-    .hover\:text-border-weak:hover { color: var(--border-weak); }
-    .hover\:bg-border-weak:hover { background-color: var(--border-weak); }
-    .hover\:text-border:hover { color: var(--border); }
-    .hover\:bg-border:hover { background-color: var(--border); }
-    .hover\:text-border-strong:hover { color: var(--border-strong); }
-    .hover\:bg-border-strong:hover { background-color: var(--border-strong); }
-    .hover\:text-solid:hover { color: var(--solid); }
     .hover\:bg-solid:hover { background-color: var(--solid); }
-    .hover\:text-solid-strong:hover { color: var(--solid-strong); }
     .hover\:bg-solid-strong:hover { background-color: var(--solid-strong); }
     .hover\:text-on-solid:hover { color: var(--on-solid); }
-    .hover\:bg-on-solid:hover { background-color: var(--on-solid); }
     .hover\:text-fg-subtle:hover { color: var(--fg-subtle); }
-    .hover\:bg-fg-subtle:hover { background-color: var(--fg-subtle); }
     .hover\:text-fg-weak:hover { color: var(--fg-weak); }
-    .hover\:bg-fg-weak:hover { background-color: var(--fg-weak); }
     .hover\:text-fg:hover { color: var(--fg); }
-    .hover\:bg-fg:hover { background-color: var(--fg); }
     .hover\:text-fg-strong:hover { color: var(--fg-strong); }
-    .hover\:bg-fg-strong:hover { background-color: var(--fg-strong); }
-    .hover\:text-bg-accent-1:hover { color: var(--bg-accent-1); }
     .hover\:bg-bg-accent-1:hover { background-color: var(--bg-accent-1); }
-    .hover\:text-bg-accent-1-strong:hover { color: var(--bg-accent-1-strong); }
     .hover\:bg-bg-accent-1-strong:hover { background-color: var(--bg-accent-1-strong); }
-    .hover\:text-component-accent-1-weak:hover { color: var(--component-accent-1-weak); }
     .hover\:bg-component-accent-1-weak:hover { background-color: var(--component-accent-1-weak); }
-    .hover\:text-component-accent-1:hover { color: var(--component-accent-1); }
     .hover\:bg-component-accent-1:hover { background-color: var(--component-accent-1); }
-    .hover\:text-component-accent-1-strong:hover { color: var(--component-accent-1-strong); }
     .hover\:bg-component-accent-1-strong:hover { background-color: var(--component-accent-1-strong); }
-    .hover\:text-border-accent-1-weak:hover { color: var(--border-accent-1-weak); }
-    .hover\:bg-border-accent-1-weak:hover { background-color: var(--border-accent-1-weak); }
-    .hover\:text-border-accent-1:hover { color: var(--border-accent-1); }
-    .hover\:bg-border-accent-1:hover { background-color: var(--border-accent-1); }
-    .hover\:text-border-accent-1-strong:hover { color: var(--border-accent-1-strong); }
-    .hover\:bg-border-accent-1-strong:hover { background-color: var(--border-accent-1-strong); }
-    .hover\:text-solid-accent-1:hover { color: var(--solid-accent-1); }
     .hover\:bg-solid-accent-1:hover { background-color: var(--solid-accent-1); }
-    .hover\:text-solid-accent-1-strong:hover { color: var(--solid-accent-1-strong); }
     .hover\:bg-solid-accent-1-strong:hover { background-color: var(--solid-accent-1-strong); }
     .hover\:text-on-solid-accent-1:hover { color: var(--on-solid-accent-1); }
-    .hover\:bg-on-solid-accent-1:hover { background-color: var(--on-solid-accent-1); }
     .hover\:text-fg-accent-1-subtle:hover { color: var(--fg-accent-1-subtle); }
-    .hover\:bg-fg-accent-1-subtle:hover { background-color: var(--fg-accent-1-subtle); }
     .hover\:text-fg-accent-1-weak:hover { color: var(--fg-accent-1-weak); }
-    .hover\:bg-fg-accent-1-weak:hover { background-color: var(--fg-accent-1-weak); }
     .hover\:text-fg-accent-1:hover { color: var(--fg-accent-1); }
-    .hover\:bg-fg-accent-1:hover { background-color: var(--fg-accent-1); }
     .hover\:text-fg-accent-1-strong:hover { color: var(--fg-accent-1-strong); }
-    .hover\:bg-fg-accent-1-strong:hover { background-color: var(--fg-accent-1-strong); }
-    .hover\:text-bg-accent-2:hover { color: var(--bg-accent-2); }
     .hover\:bg-bg-accent-2:hover { background-color: var(--bg-accent-2); }
-    .hover\:text-bg-accent-2-strong:hover { color: var(--bg-accent-2-strong); }
     .hover\:bg-bg-accent-2-strong:hover { background-color: var(--bg-accent-2-strong); }
-    .hover\:text-component-accent-2-weak:hover { color: var(--component-accent-2-weak); }
     .hover\:bg-component-accent-2-weak:hover { background-color: var(--component-accent-2-weak); }
-    .hover\:text-component-accent-2:hover { color: var(--component-accent-2); }
     .hover\:bg-component-accent-2:hover { background-color: var(--component-accent-2); }
-    .hover\:text-component-accent-2-strong:hover { color: var(--component-accent-2-strong); }
     .hover\:bg-component-accent-2-strong:hover { background-color: var(--component-accent-2-strong); }
-    .hover\:text-border-accent-2-weak:hover { color: var(--border-accent-2-weak); }
-    .hover\:bg-border-accent-2-weak:hover { background-color: var(--border-accent-2-weak); }
-    .hover\:text-border-accent-2:hover { color: var(--border-accent-2); }
-    .hover\:bg-border-accent-2:hover { background-color: var(--border-accent-2); }
-    .hover\:text-border-accent-2-strong:hover { color: var(--border-accent-2-strong); }
-    .hover\:bg-border-accent-2-strong:hover { background-color: var(--border-accent-2-strong); }
-    .hover\:text-solid-accent-2:hover { color: var(--solid-accent-2); }
     .hover\:bg-solid-accent-2:hover { background-color: var(--solid-accent-2); }
-    .hover\:text-solid-accent-2-strong:hover { color: var(--solid-accent-2-strong); }
     .hover\:bg-solid-accent-2-strong:hover { background-color: var(--solid-accent-2-strong); }
     .hover\:text-on-solid-accent-2:hover { color: var(--on-solid-accent-2); }
-    .hover\:bg-on-solid-accent-2:hover { background-color: var(--on-solid-accent-2); }
     .hover\:text-fg-accent-2-subtle:hover { color: var(--fg-accent-2-subtle); }
-    .hover\:bg-fg-accent-2-subtle:hover { background-color: var(--fg-accent-2-subtle); }
     .hover\:text-fg-accent-2-weak:hover { color: var(--fg-accent-2-weak); }
-    .hover\:bg-fg-accent-2-weak:hover { background-color: var(--fg-accent-2-weak); }
     .hover\:text-fg-accent-2:hover { color: var(--fg-accent-2); }
-    .hover\:bg-fg-accent-2:hover { background-color: var(--fg-accent-2); }
     .hover\:text-fg-accent-2-strong:hover { color: var(--fg-accent-2-strong); }
-    .hover\:bg-fg-accent-2-strong:hover { background-color: var(--fg-accent-2-strong); }
-    .hover\:text-bg-accent-3:hover { color: var(--bg-accent-3); }
     .hover\:bg-bg-accent-3:hover { background-color: var(--bg-accent-3); }
-    .hover\:text-bg-accent-3-strong:hover { color: var(--bg-accent-3-strong); }
     .hover\:bg-bg-accent-3-strong:hover { background-color: var(--bg-accent-3-strong); }
-    .hover\:text-component-accent-3-weak:hover { color: var(--component-accent-3-weak); }
     .hover\:bg-component-accent-3-weak:hover { background-color: var(--component-accent-3-weak); }
-    .hover\:text-component-accent-3:hover { color: var(--component-accent-3); }
     .hover\:bg-component-accent-3:hover { background-color: var(--component-accent-3); }
-    .hover\:text-component-accent-3-strong:hover { color: var(--component-accent-3-strong); }
     .hover\:bg-component-accent-3-strong:hover { background-color: var(--component-accent-3-strong); }
-    .hover\:text-border-accent-3-weak:hover { color: var(--border-accent-3-weak); }
-    .hover\:bg-border-accent-3-weak:hover { background-color: var(--border-accent-3-weak); }
-    .hover\:text-border-accent-3:hover { color: var(--border-accent-3); }
-    .hover\:bg-border-accent-3:hover { background-color: var(--border-accent-3); }
-    .hover\:text-border-accent-3-strong:hover { color: var(--border-accent-3-strong); }
-    .hover\:bg-border-accent-3-strong:hover { background-color: var(--border-accent-3-strong); }
-    .hover\:text-solid-accent-3:hover { color: var(--solid-accent-3); }
     .hover\:bg-solid-accent-3:hover { background-color: var(--solid-accent-3); }
-    .hover\:text-solid-accent-3-strong:hover { color: var(--solid-accent-3-strong); }
     .hover\:bg-solid-accent-3-strong:hover { background-color: var(--solid-accent-3-strong); }
     .hover\:text-on-solid-accent-3:hover { color: var(--on-solid-accent-3); }
-    .hover\:bg-on-solid-accent-3:hover { background-color: var(--on-solid-accent-3); }
     .hover\:text-fg-accent-3-subtle:hover { color: var(--fg-accent-3-subtle); }
-    .hover\:bg-fg-accent-3-subtle:hover { background-color: var(--fg-accent-3-subtle); }
     .hover\:text-fg-accent-3-weak:hover { color: var(--fg-accent-3-weak); }
-    .hover\:bg-fg-accent-3-weak:hover { background-color: var(--fg-accent-3-weak); }
     .hover\:text-fg-accent-3:hover { color: var(--fg-accent-3); }
-    .hover\:bg-fg-accent-3:hover { background-color: var(--fg-accent-3); }
     .hover\:text-fg-accent-3-strong:hover { color: var(--fg-accent-3-strong); }
-    .hover\:bg-fg-accent-3-strong:hover { background-color: var(--fg-accent-3-strong); }
-    .hover\:text-bg-accent-4:hover { color: var(--bg-accent-4); }
     .hover\:bg-bg-accent-4:hover { background-color: var(--bg-accent-4); }
-    .hover\:text-bg-accent-4-strong:hover { color: var(--bg-accent-4-strong); }
     .hover\:bg-bg-accent-4-strong:hover { background-color: var(--bg-accent-4-strong); }
-    .hover\:text-component-accent-4-weak:hover { color: var(--component-accent-4-weak); }
     .hover\:bg-component-accent-4-weak:hover { background-color: var(--component-accent-4-weak); }
-    .hover\:text-component-accent-4:hover { color: var(--component-accent-4); }
     .hover\:bg-component-accent-4:hover { background-color: var(--component-accent-4); }
-    .hover\:text-component-accent-4-strong:hover { color: var(--component-accent-4-strong); }
     .hover\:bg-component-accent-4-strong:hover { background-color: var(--component-accent-4-strong); }
-    .hover\:text-border-accent-4-weak:hover { color: var(--border-accent-4-weak); }
-    .hover\:bg-border-accent-4-weak:hover { background-color: var(--border-accent-4-weak); }
-    .hover\:text-border-accent-4:hover { color: var(--border-accent-4); }
-    .hover\:bg-border-accent-4:hover { background-color: var(--border-accent-4); }
-    .hover\:text-border-accent-4-strong:hover { color: var(--border-accent-4-strong); }
-    .hover\:bg-border-accent-4-strong:hover { background-color: var(--border-accent-4-strong); }
-    .hover\:text-solid-accent-4:hover { color: var(--solid-accent-4); }
     .hover\:bg-solid-accent-4:hover { background-color: var(--solid-accent-4); }
-    .hover\:text-solid-accent-4-strong:hover { color: var(--solid-accent-4-strong); }
     .hover\:bg-solid-accent-4-strong:hover { background-color: var(--solid-accent-4-strong); }
     .hover\:text-on-solid-accent-4:hover { color: var(--on-solid-accent-4); }
-    .hover\:bg-on-solid-accent-4:hover { background-color: var(--on-solid-accent-4); }
     .hover\:text-fg-accent-4-subtle:hover { color: var(--fg-accent-4-subtle); }
-    .hover\:bg-fg-accent-4-subtle:hover { background-color: var(--fg-accent-4-subtle); }
     .hover\:text-fg-accent-4-weak:hover { color: var(--fg-accent-4-weak); }
-    .hover\:bg-fg-accent-4-weak:hover { background-color: var(--fg-accent-4-weak); }
     .hover\:text-fg-accent-4:hover { color: var(--fg-accent-4); }
-    .hover\:bg-fg-accent-4:hover { background-color: var(--fg-accent-4); }
     .hover\:text-fg-accent-4-strong:hover { color: var(--fg-accent-4-strong); }
-    .hover\:bg-fg-accent-4-strong:hover { background-color: var(--fg-accent-4-strong); }
-    .hover\:text-bg-danger:hover { color: var(--bg-danger); }
     .hover\:bg-bg-danger:hover { background-color: var(--bg-danger); }
-    .hover\:text-bg-danger-strong:hover { color: var(--bg-danger-strong); }
     .hover\:bg-bg-danger-strong:hover { background-color: var(--bg-danger-strong); }
-    .hover\:text-component-danger-weak:hover { color: var(--component-danger-weak); }
     .hover\:bg-component-danger-weak:hover { background-color: var(--component-danger-weak); }
-    .hover\:text-component-danger:hover { color: var(--component-danger); }
     .hover\:bg-component-danger:hover { background-color: var(--component-danger); }
-    .hover\:text-component-danger-strong:hover { color: var(--component-danger-strong); }
     .hover\:bg-component-danger-strong:hover { background-color: var(--component-danger-strong); }
-    .hover\:text-border-danger-weak:hover { color: var(--border-danger-weak); }
-    .hover\:bg-border-danger-weak:hover { background-color: var(--border-danger-weak); }
-    .hover\:text-border-danger:hover { color: var(--border-danger); }
-    .hover\:bg-border-danger:hover { background-color: var(--border-danger); }
-    .hover\:text-border-danger-strong:hover { color: var(--border-danger-strong); }
-    .hover\:bg-border-danger-strong:hover { background-color: var(--border-danger-strong); }
-    .hover\:text-solid-danger:hover { color: var(--solid-danger); }
     .hover\:bg-solid-danger:hover { background-color: var(--solid-danger); }
-    .hover\:text-solid-danger-strong:hover { color: var(--solid-danger-strong); }
     .hover\:bg-solid-danger-strong:hover { background-color: var(--solid-danger-strong); }
     .hover\:text-on-solid-danger:hover { color: var(--on-solid-danger); }
-    .hover\:bg-on-solid-danger:hover { background-color: var(--on-solid-danger); }
     .hover\:text-fg-danger-subtle:hover { color: var(--fg-danger-subtle); }
-    .hover\:bg-fg-danger-subtle:hover { background-color: var(--fg-danger-subtle); }
     .hover\:text-fg-danger-weak:hover { color: var(--fg-danger-weak); }
-    .hover\:bg-fg-danger-weak:hover { background-color: var(--fg-danger-weak); }
     .hover\:text-fg-danger:hover { color: var(--fg-danger); }
-    .hover\:bg-fg-danger:hover { background-color: var(--fg-danger); }
     .hover\:text-fg-danger-strong:hover { color: var(--fg-danger-strong); }
-    .hover\:bg-fg-danger-strong:hover { background-color: var(--fg-danger-strong); }
-    .hover\:text-bg-warning:hover { color: var(--bg-warning); }
     .hover\:bg-bg-warning:hover { background-color: var(--bg-warning); }
-    .hover\:text-bg-warning-strong:hover { color: var(--bg-warning-strong); }
     .hover\:bg-bg-warning-strong:hover { background-color: var(--bg-warning-strong); }
-    .hover\:text-component-warning-weak:hover { color: var(--component-warning-weak); }
     .hover\:bg-component-warning-weak:hover { background-color: var(--component-warning-weak); }
-    .hover\:text-component-warning:hover { color: var(--component-warning); }
     .hover\:bg-component-warning:hover { background-color: var(--component-warning); }
-    .hover\:text-component-warning-strong:hover { color: var(--component-warning-strong); }
     .hover\:bg-component-warning-strong:hover { background-color: var(--component-warning-strong); }
-    .hover\:text-border-warning-weak:hover { color: var(--border-warning-weak); }
-    .hover\:bg-border-warning-weak:hover { background-color: var(--border-warning-weak); }
-    .hover\:text-border-warning:hover { color: var(--border-warning); }
-    .hover\:bg-border-warning:hover { background-color: var(--border-warning); }
-    .hover\:text-border-warning-strong:hover { color: var(--border-warning-strong); }
-    .hover\:bg-border-warning-strong:hover { background-color: var(--border-warning-strong); }
-    .hover\:text-solid-warning:hover { color: var(--solid-warning); }
     .hover\:bg-solid-warning:hover { background-color: var(--solid-warning); }
-    .hover\:text-solid-warning-strong:hover { color: var(--solid-warning-strong); }
     .hover\:bg-solid-warning-strong:hover { background-color: var(--solid-warning-strong); }
     .hover\:text-on-solid-warning:hover { color: var(--on-solid-warning); }
-    .hover\:bg-on-solid-warning:hover { background-color: var(--on-solid-warning); }
     .hover\:text-fg-warning-subtle:hover { color: var(--fg-warning-subtle); }
-    .hover\:bg-fg-warning-subtle:hover { background-color: var(--fg-warning-subtle); }
     .hover\:text-fg-warning-weak:hover { color: var(--fg-warning-weak); }
-    .hover\:bg-fg-warning-weak:hover { background-color: var(--fg-warning-weak); }
     .hover\:text-fg-warning:hover { color: var(--fg-warning); }
-    .hover\:bg-fg-warning:hover { background-color: var(--fg-warning); }
     .hover\:text-fg-warning-strong:hover { color: var(--fg-warning-strong); }
-    .hover\:bg-fg-warning-strong:hover { background-color: var(--fg-warning-strong); }
-    .hover\:text-bg-success:hover { color: var(--bg-success); }
     .hover\:bg-bg-success:hover { background-color: var(--bg-success); }
-    .hover\:text-bg-success-strong:hover { color: var(--bg-success-strong); }
     .hover\:bg-bg-success-strong:hover { background-color: var(--bg-success-strong); }
-    .hover\:text-component-success-weak:hover { color: var(--component-success-weak); }
     .hover\:bg-component-success-weak:hover { background-color: var(--component-success-weak); }
-    .hover\:text-component-success:hover { color: var(--component-success); }
     .hover\:bg-component-success:hover { background-color: var(--component-success); }
-    .hover\:text-component-success-strong:hover { color: var(--component-success-strong); }
     .hover\:bg-component-success-strong:hover { background-color: var(--component-success-strong); }
-    .hover\:text-border-success-weak:hover { color: var(--border-success-weak); }
-    .hover\:bg-border-success-weak:hover { background-color: var(--border-success-weak); }
-    .hover\:text-border-success:hover { color: var(--border-success); }
-    .hover\:bg-border-success:hover { background-color: var(--border-success); }
-    .hover\:text-border-success-strong:hover { color: var(--border-success-strong); }
-    .hover\:bg-border-success-strong:hover { background-color: var(--border-success-strong); }
-    .hover\:text-solid-success:hover { color: var(--solid-success); }
     .hover\:bg-solid-success:hover { background-color: var(--solid-success); }
-    .hover\:text-solid-success-strong:hover { color: var(--solid-success-strong); }
     .hover\:bg-solid-success-strong:hover { background-color: var(--solid-success-strong); }
     .hover\:text-on-solid-success:hover { color: var(--on-solid-success); }
-    .hover\:bg-on-solid-success:hover { background-color: var(--on-solid-success); }
     .hover\:text-fg-success-subtle:hover { color: var(--fg-success-subtle); }
-    .hover\:bg-fg-success-subtle:hover { background-color: var(--fg-success-subtle); }
     .hover\:text-fg-success-weak:hover { color: var(--fg-success-weak); }
-    .hover\:bg-fg-success-weak:hover { background-color: var(--fg-success-weak); }
     .hover\:text-fg-success:hover { color: var(--fg-success); }
-    .hover\:bg-fg-success:hover { background-color: var(--fg-success); }
     .hover\:text-fg-success-strong:hover { color: var(--fg-success-strong); }
-    .hover\:bg-fg-success-strong:hover { background-color: var(--fg-success-strong); }
-    .hover\:text-bg-info:hover { color: var(--bg-info); }
     .hover\:bg-bg-info:hover { background-color: var(--bg-info); }
-    .hover\:text-bg-info-strong:hover { color: var(--bg-info-strong); }
     .hover\:bg-bg-info-strong:hover { background-color: var(--bg-info-strong); }
-    .hover\:text-component-info-weak:hover { color: var(--component-info-weak); }
     .hover\:bg-component-info-weak:hover { background-color: var(--component-info-weak); }
-    .hover\:text-component-info:hover { color: var(--component-info); }
     .hover\:bg-component-info:hover { background-color: var(--component-info); }
-    .hover\:text-component-info-strong:hover { color: var(--component-info-strong); }
     .hover\:bg-component-info-strong:hover { background-color: var(--component-info-strong); }
-    .hover\:text-border-info-weak:hover { color: var(--border-info-weak); }
-    .hover\:bg-border-info-weak:hover { background-color: var(--border-info-weak); }
-    .hover\:text-border-info:hover { color: var(--border-info); }
-    .hover\:bg-border-info:hover { background-color: var(--border-info); }
-    .hover\:text-border-info-strong:hover { color: var(--border-info-strong); }
-    .hover\:bg-border-info-strong:hover { background-color: var(--border-info-strong); }
-    .hover\:text-solid-info:hover { color: var(--solid-info); }
     .hover\:bg-solid-info:hover { background-color: var(--solid-info); }
-    .hover\:text-solid-info-strong:hover { color: var(--solid-info-strong); }
     .hover\:bg-solid-info-strong:hover { background-color: var(--solid-info-strong); }
     .hover\:text-on-solid-info:hover { color: var(--on-solid-info); }
-    .hover\:bg-on-solid-info:hover { background-color: var(--on-solid-info); }
     .hover\:text-fg-info-subtle:hover { color: var(--fg-info-subtle); }
-    .hover\:bg-fg-info-subtle:hover { background-color: var(--fg-info-subtle); }
     .hover\:text-fg-info-weak:hover { color: var(--fg-info-weak); }
-    .hover\:bg-fg-info-weak:hover { background-color: var(--fg-info-weak); }
     .hover\:text-fg-info:hover { color: var(--fg-info); }
-    .hover\:bg-fg-info:hover { background-color: var(--fg-info); }
     .hover\:text-fg-info-strong:hover { color: var(--fg-info-strong); }
-    .hover\:bg-fg-info-strong:hover { background-color: var(--fg-info-strong); }
     .hover\:text-inherit:hover { color: inherit; }
     .hover\:text-current:hover { color: currentColor; }
     .hover\:bg-transparent:hover { background-color: transparent; }
