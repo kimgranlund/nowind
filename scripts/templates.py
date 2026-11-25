@@ -680,8 +680,8 @@ SEMANTIC_WORDS = re.compile(r"-(surface|dialog|region|page|field|row|group|secti
 
 def is_semantic(cat, k):
     """Semantic classes name a role (p-surface, fg-weak, text-heading-md); regular ones a scale step or a property value (p-md, border-warning-7)."""
-    if k in ("icon", "icon-sm", "icon-md", "icon-lg"):
-        return False  # icon sizes are lengths derived from the base size, like the space scale, not roles
+    if k in ("icon", "icon-sm", "icon-md", "icon-lg") or re.fullmatch(r"(h|size|min-w|px)-(control|nested)", k):
+        return False  # icon sizes and control lengths are derived from the base size, like the space scale, not roles
     if cat in SEMANTIC_CATS or (cat != "Layout and misc" and SEMANTIC_WORDS.search(k)):
         return True
     if cat in ("Text color", "Background color", "Border color"):
@@ -953,14 +953,16 @@ def lint_examples():
         for m in re.finditer(r'<(\w+)\b([^>]*?)\sclass="([^"]*)"([^>]*)>', html_):
             tag, toks = m.group(1), m.group(3).split()
             role = re.search(r'role="(\w+)"', m.group(2) + m.group(4))
+            if tag in ("button", "a") and re.match(r"\s*<i\b[^>]*></i>\s*</" + tag + ">", html_[m.end():]) and (any(t.startswith(("px-", "py-", "h-")) for t in toks) or not any(re.fullmatch(r"p-[a-z0-9]+|size-[a-z0-9]+", t) for t in toks)):
+                out.append(f"{where}: an icon-only <{tag}> isn't square. Fix: size-control or size-nested (or one padding on all sides), no px-/py-.")
+            if (tag in ("button", "select") or "cursor-text" in toks or (role and role.group(1) in ("tab", "option", "menuitem"))) and any(t in ("py-xs", "py-3xs") for t in toks) and any(re.fullmatch(r"p[xse]-.+", t) for t in toks):
+                out.append(f"{where}: <{tag}> is sized by padding. Fix: a control takes the control geometry (h-control px-control, h-nested px-nested; size-control or size-nested when it holds only an icon).")
             if any(t in ("px-sm", "px-2xs") for t in toks) and re.match(r'\s*<(?:i|span)\b[^>]*class="[^"]*\bicon\b', html_[m.end():]):
                 out.append(f"{where}: <{tag}> pads its icon edge like a text edge. Fix: at an icon edge use the block padding (ps-xs pe-sm for px-sm, ps-3xs pe-2xs for px-2xs).")
             if any(re.fullmatch(r"(hover|active):bg-.+", t) for t in toks) and not any(re.fullmatch(r"(pressed|selected|current|open|expanded|has-checked):bg-.+", t) for t in toks):
                 out.append(f"{where}: <{tag}> tints its fill with hover:/active: bg variants. Fix: use state (keep bg variants only where a state changes the surface, such as current:bg-accent-1-9).")
             if tag in ("a", "button", "summary", "input", "select", "textarea", "label") or (role and role.group(1) in ("button", "tab", "option", "menuitem", "switch")):
                 continue
-            if tag in ("button", "a") and re.match(r"\s*<i\b[^>]*></i>\s*</" + tag + ">", html_[m.end():]) and (any(t.startswith(("px-", "py-")) for t in toks) or not any(re.fullmatch(r"p-[a-z0-9]+", t) for t in toks)):
-                out.append(f"{where}: an icon-only <{tag}> isn't square. Fix: one padding on all sides (p-xs, p-3xs), no px-/py-.")
             physical = [t for t in toks if re.fullmatch(r"(?:[a-z0-9@-]+:)?(?:-?[pm][lr]-.+|left-.+|right-.+|text-(?:left|right)|border-[lr](?:-\d)?)", t)]
             if physical:
                 out.append(f"{where}: {' '.join(physical)} is physical. Fix: use the logical class (ps-, pe-, ms-, me-, start-, end-, text-start, text-end, border-s, border-e).")
