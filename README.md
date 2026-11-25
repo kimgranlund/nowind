@@ -194,8 +194,8 @@ theme/
   theme.typography.css         fluid --text-*, kicker, faces, weights, leading, tracking (generated)
   theme.type-roles.css         semantic roles: --heading-md, --heading-md--line-height, …
   theme.*.manifest.json        what every token is and how it's derived
-  colors-semantic/             accent-1 (indigo), accent-2 (violet), accent-3 (plum), accent-4 (crimson), neutral (slate),
-                               danger (red), warning (amber), success (green), info (blue): one file each
+  colors-semantic/             accent-1 (blue), accent-2 (violet), accent-3 (plum), accent-4 (crimson), neutral (slate),
+                               danger (red), warning (amber), success (green), info (indigo): one file each
   colors-raw/                  the radix-hct-colors library (31 families)
 scripts/
   utopia.mjs                   generates the fluid type and space scales

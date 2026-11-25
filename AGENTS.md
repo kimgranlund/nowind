@@ -57,7 +57,7 @@ Then check the result in `specimen.html` through a local server (`python3 -m htt
 
 ## Naming
 
-- **Palettes:** `accent-1` (indigo), `accent-2` (violet), `accent-3` (plum), `accent-4` (crimson), `neutral` (slate), `danger` (red), `warning` (amber), `success` (green), `info` (blue). Steps: `--accent-1-9`, `--neutral-a4`.
+- **Palettes:** `accent-1` (blue), `accent-2` (violet), `accent-3` (plum), `accent-4` (crimson), `neutral` (slate), `danger` (red), `warning` (amber), `success` (green), `info` (indigo). Steps: `--accent-1-9`, `--neutral-a4`.
 - **Colour roles:** `--{group}[-{palette}][-weak|-strong]`, where the bare name is the middle of its group. Groups: `bg` (1–2), `component` (3–5), `border` (6–8), `solid` (9–10), `fg` (8, 11, 12 and a strong value). No palette name means neutral.
 - **Type:** `--text-{xs…6xl}` and `--text-{size}--line-height` (Tailwind v4). Roles are `--{role}` with `--{role}--{property}` companions, outside `--text-*`, so they never clash with sizes.
 - **Space:** `--space-{3xs…4xl}` (Prewind).

@@ -2,7 +2,7 @@
   "file": "theme.colors.css",
   "files": {
     "theme.colors.css": "Imported by ../theme.css. Imports colors-raw/globals.css and all nine palettes; defines the companions (surface, indicator, track), the usage roles for every palette. Family-agnostic: never changes on rebrand.",
-    "colors-semantic/accent-1.css": "Imports indigo; defines --accent-1-1..12, --accent-1-a1..a12 and the --accent-1-contrast values.",
+    "colors-semantic/accent-1.css": "Imports blue; defines --accent-1-1..12, --accent-1-a1..a12 and the --accent-1-contrast values.",
     "colors-semantic/accent-2.css": "Imports violet; defines --accent-2-1..12, --accent-2-a1..a12 and the --accent-2-contrast values.",
     "colors-semantic/accent-3.css": "Imports plum; defines --accent-3-1..12, --accent-3-a1..a12 and the --accent-3-contrast values.",
     "colors-semantic/accent-4.css": "Imports crimson; defines --accent-4-1..12, --accent-4-a1..a12 and the --accent-4-contrast values.",
@@ -10,16 +10,17 @@
     "colors-semantic/danger.css": "Imports red; defines --danger-1..12, --danger-a1..a12 and the --danger-contrast values.",
     "colors-semantic/warning.css": "Imports amber; defines --warning-1..12, --warning-a1..a12 and the --warning-contrast values.",
     "colors-semantic/success.css": "Imports green; defines --success-1..12, --success-a1..a12 and the --success-contrast values.",
-    "colors-semantic/info.css": "Imports blue; defines --info-1..12, --info-a1..a12 and the --info-contrast values."
+    "colors-semantic/info.css": "Imports indigo; defines --info-1..12, --info-a1..a12 and the --info-contrast values."
   },
   "description": "Nowind colour theme: colors-semantic/ maps colour families from colors-raw/ to nine palettes (accent-1, accent-2, accent-3, accent-4, neutral, danger, warning, success, info); theme.colors.css maps those to usage roles. Every value uses light-dark(), so light and dark mode come from color-scheme (colors-raw/globals.css).",
   "palettes": {
     "accent-1": {
       "file": "colors-semantic/accent-1.css",
-      "family": "indigo",
+      "family": "blue",
       "use": "Main brand accent: main actions, links, focus",
-      "steps": "--accent-1-1..12 → --colors-indigo-1..12; --accent-1-a1..a12 → --colors-indigo-a1..a12",
-      "contrast": "var(--accent-1-contrast-white)"
+      "steps": "--accent-1-1..12 → --colors-blue-1..12; --accent-1-a1..a12 → --colors-blue-a1..a12",
+      "contrast": "var(--accent-1-contrast-white)",
+      "contrastNote": "Light text in both modes by choice. The library's solidLabel for blue is light then dark."
     },
     "accent-2": {
       "file": "colors-semantic/accent-2.css",
@@ -74,11 +75,11 @@
     },
     "info": {
       "file": "colors-semantic/info.css",
-      "family": "blue",
+      "family": "indigo",
       "use": "Neutral notices, tips, informational badges",
-      "steps": "--info-1..12 → --colors-blue-1..12; --info-a1..a12 → --colors-blue-a1..a12",
+      "steps": "--info-1..12 → --colors-indigo-1..12; --info-a1..a12 → --colors-indigo-a1..a12",
       "contrast": "var(--info-contrast-white)",
-      "contrastNote": "Light text in both modes by choice. The library's solidLabel for blue is light then dark."
+      "contrastNote": "Light text in both modes, as the library labels indigo."
     }
   },
   "rebrand": {
@@ -304,7 +305,7 @@
       "info"
     ],
     "rule": "Each status has the full accent role set with the status name in place of 'accent-N': --bg-danger, --component-danger-weak, --border-danger, --solid-danger, --on-solid-danger, --fg-danger-weak, plus --danger-surface, --danger-indicator and --danger-track.",
-    "info": "Info uses blue rather than the library's cyan.",
+    "info": "Info uses indigo (swapped with accent-1, which uses blue).",
     "warning": "Warning takes light text on its solid in both modes by choice, overriding the library's dark label for amber.",
     "pattern": "--{group}-{status}[-weak|-strong]"
   },
@@ -317,7 +318,7 @@
     ],
     "rule": "Four brand accents replace the old primary. accent-1 is the main one: the reset uses it for links, the focus ring, accent-color, caret and ::selection. Each accent has the full role set: --bg-accent-N, --component-accent-N-weak, --border-accent-N, --solid-accent-N, --on-solid-accent-N, --fg-accent-N-weak, --accent-N-surface …",
     "steps": "Palette steps read --accent-N-{1..12} and --accent-N-a{1..12}.",
-    "neutral": "Neutral stays slate, the library's pairing for indigo (accent-1)."
+    "neutral": "Neutral stays slate, the library's pairing for blue and indigo."
   },
   "library": {
     "name": "radix-hct-colors",
