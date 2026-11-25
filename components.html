@@ -44,7 +44,7 @@
     <div class="p-surface rounded-lg bg-bg border border-border-weak shadow-sm flex flex-col gap-group">
       <div class="flex flex-wrap items-center gap-row">
         <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong text-on-solid-accent-1 text-title-sm cursor-pointer transition-colors"><span>Primary</span></button>
-        <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border border-border bg-component-weak hover:bg-component text-fg text-title-sm cursor-pointer transition-colors"><span>Secondary</span></button>
+        <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border border-border bg-component-weak hover:bg-component active:bg-component-strong text-fg text-title-sm cursor-pointer transition-colors"><span>Secondary</span></button>
         <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border-0 bg-transparent hover:bg-component-weak text-fg text-title-sm cursor-pointer transition-colors"><span>Ghost</span></button>
         <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border border-border-accent-1 bg-component-accent-1-weak hover:bg-component-accent-1 text-fg-accent-1-weak text-title-sm cursor-pointer transition-colors"><span>Soft</span></button>
         <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border-0 bg-solid-danger hover:bg-solid-danger-strong text-on-solid-danger text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-trash"></i><span>Delete</span></button>
@@ -52,8 +52,8 @@
       </div>
 
       <div class="flex flex-wrap items-center gap-row">
-        <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border border-border bg-component-weak hover:bg-component text-fg text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-download-simple"></i><span>Download</span></button>
-        <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border border-border bg-component-weak hover:bg-component text-fg text-title-sm cursor-pointer transition-colors"><span>Continue</span><i class="icon ph ph-arrow-right"></i></button>
+        <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border border-border bg-component-weak hover:bg-component active:bg-component-strong text-fg text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-download-simple"></i><span>Download</span></button>
+        <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border border-border bg-component-weak hover:bg-component active:bg-component-strong text-fg text-title-sm cursor-pointer transition-colors"><span>Continue</span><i class="icon ph ph-arrow-right"></i></button>
         <button class="inline-flex items-center justify-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component text-fg cursor-pointer transition-colors" aria-label="Settings"><i class="icon ph ph-gear"></i></button>
         <button class="inline-flex items-center justify-center h-control px-control rounded-full border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong text-on-solid-accent-1 cursor-pointer transition-colors" aria-label="Add"><i class="icon ph-bold ph-plus"></i></button>
         <button class="inline-flex items-center justify-center h-nested px-nested gap-gutter-half rounded-xs border border-border bg-component-weak hover:bg-component text-fg text-label cursor-pointer transition-colors"><i class="icon icon-sm ph-bold ph-funnel"></i><span>Filter</span></button>
@@ -62,14 +62,14 @@
 
       <div class="flex flex-wrap items-center gap-lg">
         <div class="inline-flex" role="group" aria-label="Alignment">
-          <button class="inline-flex items-center justify-center h-control px-control rounded-none border border-border bg-component-strong text-fg cursor-pointer" aria-label="Align left" aria-pressed="true"><i class="icon ph ph-text-align-left"></i></button>
-          <button class="inline-flex items-center justify-center h-control px-control rounded-none border-y border-r border-border bg-component-weak hover:bg-component text-fg cursor-pointer transition-colors" aria-label="Align center"><i class="icon ph ph-text-align-center"></i></button>
-          <button class="inline-flex items-center justify-center h-control px-control rounded-none border-y border-r border-border bg-component-weak hover:bg-component text-fg cursor-pointer transition-colors" aria-label="Align right"><i class="icon ph ph-text-align-right"></i></button>
+          <button class="inline-flex items-center justify-center h-control px-control rounded-none border border-border bg-component-weak hover:bg-component aria-pressed:bg-component-strong active:bg-component-strong text-fg cursor-pointer transition-colors" aria-label="Align left" aria-pressed="true"><i class="icon ph ph-text-align-left"></i></button>
+          <button class="inline-flex items-center justify-center h-control px-control rounded-none border-y border-r border-border bg-component-weak hover:bg-component aria-pressed:bg-component-strong active:bg-component-strong text-fg cursor-pointer transition-colors" aria-label="Align center"><i class="icon ph ph-text-align-center"></i></button>
+          <button class="inline-flex items-center justify-center h-control px-control rounded-none border-y border-r border-border bg-component-weak hover:bg-component aria-pressed:bg-component-strong active:bg-component-strong text-fg cursor-pointer transition-colors" aria-label="Align right"><i class="icon ph ph-text-align-right"></i></button>
         </div>
         <div class="inline-flex items-center gap-3xs p-3xs rounded bg-component-weak">
-          <button class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-bg shadow-xs text-fg text-title-sm cursor-pointer"><span>Day</span></button>
-          <button class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-component text-fg-weak text-title-sm cursor-pointer transition-colors"><span>Week</span></button>
-          <button class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-component text-fg-weak text-title-sm cursor-pointer transition-colors"><span>Month</span></button>
+          <button aria-pressed="true" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-component aria-pressed:bg-bg text-fg-weak aria-pressed:text-fg text-title-sm cursor-pointer transition-colors"><span>Day</span></button>
+          <button aria-pressed="false" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-component aria-pressed:bg-bg text-fg-weak aria-pressed:text-fg text-title-sm cursor-pointer transition-colors"><span>Week</span></button>
+          <button aria-pressed="false" class="inline-flex items-center h-nested px-nested rounded-xs border-0 bg-transparent hover:bg-component aria-pressed:bg-bg text-fg-weak aria-pressed:text-fg text-title-sm cursor-pointer transition-colors"><span>Month</span></button>
         </div>
       </div>
     </div>
@@ -145,7 +145,7 @@
       </div>
       <div class="flex flex-col gap-field">
         <label for="email" class="text-label text-fg">Email</label>
-        <input id="email" type="email" class="h-control px-control rounded-sm border border-border-danger bg-bg text-control-md w-full" value="ada@" aria-invalid="true" aria-describedby="email-error">
+        <input id="email" type="email" class="h-control px-control rounded-sm border border-border hover:border-border-strong aria-invalid:border-border-danger bg-bg text-control-md w-full" value="ada@" aria-invalid="true" aria-describedby="email-error">
         <span id="email-error" class="inline-flex items-center gap-3xs text-caption text-fg-danger-weak"><i class="icon icon-sm ph-bold ph-warning-circle"></i><span>Enter a complete email address.</span></span>
       </div>
       <div class="flex flex-col md:flex-row gap-group">
@@ -189,7 +189,7 @@
         <label class="flex items-center gap-sm p-sm rounded border border-border hover:border-border-strong cursor-pointer transition-colors"><input type="radio" name="plan"><span class="flex flex-col grow"><span class="text-title-sm">Business</span><span class="text-caption text-fg-weak">Unlimited people, SSO</span></span><span class="text-data">$24</span></label>
       </fieldset>
       <div class="flex justify-end gap-row pt-sm border-t border-border-weak">
-        <button type="button" class="inline-flex items-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component text-fg text-title-sm cursor-pointer transition-colors"><span>Cancel</span></button>
+        <button type="button" class="inline-flex items-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component active:bg-component-strong text-fg text-title-sm cursor-pointer transition-colors"><span>Cancel</span></button>
         <button type="submit" class="inline-flex items-center h-control px-control rounded-sm border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong text-on-solid-accent-1 text-title-sm cursor-pointer transition-colors"><span>Save profile</span></button>
       </div>
     </form>
@@ -314,16 +314,16 @@
       </nav>
 
       <div class="flex gap-md border-b border-border-weak overflow-x-auto" role="tablist">
-        <button class="inline-flex items-center gap-gutter h-control border-0 border-b-2 border-border-accent-1-strong bg-transparent text-fg text-title-sm cursor-pointer" role="tab" aria-selected="true"><i class="icon ph ph-user"></i><span>Profile</span></button>
-        <button class="inline-flex items-center gap-gutter h-control border-0 bg-transparent text-fg-weak hover:text-fg text-title-sm cursor-pointer transition-colors" role="tab" aria-selected="false"><i class="icon ph ph-credit-card"></i><span>Billing</span></button>
-        <button class="inline-flex items-center gap-gutter h-control border-0 bg-transparent text-fg-weak hover:text-fg text-title-sm cursor-pointer transition-colors" role="tab" aria-selected="false"><i class="icon ph ph-users"></i><span>Members</span></button>
+        <button class="inline-flex items-center gap-gutter h-control border-0 border-b-2 border-transparent aria-selected:border-border-accent-1-strong bg-transparent text-fg-weak hover:text-fg aria-selected:text-fg text-title-sm cursor-pointer transition-colors" role="tab" aria-selected="true"><i class="icon ph ph-user"></i><span>Profile</span></button>
+        <button class="inline-flex items-center gap-gutter h-control border-0 border-b-2 border-transparent aria-selected:border-border-accent-1-strong bg-transparent text-fg-weak hover:text-fg aria-selected:text-fg text-title-sm cursor-pointer transition-colors" role="tab" aria-selected="false"><i class="icon ph ph-credit-card"></i><span>Billing</span></button>
+        <button class="inline-flex items-center gap-gutter h-control border-0 border-b-2 border-transparent aria-selected:border-border-accent-1-strong bg-transparent text-fg-weak hover:text-fg aria-selected:text-fg text-title-sm cursor-pointer transition-colors" role="tab" aria-selected="false"><i class="icon ph ph-users"></i><span>Members</span></button>
       </div>
 
       <div class="flex flex-col md:flex-row gap-lg">
         <ul role="list" class="flex flex-col gap-3xs p-2xs rounded-lg bg-bg-strong md:w-1/4">
-          <li><a href="#" class="flex items-center h-control px-control gap-gutter rounded-sm bg-component-accent-1-weak text-fg-accent-1-weak no-underline text-title-sm"><i class="icon ph ph-house"></i><span>Overview</span></a></li>
-          <li><a href="#" class="flex items-center h-control px-control gap-gutter rounded-sm text-fg-weak hover:text-fg hover:bg-component-weak no-underline text-title-sm transition-colors"><i class="icon ph ph-chart-line-up"></i><span>Analytics</span></a></li>
-          <li><a href="#" class="flex items-center h-control px-control gap-gutter rounded-sm text-fg-weak hover:text-fg hover:bg-component-weak no-underline text-title-sm transition-colors"><i class="icon ph ph-gear"></i><span>Settings</span></a></li>
+          <li><a href="#" aria-current="page" class="flex items-center h-control px-control gap-gutter rounded-sm text-fg-weak hover:text-fg hover:bg-component-weak aria-current:bg-component-accent-1-weak aria-current:text-fg-accent-1-weak no-underline text-title-sm transition-colors"><i class="icon ph ph-house"></i><span>Overview</span></a></li>
+          <li><a href="#" class="flex items-center h-control px-control gap-gutter rounded-sm text-fg-weak hover:text-fg hover:bg-component-weak aria-current:bg-component-accent-1-weak aria-current:text-fg-accent-1-weak no-underline text-title-sm transition-colors"><i class="icon ph ph-chart-line-up"></i><span>Analytics</span></a></li>
+          <li><a href="#" class="flex items-center h-control px-control gap-gutter rounded-sm text-fg-weak hover:text-fg hover:bg-component-weak aria-current:bg-component-accent-1-weak aria-current:text-fg-accent-1-weak no-underline text-title-sm transition-colors"><i class="icon ph ph-gear"></i><span>Settings</span></a></li>
         </ul>
 
         <div class="flex flex-col gap-sm grow">
@@ -331,9 +331,9 @@
             <span class="text-caption text-fg-weak">Showing 21–30 of 94</span>
             <nav aria-label="Pagination" class="inline-flex items-center gap-3xs">
               <a href="#" class="inline-flex items-center justify-center size-control rounded-sm text-fg-weak hover:bg-component-weak no-underline transition-colors" aria-label="Previous"><i class="icon ph ph-caret-left"></i></a>
-              <a href="#" class="inline-flex items-center justify-center size-control rounded-sm text-fg-weak hover:bg-component-weak no-underline text-numeral transition-colors">2</a>
-              <a href="#" class="inline-flex items-center justify-center size-control rounded-sm bg-solid-accent-1 text-on-solid-accent-1 no-underline text-numeral" aria-current="page">3</a>
-              <a href="#" class="inline-flex items-center justify-center size-control rounded-sm text-fg-weak hover:bg-component-weak no-underline text-numeral transition-colors">4</a>
+              <a href="#" class="inline-flex items-center justify-center size-control rounded-sm text-fg-weak hover:bg-component-weak aria-current:bg-solid-accent-1 aria-current:text-on-solid-accent-1 no-underline text-numeral transition-colors">2</a>
+              <a href="#" class="inline-flex items-center justify-center size-control rounded-sm text-fg-weak hover:bg-component-weak aria-current:bg-solid-accent-1 aria-current:text-on-solid-accent-1 no-underline text-numeral transition-colors" aria-current="page">3</a>
+              <a href="#" class="inline-flex items-center justify-center size-control rounded-sm text-fg-weak hover:bg-component-weak aria-current:bg-solid-accent-1 aria-current:text-on-solid-accent-1 no-underline text-numeral transition-colors">4</a>
               <a href="#" class="inline-flex items-center justify-center size-control rounded-sm text-fg-weak hover:bg-component-weak no-underline transition-colors" aria-label="Next"><i class="icon ph ph-caret-right"></i></a>
             </nav>
           </div>
@@ -364,7 +364,7 @@
         <input class="relief-field h-control px-control rounded-sm border border-border bg-bg text-control-md w-full" placeholder="name@example.com">
         <div class="flex gap-row">
           <button class="relief-raised-solid inline-flex items-center h-control px-control rounded-sm border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong text-on-solid-accent-1 text-title-sm cursor-pointer transition-colors"><span>Invite</span></button>
-          <button class="relief-raised inline-flex items-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component text-fg text-title-sm cursor-pointer transition-colors"><span>Later</span></button>
+          <button class="relief-raised inline-flex items-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component active:bg-component-strong text-fg text-title-sm cursor-pointer transition-colors"><span>Later</span></button>
         </div>
       </div>
       <div class="material-physical flex flex-col gap-field p-surface rounded-lg relief-ground bg-bg border border-border-weak">
@@ -373,7 +373,7 @@
         <input class="relief-field h-control px-control rounded-sm border border-border bg-bg text-control-md w-full" placeholder="name@example.com">
         <div class="flex gap-row">
           <button class="relief-raised-solid inline-flex items-center h-control px-control rounded-sm border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong text-on-solid-accent-1 text-title-sm cursor-pointer transition-colors"><span>Invite</span></button>
-          <button class="relief-raised inline-flex items-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component text-fg text-title-sm cursor-pointer transition-colors"><span>Later</span></button>
+          <button class="relief-raised inline-flex items-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component active:bg-component-strong text-fg text-title-sm cursor-pointer transition-colors"><span>Later</span></button>
         </div>
       </div>
       <div class="material-frosted flex flex-col gap-field p-surface rounded-lg relief-ground bg-bg border border-border-weak">
@@ -382,7 +382,7 @@
         <input class="relief-field h-control px-control rounded-sm border border-border bg-bg text-control-md w-full" placeholder="name@example.com">
         <div class="flex gap-row">
           <button class="relief-raised-solid inline-flex items-center h-control px-control rounded-sm border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong text-on-solid-accent-1 text-title-sm cursor-pointer transition-colors"><span>Invite</span></button>
-          <button class="relief-raised inline-flex items-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component text-fg text-title-sm cursor-pointer transition-colors"><span>Later</span></button>
+          <button class="relief-raised inline-flex items-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component active:bg-component-strong text-fg text-title-sm cursor-pointer transition-colors"><span>Later</span></button>
         </div>
       </div>
       <div class="material-glass flex flex-col gap-field p-surface rounded-lg relief-ground bg-bg border border-border-weak">
@@ -391,7 +391,7 @@
         <input class="relief-field h-control px-control rounded-sm border border-border bg-bg text-control-md w-full" placeholder="name@example.com">
         <div class="flex gap-row">
           <button class="relief-raised-solid inline-flex items-center h-control px-control rounded-sm border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong text-on-solid-accent-1 text-title-sm cursor-pointer transition-colors"><span>Invite</span></button>
-          <button class="relief-raised inline-flex items-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component text-fg text-title-sm cursor-pointer transition-colors"><span>Later</span></button>
+          <button class="relief-raised inline-flex items-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component active:bg-component-strong text-fg text-title-sm cursor-pointer transition-colors"><span>Later</span></button>
         </div>
       </div>
       <div class="material-outline flex flex-col gap-field p-surface rounded-lg relief-ground bg-bg border border-border-weak">
@@ -400,7 +400,7 @@
         <input class="relief-field h-control px-control rounded-sm border border-border bg-bg text-control-md w-full" placeholder="name@example.com">
         <div class="flex gap-row">
           <button class="relief-raised-solid inline-flex items-center h-control px-control rounded-sm border-0 bg-solid-accent-1 hover:bg-solid-accent-1-strong text-on-solid-accent-1 text-title-sm cursor-pointer transition-colors"><span>Invite</span></button>
-          <button class="relief-raised inline-flex items-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component text-fg text-title-sm cursor-pointer transition-colors"><span>Later</span></button>
+          <button class="relief-raised inline-flex items-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component active:bg-component-strong text-fg text-title-sm cursor-pointer transition-colors"><span>Later</span></button>
         </div>
       </div>
       </div>
@@ -499,7 +499,7 @@
           </div>
           <p class="text-body-sm text-fg-weak">This removes the project and its 14 files for everyone. You can't undo this.</p>
           <div class="flex justify-end gap-row">
-            <button class="inline-flex items-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component text-fg text-title-sm cursor-pointer transition-colors"><span>Cancel</span></button>
+            <button class="inline-flex items-center h-control px-control rounded-sm border border-border bg-component-weak hover:bg-component active:bg-component-strong text-fg text-title-sm cursor-pointer transition-colors"><span>Cancel</span></button>
             <button class="inline-flex items-center h-control px-control gap-gutter rounded-sm border-0 bg-solid-danger hover:bg-solid-danger-strong text-on-solid-danger text-title-sm cursor-pointer transition-colors"><i class="icon ph ph-trash"></i><span>Delete</span></button>
           </div>
         </div>
@@ -514,5 +514,15 @@
     <span class="inline-flex items-center gap-gutter"><i class="icon icon-sm ph-bold ph-moon"></i><span>Follows your system's light or dark mode.</span></span>
   </div>
 </footer>
+<script>
+  // Demo only: move aria-selected, aria-pressed and aria-current on click, so the state classes can be tried.
+  document.addEventListener("click", (e) => {
+    const t = e.target.closest('[role="tab"], [aria-pressed], nav[aria-label="Pagination"] a, ul[role="list"] a');
+    if (!t) return;
+    if (t.matches('[role="tab"]')) t.parentElement.querySelectorAll('[role="tab"]').forEach((x) => x.setAttribute("aria-selected", String(x === t)));
+    else if (t.matches("[aria-pressed]")) t.parentElement.querySelectorAll("[aria-pressed]").forEach((x) => x.setAttribute("aria-pressed", String(x === t)));
+    else { e.preventDefault(); if (/^\d+$/.test(t.textContent.trim()) || t.closest('ul[role="list"]')) { t.closest("nav, ul").querySelectorAll("a").forEach((x) => x.removeAttribute("aria-current")); t.setAttribute("aria-current", "page"); } }
+  });
+</script>
 </body>
 </html>

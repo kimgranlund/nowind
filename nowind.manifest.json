@@ -18,7 +18,7 @@
     "classes": 1324,
     "hover": 162,
     "responsive": 660,
-    "bytes": 138295
+    "bytes": 195827
   },
   "naming": "property-value, as Prewind and Tailwind: p-md, gap-lg, text-fg-weak, bg-solid-accent-1. Colour classes take the token name without --.",
   "variants": {
@@ -31,7 +31,8 @@
       "2xl": "1536px"
     },
     "responsive": "sm:, md:, lg:, xl:, 2xl: (read from the --breakpoint-* tokens) apply to layout: display, grid columns and spans, flex direction, wrap, basis, justify, align, text alignment, widths (fractions, full, auto, fit) and gaps. Spacing other than gaps, colours and type have no breakpoint variants.",
-    "none": "No focus:, active:, group- or dark: variants. Dark mode comes from the theme's light-dark() tokens."
+    "states": "active:, focus-visible:, aria-selected:, aria-current:, aria-pressed:, aria-expanded:, open: (details, popovers), aria-invalid: (also :user-invalid) and disabled: (also aria-disabled). Colors only (plus opacity and cursor for disabled), for the neutral and accent roles; aria-invalid for neutral and danger.",
+    "none": "No group- or dark: variants. Dark mode comes from the theme's light-dark() tokens."
   },
   "categories": {
     "spacing": "p-, px-, py-, pt-, pr-, pb-, pl-, m-*, -m-*, m*-auto, gap-, gap-x-, gap-y- with 0 and 3xs, 2xs, xs, sm, md, lg, xl, 2xl, 3xl, 4xl",

@@ -542,6 +542,32 @@ out.push(...materialCss);
 out.push("  @media (hover: hover) {");
 for (const c of HOVER) out.push(`    .${esc(`hover:${c}`)}:hover { ${D.get(c)}; }`);
 out.push("  }");
+
+// ---- State variants (Tailwind v4 names). Like hover, they change color only, plus opacity and cursor for disabled.
+// Interaction states cover the neutral and accent roles; invalid covers the neutral and danger roles. Each rule is a
+// class plus one state (specificity 0,2,0), so it beats the base class it pairs with.
+const roleOf = (c) => c.replace(/^(text|bg|border)-/, "");
+const inPalettes = (pals) => (c) => {
+  const r = roleOf(c);
+  const pal = r.match(/-(accent-\d|danger|warning|success|info)(-|$)/);
+  return pal ? pals.includes(pal[1]) : pals.includes("neutral");
+};
+const ROLE_STATE = HOVER.filter((c) => !/^opacity-|^cursor-/.test(c));
+const interactive = ROLE_STATE.filter(inPalettes(["neutral", "accent-1", "accent-2", "accent-3", "accent-4"]));
+const STATES = [
+  ["active", ":active", interactive],
+  ["focus-visible", ":focus-visible", ROLE_STATE.filter((c) => /^border-/.test(c)).filter(inPalettes(["neutral", "accent-1", "accent-2", "accent-3", "accent-4"]))],
+  ["aria-selected", '[aria-selected="true"]', interactive],
+  ["aria-current", ':is([aria-current]:not([aria-current="false"]))', interactive],
+  ["aria-pressed", '[aria-pressed="true"]', interactive],
+  ["aria-expanded", '[aria-expanded="true"]', interactive],
+  ["open", ":is([open], :popover-open)", interactive],
+  ["aria-invalid", ':is([aria-invalid="true"], :user-invalid)', ROLE_STATE.filter((c) => /^(text|border)-/.test(c)).filter(inPalettes(["neutral", "danger"]))],
+  ["disabled", ':is(:disabled, [aria-disabled="true"])', [...ROLE_STATE.filter(inPalettes(["neutral"])), ...[...D.keys()].filter((c) => /^opacity-|^cursor-/.test(c))]],
+];
+for (const [prefix, sel, list] of STATES) {
+  for (const c of list) out.push(`  .${esc(`${prefix}:${c}`)}${sel} { ${D.get(c)}; }`);
+}
 for (const [bp, w] of BREAKPOINTS) {
   out.push(`  @media (min-width: ${w}px) {`);
   for (const c of LAYOUT) out.push(`  ${rule(`${bp}:${c}`, D.get(c))}`);
@@ -568,7 +594,8 @@ const manifest = {
     hover: "Inside @media (hover: hover), as Tailwind v4, so taps on touch screens don't stick. hover:border-* for the border roles, hover:text-* and hover:bg-* for the colour role tokens only (bg, component, border, solid, on-solid, fg and their palette versions), hover:opacity-*, hover:cursor-*. Raw palette steps and alpha steps have no hover class.",
     breakpoints: Object.fromEntries(BREAKPOINTS.map(([b, w]) => [b, `${w}px`])),
     responsive: "sm:, md:, lg:, xl:, 2xl: (read from the --breakpoint-* tokens) apply to layout: display, grid columns and spans, flex direction, wrap, basis, justify, align, text alignment, widths (fractions, full, auto, fit) and gaps. Spacing other than gaps, colours and type have no breakpoint variants.",
-    none: "No focus:, active:, group- or dark: variants. Dark mode comes from the theme's light-dark() tokens.",
+    states: "active:, focus-visible:, aria-selected:, aria-current:, aria-pressed:, aria-expanded:, open: (details, popovers), aria-invalid: (also :user-invalid) and disabled: (also aria-disabled). Colors only (plus opacity and cursor for disabled), for the neutral and accent roles; aria-invalid for neutral and danger.",
+    none: "No group- or dark: variants. Dark mode comes from the theme's light-dark() tokens.",
   },
   categories: {
     spacing: `p-, px-, py-, pt-, pr-, pb-, pl-, m-*, -m-*, m*-auto, gap-, gap-x-, gap-y- with 0 and ${SPACE.join(", ")}`,
@@ -641,4 +668,4 @@ for (const [g] of GROUPS) {
   for (const [c, d] of list) md.push(`| \`.${c}\` | \`${d.replace(/\|/g, "\\|")}\` |`);
 }
 writeFileSync(join(root, "classes.md"), md.join("\n") + "\n");
-console.log(`nowind.css and classes.md: ${D.size} classes, ${HOVER.length} hover, ${LAYOUT.length * BREAKPOINTS.length} responsive, ${(Buffer.byteLength(css) / 1024).toFixed(1)} KiB`);
+console.log(`nowind.css and classes.md: ${D.size} classes, ${HOVER.length} hover, ${STATES.reduce((n, [, , l]) => n + l.length, 0)} state, ${LAYOUT.length * BREAKPOINTS.length} responsive, ${(Buffer.byteLength(css) / 1024).toFixed(1)} KiB`);

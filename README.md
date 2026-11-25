@@ -196,7 +196,14 @@ Hover states animate when an element has a transition class. `transition-colors`
 </div>
 ```
 
-There are no `focus:`, `active:`, `group-` or `dark:` variants. Write those states in `@layer styles`. Dark mode needs no variant: every color token switches by itself.
+- **States** (Tailwind v4 names), colors only: `active:`, `focus-visible:` (borders), `aria-selected:`, `aria-current:`, `aria-pressed:`, `aria-expanded:`, `open:` (details and popovers), `aria-invalid:` (also `:user-invalid`) and `disabled:` (also `aria-disabled`, with opacity and cursor). They cover the neutral and accent roles; `aria-invalid:` covers neutral and danger. Markup drives the look:
+
+```html
+<button role="tab" aria-selected="true"
+        class="border-b-2 border-transparent aria-selected:border-border-accent-1-strong text-fg-weak aria-selected:text-fg">Profile</button>
+```
+
+There are no `group-` or `dark:` variants. Dark mode needs no variant: every color token switches by itself.
 
 ### Light and dark
 
