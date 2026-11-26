@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- **Table cells keep their padding:** `px-control` and `px-nested` no longer drop to the icon padding on a `td` or `th`, so a badge or icon at the start of a cell lines up with its header; the showcase's Status column had sat a margin to the start of its header. The generator also wrote the trailing-edge rule twice.
+- **README, from a second consumer test** (a fresh agent with only the README and the bundle): an avatar recipe, badges and avatars may use the small sizes anywhere, `border` draws in `--border`, page widths are `max-w-text`, `max-w-form` and `container`, and table headers take `text-sm font-medium`.
 - **Table headers are `text-sm`,** as the size contract says: the type audit had read a `th` sized `h-control` as a control, so `text-base` headers passed. A sort button in a header now counts as the header, and a page's `h1` is no longer judged as a card title. The self-test breaks a copy nineteen ways.
 - **README patterns:** a table of the recipes people reach for first (card, segmented control, badge, alert, select, switch, dialog, table), the status-colour steps, the Phosphor links, when to use `state` rather than `hover:`, and that your own markup may use semantic classes. A fresh agent building a page from the README alone had guessed at each of these.
 - **The site's band stays dark in dark mode:** it carries `light`, so its inverse colours resolve as in light mode; the settings panel moved out of the band so it still follows the page's scheme.

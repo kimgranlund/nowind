@@ -73,7 +73,7 @@ Fonts load with the theme: Inter (`--font-body`), Inter Tight (`--font-heading`,
 
 ### The included reset
 
-The reset, in the `reset` layer with every selector in `:where()`, sets `box-sizing`, zero-width solid borders (so `border` sets only a width), sizes unsized headings from the type roles, keeps link underlines, gives buttons and links a focus ring and text fields an accent border, themes native form controls, transitions every interactive element and turns motion off for people who ask for less.
+The reset, in the `reset` layer with every selector in `:where()`, sets `box-sizing`, zero-width solid borders in `--border` (neutral step 7), so `border` sets only a width, sizes unsized headings from the type roles, keeps link underlines, gives buttons and links a focus ring and text fields an accent border, themes native form controls, transitions every interactive element and turns motion off for people who ask for less.
 
 ## Theming
 
@@ -108,7 +108,7 @@ The full list, with what each token is for, is in the manifests in `theme/`.
 
 Nowind starts from Tailwind's scales and then runs them through its own systems.
 
-**Tailwind's steps.** Type is Tailwind v4's scale as fractions of the base, with Tailwind's line heights: `text-xs` 0.75, `sm` 0.875, `base` 1, `lg` 1.125, `xl` 1.25, `2xl` 1.5, `3xl` 1.875, `4xl` 2.25, `5xl` 3, `6xl` 3.75. Space is Tailwind's spacing unit in t-shirt names: `3xs` 1, `2xs` 2, `xs` 3, `sm` 4, `md` 6, `lg` 8, `xl` 12, `2xl` 16, `3xl` 24, `4xl` 32 (× 0.25 of the base). Breakpoints and container widths are Tailwind's. At a 16px base every step is Tailwind's exactly.
+**Tailwind's steps.** Type is Tailwind v4's scale as fractions of the base, with Tailwind's line heights: `text-xs` 0.75, `sm` 0.875, `base` 1, `lg` 1.125, `xl` 1.25, `2xl` 1.5, `3xl` 1.875, `4xl` 2.25, `5xl` 3, `6xl` 3.75. Space is Tailwind's spacing unit in t-shirt names: `3xs` 1, `2xs` 2, `xs` 3, `sm` 4, `md` 6, `lg` 8, `xl` 12, `2xl` 16, `3xl` 24, `4xl` 32 (× 0.25 of the base). Breakpoints and the `@container` query widths are Tailwind's; page widths are `max-w-text`, `max-w-form` and `container`. At a 16px base every step is Tailwind's exactly.
 
 **Utopia's base.** The base itself is fluid, as in Prewind: a CSS `clamp()` from 14px on a phone to 18px on a wide screen, so every step grows with the viewport and keeps its ratio to the base.
 
@@ -207,7 +207,7 @@ Every example follows one size contract, enforced by the examples lint: controls
 
 ### Buttons, fields and icons
 
-There is no button or field component: each is a stack of classes, and the docs show every pattern. Wrap a label in a `<span>`, so `px-control` can find an icon at either edge and pad it one margin less.
+There is no button or field component: each is a stack of classes, and the docs show every pattern. Wrap a label in a `<span>`, so `px-control` can find an icon at either edge and pad it one margin less (table cells keep their padding, so a cell lines up with its header).
 
 ```html
 <button class="inline-flex items-center h-control px-control gap-gutter rounded-sm state border border-transparent bg-neutral-a2 fg-neutral-12 font-medium">
@@ -237,7 +237,8 @@ Each pattern is a stack of classes; the [component docs](https://kimgranlund.git
 | Pattern | Classes |
 |---|---|
 | Card | `p-md rounded-md border border-neutral-6 bg-neutral-1`; children with corners take `rounded-inner` |
-| Segmented control | Group `inline-flex h-control rounded-sm border-2 border-transparent bg-neutral-a2 role="group"`; each `<button aria-pressed>` is `h-full px-nested rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black font-medium`. Small controls (`h-nested`, `px-nested`, `size-nested`) sit only inside an inset group like this one, never beside full-size controls |
+| Segmented control | Group `<div role="group">` with `inline-flex h-control rounded-sm border-2 border-transparent bg-neutral-a2`; each `<button aria-pressed>` is `h-full px-nested rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black font-medium`. Small controls (`h-nested`, `px-nested`, `size-nested`) sit only inside an inset group like this one, never beside full-size controls; badges and avatars are not controls and use them anywhere |
+| Avatar | `inline-flex items-center justify-center size-control shrink-0 rounded-full bg-accent-1-9 fg-accent-1-contrast text-sm font-medium` with the initials; `size-nested` for a small one |
 | Badge | `inline-flex items-center h-nested px-nested rounded-full border bg-success-3 border-success-6 fg-success-11 text-sm font-medium`; an icon in it is `icon icon-sm` |
 | Alert | One line: `flex items-center gap-gutter py-xs ps-xs pe-sm rounded-md border border-info-6 bg-info-3`, icon `fg-info-11`, text `fg-info-12`. With a title: `flex flex-col gap-3xs p-xs`, the detail `text-sm fg-info-11` |
 | Select | `<select class="select-base h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 bg-neutral-1 w-full">`; `select-base` opts in to the styled picker, with its caret and check |

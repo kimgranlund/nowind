@@ -629,9 +629,8 @@ out.push("  :root[data-lens=\"on\"] .lens { -webkit-backdrop-filter: var(--_lens
 out.push("  .select-base option:checked { background: var(--component-accent-1-weak); color: var(--fg-accent-1-weak); }");
 out.push("  .h-nested > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }");
 for (const [cls, pad] of [["px-control", "--control-icon-padding"], ["px-nested", "--nested-icon-padding"]]) {
-  out.push(`  .${cls}:where(:has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(${pad}); }`);
-  out.push(`  .${cls}:where(:has(> :is(.icon, .h-nested, .size-nested):last-child)) { padding-inline-end: var(${pad}); }`);
-  out.push(`  .${cls}:where(:has(> :is(.icon, .h-nested, .size-nested):last-child)) { padding-inline-end: var(${pad}); }`);
+  out.push(`  .${cls}:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(${pad}); }`);
+  out.push(`  .${cls}:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):last-child)) { padding-inline-end: var(${pad}); }`);
 }
 // ---- Materials (after massimo-v4): a region's material paints the reliefs inside it. The nearest material wins:
 // each block is an @scope that stops at a nested material region. Flat is the default and paints nothing but casts.
