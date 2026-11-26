@@ -4,6 +4,7 @@
 
 ## 0.11.1 (2026-11-26)
 
+- **Long paths in the docs wrap** after each slash, so a manifest path in the changelog fits a phone at an 18px root.
 - **Behaviour review:** a behaviour contract (`theme/theme.behaviour.manifest.json`) says what each interactive element does in each state and how the change moves. `node scripts/review.mjs behaviour` forces hover, press and focus-visible on every interactive element over the DevTools protocol and checks that hover shows, press differs from hover, focus draws a ring, a chosen item differs from a hovered one, a disabled control doesn't react, targets meet 24px or WCAG's spacing exception, durations and easings are motion tokens, and reduced motion cuts every transition. The examples lint rejects an on-state variant without the attribute that fires it, and any class the bundle doesn't define.
 - **Fields keep their focus ring:** the reset showed a text field's focus by changing its border colour, so any border class on the field, and an invalid field box's danger border, hid it. Fields now draw the accent outline over their border, and a field box (`cursor-text`) draws it on the box.
 - **Disabled checkboxes and radios** no longer darken their border on hover.

@@ -1385,11 +1385,12 @@ def lint_examples():
 
 
 def wrap_code(text):
-    """Inline code keeps each class whole (the reset sets it nowrap), but a stack of classes may wrap between them, so
-    a long recipe in prose fits a phone. Code blocks (pre) are left as they are."""
+    """Inline code keeps each class whole (the reset sets it nowrap), but a stack of classes may wrap between them, and a
+    path after each slash, so a long recipe or path in prose fits a phone. Code blocks (pre) are left as they are."""
     parts = re.split(r"(<pre\b.*?</pre>)", text, flags=re.S)
-    tok = lambda m: '<code class="whitespace-normal">' + " ".join(f'<span class="whitespace-nowrap">{t}</span>' for t in m.group(1).split(" ")) + "</code>"
-    return "".join(p if p.startswith("<pre") else re.sub(r"<code>([^<\n]*? [^<\n]*?)</code>", tok, p) for p in parts)
+    piece = lambda t: "".join(f'<span class="whitespace-nowrap">{x}</span>' for x in re.split(r"(?<=/)(?=.)", t))
+    tok = lambda m: '<code class="whitespace-normal">' + " ".join(piece(t) for t in m.group(1).split(" ")) + "</code>"
+    return "".join(p if p.startswith("<pre") else re.sub(r"<code>([^<\n]*?[ /][^<\n]*?)</code>", tok, p) for p in parts)
 
 
 def main():
