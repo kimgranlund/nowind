@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- **Labels centre optically:** the reset trims the label inside a control, and a text-only `td` or `th` sized `h-control`, to its cap height and baseline (`text-box: trim-both cap alphabetic`), so `items-center` centres the letters rather than the line box; they had sat up to 1.7px high. Where `text-box` isn't supported the old line box stays. Wrap a badge's or control's text in a `<span>`; the examples now do.
+- **Fixes from the first Form review** (2030 findings to 38, every page at three widths and three root sizes):
+  - Docs prose stops at `max-w-text`; it had run to 95 characters a line.
+  - Rows that mix sizes on one line align baselines (`items-baseline`): the notifications header, stat figures and trends. The size contract now allows mixed sizes in a baseline-aligned row.
+  - The reset zeroes `legend` padding, which had set a fieldset's heading 2px off its column.
+  - Nothing scrolls sideways at 375px: wide docs tables scroll in their frame; inline code holding several classes wraps between classes; the specimen's value column wraps, and its measuring probe no longer widens the page.
+  - Showcase rows that overflowed at 768px with a large root (stats, pricing, the sidebar demo) stack until `lg`; the stepper truncates its labels; the loading and rating rows wrap; the description list is two columns.
+  - The colour swatch in the field example is square.
 - **Theme review harness:** `node scripts/review.mjs form` loads every site page in headless Chromium (over the DevTools protocol, no dependencies) at 375, 768 and 1280px and 12, 16 and 18px roots, runs the type, geometry and new layout audits, and writes the findings grouped by rule to `review/`. New `?audit=layout` measures page and text overflow, padding symmetry, start edges, baselines, optical centring and measure, from the font's own metrics; the rules live in `layoutContract` (geometry manifest) and `alignmentContract` (type-roles manifest). `?audit=` takes a comma list, and `form` runs all three.
 - **One sticky header on the site:** the bar (site map, search, previous and next) sticks with the band, in one `sticky top-0` wrapper; the band keeps its own dark scheme and the bar follows the page's. New `scroll-pt-{3xs…4xl}` on the space scale, beside `scroll-mt-*`; the site's pages use `scroll-pt-4xl` so a linked block clears both rows.
 - **Table cells keep their padding:** `px-control` and `px-nested` no longer drop to the icon padding on a `td` or `th`, so a badge or icon at the start of a cell lines up with its header; the showcase's Status column had sat a margin to the start of its header. The generator also wrote the trailing-edge rule twice.

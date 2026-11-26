@@ -72,10 +72,10 @@ COMPONENTS = [
         "slug": "badge", "name": "Badge", "icon": "ph-tag", "group": "Status",
         "summary": "A short label for a status or category, at the nested control size.",
         "html": """<div class="flex flex-wrap items-center gap-2xs">
-  <span class="inline-flex items-center h-nested px-nested rounded-full border gap-gutter-half bg-neutral-3 border-neutral-6 fg-neutral-11 text-sm font-medium">Draft</span>
+  <span class="inline-flex items-center h-nested px-nested rounded-full border gap-gutter-half bg-neutral-3 border-neutral-6 fg-neutral-11 text-sm font-medium"><span>Draft</span></span>
   <span class="inline-flex items-center h-nested px-nested rounded-full border gap-gutter-half bg-success-3 border-success-6 fg-success-11 text-sm font-medium"><i class="icon icon-sm ph-bold ph-check"></i><span>Paid</span></span>
   <span class="inline-flex items-center h-nested px-nested rounded-full border gap-gutter-half bg-warning-3 border-warning-6 fg-warning-11 text-sm font-medium"><i class="icon icon-sm ph-bold ph-clock"></i><span>Pending</span></span>
-  <span class="inline-flex items-center h-nested px-nested rounded-full border border-transparent bg-info-9 fg-info-contrast text-sm font-medium">New</span>
+  <span class="inline-flex items-center h-nested px-nested rounded-full border border-transparent bg-info-9 fg-info-contrast text-sm font-medium"><span>New</span></span>
 </div>""",
         "use": ["Pair a status color with its word, never color alone."],
         "avoid": ["A badge as a button; badges aren't interactive."],
@@ -286,7 +286,7 @@ COMPONENTS = [
       <i class="icon ph ph-palette fg-neutral-11" aria-hidden="true"></i>
       <span class="fg-neutral-11" aria-hidden="true">#</span>
       <input id="doc-hex" type="text" class="{BARE} tabular-nums" spellcheck="false" maxlength="6" value="0090FF">
-      <input type="color" class="size-nested p-0 rounded-xs border-0 bg-transparent cursor-pointer" value="#0090ff" aria-label="Pick a colour">
+      <input type="color" class="size-nested shrink-0 self-center p-0 rounded-xs border-0 bg-transparent cursor-pointer" value="#0090ff" aria-label="Pick a colour">
     </div>
   </div>
   <div class="flex flex-col gap-2xs">

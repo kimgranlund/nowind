@@ -479,7 +479,7 @@
       }
     ],
     "rules": [
-      "Side by side in one row, text shares a size, unless one side is a figure, a badge or a keycap.",
+      "Side by side in one row, text shares a size, unless one side is a figure, a badge or a keycap, or the row aligns baselines (items-baseline), which is how a row mixes sizes on purpose.",
       "Within a surface: title >= body >= supporting; a dialog title is larger than its buttons.",
       "An icon takes the step of the text beside it: icon with text-base, icon-sm with text-sm, icon-lg on a title row."
     ]
@@ -489,13 +489,13 @@
     "rules": [
       {
         "id": "baseline",
-        "rule": "Text side by side in one row shares a baseline, within 1px, whatever its size or face; a row of mixed sizes aligns with items-baseline, not items-center.",
-        "status": "review"
+        "rule": "Single-line text side by side in one row shares a baseline, within 1px, whatever its size or face: a row that mixes sizes aligns with items-baseline. A multi-line block beside a value, and text inside a control, stay centred.",
+        "status": "decided"
       },
       {
         "id": "centering",
-        "rule": "A label sits optically centred in its control: the middle of its cap height is within 1px of the middle of the box.",
-        "status": "review"
+        "rule": "A label sits optically centred in its control's padding box: the reset trims a control's label to its cap height and alphabetic baseline (text-box), so items-center centres the letters, not the line box. Within 1px.",
+        "status": "decided"
       },
       {
         "id": "measure",

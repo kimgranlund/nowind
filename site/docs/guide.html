@@ -56,13 +56,13 @@
         <header class="col-span-12 flex flex-col gap-field pt-page pb-xl">
             <span class="text-kicker fg-weak">Guide</span>
             <h1 class="text-display-sm text-balance">Lay out a docs page</h1>
-            <p class="text-body-md fg-weak max-w-measure">Build a documentation page from Nowind's shell lengths, its 12-column grid and four type roles. Every part on this page is the template you can copy.</p>
+            <p class="text-body-md fg-weak max-w-text">Build a documentation page from Nowind's shell lengths, its 12-column grid and four type roles. Every part on this page is the template you can copy.</p>
             <span class="text-caption fg-weak">Applies to Nowind 0.10.0</span>
           </header>
         <section id="frame" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">The frame</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <p class="text-body-md max-w-measure">Every page on the site has the same three parts, after Vignelli's Unigrid: an inverse band with the four sections, a bar under a heavy rule with where you are, search and the next page, and the page itself, a stack of blocks. The band and the bar stick to the top together; the page scrolls under them.</p>
+          <p class="text-body-md max-w-text break-words">Every page on the site has the same three parts, after Vignelli's Unigrid: an inverse band with the four sections, a bar under a heavy rule with where you are, search and the next page, and the page itself, a stack of blocks. The band and the bar stick to the top together; the page scrolls under them.</p>
           <figure class="flex flex-col min-w-0 border border-weak bg-strong">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">frame.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
@@ -78,12 +78,12 @@
   &lt;div class=&quot;grid grid-cols-12 gap-x-grid&quot;&gt;…page head, blocks…&lt;/div&gt;
 &lt;/main&gt;</code></pre>
           </figure>
-          <p class="text-body-md max-w-measure">The band is <code>h-header</code> tall and follows the base size, so it grows with the type from a phone to a wide screen. <code>scroll-pt-4xl</code> on <code>html</code> keeps a linked block clear of the band and the bar.</p>
+          <p class="text-body-md max-w-text break-words">The band is <code>h-header</code> tall and follows the base size, so it grows with the type from a phone to a wide screen. <code>scroll-pt-4xl</code> on <code>html</code> keeps a linked block clear of the band and the bar.</p>
           <aside role="note" class="flex gap-gutter p-md border-s-4 border-info-7 bg-info-3">
             <i class="icon ph ph-info fg-info-11"></i>
             <div class="flex flex-col gap-3xs min-w-0">
               <span class="text-sm font-medium fg-info-12">Note</span>
-              <p class="text-base">Keep one scroller: the page. Don't make <code>main</code> a scroll box; browsers paint very tall nested scrollers badly, and in-page links, find and the back button work against the window.</p>
+              <p class="text-base max-w-text break-words">Keep one scroller: the page. Don't make <code>main</code> a scroll box; browsers paint very tall nested scrollers badly, and in-page links, find and the back button work against the window.</p>
             </div>
           </aside>
           </div>
@@ -91,7 +91,7 @@
         <section id="grid" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">The block</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <p class="text-body-md max-w-measure">Every block hangs from a label column: its label in the first three of twelve columns, its content in the other nine. A component's example, a palette and a release in the changelog all have this one shape. Below 768px the label sits above the content.</p>
+          <p class="text-body-md max-w-text break-words">Every block hangs from a label column: its label in the first three of twelve columns, its content in the other nine. A component's example, a palette and a release in the changelog all have this one shape. Below 768px the label sits above the content.</p>
           <figure class="flex flex-col min-w-0 border border-weak bg-strong">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">block.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
@@ -101,7 +101,7 @@
   &lt;div class=&quot;col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group&quot;&gt;…&lt;/div&gt;
 &lt;/section&gt;</code></pre>
           </figure>
-          <div class="border border-weak">
+          <div class="border border-weak overflow-x-auto">
             <table class="w-full text-body-md">
               <thead class="bg-strong"><tr><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Width</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Sections</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Label</th></tr></thead>
               <tbody>
@@ -115,12 +115,12 @@
         <section id="measure" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">The reading column</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <p class="text-body-md max-w-measure">Prose stops at <code>max-w-measure</code>, 44 times the base size. The article is a <code>tier-content</code> region, so its section gaps and page padding are one and a half times the product rhythm and its measure grows with the tier's larger base size.</p>
+          <p class="text-body-md max-w-text break-words">Prose stops at <code>max-w-text</code>, 68 characters of its own font. The article is a <code>tier-content</code> region, so its section gaps and page padding are one and a half times the product rhythm and its measure grows with the tier's larger base size.</p>
           <aside role="note" class="flex gap-gutter p-md border-s-4 border-success-7 bg-success-3">
             <i class="icon ph ph-check-circle fg-success-11"></i>
             <div class="flex flex-col gap-3xs min-w-0">
               <span class="text-sm font-medium fg-success-12">Tip</span>
-              <p class="text-base">Put the tier on <code>main</code> only. The band and the section row stay in the product tier, so they look the same on every page.</p>
+              <p class="text-base max-w-text break-words">Put the tier on <code>main</code> only. The band and the section row stay in the product tier, so they look the same on every page.</p>
             </div>
           </aside>
           </div>
@@ -128,8 +128,8 @@
         <section id="type" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Four type sizes</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <p class="text-body-md max-w-measure">A docs page needs four sizes and no more. Contrast between them is the hierarchy, so they sit far apart: a display size for the page title, a heading size for sections, the base size for reading and controls, and a small size for labels and code.</p>
-          <div class="border border-weak">
+          <p class="text-body-md max-w-text break-words">A docs page needs four sizes and no more. Contrast between them is the hierarchy, so they sit far apart: a display size for the page title, a heading size for sections, the base size for reading and controls, and a small size for labels and code.</p>
+          <div class="border border-weak overflow-x-auto">
             <table class="w-full text-body-md">
               <thead class="bg-strong"><tr><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Size</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Classes</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Used for</th></tr></thead>
               <tbody>
@@ -140,21 +140,21 @@
               </tbody>
             </table>
           </div>
-          <p class="text-body-md max-w-measure">Weight, not size, separates a subheading from prose: <code>text-subtitle</code> is the base size at a semibold weight.</p>
+          <p class="text-body-md max-w-text break-words">Weight, not size, separates a subheading from prose: <code>text-subtitle</code> is the base size at a semibold weight.</p>
           </div>
         </section>
         <section id="parts" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Callouts, code and tables</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <p class="text-body-md max-w-measure">A callout is a coloured rule on the left, a word and a sentence. The colour codes the kind and the word says it, so the meaning never depends on colour alone.</p>
+          <p class="text-body-md max-w-text break-words">A callout is a coloured rule on the left, a word and a sentence. The colour codes the kind and the word says it, so the meaning never depends on colour alone.</p>
           <aside role="note" class="flex gap-gutter p-md border-s-4 border-warning-7 bg-warning-3">
             <i class="icon ph ph-warning fg-warning-11"></i>
             <div class="flex flex-col gap-3xs min-w-0">
               <span class="text-sm font-medium fg-warning-12">Warning</span>
-              <p class="text-base">A callout interrupts the reader. Use at most one per section.</p>
+              <p class="text-base max-w-text break-words">A callout interrupts the reader. Use at most one per section.</p>
             </div>
           </aside>
-          <p class="text-body-md max-w-measure">A code block is a figure: the file name and language in a caption, the code in a <code>pre</code> that scrolls sideways rather than wrapping. Tables wrap their cells instead of scrolling, so the code block is the only thing on the page that scrolls sideways.</p>
+          <p class="text-body-md max-w-text break-words">A code block is a figure: the file name and language in a caption, the code in a <code>pre</code> that scrolls sideways rather than wrapping. Tables wrap their cells instead of scrolling, so the code block is the only thing on the page that scrolls sideways.</p>
           <figure class="flex flex-col min-w-0 border border-weak bg-strong">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">callout.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
@@ -172,24 +172,24 @@
         <section id="menu" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Search</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <p class="text-body-md max-w-measure">Press ⌘K or Ctrl+K, or <code>/</code>, on any page to search every page, block heading, component and class. The index, <code>search.json</code>, is written with the pages, so it never falls behind.</p>
+          <p class="text-body-md max-w-text break-words">Press ⌘K or Ctrl+K, or <code>/</code>, on any page to search every page, block heading, component and class. The index, <code>search.json</code>, is written with the pages, so it never falls behind.</p>
           <aside role="note" class="flex gap-gutter p-md border-s-4 border-info-7 bg-info-3">
             <i class="icon ph ph-info fg-info-11"></i>
             <div class="flex flex-col gap-3xs min-w-0">
               <span class="text-sm font-medium fg-info-12">Note</span>
-              <p class="text-base">The search script is the only script every page loads. Without it the band, the section row and every link still work.</p>
+              <p class="text-base max-w-text break-words">The search script is the only script every page loads. Without it the band, the section row and every link still work.</p>
             </div>
           </aside>
           </div>
         </section>
         <nav aria-label="Previous and next page" class="col-span-12 grid grid-cols-2 gap-grid py-page border-t border-strong">
-          <a href="docs-home.html" class="flex flex-col gap-3xs p-surface border border-weak hover:border-strong no-underline transition-colors">
+          <a href="docs-home.html" class="flex flex-col gap-3xs min-w-0 p-surface border border-weak hover:border-strong no-underline transition-colors">
             <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><i class="icon icon-sm ph-bold ph-arrow-left"></i><span>Previous</span></span>
-            <span class="text-subtitle fg-accent-1-weak">Overview</span>
+            <span class="text-subtitle fg-accent-1-weak break-words max-w-full">Overview</span>
           </a>
-          <a href="colour.html" class="flex flex-col items-end gap-3xs p-surface border border-weak hover:border-strong no-underline text-end transition-colors">
+          <a href="colour.html" class="flex flex-col items-end gap-3xs min-w-0 p-surface border border-weak hover:border-strong no-underline text-end transition-colors">
             <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><span>Next</span><i class="icon icon-sm ph-bold ph-arrow-right"></i></span>
-            <span class="text-subtitle fg-accent-1-weak">Colour</span>
+            <span class="text-subtitle fg-accent-1-weak break-words max-w-full">Colour</span>
           </a>
         </nav>
   </div>

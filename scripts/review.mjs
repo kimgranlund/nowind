@@ -3,6 +3,7 @@
 // rendered audit finds. No dependencies: it drives the browser over the DevTools protocol with Node's own WebSocket.
 //
 // Usage: node scripts/review.mjs [domain] [--pages a,b] [--widths 375,768] [--roots 12,16] [--quick]
+//        node scripts/review.mjs --self-test   break the showcase seven ways and confirm the layout audit catches each
 //   domain  form (type, geometry, layout; the default)
 //   --quick one width (1280) and one root (16)
 // Writes review/<domain>.json (every finding with its page, width and root) and review/<domain>.md (grouped by rule,
@@ -46,6 +47,29 @@ function chromePath() {
   return null;
 }
 
+const SELF_TEST = `(async () => {
+  await document.fonts.ready;
+  const has = (k) => window.nowindRunLayoutAudit().some((f) => f.rule === k);
+  const host = document.querySelector("#data .p-md.rounded-md");
+  const add = (html) => { const d = document.createElement("div"); d.innerHTML = html; host.append(d); return () => d.remove(); };
+  const breaks = {
+    "page-overflow": () => add('<div style="width:3000px">x</div>'),
+    "text-overflow": () => add('<p style="width:60px;white-space:nowrap">This text will not wrap here</p>'),
+    "padding-symmetry": () => { host.style.paddingInlineEnd = "40px"; return () => host.style.paddingInlineEnd = ""; },
+    "start-edge": () => add('<p>One line of text</p><p class="ps-xs">Two indented</p><p>Three</p>'),
+    "baseline": () => add('<div class="flex items-center gap-xs"><span class="text-3xl">Big</span><span class="text-xs">small</span></div>'),
+    "centering": () => { const st = document.createElement("style"); st.textContent = ".h-control{padding-top:8px!important}"; document.head.append(st); return () => st.remove(); },
+    "measure": () => add('<p style="width:1200px">' + "Long running text. ".repeat(20) + "</p>"),
+  };
+  const out = {};
+  for (const [k, f] of Object.entries(breaks)) {
+    if (has(k)) { out[k] = "already reported before the break"; continue; }
+    const undo = f(); await new Promise((r) => setTimeout(r, 60));
+    out[k] = has(k) ? "caught" : "missed"; undo();
+  }
+  return JSON.stringify(out);
+})()`;
+
 async function up() { try { return (await fetch(`${BASE}/site/index.html`)).ok; } catch { return false; } }
 
 async function main() {
@@ -77,6 +101,20 @@ async function main() {
   const { sessionId } = await send("Target.attachToTarget", { targetId, flatten: true });
   await send("Page.enable", {}, sessionId);
   await send("Runtime.enable", {}, sessionId);
+  if (args.includes("--self-test")) {
+    // Break the showcase seven ways and confirm the layout audit reports each rule.
+    await send("Emulation.setDeviceMetricsOverride", { width: 768, height: 900, deviceScaleFactor: 1, mobile: false }, sessionId);
+    const loaded = once("Page.loadEventFired", sessionId);
+    await send("Page.navigate", { url: `${BASE}/site/components.html?audit=layout` }, sessionId);
+    await loaded;
+    const { result } = await send("Runtime.evaluate", { awaitPromise: true, returnByValue: true, expression: SELF_TEST }, sessionId);
+    const res = JSON.parse(result.value);
+    ws.close(); chrome.kill(); if (server) server.kill();
+    for (const [rule, v] of Object.entries(res)) console.log(`${v === "caught" ? "PASS" : "FAIL"}  layout self-test "${rule}" ${v}`);
+    const bad = Object.values(res).some((v) => v !== "caught");
+    console.log(bad ? "review self-test: a break went unreported" : "review self-test: every break was caught");
+    process.exit(bad ? 1 : 0);
+  }
   const { audits, globals } = DOMAINS[domain];
   const findings = [];
   const total = pages.length * widths.length * roots.length;

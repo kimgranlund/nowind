@@ -207,7 +207,7 @@ Every example follows one size contract, enforced by the examples lint: controls
 
 ### Buttons, fields and icons
 
-There is no button or field component: each is a stack of classes, and the docs show every pattern. Wrap a label in a `<span>`, so `px-control` can find an icon at either edge and pad it one margin less (table cells keep their padding, so a cell lines up with its header).
+There is no button or field component: each is a stack of classes, and the docs show every pattern. Wrap a label in a `<span>`, so `px-control` can find an icon at either edge and pad it one margin less, and so the reset can trim it to its cap height and centre the letters (table cells keep their padding, so a cell lines up with its header).
 
 ```html
 <button class="inline-flex items-center h-control px-control gap-gutter rounded-sm state border border-transparent bg-neutral-a2 fg-neutral-12 font-medium">

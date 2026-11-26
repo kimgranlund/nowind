@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="../nowind.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
-<style>
+<style data-page-css>
   *, *::before, *::after { box-sizing: border-box; }
   html { background: var(--bg); color: var(--fg); }
   body {
@@ -98,7 +98,7 @@
     gap: var(--space-sm); align-items: baseline; padding: var(--space-xs) 0; border-bottom: 1px solid var(--border-weak);
   }
   .row .sample { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .row .px { text-align: right; font-family: var(--font-mono); font-size: var(--mono-sm); color: var(--fg-weak); }
+  .row .px { text-align: right; font-family: var(--font-mono); font-size: var(--mono-sm); color: var(--fg-weak); white-space: normal; overflow-wrap: anywhere; }
   .row.wrap .sample { white-space: normal; }
   .bar { height: 12px; background: var(--solid-accent-1); border-radius: 2px; }
   .bar-wrap { display: flex; align-items: center; min-width: 0; }
@@ -248,9 +248,9 @@ function section(id, kicker, title, intro) {
   return s;
 }
 
-const probe = el("div", { style: "position:absolute;visibility:hidden;pointer-events:none" });
+const probe = el("div", { style: "position:fixed;inset-inline-start:0;top:0;inline-size:0;visibility:hidden;pointer-events:none;overflow:hidden;contain:strict" });
 document.body.append(probe);
-const px = (name) => { probe.style.marginLeft = `var(${name})`; return parseFloat(getComputedStyle(probe).marginLeft); };
+const px = (name) => { probe.style.marginLeft = `var(${name})`; const v = parseFloat(getComputedStyle(probe).marginLeft); probe.style.marginLeft = "0"; return v; };
 const fmt = (n) => (Math.round(n * 10) / 10).toString() + "px";
 
 const live = [];

@@ -56,12 +56,12 @@
         <header class="col-span-12 flex flex-col gap-field pt-page pb-xl">
             <span class="text-kicker fg-weak">Docs</span>
             <h1 class="text-display-sm text-balance">Materials</h1>
-            <p class="text-body-md fg-weak max-w-measure">A material is how a region is painted: flat, lit, frosted, clear glass or outlined. It never changes a length, so switching material moves nothing. Set it once on a region; every part inside paints itself by what it is.</p>
+            <p class="text-body-md fg-weak max-w-text">A material is how a region is painted: flat, lit, frosted, clear glass or outlined. It never changes a length, so switching material moves nothing. Set it once on a region; every part inside paints itself by what it is.</p>
           </header>
         <section id="materials" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Materials</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <div class="border border-weak">
+          <div class="border border-weak overflow-x-auto">
             <table class="w-full text-body-md">
               <thead class="bg-strong"><tr><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Class</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">What it does</th></tr></thead>
               <tbody>
@@ -78,7 +78,7 @@
         <section id="reliefs" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Parts</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <p class="text-body-md max-w-measure">Set a material on a region with material-physical, material-frosted, material-glass or material-outline (material-flat resets it). Parts say what they are with relief-raised (buttons), relief-raised-solid (primary buttons), relief-recessed (tracks, wells), relief-field (inputs), relief-etched, relief-ground (cards) and relief-overlay (popovers, dialogs). The nearest material wins: the classes are @scope rules that stop at a nested material.</p>
+          <p class="text-body-md max-w-text break-words">Set a material on a region with material-physical, material-frosted, material-glass or material-outline (material-flat resets it). Parts say what they are with relief-raised (buttons), relief-raised-solid (primary buttons), relief-recessed (tracks, wells), relief-field (inputs), relief-etched, relief-ground (cards) and relief-overlay (popovers, dialogs). The nearest material wins: the classes are @scope rules that stop at a nested material.</p>
           <figure class="flex flex-col min-w-0 border border-weak bg-strong">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">material.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
@@ -93,8 +93,8 @@
         <section id="glass" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Glass and the lens</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <p class="text-body-md max-w-measure">Lit, and raised parts, cards and overlays are clear glass after Apple&#x27;s Liquid Glass: an 18% face over a 0.5px blur, no gloss band, and the light catching the rim as two thin crescents on opposite corners. Add lens for refraction.</p>
-          <p class="text-body-md max-w-measure">The lens class refracts the backdrop of a glass part through an SVG displacement filter: site/site.js draws a map per element at its size and corner radius (a rounded-edge bend along the rim, a slight overall magnification, an R/G/B fringe) and sets data-lens=&quot;on&quot; on the root in Chromium, the only engine that applies an SVG filter in backdrop-filter. Elsewhere glass keeps its blur. A page outside this site supplies the filter itself.</p>
+          <p class="text-body-md max-w-text break-words">Lit, and raised parts, cards and overlays are clear glass after Apple&#x27;s Liquid Glass: an 18% face over a 0.5px blur, no gloss band, and the light catching the rim as two thin crescents on opposite corners. Add lens for refraction.</p>
+          <p class="text-body-md max-w-text break-words">The lens class refracts the backdrop of a glass part through an SVG displacement filter: site/site.js draws a map per element at its size and corner radius (a rounded-edge bend along the rim, a slight overall magnification, an R/G/B fringe) and sets data-lens=&quot;on&quot; on the root in Chromium, the only engine that applies an SVG filter in backdrop-filter. Elsewhere glass keeps its blur. A page outside this site supplies the filter itself.</p>
           <figure class="flex flex-col min-w-0 border border-weak bg-strong">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">lens.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
@@ -107,7 +107,7 @@
             <i class="icon ph ph-info fg-info-11"></i>
             <div class="flex flex-col gap-3xs min-w-0">
               <span class="text-sm font-medium fg-info-12">Note</span>
-              <p class="text-base">Only Chromium applies an SVG filter behind an element. Elsewhere glass keeps its blur, so text over it must read without the lens.</p>
+              <p class="text-base max-w-text break-words">Only Chromium applies an SVG filter behind an element. Elsewhere glass keeps its blur, so text over it must read without the lens.</p>
             </div>
           </aside>
           </div>
@@ -115,7 +115,7 @@
         <section id="backdrops" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Backdrops</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <p class="text-body-md max-w-measure">Glass needs something behind it to bend. <code>bg-dots</code> paints a dot grid in <code>currentColor</code>, spaced by <code>bg-dots-sm</code>, <code>-md</code> or <code>-lg</code>: the showcase sets its materials on one.</p>
+          <p class="text-body-md max-w-text break-words">Glass needs something behind it to bend. <code>bg-dots</code> paints a dot grid in <code>currentColor</code>, spaced by <code>bg-dots-sm</code>, <code>-md</code> or <code>-lg</code>: the showcase sets its materials on one.</p>
           <figure class="flex flex-col min-w-0 border border-weak bg-strong">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">dots.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
@@ -125,13 +125,13 @@
           </div>
         </section>
         <nav aria-label="Previous and next page" class="col-span-12 grid grid-cols-2 gap-grid py-page border-t border-strong">
-          <a href="states.html" class="flex flex-col gap-3xs p-surface border border-weak hover:border-strong no-underline transition-colors">
+          <a href="states.html" class="flex flex-col gap-3xs min-w-0 p-surface border border-weak hover:border-strong no-underline transition-colors">
             <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><i class="icon icon-sm ph-bold ph-arrow-left"></i><span>Previous</span></span>
-            <span class="text-subtitle fg-accent-1-weak">States and variants</span>
+            <span class="text-subtitle fg-accent-1-weak break-words max-w-full">States and variants</span>
           </a>
-          <a href="reference.html" class="flex flex-col items-end gap-3xs p-surface border border-weak hover:border-strong no-underline text-end transition-colors">
+          <a href="reference.html" class="flex flex-col items-end gap-3xs min-w-0 p-surface border border-weak hover:border-strong no-underline text-end transition-colors">
             <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><span>Next</span><i class="icon icon-sm ph-bold ph-arrow-right"></i></span>
-            <span class="text-subtitle fg-accent-1-weak">Page grid and shell</span>
+            <span class="text-subtitle fg-accent-1-weak break-words max-w-full">Page grid and shell</span>
           </a>
         </nav>
   </div>

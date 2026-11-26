@@ -217,6 +217,8 @@ document.querySelectorAll("[data-glass-slider]").forEach((box) => {
 
 // Audits: ?audit= takes one name or a comma list (type, geometry, layout); "form" runs all three.
 window.nowindAudits = () => (new URLSearchParams(location.search).get("audit") || "").split(",").flatMap((a) => a === "form" ? ["type", "geometry", "layout"] : [a]);
+// A page whose own stylesheet carries data-page-css (the specimen) is outside Nowind's class rules: the audits check only its page overflow.
+window.nowindOwnCSS = () => !!document.querySelector("style[data-page-css]");
 
 // Type audit (open any page with ?audit=type): checks the rendered examples against the size contract's three rules
 // (sizeContract.rules in theme/theme.type-roles.manifest.json) and logs what breaks them; window.nowindTypeAudit holds
@@ -227,6 +229,7 @@ window.nowindAudits = () => (new URLSearchParams(location.search).get("audit") |
   if (!window.nowindAudits().includes("type")) return;
   const run = () => {
     const out = [];
+    if (window.nowindOwnCSS()) { window.nowindTypeAudit = out; return out; }
     const px = (el) => parseFloat(getComputedStyle(el).fontSize);
     const F = (el) => parseFloat(getComputedStyle(el).getPropertyValue("--F")) || px(el);
     const where = (el) => { const s = el.closest("section[id]"); return `#${s ? s.id : "?"} ${el.tagName.toLowerCase()}.${[...el.classList].slice(0, 4).join(".")} “${el.textContent.trim().slice(0, 28)}”`; };
@@ -242,7 +245,7 @@ window.nowindAudits = () => (new URLSearchParams(location.search).get("audit") |
     for (const row of document.querySelectorAll("main *")) {
       if (!inScope(row)) continue;
       const cs = getComputedStyle(row);
-      if (!cs.display.includes("flex") || cs.flexDirection !== "row" || isControl(row) || row.closest("button, a, summary, [role=option], [role=menuitem]")) continue;
+      if (!cs.display.includes("flex") || cs.flexDirection !== "row" || cs.alignItems === "baseline" || isControl(row) || row.closest("button, a, summary, [role=option], [role=menuitem]")) continue;
       const kids = [...row.children].filter((k) => texty(k) && !isControl(k) && !isMark(k) && getComputedStyle(k).display !== "none");
       const sizes = [...new Set(kids.map((k) => px(k).toFixed(1)))];
       if (kids.length > 1 && sizes.length > 1) out.push({ rule: "row", where: where(row), detail: kids.map((k) => `${px(k).toFixed(1)}px “${k.textContent.trim().slice(0, 16)}”`).join(" | ") });
@@ -290,6 +293,7 @@ window.nowindAudits = () => (new URLSearchParams(location.search).get("audit") |
   if (!window.nowindAudits().includes("geometry")) return;
   const run = () => {
     const out = [];
+    if (window.nowindOwnCSS()) { window.nowindGeometryAudit = out; return out; }
     const R = (e) => e.getBoundingClientRect();
     const cs = (e) => getComputedStyle(e);
     const px = (v) => parseFloat(v) || 0;
@@ -320,7 +324,7 @@ window.nowindAudits = () => (new URLSearchParams(location.search).get("audit") |
       }
       // Insets: a sized part at the end of a rounded flex row container faces three edges evenly.
       const p = e.parentElement;
-      if (p && e === p.lastElementChild && e.matches(".size-nested, .size-control, .h-full, kbd") && radius(p) > 0 && cs(p).display.includes("flex") && cs(p).flexDirection === "row" && painted(p)) {
+      if (p && e === p.lastElementChild && e.matches(".size-nested, .size-control, .h-full, kbd") && !(p.firstElementChild && Math.abs(R(p.firstElementChild).top - r.top) > r.height / 2) && radius(p) > 0 && cs(p).display.includes("flex") && cs(p).flexDirection === "row" && painted(p)) {
         const pr = R(p), bw = px(cs(p).borderTopWidth);
         const centred = cs(p).alignItems === "center" || cs(p).alignItems === "normal";
         const gaps = centred ? [r.top - pr.top - bw, pr.bottom - r.bottom - bw, pr.right - r.right - bw] : [r.top - pr.top - bw, pr.right - r.right - bw];
@@ -333,7 +337,7 @@ window.nowindAudits = () => (new URLSearchParams(location.search).get("audit") |
           if (!n.textContent.trim()) continue;
           let host = n.parentElement;
           while (host && host !== e && !painted(host)) host = host.parentElement;
-          if (host !== e || n.parentElement.closest("code, kbd, input, select, textarea")) continue;
+          if (host !== e || n.parentElement.closest("code, kbd, input, select, textarea, .truncate") || (() => { for (let a = n.parentElement; a && a !== e; a = a.parentElement) if (/auto|scroll/.test(cs(a).overflowX)) return true; return false; })()) continue;
           const rg = document.createRange(); rg.selectNodeContents(n); const t = rg.getBoundingClientRect();
           if (!t.width) continue;
           const s0 = t.left - r.left - px(c.borderLeftWidth), en = r.right - t.right - px(c.borderRightWidth);
@@ -344,7 +348,7 @@ window.nowindAudits = () => (new URLSearchParams(location.search).get("audit") |
       if (e.matches(".aspect-square, .size-nested, .size-control") && Math.abs(r.width - r.height) > 1) out.push({ rule: "shape", where: where(e), detail: `${r.width.toFixed(1)}×${r.height.toFixed(1)}px` });
       // Clipping.
       if (c.overflow === "hidden" || c.overflowY === "hidden") {
-        if (e.scrollHeight > e.clientHeight + 1 || e.scrollWidth > e.clientWidth + 1) out.push({ rule: "clipping", where: where(e), detail: `content ${e.scrollWidth}×${e.scrollHeight} in ${e.clientWidth}×${e.clientHeight}` });
+        if (e.scrollHeight > e.clientHeight + 1 || (e.scrollWidth > e.clientWidth + 1 && c.textOverflow !== "ellipsis")) out.push({ rule: "clipping", where: where(e), detail: `content ${e.scrollWidth}×${e.scrollHeight} in ${e.clientWidth}×${e.clientHeight}` });
       }
       // Heights: full-size controls side by side.
       if (c.display.includes("flex") && c.flexDirection === "row" && !e.matches(".flex-wrap")) {
@@ -378,7 +382,7 @@ window.nowindAudits = () => (new URLSearchParams(location.search).get("audit") |
     const skip = (e) => !!e.closest(".scope, [data-semantic-demo], dialog:not([open]), [popover]:not(:popover-open), script, style, template, svg, pre");
     const ctx = document.createElement("canvas").getContext("2d");
     const metrics = (el) => { const c = cs(el); ctx.font = `${c.fontStyle} ${c.fontWeight} ${c.fontSize} ${c.fontFamily}`; const m = ctx.measureText("H"); return { asc: m.fontBoundingBoxAscent, desc: m.fontBoundingBoxDescent, cap: m.actualBoundingBoxAscent }; };
-    const firstText = (el) => { const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT); for (let n = w.nextNode(); n; n = w.nextNode()) if (n.textContent.trim() && !n.parentElement.closest(".icon, [aria-hidden=true], .sr-only")) return n; return null; };
+    const firstText = (el) => { const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT); for (let n = w.nextNode(); n; n = w.nextNode()) if (n.textContent.trim() && !n.parentElement.closest(".icon, [aria-hidden=true], .sr-only, select, option, datalist, template")) return n; return null; };
     const lineRect = (n) => { const rg = document.createRange(); rg.selectNodeContents(n); return rg.getClientRects()[0]; };
     const baseline = (n) => { const r = lineRect(n); return r ? r.top + metrics(n.parentElement).asc : null; };
     const isControl = (e) => e.matches("button, a.h-control, a.size-control, select, input, textarea, summary, .h-control, .h-nested, .size-control, .size-nested, [role=tab], [role=option], [role=menuitem]");
@@ -388,11 +392,11 @@ window.nowindAudits = () => (new URLSearchParams(location.search).get("audit") |
       const wide = [...document.querySelectorAll("body *")].filter((e) => visible(e) && R(e).right > vw + 1 && !e.closest("[class*=overflow-x-auto], [class*=overflow-auto], [class*=overflow-hidden], dialog:not([open]), [popover]:not(:popover-open)")).sort((a, b) => R(b).right - R(a).right);
       out.push({ rule: "page-overflow", where: wide[0] ? where(wide[0]) : "document", detail: `page ${sw}px wide in a ${vw}px viewport` });
     }
-    const all = [...document.querySelectorAll("body *")].filter((e) => !skip(e) && visible(e));
+    const all = window.nowindOwnCSS() ? [] : [...document.querySelectorAll("body *")].filter((e) => !skip(e) && visible(e));
     for (const e of all) {
       const c = cs(e), r = R(e);
       // text-overflow: own text spilling past its box, where the box neither scrolls nor truncates.
-      if ([...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim()) && c.overflowX === "visible" && c.textOverflow !== "ellipsis" && !e.matches("input, textarea, select, option, code, kbd") && !e.closest("[class*=overflow-x-auto], [class*=overflow-auto], .truncate")) {
+      if ([...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim()) && c.overflowX === "visible" && c.textOverflow !== "ellipsis" && !e.matches("input, textarea, select, option, code, kbd, .size-control, .size-nested") && !e.closest("[class*=overflow-x-auto], [class*=overflow-auto], .truncate")) {
         for (const n of e.childNodes) {
           if (n.nodeType !== 3 || !n.textContent.trim()) continue;
           const rg = document.createRange(); rg.selectNodeContents(n);
@@ -411,7 +415,8 @@ window.nowindAudits = () => (new URLSearchParams(location.search).get("audit") |
       }
       // baseline: text children side by side in a row, centred rather than baseline-aligned.
       if (c.display.includes("flex") && c.flexDirection === "row" && !isControl(e) && !e.closest("button, a, summary, [role=option], [role=menuitem]")) {
-        const kids = [...e.children].filter((k) => visible(k) && !k.matches(".icon, img, svg, input, select, textarea, progress, meter") && !isControl(k) && firstText(k));
+        const oneLine = (k) => { const n = firstText(k); return R(k).height < 1.6 * (px(cs(n.parentElement).lineHeight) || px(cs(n.parentElement).fontSize) * 1.5); };
+        const kids = [...e.children].filter((k) => visible(k) && !k.matches(".icon, img, svg, input, select, textarea, progress, meter") && !isControl(k) && firstText(k) && !firstText(k).parentElement.closest("button, a, select, summary, [role=option], [role=menuitem], .h-control, .h-nested, .size-control, .size-nested") && oneLine(k));
         const lines = kids.map((k) => { const n = firstText(k); return { k, b: baseline(n), size: cs(n.parentElement).fontSize, fam: cs(n.parentElement).fontFamily, top: R(k).top }; }).filter((x) => x.b !== null);
         const same = (a, b) => Math.abs(R(a.k).top - R(b.k).top) < R(a.k).height && Math.abs(R(a.k).top - R(b.k).top) < R(b.k).height;
         for (let i = 1; i < lines.length; i++) {
@@ -424,10 +429,11 @@ window.nowindAudits = () => (new URLSearchParams(location.search).get("audit") |
       // centering: a single-line label's cap height centred in its control.
       if (e.matches(".h-control, .h-nested, button.size-control, a.size-control") && !e.matches("input, select, textarea")) {
         const n = firstText(e);
-        if (n && lineRect(n) && document.createRange && (() => { const rg = document.createRange(); rg.selectNodeContents(n); return rg.getClientRects().length === 1; })()) {
+        if (n && n.parentElement.closest(".h-control, .h-nested, .size-control, .size-nested") === e && lineRect(n) && document.createRange && (() => { const rg = document.createRange(); rg.selectNodeContents(n); return rg.getClientRects().length === 1; })()) {
           const m = metrics(n.parentElement), b = baseline(n);
-          const mid = b - m.cap / 2, box = r.top + r.height / 2;
-          if (Math.abs(mid - box) > 1) out.push({ rule: "centering", where: where(e), detail: `cap middle ${(mid - box).toFixed(1)}px ${mid > box ? "below" : "above"} the box middle` });
+          const top = r.top + px(c.borderTopWidth), bottom = r.bottom - px(c.borderBottomWidth);
+          const mid = b - m.cap / 2, box = (top + bottom) / 2;
+          if (Math.abs(mid - box) > 1.25) out.push({ rule: "centering", where: where(e), detail: `cap middle ${(mid - box).toFixed(1)}px ${mid > box ? "below" : "above"} the box middle` });
         }
       }
       // measure: running text wider than max-w-text (68ch of its own font).
@@ -438,7 +444,8 @@ window.nowindAudits = () => (new URLSearchParams(location.search).get("audit") |
       }
       // start-edge: block children in one column whose text starts off the column's shared edge.
       if ((c.display === "block" || (c.display.includes("flex") && c.flexDirection === "column")) && e.children.length >= 3 && !e.matches("ul, ol, table, tbody, thead, tr, nav")) {
-        const rows = [...e.children].filter((k) => visible(k) && !isControl(k) && cs(k).position !== "absolute").map((k) => {
+        const textBlock = (k) => k.matches("p, h1, h2, h3, h4, h5, h6, span, label, legend, dt, dd, small, strong, em, a, li") && !k.querySelector("div, p, ul, ol, table, figure");
+        const rows = [...e.children].filter((k) => visible(k) && !isControl(k) && textBlock(k) && cs(k).position !== "absolute").map((k) => {
           const lead = k.firstElementChild;
           if (lead && lead.matches(".icon, img, svg, input, .rounded-full, .size-control, .size-nested, kbd")) return null;
           const n = firstText(k); if (!n) return null;

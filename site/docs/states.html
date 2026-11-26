@@ -56,12 +56,12 @@
         <header class="col-span-12 flex flex-col gap-field pt-page pb-xl">
             <span class="text-kicker fg-weak">Docs</span>
             <h1 class="text-display-sm text-balance">States and variants</h1>
-            <p class="text-body-md fg-weak max-w-measure">A variant applies a class only in a state: <code>hover:bg-neutral-4</code>, <code>selected:border-accent-1-8</code>, <code>md:flex</code>. Each variant covers a fixed set of classes, mostly colours, so the stylesheet stays one file. The markup drives the look: set the ARIA attribute and the class follows.</p>
+            <p class="text-body-md fg-weak max-w-text">A variant applies a class only in a state: <code>hover:bg-neutral-4</code>, <code>selected:border-accent-1-8</code>, <code>md:flex</code>. Each variant covers a fixed set of classes, mostly colours, so the stylesheet stays one file. The markup drives the look: set the ARIA attribute and the class follows.</p>
           </header>
         <section id="states" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">State variants</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <div class="border border-weak">
+          <div class="border border-weak overflow-x-auto">
             <table class="w-full text-body-md">
               <thead class="bg-strong"><tr><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Variant</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Matches</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Applies to</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Classes</th></tr></thead>
               <tbody>
@@ -92,8 +92,8 @@
         <section id="groups" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Group variants</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <p class="text-body-md max-w-measure">Put <code>group</code> on a parent; a child reacts to its state. These cover opacity, visibility, rotation and the text roles.</p>
-          <div class="border border-weak">
+          <p class="text-body-md max-w-text break-words">Put <code>group</code> on a parent; a child reacts to its state. These cover opacity, visibility, rotation and the text roles.</p>
+          <div class="border border-weak overflow-x-auto">
             <table class="w-full text-body-md">
               <thead class="bg-strong"><tr><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Variant</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">When</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Classes</th></tr></thead>
               <tbody>
@@ -108,13 +108,13 @@
         <section id="breakpoints" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Breakpoints</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <p class="text-body-md max-w-measure">sm:, md:, lg:, xl:, 2xl: (read from the --breakpoint-* tokens) apply to layout: display, grid columns and spans, flex direction, wrap, basis, justify, align, text alignment, widths, inline and all-side padding and gaps. Margins, colours, type, position, heights and overflow have no breakpoint variants.</p>
+          <p class="text-body-md max-w-text break-words">sm:, md:, lg:, xl:, 2xl: (read from the --breakpoint-* tokens) apply to layout: display, grid columns and spans, flex direction, wrap, basis, justify, align, text alignment, widths, inline and all-side padding and gaps. Margins, colours, type, position, heights and overflow have no breakpoint variants.</p>
           </div>
         </section>
         <section id="containers" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Container queries</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <p class="text-body-md max-w-measure">@sm:, @md:, @lg: (384, 448 and 512px, read from the --container-* tokens) apply a component&#x27;s layout classes (display, flex direction and wrap, grid columns and spans, basis, gaps, alignment, text alignment) when the nearest ancestor with @container (container-type: inline-size) is at least that wide, so a component lays itself out by its own width rather than the viewport&#x27;s.</p>
+          <p class="text-body-md max-w-text break-words">@sm:, @md:, @lg: (384, 448 and 512px, read from the --container-* tokens) apply a component&#x27;s layout classes (display, flex direction and wrap, grid columns and spans, basis, gaps, alignment, text alignment) when the nearest ancestor with @container (container-type: inline-size) is at least that wide, so a component lays itself out by its own width rather than the viewport&#x27;s.</p>
           <figure class="flex flex-col min-w-0 border border-weak bg-strong">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">card.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
@@ -131,7 +131,7 @@
         <section id="layer" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">State layer</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <p class="text-body-md max-w-measure">state: a state layer. An ::after wash of currentColor under the content, at --state-hover (0.12), --state-focus (0.14), --state-selected (0.16, also pressed, expanded, current and a checked child) and --state-active (0.2); none when disabled. One class covers every state in any palette, in place of a hover: and active: class per step; the element keeps its own radius.</p>
+          <p class="text-body-md max-w-text break-words">state: a state layer. An ::after wash of currentColor under the content, at --state-hover (0.12), --state-focus (0.14), --state-selected (0.16, also pressed, expanded, current and a checked child) and --state-active (0.2); none when disabled. One class covers every state in any palette, in place of a hover: and active: class per step; the element keeps its own radius.</p>
           <figure class="flex flex-col min-w-0 border border-weak bg-strong">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">ghost.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
@@ -144,14 +144,14 @@
         <section id="motion" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Transitions and focus</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <p class="text-body-md max-w-measure">Every interactive element (links, buttons, summaries, fields, labels, and the button, tab, option, menuitem and switch roles) transitions its colours, opacity, shadow and transforms by default, at the motion duration and easing. Reduced motion cuts it. Anything else that changes with state names <code>transition</code>.</p>
-          <p class="text-body-md max-w-measure">Focus: buttons, links and checkable controls get a 2px accent ring on <code>:focus-visible</code>. Text fields get no ring; their border turns accent, and a field box shows its input's focus with <code>focus-within:</code>.</p>
+          <p class="text-body-md max-w-text break-words">Every interactive element (links, buttons, summaries, fields, labels, and the button, tab, option, menuitem and switch roles) transitions its colours, opacity, shadow and transforms by default, at the motion duration and easing. Reduced motion cuts it. Anything else that changes with state names <code>transition</code>.</p>
+          <p class="text-body-md max-w-text break-words">Focus: buttons, links and checkable controls get a 2px accent ring on <code>:focus-visible</code>. Text fields get no ring; their border turns accent, and a field box shows its input's focus with <code>focus-within:</code>.</p>
           </div>
         </section>
         <section id="indicators" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Indicators</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <p class="text-body-md max-w-measure">An indicator follows the state it shows. A caret turns over when its disclosure or menu opens: put <code>group</code> on the <code>details</code> or on the wrapper holding the button and its popover.</p>
+          <p class="text-body-md max-w-text break-words">An indicator follows the state it shows. A caret turns over when its disclosure or menu opens: put <code>group</code> on the <code>details</code> or on the wrapper holding the button and its popover.</p>
           <figure class="flex flex-col min-w-0 border border-weak bg-strong">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">caret.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
@@ -166,13 +166,13 @@
           </div>
         </section>
         <nav aria-label="Previous and next page" class="col-span-12 grid grid-cols-2 gap-grid py-page border-t border-strong">
-          <a href="type-space.html" class="flex flex-col gap-3xs p-surface border border-weak hover:border-strong no-underline transition-colors">
+          <a href="type-space.html" class="flex flex-col gap-3xs min-w-0 p-surface border border-weak hover:border-strong no-underline transition-colors">
             <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><i class="icon icon-sm ph-bold ph-arrow-left"></i><span>Previous</span></span>
-            <span class="text-subtitle fg-accent-1-weak">Type and space</span>
+            <span class="text-subtitle fg-accent-1-weak break-words max-w-full">Type and space</span>
           </a>
-          <a href="materials.html" class="flex flex-col items-end gap-3xs p-surface border border-weak hover:border-strong no-underline text-end transition-colors">
+          <a href="materials.html" class="flex flex-col items-end gap-3xs min-w-0 p-surface border border-weak hover:border-strong no-underline text-end transition-colors">
             <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><span>Next</span><i class="icon icon-sm ph-bold ph-arrow-right"></i></span>
-            <span class="text-subtitle fg-accent-1-weak">Materials</span>
+            <span class="text-subtitle fg-accent-1-weak break-words max-w-full">Materials</span>
           </a>
         </nav>
   </div>

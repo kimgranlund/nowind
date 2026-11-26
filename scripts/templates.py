@@ -184,16 +184,16 @@ def prev_next(path):
     nxt = ORDER[i + 1] if i < len(ORDER) - 1 else None
     cells = []
     if prev:
-        cells.append(f"""          <a href="{rel(prev, path)}" class="flex flex-col gap-3xs p-surface border border-weak hover:border-strong no-underline transition-colors">
+        cells.append(f"""          <a href="{rel(prev, path)}" class="flex flex-col gap-3xs min-w-0 p-surface border border-weak hover:border-strong no-underline transition-colors">
             <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><i class="icon icon-sm ph-bold ph-arrow-left"></i><span>Previous</span></span>
-            <span class="text-subtitle fg-accent-1-weak">{TITLES.get(prev, LABELS[prev])}</span>
+            <span class="text-subtitle fg-accent-1-weak break-words max-w-full">{TITLES.get(prev, LABELS[prev])}</span>
           </a>""")
     else:
         cells.append('          <span></span>')
     if nxt:
-        cells.append(f"""          <a href="{rel(nxt, path)}" class="flex flex-col items-end gap-3xs p-surface border border-weak hover:border-strong no-underline text-end transition-colors">
+        cells.append(f"""          <a href="{rel(nxt, path)}" class="flex flex-col items-end gap-3xs min-w-0 p-surface border border-weak hover:border-strong no-underline text-end transition-colors">
             <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><span>Next</span><i class="icon icon-sm ph-bold ph-arrow-right"></i></span>
-            <span class="text-subtitle fg-accent-1-weak">{TITLES.get(nxt, LABELS[nxt])}</span>
+            <span class="text-subtitle fg-accent-1-weak break-words max-w-full">{TITLES.get(nxt, LABELS[nxt])}</span>
           </a>""")
     return '<nav aria-label="Previous and next page" class="col-span-12 grid grid-cols-2 gap-grid py-page border-t border-strong">\n' + "\n".join(cells) + "\n        </nav>\n"
 
@@ -209,7 +209,7 @@ def callout(kind, body_html):
             <i class="icon ph {icon} fg-{pal}-11"></i>
             <div class="flex flex-col gap-3xs min-w-0">
               <span class="text-sm font-medium fg-{pal}-12">{label}</span>
-              <p class="text-base">{body_html}</p>
+              <p class="text-base max-w-text break-words">{body_html}</p>
             </div>
           </aside>"""
 
@@ -234,7 +234,7 @@ def table(headers, rows, align=None):
         r = [joint(c) if k == 0 else c.replace("<code>", '<code class="whitespace-normal break-all">') for k, c in enumerate(r)]
         tds = "".join(f'<td class="text-{a} align-top px-2xs md:px-sm py-xs break-words{b}">{c}</td>' for c, a in zip(r, align))
         trs.append(f"                <tr>{tds}</tr>")
-    return f"""<div class="border border-weak">
+    return f"""<div class="border border-weak overflow-x-auto">
             <table class="w-full text-body-md">
               <thead class="bg-strong"><tr>{ths}</tr></thead>
               <tbody>
@@ -248,7 +248,7 @@ def page_head(kicker, title, intro, meta=None):
     return f"""<header class="col-span-12 flex flex-col gap-field pt-page pb-xl">
             <span class="text-kicker fg-weak">{kicker}</span>
             <h1 class="text-display-sm text-balance">{title}</h1>
-            <p class="text-body-md fg-weak max-w-measure">{intro}</p>{m}
+            <p class="text-body-md fg-weak max-w-text">{intro}</p>{m}
           </header>"""
 
 def block(sid, label, *parts, attrs=""):
@@ -269,11 +269,11 @@ def subhead(t):
     return f'<h3 class="text-subtitle">{t}</h3>'
 
 def p(t):
-    return f'<p class="text-body-md max-w-measure">{t}</p>'
+    return f'<p class="text-body-md max-w-text break-words">{t}</p>'
 
 def ul(items):
     lis = "\n".join(f'            <li>{i}</li>' for i in items)
-    return f'<ul class="flex flex-col gap-3xs ps-md list-disc text-body-md max-w-measure">\n{lis}\n          </ul>'
+    return f'<ul class="flex flex-col gap-3xs ps-md list-disc text-body-md max-w-text">\n{lis}\n          </ul>'
 
 def doc_page(current, title, article_html, toc_items=None, wide=False, sidebar_on=True):
     """Every generated page: band and section row, the twelve-column grid of blocks, previous and next, footer."""
@@ -325,7 +325,7 @@ def guide():
             ]),
         ),
         section("measure", "The reading column",
-            p("Prose stops at <code>max-w-measure</code>, 44 times the base size. The article is a <code>tier-content</code> region, so its section gaps and page padding are one and a half times the product rhythm and its measure grows with the tier's larger base size."),
+            p("Prose stops at <code>max-w-text</code>, 68 characters of its own font. The article is a <code>tier-content</code> region, so its section gaps and page padding are one and a half times the product rhythm and its measure grows with the tier's larger base size."),
             callout("tip", "Put the tier on <code>main</code> only. The band and the section row stay in the product tier, so they look the same on every page."),
         ),
         section("type", "Four type sizes",
@@ -515,9 +515,9 @@ def changelog():
             lis = []
             for name, text in entries:
                 if name:
-                    lis.append(f"""                <li class="flex flex-col gap-3xs"><span class="text-label fg-weak">{name}</span><p class="text-body-md">{text}</p></li>""")
+                    lis.append(f"""                <li class="flex flex-col gap-3xs max-w-text"><span class="text-label fg-weak">{name}</span><p class="text-body-md break-words">{text}</p></li>""")
                 else:
-                    lis.append(f"""                <li><p class="text-body-md">{text}</p></li>""")
+                    lis.append(f"""                <li><p class="text-body-md max-w-text break-words">{text}</p></li>""")
             body.append('<ul role="list" class="flex flex-col gap-group">\n' + "\n".join(lis) + "\n              </ul>")
         label = f"""<h2 class="text-subtitle">{v}</h2>
               <time datetime="{date}" class="text-caption fg-weak">{date}</time>{badge}"""
@@ -623,7 +623,7 @@ def index():
         ),
         section("grid", "The grid",
             grid_strip,
-            p("Twelve columns, spaced by <code>gap-grid</code> and held off the edge by <code>px-grid</code>. Every block puts its label in three columns and its content in nine; below 768px the two stack. Prose inside a block stops at <code>max-w-measure</code>."),
+            p("Twelve columns, spaced by <code>gap-grid</code> and held off the edge by <code>px-grid</code>. Every block puts its label in three columns and its content in nine; below 768px the two stack. Prose inside a block stops at <code>max-w-text</code>."),
         ),
         section("type", "Type scale",
             p("Four sizes, far apart. Weight separates roles that share a size."),
@@ -942,10 +942,10 @@ def component_page(c):
         *[example(x["id"], x["label"], x["html"], x.get("summary")) for x in extras],
         section("usage", "Usage",
             f"""<div class="grid grid-cols-1 md:grid-cols-2 gap-grid">
-            <div class="flex flex-col gap-field"><span class="text-label fg-success-weak">Use</span><ul role="list" class="flex flex-col gap-xs text-body-md">
+            <div class="flex flex-col gap-field"><span class="text-label fg-success-weak">Use</span><ul role="list" class="flex flex-col gap-xs text-body-md max-w-text">
 {use}
             </ul></div>
-            <div class="flex flex-col gap-field"><span class="text-label fg-danger-weak">Avoid</span><ul role="list" class="flex flex-col gap-xs text-body-md">
+            <div class="flex flex-col gap-field"><span class="text-label fg-danger-weak">Avoid</span><ul role="list" class="flex flex-col gap-xs text-body-md max-w-text">
 {avoid}
             </ul></div>
           </div>""",
@@ -962,9 +962,9 @@ def components_index():
     groups = []
     for g in dict.fromkeys(c["group"] for c in COMPONENTS):
         cards = "\n".join(
-            f"""            <a href="c-{c['slug']}.html" class="flex flex-col gap-3xs p-surface border border-weak hover:border-strong hover:bg-component-weak no-underline fg transition-colors">
+            f"""            <a href="c-{c['slug']}.html" class="flex flex-col gap-3xs min-w-0 p-surface border border-weak hover:border-strong hover:bg-component-weak no-underline fg transition-colors">
               <span class="inline-flex items-center gap-gutter text-subtitle"><i class="icon ph {c['icon']} fg-accent-1-weak"></i><span>{c['name']}</span></span>
-              <span class="text-body-sm fg-weak">{c['summary']}</span>
+              <span class="text-body-sm fg-weak break-words">{c['summary']}</span>
             </a>""" for c in COMPONENTS if c["group"] == g)
         sid = g.lower().replace(" ", "-")
         groups.append((sid, g, f'<div class="grid grid-cols-1 md:grid-cols-2 gap-grid">\n{cards}\n          </div>'))
@@ -1295,6 +1295,14 @@ def lint_examples():
     return sorted(set(errors))
 
 
+def wrap_code(text):
+    """Inline code keeps each class whole (the reset sets it nowrap), but a stack of classes may wrap between them, so
+    a long recipe in prose fits a phone. Code blocks (pre) are left as they are."""
+    parts = re.split(r"(<pre\b.*?</pre>)", text, flags=re.S)
+    tok = lambda m: '<code class="whitespace-normal">' + " ".join(f'<span class="whitespace-nowrap">{t}</span>' for t in m.group(1).split(" ")) + "</code>"
+    return "".join(p if p.startswith("<pre") else re.sub(r"<code>([^<\n]*? [^<\n]*?)</code>", tok, p) for p in parts)
+
+
 def main():
     os.makedirs(OUT, exist_ok=True)
     files = {"guide.html": guide(), "reference.html": reference(), "changelog.html": changelog(),
@@ -1304,6 +1312,7 @@ def main():
     for name, text in files.items():
         text = text.replace("<code>--", '<code class="whitespace-nowrap">--')
         text = text.replace("__VERSION__", VERSION)
+        text = wrap_code(text)
         with open(os.path.join(OUT, name), "w") as f:
             f.write(text)
         print("wrote", name, len(text))
