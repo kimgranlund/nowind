@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Release gate:** `node scripts/review.mjs all` runs every review domain in strict mode (it fails on any finding), then the review self-test. AGENTS.md lists it as the step before a release.
 ## 0.11.0 (2026-11-26)
 
 - **Paint review:** a paint contract in the colours manifest (`paintContract`) gives each job its palette steps: fills 1–5 and 9–10 (11–12 only as an inverse surface that sets its own light text), borders 5–8, text 11–12 or 8 when quiet, icons 6–12, and the contrast token on a solid. The examples lint enforces it (`python3 scripts/templates.py --paint-report`), and `?audit=paint` checks that a part distinct from its surface in one mode is in the other, counting steps rather than contrast. `node scripts/review.mjs paint` runs it over every page; the self-tests break both rules.

@@ -2,7 +2,8 @@
 // Universal theme review: loads every site page in headless Chromium across a matrix and collects what each domain's
 // rendered audit finds. No dependencies: it drives the browser over the DevTools protocol with Node's own WebSocket.
 //
-// Usage: node scripts/review.mjs [domain] [--pages a,b] [--widths 375,768] [--roots 12,16] [--quick]
+// Usage: node scripts/review.mjs [domain] [--pages a,b] [--widths 375,768] [--roots 12,16] [--quick] [--strict]
+//        node scripts/review.mjs all         the release gate: every domain with --strict (fail on any finding), then the self-test
 //        node scripts/review.mjs --self-test   break the showcase nine ways and confirm the layout and paint audits catch each
 //   domain  form (type, geometry, layout; the default) or paint (colour by step in light and dark; one width and root)
 //   --quick one width (1280) and one root (16)
@@ -23,6 +24,19 @@ const DOMAINS = {
   form: { audits: ["type", "geometry", "layout"], globals: { type: "nowindRunTypeAudit", geometry: "nowindRunGeometryAudit", layout: "nowindRunLayoutAudit" } },
   paint: { audits: ["paint"], globals: { paint: "nowindRunPaintAudit" }, widths: "1280", roots: "16" },
 };
+if (domain === "all") {
+  // The release gate: every domain, then the self-test, each in its own run; fails if any finds anything.
+  const { spawnSync } = await import("node:child_process");
+  const me = fileURLToPath(import.meta.url);
+  let failed = 0;
+  for (const run of [...Object.keys(DOMAINS).map((d) => [d, "--strict"]), ["--self-test"]]) {
+    console.log(`\n== review ${run.join(" ")}`);
+    const r = spawnSync(process.execPath, [me, ...run, ...args.filter((a) => a !== "all")], { stdio: "inherit" });
+    if (r.status !== 0) failed++;
+  }
+  console.log(failed ? `\nreview all: ${failed} run(s) failed` : "\nreview all: clean");
+  process.exit(failed ? 1 : 0);
+}
 if (!DOMAINS[domain]) { console.error(`review: unknown domain "${domain}". Known: ${Object.keys(DOMAINS).join(", ")}`); process.exit(2); }
 const quick = args.includes("--quick");
 const widths = (opt("widths", quick ? "1280" : DOMAINS[domain]?.widths || "375,768,1280")).split(",").map(Number);
@@ -182,6 +196,6 @@ async function main() {
   writeFileSync(join(dir, `${domain}.md`), lines.join("\n"));
   console.log(`review ${domain}: ${findings.length} findings, ${groups.size} distinct, across ${Object.keys(byRule).length} rules. Report: review/${domain}.md`);
   for (const [rule, gs] of Object.entries(byRule).sort((a, b) => b[1].length - a[1].length)) console.log(`  ${String(gs.length).padStart(4)}  ${rule}`);
-  process.exit(0);
+  process.exit(args.includes("--strict") && findings.length ? 1 : 0);
 }
 main().catch((e) => { console.error(`review: ${e.message}`); process.exit(1); });
