@@ -4,7 +4,7 @@
 //
 // Usage: node scripts/review.mjs [domain] [--pages a,b] [--widths 375,768] [--roots 12,16] [--quick] [--strict]
 //        node scripts/review.mjs all         the release gate: every domain with --strict (fail on any finding), then the self-test
-//        node scripts/review.mjs --self-test   break the showcase eighteen ways and confirm the layout, paint, behaviour and vocabulary checks catch each
+//        node scripts/review.mjs --self-test   break the showcase twenty ways and confirm the layout, paint, behaviour and vocabulary checks catch each
 //   domain  form (type, geometry, layout; the default), paint (colour by step in light and dark) behaviour (hover,
 //           press, focus, on, disabled, targets and motion, forced per element over the DevTools protocol) or vocabulary
 //           (each convenience class renders as its utility stack, in every state); one width and root
@@ -70,6 +70,9 @@ function chromePath() {
   return null;
 }
 
+// A page is ready when it has loaded, its fonts are in and site.js has run (its audit hooks exist), at most 10s more.
+const READY = `(async () => { for (let i = 0; i < 100 && !(document.readyState === "complete" && window.nowindAudits); i++) await new Promise((r) => setTimeout(r, 100)); await document.fonts.ready; return 1; })()`;
+
 const SELF_TEST = `(async () => {
   await document.fonts.ready;
   const has = (k) => window.nowindRunLayoutAudit().some((f) => f.rule === k);
@@ -83,6 +86,8 @@ const SELF_TEST = `(async () => {
     "baseline": () => add('<div class="flex items-center gap-xs"><span class="text-3xl">Big</span><span class="text-xs">small</span></div>'),
     "centering": () => { const st = document.createElement("style"); st.textContent = ".h-control{padding-top:8px!important}"; document.head.append(st); return () => st.remove(); },
     "measure": () => add('<p style="width:1200px">' + "Long running text. ".repeat(20) + "</p>"),
+    "double-edge": () => add('<div class="border rounded-md"><div class="border-b border-neutral-6 p-sm">Footer</div></div>'),
+    "margin-gap": () => add('<div class="flex flex-col gap-xs"><p class="mb-xs">One</p><p>Two</p></div>'),
   };
   const out = {};
   for (const [k, f] of Object.entries(breaks)) {
@@ -151,7 +156,7 @@ async function behaviourPage(send, sessionId) {
   await send("DOM.enable", {}, sessionId);
   await send("CSS.enable", {}, sessionId);
   const ev = async (expression) => { const { result, exceptionDetails } = await send("Runtime.evaluate", { expression, returnByValue: true, awaitPromise: true }, sessionId); if (exceptionDetails) throw new Error(exceptionDetails.exception?.description?.split("\n")[0] || exceptionDetails.text); return result.value; };
-  await ev("document.fonts.ready.then(() => 1)");
+  await ev(READY);
   const { info, durs, eases } = JSON.parse(await ev(BEHAVIOUR_SETUP));
   const { root } = await send("DOM.getDocument", { depth: 0 }, sessionId);
   const { nodeIds } = await send("DOM.querySelectorAll", { nodeId: root.nodeId, selector: "[data-nwb]" }, sessionId);
@@ -226,6 +231,7 @@ async function vocabularyPage(send, sessionId) {
   for (const holder of ["btn-sm", "icon-btn"]) for (const tone of classes.map((c) => c.class).filter((n) => base(n) === "btn"))
     pairs.push({ n: `${holder} ${tone}`, tag: "button", a: `${byName[holder]} ${byName[tone]}`, c: `${holder} ${tone}` });
   const ev = async (expression) => { const { result, exceptionDetails } = await send("Runtime.evaluate", { expression, returnByValue: true, awaitPromise: true }, sessionId); if (exceptionDetails) throw new Error(exceptionDetails.exception?.description?.split("\n")[0] || exceptionDetails.text); return result.value; };
+  await ev(READY);
   await ev(`new Promise((r) => { const l = document.createElement("link"); l.rel = "stylesheet"; l.href = "/dist/nowind.components.css"; l.onload = r; document.head.append(l); })`);
   await ev(`(() => {
     const pairs = ${JSON.stringify(pairs)};
@@ -317,7 +323,7 @@ async function main() {
   await send("Page.enable", {}, sessionId);
   await send("Runtime.enable", {}, sessionId);
   if (args.includes("--self-test")) {
-    // Break the showcase eighteen ways and confirm the layout, paint, behaviour and vocabulary checks report each rule.
+    // Break the showcase twenty ways and confirm the layout, paint, behaviour and vocabulary checks report each rule.
     await send("Emulation.setDeviceMetricsOverride", { width: 768, height: 900, deviceScaleFactor: 1, mobile: false }, sessionId);
     await go(`${BASE}/site/components.html?audit=layout,paint`);
     const res = {};
@@ -376,8 +382,13 @@ async function main() {
           if (process.stdout.isTTY) process.stdout.write(`\rreview ${domain}: ${done}/${total}`);
           continue;
         }
-        const expr = `(async () => { await document.fonts.ready; await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))); const out = {}; ${audits.map((a) => `out.${a} = window.${globals[a]} ? window.${globals[a]}() : [{ rule: \"missing\", where: \"page\", detail: \"${globals[a]} is not defined\" }];`).join(" ")} return JSON.stringify(out); })()`;
-        const { result, exceptionDetails } = await send("Runtime.evaluate", { expression: expr, awaitPromise: true, returnByValue: true }, sessionId);
+        const expr = `(async () => { for (let i = 0; i < 100 && !(document.readyState === "complete" && ${JSON.stringify(Object.values(globals))}.every((g) => typeof window[g] === "function")); i++) await new Promise((r) => setTimeout(r, 100)); await document.fonts.ready; await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))); const out = {}; ${audits.map((a) => `out.${a} = window.${globals[a]} ? window.${globals[a]}() : [{ rule: \"missing\", where: \"page\", detail: \"${globals[a]} is not defined\" }];`).join(" ")} return JSON.stringify(out); })()`;
+        let { result, exceptionDetails } = await send("Runtime.evaluate", { expression: expr, awaitPromise: true, returnByValue: true }, sessionId);
+        if (!exceptionDetails && /"rule":"missing"/.test(result.value)) {
+          // A page that loaded too slowly to run site.js gets one more try before its audits count as missing.
+          await go(`${BASE}/${page}?audit=${audits.join(",")}`);
+          ({ result, exceptionDetails } = await send("Runtime.evaluate", { expression: expr, awaitPromise: true, returnByValue: true }, sessionId));
+        }
         if (exceptionDetails) findings.push({ domain, audit: "harness", rule: "error", page, width, root: rootSize, where: "page", detail: exceptionDetails.exception?.description?.split("\n")[0] || exceptionDetails.text });
         else for (const [audit, list] of Object.entries(JSON.parse(result.value))) for (const f of list || []) findings.push({ domain, audit, page, width, root: rootSize, ...f });
         done++;

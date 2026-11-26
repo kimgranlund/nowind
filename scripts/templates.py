@@ -948,7 +948,7 @@ CONV_DEMOS = [
     ("small", "Small buttons and segments", "<code>btn-sm</code> and <code>segment</code> sit only inside an inset container: a toolbar padded <code>p-3xs</code>, or a <code>segmented</code> group.",
      '<div class="flex flex-wrap items-center gap-sm">\n  <div class="inline-flex items-center gap-3xs p-3xs rounded-md border border-neutral-6 bg-neutral-2" role="toolbar" aria-label="Formatting">\n    <button class="btn-sm btn-ghost"><i class="icon icon-sm ph-bold ph-text-b"></i><span>Bold</span></button>\n    <button class="btn-sm btn-ghost"><i class="icon icon-sm ph-bold ph-link"></i><span>Link</span></button>\n  </div>\n  <div class="segmented" role="group" aria-label="Range">\n    <button class="segment" aria-pressed="true"><span>Day</span></button>\n    <button class="segment" aria-pressed="false"><span>Week</span></button>\n    <button class="segment" aria-pressed="false"><span>Month</span></button>\n  </div>\n</div>'),
     ("fields", "Fields and badges", "<code>field</code> is the box; the input inside stays bare. Wrap a badge's text in a <code>span</code>.",
-     '<div class="flex flex-col gap-md max-w-form">\n  <div class="flex flex-col gap-2xs">\n    <label for="cv-email" class="text-sm font-medium">Email</label>\n    <div class="field">\n      <i class="icon ph ph-envelope-simple fg-neutral-11" aria-hidden="true"></i>\n      <input id="cv-email" type="email" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12" placeholder="ada@example.com">\n    </div>\n  </div>\n  <div class="flex flex-wrap gap-2xs">\n    <span class="badge badge-neutral"><span>Draft</span></span>\n    <span class="badge badge-success"><i class="icon icon-sm ph-bold ph-check"></i><span>Paid</span></span>\n    <span class="badge badge-warning"><span>Pending</span></span>\n    <span class="badge badge-danger"><span>Failed</span></span>\n    <span class="badge badge-info"><span>New</span></span>\n  </div>\n</div>'),
+     '<div class="flex flex-col gap-md max-w-form">\n  <div class="flex flex-col gap-2xs">\n    <label for="cv-email" class="text-sm font-medium">Email</label>\n    <div class="field">\n      <i class="icon ph ph-envelope-simple fg-neutral-11" aria-hidden="true"></i>\n      <input id="cv-email" type="email" class="grow min-w-0 h-full p-0 border-0 bg-transparent fg-neutral-12" placeholder="ada@example.com">\n    </div>\n  </div>\n  <div class="flex flex-wrap gap-2xs">\n    <span class="badge badge-neutral"><span>Draft</span></span>\n    <span class="badge badge-success"><i class="icon icon-sm ph-bold ph-check"></i><span>Paid</span></span>\n    <span class="badge badge-warning"><span>Pending</span></span>\n    <span class="badge badge-danger"><span>Failed</span></span>\n    <span class="badge badge-info"><span>New</span></span>\n  </div>\n</div>'),
     ("cards", "Cards", "<code>card</code> pads and rounds; lay its content out with utilities.",
      '<div class="card flex flex-col gap-xs max-w-form">\n  <h3 class="text-base font-semibold">Weekly report</h3>\n  <p class="fg-neutral-11">Six pages changed and two components were added.</p>\n  <div class="flex gap-xs pt-xs">\n    <button class="btn btn-primary"><span>Open</span></button>\n    <button class="btn btn-ghost"><span>Later</span></button>\n  </div>\n</div>'),
 ]
@@ -1667,6 +1667,30 @@ if "--type-report" in sys.argv:
     for f in findings: print(f"OFF  {f[0]}: {f[1]} is text-{f[2]}, want text-{f[3]}  {f[4]}")
     for u in unclassified: print(f"KIND {u[0]}: text-{u[1]}  {u[2]}")
     sys.exit(0)
+def default_notes(srcs):
+    """Notes, not failures: a button or field styled partly with utilities takes the element defaults (the defaults
+    layer) for every part of its box its classes leave unset. Name those parts, so an author sees what they inherit."""
+    props = {k: {d.split(":")[0].strip() for d in v.strip("`").split(";") if ":" in d and not d.strip().startswith("--")} for _, rows in read_classes() for k, v in rows}
+    BOX = {"height": ("height", "block-size"), "padding": ("padding", "padding-inline", "padding-left", "padding-right", "padding-inline-start", "padding-inline-end"),
+           "fill": ("background-color", "background"), "border": ("border-width", "border-color", "border"), "corner": ("border-radius",)}
+    WANT = {"button": ["height", "padding", "fill", "border", "corner"], "field": ["height", "padding", "fill", "border", "corner"]}
+    out = []
+    for where, html_ in srcs:
+        for n in parse_tree(html_):
+            kind = "button" if n.tag == "button" and not (n.parent and n.parent.tag == "select") else "field" if n.tag in ("input", "select", "textarea") and n.attrs.get("type") not in ("checkbox", "radio", "range", "color", "file", "hidden", "button", "submit", "reset") else None
+            if not kind or not n.toks:
+                continue
+            got = set().union(*(props.get(t, set()) for t in n.toks if ":" not in t))
+            if not got:
+                continue
+            missing = [part for part in WANT[kind] if not any(x in got for x in BOX[part])]
+            if "border-0" in n.toks and "bg-transparent" in n.toks and "corner" in missing:
+                missing.remove("corner")  # no border and no fill: no corner to see
+            if missing and len(missing) < len(WANT[kind]):
+                out.append(f"note: {where}: <{n.tag} class=\"{' '.join(n.toks)[:60]}\"> takes the default {', '.join(missing)} (the defaults layer fills what its classes leave unset).")
+    return out
+
+
 def expand_convenience(html_):
     """Replace each convenience class (nowind.components.manifest.json) with the utility stack it stands for, so the
     contracts see what renders. A utility the author added wins over an expanded one that sets the same property, as
@@ -1698,7 +1722,10 @@ if "--lint-file" in sys.argv:
         srcs.append((path, expand_convenience(body)))
     _FILE_SOURCES = srcs
     problems = lint_examples()
-    print("\n".join(problems) if problems else f"{len(paths)} file(s): no findings")
+    notes = default_notes(srcs)
+    if problems: print("\n".join(problems))
+    if notes: print("\n".join(notes))
+    if not problems: print(f"{len(paths)} file(s): no findings" + (f", {len(notes)} note(s)" if notes else ""))
     sys.exit(1 if problems else 0)
 if "--lint" in sys.argv:
     problems = lint_examples()

@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- **Two new layout rules** from what the last review caught by hand: `double-edge` (a border lying on its container's border on the same side, such as a table's last row inside a framed table) and `margin-gap` (a margin on a child of a container already spaced with `gap`). The self-test breaks both. The showcase and utilities pages dropped the margins they doubled; a fieldset's legend is exempt, since gap doesn't space it.
+- **Page lint notes:** `--lint-file` notes what a partly styled button or field takes from the defaults layer. The first one found that the bare input inside a field box took the default control height, 2px taller than the box's inside; the bare-input stack is now `grow min-w-0 h-full p-0 border-0 bg-transparent`.
+- **Steadier review runs:** the review waits for a page to finish loading and for `site.js` to run before auditing it, and reloads a page once before it reports an audit as missing, so a slow, busy machine no longer fails the gate. Eight back-to-back self-test runs passed (one run's failure came from editing the rules mid-run). Bare inputs and nested parts are exempt from the insets and double-edge rules.
 ## 0.14.0 (2026-11-26)
 
 - **Element defaults apply everywhere, in their own layer** (breaking). The layer order is now `@layer reset, defaults, styles, components, nowind`: bare buttons, fields, checks, sliders, links, labels and table cells are styled wherever they are, with no `defaults` class (it is gone). Your CSS in `@layer styles` beats the defaults, and so does any utility. A utility stack now gets a default for every property it leaves unset, so:

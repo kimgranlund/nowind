@@ -217,7 +217,7 @@ There is no button or field component: each is a stack of classes, and the docs 
 
 <div class="flex items-center gap-gutter h-control px-control rounded-sm border bg-neutral-1 cursor-text">
   <i class="icon ph ph-scales fg-neutral-11"></i>
-  <input inputmode="decimal" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent" value="72.5">
+  <input inputmode="decimal" class="grow min-w-0 h-full p-0 border-0 bg-transparent" value="72.5">
   <span class="fg-neutral-11">kg</span>
 </div>
 ```
@@ -291,7 +291,7 @@ The most repeated stacks in the examples also come as single classes, in an opti
 | `btn-primary`, `btn-secondary`, `btn-soft`, `btn-ghost`, `btn-danger` | A tone for `btn`, `btn-sm` or `icon-btn` (`border-transparent bg-accent-1-9 fg-accent-1-contrast`, …) |
 | `btn-sm` | The small button, inside an inset container only |
 | `icon-btn` | A square, one-icon button |
-| `field` | `flex items-center gap-gutter h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition`, around a bare input (`grow min-w-0 self-stretch p-0 border-0 bg-transparent`) |
+| `field` | `flex items-center gap-gutter h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition`, around a bare input (`grow min-w-0 h-full p-0 border-0 bg-transparent`) |
 | `badge`, `badge-{neutral, accent, success, warning, danger, info}` | A status pill and its tones |
 | `card` | `p-md rounded-md border border-neutral-6 bg-neutral-1` |
 | `segmented`, `segment` | A segmented control and its items (`aria-pressed`) |
@@ -306,7 +306,7 @@ Nowind's own examples are held to a set of contracts: one size for each kind of 
 python3 scripts/templates.py --lint-file page.html
 ```
 
-It reads the page's classes only (no browser), expands the convenience classes into their stacks first, and lets your own utilities override them as the cascade does. Each finding names the element, the rule and the fix. It skips the two rules that bind only Nowind's examples: you may use semantic classes and physical sides.
+It reads the page's classes only (no browser), expands the convenience classes into their stacks first, and lets your own utilities override them as the cascade does. Each finding names the element, the rule and the fix. Notes, which don't fail the run, name what a partly styled button or field takes from the element defaults: a `<button class="h-control">` with no padding class gets the default padding. Notes, which don't fail the run, name what a partly styled button or field takes from the element defaults: a `<button class="h-control">` with no padding class gets the default padding. It skips the two rules that bind only Nowind's examples: you may use semantic classes and physical sides.
 
 ## Variants
 

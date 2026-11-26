@@ -324,7 +324,7 @@ window.nowindOwnCSS = () => !!document.querySelector("style[data-page-css]");
       }
       // Insets: a sized part at the end of a rounded flex row container faces three edges evenly.
       const p = e.parentElement;
-      if (p && e === p.lastElementChild && e.matches(".size-nested, .size-control, .h-full, kbd") && !(p.firstElementChild && Math.abs(R(p.firstElementChild).top - r.top) > r.height / 2) && radius(p) > 0 && cs(p).display.includes("flex") && cs(p).flexDirection === "row" && painted(p)) {
+      if (p && e === p.lastElementChild && e.matches(".size-nested, .size-control, .h-full, kbd") && !e.matches("input, select, textarea") && !(p.firstElementChild && Math.abs(R(p.firstElementChild).top - r.top) > r.height / 2) && radius(p) > 0 && cs(p).display.includes("flex") && cs(p).flexDirection === "row" && painted(p)) {
         const pr = R(p), bw = px(cs(p).borderTopWidth);
         const centred = cs(p).alignItems === "center" || cs(p).alignItems === "normal";
         const gaps = centred ? [r.top - pr.top - bw, pr.bottom - r.bottom - bw, pr.right - r.right - bw] : [r.top - pr.top - bw, pr.right - r.right - bw];
@@ -436,6 +436,28 @@ window.nowindOwnCSS = () => !!document.querySelector("style[data-page-css]");
           const top = r.top + px(c.borderTopWidth), bottom = r.bottom - px(c.borderBottomWidth);
           const mid = b - m.cap / 2, box = (top + bottom) / 2;
           if (Math.abs(mid - box) > 1.25) out.push({ rule: "centering", where: where(e), detail: `cap middle ${(mid - box).toFixed(1)}px ${mid > box ? "below" : "above"} the box middle` });
+        }
+      }
+      // double-edge: a visible border flush against the same edge of a bordered ancestor draws two lines.
+      const edge = (el, side) => { const k = cs(el); return px(k[`border${side}Width`]) > 0 && k[`border${side}Style`] !== "none" && !/rgba\(0, 0, 0, 0\)|transparent/.test(k[`border${side}Color`]); };
+      for (const side of ["Top", "Bottom"]) {
+        if (!edge(e, side) || e.matches("input, select, textarea, hr, [role=tab], .h-nested, .size-nested, kbd")) continue;  // a nested part's inset is the insets rule's job
+        let a = e.parentElement;
+        while (a && a !== document.body && !edge(a, side) && !/auto|scroll|hidden/.test(cs(a).overflowY)) a = a.parentElement;
+        if (!a || a === document.body || !edge(a, side)) continue;
+        const ar = R(a), inner = side === "Top" ? ar.top + px(cs(a).borderTopWidth) : ar.bottom - px(cs(a).borderBottomWidth);
+        const mine = side === "Top" ? r.top : r.bottom;
+        if (Math.abs(mine - inner) <= 1.5) { out.push({ rule: "double-edge", where: where(e), detail: `its ${side.toLowerCase()} border lies on ${where(a).split(" ")[1] || "its container"}'s ${side.toLowerCase()} border` }); break; }
+      }
+      // margin-gap: a margin on a child of a container that already spaces its children with gap.
+      const pa = e.parentElement;
+      if (pa && e !== pa.lastElementChild && !e.matches("legend")) {  // a fieldset's legend sits outside its flex layout, so gap never spaces it
+        const pc = cs(pa), flex = pc.display.includes("flex"), grid = pc.display.includes("grid");
+        if (flex || grid) {
+          const column = flex ? pc.flexDirection.startsWith("column") : false;
+          const gapV = px(pc.rowGap), gapH = px(pc.columnGap);
+          const mEnd = column || grid ? px(c.marginBlockEnd) : px(c.marginInlineEnd);
+          if (((column || grid) ? gapV : gapH) > 0 && mEnd > 0.5) out.push({ rule: "margin-gap", where: where(e), detail: `${mEnd.toFixed(1)}px margin on top of the parent's ${((column || grid) ? gapV : gapH).toFixed(1)}px gap` });
         }
       }
       // measure: running text wider than max-w-text (68ch of its own font).

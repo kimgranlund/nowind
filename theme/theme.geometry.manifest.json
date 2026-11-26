@@ -745,6 +745,16 @@
         "id": "start-edge",
         "rule": "Text stacked in one column shares a start edge; an indent comes from a marker, icon, avatar or control at the start, not from stray padding.",
         "status": "review"
+      },
+      {
+        "id": "double-edge",
+        "rule": "A border never lies on the same edge of a bordered container: a table's last row draws no rule inside a framed table, a card's footer draws no line on the card's own border.",
+        "status": "decided"
+      },
+      {
+        "id": "margin-gap",
+        "rule": "A child of a flex or grid container with a gap carries no margin in that direction: the gap is the spacing, and a margin on top of it doubles up.",
+        "status": "decided"
       }
     ]
   }

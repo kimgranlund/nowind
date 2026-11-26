@@ -117,7 +117,7 @@
     <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><span class="text-kicker fg-accent-1-weak">Status</span><h2 class="text-heading-md text-balance">Badges, alerts and toasts</h2></div>
     <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
 
-    <div class="flex flex-wrap items-center gap-2xs mb-lg">
+    <div class="flex flex-wrap items-center gap-2xs">
       <span class="inline-flex items-center h-nested px-nested rounded-full border gap-gutter-half bg-neutral-3 border-neutral-6 fg-neutral-11 text-sm font-medium"><span>Neutral</span></span>
       <span class="inline-flex items-center h-nested px-nested rounded-full border gap-gutter-half bg-accent-1-3 border-accent-1-6 fg-accent-1-11 text-sm font-medium"><span>Accent</span></span>
       <span class="inline-flex items-center h-nested px-nested rounded-full border gap-gutter-half bg-success-3 border-success-6 fg-success-11 text-sm font-medium"><i class="icon icon-sm ph-bold ph-check"></i><span>Paid</span></span>
@@ -175,14 +175,14 @@
         <label for="name" class="text-sm font-medium fg-neutral-12">Full name</label>
         <div class="flex items-center gap-gutter h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition">
           <i class="icon ph fg-neutral-11 ph-user-circle" aria-hidden="true"></i>
-          <input id="name" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12" autocomplete="name" placeholder="Ada Lovelace">
+          <input id="name" class="grow min-w-0 h-full p-0 border-0 bg-transparent fg-neutral-12" autocomplete="name" placeholder="Ada Lovelace">
         </div>
       </div>
       <div class="flex flex-col gap-2xs">
         <label for="email" class="text-sm font-medium fg-neutral-12">Email</label>
         <div class="flex items-center gap-gutter h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition">
           <i class="icon ph fg-neutral-11 ph-envelope-simple" aria-hidden="true"></i>
-          <input id="email" type="email" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12" autocomplete="email" value="ada@" aria-invalid="true" aria-describedby="email-error">
+          <input id="email" type="email" class="grow min-w-0 h-full p-0 border-0 bg-transparent fg-neutral-12" autocomplete="email" value="ada@" aria-invalid="true" aria-describedby="email-error">
           <i class="icon ph ph-warning-circle fg-danger-11" aria-hidden="true"></i>
         </div>
         <span id="email-error" class="text-sm fg-danger-11">Enter a complete email address.</span>
@@ -192,7 +192,7 @@
           <label for="role" class="text-sm font-medium fg-neutral-12">Role</label>
           <div class="flex items-center gap-gutter h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition">
             <i class="icon ph fg-neutral-11 ph-briefcase" aria-hidden="true"></i>
-            <select id="role" class="select-base grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 cursor-pointer">
+            <select id="role" class="select-base grow min-w-0 h-full p-0 border-0 bg-transparent fg-neutral-12 cursor-pointer">
               <button class="grow min-w-0 p-0 border-0 bg-transparent text-start"><selectedcontent class="block truncate"></selectedcontent></button>
               <option>Designer</option><option>Engineer</option><option>Manager</option>
             </select>
@@ -202,7 +202,7 @@
           <label for="team" class="text-sm font-medium fg-neutral-12">Team size</label>
           <div class="flex items-center gap-gutter h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition">
             <i class="icon ph fg-neutral-11 ph-users-three" aria-hidden="true"></i>
-            <input id="team" type="number" min="1" step="1" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12 tabular-nums" value="12">
+            <input id="team" type="number" min="1" step="1" class="grow min-w-0 h-full p-0 border-0 bg-transparent fg-neutral-12 tabular-nums" value="12">
             <span class="fg-neutral-11" aria-hidden="true">people</span>
           </div>
         </div>
@@ -242,7 +242,7 @@
     <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><span class="text-kicker fg-accent-1-weak">Display</span><h2 class="text-heading-md text-balance">Cards, stats, lists and tables</h2></div>
     <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-md mb-lg">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-md">
       <div class="p-md rounded-md bg-neutral-1 border border-neutral-6 shadow-xs">
         <span class="text-sm font-medium fg-neutral-11">Revenue</span>
         <div class="flex flex-wrap items-baseline gap-xs mt-2xs">
@@ -266,7 +266,7 @@
       </div>
     </div>
 
-    <div class="flex flex-col md:flex-row gap-md mb-lg">
+    <div class="flex flex-col md:flex-row gap-md">
       <article class="md:flex-1 flex flex-col rounded-md bg-neutral-1 border border-neutral-6 shadow-sm overflow-hidden">
         <div class="aspect-video bg-accent-2-a4 flex items-center justify-center fg-accent-2-11"><i class="icon icon-lg ph-light ph-mountains"></i></div>
         <div class="flex flex-col gap-2xs p-md grow">
@@ -534,7 +534,7 @@
   <section id="disclosure" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
     <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><span class="text-kicker fg-accent-1-weak">Disclosure</span><h2 class="text-heading-md text-balance">Accordion, menu, dialog and avatars</h2></div>
     <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-    <p class="text-base fg-neutral-11 max-w-text mb-md">Native elements and no script: the accordion and the menu are <code>&lt;details&gt;</code>, and the dialog opens with the <code>command</code> attribute. <code>open:</code> and <code>current:</code> style their states.</p>
+    <p class="text-base fg-neutral-11 max-w-text">Native elements and no script: the accordion and the menu are <code>&lt;details&gt;</code>, and the dialog opens with the <code>command</code> attribute. <code>open:</code> and <code>current:</code> style their states.</p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
       <div class="p-md rounded-md bg-neutral-1 border border-neutral-6 shadow-xs">
@@ -633,14 +633,14 @@
           <label for="site" class="text-sm font-medium">Website</label>
           <div class="flex items-center gap-gutter h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 focus-within:border-accent-1-8 bg-neutral-1 text-base cursor-text transition">
             <span class="fg-neutral-11 whitespace-nowrap" aria-hidden="true">https://</span>
-            <input id="site" type="text" inputmode="url" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12" autocomplete="url" spellcheck="false" placeholder="example.com">
+            <input id="site" type="text" inputmode="url" class="grow min-w-0 h-full p-0 border-0 bg-transparent fg-neutral-12" autocomplete="url" spellcheck="false" placeholder="example.com">
           </div>
         </div>
         <div class="flex flex-col gap-2xs">
           <label for="q" class="text-sm font-medium">Search</label>
           <div class="flex items-center gap-gutter h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 focus-within:border-accent-1-8 bg-neutral-1 text-base cursor-text transition">
             <i class="icon ph ph-magnifying-glass fg-neutral-11" aria-hidden="true"></i>
-            <input id="q" type="search" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12" placeholder="Search docs">
+            <input id="q" type="search" class="grow min-w-0 h-full p-0 border-0 bg-transparent fg-neutral-12" placeholder="Search docs">
             <kbd class="inline-flex items-center justify-center h-nested min-w-nested px-2xs rounded-xs border border-neutral-6 bg-neutral-2 fg-neutral-11 text-sm font-mono">⌘K</kbd>
           </div>
         </div>
@@ -690,7 +690,7 @@
   <section id="pricing" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
     <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><span class="text-kicker fg-accent-1-weak">Commerce</span><h2 class="text-heading-md text-balance">Pricing, upload, tags and rating</h2></div>
     <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-md mb-lg">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-md">
         <div class="flex flex-col gap-md p-md rounded-md bg-neutral-1 border border-neutral-6 shadow-xs">
           <div class="flex items-center justify-between"><span class="text-base font-semibold">Starter</span></div>
           <div class="flex flex-wrap items-baseline gap-x-2xs"><span class="text-3xl font-display font-extrabold tracking-tight tabular-nums">$0</span><span class="text-sm fg-neutral-11 whitespace-nowrap">per person / month</span></div>
@@ -738,7 +738,7 @@
   <section id="overlays-2" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
     <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><span class="text-kicker fg-accent-1-weak">Overlays and feedback</span><h2 class="text-heading-md text-balance">Popovers, select, toasts, loading and commands</h2></div>
     <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-    <p class="text-base fg-neutral-11 max-w-text mb-md">Popovers open with <code>popovertarget</code> and sit against their button with <code>anchor-bottom</code> (CSS anchor positioning, flipping at the screen edge). The select is the customizable <code>select-base</code>. Spinner and skeleton use <code>animate-spin</code> and <code>animate-pulse</code>. No script.</p>
+    <p class="text-base fg-neutral-11 max-w-text">Popovers open with <code>popovertarget</code> and sit against their button with <code>anchor-bottom</code> (CSS anchor positioning, flipping at the screen edge). The select is the customizable <code>select-base</code>. Spinner and skeleton use <code>animate-spin</code> and <code>animate-pulse</code>. No script.</p>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-md">
       <div class="p-md rounded-md bg-neutral-1 border border-neutral-6 shadow-xs flex flex-col gap-md">
         <h3 class="text-base font-semibold">Popover menu and info</h3>
@@ -854,7 +854,7 @@
       <div class="flex flex-col p-inset rounded-md bg-neutral-1 border border-neutral-6 shadow-xl" role="dialog" aria-label="Command palette">
         <div class="flex items-center gap-gutter h-control px-control border border-transparent">
           <i class="icon ph ph-magnifying-glass fg-neutral-11"></i>
-          <input class="grow min-w-0 self-stretch p-0 border-0 bg-transparent text-base" placeholder="Type a command or search…" value="new" aria-label="Search commands">
+          <input class="grow min-w-0 h-full p-0 border-0 bg-transparent text-base" placeholder="Type a command or search…" value="new" aria-label="Search commands">
           <kbd class="inline-flex items-center justify-center h-nested min-w-nested px-2xs rounded-xs border border-neutral-6 bg-neutral-2 fg-neutral-11 text-sm font-mono">esc</kbd>
         </div>
         <div class="border-t border-neutral-6 my-3xs"></div>
