@@ -1691,12 +1691,77 @@ def default_notes(srcs):
     return out
 
 
+def _box_props(decl_props):
+    """Normalise CSS properties to the parts of a box they set, so a shorthand covers its sides: padding covers
+    padding-inline and padding-block, block-size is height, inline-size is width."""
+    out = set()
+    for p in decl_props:
+        if p == "padding": out |= {"padding-inline", "padding-block"}
+        elif p in ("padding-left", "padding-right", "padding-inline-start", "padding-inline-end", "padding-inline"): out.add("padding-inline")
+        elif p in ("padding-top", "padding-bottom", "padding-block-start", "padding-block-end", "padding-block"): out.add("padding-block")
+        elif p in ("block-size",): out.add("height")
+        elif p in ("inline-size",): out.add("width")
+        elif p in ("border", "border-width"): out.add("border-width")
+        else: out.add(p)
+    return out
+
+
+def expand_defaults(html_):
+    """Model the defaults layer for the page lint: give each button, field, label and table header the utility stack
+    its element default stands for, then let the author's own classes win where they set the same property, as the
+    cascade does. A bare element gains a class attribute, so the rules check it too."""
+    props = {k: _box_props({d.split(":")[0].strip() for d in v.strip("`").split(";") if ":" in d and not d.strip().startswith("--")}) for _, rows in read_classes() for k, v in rows}
+    STACKS = {
+        "button": "inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border border-transparent bg-neutral-a2 font-medium",
+        "field": "h-control px-control rounded-sm border w-full",
+        "textarea": "px-control rounded-sm border w-full",
+        "label": "block text-sm font-medium",
+        "th": "text-sm font-medium",
+    }
+    def stack_for(tag, attrs, inner):
+        if tag == "button":
+            return STACKS["button"]
+        if tag == "input" and not any(f'type="{t}"' in attrs for t in ("checkbox", "radio", "range", "color", "file", "hidden", "button", "submit", "reset", "image")):
+            return STACKS["field"]
+        if tag == "select" and "multiple" not in attrs and " size=" not in attrs:
+            return STACKS["field"]
+        if tag == "textarea":
+            return STACKS["textarea"]
+        if tag == "label" and not re.search(r'<input[^>]*type="(checkbox|radio)"', inner or ""):
+            return STACKS["label"]
+        if tag == "th":
+            return STACKS["th"]
+        return None
+    def one(m):
+        tag, attrs = m.group(1), m.group(2)
+        rest = html_[m.end():m.end() + 300]
+        st = stack_for(tag, attrs, rest.split(f"</{tag}>")[0] if tag == "label" else "")
+        if not st:
+            return m.group(0)
+        cm = re.search(r'class="([^"]*)"', attrs)
+        own = cm.group(1).split() if cm else []
+        owned = set().union(*(props.get(t, set()) for t in own if ":" not in t)) if own else set()
+        keep = [t for t in st.split() if t not in own and not (props.get(t, set()) & owned)]
+        cls = " ".join(keep + own)
+        attrs2 = re.sub(r'class="[^"]*"', f'class="{cls}"', attrs) if cm else f'{attrs} class="{cls}"'
+        return f"<{tag}{attrs2}>"
+    # a select's own button belongs to the select, so leave buttons inside a select alone
+    out, depth = [], 0
+    for part in re.split(r'(<select\b.*?</select>)', html_, flags=re.S):
+        if part.startswith("<select"):
+            head, body = part.split(">", 1)
+            out.append(re.sub(r'<(select)\b([^>]*)>', one, head + ">", count=1) + body)
+        else:
+            out.append(re.sub(r'<(button|input|select|textarea|label|th)\b([^>]*)>', one, part))
+    return "".join(out)
+
+
 def expand_convenience(html_):
     """Replace each convenience class (nowind.components.manifest.json) with the utility stack it stands for, so the
     contracts see what renders. A utility the author added wins over an expanded one that sets the same property, as
     it does in the cascade (btn rounded-full is a pill)."""
     recipes = {c["class"]: c["recipe"].split() for c in _m("nowind.components.manifest.json")["classes"]}
-    props = {k: {d.split(":")[0].strip() for d in v.strip("`").split(";") if ":" in d and not d.strip().startswith("--")} for _, rows in read_classes() for k, v in rows}
+    props = {k: _box_props({d.split(":")[0].strip() for d in v.strip("`").split(";") if ":" in d and not d.strip().startswith("--")}) for _, rows in read_classes() for k, v in rows}
     def one(m):
         toks = m.group(1).split()
         own = [t for t in toks if t not in recipes]
@@ -1719,7 +1784,7 @@ if "--lint-file" in sys.argv:
         text = open(path).read()
         body = text[text.index("<body"):] if "<body" in text else text
         body = re.sub(r"class='([^']*)'", r'class="\1"', body)  # one quote style for the rules below
-        srcs.append((path, expand_convenience(body)))
+        srcs.append((path, expand_defaults(expand_convenience(body))))
     _FILE_SOURCES = srcs
     problems = lint_examples()
     notes = default_notes(srcs)

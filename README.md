@@ -204,11 +204,11 @@ Every class and its declarations: [classes.md](classes.md), or browse them as [r
 
 ### Text sizes in practice
 
-Leave a page's `h1` unsized: the reset gives it the heading role (`text-heading-xl` and its leading). Every example follows one size contract, enforced by the examples lint: controls, table cells and body copy are `text-base`; labels, table headers, supporting lines and badges `text-sm`; titles `text-base font-semibold` (`text-lg` in a dialog); and an icon takes the step of the text beside it. The [Type and space](https://kimgranlund.github.io/nowind/site/docs/type-space.html) page has the table.
+Leave a page's headings unsized where they head the page or a section: the reset gives `h1`–`h6` the heading roles (`text-heading-xl` and down). A title inside a card, list, alert or dialog is smaller than a section heading, so size it from the contract below (`text-base font-semibold`). Every example follows one size contract, enforced by the examples lint: controls, table cells and body copy are `text-base`; labels, table headers, supporting lines and badges `text-sm`; titles `text-base font-semibold` (`text-lg` in a dialog); and an icon takes the step of the text beside it. The [Type and space](https://kimgranlund.github.io/nowind/site/docs/type-space.html) page has the table.
 
 ### Buttons, fields and icons
 
-There is no button or field component: each is a stack of classes, and the docs show every pattern. Wrap a control's text in a `<span>` (`<button><i class="icon …"></i><span>Save</span></button>`), so `px-control` can find an icon at either edge and pad it one margin less, and so the reset can trim it to its cap height and centre the letters (table cells keep their padding, so a cell lines up with its header).
+Buttons and fields come three ways: a bare `<button>` or `<input>` takes the element defaults; a convenience class (`btn`, `field`) is one class for the common stack; and the utility stacks below build or override any part. When a control holds an icon, wrap its text in a `<span>` (`<button><i class="icon …"></i><span>Save</span></button>`), so `px-control` can find an icon at either edge and pad it one margin less, and so the reset can trim it to its cap height and centre the letters (table cells keep their padding, so a cell lines up with its header).
 
 ```html
 <button class="inline-flex items-center h-control px-control gap-gutter rounded-sm state border border-transparent bg-neutral-a2 fg-neutral-12 font-medium">
@@ -233,7 +233,7 @@ Every glyph sits in an `icon` box, one slot square.
 
 ### Patterns
 
-Each pattern is a stack of classes; the [component docs](https://kimgranlund.github.io/nowind/site/docs/components-index.html) show each one live with its code. The ones people reach for first:
+Each pattern is a stack of utility classes. Where the element defaults already give that look (a bare select, label or table cell), you can leave the classes off; the stacks are for building the look yourself or changing part of it. A square button needs only `size-control` or `size-nested`, which also zero its padding. The [component docs](https://kimgranlund.github.io/nowind/site/docs/components-index.html) show each one live with its code. The ones people reach for first:
 
 | Pattern | Classes |
 |---|---|
@@ -244,7 +244,7 @@ Each pattern is a stack of classes; the [component docs](https://kimgranlund.git
 | Alert | One line: `flex items-center gap-gutter py-xs ps-xs pe-sm rounded-md border border-info-6 bg-info-3`, icon `fg-info-11`, text `fg-info-12`. With a title: `flex flex-col gap-3xs p-xs`, the detail `text-sm fg-info-11` |
 | Select | `<select class="select-base h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 bg-neutral-1 w-full">`; `select-base` opts in to the styled picker, with its caret and check |
 | Switch | `<input type="checkbox" role="switch">`; the reset draws it |
-| Form field | A stack `flex flex-col gap-2xs`: label `text-sm font-medium`, the field, then help or error text as `<span class="text-sm fg-neutral-11">`. A checkbox, radio or switch sits inside its label: `<label class="inline-flex items-center gap-xs text-base"><input type="checkbox"> Label</label>`; fields stack `gap-md` apart |
+| Form field | A stack `flex flex-col gap-2xs`: label `text-sm font-medium` (a bare `<label>` already looks like this, and adds its own small bottom margin only when it has no class), the field, then help or error text as `<span class="text-sm fg-neutral-11">`. A checkbox, radio or switch sits inside its label: `<label class="inline-flex items-center gap-xs text-base"><input type="checkbox"> Label</label>`; fields stack `gap-md` apart |
 | Dialog | `<dialog class="m-auto p-lg rounded-lg bg-neutral-1 border-0 shadow-xl max-w-form w-full">`, title `text-lg font-semibold`, actions `flex justify-end gap-xs`. Open it with `commandfor` and `command="show-modal"`; a button with `commandfor` and `command="close"` closes it |
 | Table | Wrapper `rounded-md border border-neutral-6 overflow-x-auto`; cells `h-control px-control`, headers add `text-sm font-medium fg-neutral-11`, rows `border-b border-neutral-6`, numbers `text-end tabular-nums` |
 
@@ -271,7 +271,7 @@ Every value reads a token with a fallback, and the tokens aren't declared anywhe
 .toolbar  { --button-height: var(--nested-height); } /* one region */
 ```
 
-The `defaults` layer sits after `reset` and before `styles`, so your own CSS in `@layer styles` beats it, and so does any utility class. The defaults fill only what an element's classes leave unset: a utility-built button that sets no padding gets the default padding, so set the properties a stack depends on. Only an explicit `type="submit"` makes a button primary; an untyped `<button>` in a form submits but stays neutral. [`nowind.defaults.manifest.json`](nowind.defaults.manifest.json) lists all the tokens and their fallbacks.
+The `defaults` layer sits after `reset` and before `styles`, so your own CSS in `@layer styles` beats it, and so does any utility class. The defaults fill only what an element's classes leave unset: a utility-built button that sets no padding gets the default padding, so set the properties a stack depends on. Only an explicit `type="submit"` makes a button primary; an untyped `<button>` in a form submits but stays neutral, and a submit button outside its form takes `form="id"`. Any other tone, such as a destructive button, takes a class: `btn-danger` from the convenience classes, or `bg-danger-9 fg-danger-contrast`. [`nowind.defaults.manifest.json`](nowind.defaults.manifest.json) lists all the tokens and their fallbacks.
 
 ## Convenience classes
 
@@ -306,7 +306,7 @@ Nowind's own examples are held to a set of contracts: one size for each kind of 
 python3 scripts/templates.py --lint-file page.html
 ```
 
-It reads the page's classes only (no browser), expands the convenience classes into their stacks first, and lets your own utilities override them as the cascade does. Each finding names the element, the rule and the fix. Notes, which don't fail the run, name what a partly styled button or field takes from the element defaults: a `<button class="h-control">` with no padding class gets the default padding. Notes, which don't fail the run, name what a partly styled button or field takes from the element defaults: a `<button class="h-control">` with no padding class gets the default padding. It skips the two rules that bind only Nowind's examples: you may use semantic classes and physical sides.
+It reads the page's classes only (no browser). It treats each button, field, label and table header as carrying its element default, and expands the convenience classes into their stacks, then lets your own utilities override both as the cascade does. Each finding names the element, the rule and the fix. Notes, which don't fail the run, name what a partly styled button or field takes from the element defaults: a `<button class="h-control">` with no padding class gets the default padding. It skips the two rules that bind only Nowind's examples: you may use semantic classes and physical sides.
 
 ## Variants
 
