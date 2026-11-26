@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+- **Tooling fixes from /code-review:**
+  - `review.mjs` reads a domain written after a flag (`--quick paint` ran form).
+  - It reviews only a server serving this checkout: `serve.mjs` names its root in a header, and the review starts its own server on the next free port when 8765 serves something else.
+  - It stops Chromium and its server however the run ends.
+  - Every page load times out after 15 seconds, the self-test's included.
+  - Vocabulary findings carry their own label.
+  - The equivalence check now covers each tone on `btn-sm` and `icon-btn`.
+  - `release.mjs` removes files a failed run created, refuses a version whose tag already exists, changes only the version mentions on the landing page, and reports a failed commit or tag.
+  - `components.mjs` escapes a leading digit (`2xl:`) the way CSS writes it.
+- **Specimen:** each palette shows its contrast tokens under its own ramps; they had all sat after the last palette.
 - **Finer dots:** new `bg-dots-xs` (a 0.75px dot every `--space-2xs`). On the Materials page the five materials now sit on a full-bleed `bg-dots-xs` field that fills the example frame, and the backdrops example shows all four spacings.
 - **Check your own page:** `python3 scripts/templates.py --lint-file page.html` runs the examples' contracts (sizes, geometry, palette steps, state attributes, undefined classes) on any HTML, with no browser. Convenience classes are expanded into their stacks first, and your own utilities override them as the cascade does, so `btn btn-primary rounded-full` passes and a `btn` forced to `h-nested` is told to use `btn-sm`'s geometry. The README has a section on it.
 - **README, from a consumer test on 0.12.0** (a fresh agent with only the README and both stylesheets wrote 38% fewer classes than before, using the convenience classes): the layer list includes `components`; the two manifests are told apart; the `field` stack and a form-field recipe are given; a badge's text sits in a `span`; a dialog closes with `command="close"`; avatars take no padding; a page's `h1` stays unsized.

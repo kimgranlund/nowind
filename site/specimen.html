@@ -317,8 +317,8 @@ function build() {
     s.append(el("h3", {}, p));
     ramp(s, p, false);
     ramp(s, p, true);
+    colorCards(s, colorSemantic.filter(([n]) => n.startsWith(`--${p}-contrast`)), () => "");
   }
-  colorCards(s, colorSemantic.filter(([n]) => /contrast/.test(n)), () => "");
 
   // Usage roles
   s = section("roles-color", "theme.colors.css", "Color roles", "Usage roles for neutral, each accent and each status. Toggle the mode in the header to compare light and dark.");

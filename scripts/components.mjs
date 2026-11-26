@@ -57,7 +57,7 @@ function parse(css) {
   return block();
 }
 
-const esc = (cls) => cls.replace(/([:/.@\[\]%!])/g, "\\$1");
+const esc = (cls) => cls.replace(/([:/.@\[\]%!])/g, "\\$1").replace(/^(\d)/, (d) => `\\3${d} `);  // CSS writes a leading digit as a hex escape: .\32 xl\:…
 
 // Replace .token with .name in a selector, outside :has() and :not() (where it would invert a rule), and only where
 // the class name ends there.

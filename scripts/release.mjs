@@ -24,6 +24,7 @@ if (!version || !/^\d+\.\d+\.\d+$/.test(version)) fail("give the version as X.Y.
 const last = git("describe", "--tags", "--abbrev=0").replace(/^v/, "");
 const newer = (a, b) => { const [x, y] = [a, b].map((v) => v.split(".").map(Number)); for (let i = 0; i < 3; i++) if (x[i] !== y[i]) return x[i] > y[i]; return false; };
 if (!newer(version, last)) fail(`${version} is not newer than the last release, ${last}`);
+if (git("tag", "-l", `v${version}`)) fail(`the tag v${version} already exists`);
 const commits = git("log", "--oneline", `v${last}..HEAD`).split("\n").filter(Boolean).length;
 if (!commits) fail(`nothing to release: no commits since v${last}`);
 if (!args.includes("--reviewed")) {
@@ -40,7 +41,7 @@ const log = readFileSync(changelog, "utf8");
 const m = log.match(/## Unreleased\n([\s\S]*?)\n## /);
 if (!m || !m[1].trim()) fail("CHANGELOG.md has nothing under ## Unreleased");
 
-const restore = () => { try { git("checkout", "--", "."); } catch {} };
+const restore = () => { try { git("checkout", "--", "."); git("clean", "-fdq"); } catch {} };
 const steps = [];
 try {
   const today = new Date();
@@ -50,7 +51,7 @@ try {
   const readme = join(root, "README.md");
   writeFileSync(readme, readFileSync(readme, "utf8").replaceAll(`v${last}`, `v${version}`).replaceAll(`Nowind ${lmaj}.${lmin}<`, `Nowind ${vmaj}.${vmin}<`));
   const landing = join(root, "site/index.html");
-  writeFileSync(landing, readFileSync(landing, "utf8").replaceAll(last, version));
+  writeFileSync(landing, readFileSync(landing, "utf8").replaceAll(`v${last}`, `v${version}`).replaceAll(`>${last}<`, `>${version}<`).replaceAll(`Nowind ${last}`, `Nowind ${version}`));
 
   const run = (label, cmd, a) => {
     process.stdout.write(`release: ${label} … `);
@@ -69,8 +70,11 @@ try {
   restore();
   fail(`stopped at ${e.message}; every file is back as it was. Fix it, commit, and run again.`);
 }
-git("add", "-A");
-git("commit", "-q", "-m", `Release ${version}`);
-git("tag", "-a", `v${version}`, "-m", `Nowind ${version}`);
+try {
+  git("add", "-A");
+  git("commit", "-q", "-m", `Release ${version}`);
+} catch (e) { restore(); fail(`the release commit failed (${e.message.split("\n")[0]}); every file is back as it was.`); }
+try { git("tag", "-a", `v${version}`, "-m", `Nowind ${version}`); }
+catch (e) { fail(`committed ${git("rev-parse", "--short", "HEAD")} but the tag failed (${e.message.split("\n")[0]}). Fix it with: git tag -a v${version} -m "Nowind ${version}"`); }
 console.log(`release: committed and tagged v${version} (${git("rev-parse", "--short", "HEAD")}). Not pushed. When you're ready:`);
 console.log(`  git push origin main && git push origin v${version}`);

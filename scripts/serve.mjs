@@ -43,7 +43,7 @@ createServer(async (req, res) => {
   try {
     if ((await stat(path)).isDirectory()) path = join(path, "index.html");
     const body = await readFile(path);
-    res.writeHead(200, { "Content-Type": TYPES[extname(path)] ?? "application/octet-stream", ...NO_CACHE });
+    res.writeHead(200, { "Content-Type": TYPES[extname(path)] ?? "application/octet-stream", "X-Nowind-Root": encodeURIComponent(root), ...NO_CACHE });
     res.end(req.method === "HEAD" ? undefined : body);
     console.log(`200 ${pathname}`);
   } catch {

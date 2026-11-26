@@ -21,7 +21,8 @@ import { fileURLToPath } from "node:url";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const args = process.argv.slice(2);
 const opt = (name, def) => { const i = args.indexOf(`--${name}`); return i >= 0 ? args[i + 1] : def; };
-const domain = args.find((a) => !a.startsWith("--") && !args[args.indexOf(a) - 1]?.startsWith("--")) || "form";
+const VALUE_FLAGS = ["--pages", "--widths", "--roots"];
+const domain = args.find((a, i) => !a.startsWith("--") && !VALUE_FLAGS.includes(args[i - 1])) || "form";
 const DOMAINS = {
   form: { audits: ["type", "geometry", "layout"], globals: { type: "nowindRunTypeAudit", geometry: "nowindRunGeometryAudit", layout: "nowindRunLayoutAudit" } },
   paint: { audits: ["paint"], globals: { paint: "nowindRunPaintAudit" }, widths: "1280", roots: "16" },
@@ -45,7 +46,7 @@ if (!DOMAINS[domain]) { console.error(`review: unknown domain "${domain}". Known
 const quick = args.includes("--quick");
 const widths = (opt("widths", quick ? "1280" : DOMAINS[domain]?.widths || "375,768,1280")).split(",").map(Number);
 const roots = (opt("roots", quick ? "16" : DOMAINS[domain]?.roots || "12,16,18")).split(",").map(Number);
-const PORT = 8765, BASE = `http://localhost:${PORT}`;
+let PORT = 8765, BASE = `http://localhost:${PORT}`;
 
 const pages = (() => {
   const want = opt("pages", "");
@@ -222,12 +223,14 @@ async function vocabularyPage(send, sessionId) {
     return { n, tag: TAG[root2] || "div", a: b ? `${byName[b]} ${byName[n]}` : byName[n], c: b ? `${b} ${n}` : n };
   });
   pairs.push({ n: "segment (pressed)", tag: "button", a: byName.segment, c: "segment", pressed: true });
+  for (const holder of ["btn-sm", "icon-btn"]) for (const tone of classes.map((c) => c.class).filter((n) => base(n) === "btn"))
+    pairs.push({ n: `${holder} ${tone}`, tag: "button", a: `${byName[holder]} ${byName[tone]}`, c: `${holder} ${tone}` });
   const ev = async (expression) => { const { result, exceptionDetails } = await send("Runtime.evaluate", { expression, returnByValue: true, awaitPromise: true }, sessionId); if (exceptionDetails) throw new Error(exceptionDetails.exception?.description?.split("\n")[0] || exceptionDetails.text); return result.value; };
   await ev(`new Promise((r) => { const l = document.createElement("link"); l.rel = "stylesheet"; l.href = "/dist/nowind.components.css"; l.onload = r; document.head.append(l); })`);
   await ev(`(() => {
     const pairs = ${JSON.stringify(pairs)};
     const box = document.createElement("div"); box.id = "nwv"; box.className = "flex flex-wrap gap-sm p-inset rounded-md border";
-    const inner = (p) => p.n === "icon-btn" ? '<i class="icon ph ph-gear"></i>' : p.tag === "div" ? '<span>Body</span>' : '<i class="icon icon-sm ph ph-check"></i><span>Label</span>';
+    const inner = (p) => p.n.startsWith("icon-btn") ? '<i class="icon ph ph-gear"></i>' : p.tag === "div" ? '<span>Body</span>' : '<i class="icon icon-sm ph ph-check"></i><span>Label</span>';
     pairs.forEach((p, i) => {
       for (const [side, cls] of [["a", p.a], ["c", p.c]]) {
         const wrap = document.createElement("div"); wrap.className = p.n.startsWith("segment") ? "inline-flex items-center h-control rounded-sm border-2 border-transparent bg-neutral-a2" : "";
@@ -264,21 +267,37 @@ async function vocabularyPage(send, sessionId) {
   return out;
 }
 
-async function up() { try { return (await fetch(`${BASE}/site/index.html`)).ok; } catch { return false; } }
+// Which checkout a port serves: "ours", "other" (another root, or not Nowind's server) or "none".
+async function probe(port) {
+  try {
+    const r = await fetch(`http://localhost:${port}/site/index.html`, { method: "HEAD" });
+    return r.ok && decodeURIComponent(r.headers.get("x-nowind-root") || "") === root ? "ours" : "other";
+  } catch { return "none"; }
+}
+
+// Headless Chromium and the server this run started; killed however the run ends.
+let chrome = null, server = null;
+process.on("exit", () => { try { chrome?.kill(); } catch {} try { server?.kill(); } catch {} });
+for (const sig of ["SIGINT", "SIGTERM"]) process.on(sig, () => process.exit(130));
 
 async function main() {
-  let server = null;
-  if (!(await up())) {
+  // Use a server that serves this checkout, or start one on the first free port, so a run never audits another tree.
+  let port = 8765, state = await probe(port);
+  while (state === "other" && port < 8799) state = await probe(++port);
+  if (state === "other") { console.error("review: ports 8765-8799 all serve something else. Fix: stop one of those servers."); process.exit(2); }
+  PORT = port; BASE = `http://localhost:${PORT}`;
+  if (state === "none") {
     server = spawn(process.execPath, [join(root, "scripts/serve.mjs"), String(PORT)], { stdio: "ignore" });
-    for (let i = 0; i < 50 && !(await up()); i++) await new Promise((r) => setTimeout(r, 100));
+    for (let i = 0; i < 50 && (await probe(PORT)) !== "ours"; i++) await new Promise((r) => setTimeout(r, 100));
   }
   const bin = chromePath();
   if (!bin) { console.error("review: no Chromium found. Fix: set NOWIND_CHROME to a Chrome or chrome-headless-shell binary, or run `npx playwright install chromium-headless-shell`."); process.exit(2); }
-  const chrome = spawn(bin, ["--headless", "--remote-debugging-port=0", "--no-first-run", "--hide-scrollbars", "--force-color-profile=srgb", "about:blank"], { stdio: ["ignore", "ignore", "pipe"] });
+  chrome = spawn(bin, ["--headless", "--remote-debugging-port=0", "--no-first-run", "--hide-scrollbars", "--force-color-profile=srgb", "about:blank"], { stdio: ["ignore", "ignore", "pipe"] });
   const wsUrl = await new Promise((res, rej) => {
     let buf = "";
     chrome.stderr.on("data", (d) => { buf += d; const m = buf.match(/DevTools listening on (ws:\/\/\S+)/); if (m) res(m[1]); });
     chrome.on("exit", () => rej(new Error("Chromium exited before it listened")));
+    chrome.on("error", (e) => rej(new Error(`Chromium did not start: ${e.message}`)));
   });
   const ws = new WebSocket(wsUrl);
   await new Promise((r) => ws.addEventListener("open", r, { once: true }));
@@ -291,6 +310,8 @@ async function main() {
   const send = (method, params = {}, sessionId) => new Promise((res, rej) => { const i = ++id; waiting.set(i, { res, rej }); ws.send(JSON.stringify({ id: i, method, params, sessionId })); });
   const once = (method, sessionId) => new Promise((res) => { const l = (m) => { if (m.method === method && m.sessionId === sessionId) { listeners.splice(listeners.indexOf(l), 1); res(m.params); } }; listeners.push(l); });
 
+  // Navigate and wait for load, at most 15 seconds, so a page that never finishes loading cannot hang the run.
+  const go = async (url) => { const loaded = once("Page.loadEventFired", sessionId); await send("Page.navigate", { url }, sessionId); await Promise.race([loaded, new Promise((r) => setTimeout(r, 15000))]); };
   const { targetId } = await send("Target.createTarget", { url: "about:blank" });
   const { sessionId } = await send("Target.attachToTarget", { targetId, flatten: true });
   await send("Page.enable", {}, sessionId);
@@ -298,9 +319,7 @@ async function main() {
   if (args.includes("--self-test")) {
     // Break the showcase eighteen ways and confirm the layout, paint, behaviour and vocabulary checks report each rule.
     await send("Emulation.setDeviceMetricsOverride", { width: 768, height: 900, deviceScaleFactor: 1, mobile: false }, sessionId);
-    const loaded = once("Page.loadEventFired", sessionId);
-    await send("Page.navigate", { url: `${BASE}/site/components.html?audit=layout,paint` }, sessionId);
-    await loaded;
+    await go(`${BASE}/site/components.html?audit=layout,paint`);
     const res = {};
     for (const expr of [SELF_TEST, PAINT_SELF_TEST]) {
       const { result } = await send("Runtime.evaluate", { awaitPromise: true, returnByValue: true, expression: expr }, sessionId);
@@ -320,17 +339,13 @@ async function main() {
     };
     {
       // Vocabulary: a convenience class that drifts from its stack is caught.
-      const loadedV = once("Page.loadEventFired", sessionId);
-      await send("Page.navigate", { url: `${BASE}/site/components.html` }, sessionId);
-      await loadedV;
+      await go(`${BASE}/site/components.html`);
       const clean = (await vocabularyPage(send, sessionId)).length === 0;
       await ev(`(() => { const s = document.createElement("style"); s.id = "nwt-v"; s.textContent = "@layer components { .btn { padding-inline: 3px !important; } }"; document.head.append(s); return 1; })()`);
       const got = (await vocabularyPage(send, sessionId)).some((f) => f.rule === "equivalence");
       res.equivalence = !clean ? "already reported before the break" : got ? "caught" : "missed";
     }
-    const navd = once("Page.loadEventFired", sessionId);
-    await send("Page.navigate", { url: `${BASE}/site/components.html` }, sessionId);
-    await navd;
+    await go(`${BASE}/site/components.html`);
     const base = new Set((await behaviourPage(send, sessionId)).map((f) => f.rule));
     for (const [rule, js] of Object.entries(BREAKS)) {
       if (base.has(rule)) { res[rule] = "already reported before the break"; continue; }
@@ -339,7 +354,7 @@ async function main() {
       await ev(`document.getElementById("nwt")?.remove(); document.getElementById("nwt2")?.remove(); 1`);
       res[rule] = got ? "caught" : "missed";
     }
-    ws.close(); chrome.kill(); if (server) server.kill();
+    ws.close();
     for (const [rule, v] of Object.entries(res)) console.log(`${v === "caught" ? "PASS" : "FAIL"}  self-test "${rule}" ${v}`);
     const bad = Object.values(res).some((v) => v !== "caught");
     console.log(bad ? "review self-test: a break went unreported" : "review self-test: every break was caught");
@@ -354,11 +369,9 @@ async function main() {
     for (const width of widths) {
       await send("Emulation.setDeviceMetricsOverride", { width, height: 900, deviceScaleFactor: 1, mobile: width < 768 }, sessionId);
       for (const page of pages) {
-        const loaded = once("Page.loadEventFired", sessionId);
-        await send("Page.navigate", { url: `${BASE}/${page}?audit=${audits.join(",")}` }, sessionId);
-        await Promise.race([loaded, new Promise((r) => setTimeout(r, 15000))]);
+        await go(`${BASE}/${page}?audit=${audits.join(",")}`);
         if (DOMAINS[domain].custom) {
-          for (const f of await (domain === "vocabulary" ? vocabularyPage : behaviourPage)(send, sessionId)) findings.push({ domain, audit: "behaviour", page, width, root: rootSize, ...f });
+          for (const f of await (domain === "vocabulary" ? vocabularyPage : behaviourPage)(send, sessionId)) findings.push({ domain, audit: domain, page, width, root: rootSize, ...f });
           done++;
           if (process.stdout.isTTY) process.stdout.write(`\rreview ${domain}: ${done}/${total}`);
           continue;
@@ -374,7 +387,7 @@ async function main() {
     await send("Page.removeScriptToEvaluateOnNewDocument", { identifier }, sessionId);
   }
   if (process.stdout.isTTY) process.stdout.write("\n");
-  ws.close(); chrome.kill(); if (server) server.kill();
+  ws.close();
 
   const dir = join(root, "review"); mkdirSync(dir, { recursive: true });
   writeFileSync(join(dir, `${domain}.json`), JSON.stringify({ domain, pages, widths, roots, findings }, null, 1) + "\n");
