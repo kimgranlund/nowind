@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.14.0 (2026-11-26)
+
 - **Element defaults apply everywhere, in their own layer** (breaking). The layer order is now `@layer reset, defaults, styles, components, nowind`: bare buttons, fields, checks, sliders, links, labels and table cells are styled wherever they are, with no `defaults` class (it is gone). Your CSS in `@layer styles` beats the defaults, and so does any utility. A utility stack now gets a default for every property it leaves unset, so:
   - `size-control` and `size-nested` now set `padding: 0`, so a square stays square under the default button padding. If you gave a `size-*` element a padding class, it now conflicts: drop it, or size the element another way;
   - icon segments (`h-full aspect-square`) take `p-0`;
