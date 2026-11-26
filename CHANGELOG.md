@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.16.0 (2026-11-26)
+
 - **More classless structure:** a `header` in `body` or `main` is a row (title at the start, actions at the end), a classless `main` spaces its sections a section gap apart, and a classless `table` is full width. Three new tokens: `--header-gap`, `--section-gap`, `--table-width`.
 
 ## 0.15.0 (2026-11-26)
