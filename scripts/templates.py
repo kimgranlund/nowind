@@ -50,6 +50,8 @@ HEAD = """<!doctype html>
 <title>{title} · Nowind</title>
 <link rel="icon" href="data:,">
 {head_extra}<link rel="stylesheet" href="../../theme.css">
+<link rel="stylesheet" href="../../reset.css">
+<link rel="stylesheet" href="../../defaults.css">
 <link rel="stylesheet" href="../../nowind.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">

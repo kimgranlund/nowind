@@ -47,6 +47,22 @@ Link one file:
 
 The link pins release `v0.14.0`. Or copy `dist/nowind.min.css` into your project. Releases are in [CHANGELOG.md](CHANGELOG.md). Browse the [component docs](https://kimgranlund.github.io/nowind/site/docs/components-index.html), the [showcase](https://kimgranlund.github.io/nowind/site/components.html), the [specimen](https://kimgranlund.github.io/nowind/site/specimen.html) and the [class list](https://kimgranlund.github.io/nowind/site/docs/classes.html) on GitHub Pages.
 
+Most pages want that one link. Nowind also ships each layer on its own, for pages that need only some:
+
+```html
+<!-- Classless: plain HTML looks finished (theme, reset, element defaults; about 19 KiB gzipped) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.14.0/dist/nowind.theme.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.14.0/dist/nowind.reset.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.14.0/dist/nowind.defaults.min.css">
+
+<!-- With your own components: tokens and utilities, no element defaults to fight your buttons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.14.0/dist/nowind.theme.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.14.0/dist/nowind.reset.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.14.0/dist/nowind.utilities.min.css">
+```
+
+Always include the theme, or your own replacement for it: every other part reads its tokens. Each layer file declares the same layer order, so the parts can come in any order after it.
+
 ```html
 <article class="max-w-form p-md rounded-md bg-neutral-1 border border-neutral-6 shadow-sm">
   <span class="text-xs font-mono uppercase tracking-widest fg-accent-1-11">Release</span>
@@ -74,7 +90,7 @@ Fonts load with the theme: Inter (`--font-body`), Inter Tight (`--font-heading`,
 
 ### The included reset
 
-The reset, in the `reset` layer with every selector in `:where()`, sets `box-sizing`, zero-width solid borders in `--border` (neutral step 7), so `border` sets only a width, sizes unsized headings from the type roles, keeps link underlines, gives buttons and links a focus ring and text fields an accent border, themes native form controls, transitions every interactive element and turns motion off for people who ask for less.
+The reset (`reset.css`, the `reset` layer, every selector in `:where()`) sets `box-sizing`, zero-width solid borders in `--border` (neutral step 7), so `border` sets only a width, sizes unsized headings from the type roles, keeps link underlines, gives buttons and links a focus ring and text fields an accent border, themes native form controls, transitions every interactive element and turns motion off for people who ask for less.
 
 ## Theming
 
@@ -326,6 +342,35 @@ It reads the page's classes only (no browser). It treats each button, field, lab
   <span>Profile</span>
 </button>
 ```
+
+## Customise
+
+Most changes are a token or two, set after the stylesheet in `:root` (or on any region, to change only that part of the page):
+
+```css
+:root {
+  --font-body: "Söhne", system-ui, sans-serif;  /* also --font-heading, --font-display, --font-mono; load the font yourself */
+  --radius-offset: 0px;          /* rounder corners everywhere (-4px by default; -8px squarer) */
+  --border-width: 1.5px;         /* every border and ring */
+  --text-base: 16px;             /* a fixed base instead of the fluid 14-18px; every length follows */
+  --button-radius: 9999px;       /* element defaults: --button-*, --field-*, --check-*, --link-*, --cell-* */
+  --state-hover: 0.08;           /* how strongly hover tints (also --state-active, --state-selected) */
+  --motion-duration: 120ms;      /* how fast states change */
+}
+```
+
+| You want | Set |
+|---|---|
+| Your fonts | `--font-body`, `--font-heading`, `--font-display`, `--font-mono` |
+| Rounder or squarer corners | `--radius-offset`, `--radius-slope` |
+| Thicker or thinner lines | `--border-width` |
+| A fixed or different base size | `--text-base` (every control, space and type step follows it) |
+| Element defaults | any token in [`nowind.defaults.manifest.json`](nowind.defaults.manifest.json) |
+| Hover and press strength | `--state-hover`, `--state-active`, `--state-selected` |
+| Motion | `--motion-duration`, `--motion-easing` |
+| Another brand colour | point `--accent-1-1` … `--accent-1-12` and `--accent-1-a1` … `--accent-1-a12` at another family's steps, such as `var(--colors-violet-9)`; the bundle carries blue, violet, plum, crimson, slate, red, amber, green and indigo |
+
+For more than that (your own palettes, type scale or geometry), change the theme itself: see [Changing the theme](#changing-the-theme), or replace `nowind.theme.min.css` with your own file that defines the tokens the manifests in `theme/` list.
 
 ## Changing the theme
 

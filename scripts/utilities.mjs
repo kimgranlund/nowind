@@ -826,7 +826,14 @@ for (const [cq, w] of CONTAINERS) {
 }
 out.push("}");
 const css = out.join("\n") + "\n";
-writeFileSync(join(root, "nowind.css"), css);
+// One file per layer: reset.css, defaults.css and nowind.css (the utilities). Each opens with the full layer order, so
+// the parts cascade the same whichever order a page links them in.
+const ORDER = "@layer reset, defaults, styles, components, nowind;\n";
+const iDefaults = css.indexOf("\n@layer defaults {"), iNowind = css.indexOf("@layer nowind {");
+if (!css.startsWith(ORDER) || iDefaults < 0 || iNowind < 0) throw new Error("utilities: expected the layer order, then reset, defaults and nowind blocks");
+writeFileSync(join(root, "reset.css"), ORDER + "\n" + css.slice(ORDER.length, iDefaults).trim() + "\n");
+writeFileSync(join(root, "defaults.css"), ORDER + "\n" + css.slice(iDefaults, iNowind).trim() + "\n");
+writeFileSync(join(root, "nowind.css"), ORDER + "\n" + css.slice(iNowind).trim() + "\n");
 
 const manifest = {
   file: "nowind.css",

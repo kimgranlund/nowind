@@ -18,6 +18,8 @@ const walk = (dir) => readdirSync(dir).flatMap((n) => {
 // The CSS Nowind owns: everything except the copied colour library.
 const ownCss = (root) => [
   join(root, "theme.css"),
+  join(root, "reset.css"),
+  join(root, "defaults.css"),
   join(root, "nowind.css"),
   ...walk(join(root, "theme")).filter((p) => p.endsWith(".css") && !p.includes(`${join("theme", "colors-raw")}`)),
   ...walk(join(root, "dist")).filter((p) => p.endsWith(".css")),
@@ -28,6 +30,8 @@ const COMPANIONS = new Set(["line-height", "font-weight", "font-family", "letter
 
 const GENERATED = [
   "nowind.css",
+  "reset.css",
+  "defaults.css",
   "nowind.manifest.json",
   "classes.md",
   "theme/theme.typography.css",
@@ -42,6 +46,10 @@ const GENERATED = [
   "theme/theme.materials.manifest.json",
   "dist/nowind.bundle.css",
   "dist/nowind.min.css",
+  "dist/nowind.theme.min.css",
+  "dist/nowind.reset.min.css",
+  "dist/nowind.defaults.min.css",
+  "dist/nowind.utilities.min.css",
   "dist/nowind.components.css",
   "dist/nowind.components.min.css",
   "nowind.components.manifest.json",

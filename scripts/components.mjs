@@ -77,10 +77,10 @@ function rename(selector, token, name) {
 }
 const splitList = (sel) => { const parts = []; let d = 0, s = 0; for (let i = 0; i < sel.length; i++) { if (sel[i] === "(") d++; else if (sel[i] === ")") d--; else if (sel[i] === "," && !d) { parts.push(sel.slice(s, i).trim()); s = i + 1; } } parts.push(sel.slice(s).trim()); return parts; };
 
-const tree = parse(readFileSync(join(root, "nowind.css"), "utf8"));
+const tree = [...parse(readFileSync(join(root, "reset.css"), "utf8")), ...parse(readFileSync(join(root, "nowind.css"), "utf8"))];
 const utilities = tree.find((n) => n.type === "at" && n.head === "@layer nowind");
 const reset = tree.find((n) => n.type === "at" && n.head === "@layer reset");
-if (!utilities || !reset) throw new Error("components: nowind.css needs its @layer reset and @layer nowind blocks");
+if (!utilities || !reset) throw new Error("components: reset.css needs its @layer reset block and nowind.css its @layer nowind block");
 
 const defined = new Set();
 const walk = (nodes, fn) => nodes.forEach((n) => n.type === "at" ? walk(n.kids, fn) : n.type === "rule" && fn(n));

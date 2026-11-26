@@ -21,8 +21,10 @@ Read `README.md` for what Nowind is and how people use it. This file says how to
 | `theme/theme.motion.css` | Spring easings (CSS `linear()`) and durations after Massimo | no, `scripts/motion.mjs` |
 | `theme/theme.materials.css` | Material paint roles and glass faces after Massimo | no, `scripts/materials.mjs` |
 | `theme/theme.typography.css`, `theme/theme.space.css` | Fluid Utopia scales, faces, weights, leading, tracking | no, `scripts/utopia.mjs` |
-| `nowind.css` | Reset and utility classes | no, `scripts/utilities.mjs` |
-| `dist/` | One-file bundle and its minified copy (`scripts/bundle.mjs`), and the optional convenience classes, `dist/nowind.components.css` and its minified copy (`scripts/components.mjs`) | no |
+| `reset.css` | The `reset` layer | no, `scripts/utilities.mjs` |
+| `defaults.css` | The `defaults` layer: element defaults | no, `scripts/utilities.mjs` |
+| `nowind.css` | The `nowind` layer: utility classes | no, `scripts/utilities.mjs` |
+| `dist/` | One-file bundle and its minified copy, and each part minified on its own (`nowind.theme`, `.reset`, `.defaults`, `.utilities`.min.css) (`scripts/bundle.mjs`); and the optional convenience classes, `dist/nowind.components.css` and its minified copy (`scripts/components.mjs`) | no |
 | `scripts/release.mjs` | Cuts a release locally: with `--reviewed`, dates the changelog, moves the links to the new tag, regenerates, runs `check.mjs`, its self-test and `review.mjs all`, and only then commits and tags; on any failure it puts every file back. Never pushes | yes |
 | `scripts/components.mjs` | The convenience classes: `RECIPES` (btn and its tones, btn-sm, icon-btn, field, badge and its tones, card, segmented, segment), each a stack of utility classes, written by copying every rule the stack uses under the new class | yes |
 | `nowind.defaults.manifest.json` | The element defaults: every token the `defaults` layer reads, its fallback and its use | no, `scripts/utilities.mjs` (`DEFAULT_TOKENS`) |
@@ -87,7 +89,7 @@ Then check the result in `site/specimen.html` through the dev server (`node scri
 - **Colours are `light-dark()`.** Never add a separate dark theme or a `dark:` variant.
 - **No `color-mix()`.** Use the alpha steps (`--{palette}-a{1..12}`) for transparency. (checked)
 - **Text on a solid uses `--on-solid-{palette}`.** The library's `solidLabel` is the starting point, but Nowind overrides it where the owner chose: the accents and every status (danger, warning, success, info) take light text in both modes; only neutral follows the library (light, then dark). Each palette's choice is in `palettes[].contrast` in the colors manifest.
-- **Layers:** `reset, defaults, styles, components, nowind`; `components` is empty unless `dist/nowind.components.css` is linked, so any utility beats a convenience class. The reset wraps every selector in `:where()`. Its heading roles apply only to headings without a `text-{size}` class; a sized heading reads as text at that size.
+- **Layers:** `reset, defaults, styles, components, nowind`, one source file each (`reset.css`, `defaults.css`, `nowind.css`; `components` ships in `dist/`), every file opening with the full order so parts linked in any order cascade the same; `components` is empty unless `dist/nowind.components.css` is linked, so any utility beats a convenience class. The reset wraps every selector in `:where()`. Its heading roles apply only to headings without a `text-{size}` class; a sized heading reads as text at that size.
 - **Contrast is out of scope.** Don't add contrast checks.
 - **Radii nest.** A container that holds items against its padding pairs by name: `rounded-md p-inset border` holds `rounded-sm`, `rounded-sm p-inset` holds `rounded-xs`, one step per margin after Affine. Any other padding uses `rounded-inner` on the item. The scale and the rule live in `theme/theme.geometry.css` and its manifest (`nesting`).
 - **Logical sides.** Examples and the site say start and end, not left and right: `ps-`, `pe-`, `ms-`, `me-`, `start-`, `end-`, `text-start`, `text-end`, `border-s`, `border-e`, `rounded-s-*`, `rounded-e-*`. The physical classes exist for authors who need them; the examples lint rejects them. (checked)

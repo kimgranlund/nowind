@@ -9,6 +9,8 @@
 <script>try{var d=document.documentElement,m=localStorage.getItem("nowind-color-mode"),z=localStorage.getItem("nowind-root-size");if(m)d.dataset.colorMode=m;if(z)d.style.fontSize=z+"px"}catch(e){}</script>
 <!--/nowind:head-->
 <link rel="stylesheet" href="../theme.css">
+<link rel="stylesheet" href="../reset.css">
+<link rel="stylesheet" href="../defaults.css">
 <link rel="stylesheet" href="../nowind.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
@@ -436,10 +438,10 @@ function buildReset() {
       if (inReset && r.selectorText) rules.push([r.selectorText, r.style.cssText.replace(/; /g, ";\n"), media]);
     }
   };
-  for (const sh of document.styleSheets) { try { if (/nowind\.css$/.test(sh.href || "")) walk(sh.cssRules, null, false); } catch {} }
+  for (const sh of document.styleSheets) { try { if (/reset\.css$/.test(sh.href || "")) walk(sh.cssRules, null, false); } catch {} }
 
-  const s = section("reset", "nowind.css @layer reset", "Reset",
-    "The reset in nowind.css, read from the stylesheet. Every selector is wrapped in :where(), so it has no specificity and any rule of yours wins. The frame shows bare HTML with only theme.css and nowind.css.");
+  const s = section("reset", "reset.css @layer reset", "Reset",
+    "The reset in reset.css, read from the stylesheet. Every selector is wrapped in :where(), so it has no specificity and any rule of yours wins. The frame shows bare HTML with only the theme and the three layer files, so the element defaults show too.");
   const frame = el("iframe", { class: "reset-demo", title: "Bare HTML under the Nowind reset" });
   frame.srcdoc = RESET_DEMO;
   frame.addEventListener("load", () => syncFrameMode(frame));
@@ -461,7 +463,7 @@ function syncFrameMode(frame) {
 }
 
 const RESET_DEMO = `<!doctype html><html><head><meta charset="utf-8"><link rel="icon" href="data:,">
-<link rel="stylesheet" href="../theme.css"><link rel="stylesheet" href="../nowind.css"></head><body style="padding:24px">
+<link rel="stylesheet" href="../theme.css"><link rel="stylesheet" href="../reset.css"><link rel="stylesheet" href="../defaults.css"><link rel="stylesheet" href="../nowind.css"></head><body style="padding:24px">
 <h1>Heading one</h1><h2>Heading two</h2><h3>Heading three</h3><h4>Heading four</h4><h5>Heading five</h5><h6>Heading six</h6>
 <p style="margin-block:12px;max-width:60ch">A paragraph with <a href="#">a plain link</a>, <code>inline code</code>, a <kbd>⌘K</kbd> key and text that wraps with <em>pretty</em> line breaks, so no line ends with one orphaned word.</p>
 <ul role="list" style="margin-block:12px"><li>role="list" keeps list semantics</li><li>without markers or padding</li></ul>
