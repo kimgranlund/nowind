@@ -99,6 +99,7 @@
   }
   .row .sample { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .row .px { text-align: right; font-family: var(--font-mono); font-size: var(--mono-sm); color: var(--fg-weak); white-space: normal; overflow-wrap: anywhere; }
+  .row .px.long { grid-column: 2 / -1; grid-row: 2; text-align: start; }
   .row.wrap .sample { white-space: normal; }
   .bar { height: 12px; background: var(--solid-accent-1); border-radius: 2px; }
   .bar-wrap { display: flex; align-items: center; min-width: 0; }
@@ -406,16 +407,19 @@ function build() {
   const gr = el("div", { class: "rows" });
   for (const [name, val] of geometry) {
     const isLen = /px|calc|var|em|max/.test(val) && !/factor|slope|^--mg$|^--tier$/.test(name);
+    const isUrl = /^url\(/.test(val);
     const pxEl = el("div", { class: "px" });
     if (isLen) live.push(() => { pxEl.textContent = fmt(px(name)); });
-    else pxEl.textContent = val;
-    gr.append(el("div", { class: "row" }, el("code", { class: "tok" }, name),
-      isLen ? el("div", { class: "bar-wrap" }, el("div", { class: "bar", style: `width:var(${name});background:var(--solid)` })) : el("code", { class: "val" }, val),
-      pxEl));
+    else pxEl.textContent = isUrl ? "SVG mask" : val;
+    const sample = isLen ? el("div", { class: "bar-wrap" }, el("div", { class: "bar", style: `width:var(${name});background:var(--solid)` }))
+      : isUrl ? el("div", { style: `width:1.5em;height:1.5em;background:currentColor;-webkit-mask:var(${name}) center/contain no-repeat;mask:var(${name}) center/contain no-repeat`, title: val })
+      : el("code", { class: "val" }, val);
+    gr.append(el("div", { class: "row" }, el("code", { class: "tok" }, name), sample, pxEl));
   }
   s.append(gr);
 
   // Utilities
+  document.querySelectorAll("main .row .px").forEach((p) => p.classList.toggle("long", p.textContent.length > 18));
   buildReset();
   buildUtilities();
   refresh();
