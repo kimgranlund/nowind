@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Checks the rules AGENTS.md states. Usage:
 //   node scripts/check.mjs              check this repository
-//   node scripts/check.mjs --self-test  break a copy twenty-one ways and confirm each check fails
+//   node scripts/check.mjs --self-test  break a copy twenty-three ways and confirm each check fails
 import { readFileSync, readdirSync, statSync, cpSync, mkdtempSync, rmSync, writeFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join, relative } from "node:path";
@@ -158,6 +158,8 @@ if (process.argv.includes("--self-test")) {
     ["small control beside full-size ones", "site/components.html", (s) => s.replace(/(<button [^>]*aria-label="Settings">.*?<\/button>)/, '$1<button class="size-nested" aria-label="X"><i class="icon icon-sm ph ph-x"></i></button>')],
     ["badge off the geometry contract", "site/components.html", (s) => s.replace(/(class="inline-flex items-center h-nested )px-nested( rounded-full border)/, "$1px-2xs$2")],
     ["card off the geometry contract", "site/components.html", (s) => s.replace('<div class="p-md rounded-md bg-neutral-1 border border-neutral-6', '<div class="p-md rounded-sm bg-neutral-1 border border-neutral-6')],
+    ["class that doesn't exist", "site/components.html", (s) => s.replace("hover:bg-neutral-4 pressed:bg-white", "hover:bg-neutral-4 pressed:bg-neutral-13")],
+    ["state variant without its attribute", "site/components.html", (s) => s.replace('<button aria-pressed="false" class="inline-flex items-center h-full px-nested', '<button class="inline-flex items-center h-full px-nested')],
     ["palette step off its job", "site/components.html", (s) => s.replace('<span class="text-sm fg-neutral-11">6 min read</span>', '<span class="text-sm fg-neutral-5">6 min read</span>')],
     ["text on a solid off its contrast token", "site/components.html", (s) => s.replace("bg-accent-1-9 fg-accent-1-contrast", "bg-accent-1-9 fg-neutral-12")],
     ["table header off the size contract", "site/components.html", (s) => s.replace('<th class="text-start h-control px-control text-sm font-medium', '<th class="text-start h-control px-control font-medium')],

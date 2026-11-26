@@ -4,8 +4,9 @@
 //
 // Usage: node scripts/review.mjs [domain] [--pages a,b] [--widths 375,768] [--roots 12,16] [--quick] [--strict]
 //        node scripts/review.mjs all         the release gate: every domain with --strict (fail on any finding), then the self-test
-//        node scripts/review.mjs --self-test   break the showcase nine ways and confirm the layout and paint audits catch each
-//   domain  form (type, geometry, layout; the default) or paint (colour by step in light and dark; one width and root)
+//        node scripts/review.mjs --self-test   break the showcase seventeen ways and confirm the layout, paint and behaviour audits catch each
+//   domain  form (type, geometry, layout; the default), paint (colour by step in light and dark) or behaviour (hover,
+//           press, focus, on, disabled, targets and motion, forced per element over the DevTools protocol); one width and root
 //   --quick one width (1280) and one root (16)
 // Writes review/<domain>.json (every finding with its page, width and root) and review/<domain>.md (grouped by rule,
 // each finding once with the contexts it appears in). The review folder is not committed.
@@ -23,6 +24,7 @@ const domain = args.find((a) => !a.startsWith("--") && !args[args.indexOf(a) - 1
 const DOMAINS = {
   form: { audits: ["type", "geometry", "layout"], globals: { type: "nowindRunTypeAudit", geometry: "nowindRunGeometryAudit", layout: "nowindRunLayoutAudit" } },
   paint: { audits: ["paint"], globals: { paint: "nowindRunPaintAudit" }, widths: "1280", roots: "16" },
+  behaviour: { audits: [], globals: {}, widths: "1280", roots: "16", custom: true },
 };
 if (domain === "all") {
   // The release gate: every domain, then the self-test, each in its own run; fails if any finds anything.
@@ -104,6 +106,106 @@ const PAINT_SELF_TEST = `(async () => {
   return JSON.stringify(out);
 })()`;
 
+// Behaviour (theme/theme.behaviour.manifest.json): marks every interactive element, reads its transitions at rest, then
+// freezes transitions and forces :hover, :hover:active and :focus-visible on each through CSS.forcePseudoState,
+// comparing computed styles. Findings: hover, press, focus, on-vs-hover, disabled, target, motion-tokens.
+const BEHAVIOUR_SETUP = `(() => {
+  const SEL = "a[href], button, summary, select, input:not([type=hidden]), textarea, [role=button], [role=tab], [role=option], [role=menuitem], [role=switch], [role=checkbox], [role=radio]";
+  const visible = (e) => { const c = getComputedStyle(e), r = e.getBoundingClientRect(); return c.display !== "none" && c.visibility !== "hidden" && r.width > 0 && r.height > 0 && !e.closest("dialog:not([open]), [popover]:not(:popover-open), [hidden], template, .sr-only, [data-page-css] ~ *"); };
+  if (document.querySelector("style[data-page-css]")) return JSON.stringify({ info: [], durs: [], eases: [] });
+  document.querySelectorAll("[data-nwb], [data-nwbox]").forEach((e) => { e.removeAttribute("data-nwb"); e.removeAttribute("data-nwbox"); });
+  const els = [...document.querySelectorAll(SEL)].filter(visible).filter((e) => !e.closest("[data-semantic-demo]") && !(e.tagName === "INPUT" && /^(range|color|file|hidden)$/.test(e.type)));
+  els.forEach((e, i) => { e.setAttribute("data-nwb", i); const box = e.matches("input, select, textarea") && e.parentElement.closest(".cursor-text"); if (box) box.setAttribute("data-nwbox", ((box.getAttribute("data-nwbox") || "") + " " + i).trim()); });
+  const probe = document.createElement("div"); document.body.append(probe);
+  const durs = new Set(["0s"]), eases = new Set();
+  for (const n of ["fade", "snappy", "smooth", "bouncy"]) { probe.style.transitionDuration = "var(--duration-" + n + ")"; durs.add(getComputedStyle(probe).transitionDuration); }
+  for (const n of ["standard", "smooth", "snappy", "bouncy", "out", "in"]) { probe.style.transitionTimingFunction = "var(--ease-" + n + ")"; eases.add(getComputedStyle(probe).transitionTimingFunction); }
+  probe.style.transitionDuration = "var(--motion-duration)"; durs.add(getComputedStyle(probe).transitionDuration);
+  probe.style.transitionTimingFunction = "var(--motion-easing)"; eases.add(getComputedStyle(probe).transitionTimingFunction);
+  probe.remove();
+  const where = (e) => { const s = e.closest("section[id], header, footer, [data-example]"); const tag = s ? (s.id ? "#" + s.id : s.tagName.toLowerCase()) : "?"; return tag + " " + e.tagName.toLowerCase() + "." + [...e.classList].slice(0, 5).join(".") + " “" + (e.textContent.trim() || e.getAttribute("aria-label") || e.value || "").replace(/\\s+/g, " ").slice(0, 24) + "”"; };
+  const ON = (e) => !!e.closest('[aria-sort=ascending], [aria-sort=descending]') || e.matches('[aria-pressed=true], [aria-selected=true], [aria-checked=true], [aria-expanded=true], [open], :checked') || (e.matches("[aria-current]") && e.getAttribute("aria-current") !== "false");
+  const info = els.map((e) => {
+    const c = getComputedStyle(e), r = e.getBoundingClientRect();
+    const inText = e.tagName === "A" && [...e.parentElement.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim());
+    const box = e.matches("input, select, textarea") && e.parentElement.closest(".cursor-text");
+    const field = e.matches("input:not([type=checkbox], [type=radio], [type=button], [type=submit], [type=reset]), select, textarea");
+    return { where: where(e), w: r.width, h: r.height, x: r.left + r.width / 2, y: r.top + r.height / 2, rect: [r.left, r.top, r.right, r.bottom], boxed: !!box, field,
+      label: !!e.closest("label") && e.matches("input[type=checkbox], input[type=radio]"), disabled: e.matches(":disabled, [aria-disabled=true]"), on: ON(e), state: e.classList.contains("state"), inText,
+      sig: e.tagName + "|" + [...e.classList].filter((k) => !/^(pressed|selected|current|expanded|open):/.test(k)).sort().join(" "),
+      prop: c.transitionProperty, dur: c.transitionDuration, ease: c.transitionTimingFunction };
+  });
+  const still = document.createElement("style"); still.id = "nwb-still"; still.textContent = "*, *::before, *::after { transition: none !important; animation: none !important; }"; document.head.append(still);
+  window.__nwSnap = (i, box) => { const e = document.querySelector(box ? '[data-nwbox~="' + i + '"]' : '[data-nwb="' + i + '"]'), c = getComputedStyle(e), a = getComputedStyle(e, "::after"), b = getComputedStyle(e, "::before");
+    return JSON.stringify([c.backgroundColor, c.color, c.outlineStyle + " " + c.outlineWidth + " " + c.outlineColor, c.borderTopColor, c.borderBottomColor, c.borderInlineStartColor, c.boxShadow, c.opacity, c.textDecorationLine, c.textDecorationColor, c.filter, c.transform, a.backgroundColor, a.opacity, b.backgroundColor, b.opacity]); };
+  window.__nwRing = (i) => { const e = document.querySelector('[data-nwb="' + i + '"]'), c = getComputedStyle(e); return JSON.stringify({ outline: c.outlineStyle !== "none" && parseFloat(c.outlineWidth) > 0, shadow: c.boxShadow }); };
+  return JSON.stringify({ info, durs: [...durs], eases: [...eases] });
+})()`;
+
+async function behaviourPage(send, sessionId) {
+  const out = [];
+  await send("DOM.enable", {}, sessionId);
+  await send("CSS.enable", {}, sessionId);
+  const ev = async (expression) => { const { result, exceptionDetails } = await send("Runtime.evaluate", { expression, returnByValue: true, awaitPromise: true }, sessionId); if (exceptionDetails) throw new Error(exceptionDetails.exception?.description?.split("\n")[0] || exceptionDetails.text); return result.value; };
+  await ev("document.fonts.ready.then(() => 1)");
+  const { info, durs, eases } = JSON.parse(await ev(BEHAVIOUR_SETUP));
+  const { root } = await send("DOM.getDocument", { depth: 0 }, sessionId);
+  const { nodeIds } = await send("DOM.querySelectorAll", { nodeId: root.nodeId, selector: "[data-nwb]" }, sessionId);
+  const LAYOUT = /\b(all|width|height|inline-size|block-size|margin|padding|inset|top|left|right|bottom)\b/;
+  const boxIds = {};
+  for (const id of (await send("DOM.querySelectorAll", { nodeId: root.nodeId, selector: "[data-nwbox]" }, sessionId)).nodeIds) {
+    const { attributes } = await send("DOM.getAttributes", { nodeId: id }, sessionId);
+    for (const k of attributes[attributes.indexOf("data-nwbox") + 1].split(" ")) boxIds[k] = id;
+  }
+  const force = (nodeId, forcedPseudoClasses) => send("CSS.forcePseudoState", { nodeId, forcedPseudoClasses }, sessionId);
+  const snaps = [];
+  for (let i = 0; i < info.length; i++) {
+    const e = info[i], nodeId = nodeIds[i];
+    // motion, read at rest before the freeze
+    if (e.prop !== "none" && e.dur.split(",").some((d) => d.trim() !== "0s")) {
+      if (LAYOUT.test(e.prop)) out.push({ rule: "motion-tokens", where: e.where, detail: `transitions ${e.prop.slice(0, 60)}` });
+      const badDur = e.dur.split(",").map((d) => d.trim()).find((d) => !durs.includes(d));
+      if (badDur) out.push({ rule: "motion-tokens", where: e.where, detail: `duration ${badDur} is not a motion token (${durs.filter((d) => d !== "0s").join(", ")})` });
+      const ease = e.ease.split(/,(?![^(]*\))/).map((x) => x.trim()).find((x) => !eases.includes(x));
+      if (ease) out.push({ rule: "motion-tokens", where: e.where, detail: `easing ${ease.slice(0, 40)} is not a motion token` });
+    }
+    if (!nodeId) continue;
+    const boxId = e.boxed ? boxIds[i] : null, hoverId = boxId || nodeId, snap = () => ev(`__nwSnap(${i}, ${boxId ? "true" : "false"})`);
+    const rest = await snap();
+    await force(hoverId, ["hover"]); const hover = await snap();
+    await force(hoverId, ["hover", "active"]); const press = await snap();
+    await force(hoverId, []);
+    await force(nodeId, ["focus", "focus-visible"]); if (boxId) await force(boxId, ["focus-within"]);
+    const focused = await snap(), ring = JSON.parse(await ev(`__nwRing(${i})`));
+    await force(nodeId, []); if (boxId) await force(boxId, []);
+    snaps[i] = { rest, hover };
+    if (e.disabled) { if (hover !== rest) out.push({ rule: "disabled", where: e.where, detail: "changes on hover while disabled" }); continue; }
+    if (!e.on && !e.field && hover === rest && !e.inText && !e.label) out.push({ rule: "hover", where: e.where, detail: "no visible change on hover" });
+    if (!e.on && e.state && press === hover) out.push({ rule: "press", where: e.where, detail: "press looks the same as hover" });
+    const ringed = ring.outline || /\d/.test(ring.shadow);
+    if (e.field ? focused === rest && !ringed : !ringed) out.push({ rule: "focus", where: e.where, detail: e.field ? "no change on focus" : "no ring on focus-visible" });
+    if (!e.inText && !e.label && (e.w < 24 || e.h < 24)) {
+      // WCAG 2.5.8 spacing exception: a 24px circle on the target's centre touches no other target.
+      const dist = (x, y, [l, t, r, b]) => Math.hypot(Math.max(l - x, 0, x - r), Math.max(t - y, 0, y - b));
+      const crowded = info.some((o, k) => k !== i && !o.inText && (dist(e.x, e.y, o.rect) < 12 || ((o.w < 24 || o.h < 24) && Math.hypot(o.x - e.x, o.y - e.y) < 24)));
+      if (crowded) out.push({ rule: "target", where: e.where, detail: `${e.w.toFixed(0)}×${e.h.toFixed(0)}px with another target within 12px (24×24 minimum, or spacing)` });
+    }
+  }
+  // on-vs-hover: a chosen element against a hovered sibling of the same kind that is not chosen
+  for (let i = 0; i < info.length; i++) {
+    const e = info[i];
+    if (!e.on || e.disabled || !snaps[i]) continue;
+    const j = info.findIndex((x, k) => k !== i && !x.on && !x.disabled && x.sig === e.sig && snaps[k]);
+    if (j >= 0 && snaps[j].hover === snaps[i].rest) out.push({ rule: "on-vs-hover", where: e.where, detail: "the chosen item looks like a hovered one" });
+  }
+  await ev(`document.getElementById("nwb-still")?.remove(), 1`);
+  await send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-reduced-motion", value: "reduce" }] }, sessionId);
+  const slow = JSON.parse(await ev(`JSON.stringify([...document.querySelectorAll("[data-nwb]")].filter((e) => getComputedStyle(e).transitionDuration.split(",").some((d) => parseFloat(d) * (d.trim().endsWith("ms") ? 1 : 1000) > 1)).slice(0, 5).map((e) => e.getAttribute("data-nwb")))`));
+  for (const i of slow) out.push({ rule: "reduced", where: info[i].where, detail: "still transitions under prefers-reduced-motion: reduce" });
+  await send("Emulation.setEmulatedMedia", { features: [] }, sessionId);
+  return out;
+}
+
 async function up() { try { return (await fetch(`${BASE}/site/index.html`)).ok; } catch { return false; } }
 
 async function main() {
@@ -136,7 +238,7 @@ async function main() {
   await send("Page.enable", {}, sessionId);
   await send("Runtime.enable", {}, sessionId);
   if (args.includes("--self-test")) {
-    // Break the showcase nine ways and confirm the layout and paint audits report each rule.
+    // Break the showcase seventeen ways and confirm the layout, paint and behaviour audits report each rule.
     await send("Emulation.setDeviceMetricsOverride", { width: 768, height: 900, deviceScaleFactor: 1, mobile: false }, sessionId);
     const loaded = once("Page.loadEventFired", sessionId);
     await send("Page.navigate", { url: `${BASE}/site/components.html?audit=layout,paint` }, sessionId);
@@ -145,6 +247,29 @@ async function main() {
     for (const expr of [SELF_TEST, PAINT_SELF_TEST]) {
       const { result } = await send("Runtime.evaluate", { awaitPromise: true, returnByValue: true, expression: expr }, sessionId);
       Object.assign(res, JSON.parse(result.value));
+    }
+    const ev = async (expression) => (await send("Runtime.evaluate", { expression, returnByValue: true, awaitPromise: true }, sessionId)).result.value;
+    const host = `document.querySelector("#data .p-md.rounded-md")`;
+    const BREAKS = {
+      hover: `${host}.insertAdjacentHTML("beforeend", '<button id="nwt" class="inline-flex items-center h-control px-control border border-transparent bg-neutral-3"><span>No hover</span></button>')`,
+      press: `${host}.insertAdjacentHTML("beforeend", '<button id="nwt" class="inline-flex items-center h-control px-control border border-transparent bg-neutral-3 state"><span>Press</span></button><style id="nwt2">#nwt:active::after{opacity:var(--state-hover)!important}</style>')`,
+      focus: `${host}.insertAdjacentHTML("beforeend", '<button id="nwt" class="inline-flex items-center h-control px-control border state bg-neutral-3 outline-none"><span>No ring</span></button><style id="nwt2">#nwt:focus-visible{outline:none!important}</style>')`,
+      disabled: `${host}.insertAdjacentHTML("beforeend", '<button id="nwt" disabled class="inline-flex items-center h-control px-control border border-transparent bg-neutral-3 hover:bg-neutral-5"><span>Disabled</span></button>')`,
+      "on-vs-hover": `${host}.insertAdjacentHTML("beforeend", '<div id="nwt"><button aria-pressed="true" class="inline-flex items-center h-control px-control border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-4"><span>A</span></button><button aria-pressed="false" class="inline-flex items-center h-control px-control border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-4"><span>B</span></button></div>')`,
+      target: `${host}.insertAdjacentHTML("beforeend", '<div id="nwt" class="flex"><button class="state bg-neutral-3" style="width:12px;height:12px" aria-label="a"></button><button class="state bg-neutral-3" style="width:12px;height:12px" aria-label="b"></button></div>')`,
+      "motion-tokens": `${host}.insertAdjacentHTML("beforeend", '<button id="nwt" class="inline-flex items-center h-control px-control border state bg-neutral-3"><span>Slow</span></button><style id="nwt2">#nwt{transition-duration:333ms!important}</style>')`,
+      reduced: `${host}.insertAdjacentHTML("beforeend", '<button id="nwt" class="inline-flex items-center h-control px-control border state bg-neutral-3" style="transition-duration:160ms !important"><span>Moves</span></button>')`,
+    };
+    const navd = once("Page.loadEventFired", sessionId);
+    await send("Page.navigate", { url: `${BASE}/site/components.html` }, sessionId);
+    await navd;
+    const base = new Set((await behaviourPage(send, sessionId)).map((f) => f.rule));
+    for (const [rule, js] of Object.entries(BREAKS)) {
+      if (base.has(rule)) { res[rule] = "already reported before the break"; continue; }
+      await ev(js);
+      const got = (await behaviourPage(send, sessionId)).some((f) => f.rule === rule);
+      await ev(`document.getElementById("nwt")?.remove(); document.getElementById("nwt2")?.remove(); 1`);
+      res[rule] = got ? "caught" : "missed";
     }
     ws.close(); chrome.kill(); if (server) server.kill();
     for (const [rule, v] of Object.entries(res)) console.log(`${v === "caught" ? "PASS" : "FAIL"}  self-test "${rule}" ${v}`);
@@ -164,6 +289,12 @@ async function main() {
         const loaded = once("Page.loadEventFired", sessionId);
         await send("Page.navigate", { url: `${BASE}/${page}?audit=${audits.join(",")}` }, sessionId);
         await Promise.race([loaded, new Promise((r) => setTimeout(r, 15000))]);
+        if (DOMAINS[domain].custom) {
+          for (const f of await behaviourPage(send, sessionId)) findings.push({ domain, audit: "behaviour", page, width, root: rootSize, ...f });
+          done++;
+          if (process.stdout.isTTY) process.stdout.write(`\rreview ${domain}: ${done}/${total}`);
+          continue;
+        }
         const expr = `(async () => { await document.fonts.ready; await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))); const out = {}; ${audits.map((a) => `out.${a} = window.${globals[a]} ? window.${globals[a]}() : [{ rule: \"missing\", where: \"page\", detail: \"${globals[a]} is not defined\" }];`).join(" ")} return JSON.stringify(out); })()`;
         const { result, exceptionDetails } = await send("Runtime.evaluate", { expression: expr, awaitPromise: true, returnByValue: true }, sessionId);
         if (exceptionDetails) findings.push({ domain, audit: "harness", rule: "error", page, width, root: rootSize, where: "page", detail: exceptionDetails.exception?.description?.split("\n")[0] || exceptionDetails.text });

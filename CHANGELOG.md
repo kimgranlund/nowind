@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **Behaviour review:** a behaviour contract (`theme/theme.behaviour.manifest.json`) says what each interactive element does in each state and how the change moves. `node scripts/review.mjs behaviour` forces hover, press and focus-visible on every interactive element over the DevTools protocol and checks that hover shows, press differs from hover, focus draws a ring, a chosen item differs from a hovered one, a disabled control doesn't react, targets meet 24px or WCAG's spacing exception, durations and easings are motion tokens, and reduced motion cuts every transition. The examples lint rejects an on-state variant without the attribute that fires it, and any class the bundle doesn't define.
+- **Fields keep their focus ring:** the reset showed a text field's focus by changing its border colour, so any border class on the field, and an invalid field box's danger border, hid it. Fields now draw the accent outline over their border, and a field box (`cursor-text`) draws it on the box.
+- **Disabled checkboxes and radios** no longer darken their border on hover.
+- **The nested select** in field examples tints with `hover:bg-neutral-3`: a select can't draw the `state` layer, and an earlier `hover:bg-neutral-a3` was a class Nowind doesn't define. The lint allows a hover fill on a select.
+- **The site's wordmark** dims on hover.
 - **Release gate:** `node scripts/review.mjs all` runs every review domain in strict mode (it fails on any finding), then the review self-test. AGENTS.md lists it as the step before a release.
 ## 0.11.0 (2026-11-26)
 

@@ -398,6 +398,7 @@
         "h-control",
         "h-nested",
         "has-invalid:border-danger-7",
+        "hover:bg-neutral-3",
         "hover:border-neutral-7",
         "hover:fg-neutral-12",
         "icon",

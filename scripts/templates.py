@@ -134,7 +134,7 @@ def top(path):
     return f"""<div class="sticky top-0 z-30">
 <header class="light bg-inverse fg-inverse">
   <div class="flex items-center gap-lg h-header px-grid">
-    <a href="{rel("index.html", path)}" class="inline-flex items-center gap-gutter-half no-underline fg-inverse"><i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-inverse-weak">__VERSION__</span></a>
+    <a href="{rel("index.html", path)}" class="inline-flex items-center gap-gutter-half no-underline fg-inverse hover:fg-inverse-weak transition-colors"><i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-inverse-weak">__VERSION__</span></a>
     <nav aria-label="Sections" class="hidden md:flex items-center gap-lg">{secs}</nav>
     <button type="button" popovertarget="site-settings" class="inline-flex items-center justify-center size-nested ms-auto rounded-xs border border-transparent bg-transparent fg-inverse-weak hover:fg-inverse cursor-pointer transition-colors" aria-label="Display settings"><i class="icon ph ph-sliders-horizontal"></i></button>
     <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center size-nested no-underline fg-inverse-weak hover:fg-inverse transition-colors" aria-label="Nowind on GitHub"><i class="icon ph ph-github-logo"></i></a>
@@ -1167,6 +1167,38 @@ def paint_audit():
     return out
 
 
+def behaviour_audit():
+    """Check the behaviour contract's static rule (theme/theme.behaviour.manifest.json, variant-attribute): an element
+    with an on-state variant carries the attribute or element that fires it, so the variant can ever apply.
+    Returns a list of (where, rule, problem, element)."""
+    FIELDS = ("input", "select", "textarea")
+    def has_desc(n, pred):
+        return any(pred(k) or has_desc(k, pred) for k in n.kids)
+    NEEDS = {
+        "pressed": ("aria-pressed", lambda n: "aria-pressed" in n.attrs),
+        "selected": ("aria-selected or role tab, option, row or gridcell", lambda n: "aria-selected" in n.attrs or n.attrs.get("role") in ("tab", "option", "row", "gridcell")),
+        "current": ("aria-current, or a link", lambda n: "aria-current" in n.attrs or n.tag == "a"),
+        "expanded": ("aria-expanded", lambda n: "aria-expanded" in n.attrs),
+        "open": ("details, dialog or popover", lambda n: n.tag in ("details", "dialog") or "popover" in n.attrs),
+        "invalid": ("a field, or aria-invalid", lambda n: n.tag in FIELDS or "aria-invalid" in n.attrs),
+        "has-invalid": ("a field inside", lambda n: has_desc(n, lambda k: k.tag in FIELDS)),
+        "disabled": ("a control that can be disabled, or aria-disabled", lambda n: n.tag in ("button", "fieldset", "option", "optgroup") + FIELDS or "aria-disabled" in n.attrs),
+        "has-checked": ("a checkbox or radio inside", lambda n: has_desc(n, lambda k: k.tag == "input" and k.attrs.get("type") in ("checkbox", "radio"))),
+    }
+    out = []
+    for where, html_ in example_sources():
+        for n in parse_tree(html_):
+            seen = set()
+            for t in n.toks:
+                v = t.split(":")[0] if ":" in t else None
+                if v in NEEDS and v not in seen:
+                    seen.add(v)
+                    what, ok = NEEDS[v]
+                    if not ok(n):
+                        out.append((where, "variant-attribute", f"{v}: variants without {what}, so they never apply", f"<{n.tag} class=\"{' '.join(n.toks)[:70]}\">"))
+    return out
+
+
 def geometry_audit():
     """Check every part in the examples against the geometry contract (geometryContract in
     theme/theme.geometry.manifest.json): each part gets a kind, and its height, padding, gap and corner classes must be
@@ -1291,7 +1323,7 @@ def lint_examples():
                 out.append(f"{where}: a field box is sized by padding. Fix: the field box geometry (flex items-center gap-gutter h-control px-control rounded-sm border … cursor-text) with a bare input inside.")
             if any(t in ("px-sm", "px-2xs") for t in toks) and re.match(r'\s*<(?:i|span)\b[^>]*class="[^"]*\bicon\b', html_[m.end():]):
                 out.append(f"{where}: <{tag}> pads its icon edge like a text edge. Fix: at an icon edge use the block padding (ps-xs pe-sm for px-sm, ps-3xs pe-2xs for px-2xs).")
-            if any(re.fullmatch(r"(hover|active):bg-.+", t) for t in toks) and not any(re.fullmatch(r"(pressed|selected|current|open|expanded|has-checked):bg-.+", t) for t in toks):
+            if tag != "select" and any(re.fullmatch(r"(hover|active):bg-.+", t) for t in toks) and not any(re.fullmatch(r"(pressed|selected|current|open|expanded|has-checked):bg-.+", t) for t in toks):
                 out.append(f"{where}: <{tag}> tints its fill with hover:/active: bg variants. Fix: use state (keep bg variants only where a state changes the surface, such as current:bg-accent-1-9).")
             if tag in ("a", "button", "summary", "input", "select", "textarea", "label") or (role and role.group(1) in ("button", "tab", "option", "menuitem", "switch")):
                 continue
@@ -1339,6 +1371,13 @@ def lint_examples():
         errors += bad(sec[sec.index(body) + len(body):], f"site/components.html #{m.group(1)}")
     errors += [f"{w}: {k}: {prob}. Fix: the contract's classes (geometryContract in theme/theme.geometry.manifest.json). {lab}" for w, k, prob, lab in geometry_audit()]
     errors += [f"{w}: {k}: {prob}. Fix: the paint contract (paintContract in theme/theme.colors.manifest.json). {lab}" for w, k, prob, lab in paint_audit()]
+    errors += [f"{w}: {k}: {prob}. Fix: the behaviour contract (theme/theme.behaviour.manifest.json). {lab}" for w, k, prob, lab in behaviour_audit()]
+    css = open(os.path.join(OUT, "..", "..", "dist", "nowind.min.css")).read()
+    defined = {re.sub(r"\\(.)", r"\1", m) for m in re.findall(r"\.((?:[a-zA-Z0-9_-]|\\.)+)", css)}
+    for w, h in example_sources():
+        for t in sorted({t for c in re.findall(r'class="([^"]*)"', h) for t in c.split()}):
+            if t not in defined and not re.match(r"ph(-|$)", t):
+                errors.append(f"{w}: class {t} is not in the bundle, so it does nothing. Fix: use a class Nowind defines (classes.md lists them; variants cover the steps in AGENTS.md).")
     findings, unclassified = type_audit()
     errors += [f"{w}: {k} text is text-{eff}; the size contract wants text-{want}. Fix: the contract's size (sizeContract in theme/theme.type-roles.manifest.json). {lab}" for w, k, eff, want, lab in findings]
     errors += [f"{w}: {lab} sets text-{own} but has no kind in the size contract. Fix: give it a kind's classes, or let it inherit." for w, own, lab in unclassified]
@@ -1408,6 +1447,11 @@ def main():
         f.write(json.dumps(comp, indent=2, ensure_ascii=False) + "\n")
     print("wrote components.manifest.json", len(comp["components"]), "components")
 
+if "--behaviour-report" in sys.argv:
+    g = behaviour_audit()
+    print(f"{len(g)} behaviour findings\n")
+    for f in g: print(f"OFF  {f[0]}: {f[1]}: {f[2]}  {f[3]}")
+    sys.exit(0)
 if "--paint-report" in sys.argv:
     import collections
     g = paint_audit()

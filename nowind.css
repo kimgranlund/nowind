@@ -72,7 +72,7 @@
   }
   :where(input[type="checkbox"]) { border-radius: calc(var(--mark-corner) * var(--_mark)); }
   :where(input[type="radio"]) { border-radius: 50%; }
-  :where(input[type="checkbox"], input[type="radio"]):hover { border-color: var(--border-strong); }
+  :where(input[type="checkbox"], input[type="radio"]):where(:not(:disabled)):hover { border-color: var(--border-strong); }
   :where(input[type="checkbox"], input[type="radio"])::before {
     content: "";
     background: var(--on-solid-accent-1);
@@ -166,7 +166,9 @@
   :where(a:not([class]):hover) { color: var(--fg-accent-1); }
 
   :where(:focus-visible) { outline: 2px solid var(--border-accent-1-strong); outline-offset: 2px; }
-  :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"]), textarea, select):focus-visible { outline: none; border-color: var(--border-accent-1-strong); }
+  :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"]), textarea, select):focus-visible { outline-offset: -1px; }
+  :where(.cursor-text:focus-within) { outline: 2px solid var(--border-accent-1-strong); outline-offset: -1px; }
+  :where(.cursor-text) :where(input, select, textarea):focus-visible { outline: none; }
   :where(:target) { scroll-margin-block: 5ex; }
   :where([hidden]:not([hidden="until-found"])) { display: none !important; }
 

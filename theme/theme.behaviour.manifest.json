@@ -1,0 +1,30 @@
+{
+  "file": "theme/theme.behaviour.manifest.json",
+  "description": "The behaviour contract: what each interactive element must do in each state, and how the change moves. Nowind styles state through markup (aria-pressed, aria-selected, aria-current, aria-expanded, open, aria-invalid, disabled) and the variants that read it, plus the state layer (state) for hover and press. The examples lint checks the static rules; node scripts/review.mjs behaviour forces each state on every interactive element in headless Chromium (CSS.forcePseudoState over the DevTools protocol) and compares computed styles.",
+  "elements": "a[href], button, summary, select, input (not hidden), textarea, label holding a checkbox or radio, and [role=button|tab|option|menuitem|switch|checkbox|radio]",
+  "states": [
+    {"state": "hover", "trigger": ":hover, on devices that can hover", "rule": "Shows a visible change: a fill, a state layer, a text or border colour, an underline. A link in running text may rely on its underline."},
+    {"state": "active", "trigger": ":active (press)", "rule": "Differs from hover where the element shows a press: the state layer deepens (0.12 to 0.16), or the fill steps."},
+    {"state": "focus-visible", "trigger": ":focus-visible", "rule": "Draws a ring outside the box: the reset's 2px accent outline at a 2px offset, or a ring of the element's own. Never removed without a replacement."},
+    {"state": "on", "trigger": "aria-pressed, aria-selected, aria-checked, aria-current, aria-expanded, open, :checked", "rule": "Differs from hover, so a chosen item never reads as a hovered one. Each on-state variant has the attribute that fires it."},
+    {"state": "disabled", "trigger": ":disabled, aria-disabled", "rule": "Does not react to hover or press, shows cursor not-allowed, and fades (opacity) or quiets its text."},
+    {"state": "invalid", "trigger": "aria-invalid=true, :user-invalid", "rule": "Shows on the field or its box: a danger border."},
+    {"state": "placeholder", "trigger": "::placeholder", "rule": "Quieter than a typed value (fg step 8 or 9 against 12)."}
+  ],
+  "motion": [
+    {"id": "animated", "rule": "A change in colour, opacity, shadow or transform between states transitions: interactive elements get it from the reset, anything else names a transition class."},
+    {"id": "tokens", "rule": "Durations and easings come from the motion tokens (--motion-duration, --motion-easing and the duration-* and ease-* classes); no other durations."},
+    {"id": "properties", "rule": "Never transition all, and never a layout property (width, height, margin, padding, inset)."},
+    {"id": "reduced", "rule": "Under prefers-reduced-motion: reduce every transition and animation is cut to a moment (the reset)."}
+  ],
+  "rules": [
+    {"id": "variant-attribute", "rule": "An element with an on-state variant (pressed:, selected:, current:, expanded:, open:, invalid:, disabled:) carries the attribute or element that fires it.", "check": "lint", "status": "decided"},
+    {"id": "hover", "rule": "Every enabled interactive element shows a visible change on hover.", "check": "review", "status": "decided"},
+    {"id": "press", "rule": "Where an element has a state layer or a pressed fill, press differs from hover.", "check": "review", "status": "decided"},
+    {"id": "focus", "rule": "Every interactive element draws a visible ring on focus-visible.", "check": "review", "status": "decided"},
+    {"id": "on-vs-hover", "rule": "An element in an on state looks different from the same element hovered at rest.", "check": "review", "status": "decided"},
+    {"id": "disabled", "rule": "A disabled element does not change on hover.", "check": "review", "status": "decided"},
+    {"id": "target", "rule": "An interactive element is at least 24 by 24px, or sits clear of other targets by that much (WCAG 2.5.8). Links in running text are exempt.", "check": "review", "status": "review"},
+    {"id": "motion-tokens", "rule": "Each transition's duration is a motion token's, its easing a token's, and it names no layout property and not all.", "check": "review", "status": "decided"}
+  ]
+}
