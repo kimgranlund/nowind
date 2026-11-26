@@ -1,4 +1,4 @@
-@layer reset, styles, components, nowind;
+@layer reset, defaults, styles, components, nowind;
 
 @layer reset {
   :where(*, *::before, *::after) { box-sizing: border-box; border-width: 0; border-style: solid; border-color: var(--border); --_inset: 0px; --_bw: 0px; }
@@ -169,25 +169,6 @@
   :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"]), textarea, select):focus-visible { outline-offset: -1px; }
   :where(.cursor-text:focus-within) { outline: 2px solid var(--border-accent-1-strong); outline-offset: -1px; }
   :where(.cursor-text) :where(input, select, textarea):focus-visible { outline: none; }
-  :where(.defaults) :where(button, input[type="button"], input[type="submit"], input[type="reset"]) { display: inline-flex; align-items: center; justify-content: center; gap: var(--button-gap, var(--gutter)); block-size: var(--button-height, var(--control-height)); padding-inline: var(--button-padding, var(--control-padding)); border: var(--border-width) solid var(--button-border, transparent); border-radius: var(--button-radius, var(--radius-sm)); background-color: var(--button-bg, var(--neutral-a2)); color: var(--button-fg, var(--fg)); font-weight: var(--button-weight, var(--font-weight-medium)); }
-  @media (hover: hover) { :where(.defaults) :where(button, input[type="button"], input[type="submit"], input[type="reset"]):where(:not(:disabled)):hover { background-color: var(--button-bg-hover, var(--neutral-a3)); } }
-  :where(.defaults) :where(button, input[type="button"], input[type="submit"], input[type="reset"]):where(:not(:disabled)):active { background-color: var(--button-bg-active, var(--neutral-a4)); }
-  :where(.defaults) :where(button[type="submit"], input[type="submit"]) { background-color: var(--button-primary-bg, var(--solid-accent-1)); color: var(--button-primary-fg, var(--on-solid-accent-1)); }
-  @media (hover: hover) { :where(.defaults) :where(button[type="submit"], input[type="submit"]):where(:not(:disabled)):hover { background-color: var(--button-primary-bg-hover, var(--solid-accent-1-strong)); } }
-  :where(.defaults) :where(button[type="submit"], input[type="submit"]):where(:not(:disabled)):active { background-color: var(--button-primary-bg-hover, var(--solid-accent-1-strong)); }
-  :where(.defaults) :where(button, input[type="button"], input[type="submit"], input[type="reset"]):disabled { opacity: 0.5; cursor: not-allowed; }
-  :where(.defaults) :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"], [type="hidden"]), select:not([multiple], [size])) { block-size: var(--field-height, var(--control-height)); padding-inline: var(--field-padding, var(--control-padding)); }
-  :where(.defaults) :where(textarea) { padding: var(--field-padding-block, var(--margin)) var(--field-padding, var(--control-padding)); }
-  :where(.defaults) :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"], [type="hidden"]), select, textarea) { inline-size: var(--field-width, 100%); border-radius: var(--field-radius, var(--radius-sm)); border-color: var(--field-border, var(--border-weak)); background-color: var(--field-bg, var(--bg)); }
-  @media (hover: hover) { :where(.defaults) :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"], [type="hidden"]), select, textarea):where(:not(:disabled)):hover { border-color: var(--field-border-hover, var(--border)); } }
-  :where(.defaults) :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"], [type="hidden"]), select, textarea):user-invalid { border-color: var(--field-border-invalid, var(--border-danger)); }
-  :where(.defaults) :where(input[type="checkbox"], input[type="radio"], input[type="range"]) { --_mark: var(--check-size, var(--mark-md)); }
-  :where(.defaults) :where(input[type="checkbox"], input[type="radio"]):is(:checked, :indeterminate) { background: var(--check-accent, var(--solid-accent-1)); border-color: var(--check-accent, var(--solid-accent-1)); }
-  :where(.defaults) :where(a:not([class])) { color: var(--link-color, var(--fg-accent-1-weak)); text-underline-offset: var(--link-underline-offset, 0.15em); }
-  @media (hover: hover) { :where(.defaults) :where(a:not([class])):hover { color: var(--link-color-hover, var(--fg-accent-1)); } }
-  :where(.defaults) :where(label:not(:has(input[type="checkbox"], input[type="radio"])):not(:is(input[type="checkbox"], input[type="radio"]) + label)) { display: block; margin-block-end: var(--label-gap, var(--space-3xs)); font-size: var(--label-size, var(--text-sm)); line-height: var(--text-sm--line-height); font-weight: var(--label-weight, var(--font-weight-medium)); }
-  :where(.defaults) :where(th, td) { padding: var(--cell-padding-block, var(--space-xs)) var(--cell-padding, var(--space-sm)); border-block-end: var(--border-width) solid var(--cell-border, var(--border-weak)); text-align: start; }
-  :where(.defaults) :where(th) { font-size: var(--text-sm); font-weight: var(--font-weight-medium); color: var(--fg-weak); }
   :where(:target) { scroll-margin-block: 5ex; }
   :where([hidden]:not([hidden="until-found"])) { display: none !important; }
 
@@ -232,6 +213,29 @@
       scroll-behavior: auto !important;
     }
   }
+}
+
+
+@layer defaults {
+  :where(button:not(select > button), input[type="button"], input[type="submit"], input[type="reset"]) { display: inline-flex; align-items: center; justify-content: center; gap: var(--button-gap, var(--gutter)); block-size: var(--button-height, var(--control-height)); padding-inline: var(--button-padding, var(--control-padding)); border: var(--border-width) solid var(--button-border, transparent); border-radius: var(--button-radius, var(--radius-sm)); background-color: var(--button-bg, var(--neutral-a2)); color: var(--button-fg, var(--fg)); font-weight: var(--button-weight, var(--font-weight-medium)); }
+  @media (hover: hover) { :where(button:not(select > button), input[type="button"], input[type="submit"], input[type="reset"]):where(:not(:disabled)):hover { background-color: var(--button-bg-hover, var(--neutral-a3)); } }
+  :where(button:not(select > button), input[type="button"], input[type="submit"], input[type="reset"]):where(:not(:disabled)):active { background-color: var(--button-bg-active, var(--neutral-a4)); }
+  :where(button[type="submit"], input[type="submit"]) { background-color: var(--button-primary-bg, var(--solid-accent-1)); color: var(--button-primary-fg, var(--on-solid-accent-1)); }
+  @media (hover: hover) { :where(button[type="submit"], input[type="submit"]):where(:not(:disabled)):hover { background-color: var(--button-primary-bg-hover, var(--solid-accent-1-strong)); } }
+  :where(button[type="submit"], input[type="submit"]):where(:not(:disabled)):active { background-color: var(--button-primary-bg-hover, var(--solid-accent-1-strong)); }
+  :where(button:not(select > button), input[type="button"], input[type="submit"], input[type="reset"]):disabled { opacity: 0.5; cursor: not-allowed; }
+  :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"], [type="hidden"]), select:not([multiple], [size])) { block-size: var(--field-height, var(--control-height)); padding-inline: var(--field-padding, var(--control-padding)); }
+  :where(textarea) { padding: var(--field-padding-block, var(--margin)) var(--field-padding, var(--control-padding)); }
+  :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"], [type="hidden"]), select, textarea) { inline-size: var(--field-width, 100%); border-radius: var(--field-radius, var(--radius-sm)); border-color: var(--field-border, var(--border-weak)); background-color: var(--field-bg, var(--bg)); }
+  @media (hover: hover) { :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"], [type="hidden"]), select, textarea):where(:not(:disabled)):hover { border-color: var(--field-border-hover, var(--border)); } }
+  :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"], [type="hidden"]), select, textarea):user-invalid { border-color: var(--field-border-invalid, var(--border-danger)); }
+  :where(input[type="checkbox"], input[type="radio"], input[type="range"]) { --_mark: var(--check-size, var(--mark-md)); }
+  @media (forced-colors: none) { :where(input[type="checkbox"], input[type="radio"]):is(:checked, :indeterminate) { background: var(--check-accent, var(--solid-accent-1)); border-color: var(--check-accent, var(--solid-accent-1)); } }
+  :where(a:not([class])) { color: var(--link-color, var(--fg-accent-1-weak)); text-underline-offset: var(--link-underline-offset, 0.15em); }
+  @media (hover: hover) { :where(a:not([class])):hover { color: var(--link-color-hover, var(--fg-accent-1)); } }
+  :where(label:not(:has(input[type="checkbox"], input[type="radio"])):not(:is(input[type="checkbox"], input[type="radio"]) + label)) { display: block; margin-block-end: var(--label-gap, var(--space-3xs)); font-size: var(--label-size, var(--text-sm)); line-height: var(--text-sm--line-height); font-weight: var(--label-weight, var(--font-weight-medium)); }
+  :where(th, td) { padding: var(--cell-padding-block, var(--space-xs)) var(--cell-padding, var(--space-sm)); border-block-end: var(--border-width) solid var(--cell-border, var(--border-weak)); text-align: start; }
+  :where(th) { font-size: var(--text-sm); font-weight: var(--font-weight-medium); color: var(--fg-weak); }
 }
 
 @layer nowind {
@@ -1624,8 +1628,8 @@
   .max-w-container { max-width: var(--container-max); }
   .h-control { height: var(--control-height); }
   .h-nested { height: var(--nested-height); }
-  .size-control { width: var(--control-height); height: var(--control-height); }
-  .size-nested { width: var(--nested-height); height: var(--nested-height); }
+  .size-control { width: var(--control-height); height: var(--control-height); padding: 0; }
+  .size-nested { width: var(--nested-height); height: var(--nested-height); padding: 0; }
   .min-w-control { min-width: var(--control-height); }
   .min-w-nested { min-width: var(--nested-height); }
   .px-control { padding-inline: var(--control-padding); }

@@ -1,7 +1,7 @@
 {
   "generated": "by scripts/utilities.mjs; edit DEFAULT_TOKENS there, not this file",
-  "description": "Element defaults: wrap a region in class defaults and its bare elements (buttons, text fields, selects, textareas, checkboxes, radios, sliders, links, labels, table cells) take styled defaults. Each value reads a token with a fallback; the tokens are not declared anywhere, so setting one on :root, on .defaults or on any region inside takes effect, and the fallback follows the element's scope and tier. Every selector is :where(), so a utility class on the element always wins; the defaults fill only the properties its classes leave unset, so a utility-built control inside the region can still pick up a default it does not set. A button takes the primary fill only with an explicit type=submit; an untyped button in a form submits but stays neutral.",
-  "region": ".defaults",
+  "description": "Element defaults, in the defaults layer (after reset, before styles): buttons, text fields, selects, textareas, checkboxes, radios, sliders, links, labels and table cells take styled defaults wherever they are. Each value reads a token with a fallback; the tokens are not declared anywhere, so setting one on :root or on any region takes effect, and the fallback follows the element's scope and tier. Your CSS in @layer styles beats the defaults, and so does any utility class. Every selector is :where(), so a utility class on the element always wins; the defaults fill only the properties its classes leave unset, so a utility-built control inside the region can still pick up a default it does not set. A button takes the primary fill only with an explicit type=submit; an untyped button in a form submits but stays neutral.",
+  "layer": "defaults",
   "tokens": [
     {
       "token": "--button-height",

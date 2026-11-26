@@ -58,7 +58,7 @@ The link pins release `v0.13.0`. Or copy `dist/nowind.min.css` into your project
 </article>
 ```
 
-Nowind declares the layers `reset, styles, components, nowind` (`components` holds the optional convenience classes, and stays empty unless you link them). Put your own CSS in `@layer styles` and a utility class always wins over it:
+Nowind declares the layers `reset, defaults, styles, components, nowind` (`defaults` styles bare elements; `components` holds the optional convenience classes, and stays empty unless you link them). Put your own CSS in `@layer styles` and a utility class always wins over it:
 
 ```css
 @layer styles {
@@ -252,10 +252,10 @@ Status colours follow one pattern across every palette: step 3 fills, 6 draws th
 
 ## Element defaults
 
-The reset leaves buttons and fields bare, so a utility stack starts from nothing. For markup without classes (a generated form, a settings page, content from a CMS), wrap the region in `defaults` and its bare elements take styled defaults:
+Bare elements look finished without a class: buttons, text fields, selects, textareas, checkboxes, radios, switches, sliders, links, labels and table cells take styled defaults from the `defaults` layer. `type="submit"` takes the primary fill.
 
 ```html
-<form class="defaults">
+<form>
   <label for="email">Email</label>
   <input id="email" type="email">
   <label><input type="checkbox"> Send me updates</label>
@@ -264,14 +264,14 @@ The reset leaves buttons and fields bare, so a utility stack starts from nothing
 </form>
 ```
 
-Buttons, text fields, selects, textareas, checkboxes, radios, switches, sliders, links, labels and table cells are covered; `type="submit"` takes the primary fill. Every value reads a token with a fallback, and the tokens aren't declared anywhere, so you can set one wherever it should apply:
+Every value reads a token with a fallback, and the tokens aren't declared anywhere, so you can set one wherever it should apply:
 
 ```css
-:root     { --button-radius: 9999px; }               /* every .defaults region */
+:root     { --button-radius: 9999px; }               /* everywhere */
 .toolbar  { --button-height: var(--nested-height); } /* one region */
 ```
 
-Every selector is `:where()`, so a utility class on an element still wins. The defaults fill only what an element's classes leave unset, so a utility-built control inside the region can pick up, say, the default padding: keep such controls outside the region, or set the property. Only an explicit `type="submit"` makes a button primary; an untyped `<button>` in a form submits but stays neutral. [`nowind.defaults.manifest.json`](nowind.defaults.manifest.json) lists all the tokens and their fallbacks.
+The `defaults` layer sits after `reset` and before `styles`, so your own CSS in `@layer styles` beats it, and so does any utility class. The defaults fill only what an element's classes leave unset: a utility-built button that sets no padding gets the default padding, so set the properties a stack depends on. Only an explicit `type="submit"` makes a button primary; an untyped `<button>` in a form submits but stays neutral. [`nowind.defaults.manifest.json`](nowind.defaults.manifest.json) lists all the tokens and their fallbacks.
 
 ## Convenience classes
 

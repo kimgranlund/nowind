@@ -56,13 +56,13 @@
         <header class="col-span-12 flex flex-col gap-field pt-page pb-xl">
             <span class="text-kicker fg-weak">Docs</span>
             <h1 class="text-display-sm text-balance">Resets</h1>
-            <p class="text-body-md fg-weak max-w-text">Nowind starts from a reset that makes bare HTML look considered without fighting your classes, and offers an opt-in region of styled element defaults for markup with no classes at all. Both live in the <code>reset</code> layer, under <code>:where()</code>, so any class wins.</p>
+            <p class="text-body-md fg-weak max-w-text">Nowind starts from a reset that clears the browser's styles, then a layer of element defaults that gives bare buttons, fields and tables a finished look. Both sit in early layers, under <code>:where()</code>, so your CSS and any class win.</p>
           </header>
         <section id="reset" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">The reset</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <p class="text-body-md max-w-text break-words">Every element gets <code class="whitespace-normal"><span class="whitespace-nowrap">box-sizing:</span> <span class="whitespace-nowrap">border-box</span></code> and zero-width solid borders, so a <code>border</code> class sets only the width. Headings take the heading roles unless a <code>text-*</code> class sizes them. Links keep their underline, and text wraps with balanced headings and pretty paragraphs. Checkboxes, radios, switches, sliders, progress and meter are drawn from the theme. Buttons are left bare, transparent and unpadded, so a utility stack starts from nothing. Focus draws a ring, interactive elements transition, and reduced motion turns that off.</p>
-          <p class="text-body-md max-w-text break-words">The example below has no classes: it is what the reset alone gives you.</p>
+          <p class="text-body-md max-w-text break-words">Every element gets <code class="whitespace-normal"><span class="whitespace-nowrap">box-sizing:</span> <span class="whitespace-nowrap">border-box</span></code> and zero-width solid borders, so a <code>border</code> class sets only the width. Headings take the heading roles unless a <code>text-*</code> class sizes them. Links keep their underline, and text wraps with balanced headings and pretty paragraphs. Checkboxes, radios, switches, sliders, progress and meter are drawn from the theme. Buttons start transparent and unpadded; the element defaults below then style them. Focus draws a ring, interactive elements transition, and reduced motion turns that off.</p>
+          <p class="text-body-md max-w-text break-words">The example below has no classes: it is what the reset and the element defaults give you together.</p>
           <div data-example data-semantic-demo class="tier-product p-surface rounded-md border border-weak bg-strong">
 <h3>A heading</h3>
 <p>A paragraph with <a href="#">a link</a>, <code class="whitespace-normal"><span class="whitespace-nowrap">inline</span> <span class="whitespace-nowrap">code</span></code> and a <kbd>⌘K</kbd> key. Text wraps without leaving one word alone on the last line.</p>
@@ -89,10 +89,10 @@
         <section id="defaults" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Element defaults</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <p class="text-body-md max-w-text break-words">Put <code>defaults</code> on a region and its bare elements take styled defaults: buttons, text fields, selects, textareas, checkboxes, radios, switches, sliders, links, labels and table cells. A button with <code>type="submit"</code> takes the primary fill. Nothing below carries a class.</p>
-          <p class="text-body-md max-w-text break-words">The defaults fill only what an element's classes leave unset, so a utility class still wins. Keep utility-built controls outside the region, or they may pick up a default such as the control padding.</p>
+          <p class="text-body-md max-w-text break-words">The <code>defaults</code> layer gives bare elements a finished look: buttons, text fields, selects, textareas, checkboxes, radios, switches, sliders, links, labels and table cells. A button with <code>type="submit"</code> takes the primary fill. Nothing below carries a class, except the form's layout.</p>
+          <p class="text-body-md max-w-text break-words">The defaults fill only what an element's classes leave unset, so a utility class still wins, and a utility-built control picks up a default for any property it doesn't set.</p>
           <div data-example class="tier-product p-surface rounded-md border border-weak bg-strong">
-<form class="defaults flex flex-col gap-md max-w-form" onsubmit="return false">
+<form class="flex flex-col gap-md max-w-form" onsubmit="return false">
   <div>
     <label for="df-name">Team name</label>
     <input id="df-name" value="Design Ops">
@@ -123,7 +123,7 @@
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">defaults.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
             </figcaption>
-            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;form class=&quot;defaults flex flex-col gap-md max-w-form&quot; onsubmit=&quot;return false&quot;&gt;
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;form class=&quot;flex flex-col gap-md max-w-form&quot; onsubmit=&quot;return false&quot;&gt;
   &lt;div&gt;
     &lt;label for=&quot;df-name&quot;&gt;Team name&lt;/label&gt;
     &lt;input id=&quot;df-name&quot; value=&quot;Design Ops&quot;&gt;
@@ -201,13 +201,14 @@
         <section id="override" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Override a default</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <p class="text-body-md max-w-text break-words">Three ways, from widest to narrowest. A token on <code>:root</code> changes every <code>defaults</code> region; on a region, only that region; a utility class changes one element.</p>
+          <p class="text-body-md max-w-text break-words">Four ways, from widest to narrowest. A token on <code>:root</code> changes every element; on a region, only that region; a rule in <code class="whitespace-normal"><span class="whitespace-nowrap">@layer</span> <span class="whitespace-nowrap">styles</span></code> beats the defaults outright; a utility class changes one element.</p>
           <figure class="flex flex-col min-w-0 border border-weak bg-strong">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">override.css</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">CSS</span>
             </figcaption>
-            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>:root { --button-radius: 9999px; }               /* every .defaults region */
-.settings { --field-border: var(--border); }       /* one region */</code></pre>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>:root { --button-radius: 9999px; }               /* everywhere */
+.settings { --field-border: var(--border); }       /* one region */
+@layer styles { button { font-weight: 600; } }     /* beats the defaults layer */</code></pre>
           </figure>
           <figure class="flex flex-col min-w-0 border border-weak bg-strong">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
@@ -220,7 +221,7 @@
         <section id="layers" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Layers</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <p class="text-body-md max-w-text break-words">Nowind declares <code class="whitespace-normal"><span class="whitespace-nowrap">@layer</span> <span class="whitespace-nowrap">reset,</span> <span class="whitespace-nowrap">styles,</span> <span class="whitespace-nowrap">components,</span> <span class="whitespace-nowrap">nowind</span></code>. The reset and the element defaults sit in <code>reset</code>; put your own CSS in <code>styles</code>; the optional convenience classes fill <code>components</code>; the utilities in <code>nowind</code> win over all three.</p>
+          <p class="text-body-md max-w-text break-words">Nowind declares <code class="whitespace-normal"><span class="whitespace-nowrap">@layer</span> <span class="whitespace-nowrap">reset,</span> <span class="whitespace-nowrap">defaults,</span> <span class="whitespace-nowrap">styles,</span> <span class="whitespace-nowrap">components,</span> <span class="whitespace-nowrap">nowind</span></code>. The reset sits in <code>reset</code> and the element defaults in <code>defaults</code>; put your own CSS in <code>styles</code>, where it beats both; the optional convenience classes fill <code>components</code>; the utilities in <code>nowind</code> win over all of them.</p>
           <figure class="flex flex-col min-w-0 border border-weak bg-strong">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">layers.css</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">CSS</span>

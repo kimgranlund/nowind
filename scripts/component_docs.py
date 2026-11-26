@@ -42,7 +42,7 @@ COMPONENTS = [
   <button class="inline-flex items-center h-full px-nested gap-gutter-half rounded-inner state border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon icon-sm ph-bold ph-funnel"></i><span>Filter</span></button>
   <button class="inline-flex items-center h-full px-nested gap-gutter-half rounded-inner state border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon icon-sm ph-bold ph-sort-ascending"></i><span>Sort</span></button>
   <span class="mx-3xs my-2xs border-s border-neutral-6" aria-hidden="true"></span>
-  <button class="inline-flex items-center justify-center h-full aspect-square rounded-inner state border-0 bg-transparent fg-neutral-11 cursor-pointer" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
+  <button class="inline-flex items-center justify-center h-full aspect-square p-0 rounded-inner state border-0 bg-transparent fg-neutral-11 cursor-pointer" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
 </div>"""},
         ],
         "use": ["Always give it an <code>aria-label</code>.", "<code>size-control</code> on its own; <code>size-nested</code> with <code>icon icon-sm</code> inside a toolbar, field or segmented control."],
@@ -58,11 +58,11 @@ COMPONENTS = [
 </div>""",
         "examples": [
             {"id": "icons", "label": "Icons",
-             "summary": "Icon segments are <code>h-full aspect-square</code> squares in the same box, so they fill it edge to edge less the 2px inset.",
+             "summary": "Icon segments are <code>h-full aspect-square p-0</code> squares in the same box, so they fill it edge to edge less the 2px inset.",
              "html": """<div class="inline-flex items-center h-control rounded-sm border-2 border-transparent bg-neutral-a2" role="group" aria-label="Alignment">
-  <button class="inline-flex items-center justify-center h-full aspect-square rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black cursor-pointer" aria-label="Align start" aria-pressed="true"><i class="icon ph ph-text-align-left"></i></button>
-  <button class="inline-flex items-center justify-center h-full aspect-square rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black cursor-pointer" aria-label="Align center" aria-pressed="false"><i class="icon ph ph-text-align-center"></i></button>
-  <button class="inline-flex items-center justify-center h-full aspect-square rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black cursor-pointer" aria-label="Align end" aria-pressed="false"><i class="icon ph ph-text-align-right"></i></button>
+  <button class="inline-flex items-center justify-center h-full aspect-square p-0 rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black cursor-pointer" aria-label="Align start" aria-pressed="true"><i class="icon ph ph-text-align-left"></i></button>
+  <button class="inline-flex items-center justify-center h-full aspect-square p-0 rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black cursor-pointer" aria-label="Align center" aria-pressed="false"><i class="icon ph ph-text-align-center"></i></button>
+  <button class="inline-flex items-center justify-center h-full aspect-square p-0 rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black cursor-pointer" aria-label="Align end" aria-pressed="false"><i class="icon ph ph-text-align-right"></i></button>
 </div>"""},
         ],
         "use": ["Two to five short options that change a view in place.", "The box is <code>h-control rounded-sm border-2 border-transparent</code>: the transparent border is its only padding (2px), and the segments are <code>h-full rounded-inner</code>, so their corners follow the box exactly.", "Segments touch; the pressed one lifts with <code>pressed:bg-white</code>."],
@@ -286,7 +286,7 @@ COMPONENTS = [
       <i class="icon ph ph-palette fg-neutral-11" aria-hidden="true"></i>
       <span class="fg-neutral-11" aria-hidden="true">#</span>
       <input id="doc-hex" type="text" class="{BARE} tabular-nums" spellcheck="false" maxlength="6" value="0090FF">
-      <input type="color" class="size-nested shrink-0 self-center p-0 rounded-xs border-0 bg-transparent cursor-pointer" value="#0090ff" aria-label="Pick a colour">
+      <input type="color" class="size-nested shrink-0 self-center rounded-xs border-0 bg-transparent cursor-pointer" value="#0090ff" aria-label="Pick a colour">
     </div>
   </div>
   <div class="flex flex-col gap-2xs">

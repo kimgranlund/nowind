@@ -954,7 +954,7 @@ CONV_DEMOS = [
 ]
 
 
-DEFAULTS_DEMO = """<form class="defaults flex flex-col gap-md max-w-form" onsubmit="return false">
+DEFAULTS_DEMO = """<form class="flex flex-col gap-md max-w-form" onsubmit="return false">
   <div>
     <label for="df-name">Team name</label>
     <input id="df-name" value="Design Ops">
@@ -995,23 +995,23 @@ def resets_page():
     rows = [[f"<code>{E(t['token'])}</code>", f"<code>{E(t['fallback'])}</code>", E(t["use"])] for t in dm["tokens"]]
     art = "\n        ".join([
         page_head("Docs", "Resets",
-                  "Nowind starts from a reset that makes bare HTML look considered without fighting your classes, and offers an opt-in region of styled element defaults for markup with no classes at all. Both live in the <code>reset</code> layer, under <code>:where()</code>, so any class wins."),
+                  "Nowind starts from a reset that clears the browser's styles, then a layer of element defaults that gives bare buttons, fields and tables a finished look. Both sit in early layers, under <code>:where()</code>, so your CSS and any class win."),
         section("reset", "The reset",
-                p("Every element gets <code>box-sizing: border-box</code> and zero-width solid borders, so a <code>border</code> class sets only the width. Headings take the heading roles unless a <code>text-*</code> class sizes them. Links keep their underline, and text wraps with balanced headings and pretty paragraphs. Checkboxes, radios, switches, sliders, progress and meter are drawn from the theme. Buttons are left bare, transparent and unpadded, so a utility stack starts from nothing. Focus draws a ring, interactive elements transition, and reduced motion turns that off."),
-                p("The example below has no classes: it is what the reset alone gives you."),
+                p("Every element gets <code>box-sizing: border-box</code> and zero-width solid borders, so a <code>border</code> class sets only the width. Headings take the heading roles unless a <code>text-*</code> class sizes them. Links keep their underline, and text wraps with balanced headings and pretty paragraphs. Checkboxes, radios, switches, sliders, progress and meter are drawn from the theme. Buttons start transparent and unpadded; the element defaults below then style them. Focus draws a ring, interactive elements transition, and reduced motion turns that off."),
+                p("The example below has no classes: it is what the reset and the element defaults give you together."),
                 *live("bare.html", BARE_DEMO, semantic=True)),
         section("defaults", "Element defaults",
-                p("Put <code>defaults</code> on a region and its bare elements take styled defaults: buttons, text fields, selects, textareas, checkboxes, radios, switches, sliders, links, labels and table cells. A button with <code>type=\"submit\"</code> takes the primary fill. Nothing below carries a class."),
-                p("The defaults fill only what an element's classes leave unset, so a utility class still wins. Keep utility-built controls outside the region, or they may pick up a default such as the control padding."),
+                p("The <code>defaults</code> layer gives bare elements a finished look: buttons, text fields, selects, textareas, checkboxes, radios, switches, sliders, links, labels and table cells. A button with <code>type=\"submit\"</code> takes the primary fill. Nothing below carries a class, except the form's layout."),
+                p("The defaults fill only what an element's classes leave unset, so a utility class still wins, and a utility-built control picks up a default for any property it doesn't set."),
                 *live("defaults.html", DEFAULTS_DEMO)),
         section("tokens", "Default tokens", p("No token is declared, so each one is free to set. Its fallback resolves at the element, so it follows the element's scope and tier."),
                 table(["Token", "Fallback", "Use"], rows)),
         section("override", "Override a default",
-                p("Three ways, from widest to narrowest. A token on <code>:root</code> changes every <code>defaults</code> region; on a region, only that region; a utility class changes one element."),
-                code("override.css", "CSS", ":root { --button-radius: 9999px; }               /* every .defaults region */\n.settings { --field-border: var(--border); }       /* one region */"),
+                p("Four ways, from widest to narrowest. A token on <code>:root</code> changes every element; on a region, only that region; a rule in <code>@layer styles</code> beats the defaults outright; a utility class changes one element."),
+                code("override.css", "CSS", ":root { --button-radius: 9999px; }               /* everywhere */\n.settings { --field-border: var(--border); }       /* one region */\n@layer styles { button { font-weight: 600; } }     /* beats the defaults layer */"),
                 code("override.html", "HTML", '<button class="rounded-none">Square</button>      <!-- one element: the class wins -->')),
         section("layers", "Layers",
-                p("Nowind declares <code>@layer reset, styles, components, nowind</code>. The reset and the element defaults sit in <code>reset</code>; put your own CSS in <code>styles</code>; the optional convenience classes fill <code>components</code>; the utilities in <code>nowind</code> win over all three."),
+                p("Nowind declares <code>@layer reset, defaults, styles, components, nowind</code>. The reset sits in <code>reset</code> and the element defaults in <code>defaults</code>; put your own CSS in <code>styles</code>, where it beats both; the optional convenience classes fill <code>components</code>; the utilities in <code>nowind</code> win over all of them."),
                 code("layers.css", "CSS", "@layer styles {\n  .site-nav { display: flex; gap: var(--space-md); }\n}")),
     ])
     return doc_page("resets.html", "Resets", art)
@@ -1031,7 +1031,7 @@ def convenience_page():
         section("link", "Link it", p("After the main stylesheet. The classes sit in a <code>components</code> layer that comes before the utilities."),
                 code("index.html", "HTML", '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v__VERSION__/dist/nowind.min.css">\n<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v__VERSION__/dist/nowind.components.min.css">')),
         *demos,
-        section("defaults", "Element defaults", p('For markup with no classes at all, the <a href="resets.html#defaults">Resets</a> page shows the <code>defaults</code> region, which styles bare buttons, fields and tables from overridable tokens.')),
+        section("defaults", "Element defaults", p('For markup with no classes at all, the <a href="resets.html#defaults">Resets</a> page shows the <code>defaults</code> layer, which styles bare buttons, fields and tables from overridable tokens.')),
         section("recipes", "Recipes", p("Every class and the utility stack it is. A utility on the element overrides any part: <code>btn btn-primary rounded-full</code> is a pill."),
                 table(["Class", "Recipe", "Use"], rows)),
     ])

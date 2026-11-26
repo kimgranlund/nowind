@@ -1,4 +1,4 @@
-@layer reset, styles, components, nowind;
+@layer reset, defaults, styles, components, nowind;
 
 @layer reset {
   :where(:not(select):is(.btn, .h-nested, .size-control, .size-nested)) > :where(:not(.icon, input, select, textarea)), :where(td, th):where(.btn, .h-nested):not(:has(> *)) { text-box: trim-both cap alphabetic; }
@@ -42,7 +42,7 @@
   .btn-sm:is(:disabled, [aria-disabled="true"])::after { opacity: 0; }
   .btn-sm:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--nested-icon-padding); }
   .btn-sm:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):last-child)) { padding-inline-end: var(--nested-icon-padding); }
-  .icon-btn { display: inline-flex; justify-content: center; align-items: center; border-width: var(--border-width); --_bw: var(--border-width); border-radius: var(--radius-sm); --_nest: max(0px, calc(var(--radius-sm) - var(--_inset) - var(--_bw))); cursor: pointer; width: var(--control-height); height: var(--control-height); isolation: isolate; }
+  .icon-btn { display: inline-flex; justify-content: center; align-items: center; border-width: var(--border-width); --_bw: var(--border-width); border-radius: var(--radius-sm); --_nest: max(0px, calc(var(--radius-sm) - var(--_inset) - var(--_bw))); cursor: pointer; width: var(--control-height); height: var(--control-height); padding: 0; isolation: isolate; }
   :where(.icon-btn) { position: relative; }
   .icon-btn::after { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background-color: currentColor; opacity: 0; pointer-events: none; transition-property: opacity; transition-duration: var(--_duration, var(--motion-duration)); transition-timing-function: var(--_ease, var(--motion-easing)); }
   @media (hover: hover) {

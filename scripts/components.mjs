@@ -121,7 +121,7 @@ for (const { name, use, recipe } of RECIPES) {
 }
 
 const block = (layer, rules) => rules.length ? `\n@layer ${layer} {\n${rules.map((s) => "  " + s.replace(/\n/g, "\n  ")).join("\n")}\n}\n` : "";
-const css = `@layer reset, styles, components, nowind;\n${block("reset", resetRules)}${block("components", sections)}${block("nowind", childRules)}`;
+const css = `@layer reset, defaults, styles, components, nowind;\n${block("reset", resetRules)}${block("components", sections)}${block("nowind", childRules)}`;
 const min = css.replace(/\s+/g, " ").replace(/\s*([{};])\s*/g, "$1").replace(/;}/g, "}").replace(/,\s+(?![^(]*\))/g, ",").trim() + "\n";
 let depth = 0; for (const ch of css) { depth += ch === "{" ? 1 : ch === "}" ? -1 : 0; if (depth < 0) throw new Error("components: unbalanced braces"); }
 if (depth) throw new Error("components: unbalanced braces");

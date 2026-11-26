@@ -118,7 +118,7 @@ const BEHAVIOUR_SETUP = `(() => {
   const visible = (e) => { const c = getComputedStyle(e), r = e.getBoundingClientRect(); return c.display !== "none" && c.visibility !== "hidden" && r.width > 0 && r.height > 0 && !e.closest("dialog:not([open]), [popover]:not(:popover-open), [hidden], template, .sr-only, [data-page-css] ~ *"); };
   if (document.querySelector("style[data-page-css]")) return JSON.stringify({ info: [], durs: [], eases: [] });
   document.querySelectorAll("[data-nwb], [data-nwbox]").forEach((e) => { e.removeAttribute("data-nwb"); e.removeAttribute("data-nwbox"); });
-  const els = [...document.querySelectorAll(SEL)].filter(visible).filter((e) => !e.closest("[data-semantic-demo]") && !(e.tagName === "INPUT" && /^(range|color|file|hidden)$/.test(e.type)));
+  const els = [...document.querySelectorAll(SEL)].filter(visible).filter((e) => !e.closest("[data-semantic-demo]") && !(e.tagName === "BUTTON" && e.parentElement.closest("select")) && !(e.tagName === "INPUT" && /^(range|color|file|hidden)$/.test(e.type)));
   els.forEach((e, i) => { e.setAttribute("data-nwb", i); const box = e.matches("input, select, textarea") && e.parentElement.closest(".cursor-text, .field"); if (box) box.setAttribute("data-nwbox", ((box.getAttribute("data-nwbox") || "") + " " + i).trim()); });
   const probe = document.createElement("div"); document.body.append(probe);
   const durs = new Set(["0s"]), eases = new Set();
@@ -333,7 +333,7 @@ async function main() {
       focus: `${host}.insertAdjacentHTML("beforeend", '<button id="nwt" class="inline-flex items-center h-control px-control border state bg-neutral-3 outline-none"><span>No ring</span></button><style id="nwt2">#nwt:focus-visible{outline:none!important}</style>')`,
       disabled: `${host}.insertAdjacentHTML("beforeend", '<button id="nwt" disabled class="inline-flex items-center h-control px-control border border-transparent bg-neutral-3 hover:bg-neutral-5"><span>Disabled</span></button>')`,
       "on-vs-hover": `${host}.insertAdjacentHTML("beforeend", '<div id="nwt"><button aria-pressed="true" class="inline-flex items-center h-control px-control border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-4"><span>A</span></button><button aria-pressed="false" class="inline-flex items-center h-control px-control border-0 bg-transparent hover:bg-neutral-4 pressed:bg-neutral-4"><span>B</span></button></div>')`,
-      target: `${host}.insertAdjacentHTML("beforeend", '<div id="nwt" class="flex"><button class="state bg-neutral-3" style="width:12px;height:12px" aria-label="a"></button><button class="state bg-neutral-3" style="width:12px;height:12px" aria-label="b"></button></div>')`,
+      target: `${host}.insertAdjacentHTML("beforeend", '<div id="nwt" class="flex"><button class="state bg-neutral-3" style="width:12px;height:12px;padding:0" aria-label="a"></button><button class="state bg-neutral-3" style="width:12px;height:12px;padding:0" aria-label="b"></button></div>')`,
       "motion-tokens": `${host}.insertAdjacentHTML("beforeend", '<button id="nwt" class="inline-flex items-center h-control px-control border state bg-neutral-3"><span>Slow</span></button><style id="nwt2">#nwt{transition-duration:333ms!important}</style>')`,
       reduced: `${host}.insertAdjacentHTML("beforeend", '<button id="nwt" class="inline-flex items-center h-control px-control border state bg-neutral-3" style="transition-duration:160ms !important"><span>Moves</span></button>')`,
     };

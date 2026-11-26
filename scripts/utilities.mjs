@@ -280,8 +280,8 @@ add("h-control", "height: var(--control-height)");
 // Controls and icons (after Affine UI's button and icon): heights, square sizes, padding that steps in by one margin on a
 // side that holds an icon (the :has() rules below), the gutter gap, and an S-square icon box with its glyph size.
 add("h-nested", "height: var(--nested-height)");
-add("size-control", "width: var(--control-height); height: var(--control-height)");
-add("size-nested", "width: var(--nested-height); height: var(--nested-height)");
+add("size-control", "width: var(--control-height); height: var(--control-height); padding: 0");
+add("size-nested", "width: var(--nested-height); height: var(--nested-height); padding: 0");
 add("min-w-control", "min-width: var(--control-height)");
 add("min-w-nested", "min-width: var(--nested-height)");
 add("px-control", "padding-inline: var(--control-padding)");
@@ -382,9 +382,9 @@ const geometryCss = read("theme/theme.geometry.css");
 const BREAKPOINTS = [...geometryCss.matchAll(/--breakpoint-([\w]+):\s*(\d+)px/g)].map((m) => [m[1], Number(m[2])]);
 const CONTAINERS = [...geometryCss.matchAll(/--container-(sm|md|lg):\s*(\d+)px/g)].map((m) => [m[1], Number(m[2])]);
 
-// Element defaults: inside a .defaults region, bare elements (buttons, fields, checks, sliders, links, labels, table
-// cells) get styled defaults. Every value reads a token with a fallback (var(--button-radius, var(--radius-sm))): the
-// tokens are left undeclared, so setting one anywhere (:root, .defaults, any region) takes effect, and the fallback
+// Element defaults, in their own layer after the reset: buttons, fields, checks, sliders, links, labels and table cells
+// get styled defaults. Every value reads a token with a fallback (var(--button-radius, var(--radius-sm))): the
+// tokens are left undeclared, so setting one anywhere (:root or any region) takes effect, and the fallback
 // resolves at the element, following scopes and tiers. All selectors are :where(), so any utility class wins.
 // nowind.defaults.manifest.json lists every token, its fallback and its use.
 const DEFAULT_TOKENS = [
@@ -423,29 +423,29 @@ const DEFAULT_TOKENS = [
   ["cell-border", "var(--border-weak)", "Rule under each table row"],
 ];
 const DT = Object.fromEntries(DEFAULT_TOKENS.map(([t, f]) => [t, `var(--${t}, ${f})`]));
-const DR = ":where(.defaults)";
+const DR = "";  // the defaults apply everywhere; each selector is :where(), so any class wins
 const TEXT_INPUT = 'input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"], [type="hidden"])';
-const BUTTONS = 'button, input[type="button"], input[type="submit"], input[type="reset"]';
+const BUTTONS = 'button:not(select > button), input[type="button"], input[type="submit"], input[type="reset"]';  // a select's own button belongs to the select
 const DEFAULTS_CSS = [
-  `${DR} :where(${BUTTONS}) { display: inline-flex; align-items: center; justify-content: center; gap: ${DT["button-gap"]}; block-size: ${DT["button-height"]}; padding-inline: ${DT["button-padding"]}; border: var(--border-width) solid ${DT["button-border"]}; border-radius: ${DT["button-radius"]}; background-color: ${DT["button-bg"]}; color: ${DT["button-fg"]}; font-weight: ${DT["button-weight"]}; }`,
-  `@media (hover: hover) { ${DR} :where(${BUTTONS}):where(:not(:disabled)):hover { background-color: ${DT["button-bg-hover"]}; } }`,
-  `${DR} :where(${BUTTONS}):where(:not(:disabled)):active { background-color: ${DT["button-bg-active"]}; }`,
-  `${DR} :where(button[type="submit"], input[type="submit"]) { background-color: ${DT["button-primary-bg"]}; color: ${DT["button-primary-fg"]}; }`,
-  `@media (hover: hover) { ${DR} :where(button[type="submit"], input[type="submit"]):where(:not(:disabled)):hover { background-color: ${DT["button-primary-bg-hover"]}; } }`,
-  `${DR} :where(button[type="submit"], input[type="submit"]):where(:not(:disabled)):active { background-color: ${DT["button-primary-bg-hover"]}; }`,
-  `${DR} :where(${BUTTONS}):disabled { opacity: 0.5; cursor: not-allowed; }`,
-  `${DR} :where(${TEXT_INPUT}, select:not([multiple], [size])) { block-size: ${DT["field-height"]}; padding-inline: ${DT["field-padding"]}; }`,
-  `${DR} :where(textarea) { padding: ${DT["field-padding-block"]} ${DT["field-padding"]}; }`,
-  `${DR} :where(${TEXT_INPUT}, select, textarea) { inline-size: ${DT["field-width"]}; border-radius: ${DT["field-radius"]}; border-color: ${DT["field-border"]}; background-color: ${DT["field-bg"]}; }`,
-  `@media (hover: hover) { ${DR} :where(${TEXT_INPUT}, select, textarea):where(:not(:disabled)):hover { border-color: ${DT["field-border-hover"]}; } }`,
-  `${DR} :where(${TEXT_INPUT}, select, textarea):user-invalid { border-color: ${DT["field-border-invalid"]}; }`,
-  `${DR} :where(input[type="checkbox"], input[type="radio"], input[type="range"]) { --_mark: ${DT["check-size"]}; }`,
-  `${DR} :where(input[type="checkbox"], input[type="radio"]):is(:checked, :indeterminate) { background: ${DT["check-accent"]}; border-color: ${DT["check-accent"]}; }`,
-  `${DR} :where(a:not([class])) { color: ${DT["link-color"]}; text-underline-offset: ${DT["link-underline-offset"]}; }`,
-  `@media (hover: hover) { ${DR} :where(a:not([class])):hover { color: ${DT["link-color-hover"]}; } }`,
-  `${DR} :where(label:not(:has(input[type="checkbox"], input[type="radio"])):not(:is(input[type="checkbox"], input[type="radio"]) + label)) { display: block; margin-block-end: ${DT["label-gap"]}; font-size: ${DT["label-size"]}; line-height: var(--text-sm--line-height); font-weight: ${DT["label-weight"]}; }`,
-  `${DR} :where(th, td) { padding: ${DT["cell-padding-block"]} ${DT["cell-padding"]}; border-block-end: var(--border-width) solid ${DT["cell-border"]}; text-align: start; }`,
-  `${DR} :where(th) { font-size: var(--text-sm); font-weight: var(--font-weight-medium); color: var(--fg-weak); }`,
+  `:where(${BUTTONS}) { display: inline-flex; align-items: center; justify-content: center; gap: ${DT["button-gap"]}; block-size: ${DT["button-height"]}; padding-inline: ${DT["button-padding"]}; border: var(--border-width) solid ${DT["button-border"]}; border-radius: ${DT["button-radius"]}; background-color: ${DT["button-bg"]}; color: ${DT["button-fg"]}; font-weight: ${DT["button-weight"]}; }`,
+  `@media (hover: hover) { :where(${BUTTONS}):where(:not(:disabled)):hover { background-color: ${DT["button-bg-hover"]}; } }`,
+  `:where(${BUTTONS}):where(:not(:disabled)):active { background-color: ${DT["button-bg-active"]}; }`,
+  `:where(button[type="submit"], input[type="submit"]) { background-color: ${DT["button-primary-bg"]}; color: ${DT["button-primary-fg"]}; }`,
+  `@media (hover: hover) { :where(button[type="submit"], input[type="submit"]):where(:not(:disabled)):hover { background-color: ${DT["button-primary-bg-hover"]}; } }`,
+  `:where(button[type="submit"], input[type="submit"]):where(:not(:disabled)):active { background-color: ${DT["button-primary-bg-hover"]}; }`,
+  `:where(${BUTTONS}):disabled { opacity: 0.5; cursor: not-allowed; }`,
+  `:where(${TEXT_INPUT}, select:not([multiple], [size])) { block-size: ${DT["field-height"]}; padding-inline: ${DT["field-padding"]}; }`,
+  `:where(textarea) { padding: ${DT["field-padding-block"]} ${DT["field-padding"]}; }`,
+  `:where(${TEXT_INPUT}, select, textarea) { inline-size: ${DT["field-width"]}; border-radius: ${DT["field-radius"]}; border-color: ${DT["field-border"]}; background-color: ${DT["field-bg"]}; }`,
+  `@media (hover: hover) { :where(${TEXT_INPUT}, select, textarea):where(:not(:disabled)):hover { border-color: ${DT["field-border-hover"]}; } }`,
+  `:where(${TEXT_INPUT}, select, textarea):user-invalid { border-color: ${DT["field-border-invalid"]}; }`,
+  `:where(input[type="checkbox"], input[type="radio"], input[type="range"]) { --_mark: ${DT["check-size"]}; }`,
+  `@media (forced-colors: none) { :where(input[type="checkbox"], input[type="radio"]):is(:checked, :indeterminate) { background: ${DT["check-accent"]}; border-color: ${DT["check-accent"]}; } }`,
+  `:where(a:not([class])) { color: ${DT["link-color"]}; text-underline-offset: ${DT["link-underline-offset"]}; }`,
+  `@media (hover: hover) { :where(a:not([class])):hover { color: ${DT["link-color-hover"]}; } }`,
+  `:where(label:not(:has(input[type="checkbox"], input[type="radio"])):not(:is(input[type="checkbox"], input[type="radio"]) + label)) { display: block; margin-block-end: ${DT["label-gap"]}; font-size: ${DT["label-size"]}; line-height: var(--text-sm--line-height); font-weight: ${DT["label-weight"]}; }`,
+  `:where(th, td) { padding: ${DT["cell-padding-block"]} ${DT["cell-padding"]}; border-block-end: var(--border-width) solid ${DT["cell-border"]}; text-align: start; }`,
+  `:where(th) { font-size: var(--text-sm); font-weight: var(--font-weight-medium); color: var(--fg-weak); }`,
 ].map((r) => "  " + r).join("\n");
 
 const reset = `@layer reset {
@@ -617,7 +617,6 @@ const reset = `@layer reset {
   :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"]), textarea, select):focus-visible { outline-offset: -1px; }
   :where(.cursor-text:focus-within) { outline: 2px solid var(--border-accent-1-strong); outline-offset: -1px; }
   :where(.cursor-text) :where(input, select, textarea):focus-visible { outline: none; }
-${DEFAULTS_CSS}
   :where(:target) { scroll-margin-block: 5ex; }
   :where([hidden]:not([hidden="until-found"])) { display: none !important; }
 
@@ -666,8 +665,9 @@ ${DEFAULTS_CSS}
 `;
 
 const out = [];
-out.push("@layer reset, styles, components, nowind;\n");
+out.push("@layer reset, defaults, styles, components, nowind;\n");
 out.push(reset);
+out.push(`\n@layer defaults {\n${DEFAULTS_CSS}\n}\n`);
 out.push("@layer nowind {");
 add("state", "isolation: isolate");
 for (const [c, d] of D) out.push(rule(c, d));
@@ -831,7 +831,7 @@ const manifest = {
   generated: "scripts/utilities.mjs",
   description: "Prewind-style utility classes over the Nowind theme, with Tailwind v4 names where they overlap. One plain stylesheet, no build step for consumers: every class already exists. Regenerate after changing theme tokens, then rebuild the bundle.",
   setup: {
-    order: "@layer reset, styles, components, nowind; (declared at the top of nowind.css; components is empty unless dist/nowind.components.css is linked)",
+    order: "@layer reset, defaults, styles, components, nowind; (declared at the top of nowind.css; defaults styles bare elements, and your CSS in styles beats it; components is empty unless dist/nowind.components.css is linked)",
     link: ["dist/nowind.min.css"],
     linkWhileDeveloping: ["theme.css", "nowind.css"],
     bundle: "node scripts/bundle.mjs writes dist/nowind.bundle.css and dist/nowind.min.css: theme.css with every @import inlined, then this file. Run it after this script.",
@@ -892,8 +892,8 @@ const manifest = {
 writeFileSync(join(root, "nowind.manifest.json"), JSON.stringify(manifest, null, 2) + "\n");
 writeFileSync(join(root, "nowind.defaults.manifest.json"), JSON.stringify({
   generated: "by scripts/utilities.mjs; edit DEFAULT_TOKENS there, not this file",
-  description: "Element defaults: wrap a region in class defaults and its bare elements (buttons, text fields, selects, textareas, checkboxes, radios, sliders, links, labels, table cells) take styled defaults. Each value reads a token with a fallback; the tokens are not declared anywhere, so setting one on :root, on .defaults or on any region inside takes effect, and the fallback follows the element's scope and tier. Every selector is :where(), so a utility class on the element always wins; the defaults fill only the properties its classes leave unset, so a utility-built control inside the region can still pick up a default it does not set. A button takes the primary fill only with an explicit type=submit; an untyped button in a form submits but stays neutral.",
-  region: ".defaults",
+  description: "Element defaults, in the defaults layer (after reset, before styles): buttons, text fields, selects, textareas, checkboxes, radios, sliders, links, labels and table cells take styled defaults wherever they are. Each value reads a token with a fallback; the tokens are not declared anywhere, so setting one on :root or on any region takes effect, and the fallback follows the element's scope and tier. Your CSS in @layer styles beats the defaults, and so does any utility class. Every selector is :where(), so a utility class on the element always wins; the defaults fill only the properties its classes leave unset, so a utility-built control inside the region can still pick up a default it does not set. A button takes the primary fill only with an explicit type=submit; an untyped button in a form submits but stays neutral.",
+  layer: "defaults",
   tokens: DEFAULT_TOKENS.map(([token, fallback, use]) => ({ token: `--${token}`, fallback, use })),
 }, null, 2) + "\n");
 

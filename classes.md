@@ -14,8 +14,8 @@ Variants: `hover:` on the 211 role-colour, opacity and cursor classes (inside `@
 |---|---|
 | `.h-control` | `height: var(--control-height)` |
 | `.h-nested` | `height: var(--nested-height)` |
-| `.size-control` | `width: var(--control-height); height: var(--control-height)` |
-| `.size-nested` | `width: var(--nested-height); height: var(--nested-height)` |
+| `.size-control` | `width: var(--control-height); height: var(--control-height); padding: 0` |
+| `.size-nested` | `width: var(--nested-height); height: var(--nested-height); padding: 0` |
 | `.min-w-control` | `min-width: var(--control-height)` |
 | `.min-w-nested` | `min-width: var(--nested-height)` |
 | `.px-control` | `padding-inline: var(--control-padding)` |

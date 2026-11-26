@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **Element defaults apply everywhere, in their own layer** (breaking). The layer order is now `@layer reset, defaults, styles, components, nowind`: bare buttons, fields, checks, sliders, links, labels and table cells are styled wherever they are, with no `defaults` class (it is gone). Your CSS in `@layer styles` beats the defaults, and so does any utility. A utility stack now gets a default for every property it leaves unset, so:
+  - `size-control` and `size-nested` set `padding: 0`, so a square stays square under the default button padding;
+  - icon segments (`h-full aspect-square`) take `p-0`;
+  - a select's own inner button is left to the select;
+  - the checked-checkbox accent stays out of forced-colours mode.
 ## 0.13.0 (2026-11-26)
 
 - **Resets page:** a docs page for the reset and the element defaults: what the reset does, with a classless example; the `defaults` region with its live form; every default token with its fallback; how to override one (on `:root`, on a region, or with a utility); and the layer order. Element defaults moved there from the Convenience classes page.
