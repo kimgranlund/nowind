@@ -552,6 +552,16 @@
   .scroll-mt-2xl { scroll-margin-block-start: var(--space-2xl); }
   .scroll-mt-3xl { scroll-margin-block-start: var(--space-3xl); }
   .scroll-mt-4xl { scroll-margin-block-start: var(--space-4xl); }
+  .scroll-pt-3xs { scroll-padding-block-start: var(--space-3xs); }
+  .scroll-pt-2xs { scroll-padding-block-start: var(--space-2xs); }
+  .scroll-pt-xs { scroll-padding-block-start: var(--space-xs); }
+  .scroll-pt-sm { scroll-padding-block-start: var(--space-sm); }
+  .scroll-pt-md { scroll-padding-block-start: var(--space-md); }
+  .scroll-pt-lg { scroll-padding-block-start: var(--space-lg); }
+  .scroll-pt-xl { scroll-padding-block-start: var(--space-xl); }
+  .scroll-pt-2xl { scroll-padding-block-start: var(--space-2xl); }
+  .scroll-pt-3xl { scroll-padding-block-start: var(--space-3xl); }
+  .scroll-pt-4xl { scroll-padding-block-start: var(--space-4xl); }
   .container { width: min(100%, var(--container-max)); margin-inline: auto; padding-inline: var(--container-padding); }
   .block { display: block; }
   .inline-block { display: inline-block; }

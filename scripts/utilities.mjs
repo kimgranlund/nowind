@@ -48,6 +48,7 @@ for (const s of ["0", ...SPACE]) {
   add(`gap-y-${s}`, `row-gap: ${sv(s)}`);
 }
 for (const s of SPACE) add(`scroll-mt-${s}`, `scroll-margin-block-start: var(--space-${s})`);
+for (const s of SPACE) add(`scroll-pt-${s}`, `scroll-padding-block-start: var(--space-${s})`);
 
 // Layout
 add("container", "width: min(100%, var(--container-max)); margin-inline: auto; padding-inline: var(--container-padding)");
@@ -777,7 +778,7 @@ const manifest = {
     none: "No group- or dark: variants. Dark mode comes from the theme's light-dark() tokens.",
   },
   categories: {
-    spacing: `p-, px-, py-, pt-, pr-, pb-, pl-, m-*, -m-*, m*-auto, gap-, gap-x-, gap-y- with 0 and ${SPACE.join(", ")}; p-inset (margin − border, the padding between radius levels); scroll-mt-* (where a linked element stops under sticky bars) with the same steps, no 0`,
+    spacing: `p-, px-, py-, pt-, pr-, pb-, pl-, m-*, -m-*, m*-auto, gap-, gap-x-, gap-y- with 0 and ${SPACE.join(", ")}; p-inset (margin − border, the padding between radius levels); scroll-mt-*, scroll-pt-* (where a linked element stops under sticky bars) with the same steps, no 0`,
     typeScale: `text-{${SIZES.join(", ")}} (sets size and line height)`,
     kicker: `text-{${KICKERS.join(", ")}} (size and the kicker style)`,
     typeRoles: `text-{${ROLES.filter((r) => !KICKERS.includes(r)).join(", ")}} (every role companion)`,

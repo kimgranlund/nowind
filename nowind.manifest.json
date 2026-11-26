@@ -15,13 +15,13 @@
     "rule": "Put your own global CSS in @layer styles. Unlayered CSS beats every utility."
   },
   "counts": {
-    "classes": 1493,
+    "classes": 1503,
     "hover": 211,
     "state": 989,
     "group": 174,
     "responsive": 940,
     "container": 333,
-    "bytes": 307718
+    "bytes": 308378
   },
   "naming": "property-value, as Prewind and Tailwind: p-md, gap-lg, bg-solid-accent-1. Colour classes take the token name without --; text-color roles are the token name alone (fg-weak, fg-accent-1).",
   "variants": {
@@ -40,7 +40,7 @@
     "none": "No group- or dark: variants. Dark mode comes from the theme's light-dark() tokens."
   },
   "categories": {
-    "spacing": "p-, px-, py-, pt-, pr-, pb-, pl-, m-*, -m-*, m*-auto, gap-, gap-x-, gap-y- with 0 and 3xs, 2xs, xs, sm, md, lg, xl, 2xl, 3xl, 4xl; p-inset (margin − border, the padding between radius levels); scroll-mt-* (where a linked element stops under sticky bars) with the same steps, no 0",
+    "spacing": "p-, px-, py-, pt-, pr-, pb-, pl-, m-*, -m-*, m*-auto, gap-, gap-x-, gap-y- with 0 and 3xs, 2xs, xs, sm, md, lg, xl, 2xl, 3xl, 4xl; p-inset (margin − border, the padding between radius levels); scroll-mt-*, scroll-pt-* (where a linked element stops under sticky bars) with the same steps, no 0",
     "typeScale": "text-{xs, sm, base, lg, xl, 2xl, 3xl, 4xl, 5xl, 6xl} (sets size and line height)",
     "kicker": "text-{kicker-sm, kicker-md, kicker-lg} (size and the kicker style)",
     "typeRoles": "text-{display-lg, display-md, display-sm, display, heading-xl, heading-lg, heading-md, heading-sm, figure, lead, quote, title, subtitle, body-lg, body-md, body-sm, caption, footnote, title-sm, control-md, data, label, kicker, numeral, mono, mono-sm, code, kbd} (every role companion)",

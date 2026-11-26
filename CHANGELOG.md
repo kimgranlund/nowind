@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **One sticky header on the site:** the bar (site map, search, previous and next) sticks with the band, in one `sticky top-0` wrapper; the band keeps its own dark scheme and the bar follows the page's. New `scroll-pt-{3xs…4xl}` on the space scale, beside `scroll-mt-*`; the site's pages use `scroll-pt-4xl` so a linked block clears both rows.
 - **Table cells keep their padding:** `px-control` and `px-nested` no longer drop to the icon padding on a `td` or `th`, so a badge or icon at the start of a cell lines up with its header; the showcase's Status column had sat a margin to the start of its header. The generator also wrote the trailing-edge rule twice.
 - **README, from a second consumer test** (a fresh agent with only the README and the bundle): an avatar recipe, badges and avatars may use the small sizes anywhere, `border` draws in `--border`, page widths are `max-w-text`, `max-w-form` and `container`, and table headers take `text-sm font-medium`.
 - **Table headers are `text-sm`,** as the size contract says: the type audit had read a `th` sized `h-control` as a control, so `text-base` headers passed. A sort button in a header now counts as the header, and a page's `h1` is no longer judged as a card title. The self-test breaks a copy nineteen ways.

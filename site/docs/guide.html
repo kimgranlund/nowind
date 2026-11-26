@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="scroll-pt-header">
+<html lang="en" class="scroll-pt-4xl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +12,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
 </head>
 <body class="bg fg">
-<header class="light sticky top-0 z-30 bg-inverse fg-inverse">
+<div class="sticky top-0 z-30">
+<header class="light bg-inverse fg-inverse">
   <div class="flex items-center gap-lg h-header px-grid">
     <a href="../index.html" class="inline-flex items-center gap-gutter-half no-underline fg-inverse"><i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-inverse-weak">0.10.0</span></a>
     <nav aria-label="Sections" class="hidden md:flex items-center gap-lg"><a href="docs-home.html" aria-current="true" class="inline-flex items-center h-header border-b-2 border-accent-1 no-underline fg-inverse text-title-sm">Docs</a><a href="components-index.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Components</a><a href="../specimen.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Specimen</a><a href="classes.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Classes</a></nav>
@@ -42,6 +43,7 @@
   <span class="flex-1 hidden lg:block"></span>
   <span class="hidden sm:flex items-center gap-3xs"><a href="docs-home.html" class="inline-flex items-center justify-center size-control rounded-sm border hover:bg-component-weak no-underline fg transition-colors" aria-label="Previous: Overview"><i class="icon ph ph-arrow-left"></i></a><a href="colour.html" class="inline-flex items-center justify-center size-control rounded-sm border hover:bg-component-weak no-underline fg transition-colors" aria-label="Next: Colour"><i class="icon ph ph-arrow-right"></i></a></span>
 </div>
+</div>
 <div id="site-map" popover class="anchor-bottom w-full max-w-measure max-h-below-header overflow-y-auto p-surface rounded-md bg fg border shadow-lg">
   <nav aria-label="Site map" class="grid grid-cols-1 md:grid-cols-4 gap-group">
     <div class=" flex flex-col gap-2xs min-w-0"><span class="px-nested text-kicker fg-weak">Docs</span><ul role="list" class="grid grid-cols-1"><li><a href="docs-home.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Overview</a></li><li><a href="guide.html" aria-current="page" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm bg-component-accent-1 fg-accent-1 font-medium">Guide</a></li><li><a href="colour.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Colour</a></li><li><a href="type-space.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Type and space</a></li><li><a href="states.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">States and variants</a></li><li><a href="materials.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Materials</a></li><li><a href="reference.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Reference</a></li><li><a href="changelog.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Changelog</a></li><li><a href="index.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Templates</a></li></ul></div>
@@ -60,21 +62,23 @@
         <section id="frame" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">The frame</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <p class="text-body-md max-w-measure">Every page on the site has the same three parts, after Vignelli's Unigrid: an inverse band with the four sections, a bar under a heavy rule with where you are, search and the next page, and the page itself, a stack of blocks. The band sticks to the top; everything else scrolls with the page.</p>
+          <p class="text-body-md max-w-measure">Every page on the site has the same three parts, after Vignelli's Unigrid: an inverse band with the four sections, a bar under a heavy rule with where you are, search and the next page, and the page itself, a stack of blocks. The band and the bar stick to the top together; the page scrolls under them.</p>
           <figure class="flex flex-col min-w-0 border border-weak bg-strong">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">frame.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
             </figcaption>
-            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;html class=&quot;scroll-pt-header&quot;&gt;
-&lt;header class=&quot;sticky top-0 z-30 bg-inverse fg-inverse&quot;&gt;
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;html class=&quot;scroll-pt-4xl&quot;&gt;
+&lt;div class=&quot;sticky top-0 z-30&quot;&gt;
+&lt;header class=&quot;light bg-inverse fg-inverse&quot;&gt;
   &lt;div class=&quot;flex items-center gap-lg h-header px-grid&quot;&gt;…wordmark, sections, search…&lt;/div&gt;
 &lt;/header&gt;
-&lt;div class=&quot;flex items-center gap-xs px-grid py-2xs border-b-2 border-strong&quot;&gt;…site map button, search, previous and next…&lt;/div&gt;
+&lt;div class=&quot;flex items-center gap-xs px-grid py-2xs border-b-2 border-strong bg&quot;&gt;…site map button, search, previous and next…&lt;/div&gt;
+&lt;/div&gt;
 &lt;main class=&quot;tier-content px-grid&quot;&gt;
   &lt;div class=&quot;grid grid-cols-12 gap-x-grid&quot;&gt;…page head, blocks…&lt;/div&gt;
 &lt;/main&gt;</code></pre>
           </figure>
-          <p class="text-body-md max-w-measure">The band is <code>h-header</code> tall and follows the base size, so it grows with the type from a phone to a wide screen. <code>scroll-pt-header</code> on <code>html</code> keeps a linked block clear of it.</p>
+          <p class="text-body-md max-w-measure">The band is <code>h-header</code> tall and follows the base size, so it grows with the type from a phone to a wide screen. <code>scroll-pt-4xl</code> on <code>html</code> keeps a linked block clear of the band and the bar.</p>
           <aside role="note" class="flex gap-gutter p-md border-s-4 border-info-7 bg-info-3">
             <i class="icon ph ph-info fg-info-11"></i>
             <div class="flex flex-col gap-3xs min-w-0">

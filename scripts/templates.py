@@ -43,7 +43,7 @@ def section_of(path):
 
 # ---------------------------------------------------------------- shared parts
 HEAD = """<!doctype html>
-<html lang="en" class="scroll-pt-header">
+<html lang="en" class="scroll-pt-4xl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -131,7 +131,8 @@ def top(path):
         next_a = (f'<a href="{rel(ORDER[i + 1], path)}" class="{arrow}" aria-label="Next: {TITLES.get(ORDER[i + 1], LABELS[ORDER[i + 1]])}"><i class="icon ph ph-arrow-right"></i></a>'
                   if i < len(ORDER) - 1 else "")
         step = f'<span class="hidden sm:flex items-center gap-3xs">{prev_a}{next_a}</span>'
-    return f"""<header class="light sticky top-0 z-30 bg-inverse fg-inverse">
+    return f"""<div class="sticky top-0 z-30">
+<header class="light bg-inverse fg-inverse">
   <div class="flex items-center gap-lg h-header px-grid">
     <a href="{rel("index.html", path)}" class="inline-flex items-center gap-gutter-half no-underline fg-inverse"><i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-inverse-weak">__VERSION__</span></a>
     <nav aria-label="Sections" class="hidden md:flex items-center gap-lg">{secs}</nav>
@@ -160,6 +161,7 @@ def top(path):
   <button type="button" data-search-open class="inline-flex items-center gap-gutter grow min-w-0 max-w-form h-control px-control rounded-sm border hover:border-strong bg-strong fg-subtle text-control-md cursor-text transition-colors" aria-label="Search the site"><i class="icon ph ph-magnifying-glass"></i><span class="grow truncate text-start">Search pages, components and classes</span><kbd class="hidden sm:inline text-mono-sm">⌘K</kbd></button>
   <span class="flex-1 hidden lg:block"></span>
   {step}
+</div>
 </div>
 {site_map(path)}"""
 
@@ -295,17 +297,19 @@ def guide():
                   "Build a documentation page from Nowind's shell lengths, its 12-column grid and four type roles. Every part on this page is the template you can copy.",
                   "Applies to Nowind __VERSION__"),
         section("frame", "The frame",
-            p("Every page on the site has the same three parts, after Vignelli's Unigrid: an inverse band with the four sections, a bar under a heavy rule with where you are, search and the next page, and the page itself, a stack of blocks. The band sticks to the top; everything else scrolls with the page."),
+            p("Every page on the site has the same three parts, after Vignelli's Unigrid: an inverse band with the four sections, a bar under a heavy rule with where you are, search and the next page, and the page itself, a stack of blocks. The band and the bar stick to the top together; the page scrolls under them."),
             code("frame.html", "HTML", """
-<html class="scroll-pt-header">
-<header class="sticky top-0 z-30 bg-inverse fg-inverse">
+<html class="scroll-pt-4xl">
+<div class="sticky top-0 z-30">
+<header class="light bg-inverse fg-inverse">
   <div class="flex items-center gap-lg h-header px-grid">…wordmark, sections, search…</div>
 </header>
-<div class="flex items-center gap-xs px-grid py-2xs border-b-2 border-strong">…site map button, search, previous and next…</div>
+<div class="flex items-center gap-xs px-grid py-2xs border-b-2 border-strong bg">…site map button, search, previous and next…</div>
+</div>
 <main class="tier-content px-grid">
   <div class="grid grid-cols-12 gap-x-grid">…page head, blocks…</div>
 </main>"""),
-            p("The band is <code>h-header</code> tall and follows the base size, so it grows with the type from a phone to a wide screen. <code>scroll-pt-header</code> on <code>html</code> keeps a linked block clear of it."),
+            p("The band is <code>h-header</code> tall and follows the base size, so it grows with the type from a phone to a wide screen. <code>scroll-pt-4xl</code> on <code>html</code> keeps a linked block clear of the band and the bar."),
             callout("note", "Keep one scroller: the page. Don't make <code>main</code> a scroll box; browsers paint very tall nested scrollers badly, and in-page links, find and the back button work against the window."),
         ),
         section("grid", "The block",
@@ -585,7 +589,7 @@ def index():
         ('<span class="text-caption">Aa</span>', "Small", "<code>text-caption</code> · <code>text-label</code> · <code>text-kicker</code> · <code>text-mono-sm</code>", "<code>--text-sm</code>", "Metadata, labels, code"),
     ]
     parts = [
-        ["Band", "<code>light sticky top-0 z-30 bg-inverse fg-inverse</code> (dark in both modes); inner <code>flex items-center gap-lg h-header px-grid</code>"],
+        ["Band", "Inside a <code>sticky top-0 z-30</code> wrapper with the bar: <code>light bg-inverse fg-inverse</code> (dark in both modes); inner <code>flex items-center gap-lg h-header px-grid</code>"],
         ["Section link", "<code>h-header border-b-2 fg-inverse-weak text-title-sm</code>; current: <code>border-accent-1 fg-inverse</code>"],
         ["Site map", "A <code>popovertarget</code> button naming the section and page; the popover <code>anchor-bottom max-w-measure max-h-below-header overflow-y-auto</code>"],
         ["Search field", "A button that looks like a field: <code>grow max-w-form h-control border bg-strong cursor-text</code> with <code>data-search-open</code>"],
@@ -615,7 +619,7 @@ def index():
         ),
         section("frame", "The frame",
             frame_diagram,
-            p("An inverse band with the four sections, then a bar under a heavy rule with the site map, search and the next page, then the page as a stack of blocks. Only the band sticks; the page scrolls as a whole. Below 768px the sections are reached through the site map."),
+            p("An inverse band with the four sections, then a bar under a heavy rule with the site map, search and the next page, then the page as a stack of blocks. The band and the bar stick together; the page scrolls under them. Below 768px the sections are reached through the site map."),
         ),
         section("grid", "The grid",
             grid_strip,
