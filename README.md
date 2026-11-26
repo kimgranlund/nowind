@@ -275,6 +275,16 @@ The most repeated stacks in the examples also come as single classes, in an opti
 
 Each is generated from its utility stack and checked to render the same in every state; [`nowind.components.manifest.json`](nowind.components.manifest.json) lists every recipe. They sit in a `components` layer that comes before the utilities, so any utility on the element still wins: `btn btn-primary rounded-full` is a pill. The examples and docs use the utilities, so you can always see what a class is made of.
 
+## Check your page
+
+Nowind's own examples are held to a set of contracts: one size for each kind of text, one geometry for each kind of part, a palette step for each job, and state variants that can fire. Run the same checks on your markup, by hand or as the last step of generating it:
+
+```bash
+python3 scripts/templates.py --lint-file page.html
+```
+
+It reads the page's classes only (no browser), expands the convenience classes into their stacks first, and lets your own utilities override them as the cascade does. Each finding names the element, the rule and the fix. It skips the two rules that bind only Nowind's examples: you may use semantic classes and physical sides.
+
 ## Variants
 
 | Prefix | Covers | Example |

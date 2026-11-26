@@ -107,6 +107,21 @@ function check(root) {
     else errors.push(`scripts/templates.py --lint failed: ${String(e.stderr || e.message).trim().split("\n").pop()}`);
   }
 
+  // 6b. The page lint (templates.py --lint-file) passes a page written with convenience classes, expanding them to
+  // their stacks, and still catches a real fault in one.
+  {
+    const dir = mkdtempSync(join(tmpdir(), "nowind-lintfile-"));
+    const page = (inner) => `<!doctype html><html><body><main class="flex flex-col gap-md p-md">${inner}</main></body></html>`;
+    const good = page('<button class="btn btn-primary rounded-full"><span>Save</span></button><span class="badge badge-success"><span>Paid</span></span><div class="card"><p>Body</p></div>');
+    const bad = page('<button class="btn btn-primary h-nested"><span>Save</span></button>');
+    writeFileSync(join(dir, "good.html"), good); writeFileSync(join(dir, "bad.html"), bad);
+    const lint = (f) => { try { execFileSync("python3", [join(root, "scripts", "templates.py"), "--lint-file", join(dir, f)], { cwd: root, encoding: "utf8", stdio: "pipe" }); return ""; } catch (e) { return (e.stdout || "") + (e.stderr || "") || "failed"; } };
+    const g = lint("good.html"), b = lint("bad.html");
+    if (g) errors.push(`templates.py --lint-file: rejects a correct page with convenience classes: ${g.split("\n")[0].slice(0, 200)}. Fix: expand_convenience in scripts/templates.py.`);
+    if (!b) errors.push("templates.py --lint-file: passes a page whose btn also carries h-nested. Fix: the page lint must expand convenience classes before the geometry rules run.");
+    rmSync(dir, { recursive: true, force: true });
+  }
+
   // 7. AGENTS.md names every file in the repo (by path, glob or directory), and every path it names exists.
   {
     const agents = readFileSync(join(root, "AGENTS.md"), "utf8");

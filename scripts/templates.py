@@ -1088,8 +1088,13 @@ def components_index():
 SIZE_RE = re.compile(r"text-(xs|sm|base|lg|xl|[2-6]xl)")
 
 
+_FILE_SOURCES = None  # set by --lint-file: (path, html) pairs checked in place of the examples
+
+
 def example_sources():
     """(where, html) for every component snippet and every showcase block that is not a semantic demo."""
+    if _FILE_SOURCES is not None:
+        return _FILE_SOURCES
     out = [(f"scripts/component_docs.py {c['slug']} {x['id']}", x["html"]) for c in COMPONENTS for x in [{"id": "example", "html": c["html"]}] + c.get("examples", [])]
     out += [(f"scripts/templates.py states {k}", STATE_DEMOS[k]) for k in ("breakpoints", "containers")]
     page = open(os.path.join(OUT, "..", "components.html")).read()
@@ -1440,7 +1445,7 @@ def lint_examples():
             if tag in ("a", "button", "summary", "input", "select", "textarea", "label") or (role and role.group(1) in ("button", "tab", "option", "menuitem", "switch")):
                 continue
             physical = [t for t in toks if re.fullmatch(r"(?:[a-z0-9@-]+:)?(?:-?[pm][lr]-.+|left-.+|right-.+|text-(?:left|right)|border-[lr](?:-\d)?)", t)]
-            if physical:
+            if physical and _FILE_SOURCES is None:
                 out.append(f"{where}: {' '.join(physical)} is physical. Fix: use the logical class (ps-, pe-, ms-, me-, start-, end-, text-start, text-end, border-s, border-e).")
             if any(re.fullmatch(r"ph-caret-[a-z-]+", t) for t in toks) and "icon-sm" not in toks:
                 out.append(f"{where}: a caret isn't the small icon size. Fix: give it icon icon-sm.")
@@ -1467,20 +1472,24 @@ def lint_examples():
         for cls in re.findall(r'class="([^"]+)"', html_):
             for t in cls.split():
                 base = t.split(":")[-1]
-                if base in cat and is_semantic(cat[base], base):
+                if base in cat and is_semantic(cat[base], base) and _FILE_SOURCES is None:
                     out.append(f"{where}: {t} is semantic. Fix: use regular classes in examples (the step, space or size it stands for).")
         return out
     errors = []
-    for c in COMPONENTS:
-        for x in [{"id": "example", "html": c["html"]}] + c.get("examples", []):
-            errors += bad(x["html"], f"scripts/component_docs.py {c['slug']} {x['id']}")
-    page = open(os.path.join(OUT, "..", "components.html")).read()
-    body = 'md:col-span-9 min-w-0 flex flex-col gap-group">'
-    for m in re.finditer(r'<section id="([^"]+)"(.*?)\n  </section>', page, flags=re.S):
-        sec = m.group(0)
-        if "data-semantic-demo" in sec[:80] or body not in sec:
-            continue
-        errors += bad(sec[sec.index(body) + len(body):], f"site/components.html #{m.group(1)}")
+    if _FILE_SOURCES is not None:
+        for w, h in _FILE_SOURCES:
+            errors += bad(h, w)
+    else:
+        for c in COMPONENTS:
+            for x in [{"id": "example", "html": c["html"]}] + c.get("examples", []):
+                errors += bad(x["html"], f"scripts/component_docs.py {c['slug']} {x['id']}")
+        page = open(os.path.join(OUT, "..", "components.html")).read()
+        body = 'md:col-span-9 min-w-0 flex flex-col gap-group">'
+        for m in re.finditer(r'<section id="([^"]+)"(.*?)\n  </section>', page, flags=re.S):
+            sec = m.group(0)
+            if "data-semantic-demo" in sec[:80] or body not in sec:
+                continue
+            errors += bad(sec[sec.index(body) + len(body):], f"site/components.html #{m.group(1)}")
     errors += [f"{w}: {k}: {prob}. Fix: the contract's classes (geometryContract in theme/theme.geometry.manifest.json). {lab}" for w, k, prob, lab in geometry_audit()]
     errors += [f"{w}: {k}: {prob}. Fix: the paint contract (paintContract in theme/theme.colors.manifest.json). {lab}" for w, k, prob, lab in paint_audit()]
     errors += [f"{w}: {k}: {prob}. Fix: the behaviour contract (theme/theme.behaviour.manifest.json). {lab}" for w, k, prob, lab in behaviour_audit()]
@@ -1594,6 +1603,38 @@ if "--type-report" in sys.argv:
     for f in findings: print(f"OFF  {f[0]}: {f[1]} is text-{f[2]}, want text-{f[3]}  {f[4]}")
     for u in unclassified: print(f"KIND {u[0]}: text-{u[1]}  {u[2]}")
     sys.exit(0)
+def expand_convenience(html_):
+    """Replace each convenience class (nowind.components.manifest.json) with the utility stack it stands for, so the
+    contracts see what renders. A utility the author added wins over an expanded one that sets the same property, as
+    it does in the cascade (btn rounded-full is a pill)."""
+    recipes = {c["class"]: c["recipe"].split() for c in _m("nowind.components.manifest.json")["classes"]}
+    props = {k: {d.split(":")[0].strip() for d in v.strip("`").split(";") if ":" in d and not d.strip().startswith("--")} for _, rows in read_classes() for k, v in rows}
+    def one(m):
+        toks = m.group(1).split()
+        own = [t for t in toks if t not in recipes]
+        owned = set().union(*(props.get(t.split(":")[-1], set()) for t in own if ":" not in t)) if own else set()
+        expanded = []
+        for t in toks:
+            for r in recipes.get(t, []):
+                if r not in expanded and r not in own and not (":" not in r and props.get(r, set()) & owned):
+                    expanded.append(r)
+        return 'class="' + " ".join(expanded + own) + '"'
+    return re.sub(r'class="([^"]*)"', one, html_)
+
+
+if "--lint-file" in sys.argv:
+    paths = [a for a in sys.argv[sys.argv.index("--lint-file") + 1:] if not a.startswith("--")]
+    if not paths:
+        print("usage: python3 scripts/templates.py --lint-file page.html [more.html …]"); sys.exit(2)
+    srcs = []
+    for path in paths:
+        text = open(path).read()
+        body = text[text.index("<body"):] if "<body" in text else text
+        srcs.append((path, expand_convenience(body)))
+    _FILE_SOURCES = srcs
+    problems = lint_examples()
+    print("\n".join(problems) if problems else f"{len(paths)} file(s): no findings")
+    sys.exit(1 if problems else 0)
 if "--lint" in sys.argv:
     problems = lint_examples()
     print("\n".join(problems))
