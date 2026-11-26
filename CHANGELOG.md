@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.12.0 (2026-11-26)
+
 - **Live examples on States and variants and on Materials.** Every section now renders its example beside the code:
   - States and variants: tabs, segments and pagination for selected, pressed and current; native checkboxes, a switch and invalid and disabled fields; a tooltip and a menu for group variants; a grid that reflows at its breakpoints; one card at two container widths; the state layer on every button tone; a toolbar to tab through; an accordion's turning caret.
   - Materials: one form in all five materials over a dot grid, a panel labelled by relief, the draggable glass slider, and the three dot spacings.
