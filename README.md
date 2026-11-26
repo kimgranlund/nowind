@@ -22,7 +22,7 @@ Nowind is directly derived from four systems, and brings its own math to tie the
 - [`components.manifest.json`](components.manifest.json): every component's purpose, use, avoid and the classes its example uses
 - `theme/*.manifest.json`: every token, what it is for and how it is derived
 
-**The defaults are the product.** Unstyled HTML already looks considered: the reset themes headings, links, fields, selects, checkboxes, radios, switches, sliders, file inputs, `progress`, `meter` and dialogs, with focus rings, transitions and reduced-motion handling built in. A button is one control tall and a card pads to nest its children's corners without anyone choosing a number. Smaller and larger sizes are there when a design asks for them (nested controls, tiers, `icon-sm`, `icon-lg`), but the default is always the sensible one.
+**The defaults are the product.** Unstyled HTML already looks considered: the reset themes headings, links, fields, selects, checkboxes, radios, switches, sliders, file inputs, `progress`, `meter` and the dialog backdrop, with focus rings, transitions and reduced-motion handling built in. A button is one control tall and a card pads to nest its children's corners without anyone choosing a number. Smaller and larger sizes are there when a design asks for them (nested controls, tiers, `icon-sm`, `icon-lg`), but the default is always the sensible one.
 
 **The tokens are yours.** Every class reads a CSS variable. Change a palette, the type scale, the viewport range or the corner curvature in the token layer and every class follows.
 
@@ -188,7 +188,7 @@ Every length inside a tier recomputes: type, space, controls, radii and shadows.
 
 ## Reference
 
-Every class and its declarations: [classes.md](classes.md), or browse them as [regular](https://kimgranlund.github.io/nowind/site/docs/classes.html) and [semantic](https://kimgranlund.github.io/nowind/site/docs/semantic.html) classes. Regular classes name a step or a value (`p-md`, `text-lg`, `bg-neutral-3`); semantic classes name a role (`p-surface`, `fg-weak`, `text-heading-md`). Examples use regular classes only.
+Every class and its declarations: [classes.md](classes.md), or browse them as [regular](https://kimgranlund.github.io/nowind/site/docs/classes.html) and [semantic](https://kimgranlund.github.io/nowind/site/docs/semantic.html) classes. Regular classes name a step or a value (`p-md`, `text-lg`, `bg-neutral-3`); semantic classes name a role (`p-surface`, `fg-weak`, `text-heading-md`). Your markup may use either. The examples here and in the docs use regular classes, so every step they choose is visible.
 
 | Group | Examples |
 |---|---|
@@ -221,15 +221,39 @@ There is no button or field component: each is a stack of classes, and the docs 
 </div>
 ```
 
-Icons use [Phosphor](https://phosphoricons.com)'s web font; link the weights you use. Every glyph sits in an `icon` box, one slot square.
+Icons use [Phosphor](https://phosphoricons.com)'s web font; link the weights you use (`ph` regular, `ph-bold`):
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
+```
+
+Every glyph sits in an `icon` box, one slot square.
+
+### Patterns
+
+Each pattern is a stack of classes; the [component docs](https://kimgranlund.github.io/nowind/site/docs/components-index.html) show each one live with its code. The ones people reach for first:
+
+| Pattern | Classes |
+|---|---|
+| Card | `p-md rounded-md border border-neutral-6 bg-neutral-1`; children with corners take `rounded-inner` |
+| Segmented control | Group `inline-flex h-control rounded-sm border-2 border-transparent bg-neutral-a2 role="group"`; each `<button aria-pressed>` is `h-full px-nested rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black font-medium`. Small controls (`h-nested`, `px-nested`, `size-nested`) sit only inside an inset group like this one, never beside full-size controls |
+| Badge | `inline-flex items-center h-nested px-nested rounded-full border bg-success-3 border-success-6 fg-success-11 text-sm font-medium`; an icon in it is `icon icon-sm` |
+| Alert | One line: `flex items-center gap-gutter py-xs ps-xs pe-sm rounded-md border border-info-6 bg-info-3`, icon `fg-info-11`, text `fg-info-12`. With a title: `flex flex-col gap-3xs p-xs`, the detail `text-sm fg-info-11` |
+| Select | `<select class="select-base h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 bg-neutral-1 w-full">`; `select-base` opts in to the styled picker, with its caret and check |
+| Switch | `<input type="checkbox" role="switch">`; the reset draws it |
+| Dialog | `<dialog class="m-auto p-lg rounded-lg bg-neutral-1 border-0 shadow-xl max-w-form w-full">`, title `text-lg font-semibold`, actions `flex justify-end gap-xs`. Open it with `commandfor` and `command="show-modal"` |
+| Table | Wrapper `rounded-md border border-neutral-6 overflow-x-auto`; cells `h-control px-control`, rows `border-b border-neutral-6`, numbers `text-end tabular-nums` |
+
+Status colours follow one pattern across every palette: step 3 fills, 6 draws the border, 11 is text and icons, 12 is strong text, and 9 is the solid fill with `fg-{palette}-contrast` on it.
 
 ## Variants
 
 | Prefix | Covers | Example |
 |---|---|---|
-| `hover:` | Colour roles, the control steps of neutral, accent-1 and danger, opacity, cursor (only on devices that can hover); `state` covers the rest | `hover:bg-neutral-4` |
+| `hover:` | Colour roles, the control steps of neutral, accent-1 and danger, opacity, cursor (only on devices that can hover). For hover and press tints use `state`; keep `hover:bg-*` for an element whose pressed or selected state changes its fill | `hover:bg-neutral-4` |
 | `active:`, `focus-visible:`, `focus-within:` | Colors; borders for focus | `focus-within:border-accent-1-8` |
-| `selected:`, `current:`, `pressed:`, `expanded:`, `open:`, `has-checked:` | Colors, and `shadow-xs`/`-sm`/`-none` to lift a chosen item | `pressed:bg-neutral-1 pressed:shadow-xs` |
+| `selected:`, `current:`, `pressed:`, `expanded:`, `open:`, `has-checked:` | Colors, and `shadow-xs`/`-sm`/`-none` to lift a chosen item | `pressed:bg-white pressed:fg-black` |
 | `invalid:`, `has-invalid:`, `disabled:` | Colors; opacity and cursor for disabled | `has-invalid:border-danger-7` |
 | `group-hover:`, `group-focus-within:`, `group-open:` | Opacity, visibility, rotation, text color | `group-open:rotate-180` |
 | `sm:` 640, `md:` 768, `lg:` 1024, `xl:` 1280, `2xl:` 1536 | Layout: display, grid, flex, alignment, widths, inline padding, gaps | `md:grid-cols-3` |
