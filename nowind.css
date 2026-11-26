@@ -1,4 +1,4 @@
-@layer reset, styles, nowind;
+@layer reset, styles, components, nowind;
 
 @layer reset {
   :where(*, *::before, *::after) { box-sizing: border-box; border-width: 0; border-style: solid; border-color: var(--border); --_inset: 0px; --_bw: 0px; }

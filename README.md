@@ -248,6 +248,31 @@ Each pattern is a stack of classes; the [component docs](https://kimgranlund.git
 
 Status colours follow one pattern across every palette: step 3 fills, 6 draws the border, 11 is text and icons, 12 is strong text, and 9 is the solid fill with `fg-{palette}-contrast` on it.
 
+## Convenience classes
+
+The most repeated stacks in the examples also come as single classes, in an optional second file:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.11.1/dist/nowind.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@main/dist/nowind.components.min.css">
+
+<button class="btn btn-primary"><i class="icon ph ph-check"></i><span>Save</span></button>
+<span class="badge badge-success">Paid</span>
+```
+
+| Class | Is the stack |
+|---|---|
+| `btn` | `inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border state font-medium text-base cursor-pointer` |
+| `btn-primary`, `btn-secondary`, `btn-soft`, `btn-ghost`, `btn-danger` | A tone for `btn`, `btn-sm` or `icon-btn` (`border-transparent bg-accent-1-9 fg-accent-1-contrast`, …) |
+| `btn-sm` | The small button, inside an inset container only |
+| `icon-btn` | A square, one-icon button |
+| `field` | A field box around a bare input |
+| `badge`, `badge-{neutral, accent, success, warning, danger, info}` | A status pill and its tones |
+| `card` | `p-md rounded-md border border-neutral-6 bg-neutral-1` |
+| `segmented`, `segment` | A segmented control and its items (`aria-pressed`) |
+
+Each is generated from its utility stack and checked to render the same in every state; [`nowind.components.manifest.json`](nowind.components.manifest.json) lists every recipe. They sit in a `components` layer that comes before the utilities, so any utility on the element still wins: `btn btn-primary rounded-full` is a pill. The examples and docs use the utilities, so you can always see what a class is made of.
+
 ## Variants
 
 | Prefix | Covers | Example |

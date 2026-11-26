@@ -42,6 +42,9 @@ const GENERATED = [
   "theme/theme.materials.manifest.json",
   "dist/nowind.bundle.css",
   "dist/nowind.min.css",
+  "dist/nowind.components.css",
+  "dist/nowind.components.min.css",
+  "nowind.components.manifest.json",
   ...readdirSync(join(repo, "site", "docs")).filter((n) => n.endsWith(".html")).map((n) => `site/docs/${n}`),
   "site/search.json",
   "components.manifest.json",
@@ -131,14 +134,14 @@ function check(root) {
   const tmp = mkdtempSync(join(tmpdir(), "nowind-check-"));
   try {
     cpSync(root, tmp, { recursive: true, filter: (p) => !p.includes(`${join(root, ".git")}`) });
-    for (const script of ["utopia.mjs", "shadows.mjs", "motion.mjs", "materials.mjs", "utilities.mjs", "bundle.mjs"]) {
+    for (const script of ["utopia.mjs", "shadows.mjs", "motion.mjs", "materials.mjs", "utilities.mjs", "bundle.mjs", "components.mjs"]) {
       execFileSync(process.execPath, [join(tmp, "scripts", script)], { cwd: tmp, stdio: "ignore" });
     }
     execFileSync("python3", [join(tmp, "scripts", "templates.py"), join(tmp, "site", "docs")], { cwd: tmp, stdio: "ignore" });
     for (const f of GENERATED) {
       const a = join(root, f), b = join(tmp, f);
       if (!existsSync(a)) { errors.push(`${f}: missing. Fix: run the scripts in AGENTS.md order.`); continue; }
-      if (readFileSync(a, "utf8") !== readFileSync(b, "utf8")) errors.push(`${f}: differs from what the scripts write. Fix: edit the script or the theme, then run node scripts/utopia.mjs, shadows.mjs, utilities.mjs and bundle.mjs.`);
+      if (readFileSync(a, "utf8") !== readFileSync(b, "utf8")) errors.push(`${f}: differs from what the scripts write. Fix: edit the script or the theme, then run node scripts/utopia.mjs, shadows.mjs, utilities.mjs, bundle.mjs and components.mjs.`);
     }
   } finally {
     rmSync(tmp, { recursive: true, force: true });

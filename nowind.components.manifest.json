@@ -1,0 +1,102 @@
+{
+  "generated": "by scripts/components.mjs; edit the RECIPES there, not this file",
+  "description": "Convenience classes for the most repeated utility stacks in the examples (mined by count and length). Each is written by copying the utility rules its recipe uses, so it is the same as its stack. They ship in dist/nowind.components.css, in the components layer, which comes before nowind: any utility on the element still wins. The examples and the site use the utility classes; these are for people writing markup by hand or by generation.",
+  "layer": "components (declared between styles and nowind)",
+  "classes": [
+    {
+      "class": "btn",
+      "recipe": "inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm border state font-medium text-base cursor-pointer",
+      "use": "A button: control height and padding, icon gap, control radius, state layer. Add a tone."
+    },
+    {
+      "class": "btn-primary",
+      "recipe": "border-transparent bg-accent-1-9 fg-accent-1-contrast",
+      "use": "The primary tone for btn, btn-sm or icon-btn."
+    },
+    {
+      "class": "btn-secondary",
+      "recipe": "border-transparent bg-neutral-a2 fg-neutral-12",
+      "use": "The secondary tone for btn, btn-sm or icon-btn."
+    },
+    {
+      "class": "btn-soft",
+      "recipe": "border-transparent bg-accent-1-3 fg-accent-1-11",
+      "use": "The soft tone for btn, btn-sm or icon-btn."
+    },
+    {
+      "class": "btn-ghost",
+      "recipe": "border-transparent bg-transparent fg-neutral-12",
+      "use": "The ghost tone for btn, btn-sm or icon-btn."
+    },
+    {
+      "class": "btn-danger",
+      "recipe": "border-transparent bg-danger-9 fg-danger-contrast",
+      "use": "The danger tone for btn, btn-sm or icon-btn."
+    },
+    {
+      "class": "btn-sm",
+      "recipe": "inline-flex items-center justify-center h-nested px-nested gap-gutter-half rounded-inner border state font-medium text-base cursor-pointer",
+      "use": "A small button inside an inset container (a toolbar, field or segmented group), never beside full-size controls."
+    },
+    {
+      "class": "icon-btn",
+      "recipe": "inline-flex items-center justify-center size-control rounded-sm border state cursor-pointer",
+      "use": "A square button holding one icon; give it an aria-label and a tone."
+    },
+    {
+      "class": "field",
+      "recipe": "flex items-center gap-gutter h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition",
+      "use": "A field box around a bare input (and its icons, prefix or suffix): control height, border, hover and invalid borders."
+    },
+    {
+      "class": "badge",
+      "recipe": "inline-flex items-center h-nested px-nested gap-gutter-half rounded-full border text-sm font-medium",
+      "use": "A status pill: small height, pill radius, label size. Add a tone."
+    },
+    {
+      "class": "badge-neutral",
+      "recipe": "bg-neutral-3 border-neutral-6 fg-neutral-11",
+      "use": "The neutral tone for badge."
+    },
+    {
+      "class": "badge-accent",
+      "recipe": "bg-accent-1-3 border-accent-1-6 fg-accent-1-11",
+      "use": "The accent tone for badge."
+    },
+    {
+      "class": "badge-success",
+      "recipe": "bg-success-3 border-success-6 fg-success-11",
+      "use": "The success tone for badge."
+    },
+    {
+      "class": "badge-warning",
+      "recipe": "bg-warning-3 border-warning-6 fg-warning-11",
+      "use": "The warning tone for badge."
+    },
+    {
+      "class": "badge-danger",
+      "recipe": "bg-danger-3 border-danger-6 fg-danger-11",
+      "use": "The danger tone for badge."
+    },
+    {
+      "class": "badge-info",
+      "recipe": "bg-info-3 border-info-6 fg-info-11",
+      "use": "The info tone for badge."
+    },
+    {
+      "class": "card",
+      "recipe": "p-md rounded-md border border-neutral-6 bg-neutral-1",
+      "use": "A card: surface padding and radius, border and fill."
+    },
+    {
+      "class": "segmented",
+      "recipe": "inline-flex items-center h-control rounded-sm border-2 border-transparent bg-neutral-a2",
+      "use": "A segmented control's group: control height, inset border, soft fill. Holds segment buttons with aria-pressed."
+    },
+    {
+      "class": "segment",
+      "recipe": "inline-flex items-center justify-center h-full px-nested gap-gutter-half rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black font-medium text-base cursor-pointer",
+      "use": "One segment in a segmented group: white when pressed (aria-pressed=true) in both modes."
+    }
+  ]
+}

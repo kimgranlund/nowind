@@ -4,15 +4,16 @@
 //
 // Usage: node scripts/review.mjs [domain] [--pages a,b] [--widths 375,768] [--roots 12,16] [--quick] [--strict]
 //        node scripts/review.mjs all         the release gate: every domain with --strict (fail on any finding), then the self-test
-//        node scripts/review.mjs --self-test   break the showcase seventeen ways and confirm the layout, paint and behaviour audits catch each
-//   domain  form (type, geometry, layout; the default), paint (colour by step in light and dark) or behaviour (hover,
-//           press, focus, on, disabled, targets and motion, forced per element over the DevTools protocol); one width and root
+//        node scripts/review.mjs --self-test   break the showcase eighteen ways and confirm the layout, paint, behaviour and vocabulary checks catch each
+//   domain  form (type, geometry, layout; the default), paint (colour by step in light and dark) behaviour (hover,
+//           press, focus, on, disabled, targets and motion, forced per element over the DevTools protocol) or vocabulary
+//           (each convenience class renders as its utility stack, in every state); one width and root
 //   --quick one width (1280) and one root (16)
 // Writes review/<domain>.json (every finding with its page, width and root) and review/<domain>.md (grouped by rule,
 // each finding once with the contexts it appears in). The review folder is not committed.
 // The browser: $NOWIND_CHROME, else the newest Chromium headless shell in Playwright's cache.
 import { spawn } from "node:child_process";
-import { existsSync, mkdirSync, readdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -25,6 +26,7 @@ const DOMAINS = {
   form: { audits: ["type", "geometry", "layout"], globals: { type: "nowindRunTypeAudit", geometry: "nowindRunGeometryAudit", layout: "nowindRunLayoutAudit" } },
   paint: { audits: ["paint"], globals: { paint: "nowindRunPaintAudit" }, widths: "1280", roots: "16" },
   behaviour: { audits: [], globals: {}, widths: "1280", roots: "16", custom: true },
+  vocabulary: { audits: [], globals: {}, widths: "1280", roots: "16", custom: true, pages: "site/components.html" },
 };
 if (domain === "all") {
   // The release gate: every domain, then the self-test, each in its own run; fails if any finds anything.
@@ -51,6 +53,7 @@ const pages = (() => {
     ...readdirSync(join(root, "site")).filter((n) => n.endsWith(".html")).map((n) => `site/${n}`),
     ...readdirSync(join(root, "site/docs")).filter((n) => n.endsWith(".html")).map((n) => `site/docs/${n}`),
   ].filter((p) => p !== "site/docs/classes.html" && p !== "site/docs/semantic.html" || want);
+  if (!want && DOMAINS[domain]?.pages) return DOMAINS[domain].pages.split(",");
   return want ? found.filter((p) => want.split(",").some((w) => p.includes(w))) : found;
 })();
 
@@ -206,6 +209,61 @@ async function behaviourPage(send, sessionId) {
   return out;
 }
 
+// Vocabulary (nowind.components.manifest.json): each convenience class must render exactly as its utility stack. Builds a
+// pair for every class (the recipe's utilities against the class, tones on their base), then compares every computed
+// property, and the state layer's ::after, at rest and with :hover, :hover:active and :focus-visible forced.
+async function vocabularyPage(send, sessionId) {
+  const { classes } = JSON.parse(readFileSync(join(root, "nowind.components.manifest.json"), "utf8"));
+  const byName = Object.fromEntries(classes.map((c) => [c.class, c.recipe]));
+  const base = (n) => n.startsWith("btn-") && !["btn-sm"].includes(n) ? "btn" : n.startsWith("badge-") ? "badge" : null;
+  const TAG = { btn: "button", "btn-sm": "button", "icon-btn": "button", segment: "button", badge: "span", field: "div", card: "div", segmented: "div" };
+  const pairs = classes.map(({ class: n }) => {
+    const b = base(n), root2 = b || n;
+    return { n, tag: TAG[root2] || "div", a: b ? `${byName[b]} ${byName[n]}` : byName[n], c: b ? `${b} ${n}` : n };
+  });
+  pairs.push({ n: "segment (pressed)", tag: "button", a: byName.segment, c: "segment", pressed: true });
+  const ev = async (expression) => { const { result, exceptionDetails } = await send("Runtime.evaluate", { expression, returnByValue: true, awaitPromise: true }, sessionId); if (exceptionDetails) throw new Error(exceptionDetails.exception?.description?.split("\n")[0] || exceptionDetails.text); return result.value; };
+  await ev(`new Promise((r) => { const l = document.createElement("link"); l.rel = "stylesheet"; l.href = "/dist/nowind.components.css"; l.onload = r; document.head.append(l); })`);
+  await ev(`(() => {
+    const pairs = ${JSON.stringify(pairs)};
+    const box = document.createElement("div"); box.id = "nwv"; box.className = "flex flex-wrap gap-sm p-inset rounded-md border";
+    const inner = (p) => p.n === "icon-btn" ? '<i class="icon ph ph-gear"></i>' : p.tag === "div" ? '<span>Body</span>' : '<i class="icon icon-sm ph ph-check"></i><span>Label</span>';
+    pairs.forEach((p, i) => {
+      for (const [side, cls] of [["a", p.a], ["c", p.c]]) {
+        const wrap = document.createElement("div"); wrap.className = p.n.startsWith("segment") ? "inline-flex items-center h-control rounded-sm border-2 border-transparent bg-neutral-a2" : "";
+        const e = document.createElement(p.tag); e.className = cls; e.innerHTML = inner(p); e.setAttribute("data-nwv", i + side);
+        if (p.n.startsWith("segment")) e.setAttribute("aria-pressed", p.pressed ? "true" : "false");
+        wrap.append(e); box.append(wrap);
+      }
+    });
+    document.querySelector("main").prepend(box);
+    const still = document.createElement("style"); still.id = "nwv-still"; still.textContent = "*, *::before, *::after { transition: none !important; }"; document.head.append(still);
+    window.__nwvSnap = (id) => { const e = document.querySelector('[data-nwv="' + id + '"]'), c = getComputedStyle(e), a = getComputedStyle(e, "::after"), r = e.getBoundingClientRect(), o = {};
+      for (const k of c) if (!/^(transition|animation|will-change|inset-|left|right|top|bottom|translate|block-size|inline-size|width|height|perspective-origin|transform-origin|anchor)/.test(k)) o[k] = c.getPropertyValue(k);
+      for (const k of ["opacity", "background-color", "content", "border-radius"]) o["::after " + k] = a.getPropertyValue(k);
+      o.w = Math.round(r.width * 10) / 10; o.h = Math.round(r.height * 10) / 10; return JSON.stringify(o); };
+    return 1;
+  })()`);
+  const { root: doc } = await send("DOM.getDocument", { depth: 0 }, sessionId);
+  await send("DOM.enable", {}, sessionId); await send("CSS.enable", {}, sessionId);
+  const node = async (id) => (await send("DOM.querySelector", { nodeId: doc.nodeId, selector: `[data-nwv="${id}"]` }, sessionId)).nodeId;
+  const out = [];
+  for (let i = 0; i < pairs.length; i++) {
+    const na = await node(i + "a"), nc = await node(i + "c");
+    for (const state of [[], ["hover"], ["hover", "active"], ["focus", "focus-visible"]]) {
+      await send("CSS.forcePseudoState", { nodeId: na, forcedPseudoClasses: state }, sessionId);
+      await send("CSS.forcePseudoState", { nodeId: nc, forcedPseudoClasses: state }, sessionId);
+      const A = JSON.parse(await ev(`__nwvSnap("${i}a")`)), C = JSON.parse(await ev(`__nwvSnap("${i}c")`));
+      const diff = Object.keys(A).filter((k) => A[k] !== C[k]);
+      if (diff.length) { out.push({ rule: "equivalence", where: `.${pairs[i].n}${state.length ? ":" + state.join(":") : ""}`, detail: diff.slice(0, 4).map((k) => `${k}: ${C[k]} (stack: ${A[k]})`).join("; ") }); break; }
+    }
+    await send("CSS.forcePseudoState", { nodeId: na, forcedPseudoClasses: [] }, sessionId);
+    await send("CSS.forcePseudoState", { nodeId: nc, forcedPseudoClasses: [] }, sessionId);
+  }
+  await ev(`document.getElementById("nwv")?.remove(); document.getElementById("nwv-still")?.remove(); 1`);
+  return out;
+}
+
 async function up() { try { return (await fetch(`${BASE}/site/index.html`)).ok; } catch { return false; } }
 
 async function main() {
@@ -238,7 +296,7 @@ async function main() {
   await send("Page.enable", {}, sessionId);
   await send("Runtime.enable", {}, sessionId);
   if (args.includes("--self-test")) {
-    // Break the showcase seventeen ways and confirm the layout, paint and behaviour audits report each rule.
+    // Break the showcase eighteen ways and confirm the layout, paint, behaviour and vocabulary checks report each rule.
     await send("Emulation.setDeviceMetricsOverride", { width: 768, height: 900, deviceScaleFactor: 1, mobile: false }, sessionId);
     const loaded = once("Page.loadEventFired", sessionId);
     await send("Page.navigate", { url: `${BASE}/site/components.html?audit=layout,paint` }, sessionId);
@@ -260,6 +318,16 @@ async function main() {
       "motion-tokens": `${host}.insertAdjacentHTML("beforeend", '<button id="nwt" class="inline-flex items-center h-control px-control border state bg-neutral-3"><span>Slow</span></button><style id="nwt2">#nwt{transition-duration:333ms!important}</style>')`,
       reduced: `${host}.insertAdjacentHTML("beforeend", '<button id="nwt" class="inline-flex items-center h-control px-control border state bg-neutral-3" style="transition-duration:160ms !important"><span>Moves</span></button>')`,
     };
+    {
+      // Vocabulary: a convenience class that drifts from its stack is caught.
+      const loadedV = once("Page.loadEventFired", sessionId);
+      await send("Page.navigate", { url: `${BASE}/site/components.html` }, sessionId);
+      await loadedV;
+      const clean = (await vocabularyPage(send, sessionId)).length === 0;
+      await ev(`(() => { const s = document.createElement("style"); s.id = "nwt-v"; s.textContent = "@layer components { .btn { padding-inline: 3px !important; } }"; document.head.append(s); return 1; })()`);
+      const got = (await vocabularyPage(send, sessionId)).some((f) => f.rule === "equivalence");
+      res.equivalence = !clean ? "already reported before the break" : got ? "caught" : "missed";
+    }
     const navd = once("Page.loadEventFired", sessionId);
     await send("Page.navigate", { url: `${BASE}/site/components.html` }, sessionId);
     await navd;
@@ -290,7 +358,7 @@ async function main() {
         await send("Page.navigate", { url: `${BASE}/${page}?audit=${audits.join(",")}` }, sessionId);
         await Promise.race([loaded, new Promise((r) => setTimeout(r, 15000))]);
         if (DOMAINS[domain].custom) {
-          for (const f of await behaviourPage(send, sessionId)) findings.push({ domain, audit: "behaviour", page, width, root: rootSize, ...f });
+          for (const f of await (domain === "vocabulary" ? vocabularyPage : behaviourPage)(send, sessionId)) findings.push({ domain, audit: "behaviour", page, width, root: rootSize, ...f });
           done++;
           if (process.stdout.isTTY) process.stdout.write(`\rreview ${domain}: ${done}/${total}`);
           continue;

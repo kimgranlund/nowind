@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Convenience classes:** `dist/nowind.components.css` (1.6 KiB gzip, optional) adds `btn` with five tones, `btn-sm`, `icon-btn`, `field`, `badge` with six tones, `card`, `segmented` and `segment`, the stacks that repeat most in the examples. `scripts/components.mjs` writes each by copying every utility rule its recipe uses (states, variants and media queries included), so a class is its stack; `node scripts/review.mjs vocabulary` confirms each renders the same as its stack at rest and with hover, press and focus forced. They sit in a new `components` layer before `nowind`, so utilities still win; the main bundle now declares `@layer reset, styles, components, nowind`. The examples stay on the utilities.
 ## 0.11.1 (2026-11-26)
 
 - **Long paths in the docs wrap** after each slash, so a manifest path in the changelog fits a phone at an 18px root.

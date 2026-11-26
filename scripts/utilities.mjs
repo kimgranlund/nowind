@@ -599,7 +599,7 @@ const reset = `@layer reset {
 `;
 
 const out = [];
-out.push("@layer reset, styles, nowind;\n");
+out.push("@layer reset, styles, components, nowind;\n");
 out.push(reset);
 out.push("@layer nowind {");
 add("state", "isolation: isolate");
@@ -764,7 +764,7 @@ const manifest = {
   generated: "scripts/utilities.mjs",
   description: "Prewind-style utility classes over the Nowind theme, with Tailwind v4 names where they overlap. One plain stylesheet, no build step for consumers: every class already exists. Regenerate after changing theme tokens, then rebuild the bundle.",
   setup: {
-    order: "@layer reset, styles, nowind; (declared at the top of nowind.css)",
+    order: "@layer reset, styles, components, nowind; (declared at the top of nowind.css; components is empty unless dist/nowind.components.css is linked)",
     link: ["dist/nowind.min.css"],
     linkWhileDeveloping: ["theme.css", "nowind.css"],
     bundle: "node scripts/bundle.mjs writes dist/nowind.bundle.css and dist/nowind.min.css: theme.css with every @import inlined, then this file. Run it after this script.",

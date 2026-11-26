@@ -3,7 +3,7 @@
   "generated": "scripts/utilities.mjs",
   "description": "Prewind-style utility classes over the Nowind theme, with Tailwind v4 names where they overlap. One plain stylesheet, no build step for consumers: every class already exists. Regenerate after changing theme tokens, then rebuild the bundle.",
   "setup": {
-    "order": "@layer reset, styles, nowind; (declared at the top of nowind.css)",
+    "order": "@layer reset, styles, components, nowind; (declared at the top of nowind.css; components is empty unless dist/nowind.components.css is linked)",
     "link": [
       "dist/nowind.min.css"
     ],
@@ -21,7 +21,7 @@
     "group": 174,
     "responsive": 940,
     "container": 333,
-    "bytes": 308852
+    "bytes": 308864
   },
   "naming": "property-value, as Prewind and Tailwind: p-md, gap-lg, bg-solid-accent-1. Colour classes take the token name without --; text-color roles are the token name alone (fg-weak, fg-accent-1).",
   "variants": {
