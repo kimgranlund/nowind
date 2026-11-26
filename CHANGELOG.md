@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.11.0 (2026-11-26)
+
 - **Paint review:** a paint contract in the colours manifest (`paintContract`) gives each job its palette steps: fills 1–5 and 9–10 (11–12 only as an inverse surface that sets its own light text), borders 5–8, text 11–12 or 8 when quiet, icons 6–12, and the contrast token on a solid. The examples lint enforces it (`python3 scripts/templates.py --paint-report`), and `?audit=paint` checks that a part distinct from its surface in one mode is in the other, counting steps rather than contrast. `node scripts/review.mjs paint` runs it over every page; the self-tests break both rules.
 - **The reset clears button backgrounds,** as Tailwind's preflight does: a `<button>` with no fill class had shown the browser's grey, a mid grey in dark mode.
 - **Inverse toasts set their own text colour** (`bg-neutral-12 fg-neutral-1` on the surface), so anything inside reads light by default.
