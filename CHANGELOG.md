@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **The site's band stays dark in dark mode:** it carries `light`, so its inverse colours resolve as in light mode; the settings panel moved out of the band so it still follows the page's scheme.
 - **No Auto tier in the settings panel:** the tier control offers Product, Content and Brand. Until you choose, each region keeps its own tier and the panel shows the page's.
 
 ## 0.10.0 (2026-11-25)
