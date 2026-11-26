@@ -91,13 +91,15 @@
         <section id="defaults" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Element defaults</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <p class="text-body-md max-w-text break-words">The <code>defaults</code> layer gives bare elements a finished look: buttons, text fields, selects, textareas, checkboxes, radios, switches, sliders, links, labels and table cells. A button with <code>type="submit"</code> takes the primary fill. Nothing below carries a class, except the form's layout.</p>
+          <p class="text-body-md max-w-text break-words">The <code>defaults</code> layer gives bare elements a finished look: buttons, text fields, selects, textareas, checkboxes, radios, switches, sliders, links, labels and table cells. Structure does the rest, with no class anywhere: a <code>form</code> stacks its parts; a <code>div</code> of buttons becomes a row; <code>small</code> after a field is its help text; <code>role="status"</code>, <code>"alert"</code> and <code>"note"</code> become info, danger and neutral notes; a <code>role="group"</code> of <code>aria-pressed</code> buttons becomes a segmented control; and a classless <code>main</code> centres the page. <code>data-tone</code> (danger, accent, success, warning, info) tints a button or a note. A button with <code>type="submit"</code> takes the primary fill. Nothing below carries a class.</p>
           <p class="text-body-md max-w-text break-words">The defaults fill only what an element's classes leave unset, so a utility class still wins, and a utility-built control picks up a default for any property it doesn't set.</p>
           <div data-example class="tier-product p-surface rounded-md border border-weak bg-strong">
-<form class="flex flex-col gap-md max-w-form" onsubmit="return false">
+<form onsubmit="return false">
+  <p role="status">Your plan includes 10 seats. 3 are in use.</p>
   <div>
     <label for="df-name">Team name</label>
-    <input id="df-name" value="Design Ops">
+    <input id="df-name" value="Design Ops" aria-describedby="df-name-help">
+    <small id="df-name-help">Shown in invitations and the sidebar.</small>
   </div>
   <div>
     <label for="df-role">Default role</label>
@@ -110,12 +112,18 @@
   <label><input type="checkbox" checked> Let anyone with a company email join</label>
   <label><input type="checkbox" role="switch"> Weekly digest</label>
   <input type="range" value="60" aria-label="Seats">
+  <div role="group" aria-label="Range">
+    <button type="button" aria-pressed="true">Day</button>
+    <button type="button" aria-pressed="false">Week</button>
+    <button type="button" aria-pressed="false">Month</button>
+  </div>
   <table>
     <tr><th>Member</th><th>Role</th></tr>
     <tr><td>Ada Lovelace</td><td>Owner</td></tr>
   </table>
+  <p role="alert">Removing a member can't be undone.</p>
   <p>Read the <a href="#">invitation policy</a>.</p>
-  <div class="flex gap-xs">
+  <div>
     <button type="button">Cancel</button>
     <button type="submit">Save</button>
   </div>
@@ -125,10 +133,12 @@
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">defaults.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
             </figcaption>
-            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;form class=&quot;flex flex-col gap-md max-w-form&quot; onsubmit=&quot;return false&quot;&gt;
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;form onsubmit=&quot;return false&quot;&gt;
+  &lt;p role=&quot;status&quot;&gt;Your plan includes 10 seats. 3 are in use.&lt;/p&gt;
   &lt;div&gt;
     &lt;label for=&quot;df-name&quot;&gt;Team name&lt;/label&gt;
-    &lt;input id=&quot;df-name&quot; value=&quot;Design Ops&quot;&gt;
+    &lt;input id=&quot;df-name&quot; value=&quot;Design Ops&quot; aria-describedby=&quot;df-name-help&quot;&gt;
+    &lt;small id=&quot;df-name-help&quot;&gt;Shown in invitations and the sidebar.&lt;/small&gt;
   &lt;/div&gt;
   &lt;div&gt;
     &lt;label for=&quot;df-role&quot;&gt;Default role&lt;/label&gt;
@@ -141,16 +151,53 @@
   &lt;label&gt;&lt;input type=&quot;checkbox&quot; checked&gt; Let anyone with a company email join&lt;/label&gt;
   &lt;label&gt;&lt;input type=&quot;checkbox&quot; role=&quot;switch&quot;&gt; Weekly digest&lt;/label&gt;
   &lt;input type=&quot;range&quot; value=&quot;60&quot; aria-label=&quot;Seats&quot;&gt;
+  &lt;div role=&quot;group&quot; aria-label=&quot;Range&quot;&gt;
+    &lt;button type=&quot;button&quot; aria-pressed=&quot;true&quot;&gt;Day&lt;/button&gt;
+    &lt;button type=&quot;button&quot; aria-pressed=&quot;false&quot;&gt;Week&lt;/button&gt;
+    &lt;button type=&quot;button&quot; aria-pressed=&quot;false&quot;&gt;Month&lt;/button&gt;
+  &lt;/div&gt;
   &lt;table&gt;
     &lt;tr&gt;&lt;th&gt;Member&lt;/th&gt;&lt;th&gt;Role&lt;/th&gt;&lt;/tr&gt;
     &lt;tr&gt;&lt;td&gt;Ada Lovelace&lt;/td&gt;&lt;td&gt;Owner&lt;/td&gt;&lt;/tr&gt;
   &lt;/table&gt;
+  &lt;p role=&quot;alert&quot;&gt;Removing a member can&#x27;t be undone.&lt;/p&gt;
   &lt;p&gt;Read the &lt;a href=&quot;#&quot;&gt;invitation policy&lt;/a&gt;.&lt;/p&gt;
-  &lt;div class=&quot;flex gap-xs&quot;&gt;
+  &lt;div&gt;
     &lt;button type=&quot;button&quot;&gt;Cancel&lt;/button&gt;
     &lt;button type=&quot;submit&quot;&gt;Save&lt;/button&gt;
   &lt;/div&gt;
 &lt;/form&gt;</code></pre>
+          </figure>
+          </div>
+        </section>
+        <section id="dialog" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Dialogs</h2></div>
+          <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
+          <p class="text-body-md max-w-text break-words">A bare <code>dialog</code> takes the dialog padding, corner, width and shadow, its heading takes the dialog title size, and its row of buttons sits at the end. Open this one.</p>
+          <div data-example class="tier-product p-surface rounded-md border border-weak bg-strong">
+<button type="button" data-tone="danger" commandfor="df-dialog" command="show-modal">Delete team…</button>
+<dialog id="df-dialog" aria-labelledby="df-dialog-title">
+  <h2 id="df-dialog-title">Delete team?</h2>
+  <p>This removes the team for everyone. You can't undo it.</p>
+  <div>
+    <button type="button" commandfor="df-dialog" command="close">Cancel</button>
+    <button type="button" data-tone="danger" commandfor="df-dialog" command="close">Delete</button>
+  </div>
+</dialog>
+          </div>
+          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
+              <span class="text-mono-sm fg-weak truncate">dialog.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
+            </figcaption>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;button type=&quot;button&quot; data-tone=&quot;danger&quot; commandfor=&quot;df-dialog&quot; command=&quot;show-modal&quot;&gt;Delete team…&lt;/button&gt;
+&lt;dialog id=&quot;df-dialog&quot; aria-labelledby=&quot;df-dialog-title&quot;&gt;
+  &lt;h2 id=&quot;df-dialog-title&quot;&gt;Delete team?&lt;/h2&gt;
+  &lt;p&gt;This removes the team for everyone. You can&#x27;t undo it.&lt;/p&gt;
+  &lt;div&gt;
+    &lt;button type=&quot;button&quot; commandfor=&quot;df-dialog&quot; command=&quot;close&quot;&gt;Cancel&lt;/button&gt;
+    &lt;button type=&quot;button&quot; data-tone=&quot;danger&quot; commandfor=&quot;df-dialog&quot; command=&quot;close&quot;&gt;Delete&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/dialog&gt;</code></pre>
           </figure>
           </div>
         </section>
@@ -194,7 +241,25 @@
                 <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>label-<wbr>gap</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--space-3xs)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Space below a field label that has no class (a classed label is spaced by its stack)</td></tr>
                 <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>cell-<wbr>padding</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--space-sm)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Table cell inline padding</td></tr>
                 <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>cell-<wbr>padding-<wbr>block</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--space-xs)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Table cell block padding</td></tr>
-                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words"><code class="whitespace-normal">-<wbr>-<wbr>cell-<wbr>border</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words"><code class="whitespace-normal break-all">var(--border-weak)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words">Rule under each table row but the last</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>cell-<wbr>border</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--border-weak)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Rule under each table row but the last</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>page-<wbr>width</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--container-max)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Widest a classless main region grows</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>page-<wbr>padding</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--page-margin)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Padding around a classless main region</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>flow-<wbr>gap</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--space-md)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Space between blocks in a classless main, article, section or dialog</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>form-<wbr>gap</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--space-sm)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Space between the parts of a classless form</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>form-<wbr>width</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--max-w-form)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Widest a classless form grows</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>button-<wbr>row-<wbr>gap</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--space-xs)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Space between the buttons of a classless row</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>modal-<wbr>padding</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--dialog-padding)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Dialog padding</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>modal-<wbr>radius</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--radius-lg)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Dialog corner</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>modal-<wbr>width</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--max-w-form)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Widest a dialog grows</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>modal-<wbr>shadow</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--shadow-xl)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Dialog shadow</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>modal-<wbr>bg</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--bg)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Dialog fill</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>alert-<wbr>padding</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--space-xs) var(--space-sm)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Alert padding (role alert, status or note)</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>alert-<wbr>radius</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--radius-md)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Alert corner</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>help-<wbr>size</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--text-sm)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Help text size (small)</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>help-<wbr>color</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--fg-weak)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Help text colour (small)</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>segment-<wbr>bg</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--neutral-a2)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Segmented group fill (role group holding aria-pressed buttons)</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>segment-<wbr>pressed-<wbr>bg</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--neutral-contrast-white)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">A pressed segment&#x27;s fill</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words"><code class="whitespace-normal">-<wbr>-<wbr>segment-<wbr>pressed-<wbr>fg</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words"><code class="whitespace-normal break-all">var(--neutral-contrast-black)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words">A pressed segment&#x27;s text</td></tr>
               </tbody>
             </table>
           </div>

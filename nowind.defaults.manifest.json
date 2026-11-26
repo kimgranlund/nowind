@@ -1,6 +1,6 @@
 {
   "generated": "by scripts/utilities.mjs; edit DEFAULT_TOKENS there, not this file",
-  "description": "Element defaults, in the defaults layer (after reset, before styles): buttons, text fields, selects, textareas, checkboxes, radios, sliders, links, labels and table cells take styled defaults wherever they are. Each value reads a token with a fallback; the tokens are not declared anywhere, so setting one on :root or on any region takes effect, and the fallback follows the element's scope and tier. Your CSS in @layer styles beats the defaults, and so does any utility class. Every selector is :where(), so a utility class on the element always wins; the defaults fill only the properties its classes leave unset, so a utility-built control inside the region can still pick up a default it does not set. A button takes the primary fill only with an explicit type=submit; an untyped button in a form submits but stays neutral.",
+  "description": "Element defaults, in the defaults layer (after reset, before styles): buttons, text fields, selects, textareas, checkboxes, radios, sliders, links, labels, table cells and dialogs take styled defaults wherever they are. Classless structure is styled too: main (the page), form (stacked parts), a div of buttons (a row), small after a field (help), role status, alert and note (notes), a role group of aria-pressed buttons (segmented), and data-tone on a button or note. Each value reads a token with a fallback; the tokens are not declared anywhere, so setting one on :root or on any region takes effect, and the fallback follows the element's scope and tier. Your CSS in @layer styles beats the defaults, and so does any utility class. Every selector is :where(), so a utility class on the element always wins; the defaults fill only the properties its classes leave unset, so a utility-built control inside the region can still pick up a default it does not set. A button takes the primary fill only with an explicit type=submit; an untyped button in a form submits but stays neutral.",
   "layer": "defaults",
   "tokens": [
     {
@@ -167,6 +167,96 @@
       "token": "--cell-border",
       "fallback": "var(--border-weak)",
       "use": "Rule under each table row but the last"
+    },
+    {
+      "token": "--page-width",
+      "fallback": "var(--container-max)",
+      "use": "Widest a classless main region grows"
+    },
+    {
+      "token": "--page-padding",
+      "fallback": "var(--page-margin)",
+      "use": "Padding around a classless main region"
+    },
+    {
+      "token": "--flow-gap",
+      "fallback": "var(--space-md)",
+      "use": "Space between blocks in a classless main, article, section or dialog"
+    },
+    {
+      "token": "--form-gap",
+      "fallback": "var(--space-sm)",
+      "use": "Space between the parts of a classless form"
+    },
+    {
+      "token": "--form-width",
+      "fallback": "var(--max-w-form)",
+      "use": "Widest a classless form grows"
+    },
+    {
+      "token": "--button-row-gap",
+      "fallback": "var(--space-xs)",
+      "use": "Space between the buttons of a classless row"
+    },
+    {
+      "token": "--modal-padding",
+      "fallback": "var(--dialog-padding)",
+      "use": "Dialog padding"
+    },
+    {
+      "token": "--modal-radius",
+      "fallback": "var(--radius-lg)",
+      "use": "Dialog corner"
+    },
+    {
+      "token": "--modal-width",
+      "fallback": "var(--max-w-form)",
+      "use": "Widest a dialog grows"
+    },
+    {
+      "token": "--modal-shadow",
+      "fallback": "var(--shadow-xl)",
+      "use": "Dialog shadow"
+    },
+    {
+      "token": "--modal-bg",
+      "fallback": "var(--bg)",
+      "use": "Dialog fill"
+    },
+    {
+      "token": "--alert-padding",
+      "fallback": "var(--space-xs) var(--space-sm)",
+      "use": "Alert padding (role alert, status or note)"
+    },
+    {
+      "token": "--alert-radius",
+      "fallback": "var(--radius-md)",
+      "use": "Alert corner"
+    },
+    {
+      "token": "--help-size",
+      "fallback": "var(--text-sm)",
+      "use": "Help text size (small)"
+    },
+    {
+      "token": "--help-color",
+      "fallback": "var(--fg-weak)",
+      "use": "Help text colour (small)"
+    },
+    {
+      "token": "--segment-bg",
+      "fallback": "var(--neutral-a2)",
+      "use": "Segmented group fill (role group holding aria-pressed buttons)"
+    },
+    {
+      "token": "--segment-pressed-bg",
+      "fallback": "var(--neutral-contrast-white)",
+      "use": "A pressed segment's fill"
+    },
+    {
+      "token": "--segment-pressed-fg",
+      "fallback": "var(--neutral-contrast-black)",
+      "use": "A pressed segment's text"
     }
   ]
 }

@@ -268,7 +268,19 @@ Status colours follow one pattern across every palette: step 3 fills, 6 draws th
 
 ## Element defaults
 
-Bare elements look finished without a class: buttons, text fields, selects, textareas, checkboxes, radios, switches, sliders, links, labels and table cells take styled defaults from the `defaults` layer. `type="submit"` takes the primary fill.
+Bare elements look finished without a class: buttons, text fields, selects, textareas, checkboxes, radios, switches, sliders, links, labels and table cells take styled defaults from the `defaults` layer. `type="submit"` takes the primary fill, and a bare `dialog` takes the dialog padding, corner, width and shadow.
+
+Plain structure does the rest, where the element has no class:
+
+| Write | Get |
+|---|---|
+| `<main>` | A centred page with page padding |
+| `<form>` | Its parts stacked a field gap apart, up to the form width |
+| `<div>` of buttons | A button row (at the end, in a dialog) |
+| `<small>` after a field | Help text |
+| `role="status"`, `"alert"`, `"note"` | An info, danger or neutral note |
+| `<div role="group">` of `aria-pressed` buttons | A segmented control |
+| `data-tone="danger"` (or accent, success, warning, info) on a button or note | That tone |
 
 ```html
 <form>

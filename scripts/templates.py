@@ -956,10 +956,12 @@ CONV_DEMOS = [
 ]
 
 
-DEFAULTS_DEMO = """<form class="flex flex-col gap-md max-w-form" onsubmit="return false">
+DEFAULTS_DEMO = """<form onsubmit="return false">
+  <p role="status">Your plan includes 10 seats. 3 are in use.</p>
   <div>
     <label for="df-name">Team name</label>
-    <input id="df-name" value="Design Ops">
+    <input id="df-name" value="Design Ops" aria-describedby="df-name-help">
+    <small id="df-name-help">Shown in invitations and the sidebar.</small>
   </div>
   <div>
     <label for="df-role">Default role</label>
@@ -972,16 +974,32 @@ DEFAULTS_DEMO = """<form class="flex flex-col gap-md max-w-form" onsubmit="retur
   <label><input type="checkbox" checked> Let anyone with a company email join</label>
   <label><input type="checkbox" role="switch"> Weekly digest</label>
   <input type="range" value="60" aria-label="Seats">
+  <div role="group" aria-label="Range">
+    <button type="button" aria-pressed="true">Day</button>
+    <button type="button" aria-pressed="false">Week</button>
+    <button type="button" aria-pressed="false">Month</button>
+  </div>
   <table>
     <tr><th>Member</th><th>Role</th></tr>
     <tr><td>Ada Lovelace</td><td>Owner</td></tr>
   </table>
+  <p role="alert">Removing a member can't be undone.</p>
   <p>Read the <a href="#">invitation policy</a>.</p>
-  <div class="flex gap-xs">
+  <div>
     <button type="button">Cancel</button>
     <button type="submit">Save</button>
   </div>
 </form>"""
+
+DIALOG_DEMO = """<button type="button" data-tone="danger" commandfor="df-dialog" command="show-modal">Delete team…</button>
+<dialog id="df-dialog" aria-labelledby="df-dialog-title">
+  <h2 id="df-dialog-title">Delete team?</h2>
+  <p>This removes the team for everyone. You can't undo it.</p>
+  <div>
+    <button type="button" commandfor="df-dialog" command="close">Cancel</button>
+    <button type="button" data-tone="danger" commandfor="df-dialog" command="close">Delete</button>
+  </div>
+</dialog>"""
 
 BARE_DEMO = """<h3>A heading</h3>
 <p>A paragraph with <a href="#">a link</a>, <code>inline code</code> and a <kbd>⌘K</kbd> key. Text wraps without leaving one word alone on the last line.</p>
@@ -1003,9 +1021,11 @@ def resets_page():
                 p("The example below has no classes: it is what the reset and the element defaults give you together."),
                 *live("bare.html", BARE_DEMO, semantic=True)),
         section("defaults", "Element defaults",
-                p("The <code>defaults</code> layer gives bare elements a finished look: buttons, text fields, selects, textareas, checkboxes, radios, switches, sliders, links, labels and table cells. A button with <code>type=\"submit\"</code> takes the primary fill. Nothing below carries a class, except the form's layout."),
+                p("The <code>defaults</code> layer gives bare elements a finished look: buttons, text fields, selects, textareas, checkboxes, radios, switches, sliders, links, labels and table cells. Structure does the rest, with no class anywhere: a <code>form</code> stacks its parts; a <code>div</code> of buttons becomes a row; <code>small</code> after a field is its help text; <code>role=\"status\"</code>, <code>\"alert\"</code> and <code>\"note\"</code> become info, danger and neutral notes; a <code>role=\"group\"</code> of <code>aria-pressed</code> buttons becomes a segmented control; and a classless <code>main</code> centres the page. <code>data-tone</code> (danger, accent, success, warning, info) tints a button or a note. A button with <code>type=\"submit\"</code> takes the primary fill. Nothing below carries a class."),
                 p("The defaults fill only what an element's classes leave unset, so a utility class still wins, and a utility-built control picks up a default for any property it doesn't set."),
                 *live("defaults.html", DEFAULTS_DEMO)),
+        section("dialog", "Dialogs", p("A bare <code>dialog</code> takes the dialog padding, corner, width and shadow, its heading takes the dialog title size, and its row of buttons sits at the end. Open this one."),
+                *live("dialog.html", DIALOG_DEMO)),
         section("tokens", "Default tokens", p("No token is declared, so each one is free to set. Its fallback resolves at the element, so it follows the element's scope and tier."),
                 table(["Token", "Fallback", "Use"], rows)),
         section("override", "Override a default",
