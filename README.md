@@ -281,7 +281,9 @@ Plain structure does the rest, where the element has no class:
 | `<small>` after a field | Help text |
 | `role="status"`, `"alert"`, `"note"` | An info, danger or neutral note |
 | `<div role="group">` of `aria-pressed` buttons | A segmented control |
-| `data-tone="danger"` (or accent, success, warning, info, neutral) on a button or note | That tone |
+| `data-tone="danger"` (or accent, success, warning, info, neutral) on a button or note | That tone, so a destructive button needs no class |
+
+The element looks (buttons, fields, checks, links, labels, table cells) apply whether or not an element has classes: a class replaces only the properties it sets. The structure rules in this table apply only to an element with no class, so classing a `section`, `form` or `div` turns off its spacing or row; give it the utilities you want instead.
 
 ```html
 <form>
@@ -410,7 +412,7 @@ The scripts need Node 18 or later and have no dependencies. People who use Nowin
 
 ## Browser support
 
-Nowind uses `light-dark()`, `@layer`, `@property`, `@container`, `clamp()` and `:where()`, which every current browser supports. Some features are progressive and fall back cleanly: CSS typed arithmetic (the root-scaled fluid term), anchor positioning, the customizable `select`, `field-sizing`, `interpolate-size` and the glass lens (Chromium only).
+Nowind uses `light-dark()`, `@layer`, `@property`, `@container`, `clamp()` and `:where()`, which every current browser supports. Some features are progressive and fall back cleanly: CSS typed arithmetic (the root-scaled fluid term), anchor positioning, invoker commands (`commandfor`, which opens a dialog without script), the customizable `select`, `field-sizing`, `interpolate-size` and the glass lens (Chromium only).
 
 ## Credits
 
