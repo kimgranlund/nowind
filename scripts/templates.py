@@ -869,6 +869,79 @@ GROUP_DOCS = [
     ("group-open:", 'the .group is [open], :popover-open, aria-expanded="true", or holds an open popover'),
 ]
 
+# ---------------------------------------------------------------- live examples on the docs pages
+def _snip(slug, ex=None):
+    """A component's snippet (or one of its extra examples), reused so the docs show the lint-checked markup."""
+    c = next(c for c in COMPONENTS if c["slug"] == slug)
+    return c["html"] if ex is None else next(x["html"] for x in c.get("examples", []) if x["id"] == ex)
+
+
+def live(name, html_, semantic=False):
+    """A rendered example and its code. semantic marks a demo built on role classes (materials), which the examples
+    lint leaves alone."""
+    return (f"""<div data-example{' data-semantic-demo' if semantic else ''} class="tier-product p-surface rounded-md border border-weak bg-strong">
+{html_}
+          </div>""", code(name, "HTML", html_))
+
+
+def _stack(html_):
+    """Several snippets in one example, a section gap apart, each in a full-width block so it keeps its own width."""
+    return '<div class="flex flex-col gap-md">\n' + "\n".join(f"<div>\n{h}\n</div>" for h in html_) + "\n</div>"
+
+
+_STAT = '<div class="flex flex-col gap-3xs p-md rounded-md bg-neutral-1 border border-neutral-6">\n    <span class="text-sm fg-neutral-11">{label}</span>\n    <span class="text-3xl font-display font-extrabold tracking-tight tabular-nums">{value}</span>\n  </div>'
+STATE_DEMOS = {
+    "selected": _stack([_snip("tabs"), _snip("segmented"), _snip("pagination")]),
+    "native": _stack([_snip("form-controls"), _snip("text-field", "states")]),
+    "groups": _stack([_snip("tooltip"), _snip("menu")]),
+    "breakpoints": '<div class="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-sm">\n  '
+                   + "\n  ".join(_STAT.format(label=l, value=v) for l, v in [("Visitors", "48,210"), ("Signups", "2,318"), ("Revenue", "$9,640"), ("Churn", "1.4%")]) + "\n</div>",
+    "containers": '<div class="grid grid-cols-1 md:grid-cols-3 gap-md">\n<div class="min-w-0">\n' + _snip("media-card") + '\n</div>\n<div class="min-w-0 md:col-span-2">\n' + _snip("media-card") + "\n</div>\n</div>",
+    "layer": _snip("button"),
+    "motion": _snip("icon-button", "toolbar"),
+    "indicators": _snip("accordion"),
+}
+
+
+def _material_card(m):
+    lens = " lens" if m == "glass" else ""
+    label = ('<span class="flex flex-wrap items-baseline justify-between gap-xs"><span class="text-kicker fg-weak">glass</span><span data-lens-label class="text-caption fg-weak">Lens</span></span>'
+             if m == "glass" else f'<span class="text-kicker fg-weak">{m}</span>')
+    return f"""  <div class="material-{m}{lens} flex flex-col gap-field p-surface rounded-md relief-ground bg border border-weak">
+    {label}
+    <span class="text-title">Invite your team</span>
+    <input class="relief-field h-control px-control rounded-sm border bg text-control-md w-full" placeholder="name@example.com" aria-label="Email">
+    <div class="flex flex-wrap gap-row">
+      <button class="relief-raised-solid inline-flex items-center h-control px-control rounded-sm border border-transparent bg-solid-accent-1 hover:bg-solid-accent-1-strong fg-on-solid-accent-1 text-title-sm cursor-pointer"><span>Invite</span></button>
+      <button class="relief-raised inline-flex items-center h-control px-control rounded-sm border bg-component-weak hover:bg-component active:bg-component-strong fg text-title-sm cursor-pointer"><span>Later</span></button>
+    </div>
+  </div>"""
+
+
+MATERIAL_DEMOS = {
+    "materials": '<div class="relative rounded-lg overflow-hidden">\n<div class="absolute inset-0 bg-neutral-2 fg-accent-1-9 bg-dots bg-dots-md" aria-hidden="true"></div>\n<div class="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-group p-surface">\n'
+                 + "\n".join(_material_card(m) for m in ["flat", "physical", "frosted", "glass", "outline"]) + "\n</div>\n</div>",
+    "reliefs": """<div class="material-physical flex flex-col gap-field p-surface rounded-md relief-ground bg border border-weak max-w-form">
+  <span class="text-caption fg-weak">relief-ground: the panel others sit on</span>
+  <input class="relief-field h-control px-control rounded-sm border bg text-control-md w-full" placeholder="relief-field: cut into the ground" aria-label="Field">
+  <div class="flex flex-wrap gap-row">
+    <button class="relief-raised-solid inline-flex items-center h-control px-control rounded-sm border border-transparent bg-solid-accent-1 hover:bg-solid-accent-1-strong fg-on-solid-accent-1 text-title-sm cursor-pointer"><span>relief-raised-solid</span></button>
+    <button class="relief-raised inline-flex items-center h-control px-control rounded-sm border bg-component-weak hover:bg-component active:bg-component-strong fg text-title-sm cursor-pointer"><span>relief-raised</span></button>
+  </div>
+</div>""",
+    "glass": """<div data-glass-slider class="flex flex-col gap-sm p-xl rounded-md bg-neutral-3 fg-neutral-7 bg-dots bg-dots-md">
+  <div class="flex flex-wrap items-baseline justify-between gap-xs"><span class="text-kicker fg-weak">Glass slider: drag it</span><span data-lens-label class="text-caption fg-weak">Lens</span></div>
+  <div class="relative py-2xl">
+    <div data-track class="relative py-2xs rounded-full bg-neutral-6"><div data-fill class="absolute top-0 bottom-0 start-0 rounded-full bg-accent-1-9"></div></div>
+    <div class="absolute inset-0 flex items-center pointer-events-none"><div data-thumb class="material-glass relief-raised lens px-2xl py-lg rounded-full"></div></div>
+    <input type="range" min="0" max="100" value="55" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" aria-label="Glass slider">
+  </div>
+</div>""",
+    "backdrops": '<div class="grid grid-cols-1 sm:grid-cols-3 gap-sm">\n'
+                 + "\n".join(f'  <div class="flex items-end h-3xl p-sm rounded-md bg-neutral-3 fg-accent-1-9 bg-dots bg-dots-{k}"><span class="px-2xs rounded-inner bg fg text-caption">bg-dots-{k}</span></div>' for k in ["sm", "md", "lg"]) + "\n</div>",
+}
+
+
 CONV_DEMOS = [
     ("buttons", "Buttons", "<code>btn</code> takes a tone; <code>icon-btn</code> holds one icon and an <code>aria-label</code>.",
      '<div class="flex flex-wrap gap-xs">\n  <button class="btn btn-primary"><i class="icon ph ph-check"></i><span>Save</span></button>\n  <button class="btn btn-secondary"><span>Cancel</span></button>\n  <button class="btn btn-soft"><span>Soft</span></button>\n  <button class="btn btn-ghost"><span>Ghost</span></button>\n  <button class="btn btn-danger"><i class="icon ph ph-trash"></i><span>Delete</span></button>\n  <button class="icon-btn btn-secondary" aria-label="Settings"><i class="icon ph ph-gear"></i></button>\n</div>'),
@@ -912,20 +985,25 @@ def states_page():
     art = "\n        ".join([
         page_head("Docs", "States and variants",
                   "A variant applies a class only in a state: <code>hover:bg-neutral-4</code>, <code>selected:border-accent-1-8</code>, <code>md:flex</code>. Each variant covers a fixed set of classes, mostly colours, so the stylesheet stays one file. The markup drives the look: set the ARIA attribute and the class follows."),
-        section("states", "State variants", table(["Variant", "Matches", "Applies to", "Classes"], rows),
-                code("tab.html", "HTML", '<button role="tab" aria-selected="true" class="py-xs px-sm border-b-2 border-transparent selected:border-accent-1-8 fg-neutral-11 selected:fg-neutral-12">Profile</button>')),
-        section("groups", "Group variants", p("Put <code>group</code> on a parent; a child reacts to its state. These cover opacity, visibility, rotation and the text roles."),
-                table(["Variant", "When", "Classes"], grows)),
-        section("breakpoints", "Breakpoints", p(_plain(nm["variants"]["responsive"]))),
-        section("containers", "Container queries", p(_plain(nm["variants"]["container"])),
-                code("card.html", "HTML", '<div class="@container">\n  <article class="flex flex-col @md:flex-row">\n    <div class="aspect-video @md:basis-1/3 shrink-0">…</div>\n    <div class="p-md">…</div>\n  </article>\n</div>')),
-        section("layer", "State layer", p(_plain(nm["categories"]["state"])),
-                code("ghost.html", "HTML", '<button class="state py-xs px-sm rounded-sm bg-transparent fg-neutral-12">Ghost</button>\n<button class="state py-xs px-sm rounded-sm bg-accent-1-9 fg-accent-1-contrast">Primary</button>')),
+        section("states", "State variants", table(["Variant", "Matches", "Applies to", "Classes"], rows)),
+        section("selected", "Selected, pressed and current", p("Tabs read <code>aria-selected</code>, segments <code>aria-pressed</code>, the current page <code>aria-current</code>. Hover any of them: a chosen item never looks hovered."),
+                *live("selected.html", STATE_DEMOS["selected"])),
+        section("native", "Checked, invalid and disabled", p("These follow the browser's own state: tick a box, flip the switch, or leave a field invalid and move on (<code>:user-invalid</code>)."),
+                *live("native.html", STATE_DEMOS["native"])),
+        section("groups", "Group variants", p("Put <code>group</code> on a parent; a child reacts to its state. These cover opacity, visibility, rotation and the text roles. Hover or focus the link for its tooltip; open the menu and its caret turns."),
+                table(["Variant", "When", "Classes"], grows), *live("groups.html", STATE_DEMOS["groups"])),
+        section("breakpoints", "Breakpoints", p(_plain(nm["variants"]["responsive"])), p("Resize the window: one column, two from 640px, four from 1536px."),
+                *live("breakpoints.html", STATE_DEMOS["breakpoints"])),
+        section("containers", "Container queries", p(_plain(nm["variants"]["container"])), p("The same card twice: in the narrow column it stacks, in the wide one it turns into a row, at one window width."),
+                *live("containers.html", STATE_DEMOS["containers"])),
+        section("layer", "State layer", p(_plain(nm["categories"]["state"])), p("Hover and press each: one layer tints every fill, in its own text colour."),
+                *live("layer.html", STATE_DEMOS["layer"])),
         section("motion", "Transitions and focus",
                 p("Every interactive element (links, buttons, summaries, fields, labels, and the button, tab, option, menuitem and switch roles) transitions its colours, opacity, shadow and transforms by default, at the motion duration and easing. Reduced motion cuts it. Anything else that changes with state names <code>transition</code>."),
-                p("Focus: buttons, links and checkable controls get a 2px accent ring on <code>:focus-visible</code>. A text field draws the ring over its own border, so a border class can't hide it, and a field box (<code>cursor-text</code>) draws it on the box while its bare input draws none.")),
-        section("indicators", "Indicators", p("An indicator follows the state it shows. A caret turns over when its disclosure or menu opens: put <code>group</code> on the <code>details</code> or on the wrapper holding the button and its popover."),
-                code("caret.html", "HTML", '<details class="group">\n  <summary class="flex items-center justify-between list-none">\n    Shipping <i class="icon icon-sm ph ph-caret-down transition group-open:rotate-180"></i>\n  </summary>\n  …\n</details>')),
+                p("Focus: buttons, links and checkable controls get a 2px accent ring on <code>:focus-visible</code>. A text field draws the ring over its own border, so a border class can't hide it, and a field box (<code>cursor-text</code>) draws it on the box while its bare input draws none."),
+                p("Hover to see the fade, then press Tab to walk the ring along the toolbar."), *live("motion.html", STATE_DEMOS["motion"])),
+        section("indicators", "Indicators", p("An indicator follows the state it shows. A caret turns over when its disclosure or menu opens: put <code>group</code> on the <code>details</code> or on the wrapper holding the button and its popover."), p("Open each row: its caret turns with it."),
+                *live("indicators.html", STATE_DEMOS["indicators"])),
     ])
     return doc_page("states.html", "States and variants", art)
 
@@ -936,14 +1014,15 @@ def materials_page():
     art = "\n        ".join([
         page_head("Docs", "Materials",
                   "A material is how a region is painted: flat, lit, frosted, clear glass or outlined. It never changes a length, so switching material moves nothing. Set it once on a region; every part inside paints itself by what it is."),
-        section("materials", "Materials", table(["Class", "What it does"], rows)),
-        section("reliefs", "Parts", p(_plain(mm["usage"])),
-                code("material.html", "HTML", '<div class="material-frosted relief-ground p-md rounded-md">\n  <input class="relief-field …">\n  <button class="relief-raised-solid …">Invite</button>\n</div>')),
+        section("materials", "Materials", table(["Class", "What it does"], rows), p("The same form in each material, over a dot grid so you can see what each does with what is behind it. Hover and press the buttons."), *live("materials.html", MATERIAL_DEMOS["materials"], semantic=True)),
+        section("reliefs", "Parts", p(_plain(mm["usage"])), p("One physical panel, each part labelled with its relief."),
+                *live("reliefs.html", MATERIAL_DEMOS["reliefs"], semantic=True)),
         section("glass", "Glass and the lens", p(_plain(mm["materials"]["glass"])), p(_plain(mm["glass"]["lens"])),
+                *live("glass.html", MATERIAL_DEMOS["glass"], semantic=True),
                 code("lens.html", "HTML", '<div class="material-glass relief-ground lens rounded-md">…</div>\n<!-- the page provides the filter and sets data-lens="on" on <html> where the engine can draw it;\n     on this site, site.js does both -->'),
                 callout("note", "Only Chromium applies an SVG filter behind an element. Elsewhere glass keeps its blur, so text over it must read without the lens.")),
         section("backdrops", "Backdrops", p("Glass needs something behind it to bend. <code>bg-dots</code> paints a dot grid in <code>currentColor</code>, spaced by <code>bg-dots-sm</code>, <code>-md</code> or <code>-lg</code>: the showcase sets its materials on one."),
-                code("dots.html", "HTML", '<div class="bg-neutral-2 fg-accent-1-9 bg-dots bg-dots-md">…</div>')),
+                *live("backdrops.html", MATERIAL_DEMOS["backdrops"], semantic=True)),
     ])
     return doc_page("materials.html", "Materials", art)
 
@@ -1012,6 +1091,7 @@ SIZE_RE = re.compile(r"text-(xs|sm|base|lg|xl|[2-6]xl)")
 def example_sources():
     """(where, html) for every component snippet and every showcase block that is not a semantic demo."""
     out = [(f"scripts/component_docs.py {c['slug']} {x['id']}", x["html"]) for c in COMPONENTS for x in [{"id": "example", "html": c["html"]}] + c.get("examples", [])]
+    out += [(f"scripts/templates.py states {k}", STATE_DEMOS[k]) for k in ("breakpoints", "containers")]
     page = open(os.path.join(OUT, "..", "components.html")).read()
     body = 'md:col-span-9 min-w-0 flex flex-col gap-group">'
     for m in re.finditer(r'<section id="([^"]+)"(.*?)\n  </section>', page, flags=re.S):
@@ -1405,7 +1485,8 @@ def lint_examples():
     errors += [f"{w}: {k}: {prob}. Fix: the paint contract (paintContract in theme/theme.colors.manifest.json). {lab}" for w, k, prob, lab in paint_audit()]
     errors += [f"{w}: {k}: {prob}. Fix: the behaviour contract (theme/theme.behaviour.manifest.json). {lab}" for w, k, prob, lab in behaviour_audit()]
     css = open(os.path.join(OUT, "..", "..", "dist", "nowind.min.css")).read()
-    defined = {re.sub(r"\\(.)", r"\1", m) for m in re.findall(r"\.((?:[a-zA-Z0-9_-]|\\.)+)", css)}
+    unesc = lambda m: re.sub(r"\\(.)", r"\1", re.sub(r"\\([0-9a-fA-F]{1,6}) ?", lambda h: chr(int(h.group(1), 16)), m))
+    defined = {unesc(m) for m in re.findall(r"\.((?:[a-zA-Z0-9_-]|\\[0-9a-fA-F]{1,6} ?|\\.)+)", css)}
     for w, h in example_sources():
         for t in sorted({t for c in re.findall(r'class="([^"]*)"', h) for t in c.split()}):
             if t not in defined and not re.match(r"ph(-|$)", t):

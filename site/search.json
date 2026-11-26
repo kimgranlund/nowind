@@ -148,6 +148,8 @@
 ["Faces", "docs/type-space.html#faces", "Section", "Type and space"],
 ["Space", "docs/type-space.html#space", "Section", "Type and space"],
 ["State variants", "docs/states.html#states", "Section", "States and variants"],
+["Selected, pressed and current", "docs/states.html#selected", "Section", "States and variants"],
+["Checked, invalid and disabled", "docs/states.html#native", "Section", "States and variants"],
 ["Group variants", "docs/states.html#groups", "Section", "States and variants"],
 ["Breakpoints", "docs/states.html#breakpoints", "Section", "States and variants"],
 ["Container queries", "docs/states.html#containers", "Section", "States and variants"],

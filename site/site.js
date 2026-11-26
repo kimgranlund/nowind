@@ -501,7 +501,7 @@ window.nowindOwnCSS = () => !!document.querySelector("style[data-page-css]");
       const res = new Map();
       for (const e of parts) {
         const own = rgba(getComputedStyle(e).backgroundColor);
-        if (own[3] === 0 || getComputedStyle(e).backgroundImage !== "none") continue;
+        if (own[3] === 0 || getComputedStyle(e).backgroundImage !== "none" || [...e.classList].some((c) => c.startsWith("relief-"))) continue;  // a relief part stands apart by light (its material's shadows), which steps can't read
         const surf = colourOf(e.parentElement), mine = colourOf(e);
         if (chroma(mine) > 0.03 || chroma(surf) > 0.03) continue;  // a coloured fill: the neutral step map can't place it
         res.set(e, Math.abs(toStep(L(mine)) - toStep(L(surf))));

@@ -81,18 +81,180 @@
               </tbody>
             </table>
           </div>
+          </div>
+        </section>
+        <section id="selected" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Selected, pressed and current</h2></div>
+          <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
+          <p class="text-body-md max-w-text break-words">Tabs read <code>aria-selected</code>, segments <code>aria-pressed</code>, the current page <code>aria-current</code>. Hover any of them: a chosen item never looks hovered.</p>
+          <div data-example class="tier-product p-surface rounded-md border border-weak bg-strong">
+<div class="flex flex-col gap-md">
+<div>
+<div class="flex gap-md border-b border-neutral-6 overflow-x-auto" role="tablist">
+  <button role="tab" aria-selected="true" class="inline-flex items-center gap-gutter h-control px-control border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none"><i class="icon ph ph-user"></i><span>Profile</span></button>
+  <button role="tab" aria-selected="false" class="inline-flex items-center gap-gutter h-control px-control border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none"><i class="icon ph ph-credit-card"></i><span>Billing</span></button>
+  <button role="tab" aria-selected="false" class="inline-flex items-center gap-gutter h-control px-control border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none"><i class="icon ph ph-users"></i><span>Members</span></button>
+</div>
+</div>
+<div>
+<div class="inline-flex items-center h-control rounded-sm border-2 border-transparent bg-neutral-a2" role="group" aria-label="Range">
+  <button aria-pressed="true" class="inline-flex items-center h-full px-nested rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black text-base font-medium cursor-pointer"><span>Day</span></button>
+  <button aria-pressed="false" class="inline-flex items-center h-full px-nested rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black text-base font-medium cursor-pointer"><span>Week</span></button>
+  <button aria-pressed="false" class="inline-flex items-center h-full px-nested rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black text-base font-medium cursor-pointer"><span>Month</span></button>
+</div>
+</div>
+<div>
+<nav aria-label="Pagination" class="inline-flex items-center gap-3xs">
+  <a href="#" class="inline-flex items-center justify-center size-control state border border-transparent rounded-sm fg-neutral-11 no-underline" aria-label="Previous"><i class="icon icon-sm ph ph-caret-left"></i></a>
+  <a href="#" class="inline-flex items-center justify-center size-control border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums">2</a>
+  <a href="#" aria-current="page" class="inline-flex items-center justify-center size-control border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums">3</a>
+  <a href="#" class="inline-flex items-center justify-center size-control border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums">4</a>
+  <a href="#" class="inline-flex items-center justify-center size-control state border border-transparent rounded-sm fg-neutral-11 no-underline" aria-label="Next"><i class="icon icon-sm ph ph-caret-right"></i></a>
+</nav>
+</div>
+</div>
+          </div>
           <figure class="flex flex-col min-w-0 border border-weak bg-strong">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
-              <span class="text-mono-sm fg-weak truncate">tab.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
+              <span class="text-mono-sm fg-weak truncate">selected.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
             </figcaption>
-            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;button role=&quot;tab&quot; aria-selected=&quot;true&quot; class=&quot;py-xs px-sm border-b-2 border-transparent selected:border-accent-1-8 fg-neutral-11 selected:fg-neutral-12&quot;&gt;Profile&lt;/button&gt;</code></pre>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;flex flex-col gap-md&quot;&gt;
+&lt;div&gt;
+&lt;div class=&quot;flex gap-md border-b border-neutral-6 overflow-x-auto&quot; role=&quot;tablist&quot;&gt;
+  &lt;button role=&quot;tab&quot; aria-selected=&quot;true&quot; class=&quot;inline-flex items-center gap-gutter h-control px-control border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none&quot;&gt;&lt;i class=&quot;icon ph ph-user&quot;&gt;&lt;/i&gt;&lt;span&gt;Profile&lt;/span&gt;&lt;/button&gt;
+  &lt;button role=&quot;tab&quot; aria-selected=&quot;false&quot; class=&quot;inline-flex items-center gap-gutter h-control px-control border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none&quot;&gt;&lt;i class=&quot;icon ph ph-credit-card&quot;&gt;&lt;/i&gt;&lt;span&gt;Billing&lt;/span&gt;&lt;/button&gt;
+  &lt;button role=&quot;tab&quot; aria-selected=&quot;false&quot; class=&quot;inline-flex items-center gap-gutter h-control px-control border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none&quot;&gt;&lt;i class=&quot;icon ph ph-users&quot;&gt;&lt;/i&gt;&lt;span&gt;Members&lt;/span&gt;&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div&gt;
+&lt;div class=&quot;inline-flex items-center h-control rounded-sm border-2 border-transparent bg-neutral-a2&quot; role=&quot;group&quot; aria-label=&quot;Range&quot;&gt;
+  &lt;button aria-pressed=&quot;true&quot; class=&quot;inline-flex items-center h-full px-nested rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black text-base font-medium cursor-pointer&quot;&gt;&lt;span&gt;Day&lt;/span&gt;&lt;/button&gt;
+  &lt;button aria-pressed=&quot;false&quot; class=&quot;inline-flex items-center h-full px-nested rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black text-base font-medium cursor-pointer&quot;&gt;&lt;span&gt;Week&lt;/span&gt;&lt;/button&gt;
+  &lt;button aria-pressed=&quot;false&quot; class=&quot;inline-flex items-center h-full px-nested rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black text-base font-medium cursor-pointer&quot;&gt;&lt;span&gt;Month&lt;/span&gt;&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div&gt;
+&lt;nav aria-label=&quot;Pagination&quot; class=&quot;inline-flex items-center gap-3xs&quot;&gt;
+  &lt;a href=&quot;#&quot; class=&quot;inline-flex items-center justify-center size-control state border border-transparent rounded-sm fg-neutral-11 no-underline&quot; aria-label=&quot;Previous&quot;&gt;&lt;i class=&quot;icon icon-sm ph ph-caret-left&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+  &lt;a href=&quot;#&quot; class=&quot;inline-flex items-center justify-center size-control border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums&quot;&gt;2&lt;/a&gt;
+  &lt;a href=&quot;#&quot; aria-current=&quot;page&quot; class=&quot;inline-flex items-center justify-center size-control border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums&quot;&gt;3&lt;/a&gt;
+  &lt;a href=&quot;#&quot; class=&quot;inline-flex items-center justify-center size-control border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums&quot;&gt;4&lt;/a&gt;
+  &lt;a href=&quot;#&quot; class=&quot;inline-flex items-center justify-center size-control state border border-transparent rounded-sm fg-neutral-11 no-underline&quot; aria-label=&quot;Next&quot;&gt;&lt;i class=&quot;icon icon-sm ph ph-caret-right&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+&lt;/nav&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </figure>
+          </div>
+        </section>
+        <section id="native" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Checked, invalid and disabled</h2></div>
+          <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
+          <p class="text-body-md max-w-text break-words">These follow the browser's own state: tick a box, flip the switch, or leave a field invalid and move on (<code>:user-invalid</code>).</p>
+          <div data-example class="tier-product p-surface rounded-md border border-weak bg-strong">
+<div class="flex flex-col gap-md">
+<div>
+<div class="flex flex-col gap-xs">
+  <label class="inline-flex items-center gap-xs text-base cursor-pointer"><input type="checkbox" checked> Product updates</label>
+  <label class="inline-flex items-center gap-xs text-base cursor-pointer"><input type="radio" name="doc-plan" checked> Team plan</label>
+  <label class="inline-flex items-center gap-xs text-base cursor-pointer"><input type="radio" name="doc-plan"> Business plan</label>
+  <label class="flex items-center justify-between gap-sm max-w-form text-base cursor-pointer"><span>Email me about mentions</span><input type="checkbox" role="switch" checked></label>
+  <input type="range" class="max-w-form" value="60" aria-label="Volume">
+</div>
+</div>
+<div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-handle" class="text-sm font-medium">Handle</label>
+    <div class="flex items-center gap-gutter h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition">
+      <i class="icon ph ph-at fg-neutral-11" aria-hidden="true"></i>
+      <input id="doc-handle" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12" value="ada lovelace" pattern="[a-z0-9_]+" aria-invalid="true" aria-describedby="doc-handle-error">
+    </div>
+    <span id="doc-handle-error" class="text-sm fg-danger-11">Use lowercase letters, numbers and underscores.</span>
+  </div>
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-title" class="text-sm font-medium">Title</label>
+    <div class="flex items-center gap-gutter h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition">
+      <i class="icon ph ph-text-t fg-neutral-11" aria-hidden="true"></i>
+      <input id="doc-title" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12" maxlength="40" value="Analytical Engine notes" aria-describedby="doc-title-count">
+      <span id="doc-title-count" class="fg-neutral-11 text-sm tabular-nums">23/40</span>
+    </div>
+  </div>
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-id" class="text-sm font-medium">Account ID</label>
+    <div class="flex items-center gap-gutter h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-2 text-base cursor-text transition">
+      <i class="icon ph ph-identification-card fg-neutral-11" aria-hidden="true"></i>
+      <input id="doc-id" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-11 tabular-nums" value="AC-20481" readonly>
+      <i class="icon ph ph-lock-simple fg-neutral-8" aria-hidden="true"></i>
+    </div>
+  </div>
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-seat" class="text-sm font-medium fg-neutral-11">Seat</label>
+    <div class="flex items-center gap-gutter h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-3 text-base cursor-not-allowed transition opacity-50">
+      <i class="icon ph ph-armchair fg-neutral-11" aria-hidden="true"></i>
+      <input id="doc-seat" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12" value="14C" disabled>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+          </div>
+          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
+              <span class="text-mono-sm fg-weak truncate">native.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
+            </figcaption>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;flex flex-col gap-md&quot;&gt;
+&lt;div&gt;
+&lt;div class=&quot;flex flex-col gap-xs&quot;&gt;
+  &lt;label class=&quot;inline-flex items-center gap-xs text-base cursor-pointer&quot;&gt;&lt;input type=&quot;checkbox&quot; checked&gt; Product updates&lt;/label&gt;
+  &lt;label class=&quot;inline-flex items-center gap-xs text-base cursor-pointer&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;doc-plan&quot; checked&gt; Team plan&lt;/label&gt;
+  &lt;label class=&quot;inline-flex items-center gap-xs text-base cursor-pointer&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;doc-plan&quot;&gt; Business plan&lt;/label&gt;
+  &lt;label class=&quot;flex items-center justify-between gap-sm max-w-form text-base cursor-pointer&quot;&gt;&lt;span&gt;Email me about mentions&lt;/span&gt;&lt;input type=&quot;checkbox&quot; role=&quot;switch&quot; checked&gt;&lt;/label&gt;
+  &lt;input type=&quot;range&quot; class=&quot;max-w-form&quot; value=&quot;60&quot; aria-label=&quot;Volume&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div&gt;
+&lt;div class=&quot;grid grid-cols-1 md:grid-cols-2 gap-md&quot;&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-handle&quot; class=&quot;text-sm font-medium&quot;&gt;Handle&lt;/label&gt;
+    &lt;div class=&quot;flex items-center gap-gutter h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition&quot;&gt;
+      &lt;i class=&quot;icon ph ph-at fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;input id=&quot;doc-handle&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12&quot; value=&quot;ada lovelace&quot; pattern=&quot;[a-z0-9_]+&quot; aria-invalid=&quot;true&quot; aria-describedby=&quot;doc-handle-error&quot;&gt;
+    &lt;/div&gt;
+    &lt;span id=&quot;doc-handle-error&quot; class=&quot;text-sm fg-danger-11&quot;&gt;Use lowercase letters, numbers and underscores.&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-title&quot; class=&quot;text-sm font-medium&quot;&gt;Title&lt;/label&gt;
+    &lt;div class=&quot;flex items-center gap-gutter h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition&quot;&gt;
+      &lt;i class=&quot;icon ph ph-text-t fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;input id=&quot;doc-title&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12&quot; maxlength=&quot;40&quot; value=&quot;Analytical Engine notes&quot; aria-describedby=&quot;doc-title-count&quot;&gt;
+      &lt;span id=&quot;doc-title-count&quot; class=&quot;fg-neutral-11 text-sm tabular-nums&quot;&gt;23/40&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-id&quot; class=&quot;text-sm font-medium&quot;&gt;Account ID&lt;/label&gt;
+    &lt;div class=&quot;flex items-center gap-gutter h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-2 text-base cursor-text transition&quot;&gt;
+      &lt;i class=&quot;icon ph ph-identification-card fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;input id=&quot;doc-id&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-11 tabular-nums&quot; value=&quot;AC-20481&quot; readonly&gt;
+      &lt;i class=&quot;icon ph ph-lock-simple fg-neutral-8&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs&quot;&gt;
+    &lt;label for=&quot;doc-seat&quot; class=&quot;text-sm font-medium fg-neutral-11&quot;&gt;Seat&lt;/label&gt;
+    &lt;div class=&quot;flex items-center gap-gutter h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-3 text-base cursor-not-allowed transition opacity-50&quot;&gt;
+      &lt;i class=&quot;icon ph ph-armchair fg-neutral-11&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+      &lt;input id=&quot;doc-seat&quot; class=&quot;grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12&quot; value=&quot;14C&quot; disabled&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre>
           </figure>
           </div>
         </section>
         <section id="groups" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Group variants</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <p class="text-body-md max-w-text break-words">Put <code>group</code> on a parent; a child reacts to its state. These cover opacity, visibility, rotation and the text roles.</p>
+          <p class="text-body-md max-w-text break-words">Put <code>group</code> on a parent; a child reacts to its state. These cover opacity, visibility, rotation and the text roles. Hover or focus the link for its tooltip; open the menu and its caret turns.</p>
           <div class="border border-weak overflow-x-auto">
             <table class="w-full text-body-md">
               <thead class="bg-strong"><tr><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Variant</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">When</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Classes</th></tr></thead>
@@ -103,27 +265,177 @@
               </tbody>
             </table>
           </div>
+          <div data-example class="tier-product p-surface rounded-md border border-weak bg-strong">
+<div class="flex flex-col gap-md">
+<div>
+<span class="group relative inline-block">
+  <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-neutral-a2 fg-neutral-12 cursor-pointer" aria-label="Copy link" aria-describedby="doc-tip"><i class="icon ph ph-link"></i></button>
+  <span id="doc-tip" role="tooltip" class="absolute top-full start-0 z-20 mt-3xs px-xs py-3xs rounded-xs bg-neutral-12 fg-neutral-1 text-sm whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity">Copy link</span>
+</span>
+</div>
+<div>
+<div class="group inline-block">
+<button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm state border border-transparent bg-neutral-a2 fg-neutral-12 text-base font-medium cursor-pointer" popovertarget="doc-sort"><i class="icon ph ph-sort-ascending"></i><span>Sort</span><i class="icon icon-sm ph ph-caret-down transition group-open:rotate-180" aria-hidden="true"></i></button>
+<div id="doc-sort" popover class="anchor-bottom w-fit p-inset rounded-md bg-neutral-1 border border-neutral-6 shadow-lg">
+  <div class="flex flex-col" role="listbox" aria-label="Sort by">
+    <a href="#" class="flex items-center gap-gutter h-control px-control border border-transparent rounded-sm no-underline fg-neutral-12 hover:bg-neutral-3 selected:bg-accent-1-3 selected:fg-accent-1-11" role="option" aria-selected="true"><i class="icon ph ph-clock"></i><span class="grow">Last edited</span></a>
+    <a href="#" class="flex items-center gap-gutter h-control px-control border border-transparent rounded-sm no-underline fg-neutral-12 hover:bg-neutral-3 selected:bg-accent-1-3 selected:fg-accent-1-11" role="option" aria-selected="false"><i class="icon ph ph-text-aa"></i><span class="grow">Name</span></a>
+  </div>
+</div>
+</div>
+</div>
+</div>
+          </div>
+          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
+              <span class="text-mono-sm fg-weak truncate">groups.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
+            </figcaption>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;flex flex-col gap-md&quot;&gt;
+&lt;div&gt;
+&lt;span class=&quot;group relative inline-block&quot;&gt;
+  &lt;button class=&quot;inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-neutral-a2 fg-neutral-12 cursor-pointer&quot; aria-label=&quot;Copy link&quot; aria-describedby=&quot;doc-tip&quot;&gt;&lt;i class=&quot;icon ph ph-link&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+  &lt;span id=&quot;doc-tip&quot; role=&quot;tooltip&quot; class=&quot;absolute top-full start-0 z-20 mt-3xs px-xs py-3xs rounded-xs bg-neutral-12 fg-neutral-1 text-sm whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity&quot;&gt;Copy link&lt;/span&gt;
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;div&gt;
+&lt;div class=&quot;group inline-block&quot;&gt;
+&lt;button class=&quot;inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm state border border-transparent bg-neutral-a2 fg-neutral-12 text-base font-medium cursor-pointer&quot; popovertarget=&quot;doc-sort&quot;&gt;&lt;i class=&quot;icon ph ph-sort-ascending&quot;&gt;&lt;/i&gt;&lt;span&gt;Sort&lt;/span&gt;&lt;i class=&quot;icon icon-sm ph ph-caret-down transition group-open:rotate-180&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+&lt;div id=&quot;doc-sort&quot; popover class=&quot;anchor-bottom w-fit p-inset rounded-md bg-neutral-1 border border-neutral-6 shadow-lg&quot;&gt;
+  &lt;div class=&quot;flex flex-col&quot; role=&quot;listbox&quot; aria-label=&quot;Sort by&quot;&gt;
+    &lt;a href=&quot;#&quot; class=&quot;flex items-center gap-gutter h-control px-control border border-transparent rounded-sm no-underline fg-neutral-12 hover:bg-neutral-3 selected:bg-accent-1-3 selected:fg-accent-1-11&quot; role=&quot;option&quot; aria-selected=&quot;true&quot;&gt;&lt;i class=&quot;icon ph ph-clock&quot;&gt;&lt;/i&gt;&lt;span class=&quot;grow&quot;&gt;Last edited&lt;/span&gt;&lt;/a&gt;
+    &lt;a href=&quot;#&quot; class=&quot;flex items-center gap-gutter h-control px-control border border-transparent rounded-sm no-underline fg-neutral-12 hover:bg-neutral-3 selected:bg-accent-1-3 selected:fg-accent-1-11&quot; role=&quot;option&quot; aria-selected=&quot;false&quot;&gt;&lt;i class=&quot;icon ph ph-text-aa&quot;&gt;&lt;/i&gt;&lt;span class=&quot;grow&quot;&gt;Name&lt;/span&gt;&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </figure>
           </div>
         </section>
         <section id="breakpoints" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Breakpoints</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-text break-words">sm:, md:, lg:, xl:, 2xl: (read from the --breakpoint-* tokens) apply to layout: display, grid columns and spans, flex direction, wrap, basis, justify, align, text alignment, widths, inline and all-side padding and gaps. Margins, colours, type, position, heights and overflow have no breakpoint variants.</p>
+          <p class="text-body-md max-w-text break-words">Resize the window: one column, two from 640px, four from 1536px.</p>
+          <div data-example class="tier-product p-surface rounded-md border border-weak bg-strong">
+<div class="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-sm">
+  <div class="flex flex-col gap-3xs p-md rounded-md bg-neutral-1 border border-neutral-6">
+    <span class="text-sm fg-neutral-11">Visitors</span>
+    <span class="text-3xl font-display font-extrabold tracking-tight tabular-nums">48,210</span>
+  </div>
+  <div class="flex flex-col gap-3xs p-md rounded-md bg-neutral-1 border border-neutral-6">
+    <span class="text-sm fg-neutral-11">Signups</span>
+    <span class="text-3xl font-display font-extrabold tracking-tight tabular-nums">2,318</span>
+  </div>
+  <div class="flex flex-col gap-3xs p-md rounded-md bg-neutral-1 border border-neutral-6">
+    <span class="text-sm fg-neutral-11">Revenue</span>
+    <span class="text-3xl font-display font-extrabold tracking-tight tabular-nums">$9,640</span>
+  </div>
+  <div class="flex flex-col gap-3xs p-md rounded-md bg-neutral-1 border border-neutral-6">
+    <span class="text-sm fg-neutral-11">Churn</span>
+    <span class="text-3xl font-display font-extrabold tracking-tight tabular-nums">1.4%</span>
+  </div>
+</div>
+          </div>
+          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
+              <span class="text-mono-sm fg-weak truncate">breakpoints.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
+            </figcaption>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-sm&quot;&gt;
+  &lt;div class=&quot;flex flex-col gap-3xs p-md rounded-md bg-neutral-1 border border-neutral-6&quot;&gt;
+    &lt;span class=&quot;text-sm fg-neutral-11&quot;&gt;Visitors&lt;/span&gt;
+    &lt;span class=&quot;text-3xl font-display font-extrabold tracking-tight tabular-nums&quot;&gt;48,210&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;flex flex-col gap-3xs p-md rounded-md bg-neutral-1 border border-neutral-6&quot;&gt;
+    &lt;span class=&quot;text-sm fg-neutral-11&quot;&gt;Signups&lt;/span&gt;
+    &lt;span class=&quot;text-3xl font-display font-extrabold tracking-tight tabular-nums&quot;&gt;2,318&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;flex flex-col gap-3xs p-md rounded-md bg-neutral-1 border border-neutral-6&quot;&gt;
+    &lt;span class=&quot;text-sm fg-neutral-11&quot;&gt;Revenue&lt;/span&gt;
+    &lt;span class=&quot;text-3xl font-display font-extrabold tracking-tight tabular-nums&quot;&gt;$9,640&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;flex flex-col gap-3xs p-md rounded-md bg-neutral-1 border border-neutral-6&quot;&gt;
+    &lt;span class=&quot;text-sm fg-neutral-11&quot;&gt;Churn&lt;/span&gt;
+    &lt;span class=&quot;text-3xl font-display font-extrabold tracking-tight tabular-nums&quot;&gt;1.4%&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </figure>
           </div>
         </section>
         <section id="containers" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Container queries</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-text break-words">@sm:, @md:, @lg: (384, 448 and 512px, read from the --container-* tokens) apply a component&#x27;s layout classes (display, flex direction and wrap, grid columns and spans, basis, gaps, alignment, text alignment) when the nearest ancestor with @container (container-type: inline-size) is at least that wide, so a component lays itself out by its own width rather than the viewport&#x27;s.</p>
+          <p class="text-body-md max-w-text break-words">The same card twice: in the narrow column it stacks, in the wide one it turns into a row, at one window width.</p>
+          <div data-example class="tier-product p-surface rounded-md border border-weak bg-strong">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="min-w-0">
+<div class="@container">
+<article class="flex flex-col @md:flex-row rounded-md bg-neutral-1 border border-neutral-6 overflow-hidden">
+  <div class="aspect-video @md:basis-1/3 shrink-0 flex items-center justify-center bg-accent-2-a4 fg-accent-2-11"><i class="icon icon-lg ph-light ph-mountains"></i></div>
+  <div class="flex flex-col gap-2xs p-md">
+    <span class="text-xs font-mono uppercase tracking-widest fg-accent-2-11">Case study</span>
+    <h3 class="text-base font-semibold">Rebuilding a design system in a week</h3>
+    <div class="flex items-center gap-xs pt-2xs">
+      <span class="inline-flex items-center justify-center size-nested shrink-0 rounded-full bg-accent-3-9 fg-accent-3-contrast text-sm font-medium">GH</span>
+      <span class="text-sm fg-neutral-11">Grace Hopper · 6 min read</span>
+    </div>
+  </div>
+</article>
+</div>
+</div>
+<div class="min-w-0 md:col-span-2">
+<div class="@container">
+<article class="flex flex-col @md:flex-row rounded-md bg-neutral-1 border border-neutral-6 overflow-hidden">
+  <div class="aspect-video @md:basis-1/3 shrink-0 flex items-center justify-center bg-accent-2-a4 fg-accent-2-11"><i class="icon icon-lg ph-light ph-mountains"></i></div>
+  <div class="flex flex-col gap-2xs p-md">
+    <span class="text-xs font-mono uppercase tracking-widest fg-accent-2-11">Case study</span>
+    <h3 class="text-base font-semibold">Rebuilding a design system in a week</h3>
+    <div class="flex items-center gap-xs pt-2xs">
+      <span class="inline-flex items-center justify-center size-nested shrink-0 rounded-full bg-accent-3-9 fg-accent-3-contrast text-sm font-medium">GH</span>
+      <span class="text-sm fg-neutral-11">Grace Hopper · 6 min read</span>
+    </div>
+  </div>
+</article>
+</div>
+</div>
+</div>
+          </div>
           <figure class="flex flex-col min-w-0 border border-weak bg-strong">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
-              <span class="text-mono-sm fg-weak truncate">card.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
+              <span class="text-mono-sm fg-weak truncate">containers.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
             </figcaption>
-            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;@container&quot;&gt;
-  &lt;article class=&quot;flex flex-col @md:flex-row&quot;&gt;
-    &lt;div class=&quot;aspect-video @md:basis-1/3 shrink-0&quot;&gt;…&lt;/div&gt;
-    &lt;div class=&quot;p-md&quot;&gt;…&lt;/div&gt;
-  &lt;/article&gt;
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;grid grid-cols-1 md:grid-cols-3 gap-md&quot;&gt;
+&lt;div class=&quot;min-w-0&quot;&gt;
+&lt;div class=&quot;@container&quot;&gt;
+&lt;article class=&quot;flex flex-col @md:flex-row rounded-md bg-neutral-1 border border-neutral-6 overflow-hidden&quot;&gt;
+  &lt;div class=&quot;aspect-video @md:basis-1/3 shrink-0 flex items-center justify-center bg-accent-2-a4 fg-accent-2-11&quot;&gt;&lt;i class=&quot;icon icon-lg ph-light ph-mountains&quot;&gt;&lt;/i&gt;&lt;/div&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs p-md&quot;&gt;
+    &lt;span class=&quot;text-xs font-mono uppercase tracking-widest fg-accent-2-11&quot;&gt;Case study&lt;/span&gt;
+    &lt;h3 class=&quot;text-base font-semibold&quot;&gt;Rebuilding a design system in a week&lt;/h3&gt;
+    &lt;div class=&quot;flex items-center gap-xs pt-2xs&quot;&gt;
+      &lt;span class=&quot;inline-flex items-center justify-center size-nested shrink-0 rounded-full bg-accent-3-9 fg-accent-3-contrast text-sm font-medium&quot;&gt;GH&lt;/span&gt;
+      &lt;span class=&quot;text-sm fg-neutral-11&quot;&gt;Grace Hopper · 6 min read&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;min-w-0 md:col-span-2&quot;&gt;
+&lt;div class=&quot;@container&quot;&gt;
+&lt;article class=&quot;flex flex-col @md:flex-row rounded-md bg-neutral-1 border border-neutral-6 overflow-hidden&quot;&gt;
+  &lt;div class=&quot;aspect-video @md:basis-1/3 shrink-0 flex items-center justify-center bg-accent-2-a4 fg-accent-2-11&quot;&gt;&lt;i class=&quot;icon icon-lg ph-light ph-mountains&quot;&gt;&lt;/i&gt;&lt;/div&gt;
+  &lt;div class=&quot;flex flex-col gap-2xs p-md&quot;&gt;
+    &lt;span class=&quot;text-xs font-mono uppercase tracking-widest fg-accent-2-11&quot;&gt;Case study&lt;/span&gt;
+    &lt;h3 class=&quot;text-base font-semibold&quot;&gt;Rebuilding a design system in a week&lt;/h3&gt;
+    &lt;div class=&quot;flex items-center gap-xs pt-2xs&quot;&gt;
+      &lt;span class=&quot;inline-flex items-center justify-center size-nested shrink-0 rounded-full bg-accent-3-9 fg-accent-3-contrast text-sm font-medium&quot;&gt;GH&lt;/span&gt;
+      &lt;span class=&quot;text-sm fg-neutral-11&quot;&gt;Grace Hopper · 6 min read&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;</code></pre>
           </figure>
           </div>
@@ -132,12 +444,25 @@
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">State layer</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-text break-words">state: a state layer. An ::after wash of currentColor under the content, at --state-hover (0.12), --state-focus (0.14), --state-selected (0.16, also pressed, expanded, current and a checked child) and --state-active (0.2); none when disabled. One class covers every state in any palette, in place of a hover: and active: class per step; the element keeps its own radius.</p>
+          <p class="text-body-md max-w-text break-words">Hover and press each: one layer tints every fill, in its own text colour.</p>
+          <div data-example class="tier-product p-surface rounded-md border border-weak bg-strong">
+<div class="flex flex-wrap items-center gap-sm">
+  <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm state border border-transparent bg-accent-1-9 fg-accent-1-contrast text-base font-medium cursor-pointer"><span>Save changes</span></button>
+  <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm state border border-transparent bg-neutral-a2 fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon ph ph-download-simple"></i><span>Export</span></button>
+  <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm state border border-transparent bg-transparent fg-neutral-12 text-base font-medium cursor-pointer"><span>Cancel</span></button>
+  <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm state border border-transparent bg-danger-9 fg-danger-contrast text-base font-medium cursor-pointer"><i class="icon ph ph-trash"></i><span>Delete</span></button>
+</div>
+          </div>
           <figure class="flex flex-col min-w-0 border border-weak bg-strong">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
-              <span class="text-mono-sm fg-weak truncate">ghost.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
+              <span class="text-mono-sm fg-weak truncate">layer.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
             </figcaption>
-            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;button class=&quot;state py-xs px-sm rounded-sm bg-transparent fg-neutral-12&quot;&gt;Ghost&lt;/button&gt;
-&lt;button class=&quot;state py-xs px-sm rounded-sm bg-accent-1-9 fg-accent-1-contrast&quot;&gt;Primary&lt;/button&gt;</code></pre>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;flex flex-wrap items-center gap-sm&quot;&gt;
+  &lt;button class=&quot;inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm state border border-transparent bg-accent-1-9 fg-accent-1-contrast text-base font-medium cursor-pointer&quot;&gt;&lt;span&gt;Save changes&lt;/span&gt;&lt;/button&gt;
+  &lt;button class=&quot;inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm state border border-transparent bg-neutral-a2 fg-neutral-12 text-base font-medium cursor-pointer&quot;&gt;&lt;i class=&quot;icon ph ph-download-simple&quot;&gt;&lt;/i&gt;&lt;span&gt;Export&lt;/span&gt;&lt;/button&gt;
+  &lt;button class=&quot;inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm state border border-transparent bg-transparent fg-neutral-12 text-base font-medium cursor-pointer&quot;&gt;&lt;span&gt;Cancel&lt;/span&gt;&lt;/button&gt;
+  &lt;button class=&quot;inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm state border border-transparent bg-danger-9 fg-danger-contrast text-base font-medium cursor-pointer&quot;&gt;&lt;i class=&quot;icon ph ph-trash&quot;&gt;&lt;/i&gt;&lt;span&gt;Delete&lt;/span&gt;&lt;/button&gt;
+&lt;/div&gt;</code></pre>
           </figure>
           </div>
         </section>
@@ -146,22 +471,59 @@
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-text break-words">Every interactive element (links, buttons, summaries, fields, labels, and the button, tab, option, menuitem and switch roles) transitions its colours, opacity, shadow and transforms by default, at the motion duration and easing. Reduced motion cuts it. Anything else that changes with state names <code>transition</code>.</p>
           <p class="text-body-md max-w-text break-words">Focus: buttons, links and checkable controls get a 2px accent ring on <code>:focus-visible</code>. A text field draws the ring over its own border, so a border class can't hide it, and a field box (<code>cursor-text</code>) draws it on the box while its bare input draws none.</p>
+          <p class="text-body-md max-w-text break-words">Hover to see the fade, then press Tab to walk the ring along the toolbar.</p>
+          <div data-example class="tier-product p-surface rounded-md border border-weak bg-strong">
+<div class="inline-flex h-control rounded-sm border-2 border-transparent bg-neutral-a2" role="toolbar" aria-label="Table tools">
+  <button class="inline-flex items-center h-full px-nested gap-gutter-half rounded-inner state border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon icon-sm ph-bold ph-funnel"></i><span>Filter</span></button>
+  <button class="inline-flex items-center h-full px-nested gap-gutter-half rounded-inner state border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon icon-sm ph-bold ph-sort-ascending"></i><span>Sort</span></button>
+  <span class="mx-3xs my-2xs border-s border-neutral-6" aria-hidden="true"></span>
+  <button class="inline-flex items-center justify-center h-full aspect-square rounded-inner state border-0 bg-transparent fg-neutral-11 cursor-pointer" aria-label="Close"><i class="icon icon-sm ph-bold ph-x"></i></button>
+</div>
+          </div>
+          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
+              <span class="text-mono-sm fg-weak truncate">motion.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
+            </figcaption>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;inline-flex h-control rounded-sm border-2 border-transparent bg-neutral-a2&quot; role=&quot;toolbar&quot; aria-label=&quot;Table tools&quot;&gt;
+  &lt;button class=&quot;inline-flex items-center h-full px-nested gap-gutter-half rounded-inner state border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer&quot;&gt;&lt;i class=&quot;icon icon-sm ph-bold ph-funnel&quot;&gt;&lt;/i&gt;&lt;span&gt;Filter&lt;/span&gt;&lt;/button&gt;
+  &lt;button class=&quot;inline-flex items-center h-full px-nested gap-gutter-half rounded-inner state border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer&quot;&gt;&lt;i class=&quot;icon icon-sm ph-bold ph-sort-ascending&quot;&gt;&lt;/i&gt;&lt;span&gt;Sort&lt;/span&gt;&lt;/button&gt;
+  &lt;span class=&quot;mx-3xs my-2xs border-s border-neutral-6&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;
+  &lt;button class=&quot;inline-flex items-center justify-center h-full aspect-square rounded-inner state border-0 bg-transparent fg-neutral-11 cursor-pointer&quot; aria-label=&quot;Close&quot;&gt;&lt;i class=&quot;icon icon-sm ph-bold ph-x&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+          </figure>
           </div>
         </section>
         <section id="indicators" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Indicators</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-text break-words">An indicator follows the state it shows. A caret turns over when its disclosure or menu opens: put <code>group</code> on the <code>details</code> or on the wrapper holding the button and its popover.</p>
+          <p class="text-body-md max-w-text break-words">Open each row: its caret turns with it.</p>
+          <div data-example class="tier-product p-surface rounded-md border border-weak bg-strong">
+<div class="max-w-form">
+  <details class="group border-b border-neutral-6" open>
+    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-base font-semibold hover:fg-accent-1-11">Do I need a build step?<i class="icon icon-sm ph ph-caret-down fg-neutral-11 transition group-open:rotate-180" aria-hidden="true"></i></summary>
+    <p class="text-base fg-neutral-11 pb-sm">No. Link one stylesheet; every class already exists.</p>
+  </details>
+  <details class="group border-b border-neutral-6">
+    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-base font-semibold hover:fg-accent-1-11">Does it work in a CMS?<i class="icon icon-sm ph ph-caret-down fg-neutral-11 transition group-open:rotate-180" aria-hidden="true"></i></summary>
+    <p class="text-base fg-neutral-11 pb-sm">Yes. Any class works in any HTML.</p>
+  </details>
+</div>
+          </div>
           <figure class="flex flex-col min-w-0 border border-weak bg-strong">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
-              <span class="text-mono-sm fg-weak truncate">caret.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
+              <span class="text-mono-sm fg-weak truncate">indicators.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
             </figcaption>
-            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;details class=&quot;group&quot;&gt;
-  &lt;summary class=&quot;flex items-center justify-between list-none&quot;&gt;
-    Shipping &lt;i class=&quot;icon icon-sm ph ph-caret-down transition group-open:rotate-180&quot;&gt;&lt;/i&gt;
-  &lt;/summary&gt;
-  …
-&lt;/details&gt;</code></pre>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;max-w-form&quot;&gt;
+  &lt;details class=&quot;group border-b border-neutral-6&quot; open&gt;
+    &lt;summary class=&quot;flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-base font-semibold hover:fg-accent-1-11&quot;&gt;Do I need a build step?&lt;i class=&quot;icon icon-sm ph ph-caret-down fg-neutral-11 transition group-open:rotate-180&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/summary&gt;
+    &lt;p class=&quot;text-base fg-neutral-11 pb-sm&quot;&gt;No. Link one stylesheet; every class already exists.&lt;/p&gt;
+  &lt;/details&gt;
+  &lt;details class=&quot;group border-b border-neutral-6&quot;&gt;
+    &lt;summary class=&quot;flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-base font-semibold hover:fg-accent-1-11&quot;&gt;Does it work in a CMS?&lt;i class=&quot;icon icon-sm ph ph-caret-down fg-neutral-11 transition group-open:rotate-180&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/summary&gt;
+    &lt;p class=&quot;text-base fg-neutral-11 pb-sm&quot;&gt;Yes. Any class works in any HTML.&lt;/p&gt;
+  &lt;/details&gt;
+&lt;/div&gt;</code></pre>
           </figure>
           </div>
         </section>

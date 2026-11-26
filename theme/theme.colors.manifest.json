@@ -528,7 +528,7 @@
       },
       {
         "id": "parity",
-        "rule": "A part that stands apart from its surface in light mode by at least half a step also does in dark mode, and the other way round. Measured by mapping each painted colour, composited over its surface, to the nearest neutral step in that mode.",
+        "rule": "A part that stands apart from its surface in light mode by at least half a step also does in dark mode, and the other way round. Measured by mapping each painted colour, composited over its surface, to the nearest neutral step in that mode. Relief parts are left out: a material separates them by light (inset and cast shadows), which a step can't measure.",
         "check": "?audit=paint",
         "status": "decided"
       },

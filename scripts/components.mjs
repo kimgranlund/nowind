@@ -84,7 +84,8 @@ if (!utilities || !reset) throw new Error("components: nowind.css needs its @lay
 
 const defined = new Set();
 const walk = (nodes, fn) => nodes.forEach((n) => n.type === "at" ? walk(n.kids, fn) : n.type === "rule" && fn(n));
-walk(utilities.kids, (r) => { for (const m of r.head.matchAll(/\.((?:[\w-]|\\.)+)/g)) defined.add(m[1].replace(/\\(.)/g, "$1")); });
+const unesc = (c) => c.replace(/\\([0-9a-fA-F]{1,6}) ?/g, (_, h) => String.fromCodePoint(parseInt(h, 16))).replace(/\\(.)/g, "$1");
+walk(utilities.kids, (r) => { for (const m of r.head.matchAll(/\.((?:[\w-]|\\[0-9a-fA-F]{1,6} ?|\\.)+)/g)) defined.add(unesc(m[1])); });
 
 // A rule that styles a child of the class (.h-nested > .icon) must stay in the nowind layer, where it outranks the
 // child's own utilities (icon-sm) as it does for the stack; rules on the element itself go in components.
