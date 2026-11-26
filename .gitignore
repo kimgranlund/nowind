@@ -5,3 +5,4 @@ CLAUDE.local.md
 .env
 docs/loops/**/shots/
 .claude/settings.local.json
+review/

@@ -722,5 +722,30 @@
       "Markers with aspect-square, size-* and rounded-full render as true squares and circles.",
       "A clipping box (overflow-hidden) never hides its content at any width."
     ]
+  },
+  "layoutContract": {
+    "description": "How parts sit on the page at every width and root size. ?audit=layout measures each rule on the rendered page; node scripts/review.mjs form runs it over every page at 375, 768 and 1280px and 12, 16 and 18px roots.",
+    "rules": [
+      {
+        "id": "page-overflow",
+        "rule": "Nothing scrolls the page sideways at any width.",
+        "status": "decided"
+      },
+      {
+        "id": "text-overflow",
+        "rule": "Text stays inside its box: long words and URLs wrap, or the box scrolls (overflow-x-auto) or truncates (truncate).",
+        "status": "decided"
+      },
+      {
+        "id": "padding-symmetry",
+        "rule": "A painted box pads its start and end alike, unless an icon, a nested control or a badge sits at the shorter edge.",
+        "status": "decided"
+      },
+      {
+        "id": "start-edge",
+        "rule": "Text stacked in one column shares a start edge; an indent comes from a marker, icon, avatar or control at the start, not from stray padding.",
+        "status": "review"
+      }
+    ]
   }
 }

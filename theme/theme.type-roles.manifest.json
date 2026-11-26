@@ -483,5 +483,25 @@
       "Within a surface: title >= body >= supporting; a dialog title is larger than its buttons.",
       "An icon takes the step of the text beside it: icon with text-base, icon-sm with text-sm, icon-lg on a title row."
     ]
+  },
+  "alignmentContract": {
+    "description": "How text lines up with the text and boxes around it. ?audit=layout measures each rule from the font's own metrics (canvas measureText), so the check holds for any face.",
+    "rules": [
+      {
+        "id": "baseline",
+        "rule": "Text side by side in one row shares a baseline, within 1px, whatever its size or face; a row of mixed sizes aligns with items-baseline, not items-center.",
+        "status": "review"
+      },
+      {
+        "id": "centering",
+        "rule": "A label sits optically centred in its control: the middle of its cap height is within 1px of the middle of the box.",
+        "status": "review"
+      },
+      {
+        "id": "measure",
+        "rule": "Running text is no wider than max-w-text, 68ch of its own font.",
+        "status": "decided"
+      }
+    ]
   }
 }
