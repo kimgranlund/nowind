@@ -468,3 +468,61 @@ window.nowindOwnCSS = () => !!document.querySelector("style[data-page-css]");
   window.addEventListener("load", () => document.fonts.ready.then(run));
   window.nowindRunLayoutAudit = run;
 })();
+
+// Paint audit (open any page with ?audit=paint): checks the paint contract's rendered rules (paintContract in
+// theme/theme.colors.manifest.json); window.nowindPaintAudit holds the list. Parity: a part that stands apart from its
+// surface by at least half a step in one mode does in the other. Each fill is composited over its surface and mapped to
+// the nearest neutral step in that mode (by OKLab lightness), so the check counts steps, not contrast. Relief: a
+// relief-* part sits inside a material-* region.
+(() => {
+  if (!window.nowindAudits().includes("paint")) return;
+  const run = () => {
+    const out = [];
+    if (window.nowindOwnCSS()) { window.nowindPaintAudit = out; return out; }
+    const root = document.documentElement, was = root.dataset.colorMode;
+    const ctx = document.createElement("canvas").getContext("2d", { willReadFrequently: true });
+    const rgba = (str) => { ctx.clearRect(0, 0, 1, 1); ctx.fillStyle = "rgba(0,0,0,0)"; ctx.fillStyle = str; ctx.fillRect(0, 0, 1, 1); const d = ctx.getImageData(0, 0, 1, 1).data; return [d[0], d[1], d[2], d[3] / 255]; };
+    const over = (top, under) => top[3] >= 1 ? top : [0, 1, 2].map((i) => top[i] * top[3] + under[i] * (1 - top[3])).concat(1);
+    const L = ([r, g, b]) => { const lin = (c) => { c /= 255; return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4; }; const [R, G, B] = [lin(r), lin(g), lin(b)]; return Math.cbrt(0.4122214708 * R + 0.5363325363 * G + 0.0514459929 * B) * 0.2104542553 + Math.cbrt(0.2119034982 * R + 0.6806995451 * G + 0.1073969566 * B) * 0.7936177850 + Math.cbrt(0.0883024619 * R + 0.2817188376 * G + 0.6299787005 * B) * -0.0040720468; };
+    const frames = [...document.querySelectorAll("[data-example]")];
+    const sections = [...document.querySelectorAll("main section[id]")].filter((s) => !s.matches("[data-semantic-demo]"));
+    const inScope = (el) => frames.length ? !!el.closest("[data-example]") : sections.some((s) => s.contains(el)) && !el.closest("[data-semantic-demo]");
+    const where = (el) => { const s = el.closest("section[id]"); return `#${s ? s.id : "?"} ${el.tagName.toLowerCase()}.${[...el.classList].slice(0, 5).join(".")} “${el.textContent.trim().replace(/\s+/g, " ").slice(0, 24)}”`; };
+    const chroma = ([r, g, b]) => { const lin = (c) => { c /= 255; return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4; }; const [R, G, B] = [lin(r), lin(g), lin(b)]; const l = Math.cbrt(0.4122214708 * R + 0.5363325363 * G + 0.0514459929 * B), m = Math.cbrt(0.2119034982 * R + 0.6806995451 * G + 0.1073969566 * B), s2 = Math.cbrt(0.0883024619 * R + 0.2817188376 * G + 0.6299787005 * B); const A = 1.9779984951 * l - 2.4285922050 * m + 0.4505937099 * s2, Bb = 0.0259040371 * l + 0.7827717662 * m - 0.8086757660 * s2; return Math.hypot(A, Bb); };
+    const parts = [...document.querySelectorAll("main *")].filter((e) => inScope(e) && getComputedStyle(e).display !== "none" && e.getBoundingClientRect().width > 0);
+    const measure = (mode) => {
+      root.dataset.colorMode = mode;
+      const probe = document.createElement("div"); document.body.append(probe);
+      const steps = Array.from({ length: 12 }, (_, i) => { probe.style.background = `var(--neutral-${i + 1})`; return L(rgba(getComputedStyle(probe).backgroundColor)); });
+      probe.remove();
+      const toStep = (l) => { let best = 0, bd = Infinity; steps.forEach((s, i) => { const d = Math.abs(s - l); if (d < bd) { bd = d; best = i; } }); const n = best + (best < 11 && Math.sign(steps[best + 1] - steps[best]) === Math.sign(l - steps[best]) ? Math.abs(l - steps[best]) / Math.abs(steps[best + 1] - steps[best] || 1) : best > 0 && Math.sign(steps[best - 1] - steps[best]) === Math.sign(l - steps[best]) ? -Math.abs(l - steps[best]) / Math.abs(steps[best - 1] - steps[best] || 1) : 0); return n + 1; };
+      const eff = new Map();
+      const colourOf = (e) => { if (!e || e === root) return rgba(getComputedStyle(document.body).backgroundColor); if (eff.has(e)) return eff.get(e); const c = over(rgba(getComputedStyle(e).backgroundColor), colourOf(e.parentElement)); eff.set(e, c); return c; };
+      const res = new Map();
+      for (const e of parts) {
+        const own = rgba(getComputedStyle(e).backgroundColor);
+        if (own[3] === 0 || getComputedStyle(e).backgroundImage !== "none") continue;
+        const surf = colourOf(e.parentElement), mine = colourOf(e);
+        if (chroma(mine) > 0.03 || chroma(surf) > 0.03) continue;  // a coloured fill: the neutral step map can't place it
+        res.set(e, Math.abs(toStep(L(mine)) - toStep(L(surf))));
+      }
+      return res;
+    };
+    const still = document.createElement("style"); still.textContent = "*, *::before, *::after { transition: none !important; animation: none !important; }"; document.head.append(still);
+    const light = measure("light"), dark = measure("dark");
+    if (was) root.dataset.colorMode = was; else delete root.dataset.colorMode;
+    still.remove();
+    for (const [e, dl] of light) {
+      const dd = dark.get(e);
+      if (dd === undefined) continue;
+      if ((dl >= 0.5) !== (dd >= 0.5)) out.push({ rule: "parity", where: where(e), detail: `${dl.toFixed(1)} steps from its surface in light, ${dd.toFixed(1)} in dark` });
+    }
+    for (const e of parts) if ([...e.classList].some((c) => c.startsWith("relief-")) && !e.closest("[class*=material-]")) out.push({ rule: "relief", where: where(e), detail: "relief-* outside a material-* region" });
+    window.nowindPaintAudit = out;
+    console.log(`Paint audit: ${out.length} finding(s)`);
+    if (out.length) console.table(out);
+    return out;
+  };
+  window.addEventListener("load", run);
+  window.nowindRunPaintAudit = run;
+})();

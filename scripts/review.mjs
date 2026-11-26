@@ -3,8 +3,8 @@
 // rendered audit finds. No dependencies: it drives the browser over the DevTools protocol with Node's own WebSocket.
 //
 // Usage: node scripts/review.mjs [domain] [--pages a,b] [--widths 375,768] [--roots 12,16] [--quick]
-//        node scripts/review.mjs --self-test   break the showcase seven ways and confirm the layout audit catches each
-//   domain  form (type, geometry, layout; the default)
+//        node scripts/review.mjs --self-test   break the showcase nine ways and confirm the layout and paint audits catch each
+//   domain  form (type, geometry, layout; the default) or paint (colour by step in light and dark; one width and root)
 //   --quick one width (1280) and one root (16)
 // Writes review/<domain>.json (every finding with its page, width and root) and review/<domain>.md (grouped by rule,
 // each finding once with the contexts it appears in). The review folder is not committed.
@@ -19,11 +19,14 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const args = process.argv.slice(2);
 const opt = (name, def) => { const i = args.indexOf(`--${name}`); return i >= 0 ? args[i + 1] : def; };
 const domain = args.find((a) => !a.startsWith("--") && !args[args.indexOf(a) - 1]?.startsWith("--")) || "form";
-const DOMAINS = { form: { audits: ["type", "geometry", "layout"], globals: { type: "nowindRunTypeAudit", geometry: "nowindRunGeometryAudit", layout: "nowindRunLayoutAudit" } } };
+const DOMAINS = {
+  form: { audits: ["type", "geometry", "layout"], globals: { type: "nowindRunTypeAudit", geometry: "nowindRunGeometryAudit", layout: "nowindRunLayoutAudit" } },
+  paint: { audits: ["paint"], globals: { paint: "nowindRunPaintAudit" }, widths: "1280", roots: "16" },
+};
 if (!DOMAINS[domain]) { console.error(`review: unknown domain "${domain}". Known: ${Object.keys(DOMAINS).join(", ")}`); process.exit(2); }
 const quick = args.includes("--quick");
-const widths = (opt("widths", quick ? "1280" : "375,768,1280")).split(",").map(Number);
-const roots = (opt("roots", quick ? "16" : "12,16,18")).split(",").map(Number);
+const widths = (opt("widths", quick ? "1280" : DOMAINS[domain]?.widths || "375,768,1280")).split(",").map(Number);
+const roots = (opt("roots", quick ? "16" : DOMAINS[domain]?.roots || "12,16,18")).split(",").map(Number);
 const PORT = 8765, BASE = `http://localhost:${PORT}`;
 
 const pages = (() => {
@@ -70,6 +73,23 @@ const SELF_TEST = `(async () => {
   return JSON.stringify(out);
 })()`;
 
+const PAINT_SELF_TEST = `(async () => {
+  const has = (k) => window.nowindRunPaintAudit().some((f) => f.rule === k);
+  const host = document.querySelector("#data .p-md.rounded-md");
+  const add = (html) => { const d = document.createElement("div"); d.innerHTML = html; host.append(d); return () => d.remove(); };
+  const breaks = {
+    "parity": () => add('<span class="block p-sm bg-black">gone in dark</span>'),
+    "relief": () => add('<div class="relief-raised p-sm">no material</div>'),
+  };
+  const out = {};
+  for (const [k, f] of Object.entries(breaks)) {
+    if (has(k)) { out[k] = "already reported before the break"; continue; }
+    const undo = f(); await new Promise((r) => setTimeout(r, 60));
+    out[k] = has(k) ? "caught" : "missed"; undo();
+  }
+  return JSON.stringify(out);
+})()`;
+
 async function up() { try { return (await fetch(`${BASE}/site/index.html`)).ok; } catch { return false; } }
 
 async function main() {
@@ -102,15 +122,18 @@ async function main() {
   await send("Page.enable", {}, sessionId);
   await send("Runtime.enable", {}, sessionId);
   if (args.includes("--self-test")) {
-    // Break the showcase seven ways and confirm the layout audit reports each rule.
+    // Break the showcase nine ways and confirm the layout and paint audits report each rule.
     await send("Emulation.setDeviceMetricsOverride", { width: 768, height: 900, deviceScaleFactor: 1, mobile: false }, sessionId);
     const loaded = once("Page.loadEventFired", sessionId);
-    await send("Page.navigate", { url: `${BASE}/site/components.html?audit=layout` }, sessionId);
+    await send("Page.navigate", { url: `${BASE}/site/components.html?audit=layout,paint` }, sessionId);
     await loaded;
-    const { result } = await send("Runtime.evaluate", { awaitPromise: true, returnByValue: true, expression: SELF_TEST }, sessionId);
-    const res = JSON.parse(result.value);
+    const res = {};
+    for (const expr of [SELF_TEST, PAINT_SELF_TEST]) {
+      const { result } = await send("Runtime.evaluate", { awaitPromise: true, returnByValue: true, expression: expr }, sessionId);
+      Object.assign(res, JSON.parse(result.value));
+    }
     ws.close(); chrome.kill(); if (server) server.kill();
-    for (const [rule, v] of Object.entries(res)) console.log(`${v === "caught" ? "PASS" : "FAIL"}  layout self-test "${rule}" ${v}`);
+    for (const [rule, v] of Object.entries(res)) console.log(`${v === "caught" ? "PASS" : "FAIL"}  self-test "${rule}" ${v}`);
     const bad = Object.values(res).some((v) => v !== "caught");
     console.log(bad ? "review self-test: a break went unreported" : "review self-test: every break was caught");
     process.exit(bad ? 1 : 0);

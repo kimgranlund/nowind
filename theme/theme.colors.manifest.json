@@ -478,5 +478,66 @@
     },
     "use": "Opacity of the .state layer, a wash of currentColor over the element under its content. Selected also covers pressed, expanded, current and a checked child. Disabled shows none.",
     "derivation": "After Material's state layers, raised by about half again (hover 8% → 12%) because the 8% wash read as too subtle on Nowind's light surfaces."
+  },
+  "paintContract": {
+    "description": "Which palette step each job takes. Steps are Radix's: 1–2 backgrounds, 3–5 component fills (rest, hover, pressed), 6–8 borders (subtle, default, strong), 9–10 solids, 11–12 text. The examples lint checks the classes (the templates script's paint report); ?audit=paint checks that parts stay distinct from their surface in both modes, by step, not by contrast ratio (contrast is out of scope). node scripts/review.mjs paint runs the rendered pass over every page in light and dark.",
+    "jobs": [
+      {
+        "job": "fill",
+        "classes": "bg-{palette}-N",
+        "steps": "1–5, 9–10, a1–a5, white, black",
+        "exception": "11–12 as an inverse surface whose text is fg 1–2, contrast, white or black"
+      },
+      {
+        "job": "border",
+        "classes": "border-{palette}-N",
+        "steps": "5–8, a5–a8",
+        "exception": "1–2 as a cut-out ring the colour of the surface (rounded-full, border-2)"
+      },
+      {
+        "job": "text",
+        "classes": "fg-{palette}-N on text",
+        "steps": "11–12; 8 for quiet text (placeholder, faint, disabled); contrast, white or black on a solid; 1–2 on an inverse surface",
+        "exception": ""
+      },
+      {
+        "job": "icon",
+        "classes": "fg-{palette}-N on an icon",
+        "steps": "6–12, contrast, white, black",
+        "exception": "6–8 for an off or decorative mark (an empty rating star)"
+      },
+      {
+        "job": "solid",
+        "classes": "bg-{palette}-9 or -10",
+        "steps": "its text and icons take fg-{palette}-contrast, fg-white or fg-black",
+        "exception": ""
+      }
+    ],
+    "rules": [
+      {
+        "id": "step-by-job",
+        "rule": "Each palette class uses a step its job allows (jobs above).",
+        "check": "lint",
+        "status": "decided"
+      },
+      {
+        "id": "on-solid",
+        "rule": "Text and icons on a solid fill use that palette's contrast token (or white or black), never another step.",
+        "check": "lint",
+        "status": "decided"
+      },
+      {
+        "id": "parity",
+        "rule": "A part that stands apart from its surface in light mode by at least half a step also does in dark mode, and the other way round. Measured by mapping each painted colour, composited over its surface, to the nearest neutral step in that mode.",
+        "check": "?audit=paint",
+        "status": "decided"
+      },
+      {
+        "id": "relief",
+        "rule": "A relief-* part sits inside a material-* region, which paints it.",
+        "check": "?audit=paint",
+        "status": "decided"
+      }
+    ]
   }
 }

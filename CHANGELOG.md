@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- **Paint review:** a paint contract in the colours manifest (`paintContract`) gives each job its palette steps: fills 1–5 and 9–10 (11–12 only as an inverse surface that sets its own light text), borders 5–8, text 11–12 or 8 when quiet, icons 6–12, and the contrast token on a solid. The examples lint enforces it (`python3 scripts/templates.py --paint-report`), and `?audit=paint` checks that a part distinct from its surface in one mode is in the other, counting steps rather than contrast. `node scripts/review.mjs paint` runs it over every page; the self-tests break both rules.
+- **The reset clears button backgrounds,** as Tailwind's preflight does: a `<button>` with no fill class had shown the browser's grey, a mid grey in dark mode.
+- **Inverse toasts set their own text colour** (`bg-neutral-12 fg-neutral-1` on the surface), so anything inside reads light by default.
 - **Edges audit follows its rule:** text is measured against the padding of its nearest padded box, not a fixed 2px, so small controls at a 12px root on a phone (about 1.5px padding by the geometry) pass; a painted box with no padding still needs 2px. The Form review now reads clean.
 - **Labels centre optically:** the reset trims the label inside a control, and a text-only `td` or `th` sized `h-control`, to its cap height and baseline (`text-box: trim-both cap alphabetic`), so `items-center` centres the letters rather than the line box; they had sat up to 1.7px high. Where `text-box` isn't supported the old line box stays. Wrap a badge's or control's text in a `<span>`; the examples now do.
 - **Fixes from the first Form review** (2030 findings to 38, every page at three widths and three root sizes):

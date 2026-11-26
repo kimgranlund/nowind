@@ -1118,6 +1118,55 @@ def parse_tree(html_):
     return nodes
 
 
+def paint_audit():
+    """Check every palette class in the examples against the paint contract (paintContract in
+    theme/theme.colors.manifest.json): each class's step must suit its job (fill, border, text, icon), and text and
+    icons on a solid fill take that palette's contrast token. Returns a list of (where, rule, problem, element)."""
+    PAL = r"(neutral|accent-\d|danger|warning|success|info)"
+    CLS = re.compile(rf"(?:([a-z-]+):)?(bg|fg|border(?:-[trblsexy])?)-{PAL}-(a?\d+|contrast)")
+    WB = re.compile(r"(?:([a-z-]+):)?(bg|fg)-(white|black)")
+    num = lambda st: int(st.lstrip("a"))
+    def base_bg(n):
+        """The base (unvariant) fill class on n, as (palette, step) or ("wb", colour)."""
+        for t in n.toks:
+            m = CLS.fullmatch(t)
+            if m and not m.group(1) and m.group(2) == "bg": return (m.group(3), m.group(4))
+            m = WB.fullmatch(t)
+            if m and not m.group(1) and m.group(2) == "bg": return ("wb", m.group(3))
+        return None
+    out = []
+    for where, html_ in example_sources():
+        for n in parse_tree(html_):
+            label = f"<{n.tag} class=\"{' '.join(n.toks)[:70]}\">"
+            icon = n.tag == "i" or "icon" in n.toks
+            surface = next((b for b in (base_bg(a) for a in [n, *n.ancestors()]) if b), None)
+            plain = surface and surface[0] != "wb" and not surface[1].startswith("a")
+            inverse = plain and num(surface[1]) >= 11
+            solid = plain and num(surface[1]) in (9, 10)
+            ring = "rounded-full" in n.toks and "border-2" in n.toks
+            for t in n.toks:
+                m = CLS.fullmatch(t)
+                if not m: continue
+                variant, prop, pal, st = m.groups()
+                prop = prop.split("-")[0]
+                if st == "contrast": continue
+                k, alpha = num(st), st.startswith("a")
+                if prop == "bg":
+                    ok = k <= 5 if alpha else (k <= 5 or k in (9, 10))
+                    if not ok and k >= 11 and not alpha:
+                        ok = any(re.fullmatch(rf"fg-{PAL}-(1|2|contrast)|fg-(white|black)", x) for x in n.toks) or not n.alltext().strip()
+                    if not ok: out.append((where, "step-by-job", f"fill {t} (fills take 1–5, 9–10, a1–a5; 11–12 only as an inverse surface with fg 1–2)", label))
+                elif prop == "border":
+                    ok = (5 <= k <= 8) or (k <= 2 and not alpha and ring)
+                    if not ok: out.append((where, "step-by-job", f"border {t} (borders take 5–8; 1–2 only as a cut-out ring)", label))
+                else:
+                    ok = k >= 6 if icon else (k in (8, 11, 12) or (k <= 2 and (inverse or bool(variant))))
+                    if not ok: out.append((where, "step-by-job", f"{'icon' if icon else 'text'} {t} ({'icons take 6–12' if icon else 'text takes 11–12, 8 when quiet, 1–2 on an inverse surface'})", label))
+                    if solid and not variant and surface[0] != pal and (icon or n.alltext().strip()):
+                        out.append((where, "on-solid", f"{t} on a solid {surface[0]}-{surface[1]} fill (use fg-{surface[0]}-contrast, fg-white or fg-black)", label))
+    return out
+
+
 def geometry_audit():
     """Check every part in the examples against the geometry contract (geometryContract in
     theme/theme.geometry.manifest.json): each part gets a kind, and its height, padding, gap and corner classes must be
@@ -1289,6 +1338,7 @@ def lint_examples():
             continue
         errors += bad(sec[sec.index(body) + len(body):], f"site/components.html #{m.group(1)}")
     errors += [f"{w}: {k}: {prob}. Fix: the contract's classes (geometryContract in theme/theme.geometry.manifest.json). {lab}" for w, k, prob, lab in geometry_audit()]
+    errors += [f"{w}: {k}: {prob}. Fix: the paint contract (paintContract in theme/theme.colors.manifest.json). {lab}" for w, k, prob, lab in paint_audit()]
     findings, unclassified = type_audit()
     errors += [f"{w}: {k} text is text-{eff}; the size contract wants text-{want}. Fix: the contract's size (sizeContract in theme/theme.type-roles.manifest.json). {lab}" for w, k, eff, want, lab in findings]
     errors += [f"{w}: {lab} sets text-{own} but has no kind in the size contract. Fix: give it a kind's classes, or let it inherit." for w, own, lab in unclassified]
@@ -1358,6 +1408,15 @@ def main():
         f.write(json.dumps(comp, indent=2, ensure_ascii=False) + "\n")
     print("wrote components.manifest.json", len(comp["components"]), "components")
 
+if "--paint-report" in sys.argv:
+    import collections
+    g = paint_audit()
+    print(f"{len(g)} paint findings\n")
+    for (k, prob), c in collections.Counter((f[1], f[2].split(" (")[0]) for f in g).most_common():
+        print(f"  {c:3}  {k:12} {prob}")
+    print()
+    for f in g: print(f"OFF  {f[0]}: {f[1]}: {f[2]}  {f[3]}")
+    sys.exit(0)
 if "--geometry-report" in sys.argv:
     import collections
     g = geometry_audit()
