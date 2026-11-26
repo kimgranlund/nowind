@@ -180,8 +180,8 @@ document.querySelectorAll("[data-glass-slider]").forEach((box) => {
 });
 
 // Display settings: the band's panel sets the theme (light, dark or the system's), the root font size (12 to 18px) and
-// the tier (auto keeps each region's own; product, content or brand applies one to the main region and every example
-// frame, the tiers demo excepted). Each is remembered; the head script applies the theme and size before paint.
+// the tier (until one is chosen each region keeps its own and the panel shows the main region's; product, content or
+// brand applies one to the main region and every example frame, the tiers demo excepted). Each is remembered; the head script applies the theme and size before paint.
 (() => {
   const root = document.documentElement, media = matchMedia("(prefers-color-scheme: dark)");
   const store = (k, v) => { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch {} };
@@ -191,7 +191,7 @@ document.querySelectorAll("[data-glass-slider]").forEach((box) => {
   const state = {
     theme: read("nowind-color-mode") || "system",
     size: String(Math.round(parseFloat(getComputedStyle(root).fontSize))),
-    tier: read("nowind-tier") || "auto",
+    tier: read("nowind-tier") || (document.getElementById("content")?.dataset.tierDefault) || "product",
   };
   const apply = {
     theme(v) { if (v === "system") delete root.dataset.colorMode; else root.dataset.colorMode = v; store("nowind-color-mode", v === "system" ? null : v); },
@@ -199,10 +199,9 @@ document.querySelectorAll("[data-glass-slider]").forEach((box) => {
     tier(v) {
       targets.forEach((e) => {
         e.classList.remove("tier-product", "tier-content", "tier-brand");
-        const t = v === "auto" ? e.dataset.tierDefault : v;
-        if (t) e.classList.add(`tier-${t}`);
+        e.classList.add(`tier-${v}`);
       });
-      store("nowind-tier", v === "auto" ? null : v);
+      store("nowind-tier", v);
     },
   };
   const show = () => document.querySelectorAll("[data-setting]").forEach((b) => b.setAttribute("aria-pressed", String(state[b.dataset.setting] === b.dataset.value)));
@@ -211,7 +210,7 @@ document.querySelectorAll("[data-glass-slider]").forEach((box) => {
     apply[b.dataset.setting](b.dataset.value);
     show();
   }));
-  if (state.tier !== "auto") apply.tier(state.tier);
+  if (read("nowind-tier")) apply.tier(state.tier);
   media.addEventListener("change", show);
   show();
 })();

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- **No Auto tier in the settings panel:** the tier control offers Product, Content and Brand. Until you choose, each region keeps its own tier and the panel shows the page's.
+
 ## 0.10.0 (2026-11-25)
 
 - **Pickers and menus open below:** the select's picker and the `anchor-*` popovers set `position-try-order: normal`, so they open below their trigger and flip only when they don't fit; the browser's default chose whichever side had more room, so a field low on the screen opened its list above.
