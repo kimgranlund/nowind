@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.13.0 (2026-11-26)
+
 - **Resets page:** a docs page for the reset and the element defaults: what the reset does, with a classless example; the `defaults` region with its live form; every default token with its fallback; how to override one (on `:root`, on a region, or with a utility); and the layer order. Element defaults moved there from the Convenience classes page.
 - **Element defaults fixes, from /code-review:** a checkbox or radio label written as a sibling stays beside its box; a list-box select (`multiple` or `size`) keeps its height; the docs say that defaults fill what an element's classes leave unset and that only `type="submit"` makes a button primary.
 - **Specimen on phones:** a long value sits below the sample instead of over it.
