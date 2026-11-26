@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en" class="scroll-pt-4xl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resets · Nowind</title>
+<link rel="icon" href="data:,">
+<script>try{var d=document.documentElement,m=localStorage.getItem("nowind-color-mode"),z=localStorage.getItem("nowind-root-size");if(m)d.dataset.colorMode=m;if(z)d.style.fontSize=z+"px"}catch(e){}</script>
+<link rel="stylesheet" href="../../theme.css">
+<link rel="stylesheet" href="../../nowind.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css">
+</head>
+<body class="bg fg">
+<div class="sticky top-0 z-30">
+<header class="light bg-inverse fg-inverse">
+  <div class="flex items-center gap-lg h-header px-grid">
+    <a href="../index.html" class="inline-flex items-center gap-gutter-half no-underline fg-inverse hover:fg-inverse-weak transition-colors"><i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-inverse-weak">0.12.0</span></a>
+    <nav aria-label="Sections" class="hidden md:flex items-center gap-lg"><a href="docs-home.html" aria-current="true" class="inline-flex items-center h-header border-b-2 border-accent-1 no-underline fg-inverse text-title-sm">Docs</a><a href="components-index.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Components</a><a href="../specimen.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Specimen</a><a href="classes.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Classes</a></nav>
+    <button type="button" popovertarget="site-settings" class="inline-flex items-center justify-center size-nested ms-auto rounded-xs border border-transparent bg-transparent fg-inverse-weak hover:fg-inverse cursor-pointer transition-colors" aria-label="Display settings"><i class="icon ph ph-sliders-horizontal"></i></button>
+    <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center size-nested no-underline fg-inverse-weak hover:fg-inverse transition-colors" aria-label="Nowind on GitHub"><i class="icon ph ph-github-logo"></i></a>
+  </div>
+</header>
+<div id="site-settings" popover class="anchor-bottom-end scope text-chrome w-max p-surface rounded-md bg fg border shadow-lg">
+  <div class="flex flex-col gap-sm">
+  <div class="flex flex-col gap-3xs">
+    <span class="fg-weak">Theme</span>
+    <div class="flex h-control rounded-sm border-2 border-transparent bg-component-weak" role="group" aria-label="Theme"><button type="button" data-setting="theme" data-value="light" aria-pressed="false" class="grow inline-flex items-center justify-center gap-gutter-half h-full px-nested rounded-inner border-0 bg-transparent hover:bg-component pressed:bg-white fg-weak pressed:fg-black font-medium cursor-pointer"><i class="icon icon-sm ph ph-sun"></i><span>Light</span></button><button type="button" data-setting="theme" data-value="dark" aria-pressed="false" class="grow inline-flex items-center justify-center gap-gutter-half h-full px-nested rounded-inner border-0 bg-transparent hover:bg-component pressed:bg-white fg-weak pressed:fg-black font-medium cursor-pointer"><i class="icon icon-sm ph ph-moon"></i><span>Dark</span></button><button type="button" data-setting="theme" data-value="system" aria-pressed="false" class="grow inline-flex items-center justify-center gap-gutter-half h-full px-nested rounded-inner border-0 bg-transparent hover:bg-component pressed:bg-white fg-weak pressed:fg-black font-medium cursor-pointer"><i class="icon icon-sm ph ph-desktop"></i><span>System</span></button></div>
+  </div>
+  <div class="flex flex-col gap-3xs">
+    <span class="fg-weak">Base size</span>
+    <div class="flex h-control rounded-sm border-2 border-transparent bg-component-weak" role="group" aria-label="Base size"><button type="button" data-setting="size" data-value="12" aria-pressed="false" class="grow inline-flex items-center justify-center gap-gutter-half h-full px-nested rounded-inner border-0 bg-transparent hover:bg-component pressed:bg-white fg-weak pressed:fg-black font-medium cursor-pointer"><span>12</span></button><button type="button" data-setting="size" data-value="14" aria-pressed="false" class="grow inline-flex items-center justify-center gap-gutter-half h-full px-nested rounded-inner border-0 bg-transparent hover:bg-component pressed:bg-white fg-weak pressed:fg-black font-medium cursor-pointer"><span>14</span></button><button type="button" data-setting="size" data-value="16" aria-pressed="false" class="grow inline-flex items-center justify-center gap-gutter-half h-full px-nested rounded-inner border-0 bg-transparent hover:bg-component pressed:bg-white fg-weak pressed:fg-black font-medium cursor-pointer"><span>16</span></button><button type="button" data-setting="size" data-value="18" aria-pressed="false" class="grow inline-flex items-center justify-center gap-gutter-half h-full px-nested rounded-inner border-0 bg-transparent hover:bg-component pressed:bg-white fg-weak pressed:fg-black font-medium cursor-pointer"><span>18</span></button></div>
+  </div>
+  <div class="flex flex-col gap-3xs">
+    <span class="fg-weak">Tier</span>
+    <div class="flex h-control rounded-sm border-2 border-transparent bg-component-weak" role="group" aria-label="Tier"><button type="button" data-setting="tier" data-value="product" aria-pressed="false" class="grow inline-flex items-center justify-center gap-gutter-half h-full px-nested rounded-inner border-0 bg-transparent hover:bg-component pressed:bg-white fg-weak pressed:fg-black font-medium cursor-pointer"><span>Product</span></button><button type="button" data-setting="tier" data-value="content" aria-pressed="false" class="grow inline-flex items-center justify-center gap-gutter-half h-full px-nested rounded-inner border-0 bg-transparent hover:bg-component pressed:bg-white fg-weak pressed:fg-black font-medium cursor-pointer"><span>Content</span></button><button type="button" data-setting="tier" data-value="brand" aria-pressed="false" class="grow inline-flex items-center justify-center gap-gutter-half h-full px-nested rounded-inner border-0 bg-transparent hover:bg-component pressed:bg-white fg-weak pressed:fg-black font-medium cursor-pointer"><span>Brand</span></button></div>
+  </div>
+  </div>
+</div>
+<div class="flex items-center gap-xs px-grid py-2xs border-b-2 border-strong bg">
+  <button type="button" popovertarget="site-map" class="inline-flex items-center gap-gutter-half min-w-0 h-control px-control rounded-sm border hover:bg-component-weak bg text-title-sm cursor-pointer transition-colors" aria-label="Site map: Docs"><span class="fg-weak">Docs</span><span class="fg-subtle">/</span><span class="truncate">Resets</span><i class="icon caret fg-weak" aria-hidden="true"></i></button>
+  <button type="button" data-search-open class="inline-flex items-center gap-gutter grow min-w-0 max-w-form h-control px-control rounded-sm border hover:border-strong bg-strong fg-subtle text-control-md cursor-text transition-colors" aria-label="Search the site"><i class="icon ph ph-magnifying-glass"></i><span class="grow truncate text-start">Search pages, components and classes</span><kbd class="hidden sm:inline text-mono-sm">⌘K</kbd></button>
+  <span class="flex-1 hidden lg:block"></span>
+  <span class="hidden sm:flex items-center gap-3xs"><a href="reference.html" class="inline-flex items-center justify-center size-control rounded-sm border hover:bg-component-weak no-underline fg transition-colors" aria-label="Previous: Page grid and shell"><i class="icon ph ph-arrow-left"></i></a><a href="convenience.html" class="inline-flex items-center justify-center size-control rounded-sm border hover:bg-component-weak no-underline fg transition-colors" aria-label="Next: Convenience classes"><i class="icon ph ph-arrow-right"></i></a></span>
+</div>
+</div>
+<div id="site-map" popover class="anchor-bottom w-full max-w-measure max-h-below-header overflow-y-auto p-surface rounded-md bg fg border shadow-lg">
+  <nav aria-label="Site map" class="grid grid-cols-1 md:grid-cols-4 gap-group">
+    <div class=" flex flex-col gap-2xs min-w-0"><span class="px-nested text-kicker fg-weak">Docs</span><ul role="list" class="grid grid-cols-1"><li><a href="docs-home.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Overview</a></li><li><a href="guide.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Guide</a></li><li><a href="colour.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Colour</a></li><li><a href="type-space.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Type and space</a></li><li><a href="states.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">States and variants</a></li><li><a href="materials.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Materials</a></li><li><a href="reference.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Reference</a></li><li><a href="resets.html" aria-current="page" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm bg-component-accent-1 fg-accent-1 font-medium">Resets</a></li><li><a href="convenience.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Convenience classes</a></li><li><a href="changelog.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Changelog</a></li><li><a href="index.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Templates</a></li></ul></div>
+    <div class="md:col-span-2 flex flex-col gap-2xs min-w-0"><span class="px-nested text-kicker fg-weak">Components</span><ul role="list" class="grid grid-cols-2 gap-x-md"><li><a href="components-index.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">All components</a></li><li><a href="../components.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Showcase</a></li></ul><div class="grid grid-cols-2 gap-x-md gap-y-sm pt-2xs"><div class="flex flex-col gap-sm min-w-0"><div class="flex flex-col gap-3xs min-w-0"><span class="px-nested text-label fg-subtle">Actions</span><ul role="list" class="grid grid-cols-1"><li><a href="c-button.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Button</a></li><li><a href="c-icon-button.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Icon button</a></li><li><a href="c-segmented.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Segmented control</a></li></ul></div><div class="flex flex-col gap-3xs min-w-0"><span class="px-nested text-label fg-subtle">Status</span><ul role="list" class="grid grid-cols-1"><li><a href="c-badge.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Badge</a></li><li><a href="c-alert.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Alert</a></li><li><a href="c-toast.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Toast</a></li></ul></div><div class="flex flex-col gap-3xs min-w-0"><span class="px-nested text-label fg-subtle">Forms</span><ul role="list" class="grid grid-cols-1"><li><a href="c-text-field.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Text field</a></li><li><a href="c-select.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Select</a></li><li><a href="c-form-controls.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Checkbox, radio and switch</a></li><li><a href="c-combobox.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Combobox</a></li><li><a href="c-date-range.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Date range</a></li></ul></div><div class="flex flex-col gap-3xs min-w-0"><span class="px-nested text-label fg-subtle">Layout</span><ul role="list" class="grid grid-cols-1"><li><a href="c-card.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Card</a></li><li><a href="c-media-card.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Media card</a></li></ul></div></div><div class="flex flex-col gap-sm min-w-0"><div class="flex flex-col gap-3xs min-w-0"><span class="px-nested text-label fg-subtle">Navigation</span><ul role="list" class="grid grid-cols-1"><li><a href="c-tabs.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Tabs</a></li><li><a href="c-breadcrumbs.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Breadcrumbs</a></li><li><a href="c-pagination.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Pagination</a></li></ul></div><div class="flex flex-col gap-3xs min-w-0"><span class="px-nested text-label fg-subtle">Overlays</span><ul role="list" class="grid grid-cols-1"><li><a href="c-menu.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Popover menu</a></li><li><a href="c-dialog.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Dialog</a></li><li><a href="c-tooltip.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Tooltip</a></li></ul></div><div class="flex flex-col gap-3xs min-w-0"><span class="px-nested text-label fg-subtle">Disclosure</span><ul role="list" class="grid grid-cols-1"><li><a href="c-accordion.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Accordion</a></li></ul></div><div class="flex flex-col gap-3xs min-w-0"><span class="px-nested text-label fg-subtle">Data display</span><ul role="list" class="grid grid-cols-1"><li><a href="c-avatar.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Avatar and group</a></li><li><a href="c-progress.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Progress bar</a></li><li><a href="c-table.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Table</a></li><li><a href="c-sortable-table.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Sortable table</a></li></ul></div><div class="flex flex-col gap-3xs min-w-0"><span class="px-nested text-label fg-subtle">Feedback</span><ul role="list" class="grid grid-cols-1"><li><a href="c-empty-state.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Empty state</a></li><li><a href="c-loading.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Spinner and skeleton</a></li></ul></div></div></div></div>
+    <div class="flex flex-col gap-group"><div class=" flex flex-col gap-2xs min-w-0"><span class="px-nested text-kicker fg-weak">Specimen</span><ul role="list" class="grid grid-cols-1"><li><a href="../specimen.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Tokens</a></li><li><a href="../utilities.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Utilities demo</a></li></ul></div><div class=" flex flex-col gap-2xs min-w-0"><span class="px-nested text-kicker fg-weak">Classes</span><ul role="list" class="grid grid-cols-1"><li><a href="classes.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Regular</a></li><li><a href="semantic.html" class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm state fg-weak hover:fg">Semantic</a></li></ul></div></div>
+  </nav>
+</div>
+<main id="content" class="tier-content px-grid">
+  <div class="grid grid-cols-12 gap-x-grid">
+        <header class="col-span-12 flex flex-col gap-field pt-page pb-xl">
+            <span class="text-kicker fg-weak">Docs</span>
+            <h1 class="text-display-sm text-balance">Resets</h1>
+            <p class="text-body-md fg-weak max-w-text">Nowind starts from a reset that makes bare HTML look considered without fighting your classes, and offers an opt-in region of styled element defaults for markup with no classes at all. Both live in the <code>reset</code> layer, under <code>:where()</code>, so any class wins.</p>
+          </header>
+        <section id="reset" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">The reset</h2></div>
+          <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
+          <p class="text-body-md max-w-text break-words">Every element gets <code class="whitespace-normal"><span class="whitespace-nowrap">box-sizing:</span> <span class="whitespace-nowrap">border-box</span></code> and zero-width solid borders, so a <code>border</code> class sets only the width. Headings take the heading roles unless a <code>text-*</code> class sizes them. Links keep their underline, and text wraps with balanced headings and pretty paragraphs. Checkboxes, radios, switches, sliders, progress and meter are drawn from the theme. Buttons are left bare, transparent and unpadded, so a utility stack starts from nothing. Focus draws a ring, interactive elements transition, and reduced motion turns that off.</p>
+          <p class="text-body-md max-w-text break-words">The example below has no classes: it is what the reset alone gives you.</p>
+          <div data-example data-semantic-demo class="tier-product p-surface rounded-md border border-weak bg-strong">
+<h3>A heading</h3>
+<p>A paragraph with <a href="#">a link</a>, <code class="whitespace-normal"><span class="whitespace-nowrap">inline</span> <span class="whitespace-nowrap">code</span></code> and a <kbd>⌘K</kbd> key. Text wraps without leaving one word alone on the last line.</p>
+<ul><li>A list keeps its markers</li><li>and its indent</li></ul>
+<table><tr><th>Plan</th><th>Seats</th></tr><tr><td>Team</td><td>20</td></tr></table>
+<p><button type="button">Button</button> <input placeholder="Input" aria-label="Input"> <select aria-label="Select"><option>Select</option></select></p>
+<p><label><input type="checkbox" checked> Checkbox</label> <label><input type="radio" checked> Radio</label> <label><input type="checkbox" role="switch" checked> Switch</label></p>
+<p><input type="range" value="40" aria-label="Range"> <progress value="60" max="100">60%</progress> <meter value="0.8" min="0" max="1" low="0.3" high="0.7" optimum="0.2">80%</meter></p>
+          </div>
+          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
+              <span class="text-mono-sm fg-weak truncate">bare.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
+            </figcaption>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;h3&gt;A heading&lt;/h3&gt;
+&lt;p&gt;A paragraph with &lt;a href=&quot;#&quot;&gt;a link&lt;/a&gt;, &lt;code&gt;inline code&lt;/code&gt; and a &lt;kbd&gt;⌘K&lt;/kbd&gt; key. Text wraps without leaving one word alone on the last line.&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;A list keeps its markers&lt;/li&gt;&lt;li&gt;and its indent&lt;/li&gt;&lt;/ul&gt;
+&lt;table&gt;&lt;tr&gt;&lt;th&gt;Plan&lt;/th&gt;&lt;th&gt;Seats&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Team&lt;/td&gt;&lt;td&gt;20&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;p&gt;&lt;button type=&quot;button&quot;&gt;Button&lt;/button&gt; &lt;input placeholder=&quot;Input&quot; aria-label=&quot;Input&quot;&gt; &lt;select aria-label=&quot;Select&quot;&gt;&lt;option&gt;Select&lt;/option&gt;&lt;/select&gt;&lt;/p&gt;
+&lt;p&gt;&lt;label&gt;&lt;input type=&quot;checkbox&quot; checked&gt; Checkbox&lt;/label&gt; &lt;label&gt;&lt;input type=&quot;radio&quot; checked&gt; Radio&lt;/label&gt; &lt;label&gt;&lt;input type=&quot;checkbox&quot; role=&quot;switch&quot; checked&gt; Switch&lt;/label&gt;&lt;/p&gt;
+&lt;p&gt;&lt;input type=&quot;range&quot; value=&quot;40&quot; aria-label=&quot;Range&quot;&gt; &lt;progress value=&quot;60&quot; max=&quot;100&quot;&gt;60%&lt;/progress&gt; &lt;meter value=&quot;0.8&quot; min=&quot;0&quot; max=&quot;1&quot; low=&quot;0.3&quot; high=&quot;0.7&quot; optimum=&quot;0.2&quot;&gt;80%&lt;/meter&gt;&lt;/p&gt;</code></pre>
+          </figure>
+          </div>
+        </section>
+        <section id="defaults" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Element defaults</h2></div>
+          <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
+          <p class="text-body-md max-w-text break-words">Put <code>defaults</code> on a region and its bare elements take styled defaults: buttons, text fields, selects, textareas, checkboxes, radios, switches, sliders, links, labels and table cells. A button with <code>type="submit"</code> takes the primary fill. Nothing below carries a class.</p>
+          <p class="text-body-md max-w-text break-words">The defaults fill only what an element's classes leave unset, so a utility class still wins. Keep utility-built controls outside the region, or they may pick up a default such as the control padding.</p>
+          <div data-example class="tier-product p-surface rounded-md border border-weak bg-strong">
+<form class="defaults flex flex-col gap-md max-w-form" onsubmit="return false">
+  <div>
+    <label for="df-name">Team name</label>
+    <input id="df-name" value="Design Ops">
+  </div>
+  <div>
+    <label for="df-role">Default role</label>
+    <select id="df-role"><option>Member</option><option>Admin</option></select>
+  </div>
+  <div>
+    <label for="df-note">Note</label>
+    <textarea id="df-note" rows="2" placeholder="Shown on invitations"></textarea>
+  </div>
+  <label><input type="checkbox" checked> Let anyone with a company email join</label>
+  <label><input type="checkbox" role="switch"> Weekly digest</label>
+  <input type="range" value="60" aria-label="Seats">
+  <table>
+    <tr><th>Member</th><th>Role</th></tr>
+    <tr><td>Ada Lovelace</td><td>Owner</td></tr>
+  </table>
+  <p>Read the <a href="#">invitation policy</a>.</p>
+  <div class="flex gap-xs">
+    <button type="button">Cancel</button>
+    <button type="submit">Save</button>
+  </div>
+</form>
+          </div>
+          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
+              <span class="text-mono-sm fg-weak truncate">defaults.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
+            </figcaption>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;form class=&quot;defaults flex flex-col gap-md max-w-form&quot; onsubmit=&quot;return false&quot;&gt;
+  &lt;div&gt;
+    &lt;label for=&quot;df-name&quot;&gt;Team name&lt;/label&gt;
+    &lt;input id=&quot;df-name&quot; value=&quot;Design Ops&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for=&quot;df-role&quot;&gt;Default role&lt;/label&gt;
+    &lt;select id=&quot;df-role&quot;&gt;&lt;option&gt;Member&lt;/option&gt;&lt;option&gt;Admin&lt;/option&gt;&lt;/select&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for=&quot;df-note&quot;&gt;Note&lt;/label&gt;
+    &lt;textarea id=&quot;df-note&quot; rows=&quot;2&quot; placeholder=&quot;Shown on invitations&quot;&gt;&lt;/textarea&gt;
+  &lt;/div&gt;
+  &lt;label&gt;&lt;input type=&quot;checkbox&quot; checked&gt; Let anyone with a company email join&lt;/label&gt;
+  &lt;label&gt;&lt;input type=&quot;checkbox&quot; role=&quot;switch&quot;&gt; Weekly digest&lt;/label&gt;
+  &lt;input type=&quot;range&quot; value=&quot;60&quot; aria-label=&quot;Seats&quot;&gt;
+  &lt;table&gt;
+    &lt;tr&gt;&lt;th&gt;Member&lt;/th&gt;&lt;th&gt;Role&lt;/th&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Ada Lovelace&lt;/td&gt;&lt;td&gt;Owner&lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+  &lt;p&gt;Read the &lt;a href=&quot;#&quot;&gt;invitation policy&lt;/a&gt;.&lt;/p&gt;
+  &lt;div class=&quot;flex gap-xs&quot;&gt;
+    &lt;button type=&quot;button&quot;&gt;Cancel&lt;/button&gt;
+    &lt;button type=&quot;submit&quot;&gt;Save&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+          </figure>
+          </div>
+        </section>
+        <section id="tokens" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Default tokens</h2></div>
+          <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
+          <p class="text-body-md max-w-text break-words">No token is declared, so each one is free to set. Its fallback resolves at the element, so it follows the element's scope and tier.</p>
+          <div class="border border-weak overflow-x-auto">
+            <table class="w-full text-body-md">
+              <thead class="bg-strong"><tr><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Token</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Fallback</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Use</th></tr></thead>
+              <tbody>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>button-<wbr>height</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--control-height)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Button block size</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>button-<wbr>padding</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--control-padding)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Button inline padding</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>button-<wbr>gap</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--gutter)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Gap between a button&#x27;s icon and label</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>button-<wbr>radius</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--radius-sm)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Button corner</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>button-<wbr>border</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">transparent</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Button border colour (the width is the border width)</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>button-<wbr>bg</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--neutral-a2)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Button fill</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>button-<wbr>bg-<wbr>hover</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--neutral-a3)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Button fill on hover</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>button-<wbr>bg-<wbr>active</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--neutral-a4)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Button fill while pressed</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>button-<wbr>fg</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--fg)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Button text</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>button-<wbr>weight</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--font-weight-medium)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Button text weight</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>button-<wbr>primary-<wbr>bg</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--solid-accent-1)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Submit button fill (type=submit)</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>button-<wbr>primary-<wbr>bg-<wbr>hover</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--solid-accent-1-strong)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Submit button fill on hover</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>button-<wbr>primary-<wbr>fg</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--on-solid-accent-1)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Submit button text</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>field-<wbr>height</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--control-height)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Text input and select block size</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>field-<wbr>width</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">100%</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Text input, select and textarea inline size</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>field-<wbr>padding</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--control-padding)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Field inline padding</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>field-<wbr>padding-<wbr>block</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--margin)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Textarea block padding</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>field-<wbr>radius</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--radius-sm)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Field corner</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>field-<wbr>bg</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--bg)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Field fill</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>field-<wbr>border</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--border-weak)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Field border colour</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>field-<wbr>border-<wbr>hover</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--border)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Field border colour on hover</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>field-<wbr>border-<wbr>invalid</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--border-danger)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Field border colour once the user leaves it invalid</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>check-<wbr>size</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--mark-md)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Checkbox, radio, switch and slider size</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>check-<wbr>accent</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--solid-accent-1)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Checked fill of a checkbox or radio</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>link-<wbr>color</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--fg-accent-1-weak)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Link text</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>link-<wbr>color-<wbr>hover</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--fg-accent-1)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Link text on hover</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>link-<wbr>underline-<wbr>offset</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">0.15em</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Link underline offset</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>label-<wbr>size</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--text-sm)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Field label size</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>label-<wbr>weight</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--font-weight-medium)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Field label weight</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>label-<wbr>gap</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--space-3xs)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Space between a field label and its field</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>cell-<wbr>padding</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--space-sm)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Table cell inline padding</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>cell-<wbr>padding-<wbr>block</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--space-xs)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Table cell block padding</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words"><code class="whitespace-normal">-<wbr>-<wbr>cell-<wbr>border</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words"><code class="whitespace-normal break-all">var(--border-weak)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words">Rule under each table row</td></tr>
+              </tbody>
+            </table>
+          </div>
+          </div>
+        </section>
+        <section id="override" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Override a default</h2></div>
+          <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
+          <p class="text-body-md max-w-text break-words">Three ways, from widest to narrowest. A token on <code>:root</code> changes every <code>defaults</code> region; on a region, only that region; a utility class changes one element.</p>
+          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
+              <span class="text-mono-sm fg-weak truncate">override.css</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">CSS</span>
+            </figcaption>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>:root { --button-radius: 9999px; }               /* every .defaults region */
+.settings { --field-border: var(--border); }       /* one region */</code></pre>
+          </figure>
+          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
+              <span class="text-mono-sm fg-weak truncate">override.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
+            </figcaption>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;button class=&quot;rounded-none&quot;&gt;Square&lt;/button&gt;      &lt;!-- one element: the class wins --&gt;</code></pre>
+          </figure>
+          </div>
+        </section>
+        <section id="layers" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Layers</h2></div>
+          <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
+          <p class="text-body-md max-w-text break-words">Nowind declares <code class="whitespace-normal"><span class="whitespace-nowrap">@layer</span> <span class="whitespace-nowrap">reset,</span> <span class="whitespace-nowrap">styles,</span> <span class="whitespace-nowrap">components,</span> <span class="whitespace-nowrap">nowind</span></code>. The reset and the element defaults sit in <code>reset</code>; put your own CSS in <code>styles</code>; the optional convenience classes fill <code>components</code>; the utilities in <code>nowind</code> win over all three.</p>
+          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
+              <span class="text-mono-sm fg-weak truncate">layers.css</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">CSS</span>
+            </figcaption>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>@layer styles {
+  .site-nav { display: flex; gap: var(--space-md); }
+}</code></pre>
+          </figure>
+          </div>
+        </section>
+        <nav aria-label="Previous and next page" class="col-span-12 grid grid-cols-2 gap-grid py-page border-t border-strong">
+          <a href="reference.html" class="flex flex-col gap-3xs min-w-0 p-surface border border-weak hover:border-strong no-underline transition-colors">
+            <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><i class="icon icon-sm ph-bold ph-arrow-left"></i><span>Previous</span></span>
+            <span class="text-subtitle fg-accent-1-weak break-words max-w-full">Page grid and shell</span>
+          </a>
+          <a href="convenience.html" class="flex flex-col items-end gap-3xs min-w-0 p-surface border border-weak hover:border-strong no-underline text-end transition-colors">
+            <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><span>Next</span><i class="icon icon-sm ph-bold ph-arrow-right"></i></span>
+            <span class="text-subtitle fg-accent-1-weak break-words max-w-full">Convenience classes</span>
+          </a>
+        </nav>
+  </div>
+</main>
+<footer class="flex flex-col md:flex-row md:items-center justify-between gap-field px-grid py-surface border-t-2 border-strong text-caption fg-weak">
+  <span>Nowind 0.12.0. Every page here is built from Nowind utility classes only.</span>
+  <span class="flex flex-wrap gap-row">
+    <a href="changelog.html" class="no-underline fg-weak hover:fg transition-colors">Changelog</a>
+    <a href="index.html" class="no-underline fg-weak hover:fg transition-colors">About these templates</a>
+    <a href="https://github.com/kimgranlund/nowind" class="no-underline fg-weak hover:fg transition-colors">GitHub</a>
+  </span>
+</footer>
+<svg width="0" height="0" class="absolute" aria-hidden="true" focusable="false"><filter id="nowind-lens" x="0" y="0" width="1" height="1" filterUnits="objectBoundingBox" primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB"><feImage href="data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 100 100&#x27; preserveAspectRatio=&#x27;none&#x27;%3E%3Cdefs%3E%3ClinearGradient id=&#x27;r&#x27;%3E%3Cstop offset=&#x27;0&#x27; stop-color=&#x27;#f00&#x27;/%3E%3Cstop offset=&#x27;1&#x27; stop-color=&#x27;#000&#x27;/%3E%3C/linearGradient%3E%3ClinearGradient id=&#x27;g&#x27; x2=&#x27;0&#x27; y2=&#x27;1&#x27;%3E%3Cstop offset=&#x27;0&#x27; stop-color=&#x27;#0f0&#x27;/%3E%3Cstop offset=&#x27;1&#x27; stop-color=&#x27;#000&#x27;/%3E%3C/linearGradient%3E%3Cfilter id=&#x27;b&#x27; x=&#x27;-20%&#x27; y=&#x27;-20%&#x27; width=&#x27;140%&#x27; height=&#x27;140%&#x27;%3E%3CfeGaussianBlur stdDeviation=&#x27;7&#x27;/%3E%3C/filter%3E%3C/defs%3E%3Crect width=&#x27;100&#x27; height=&#x27;100&#x27; fill=&#x27;url(#r)&#x27;/%3E%3Crect width=&#x27;100&#x27; height=&#x27;100&#x27; fill=&#x27;url(#g)&#x27; style=&#x27;mix-blend-mode:screen&#x27;/%3E%3Crect x=&#x27;16&#x27; y=&#x27;16&#x27; width=&#x27;68&#x27; height=&#x27;68&#x27; rx=&#x27;8&#x27; fill=&#x27;#808000&#x27; filter=&#x27;url(#b)&#x27;/%3E%3C/svg%3E" x="0" y="0" width="1" height="1" preserveAspectRatio="none" result="map"/><feDisplacementMap in="SourceGraphic" in2="map" scale="0.13" xChannelSelector="R" yChannelSelector="G" result="dr"/><feDisplacementMap in="SourceGraphic" in2="map" scale="0.1365" xChannelSelector="R" yChannelSelector="G" result="dg"/><feDisplacementMap in="SourceGraphic" in2="map" scale="0.143" xChannelSelector="R" yChannelSelector="G" result="db"/><feColorMatrix in="dr" values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" result="cr"/><feColorMatrix in="dg" values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0" result="cg"/><feColorMatrix in="db" values="0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0" result="cb"/><feBlend in="cr" in2="cg" mode="screen" result="rg"/><feBlend in="rg" in2="cb" mode="screen" result="rgb"/><feGaussianBlur in="rgb" stdDeviation="0.004"/></filter></svg>
+<script src="../site.js" defer></script>
+</body>
+</html>

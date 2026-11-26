@@ -17,7 +17,7 @@ BY_GROUP = sorted(COMPONENTS, key=lambda c: GROUP_ORDER.index(c["group"]))
 SECTIONS = [
     ("Docs", [("docs/docs-home.html", "Overview"), ("docs/guide.html", "Guide"), ("docs/colour.html", "Colour"),
               ("docs/type-space.html", "Type and space"), ("docs/states.html", "States and variants"),
-              ("docs/materials.html", "Materials"), ("docs/reference.html", "Reference"), ("docs/convenience.html", "Convenience classes"),
+              ("docs/materials.html", "Materials"), ("docs/reference.html", "Reference"), ("docs/resets.html", "Resets"), ("docs/convenience.html", "Convenience classes"),
               ("docs/changelog.html", "Changelog"), ("docs/index.html", "Templates")]),
     ("Components", [("docs/components-index.html", "All components"), ("components.html", "Showcase")] +
                    [(f"docs/c-{c['slug']}.html", c["name"]) for c in BY_GROUP]),
@@ -28,7 +28,7 @@ HAND_PAGES = ["index.html", "components.html", "specimen.html", "utilities.html"
 ORDER = [path for _, pages in SECTIONS for path, _ in pages]
 LABELS = {path: label for _, pages in SECTIONS for path, label in pages}
 TITLES = {"docs/colour.html": "Colour", "docs/type-space.html": "Type and space", "docs/states.html": "States and variants",
-          "docs/materials.html": "Materials", "docs/convenience.html": "Convenience classes", "docs/docs-home.html": "Overview", "docs/guide.html": "Lay out a docs page", "docs/reference.html": "Page grid and shell",
+          "docs/materials.html": "Materials", "docs/convenience.html": "Convenience classes", "docs/resets.html": "Resets", "docs/docs-home.html": "Overview", "docs/guide.html": "Lay out a docs page", "docs/reference.html": "Page grid and shell",
           "docs/changelog.html": "Changelog", "docs/index.html": "About these templates", "docs/components-index.html": "Components",
           "components.html": "Showcase", "specimen.html": "Specimen", "utilities.html": "Utilities demo",
           "docs/classes.html": "Classes", "docs/semantic.html": "Semantic classes"}
@@ -981,6 +981,42 @@ DEFAULTS_DEMO = """<form class="defaults flex flex-col gap-md max-w-form" onsubm
   </div>
 </form>"""
 
+BARE_DEMO = """<h3>A heading</h3>
+<p>A paragraph with <a href="#">a link</a>, <code>inline code</code> and a <kbd>⌘K</kbd> key. Text wraps without leaving one word alone on the last line.</p>
+<ul><li>A list keeps its markers</li><li>and its indent</li></ul>
+<table><tr><th>Plan</th><th>Seats</th></tr><tr><td>Team</td><td>20</td></tr></table>
+<p><button type="button">Button</button> <input placeholder="Input" aria-label="Input"> <select aria-label="Select"><option>Select</option></select></p>
+<p><label><input type="checkbox" checked> Checkbox</label> <label><input type="radio" checked> Radio</label> <label><input type="checkbox" role="switch" checked> Switch</label></p>
+<p><input type="range" value="40" aria-label="Range"> <progress value="60" max="100">60%</progress> <meter value="0.8" min="0" max="1" low="0.3" high="0.7" optimum="0.2">80%</meter></p>"""
+
+
+def resets_page():
+    dm = _m("nowind.defaults.manifest.json")
+    rows = [[f"<code>{E(t['token'])}</code>", f"<code>{E(t['fallback'])}</code>", E(t["use"])] for t in dm["tokens"]]
+    art = "\n        ".join([
+        page_head("Docs", "Resets",
+                  "Nowind starts from a reset that makes bare HTML look considered without fighting your classes, and offers an opt-in region of styled element defaults for markup with no classes at all. Both live in the <code>reset</code> layer, under <code>:where()</code>, so any class wins."),
+        section("reset", "The reset",
+                p("Every element gets <code>box-sizing: border-box</code> and zero-width solid borders, so a <code>border</code> class sets only the width. Headings take the heading roles unless a <code>text-*</code> class sizes them. Links keep their underline, and text wraps with balanced headings and pretty paragraphs. Checkboxes, radios, switches, sliders, progress and meter are drawn from the theme. Buttons are left bare, transparent and unpadded, so a utility stack starts from nothing. Focus draws a ring, interactive elements transition, and reduced motion turns that off."),
+                p("The example below has no classes: it is what the reset alone gives you."),
+                *live("bare.html", BARE_DEMO, semantic=True)),
+        section("defaults", "Element defaults",
+                p("Put <code>defaults</code> on a region and its bare elements take styled defaults: buttons, text fields, selects, textareas, checkboxes, radios, switches, sliders, links, labels and table cells. A button with <code>type=\"submit\"</code> takes the primary fill. Nothing below carries a class."),
+                p("The defaults fill only what an element's classes leave unset, so a utility class still wins. Keep utility-built controls outside the region, or they may pick up a default such as the control padding."),
+                *live("defaults.html", DEFAULTS_DEMO)),
+        section("tokens", "Default tokens", p("No token is declared, so each one is free to set. Its fallback resolves at the element, so it follows the element's scope and tier."),
+                table(["Token", "Fallback", "Use"], rows)),
+        section("override", "Override a default",
+                p("Three ways, from widest to narrowest. A token on <code>:root</code> changes every <code>defaults</code> region; on a region, only that region; a utility class changes one element."),
+                code("override.css", "CSS", ":root { --button-radius: 9999px; }               /* every .defaults region */\n.settings { --field-border: var(--border); }       /* one region */"),
+                code("override.html", "HTML", '<button class="rounded-none">Square</button>      <!-- one element: the class wins -->')),
+        section("layers", "Layers",
+                p("Nowind declares <code>@layer reset, styles, components, nowind</code>. The reset and the element defaults sit in <code>reset</code>; put your own CSS in <code>styles</code>; the optional convenience classes fill <code>components</code>; the utilities in <code>nowind</code> win over all three."),
+                code("layers.css", "CSS", "@layer styles {\n  .site-nav { display: flex; gap: var(--space-md); }\n}")),
+    ])
+    return doc_page("resets.html", "Resets", art)
+
+
 def convenience_page():
     m = _m("nowind.components.manifest.json")
     rows = [[f"<code>{E(c['class'])}</code>", f"<code>{E(c['recipe'])}</code>", E(c["use"])] for c in m["classes"]]
@@ -995,8 +1031,7 @@ def convenience_page():
         section("link", "Link it", p("After the main stylesheet. The classes sit in a <code>components</code> layer that comes before the utilities."),
                 code("index.html", "HTML", '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v__VERSION__/dist/nowind.min.css">\n<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v__VERSION__/dist/nowind.components.min.css">')),
         *demos,
-        section("defaults", "Element defaults", p("No classes on the elements: the <code>defaults</code> region styles them from tokens with fallbacks. Set <code>--button-radius</code>, <code>--field-border</code> or any other on the region, or on <code>:root</code>, to change them; a utility class on an element still wins. <code>nowind.defaults.manifest.json</code> lists every token."),
-                *live("defaults.html", DEFAULTS_DEMO)),
+        section("defaults", "Element defaults", p('For markup with no classes at all, the <a href="resets.html#defaults">Resets</a> page shows the <code>defaults</code> region, which styles bare buttons, fields and tables from overridable tokens.')),
         section("recipes", "Recipes", p("Every class and the utility stack it is. A utility on the element overrides any part: <code>btn btn-primary rounded-full</code> is a pill."),
                 table(["Class", "Recipe", "Use"], rows)),
     ])
@@ -1548,7 +1583,7 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     files = {"guide.html": guide(), "reference.html": reference(), "changelog.html": changelog(),
              "docs-home.html": docs_home(), "index.html": index(), "components-index.html": components_index(), "classes.html": classes_page(), "semantic.html": classes_page(True),
-             "colour.html": colour_page(), "type-space.html": type_space_page(), "states.html": states_page(), "materials.html": materials_page(), "convenience.html": convenience_page()}
+             "colour.html": colour_page(), "type-space.html": type_space_page(), "states.html": states_page(), "materials.html": materials_page(), "convenience.html": convenience_page(), "resets.html": resets_page()}
     files.update({f"c-{c['slug']}.html": component_page(c) for c in COMPONENTS})
     for name, text in files.items():
         text = text.replace("<code>--", '<code class="whitespace-nowrap">--')
@@ -1659,6 +1694,7 @@ if "--lint-file" in sys.argv:
     for path in paths:
         text = open(path).read()
         body = text[text.index("<body"):] if "<body" in text else text
+        body = re.sub(r"class='([^']*)'", r'class="\1"', body)  # one quote style for the rules below
         srcs.append((path, expand_convenience(body)))
     _FILE_SOURCES = srcs
     problems = lint_examples()

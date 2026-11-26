@@ -271,7 +271,7 @@ Buttons, text fields, selects, textareas, checkboxes, radios, switches, sliders,
 .toolbar  { --button-height: var(--nested-height); } /* one region */
 ```
 
-Every selector is `:where()`, so a utility class on an element still wins. [`nowind.defaults.manifest.json`](nowind.defaults.manifest.json) lists all the tokens and their fallbacks.
+Every selector is `:where()`, so a utility class on an element still wins. The defaults fill only what an element's classes leave unset, so a utility-built control inside the region can pick up, say, the default padding: keep such controls outside the region, or set the property. Only an explicit `type="submit"` makes a button primary; an untyped `<button>` in a form submits but stays neutral. [`nowind.defaults.manifest.json`](nowind.defaults.manifest.json) lists all the tokens and their fallbacks.
 
 ## Convenience classes
 

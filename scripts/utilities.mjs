@@ -434,7 +434,7 @@ const DEFAULTS_CSS = [
   `@media (hover: hover) { ${DR} :where(button[type="submit"], input[type="submit"]):where(:not(:disabled)):hover { background-color: ${DT["button-primary-bg-hover"]}; } }`,
   `${DR} :where(button[type="submit"], input[type="submit"]):where(:not(:disabled)):active { background-color: ${DT["button-primary-bg-hover"]}; }`,
   `${DR} :where(${BUTTONS}):disabled { opacity: 0.5; cursor: not-allowed; }`,
-  `${DR} :where(${TEXT_INPUT}, select) { block-size: ${DT["field-height"]}; padding-inline: ${DT["field-padding"]}; }`,
+  `${DR} :where(${TEXT_INPUT}, select:not([multiple], [size])) { block-size: ${DT["field-height"]}; padding-inline: ${DT["field-padding"]}; }`,
   `${DR} :where(textarea) { padding: ${DT["field-padding-block"]} ${DT["field-padding"]}; }`,
   `${DR} :where(${TEXT_INPUT}, select, textarea) { inline-size: ${DT["field-width"]}; border-radius: ${DT["field-radius"]}; border-color: ${DT["field-border"]}; background-color: ${DT["field-bg"]}; }`,
   `@media (hover: hover) { ${DR} :where(${TEXT_INPUT}, select, textarea):where(:not(:disabled)):hover { border-color: ${DT["field-border-hover"]}; } }`,
@@ -443,7 +443,7 @@ const DEFAULTS_CSS = [
   `${DR} :where(input[type="checkbox"], input[type="radio"]):is(:checked, :indeterminate) { background: ${DT["check-accent"]}; border-color: ${DT["check-accent"]}; }`,
   `${DR} :where(a:not([class])) { color: ${DT["link-color"]}; text-underline-offset: ${DT["link-underline-offset"]}; }`,
   `@media (hover: hover) { ${DR} :where(a:not([class])):hover { color: ${DT["link-color-hover"]}; } }`,
-  `${DR} :where(label:not(:has(input[type="checkbox"], input[type="radio"]))) { display: block; margin-block-end: ${DT["label-gap"]}; font-size: ${DT["label-size"]}; line-height: var(--text-sm--line-height); font-weight: ${DT["label-weight"]}; }`,
+  `${DR} :where(label:not(:has(input[type="checkbox"], input[type="radio"])):not(:is(input[type="checkbox"], input[type="radio"]) + label)) { display: block; margin-block-end: ${DT["label-gap"]}; font-size: ${DT["label-size"]}; line-height: var(--text-sm--line-height); font-weight: ${DT["label-weight"]}; }`,
   `${DR} :where(th, td) { padding: ${DT["cell-padding-block"]} ${DT["cell-padding"]}; border-block-end: var(--border-width) solid ${DT["cell-border"]}; text-align: start; }`,
   `${DR} :where(th) { font-size: var(--text-sm); font-weight: var(--font-weight-medium); color: var(--fg-weak); }`,
 ].map((r) => "  " + r).join("\n");
@@ -892,7 +892,7 @@ const manifest = {
 writeFileSync(join(root, "nowind.manifest.json"), JSON.stringify(manifest, null, 2) + "\n");
 writeFileSync(join(root, "nowind.defaults.manifest.json"), JSON.stringify({
   generated: "by scripts/utilities.mjs; edit DEFAULT_TOKENS there, not this file",
-  description: "Element defaults: wrap a region in class defaults and its bare elements (buttons, text fields, selects, textareas, checkboxes, radios, sliders, links, labels, table cells) take styled defaults. Each value reads a token with a fallback; the tokens are not declared anywhere, so setting one on :root, on .defaults or on any region inside takes effect, and the fallback follows the element's scope and tier. Every selector is :where(), so a utility class on the element always wins. A button with type=submit takes the primary fill.",
+  description: "Element defaults: wrap a region in class defaults and its bare elements (buttons, text fields, selects, textareas, checkboxes, radios, sliders, links, labels, table cells) take styled defaults. Each value reads a token with a fallback; the tokens are not declared anywhere, so setting one on :root, on .defaults or on any region inside takes effect, and the fallback follows the element's scope and tier. Every selector is :where(), so a utility class on the element always wins; the defaults fill only the properties its classes leave unset, so a utility-built control inside the region can still pick up a default it does not set. A button takes the primary fill only with an explicit type=submit; an untyped button in a form submits but stays neutral.",
   region: ".defaults",
   tokens: DEFAULT_TOKENS.map(([token, fallback, use]) => ({ token: `--${token}`, fallback, use })),
 }, null, 2) + "\n");

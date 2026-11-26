@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- **Resets page:** a docs page for the reset and the element defaults: what the reset does, with a classless example; the `defaults` region with its live form; every default token with its fallback; how to override one (on `:root`, on a region, or with a utility); and the layer order. Element defaults moved there from the Convenience classes page.
+- **Element defaults fixes, from /code-review:** a checkbox or radio label written as a sibling stays beside its box; a list-box select (`multiple` or `size`) keeps its height; the docs say that defaults fill what an element's classes leave unset and that only `type="submit"` makes a button primary.
+- **Specimen on phones:** a long value sits below the sample instead of over it.
+- **The page lint reads single-quoted `class` attributes.**
 - **Element defaults:** put `defaults` on a region and its bare buttons, text fields, selects, textareas, checkboxes, radios, switches, sliders, links, labels and table cells take styled defaults; `type="submit"` takes the primary fill. Each value is a token with a fallback (`--button-radius`, `--field-border`, `--check-size`, `--link-color` and 29 more), left undeclared so it can be set on `:root`, on the region or anywhere inside, and every selector is `:where()`, so utilities still win. Outside `.defaults` the reset is unchanged. `nowind.defaults.manifest.json` lists the tokens; the Convenience classes page has a live form.
 - **Tooling fixes from /code-review:**
   - `review.mjs` reads a domain written after a flag (`--quick paint` ran form).
