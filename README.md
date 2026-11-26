@@ -41,10 +41,10 @@ Markup drives state, too: set `aria-pressed`, `aria-selected`, `aria-current`, `
 Link one file:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.11.0/dist/nowind.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.11.1/dist/nowind.min.css">
 ```
 
-The link pins release `v0.11.0`. Or copy `dist/nowind.min.css` into your project. Releases are in [CHANGELOG.md](CHANGELOG.md). Browse the [component docs](https://kimgranlund.github.io/nowind/site/docs/components-index.html), the [showcase](https://kimgranlund.github.io/nowind/site/components.html), the [specimen](https://kimgranlund.github.io/nowind/site/specimen.html) and the [class list](https://kimgranlund.github.io/nowind/site/docs/classes.html) on GitHub Pages.
+The link pins release `v0.11.1`. Or copy `dist/nowind.min.css` into your project. Releases are in [CHANGELOG.md](CHANGELOG.md). Browse the [component docs](https://kimgranlund.github.io/nowind/site/docs/components-index.html), the [showcase](https://kimgranlund.github.io/nowind/site/components.html), the [specimen](https://kimgranlund.github.io/nowind/site/specimen.html) and the [class list](https://kimgranlund.github.io/nowind/site/docs/classes.html) on GitHub Pages.
 
 ```html
 <article class="max-w-form p-md rounded-md bg-neutral-1 border border-neutral-6 shadow-sm">

@@ -15,7 +15,7 @@
 <div class="sticky top-0 z-30">
 <header class="light bg-inverse fg-inverse">
   <div class="flex items-center gap-lg h-header px-grid">
-    <a href="../index.html" class="inline-flex items-center gap-gutter-half no-underline fg-inverse hover:fg-inverse-weak transition-colors"><i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-inverse-weak">0.11.0</span></a>
+    <a href="../index.html" class="inline-flex items-center gap-gutter-half no-underline fg-inverse hover:fg-inverse-weak transition-colors"><i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-inverse-weak">0.11.1</span></a>
     <nav aria-label="Sections" class="hidden md:flex items-center gap-lg"><a href="docs-home.html" aria-current="true" class="inline-flex items-center h-header border-b-2 border-accent-1 no-underline fg-inverse text-title-sm">Docs</a><a href="components-index.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Components</a><a href="../specimen.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Specimen</a><a href="classes.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Classes</a></nav>
     <button type="button" popovertarget="site-settings" class="inline-flex items-center justify-center size-nested ms-auto rounded-xs border border-transparent bg-transparent fg-inverse-weak hover:fg-inverse cursor-pointer transition-colors" aria-label="Display settings"><i class="icon ph ph-sliders-horizontal"></i></button>
     <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center size-nested no-underline fg-inverse-weak hover:fg-inverse transition-colors" aria-label="Nowind on GitHub"><i class="icon ph ph-github-logo"></i></a>
@@ -65,14 +65,28 @@
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">index.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
             </figcaption>
-            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.11.0/dist/nowind.min.css&quot;&gt;</code></pre>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.11.1/dist/nowind.min.css&quot;&gt;</code></pre>
           </figure>
+          </div>
+        </section>
+        <section id="v0-11-1" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle">0.11.1</h2>
+              <time datetime="2026-11-26" class="text-caption fg-weak">2026-11-26</time>
+              <span class="inline-flex items-center w-fit h-nested px-nested bg-solid-accent-1 fg-on-solid-accent-1 text-label">Latest</span></div>
+          <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
+          <ul role="list" class="flex flex-col gap-group">
+                <li class="flex flex-col gap-3xs max-w-text"><span class="text-label fg-weak">Behaviour review</span><p class="text-body-md break-words">A behaviour contract (<code>theme/theme.behaviour.manifest.json</code>) says what each interactive element does in each state and how the change moves. <code class="whitespace-normal"><span class="whitespace-nowrap">node</span> <span class="whitespace-nowrap">scripts/review.mjs</span> <span class="whitespace-nowrap">behaviour</span></code> forces hover, press and focus-visible on every interactive element over the DevTools protocol and checks that hover shows, press differs from hover, focus draws a ring, a chosen item differs from a hovered one, a disabled control doesn't react, targets meet 24px or WCAG's spacing exception, durations and easings are motion tokens, and reduced motion cuts every transition. The examples lint rejects an on-state variant without the attribute that fires it, and any class the bundle doesn't define.</p></li>
+                <li class="flex flex-col gap-3xs max-w-text"><span class="text-label fg-weak">Fields keep their focus ring</span><p class="text-body-md break-words">The reset showed a text field's focus by changing its border colour, so any border class on the field, and an invalid field box's danger border, hid it. Fields now draw the accent outline over their border, and a field box (<code>cursor-text</code>) draws it on the box.</p></li>
+                <li class="flex flex-col gap-3xs max-w-text"><span class="text-label fg-weak">Disabled checkboxes and radios</span><p class="text-body-md break-words">No longer darken their border on hover.</p></li>
+                <li class="flex flex-col gap-3xs max-w-text"><span class="text-label fg-weak">The nested select</span><p class="text-body-md break-words">In field examples tints with <code>hover:bg-neutral-3</code>: a select can't draw the <code>state</code> layer, and an earlier <code>hover:bg-neutral-a3</code> was a class Nowind doesn't define. The lint allows a hover fill on a select.</p></li>
+                <li class="flex flex-col gap-3xs max-w-text"><span class="text-label fg-weak">The site's wordmark</span><p class="text-body-md break-words">Dims on hover.</p></li>
+                <li class="flex flex-col gap-3xs max-w-text"><span class="text-label fg-weak">Release gate</span><p class="text-body-md break-words"><code class="whitespace-normal"><span class="whitespace-nowrap">node</span> <span class="whitespace-nowrap">scripts/review.mjs</span> <span class="whitespace-nowrap">all</span></code> runs every review domain in strict mode (it fails on any finding), then the review self-test. AGENTS.md lists it as the step before a release.</p></li>
+              </ul>
           </div>
         </section>
         <section id="v0-11-0" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle">0.11.0</h2>
-              <time datetime="2026-11-26" class="text-caption fg-weak">2026-11-26</time>
-              <span class="inline-flex items-center w-fit h-nested px-nested bg-solid-accent-1 fg-on-solid-accent-1 text-label">Latest</span></div>
+              <time datetime="2026-11-26" class="text-caption fg-weak">2026-11-26</time></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-text break-words">- Docs prose stops at <code>max-w-text</code>; it had run to 95 characters a line.</p>
           <p class="text-body-md max-w-text break-words">- Rows that mix sizes on one line align baselines (<code>items-baseline</code>): the notifications header, stat figures and trends. The size contract now allows mixed sizes in a baseline-aligned row.</p>
@@ -338,7 +352,7 @@
   </div>
 </main>
 <footer class="flex flex-col md:flex-row md:items-center justify-between gap-field px-grid py-surface border-t-2 border-strong text-caption fg-weak">
-  <span>Nowind 0.11.0. Every page here is built from Nowind utility classes only.</span>
+  <span>Nowind 0.11.1. Every page here is built from Nowind utility classes only.</span>
   <span class="flex flex-wrap gap-row">
     <a href="changelog.html" class="no-underline fg-weak hover:fg transition-colors">Changelog</a>
     <a href="index.html" class="no-underline fg-weak hover:fg transition-colors">About these templates</a>
