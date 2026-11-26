@@ -511,7 +511,7 @@ COMPONENTS = [
         "html": """<div class="rounded-md bg-neutral-1 border border-neutral-6 overflow-x-auto">
   <table class="w-full">
     <thead class="bg-neutral-2">
-      <tr><th class="text-start h-control px-control font-medium fg-neutral-11 border-b border-neutral-6">Invoice</th><th class="text-start h-control px-control font-medium fg-neutral-11 border-b border-neutral-6">Status</th><th class="text-end h-control px-control font-medium fg-neutral-11 border-b border-neutral-6">Amount</th></tr>
+      <tr><th class="text-start h-control px-control text-sm font-medium fg-neutral-11 border-b border-neutral-6">Invoice</th><th class="text-start h-control px-control text-sm font-medium fg-neutral-11 border-b border-neutral-6">Status</th><th class="text-end h-control px-control text-sm font-medium fg-neutral-11 border-b border-neutral-6">Amount</th></tr>
     </thead>
     <tbody>
       <tr class="transition state"><td class="h-control px-control font-mono border-b border-neutral-6">INV-1042</td><td class="h-control px-control border-b border-neutral-6">Paid</td><td class="h-control px-control text-end font-mono tabular-nums border-b border-neutral-6">$1,280.00</td></tr>
@@ -577,8 +577,8 @@ COMPONENTS = [
   <table class="w-full">
     <thead class="bg-neutral-2">
       <tr>
-        <th aria-sort="ascending" class="text-start h-control px-control border-b border-neutral-6"><button class="inline-flex items-center gap-gutter-half border-0 bg-transparent fg-neutral-12 text-base font-medium cursor-pointer">Name<i class="icon icon-sm ph-bold ph-caret-up"></i></button></th>
-        <th aria-sort="none" class="text-end h-control px-control border-b border-neutral-6"><button class="inline-flex items-center gap-gutter-half border-0 bg-transparent fg-neutral-11 hover:fg-neutral-12 text-base font-medium cursor-pointer">Seats<i class="icon icon-sm ph-bold ph-caret-up-down"></i></button></th>
+        <th aria-sort="ascending" class="text-start h-control px-control border-b border-neutral-6"><button class="inline-flex items-center gap-gutter-half border-0 bg-transparent fg-neutral-12 text-sm font-medium cursor-pointer">Name<i class="icon icon-sm ph-bold ph-caret-up"></i></button></th>
+        <th aria-sort="none" class="text-end h-control px-control border-b border-neutral-6"><button class="inline-flex items-center gap-gutter-half border-0 bg-transparent fg-neutral-11 hover:fg-neutral-12 text-sm font-medium cursor-pointer">Seats<i class="icon icon-sm ph-bold ph-caret-up-down"></i></button></th>
       </tr>
     </thead>
     <tbody>

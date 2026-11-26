@@ -1011,12 +1011,14 @@ def type_audit():
 
     def is_control(n):
         role = n.attrs.get("role", "")
-        sized = bool({"h-control", "h-nested", "size-control", "size-nested"} & set(n.toks)) and n.tag in ("a", "button", "div", "td", "th", "input")
+        sized = bool({"h-control", "h-nested", "size-control", "size-nested"} & set(n.toks)) and n.tag in ("a", "button", "div", "td", "input")
         return n.tag in ("button", "select", "summary", "textarea", "input") or role in ("tab", "option", "menuitem") or sized or "cursor-text" in n.toks
 
     def kind(n):
         if any(is_control(a) or a.tag == "kbd" for a in n.ancestors()): return None  # text inside a control or keycap is the control's
         if n.tag == "kbd": return "keycap"
+        if any(a.tag == "th" for a in n.ancestors()) and is_control(n): return "header"  # a sort button is the header's text
+        if n.tag == "th" and not n.text.strip() and n.has(is_control): return None  # its button carries the kind
         if "font-display" in n.toks: return "figure"
         if "uppercase" in n.toks: return "kicker"
         if is_control(n):
@@ -1030,7 +1032,8 @@ def type_audit():
         if n.tag in ("label", "legend", "dt") or (n.tag == "dl" and n.own): return "label"
         if "rounded-full" in n.toks and "size-nested" in n.toks and "tabular-nums" in n.toks: return "count"
         if "rounded-full" in n.toks and n.alltext().strip(): return "badge"
-        if n.tag in ("h1", "h2", "h3", "h4"):
+        if n.tag == "h1": return None  # a page heading takes the heading roles, not a surface title
+        if n.tag in ("h2", "h3", "h4"):
             return "dialog title" if any(a.tag == "dialog" or a.attrs.get("role") == "dialog" for a in n.ancestors()) else "title"
         if n.tag == "p": return "body"
         navlist = lambda a: a.tag in ("ol", "ul") and any(b.tag == "nav" for b in a.ancestors())

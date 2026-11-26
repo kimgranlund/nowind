@@ -1092,6 +1092,7 @@
         "state",
         "tabular-nums",
         "text-end",
+        "text-sm",
         "text-start",
         "transition",
         "w-full"
@@ -1138,8 +1139,8 @@
         "rounded-md",
         "state",
         "tabular-nums",
-        "text-base",
         "text-end",
+        "text-sm",
         "text-start",
         "transition",
         "w-full"

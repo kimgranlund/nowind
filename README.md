@@ -243,7 +243,7 @@ Each pattern is a stack of classes; the [component docs](https://kimgranlund.git
 | Select | `<select class="select-base h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 bg-neutral-1 w-full">`; `select-base` opts in to the styled picker, with its caret and check |
 | Switch | `<input type="checkbox" role="switch">`; the reset draws it |
 | Dialog | `<dialog class="m-auto p-lg rounded-lg bg-neutral-1 border-0 shadow-xl max-w-form w-full">`, title `text-lg font-semibold`, actions `flex justify-end gap-xs`. Open it with `commandfor` and `command="show-modal"` |
-| Table | Wrapper `rounded-md border border-neutral-6 overflow-x-auto`; cells `h-control px-control`, rows `border-b border-neutral-6`, numbers `text-end tabular-nums` |
+| Table | Wrapper `rounded-md border border-neutral-6 overflow-x-auto`; cells `h-control px-control`, headers add `text-sm font-medium fg-neutral-11`, rows `border-b border-neutral-6`, numbers `text-end tabular-nums` |
 
 Status colours follow one pattern across every palette: step 3 fills, 6 draws the border, 11 is text and icons, 12 is strong text, and 9 is the solid fill with `fg-{palette}-contrast` on it.
 
