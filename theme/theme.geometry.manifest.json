@@ -717,7 +717,7 @@
     "rules": [
       "Nesting: an element at a container's padding takes rounded-inner, the container's radius less that padding and border; rounded-xs is the radius one inset inside a control.",
       "Even insets: a part at a container's end sits the same distance from every edge it faces.",
-      "No text closer than the container's padding to its edge; label text sits in a span so px-control and px-nested can find the icon edges.",
+      "No text closer than the container's padding to its edge; label text sits in a span so px-control and px-nested can find the icon edges. The rendered check takes the padding of the text's nearest padded box: at tiny sizes (a 12px root on a phone, about 1.5px) the geometry's own padding is accepted; a painted box with no padding still needs 2px.",
       "Side by side, controls share a height; a box holding controls is a control tall.",
       "Markers with aspect-square, size-* and rounded-full render as true squares and circles.",
       "A clipping box (overflow-hidden) never hides its content at any width."

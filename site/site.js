@@ -341,7 +341,9 @@ window.nowindOwnCSS = () => !!document.querySelector("style[data-page-css]");
           const rg = document.createRange(); rg.selectNodeContents(n); const t = rg.getBoundingClientRect();
           if (!t.width) continue;
           const s0 = t.left - r.left - px(c.borderLeftWidth), en = r.right - t.right - px(c.borderRightWidth);
-          if (s0 < 2 || en < 2) { out.push({ rule: "edges", where: where(e), detail: `text ${s0.toFixed(1)}px from the start, ${en.toFixed(1)}px from the end` }); break; }
+          const floor = (pad) => pad < 0.5 ? 2 : Math.min(2, pad) - 0.75;  // no padding: keep 2px; tiny padding by geometry: the padding itself
+          const padOf = (side) => { let m = 0; for (let a = n.parentElement; a; a = a.parentElement) { m = Math.max(m, px(cs(a)[side])); if (a === e) break; } return m; };
+          if (s0 < floor(padOf("paddingInlineStart")) || en < floor(padOf("paddingInlineEnd"))) { out.push({ rule: "edges", where: where(e), detail: `text ${s0.toFixed(1)}px from the start, ${en.toFixed(1)}px from the end` }); break; }
         }
       }
       // Shape: squares and circles.

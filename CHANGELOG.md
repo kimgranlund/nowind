@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Edges audit follows its rule:** text is measured against the padding of its nearest padded box, not a fixed 2px, so small controls at a 12px root on a phone (about 1.5px padding by the geometry) pass; a painted box with no padding still needs 2px. The Form review now reads clean.
 - **Labels centre optically:** the reset trims the label inside a control, and a text-only `td` or `th` sized `h-control`, to its cap height and baseline (`text-box: trim-both cap alphabetic`), so `items-center` centres the letters rather than the line box; they had sat up to 1.7px high. Where `text-box` isn't supported the old line box stays. Wrap a badge's or control's text in a `<span>`; the examples now do.
 - **Fixes from the first Form review** (2030 findings to 38, every page at three widths and three root sizes):
   - Docs prose stops at `max-w-text`; it had run to 95 characters a line.
