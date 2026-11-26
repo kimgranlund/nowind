@@ -24,6 +24,9 @@
   :where(th) { font-size: var(--text-sm); font-weight: var(--font-weight-medium); color: var(--fg-weak); }
   :where(main:not([class])) { display: block; max-inline-size: var(--page-width, var(--container-max)); margin-inline: auto; padding: var(--page-padding, var(--page-margin)); }
   :where(main, article, section, dialog):where(:not([class])) > :where(* + *) { margin-block-start: var(--flow-gap, var(--space-md)); }
+  :where(main:not([class])) > :where(* + section) { margin-block-start: var(--section-gap, var(--space-xl)); }
+  :where(body, main):where(:not([class])) > :where(header:not([class])) { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--header-gap, var(--space-sm)); }
+  :where(table:not([class])) { inline-size: var(--table-width, 100%); }
   :where(form:not([class])) { display: grid; justify-items: start; gap: var(--form-gap, var(--space-sm)); max-inline-size: var(--form-width, var(--max-w-form)); }
   :where(form:not([class])) > :where(*) { margin-block-start: 0; }
   :where(form:not([class])) > :where(div:not([class], [role]), [role="alert"], [role="status"], [role="note"]) { justify-self: stretch; }

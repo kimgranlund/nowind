@@ -169,6 +169,21 @@
       "use": "Rule under each table row but the last"
     },
     {
+      "token": "--table-width",
+      "fallback": "100%",
+      "use": "Width of a classless table"
+    },
+    {
+      "token": "--section-gap",
+      "fallback": "var(--space-xl)",
+      "use": "Space before each section of a classless main after the first"
+    },
+    {
+      "token": "--header-gap",
+      "fallback": "var(--space-sm)",
+      "use": "Space between the parts of a classless page header"
+    },
+    {
       "token": "--page-width",
       "fallback": "var(--container-max)",
       "use": "Widest a classless main region grows"
