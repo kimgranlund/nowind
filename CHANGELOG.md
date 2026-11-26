@@ -3,6 +3,7 @@
 ## Unreleased
 
 - **More classless structure:** a `header` in `body` or `main` is a row (title at the start, actions at the end), a classless `main` spaces its sections a section gap apart, and a classless `table` is full width. Three new tokens: `--header-gap`, `--section-gap`, `--table-width`.
+
 ## 0.15.0 (2026-11-26)
 
 - **Classless fixes:** a `role="group"` of buttons is no longer also a button row (segments took a gap); the README says which defaults a class turns off, that `data-tone="danger"` makes a destructive button, and lists invoker commands under browser support.
