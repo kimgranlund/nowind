@@ -23,6 +23,7 @@ Read `README.md` for what Nowind is and how people use it. This file says how to
 | `theme/theme.typography.css`, `theme/theme.space.css` | Fluid Utopia scales, faces, weights, leading, tracking | no, `scripts/utopia.mjs` |
 | `nowind.css` | Reset and utility classes | no, `scripts/utilities.mjs` |
 | `dist/` | One-file bundle and its minified copy (`scripts/bundle.mjs`), and the optional convenience classes, `dist/nowind.components.css` and its minified copy (`scripts/components.mjs`) | no |
+| `scripts/release.mjs` | Cuts a release locally: with `--reviewed`, dates the changelog, moves the links to the new tag, regenerates, runs `check.mjs`, its self-test and `review.mjs all`, and only then commits and tags; on any failure it puts every file back. Never pushes | yes |
 | `scripts/components.mjs` | The convenience classes: `RECIPES` (btn and its tones, btn-sm, icon-btn, field, badge and its tones, card, segmented, segment), each a stack of utility classes, written by copying every rule the stack uses under the new class | yes |
 | `nowind.components.manifest.json` | Every convenience class, its recipe and its use | no, `scripts/components.mjs` |
 | `theme/*.manifest.json`, `nowind.manifest.json` | What each token or class is, how it is derived, what to use it for | see below |
@@ -59,7 +60,7 @@ node scripts/bundle.mjs      # always last
 node scripts/components.mjs  # after bundle.mjs: the convenience classes follow the utilities
 python3 scripts/templates.py # after a release (it reads CHANGELOG.md), a class change (it reads classes.md) or a change to the templates
 node scripts/check.mjs       # before every commit
-node scripts/review.mjs all  # before a release: every review domain in strict mode, then its self-test
+node scripts/review.mjs all  # before a release (release.mjs runs it): every review domain in strict mode, then its self-test
 ```
 
 `scripts/check.mjs` enforces the rules below: no comments and no `color-mix()` in Nowind's CSS, every token a manifest names exists, every generated file (CSS, manifests, `classes.md`, the docs pages, `site/search.json`) matches what the scripts write, the site's controls follow the control recipe, the examples pass `python3 scripts/templates.py --lint`, and this file names every file in the repo. `node scripts/check.mjs --self-test` breaks a copy twenty-three ways and confirms each is caught. `python3 scripts/templates.py --geometry-report` lists every example part whose height, padding, gap or corner breaks the geometry contract (`geometryContract` in the geometry manifest). `python3 scripts/templates.py --type-report` lists every example element whose text size breaks the size contract (`sizeContract` in the type-roles manifest), by kind. `?audit=geometry` does the same for the geometry contract's rules (nesting, insets, text edges, shared heights, squares and circles, clipping), into `window.nowindGeometryAudit`. Open any page with `?audit=type` on the dev server and `site/site.js` checks the rendered examples (the `data-example` frames, or the showcase's sections) against the contract's rules for rows, order and icons, logging the result and leaving it in `window.nowindTypeAudit`. `?audit=layout` measures the page against the layout contract (`layoutContract` in the geometry manifest: page overflow, text overflow, padding symmetry, start edges) and the alignment contract (`alignmentContract` in the type-roles manifest: baselines, optical centring and measure, from the font's own metrics), into `window.nowindLayoutAudit`; `?audit=form` runs type, geometry and layout together. `?audit=paint` checks the paint contract (`paintContract` in the colors manifest): a part that stands apart from its surface by half a step in one mode does in the other (each fill composited and mapped to the nearest neutral step, so it counts steps, not contrast), and every `relief-*` sits in a `material-*`. `python3 scripts/templates.py --paint-report` lists every palette class whose step doesn't suit its job (fills 1–5 and 9–10, borders 5–8, text 11–12 or 8, icons 6–12) and text on a solid that isn't its contrast token; the examples lint enforces both. The lint also rejects an on-state variant without the attribute that fires it (`pressed:` without `aria-pressed`, and so on; the behaviour contract in `theme/theme.behaviour.manifest.json`), and any class the bundle doesn't define. The reset trims a control's label to its cap height (`text-box: trim-both cap alphabetic`), so a label centres optically; wrap a control's or badge's text in a `<span>` for the trim to reach it. `node scripts/review.mjs form` runs them over every page and every width and root (`--quick` for one of each, `--pages` to pick pages). `node scripts/serve.mjs` serves the site on port 8765.
@@ -126,6 +127,12 @@ Add an entry to `COMPONENTS` in `scripts/component_docs.py`: a `slug`, `name`, P
 ## Changing faces, weights, tracking or leading
 
 These live in the CSS template inside `scripts/utopia.mjs`, not in `theme/theme.typography.css`, which that script overwrites. Edit the template, then run all four scripts in order.
+
+## Releasing
+
+1. Review the changes since the last tag with `/code-review` in Claude Code (`node scripts/release.mjs X.Y.Z` without `--reviewed` prints the range), and fix what it finds.
+2. `node scripts/release.mjs X.Y.Z --reviewed` runs every check and the review gate, then commits and tags, or stops and restores the tree.
+3. Push only when the owner says so: `git push origin main && git push origin vX.Y.Z`. The checks run locally; there is no CI.
 
 ## Git
 

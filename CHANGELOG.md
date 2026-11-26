@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Release script:** `node scripts/release.mjs X.Y.Z --reviewed` dates the changelog, moves the links to the new tag, regenerates, and runs the check, its self-test and the review gate before it commits and tags; any failure restores every file. It never pushes. AGENTS.md's release steps start with `/code-review` on the range since the last tag.
 ## 0.12.0 (2026-11-26)
 
 - **Live examples on States and variants and on Materials.** Every section now renders its example beside the code:
