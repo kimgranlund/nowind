@@ -27,11 +27,12 @@
   :where(form:not([class])) { display: grid; justify-items: start; gap: var(--form-gap, var(--space-sm)); max-inline-size: var(--form-width, var(--max-w-form)); }
   :where(form:not([class])) > :where(*) { margin-block-start: 0; }
   :where(form:not([class])) > :where(div:not([class], [role]), [role="alert"], [role="status"], [role="note"]) { justify-self: stretch; }
-  :where(form:not([class])) :where(label:not([class])) { margin-block-end: 0; }
+  :where(form:not([class])) > :where(label:not([class])) { margin-block-end: 0; }
   :where(div:not([class]):has(> :is(button, input[type="submit"], input[type="button"])):not(:has(> :not(button, input[type="submit"], input[type="button"], input[type="reset"], a)))) { display: flex; flex-wrap: wrap; gap: var(--button-row-gap, var(--space-xs)); }
   :where(dialog) :where(div:not([class]):has(> :is(button, input[type="submit"])):not(:has(> :not(button, input[type="submit"], input[type="button"], input[type="reset"], a)))) { justify-content: flex-end; }
-  :where(dialog) { margin: auto; padding: var(--modal-padding, var(--dialog-padding)); inline-size: calc(100% - 2 * var(--space-md)); max-inline-size: var(--modal-width, var(--max-w-form)); border: 0; border-radius: var(--modal-radius, var(--radius-lg)); background-color: var(--modal-bg, var(--bg)); color: var(--fg); box-shadow: var(--modal-shadow, var(--shadow-xl)); }
-  :where(dialog:not([class])) > :where(h1, h2, h3, h4) { font-size: var(--text-lg); font-weight: var(--font-weight-semibold); }
+  :where(dialog) { margin: auto; }
+  :where(dialog:not([class])) { padding: var(--modal-padding, var(--dialog-padding)); inline-size: calc(100% - 2 * var(--space-md)); max-inline-size: var(--modal-width, var(--max-w-form)); border: 0; border-radius: var(--modal-radius, var(--radius-lg)); background-color: var(--modal-bg, var(--bg)); color: var(--fg); box-shadow: var(--modal-shadow, var(--shadow-xl)); }
+  :where(dialog:not([class])) > :where(h1, h2, h3, h4) { font-size: var(--text-lg); line-height: var(--text-lg--line-height); font-weight: var(--font-weight-semibold); }
   :where([role="alert"], [role="status"], [role="note"]):where(:not([class])) { padding: var(--alert-padding, var(--space-xs) var(--space-sm)); border: var(--border-width) solid var(--_tone-border, var(--info-6)); border-radius: var(--alert-radius, var(--radius-md)); background-color: var(--_tone-soft, var(--info-3)); }
   :where([role="alert"]:not([class])) { --_tone-soft: var(--danger-3); --_tone-border: var(--danger-6); }
   :where([role="note"]:not([class])) { --_tone-soft: var(--neutral-2); --_tone-border: var(--neutral-6); }
@@ -46,7 +47,8 @@
   :where(button, [role="alert"], [role="status"], [role="note"])[data-tone="success"] { --_tone-solid: var(--success-9); --_tone-solid-hover: var(--success-10); --_tone-on: var(--success-contrast); --_tone-soft: var(--success-3); --_tone-border: var(--success-6); }
   :where(button, [role="alert"], [role="status"], [role="note"])[data-tone="warning"] { --_tone-solid: var(--warning-9); --_tone-solid-hover: var(--warning-10); --_tone-on: var(--warning-contrast); --_tone-soft: var(--warning-3); --_tone-border: var(--warning-6); }
   :where(button, [role="alert"], [role="status"], [role="note"])[data-tone="info"] { --_tone-solid: var(--info-9); --_tone-solid-hover: var(--info-10); --_tone-on: var(--info-contrast); --_tone-soft: var(--info-3); --_tone-border: var(--info-6); }
-  :where(button[data-tone]) { background-color: var(--_tone-solid); color: var(--_tone-on); }
-  @media (hover: hover) { :where(button[data-tone]):where(:not(:disabled)):hover { background-color: var(--_tone-solid-hover); } }
-  :where(button[data-tone]):where(:not(:disabled)):active { background-color: var(--_tone-solid-hover); }
+  :where(button, [role="alert"], [role="status"], [role="note"])[data-tone="neutral"] { --_tone-solid: var(--neutral-a2); --_tone-solid-hover: var(--neutral-a3); --_tone-on: var(--fg); --_tone-soft: var(--neutral-2); --_tone-border: var(--neutral-6); }
+  :where(button[data-tone]) { background-color: var(--_tone-solid, var(--button-bg, var(--neutral-a2))); color: var(--_tone-on, var(--button-fg, var(--fg))); }
+  @media (hover: hover) { :where(button[data-tone]):where(:not(:disabled)):hover { background-color: var(--_tone-solid-hover, var(--button-bg-hover, var(--neutral-a3))); } }
+  :where(button[data-tone]):where(:not(:disabled)):active { background-color: var(--_tone-solid-hover, var(--button-bg-active, var(--neutral-a4))); }
 }

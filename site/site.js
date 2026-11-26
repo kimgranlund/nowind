@@ -456,8 +456,14 @@ window.nowindOwnCSS = () => !!document.querySelector("style[data-page-css]");
         if (flex || grid) {
           const column = flex ? pc.flexDirection.startsWith("column") : false;
           const gapV = px(pc.rowGap), gapH = px(pc.columnGap);
-          const mEnd = column || grid ? px(c.marginBlockEnd) : px(c.marginInlineEnd);
-          if (((column || grid) ? gapV : gapH) > 0 && mEnd > 0.5) out.push({ rule: "margin-gap", where: where(e), detail: `${mEnd.toFixed(1)}px margin on top of the parent's ${((column || grid) ? gapV : gapH).toFixed(1)}px gap` });
+          const vertical = column || grid;
+          const isAuto0 = (el, prop) => { try { return String(el.computedStyleMap().get(prop)) === "auto"; } catch { return false; } };
+          const mEnd = isAuto0(e, vertical ? "margin-bottom" : "margin-right") ? 0 : vertical ? px(c.marginBlockEnd) : px(c.marginInlineEnd);
+          const next = e.nextElementSibling, nc = next && cs(next);
+          const isAuto = (el, prop) => { try { return String(el.computedStyleMap().get(prop)) === "auto"; } catch { return false; } };  // ms-auto pushes, it doesn't space
+          const mStart = next && nc.display !== "none" && !isAuto(next, vertical ? "margin-top" : "margin-left") ? (vertical ? px(nc.marginBlockStart) : px(nc.marginInlineStart)) : 0;
+          const m = Math.max(mEnd, mStart), gap = vertical ? gapV : gapH;
+          if (gap > 0 && m > 0.5 && !(next && next.matches("legend"))) out.push({ rule: "margin-gap", where: where(mEnd >= mStart ? e : next), detail: `${m.toFixed(1)}px margin on top of the parent's ${gap.toFixed(1)}px gap` });
         }
       }
       // measure: running text wider than max-w-text (68ch of its own font).

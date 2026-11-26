@@ -424,8 +424,40 @@ function build() {
   // Utilities
   document.querySelectorAll("main .row .px").forEach((p) => p.classList.toggle("long", p.textContent.length > 18));
   buildReset();
+  buildDefaults();
   buildUtilities();
   refresh();
+}
+
+function layerRules(file, layer) {
+  const rules = [];
+  const walk = (list, media, inLayer) => {
+    for (const r of list) {
+      const name = r.constructor.name;
+      if (name === "CSSLayerBlockRule") { walk(r.cssRules, media, r.name === layer); continue; }
+      if (name === "CSSMediaRule") { if (inLayer) walk(r.cssRules, r.conditionText, inLayer); continue; }
+      if (inLayer && r.selectorText) rules.push([r.selectorText, r.style.cssText.replace(/; /g, ";\n"), media]);
+    }
+  };
+  for (const sh of document.styleSheets) { try { if (new RegExp(file.replace(".", "\\.") + "$").test(sh.href || "")) walk(sh.cssRules, null, false); } catch {} }
+  return rules;
+}
+
+function ruleRows(rules) {
+  const box = el("div", { class: "rows" });
+  for (const [sel, decl, media] of rules) {
+    box.append(el("div", { class: "row r-row" },
+      el("div", {}, media ? el("div", { class: "r-media" }, "@media " + media) : "", el("code", { class: "tok" }, sel)),
+      el("div", { class: "decl" }, decl)));
+  }
+  return box;
+}
+
+function buildDefaults() {
+  const rules = layerRules("defaults.css", "defaults");
+  const s = section("defaults", "defaults.css @layer defaults", "Defaults",
+    "The element defaults in defaults.css, read from the stylesheet: styled buttons, fields, checks, links, labels, table cells and dialogs, and classless structure (main, form, button rows, notes, help text, segmented groups, data-tone). Every value is a token with a fallback, so any of them can be set; every selector is :where(), so a class wins.");
+  s.append(el("h3", {}, rules.length + " rules"), ruleRows(rules));
 }
 
 function buildReset() {

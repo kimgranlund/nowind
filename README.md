@@ -268,19 +268,20 @@ Status colours follow one pattern across every palette: step 3 fills, 6 draws th
 
 ## Element defaults
 
-Bare elements look finished without a class: buttons, text fields, selects, textareas, checkboxes, radios, switches, sliders, links, labels and table cells take styled defaults from the `defaults` layer. `type="submit"` takes the primary fill, and a bare `dialog` takes the dialog padding, corner, width and shadow.
+Bare elements look finished without a class: buttons, text fields, selects, textareas, checkboxes, radios, switches, sliders, links, labels and table cells take styled defaults from the `defaults` layer. `type="submit"` takes the primary fill, and a classless `dialog` takes the dialog padding, corner, width and shadow.
 
 Plain structure does the rest, where the element has no class:
 
 | Write | Get |
 |---|---|
 | `<main>` | A centred page with page padding |
+| `<main>`, `<article>`, `<section>`, `<dialog>` | Their children spaced a flow gap apart |
 | `<form>` | Its parts stacked a field gap apart, up to the form width |
 | `<div>` of buttons | A button row (at the end, in a dialog) |
 | `<small>` after a field | Help text |
 | `role="status"`, `"alert"`, `"note"` | An info, danger or neutral note |
 | `<div role="group">` of `aria-pressed` buttons | A segmented control |
-| `data-tone="danger"` (or accent, success, warning, info) on a button or note | That tone |
+| `data-tone="danger"` (or accent, success, warning, info, neutral) on a button or note | That tone |
 
 ```html
 <form>
@@ -380,7 +381,7 @@ Most changes are a token or two, set after the stylesheet in `:root` (or on any 
 | Element defaults | any token in [`nowind.defaults.manifest.json`](nowind.defaults.manifest.json) |
 | Hover and press strength | `--state-hover`, `--state-active`, `--state-selected` |
 | Motion | `--motion-duration`, `--motion-easing` |
-| Another brand colour | point `--accent-1-1` … `--accent-1-12` and `--accent-1-a1` … `--accent-1-a12` at another family's steps, such as `var(--colors-violet-9)`; the bundle carries blue, violet, plum, crimson, slate, red, amber, green and indigo |
+| Another brand colour | point `--accent-1-1` … `--accent-1-12` and `--accent-1-a1` … `--accent-1-a12` at another family's steps, such as `var(--colors-violet-9)`, and set `--accent-1-contrast` to `var(--accent-1-contrast-black)` for a light family (amber, yellow); the bundle carries blue, violet, plum, crimson, slate, red, amber, green and indigo |
 
 For more than that (your own palettes, type scale or geometry), change the theme itself: see [Changing the theme](#changing-the-theme), or replace `nowind.theme.min.css` with your own file that defines the tokens the manifests in `theme/` list.
 

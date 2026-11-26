@@ -529,7 +529,7 @@ COMPONENTS = [
   <span class="inline-flex items-center justify-center p-xs rounded-full bg-neutral-3 fg-neutral-11"><i class="icon ph ph-folder-open"></i></span>
   <h3 class="text-base font-semibold">No projects yet</h3>
   <p class="text-base fg-neutral-11 max-w-text">Create a project to collect designs, notes and feedback in one place.</p>
-  <button class="{BTN_PRIMARY} mt-xs"><i class="icon ph ph-plus"></i><span>New project</span></button>
+  <button class="{BTN_PRIMARY}"><i class="icon ph ph-plus"></i><span>New project</span></button>
 </div>""",
         "use": ["Say what will appear here and how to start."],
         "avoid": ["Jokes or illustrations that hide the action."],
