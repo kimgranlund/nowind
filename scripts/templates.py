@@ -17,7 +17,7 @@ BY_GROUP = sorted(COMPONENTS, key=lambda c: GROUP_ORDER.index(c["group"]))
 SECTIONS = [
     ("Docs", [("docs/docs-home.html", "Overview"), ("docs/guide.html", "Guide"), ("docs/colour.html", "Colour"),
               ("docs/type-space.html", "Type and space"), ("docs/states.html", "States and variants"),
-              ("docs/materials.html", "Materials"), ("docs/reference.html", "Reference"),
+              ("docs/materials.html", "Materials"), ("docs/reference.html", "Reference"), ("docs/convenience.html", "Convenience classes"),
               ("docs/changelog.html", "Changelog"), ("docs/index.html", "Templates")]),
     ("Components", [("docs/components-index.html", "All components"), ("components.html", "Showcase")] +
                    [(f"docs/c-{c['slug']}.html", c["name"]) for c in BY_GROUP]),
@@ -28,7 +28,7 @@ HAND_PAGES = ["index.html", "components.html", "specimen.html", "utilities.html"
 ORDER = [path for _, pages in SECTIONS for path, _ in pages]
 LABELS = {path: label for _, pages in SECTIONS for path, label in pages}
 TITLES = {"docs/colour.html": "Colour", "docs/type-space.html": "Type and space", "docs/states.html": "States and variants",
-          "docs/materials.html": "Materials", "docs/docs-home.html": "Overview", "docs/guide.html": "Lay out a docs page", "docs/reference.html": "Page grid and shell",
+          "docs/materials.html": "Materials", "docs/convenience.html": "Convenience classes", "docs/docs-home.html": "Overview", "docs/guide.html": "Lay out a docs page", "docs/reference.html": "Page grid and shell",
           "docs/changelog.html": "Changelog", "docs/index.html": "About these templates", "docs/components-index.html": "Components",
           "components.html": "Showcase", "specimen.html": "Specimen", "utilities.html": "Utilities demo",
           "docs/classes.html": "Classes", "docs/semantic.html": "Semantic classes"}
@@ -275,10 +275,10 @@ def ul(items):
     lis = "\n".join(f'            <li>{i}</li>' for i in items)
     return f'<ul class="flex flex-col gap-3xs ps-md list-disc text-body-md max-w-text">\n{lis}\n          </ul>'
 
-def doc_page(current, title, article_html, toc_items=None, wide=False, sidebar_on=True):
+def doc_page(current, title, article_html, toc_items=None, wide=False, sidebar_on=True, head_extra=""):
     """Every generated page: band and section row, the twelve-column grid of blocks, previous and next, footer."""
     path = "docs/" + current
-    return (HEAD.format(title=E(title), head_extra=HEAD_EXTRA) + top(path) +
+    return (HEAD.format(title=E(title), head_extra=HEAD_EXTRA + head_extra) + top(path) +
 f"""<main id="content" class="tier-content px-grid">
   <div class="grid grid-cols-12 gap-x-grid">
         {article_html}
@@ -869,6 +869,38 @@ GROUP_DOCS = [
     ("group-open:", 'the .group is [open], :popover-open, aria-expanded="true", or holds an open popover'),
 ]
 
+CONV_DEMOS = [
+    ("buttons", "Buttons", "<code>btn</code> takes a tone; <code>icon-btn</code> holds one icon and an <code>aria-label</code>.",
+     '<div class="flex flex-wrap gap-xs">\n  <button class="btn btn-primary"><i class="icon ph ph-check"></i><span>Save</span></button>\n  <button class="btn btn-secondary"><span>Cancel</span></button>\n  <button class="btn btn-soft"><span>Soft</span></button>\n  <button class="btn btn-ghost"><span>Ghost</span></button>\n  <button class="btn btn-danger"><i class="icon ph ph-trash"></i><span>Delete</span></button>\n  <button class="icon-btn btn-secondary" aria-label="Settings"><i class="icon ph ph-gear"></i></button>\n</div>'),
+    ("small", "Small buttons and segments", "<code>btn-sm</code> and <code>segment</code> sit only inside an inset container: a toolbar padded <code>p-3xs</code>, or a <code>segmented</code> group.",
+     '<div class="flex flex-wrap items-center gap-sm">\n  <div class="inline-flex items-center gap-3xs p-3xs rounded-md border border-neutral-6 bg-neutral-2" role="toolbar" aria-label="Formatting">\n    <button class="btn-sm btn-ghost"><i class="icon icon-sm ph-bold ph-text-b"></i><span>Bold</span></button>\n    <button class="btn-sm btn-ghost"><i class="icon icon-sm ph-bold ph-link"></i><span>Link</span></button>\n  </div>\n  <div class="segmented" role="group" aria-label="Range">\n    <button class="segment" aria-pressed="true"><span>Day</span></button>\n    <button class="segment" aria-pressed="false"><span>Week</span></button>\n    <button class="segment" aria-pressed="false"><span>Month</span></button>\n  </div>\n</div>'),
+    ("fields", "Fields and badges", "<code>field</code> is the box; the input inside stays bare. Wrap a badge's text in a <code>span</code>.",
+     '<div class="flex flex-col gap-md max-w-form">\n  <div class="flex flex-col gap-2xs">\n    <label for="cv-email" class="text-sm font-medium">Email</label>\n    <div class="field">\n      <i class="icon ph ph-envelope-simple fg-neutral-11" aria-hidden="true"></i>\n      <input id="cv-email" type="email" class="grow min-w-0 self-stretch p-0 border-0 bg-transparent fg-neutral-12" placeholder="ada@example.com">\n    </div>\n  </div>\n  <div class="flex flex-wrap gap-2xs">\n    <span class="badge badge-neutral"><span>Draft</span></span>\n    <span class="badge badge-success"><i class="icon icon-sm ph-bold ph-check"></i><span>Paid</span></span>\n    <span class="badge badge-warning"><span>Pending</span></span>\n    <span class="badge badge-danger"><span>Failed</span></span>\n    <span class="badge badge-info"><span>New</span></span>\n  </div>\n</div>'),
+    ("cards", "Cards", "<code>card</code> pads and rounds; lay its content out with utilities.",
+     '<div class="card flex flex-col gap-xs max-w-form">\n  <h3 class="text-base font-semibold">Weekly report</h3>\n  <p class="fg-neutral-11">Six pages changed and two components were added.</p>\n  <div class="flex gap-xs pt-xs">\n    <button class="btn btn-primary"><span>Open</span></button>\n    <button class="btn btn-ghost"><span>Later</span></button>\n  </div>\n</div>'),
+]
+
+
+def convenience_page():
+    m = _m("nowind.components.manifest.json")
+    rows = [[f"<code>{E(c['class'])}</code>", f"<code>{E(c['recipe'])}</code>", E(c["use"])] for c in m["classes"]]
+    demos = [section(sid, label, p(intro),
+                     f"""<div data-example class="tier-product p-surface rounded-md border border-weak bg-strong">
+{html_}
+          </div>""",
+                     code(f"{sid}.html", "HTML", html_)) for sid, label, intro, html_ in CONV_DEMOS]
+    art = "\n        ".join([
+        page_head("Docs", "Convenience classes",
+                  "The stacks that repeat most in the examples, as single classes in an optional second file. Each is written from its utility recipe and checked to render the same in every state, and any utility you add still wins. The rest of these docs show the utilities, so you can always see what a class is made of."),
+        section("link", "Link it", p("After the main stylesheet. The classes sit in a <code>components</code> layer that comes before the utilities."),
+                code("index.html", "HTML", '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v__VERSION__/dist/nowind.min.css">\n<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v__VERSION__/dist/nowind.components.min.css">')),
+        *demos,
+        section("recipes", "Recipes", p("Every class and the utility stack it is. A utility on the element overrides any part: <code>btn btn-primary rounded-full</code> is a pill."),
+                table(["Class", "Recipe", "Use"], rows)),
+    ])
+    return doc_page("convenience.html", "Convenience classes", art, head_extra='<link rel="stylesheet" href="../../dist/nowind.components.css">\n')
+
+
 def states_page():
     css = open(os.path.join(ROOT, "nowind.css")).read()
     def count(prefix):
@@ -891,7 +923,7 @@ def states_page():
                 code("ghost.html", "HTML", '<button class="state py-xs px-sm rounded-sm bg-transparent fg-neutral-12">Ghost</button>\n<button class="state py-xs px-sm rounded-sm bg-accent-1-9 fg-accent-1-contrast">Primary</button>')),
         section("motion", "Transitions and focus",
                 p("Every interactive element (links, buttons, summaries, fields, labels, and the button, tab, option, menuitem and switch roles) transitions its colours, opacity, shadow and transforms by default, at the motion duration and easing. Reduced motion cuts it. Anything else that changes with state names <code>transition</code>."),
-                p("Focus: buttons, links and checkable controls get a 2px accent ring on <code>:focus-visible</code>. Text fields get no ring; their border turns accent, and a field box shows its input's focus with <code>focus-within:</code>.")),
+                p("Focus: buttons, links and checkable controls get a 2px accent ring on <code>:focus-visible</code>. A text field draws the ring over its own border, so a border class can't hide it, and a field box (<code>cursor-text</code>) draws it on the box while its bare input draws none.")),
         section("indicators", "Indicators", p("An indicator follows the state it shows. A caret turns over when its disclosure or menu opens: put <code>group</code> on the <code>details</code> or on the wrapper holding the button and its popover."),
                 code("caret.html", "HTML", '<details class="group">\n  <summary class="flex items-center justify-between list-none">\n    Shipping <i class="icon icon-sm ph ph-caret-down transition group-open:rotate-180"></i>\n  </summary>\n  …\n</details>')),
     ])
@@ -1397,7 +1429,7 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     files = {"guide.html": guide(), "reference.html": reference(), "changelog.html": changelog(),
              "docs-home.html": docs_home(), "index.html": index(), "components-index.html": components_index(), "classes.html": classes_page(), "semantic.html": classes_page(True),
-             "colour.html": colour_page(), "type-space.html": type_space_page(), "states.html": states_page(), "materials.html": materials_page()}
+             "colour.html": colour_page(), "type-space.html": type_space_page(), "states.html": states_page(), "materials.html": materials_page(), "convenience.html": convenience_page()}
     files.update({f"c-{c['slug']}.html": component_page(c) for c in COMPONENTS})
     for name, text in files.items():
         text = text.replace("<code>--", '<code class="whitespace-nowrap">--')

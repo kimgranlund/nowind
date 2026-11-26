@@ -118,7 +118,7 @@ const BEHAVIOUR_SETUP = `(() => {
   if (document.querySelector("style[data-page-css]")) return JSON.stringify({ info: [], durs: [], eases: [] });
   document.querySelectorAll("[data-nwb], [data-nwbox]").forEach((e) => { e.removeAttribute("data-nwb"); e.removeAttribute("data-nwbox"); });
   const els = [...document.querySelectorAll(SEL)].filter(visible).filter((e) => !e.closest("[data-semantic-demo]") && !(e.tagName === "INPUT" && /^(range|color|file|hidden)$/.test(e.type)));
-  els.forEach((e, i) => { e.setAttribute("data-nwb", i); const box = e.matches("input, select, textarea") && e.parentElement.closest(".cursor-text"); if (box) box.setAttribute("data-nwbox", ((box.getAttribute("data-nwbox") || "") + " " + i).trim()); });
+  els.forEach((e, i) => { e.setAttribute("data-nwb", i); const box = e.matches("input, select, textarea") && e.parentElement.closest(".cursor-text, .field"); if (box) box.setAttribute("data-nwbox", ((box.getAttribute("data-nwbox") || "") + " " + i).trim()); });
   const probe = document.createElement("div"); document.body.append(probe);
   const durs = new Set(["0s"]), eases = new Set();
   for (const n of ["fade", "snappy", "smooth", "bouncy"]) { probe.style.transitionDuration = "var(--duration-" + n + ")"; durs.add(getComputedStyle(probe).transitionDuration); }
@@ -131,7 +131,7 @@ const BEHAVIOUR_SETUP = `(() => {
   const info = els.map((e) => {
     const c = getComputedStyle(e), r = e.getBoundingClientRect();
     const inText = e.tagName === "A" && [...e.parentElement.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim());
-    const box = e.matches("input, select, textarea") && e.parentElement.closest(".cursor-text");
+    const box = e.matches("input, select, textarea") && e.parentElement.closest(".cursor-text, .field");
     const field = e.matches("input:not([type=checkbox], [type=radio], [type=button], [type=submit], [type=reset]), select, textarea");
     return { where: where(e), w: r.width, h: r.height, x: r.left + r.width / 2, y: r.top + r.height / 2, rect: [r.left, r.top, r.right, r.bottom], boxed: !!box, field,
       label: !!e.closest("label") && e.matches("input[type=checkbox], input[type=radio]"), disabled: e.matches(":disabled, [aria-disabled=true]"), on: ON(e), state: e.classList.contains("state"), inText,

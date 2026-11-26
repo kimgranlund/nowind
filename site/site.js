@@ -265,7 +265,7 @@ window.nowindOwnCSS = () => !!document.querySelector("style[data-page-css]");
     for (const i of document.querySelectorAll("main .icon")) {
       if (!inScope(i) || i.matches(".caret, [class*=ph-caret-]")) continue;
       const host = i.closest("button, a, summary, [role=option], [role=menuitem]");
-      if (host && host.matches(".h-nested, .size-nested, .h-full") && i.matches(".icon-sm")) continue;
+      if (host && host.matches(".h-nested, .size-nested, .h-full, .btn-sm, .segment") && i.matches(".icon-sm")) continue;
       const near = [i.nextElementSibling, i.previousElementSibling].find((n) => n && texty(n));
       if (!near) continue;
       const r = px(near) / F(near);
