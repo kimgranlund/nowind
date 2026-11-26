@@ -1330,7 +1330,7 @@ Variants: `hover:` on the 211 role-colour, opacity and cursor classes (inside `@
 
 ## Layout and misc
 
-265 classes.
+266 classes.
 
 | Class | Declarations |
 |---|---|
@@ -1467,6 +1467,7 @@ Variants: `hover:` on the 211 role-colour, opacity and cursor classes (inside `@
 | `.bg-no-repeat` | `background-repeat: no-repeat` |
 | `.lens` | `--_lens: 1` |
 | `.bg-dots` | `background-image: radial-gradient(circle, currentColor var(--_dot, 1.5px), transparent calc(var(--_dot, 1.5px) + 0.75px)); background-size: var(--_dots, var(--space-sm)) var(--_dots, var(--space-sm)); background-position: center` |
+| `.bg-dots-xs` | `--_dots: var(--space-2xs); --_dot: 0.75px` |
 | `.bg-dots-sm` | `--_dots: var(--space-xs); --_dot: 1px` |
 | `.bg-dots-md` | `--_dots: var(--space-sm); --_dot: 1.5px` |
 | `.bg-dots-lg` | `--_dots: var(--space-md); --_dot: 2px` |

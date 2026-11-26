@@ -876,10 +876,10 @@ def _snip(slug, ex=None):
     return c["html"] if ex is None else next(x["html"] for x in c.get("examples", []) if x["id"] == ex)
 
 
-def live(name, html_, semantic=False):
+def live(name, html_, semantic=False, frame=""):
     """A rendered example and its code. semantic marks a demo built on role classes (materials), which the examples
-    lint leaves alone."""
-    return (f"""<div data-example{' data-semantic-demo' if semantic else ''} class="tier-product p-surface rounded-md border border-weak bg-strong">
+    lint leaves alone; frame adds classes to the example's frame (relative overflow-hidden for a full-bleed backdrop)."""
+    return (f"""<div data-example{' data-semantic-demo' if semantic else ''} class="tier-product p-surface rounded-md border border-weak bg-strong{' ' + frame if frame else ''}">
 {html_}
           </div>""", code(name, "HTML", html_))
 
@@ -919,8 +919,8 @@ def _material_card(m):
 
 
 MATERIAL_DEMOS = {
-    "materials": '<div class="relative rounded-lg overflow-hidden">\n<div class="absolute inset-0 bg-neutral-2 fg-accent-1-9 bg-dots bg-dots-md" aria-hidden="true"></div>\n<div class="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-group p-surface">\n'
-                 + "\n".join(_material_card(m) for m in ["flat", "physical", "frosted", "glass", "outline"]) + "\n</div>\n</div>",
+    "materials": '<div class="absolute inset-0 bg-neutral-2 fg-accent-1-9 bg-dots bg-dots-xs" aria-hidden="true"></div>\n<div class="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-group">\n'
+                 + "\n".join(_material_card(m) for m in ["flat", "physical", "frosted", "glass", "outline"]) + "\n</div>",
     "reliefs": """<div class="material-physical flex flex-col gap-field p-surface rounded-md relief-ground bg border border-weak max-w-form">
   <span class="text-caption fg-weak">relief-ground: the panel others sit on</span>
   <input class="relief-field h-control px-control rounded-sm border bg text-control-md w-full" placeholder="relief-field: cut into the ground" aria-label="Field">
@@ -937,8 +937,8 @@ MATERIAL_DEMOS = {
     <input type="range" min="0" max="100" value="55" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" aria-label="Glass slider">
   </div>
 </div>""",
-    "backdrops": '<div class="grid grid-cols-1 sm:grid-cols-3 gap-sm">\n'
-                 + "\n".join(f'  <div class="flex items-end h-3xl p-sm rounded-md bg-neutral-3 fg-accent-1-9 bg-dots bg-dots-{k}"><span class="px-2xs rounded-inner bg fg text-caption">bg-dots-{k}</span></div>' for k in ["sm", "md", "lg"]) + "\n</div>",
+    "backdrops": '<div class="grid grid-cols-2 sm:grid-cols-4 gap-sm">\n'
+                 + "\n".join(f'  <div class="flex items-end h-3xl p-sm rounded-md bg-neutral-3 fg-accent-1-9 bg-dots bg-dots-{k}"><span class="px-2xs rounded-inner bg fg text-caption">bg-dots-{k}</span></div>' for k in ["xs", "sm", "md", "lg"]) + "\n</div>",
 }
 
 
@@ -1014,14 +1014,14 @@ def materials_page():
     art = "\n        ".join([
         page_head("Docs", "Materials",
                   "A material is how a region is painted: flat, lit, frosted, clear glass or outlined. It never changes a length, so switching material moves nothing. Set it once on a region; every part inside paints itself by what it is."),
-        section("materials", "Materials", table(["Class", "What it does"], rows), p("The same form in each material, over a dot grid so you can see what each does with what is behind it. Hover and press the buttons."), *live("materials.html", MATERIAL_DEMOS["materials"], semantic=True)),
+        section("materials", "Materials", table(["Class", "What it does"], rows), p("The same form in each material, over a dot grid so you can see what each does with what is behind it. Hover and press the buttons."), *live("materials.html", MATERIAL_DEMOS["materials"], semantic=True, frame="relative overflow-hidden")),
         section("reliefs", "Parts", p(_plain(mm["usage"])), p("One physical panel, each part labelled with its relief."),
                 *live("reliefs.html", MATERIAL_DEMOS["reliefs"], semantic=True)),
         section("glass", "Glass and the lens", p(_plain(mm["materials"]["glass"])), p(_plain(mm["glass"]["lens"])),
                 *live("glass.html", MATERIAL_DEMOS["glass"], semantic=True),
                 code("lens.html", "HTML", '<div class="material-glass relief-ground lens rounded-md">…</div>\n<!-- the page provides the filter and sets data-lens="on" on <html> where the engine can draw it;\n     on this site, site.js does both -->'),
                 callout("note", "Only Chromium applies an SVG filter behind an element. Elsewhere glass keeps its blur, so text over it must read without the lens.")),
-        section("backdrops", "Backdrops", p("Glass needs something behind it to bend. <code>bg-dots</code> paints a dot grid in <code>currentColor</code>, spaced by <code>bg-dots-sm</code>, <code>-md</code> or <code>-lg</code>: the showcase sets its materials on one."),
+        section("backdrops", "Backdrops", p("Glass needs something behind it to bend. <code>bg-dots</code> paints a dot grid in <code>currentColor</code>, spaced by <code>bg-dots-xs</code>, <code>-sm</code>, <code>-md</code> or <code>-lg</code>: the showcase sets its materials on one."),
                 *live("backdrops.html", MATERIAL_DEMOS["backdrops"], semantic=True)),
     ])
     return doc_page("materials.html", "Materials", art)

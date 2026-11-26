@@ -74,10 +74,9 @@
             </table>
           </div>
           <p class="text-body-md max-w-text break-words">The same form in each material, over a dot grid so you can see what each does with what is behind it. Hover and press the buttons.</p>
-          <div data-example data-semantic-demo class="tier-product p-surface rounded-md border border-weak bg-strong">
-<div class="relative rounded-lg overflow-hidden">
-<div class="absolute inset-0 bg-neutral-2 fg-accent-1-9 bg-dots bg-dots-md" aria-hidden="true"></div>
-<div class="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-group p-surface">
+          <div data-example data-semantic-demo class="tier-product p-surface rounded-md border border-weak bg-strong relative overflow-hidden">
+<div class="absolute inset-0 bg-neutral-2 fg-accent-1-9 bg-dots bg-dots-xs" aria-hidden="true"></div>
+<div class="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-group">
   <div class="material-flat flex flex-col gap-field p-surface rounded-md relief-ground bg border border-weak">
     <span class="text-kicker fg-weak">flat</span>
     <span class="text-title">Invite your team</span>
@@ -124,15 +123,13 @@
     </div>
   </div>
 </div>
-</div>
           </div>
           <figure class="flex flex-col min-w-0 border border-weak bg-strong">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">materials.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
             </figcaption>
-            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;relative rounded-lg overflow-hidden&quot;&gt;
-&lt;div class=&quot;absolute inset-0 bg-neutral-2 fg-accent-1-9 bg-dots bg-dots-md&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
-&lt;div class=&quot;relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-group p-surface&quot;&gt;
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;absolute inset-0 bg-neutral-2 fg-accent-1-9 bg-dots bg-dots-xs&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-group&quot;&gt;
   &lt;div class=&quot;material-flat flex flex-col gap-field p-surface rounded-md relief-ground bg border border-weak&quot;&gt;
     &lt;span class=&quot;text-kicker fg-weak&quot;&gt;flat&lt;/span&gt;
     &lt;span class=&quot;text-title&quot;&gt;Invite your team&lt;/span&gt;
@@ -178,7 +175,6 @@
       &lt;button class=&quot;relief-raised inline-flex items-center h-control px-control rounded-sm border bg-component-weak hover:bg-component active:bg-component-strong fg text-title-sm cursor-pointer&quot;&gt;&lt;span&gt;Later&lt;/span&gt;&lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-&lt;/div&gt;
 &lt;/div&gt;</code></pre>
           </figure>
           </div>
@@ -261,9 +257,10 @@
         <section id="backdrops" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Backdrops</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <p class="text-body-md max-w-text break-words">Glass needs something behind it to bend. <code>bg-dots</code> paints a dot grid in <code>currentColor</code>, spaced by <code>bg-dots-sm</code>, <code>-md</code> or <code>-lg</code>: the showcase sets its materials on one.</p>
+          <p class="text-body-md max-w-text break-words">Glass needs something behind it to bend. <code>bg-dots</code> paints a dot grid in <code>currentColor</code>, spaced by <code>bg-dots-xs</code>, <code>-sm</code>, <code>-md</code> or <code>-lg</code>: the showcase sets its materials on one.</p>
           <div data-example data-semantic-demo class="tier-product p-surface rounded-md border border-weak bg-strong">
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-sm">
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-sm">
+  <div class="flex items-end h-3xl p-sm rounded-md bg-neutral-3 fg-accent-1-9 bg-dots bg-dots-xs"><span class="px-2xs rounded-inner bg fg text-caption">bg-dots-xs</span></div>
   <div class="flex items-end h-3xl p-sm rounded-md bg-neutral-3 fg-accent-1-9 bg-dots bg-dots-sm"><span class="px-2xs rounded-inner bg fg text-caption">bg-dots-sm</span></div>
   <div class="flex items-end h-3xl p-sm rounded-md bg-neutral-3 fg-accent-1-9 bg-dots bg-dots-md"><span class="px-2xs rounded-inner bg fg text-caption">bg-dots-md</span></div>
   <div class="flex items-end h-3xl p-sm rounded-md bg-neutral-3 fg-accent-1-9 bg-dots bg-dots-lg"><span class="px-2xs rounded-inner bg fg text-caption">bg-dots-lg</span></div>
@@ -273,7 +270,8 @@
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">backdrops.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
             </figcaption>
-            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;grid grid-cols-1 sm:grid-cols-3 gap-sm&quot;&gt;
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;div class=&quot;grid grid-cols-2 sm:grid-cols-4 gap-sm&quot;&gt;
+  &lt;div class=&quot;flex items-end h-3xl p-sm rounded-md bg-neutral-3 fg-accent-1-9 bg-dots bg-dots-xs&quot;&gt;&lt;span class=&quot;px-2xs rounded-inner bg fg text-caption&quot;&gt;bg-dots-xs&lt;/span&gt;&lt;/div&gt;
   &lt;div class=&quot;flex items-end h-3xl p-sm rounded-md bg-neutral-3 fg-accent-1-9 bg-dots bg-dots-sm&quot;&gt;&lt;span class=&quot;px-2xs rounded-inner bg fg text-caption&quot;&gt;bg-dots-sm&lt;/span&gt;&lt;/div&gt;
   &lt;div class=&quot;flex items-end h-3xl p-sm rounded-md bg-neutral-3 fg-accent-1-9 bg-dots bg-dots-md&quot;&gt;&lt;span class=&quot;px-2xs rounded-inner bg fg text-caption&quot;&gt;bg-dots-md&lt;/span&gt;&lt;/div&gt;
   &lt;div class=&quot;flex items-end h-3xl p-sm rounded-md bg-neutral-3 fg-accent-1-9 bg-dots bg-dots-lg&quot;&gt;&lt;span class=&quot;px-2xs rounded-inner bg fg text-caption&quot;&gt;bg-dots-lg&lt;/span&gt;&lt;/div&gt;

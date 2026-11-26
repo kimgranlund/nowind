@@ -1636,6 +1636,7 @@
 [".bg-no-repeat", "docs/classes.html#class-bg-no-repeat", "Class", "background-repeat: no-repeat"],
 [".lens", "docs/classes.html#class-lens", "Class", "--_lens: 1"],
 [".bg-dots", "docs/classes.html#class-bg-dots", "Class", "background-image: radial-gradient(circle, currentColor var(--_dot, 1.5px), transparent calc(var(--_dot, 1.5px) + 0.75px)); background-size: var(--_dots, var(--space-sm)) var(--_dots, var(--space-sm)); background-position: center"],
+[".bg-dots-xs", "docs/classes.html#class-bg-dots-xs", "Class", "--_dots: var(--space-2xs); --_dot: 0.75px"],
 [".bg-dots-sm", "docs/classes.html#class-bg-dots-sm", "Class", "--_dots: var(--space-xs); --_dot: 1px"],
 [".bg-dots-md", "docs/classes.html#class-bg-dots-md", "Class", "--_dots: var(--space-sm); --_dot: 1.5px"],
 [".bg-dots-lg", "docs/classes.html#class-bg-dots-lg", "Class", "--_dots: var(--space-md); --_dot: 2px"],

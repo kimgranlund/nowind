@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Finer dots:** new `bg-dots-xs` (a 0.75px dot every `--space-2xs`). On the Materials page the five materials now sit on a full-bleed `bg-dots-xs` field that fills the example frame, and the backdrops example shows all four spacings.
 - **Check your own page:** `python3 scripts/templates.py --lint-file page.html` runs the examples' contracts (sizes, geometry, palette steps, state attributes, undefined classes) on any HTML, with no browser. Convenience classes are expanded into their stacks first, and your own utilities override them as the cascade does, so `btn btn-primary rounded-full` passes and a `btn` forced to `h-nested` is told to use `btn-sm`'s geometry. The README has a section on it.
 - **README, from a consumer test on 0.12.0** (a fresh agent with only the README and both stylesheets wrote 38% fewer classes than before, using the convenience classes): the layer list includes `components`; the two manifests are told apart; the `field` stack and a form-field recipe are given; a badge's text sits in a `span`; a dialog closes with `command="close"`; avatars take no padding; a page's `h1` stays unsized.
 - **Release script:** `node scripts/release.mjs X.Y.Z --reviewed` dates the changelog, moves the links to the new tag, regenerates, and runs the check, its self-test and the review gate before it commits and tags; any failure restores every file. It never pushes. AGENTS.md's release steps start with `/code-review` on the range since the last tag.
