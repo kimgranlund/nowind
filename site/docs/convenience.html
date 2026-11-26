@@ -210,6 +210,71 @@
           </figure>
           </div>
         </section>
+        <section id="defaults" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Element defaults</h2></div>
+          <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
+          <p class="text-body-md max-w-text break-words">No classes on the elements: the <code>defaults</code> region styles them from tokens with fallbacks. Set <code class="whitespace-nowrap">--button-radius</code>, <code class="whitespace-nowrap">--field-border</code> or any other on the region, or on <code>:root</code>, to change them; a utility class on an element still wins. <code>nowind.defaults.manifest.json</code> lists every token.</p>
+          <div data-example class="tier-product p-surface rounded-md border border-weak bg-strong">
+<form class="defaults flex flex-col gap-md max-w-form" onsubmit="return false">
+  <div>
+    <label for="df-name">Team name</label>
+    <input id="df-name" value="Design Ops">
+  </div>
+  <div>
+    <label for="df-role">Default role</label>
+    <select id="df-role"><option>Member</option><option>Admin</option></select>
+  </div>
+  <div>
+    <label for="df-note">Note</label>
+    <textarea id="df-note" rows="2" placeholder="Shown on invitations"></textarea>
+  </div>
+  <label><input type="checkbox" checked> Let anyone with a company email join</label>
+  <label><input type="checkbox" role="switch"> Weekly digest</label>
+  <input type="range" value="60" aria-label="Seats">
+  <table>
+    <tr><th>Member</th><th>Role</th></tr>
+    <tr><td>Ada Lovelace</td><td>Owner</td></tr>
+  </table>
+  <p>Read the <a href="#">invitation policy</a>.</p>
+  <div class="flex gap-xs">
+    <button type="button">Cancel</button>
+    <button type="submit">Save</button>
+  </div>
+</form>
+          </div>
+          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
+              <span class="text-mono-sm fg-weak truncate">defaults.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
+            </figcaption>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;form class=&quot;defaults flex flex-col gap-md max-w-form&quot; onsubmit=&quot;return false&quot;&gt;
+  &lt;div&gt;
+    &lt;label for=&quot;df-name&quot;&gt;Team name&lt;/label&gt;
+    &lt;input id=&quot;df-name&quot; value=&quot;Design Ops&quot;&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for=&quot;df-role&quot;&gt;Default role&lt;/label&gt;
+    &lt;select id=&quot;df-role&quot;&gt;&lt;option&gt;Member&lt;/option&gt;&lt;option&gt;Admin&lt;/option&gt;&lt;/select&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label for=&quot;df-note&quot;&gt;Note&lt;/label&gt;
+    &lt;textarea id=&quot;df-note&quot; rows=&quot;2&quot; placeholder=&quot;Shown on invitations&quot;&gt;&lt;/textarea&gt;
+  &lt;/div&gt;
+  &lt;label&gt;&lt;input type=&quot;checkbox&quot; checked&gt; Let anyone with a company email join&lt;/label&gt;
+  &lt;label&gt;&lt;input type=&quot;checkbox&quot; role=&quot;switch&quot;&gt; Weekly digest&lt;/label&gt;
+  &lt;input type=&quot;range&quot; value=&quot;60&quot; aria-label=&quot;Seats&quot;&gt;
+  &lt;table&gt;
+    &lt;tr&gt;&lt;th&gt;Member&lt;/th&gt;&lt;th&gt;Role&lt;/th&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Ada Lovelace&lt;/td&gt;&lt;td&gt;Owner&lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;
+  &lt;p&gt;Read the &lt;a href=&quot;#&quot;&gt;invitation policy&lt;/a&gt;.&lt;/p&gt;
+  &lt;div class=&quot;flex gap-xs&quot;&gt;
+    &lt;button type=&quot;button&quot;&gt;Cancel&lt;/button&gt;
+    &lt;button type=&quot;submit&quot;&gt;Save&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+          </figure>
+          </div>
+        </section>
         <section id="recipes" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Recipes</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">

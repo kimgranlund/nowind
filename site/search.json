@@ -166,6 +166,7 @@
 ["Small buttons and segments", "docs/convenience.html#small", "Section", "Convenience classes"],
 ["Fields and badges", "docs/convenience.html#fields", "Section", "Convenience classes"],
 ["Cards", "docs/convenience.html#cards", "Section", "Convenience classes"],
+["Element defaults", "docs/convenience.html#defaults", "Section", "Convenience classes"],
 ["Recipes", "docs/convenience.html#recipes", "Section", "Convenience classes"],
 ["Example", "docs/c-button.html#example", "Section", "Button"],
 ["Sizes", "docs/c-button.html#sizes", "Section", "Button"],

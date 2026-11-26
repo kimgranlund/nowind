@@ -954,6 +954,33 @@ CONV_DEMOS = [
 ]
 
 
+DEFAULTS_DEMO = """<form class="defaults flex flex-col gap-md max-w-form" onsubmit="return false">
+  <div>
+    <label for="df-name">Team name</label>
+    <input id="df-name" value="Design Ops">
+  </div>
+  <div>
+    <label for="df-role">Default role</label>
+    <select id="df-role"><option>Member</option><option>Admin</option></select>
+  </div>
+  <div>
+    <label for="df-note">Note</label>
+    <textarea id="df-note" rows="2" placeholder="Shown on invitations"></textarea>
+  </div>
+  <label><input type="checkbox" checked> Let anyone with a company email join</label>
+  <label><input type="checkbox" role="switch"> Weekly digest</label>
+  <input type="range" value="60" aria-label="Seats">
+  <table>
+    <tr><th>Member</th><th>Role</th></tr>
+    <tr><td>Ada Lovelace</td><td>Owner</td></tr>
+  </table>
+  <p>Read the <a href="#">invitation policy</a>.</p>
+  <div class="flex gap-xs">
+    <button type="button">Cancel</button>
+    <button type="submit">Save</button>
+  </div>
+</form>"""
+
 def convenience_page():
     m = _m("nowind.components.manifest.json")
     rows = [[f"<code>{E(c['class'])}</code>", f"<code>{E(c['recipe'])}</code>", E(c["use"])] for c in m["classes"]]
@@ -968,6 +995,8 @@ def convenience_page():
         section("link", "Link it", p("After the main stylesheet. The classes sit in a <code>components</code> layer that comes before the utilities."),
                 code("index.html", "HTML", '<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v__VERSION__/dist/nowind.min.css">\n<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v__VERSION__/dist/nowind.components.min.css">')),
         *demos,
+        section("defaults", "Element defaults", p("No classes on the elements: the <code>defaults</code> region styles them from tokens with fallbacks. Set <code>--button-radius</code>, <code>--field-border</code> or any other on the region, or on <code>:root</code>, to change them; a utility class on an element still wins. <code>nowind.defaults.manifest.json</code> lists every token."),
+                *live("defaults.html", DEFAULTS_DEMO)),
         section("recipes", "Recipes", p("Every class and the utility stack it is. A utility on the element overrides any part: <code>btn btn-primary rounded-full</code> is a pill."),
                 table(["Class", "Recipe", "Use"], rows)),
     ])

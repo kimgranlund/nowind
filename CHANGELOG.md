@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Element defaults:** put `defaults` on a region and its bare buttons, text fields, selects, textareas, checkboxes, radios, switches, sliders, links, labels and table cells take styled defaults; `type="submit"` takes the primary fill. Each value is a token with a fallback (`--button-radius`, `--field-border`, `--check-size`, `--link-color` and 29 more), left undeclared so it can be set on `:root`, on the region or anywhere inside, and every selector is `:where()`, so utilities still win. Outside `.defaults` the reset is unchanged. `nowind.defaults.manifest.json` lists the tokens; the Convenience classes page has a live form.
 - **Tooling fixes from /code-review:**
   - `review.mjs` reads a domain written after a flag (`--quick paint` ran form).
   - It reviews only a server serving this checkout: `serve.mjs` names its root in a header, and the review starts its own server on the next free port when 8765 serves something else.

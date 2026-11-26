@@ -382,6 +382,72 @@ const geometryCss = read("theme/theme.geometry.css");
 const BREAKPOINTS = [...geometryCss.matchAll(/--breakpoint-([\w]+):\s*(\d+)px/g)].map((m) => [m[1], Number(m[2])]);
 const CONTAINERS = [...geometryCss.matchAll(/--container-(sm|md|lg):\s*(\d+)px/g)].map((m) => [m[1], Number(m[2])]);
 
+// Element defaults: inside a .defaults region, bare elements (buttons, fields, checks, sliders, links, labels, table
+// cells) get styled defaults. Every value reads a token with a fallback (var(--button-radius, var(--radius-sm))): the
+// tokens are left undeclared, so setting one anywhere (:root, .defaults, any region) takes effect, and the fallback
+// resolves at the element, following scopes and tiers. All selectors are :where(), so any utility class wins.
+// nowind.defaults.manifest.json lists every token, its fallback and its use.
+const DEFAULT_TOKENS = [
+  ["button-height", "var(--control-height)", "Button block size"],
+  ["button-padding", "var(--control-padding)", "Button inline padding"],
+  ["button-gap", "var(--gutter)", "Gap between a button's icon and label"],
+  ["button-radius", "var(--radius-sm)", "Button corner"],
+  ["button-border", "transparent", "Button border colour (the width is the border width)"],
+  ["button-bg", "var(--neutral-a2)", "Button fill"],
+  ["button-bg-hover", "var(--neutral-a3)", "Button fill on hover"],
+  ["button-bg-active", "var(--neutral-a4)", "Button fill while pressed"],
+  ["button-fg", "var(--fg)", "Button text"],
+  ["button-weight", "var(--font-weight-medium)", "Button text weight"],
+  ["button-primary-bg", "var(--solid-accent-1)", "Submit button fill (type=submit)"],
+  ["button-primary-bg-hover", "var(--solid-accent-1-strong)", "Submit button fill on hover"],
+  ["button-primary-fg", "var(--on-solid-accent-1)", "Submit button text"],
+  ["field-height", "var(--control-height)", "Text input and select block size"],
+  ["field-width", "100%", "Text input, select and textarea inline size"],
+  ["field-padding", "var(--control-padding)", "Field inline padding"],
+  ["field-padding-block", "var(--margin)", "Textarea block padding"],
+  ["field-radius", "var(--radius-sm)", "Field corner"],
+  ["field-bg", "var(--bg)", "Field fill"],
+  ["field-border", "var(--border-weak)", "Field border colour"],
+  ["field-border-hover", "var(--border)", "Field border colour on hover"],
+  ["field-border-invalid", "var(--border-danger)", "Field border colour once the user leaves it invalid"],
+  ["check-size", "var(--mark-md)", "Checkbox, radio, switch and slider size"],
+  ["check-accent", "var(--solid-accent-1)", "Checked fill of a checkbox or radio"],
+  ["link-color", "var(--fg-accent-1-weak)", "Link text"],
+  ["link-color-hover", "var(--fg-accent-1)", "Link text on hover"],
+  ["link-underline-offset", "0.15em", "Link underline offset"],
+  ["label-size", "var(--text-sm)", "Field label size"],
+  ["label-weight", "var(--font-weight-medium)", "Field label weight"],
+  ["label-gap", "var(--space-3xs)", "Space between a field label and its field"],
+  ["cell-padding", "var(--space-sm)", "Table cell inline padding"],
+  ["cell-padding-block", "var(--space-xs)", "Table cell block padding"],
+  ["cell-border", "var(--border-weak)", "Rule under each table row"],
+];
+const DT = Object.fromEntries(DEFAULT_TOKENS.map(([t, f]) => [t, `var(--${t}, ${f})`]));
+const DR = ":where(.defaults)";
+const TEXT_INPUT = 'input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"], [type="hidden"])';
+const BUTTONS = 'button, input[type="button"], input[type="submit"], input[type="reset"]';
+const DEFAULTS_CSS = [
+  `${DR} :where(${BUTTONS}) { display: inline-flex; align-items: center; justify-content: center; gap: ${DT["button-gap"]}; block-size: ${DT["button-height"]}; padding-inline: ${DT["button-padding"]}; border: var(--border-width) solid ${DT["button-border"]}; border-radius: ${DT["button-radius"]}; background-color: ${DT["button-bg"]}; color: ${DT["button-fg"]}; font-weight: ${DT["button-weight"]}; }`,
+  `@media (hover: hover) { ${DR} :where(${BUTTONS}):where(:not(:disabled)):hover { background-color: ${DT["button-bg-hover"]}; } }`,
+  `${DR} :where(${BUTTONS}):where(:not(:disabled)):active { background-color: ${DT["button-bg-active"]}; }`,
+  `${DR} :where(button[type="submit"], input[type="submit"]) { background-color: ${DT["button-primary-bg"]}; color: ${DT["button-primary-fg"]}; }`,
+  `@media (hover: hover) { ${DR} :where(button[type="submit"], input[type="submit"]):where(:not(:disabled)):hover { background-color: ${DT["button-primary-bg-hover"]}; } }`,
+  `${DR} :where(button[type="submit"], input[type="submit"]):where(:not(:disabled)):active { background-color: ${DT["button-primary-bg-hover"]}; }`,
+  `${DR} :where(${BUTTONS}):disabled { opacity: 0.5; cursor: not-allowed; }`,
+  `${DR} :where(${TEXT_INPUT}, select) { block-size: ${DT["field-height"]}; padding-inline: ${DT["field-padding"]}; }`,
+  `${DR} :where(textarea) { padding: ${DT["field-padding-block"]} ${DT["field-padding"]}; }`,
+  `${DR} :where(${TEXT_INPUT}, select, textarea) { inline-size: ${DT["field-width"]}; border-radius: ${DT["field-radius"]}; border-color: ${DT["field-border"]}; background-color: ${DT["field-bg"]}; }`,
+  `@media (hover: hover) { ${DR} :where(${TEXT_INPUT}, select, textarea):where(:not(:disabled)):hover { border-color: ${DT["field-border-hover"]}; } }`,
+  `${DR} :where(${TEXT_INPUT}, select, textarea):user-invalid { border-color: ${DT["field-border-invalid"]}; }`,
+  `${DR} :where(input[type="checkbox"], input[type="radio"], input[type="range"]) { --_mark: ${DT["check-size"]}; }`,
+  `${DR} :where(input[type="checkbox"], input[type="radio"]):is(:checked, :indeterminate) { background: ${DT["check-accent"]}; border-color: ${DT["check-accent"]}; }`,
+  `${DR} :where(a:not([class])) { color: ${DT["link-color"]}; text-underline-offset: ${DT["link-underline-offset"]}; }`,
+  `@media (hover: hover) { ${DR} :where(a:not([class])):hover { color: ${DT["link-color-hover"]}; } }`,
+  `${DR} :where(label:not(:has(input[type="checkbox"], input[type="radio"]))) { display: block; margin-block-end: ${DT["label-gap"]}; font-size: ${DT["label-size"]}; line-height: var(--text-sm--line-height); font-weight: ${DT["label-weight"]}; }`,
+  `${DR} :where(th, td) { padding: ${DT["cell-padding-block"]} ${DT["cell-padding"]}; border-block-end: var(--border-width) solid ${DT["cell-border"]}; text-align: start; }`,
+  `${DR} :where(th) { font-size: var(--text-sm); font-weight: var(--font-weight-medium); color: var(--fg-weak); }`,
+].map((r) => "  " + r).join("\n");
+
 const reset = `@layer reset {
   :where(*, *::before, *::after) { box-sizing: border-box; border-width: 0; border-style: solid; border-color: var(--border); --_inset: 0px; --_bw: 0px; }
   :where(hr) { block-size: 0; border-block-start-width: var(--border-width); color: inherit; }
@@ -551,6 +617,7 @@ const reset = `@layer reset {
   :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"]), textarea, select):focus-visible { outline-offset: -1px; }
   :where(.cursor-text:focus-within) { outline: 2px solid var(--border-accent-1-strong); outline-offset: -1px; }
   :where(.cursor-text) :where(input, select, textarea):focus-visible { outline: none; }
+${DEFAULTS_CSS}
   :where(:target) { scroll-margin-block: 5ex; }
   :where([hidden]:not([hidden="until-found"])) { display: none !important; }
 
@@ -823,6 +890,12 @@ const manifest = {
   ],
 };
 writeFileSync(join(root, "nowind.manifest.json"), JSON.stringify(manifest, null, 2) + "\n");
+writeFileSync(join(root, "nowind.defaults.manifest.json"), JSON.stringify({
+  generated: "by scripts/utilities.mjs; edit DEFAULT_TOKENS there, not this file",
+  description: "Element defaults: wrap a region in class defaults and its bare elements (buttons, text fields, selects, textareas, checkboxes, radios, sliders, links, labels, table cells) take styled defaults. Each value reads a token with a fallback; the tokens are not declared anywhere, so setting one on :root, on .defaults or on any region inside takes effect, and the fallback follows the element's scope and tier. Every selector is :where(), so a utility class on the element always wins. A button with type=submit takes the primary fill.",
+  region: ".defaults",
+  tokens: DEFAULT_TOKENS.map(([token, fallback, use]) => ({ token: `--${token}`, fallback, use })),
+}, null, 2) + "\n");
 
 // ---- classes.md: every base class and its declarations, for readers without a local server ----
 const GROUPS = [

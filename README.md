@@ -250,6 +250,29 @@ Each pattern is a stack of classes; the [component docs](https://kimgranlund.git
 
 Status colours follow one pattern across every palette: step 3 fills, 6 draws the border, 11 is text and icons, 12 is strong text, and 9 is the solid fill with `fg-{palette}-contrast` on it.
 
+## Element defaults
+
+The reset leaves buttons and fields bare, so a utility stack starts from nothing. For markup without classes (a generated form, a settings page, content from a CMS), wrap the region in `defaults` and its bare elements take styled defaults:
+
+```html
+<form class="defaults">
+  <label for="email">Email</label>
+  <input id="email" type="email">
+  <label><input type="checkbox"> Send me updates</label>
+  <button type="button">Cancel</button>
+  <button type="submit">Save</button>
+</form>
+```
+
+Buttons, text fields, selects, textareas, checkboxes, radios, switches, sliders, links, labels and table cells are covered; `type="submit"` takes the primary fill. Every value reads a token with a fallback, and the tokens aren't declared anywhere, so you can set one wherever it should apply:
+
+```css
+:root     { --button-radius: 9999px; }               /* every .defaults region */
+.toolbar  { --button-height: var(--nested-height); } /* one region */
+```
+
+Every selector is `:where()`, so a utility class on an element still wins. [`nowind.defaults.manifest.json`](nowind.defaults.manifest.json) lists all the tokens and their fallbacks.
+
 ## Convenience classes
 
 The most repeated stacks in the examples also come as single classes, in an optional second file:

@@ -1,0 +1,172 @@
+{
+  "generated": "by scripts/utilities.mjs; edit DEFAULT_TOKENS there, not this file",
+  "description": "Element defaults: wrap a region in class defaults and its bare elements (buttons, text fields, selects, textareas, checkboxes, radios, sliders, links, labels, table cells) take styled defaults. Each value reads a token with a fallback; the tokens are not declared anywhere, so setting one on :root, on .defaults or on any region inside takes effect, and the fallback follows the element's scope and tier. Every selector is :where(), so a utility class on the element always wins. A button with type=submit takes the primary fill.",
+  "region": ".defaults",
+  "tokens": [
+    {
+      "token": "--button-height",
+      "fallback": "var(--control-height)",
+      "use": "Button block size"
+    },
+    {
+      "token": "--button-padding",
+      "fallback": "var(--control-padding)",
+      "use": "Button inline padding"
+    },
+    {
+      "token": "--button-gap",
+      "fallback": "var(--gutter)",
+      "use": "Gap between a button's icon and label"
+    },
+    {
+      "token": "--button-radius",
+      "fallback": "var(--radius-sm)",
+      "use": "Button corner"
+    },
+    {
+      "token": "--button-border",
+      "fallback": "transparent",
+      "use": "Button border colour (the width is the border width)"
+    },
+    {
+      "token": "--button-bg",
+      "fallback": "var(--neutral-a2)",
+      "use": "Button fill"
+    },
+    {
+      "token": "--button-bg-hover",
+      "fallback": "var(--neutral-a3)",
+      "use": "Button fill on hover"
+    },
+    {
+      "token": "--button-bg-active",
+      "fallback": "var(--neutral-a4)",
+      "use": "Button fill while pressed"
+    },
+    {
+      "token": "--button-fg",
+      "fallback": "var(--fg)",
+      "use": "Button text"
+    },
+    {
+      "token": "--button-weight",
+      "fallback": "var(--font-weight-medium)",
+      "use": "Button text weight"
+    },
+    {
+      "token": "--button-primary-bg",
+      "fallback": "var(--solid-accent-1)",
+      "use": "Submit button fill (type=submit)"
+    },
+    {
+      "token": "--button-primary-bg-hover",
+      "fallback": "var(--solid-accent-1-strong)",
+      "use": "Submit button fill on hover"
+    },
+    {
+      "token": "--button-primary-fg",
+      "fallback": "var(--on-solid-accent-1)",
+      "use": "Submit button text"
+    },
+    {
+      "token": "--field-height",
+      "fallback": "var(--control-height)",
+      "use": "Text input and select block size"
+    },
+    {
+      "token": "--field-width",
+      "fallback": "100%",
+      "use": "Text input, select and textarea inline size"
+    },
+    {
+      "token": "--field-padding",
+      "fallback": "var(--control-padding)",
+      "use": "Field inline padding"
+    },
+    {
+      "token": "--field-padding-block",
+      "fallback": "var(--margin)",
+      "use": "Textarea block padding"
+    },
+    {
+      "token": "--field-radius",
+      "fallback": "var(--radius-sm)",
+      "use": "Field corner"
+    },
+    {
+      "token": "--field-bg",
+      "fallback": "var(--bg)",
+      "use": "Field fill"
+    },
+    {
+      "token": "--field-border",
+      "fallback": "var(--border-weak)",
+      "use": "Field border colour"
+    },
+    {
+      "token": "--field-border-hover",
+      "fallback": "var(--border)",
+      "use": "Field border colour on hover"
+    },
+    {
+      "token": "--field-border-invalid",
+      "fallback": "var(--border-danger)",
+      "use": "Field border colour once the user leaves it invalid"
+    },
+    {
+      "token": "--check-size",
+      "fallback": "var(--mark-md)",
+      "use": "Checkbox, radio, switch and slider size"
+    },
+    {
+      "token": "--check-accent",
+      "fallback": "var(--solid-accent-1)",
+      "use": "Checked fill of a checkbox or radio"
+    },
+    {
+      "token": "--link-color",
+      "fallback": "var(--fg-accent-1-weak)",
+      "use": "Link text"
+    },
+    {
+      "token": "--link-color-hover",
+      "fallback": "var(--fg-accent-1)",
+      "use": "Link text on hover"
+    },
+    {
+      "token": "--link-underline-offset",
+      "fallback": "0.15em",
+      "use": "Link underline offset"
+    },
+    {
+      "token": "--label-size",
+      "fallback": "var(--text-sm)",
+      "use": "Field label size"
+    },
+    {
+      "token": "--label-weight",
+      "fallback": "var(--font-weight-medium)",
+      "use": "Field label weight"
+    },
+    {
+      "token": "--label-gap",
+      "fallback": "var(--space-3xs)",
+      "use": "Space between a field label and its field"
+    },
+    {
+      "token": "--cell-padding",
+      "fallback": "var(--space-sm)",
+      "use": "Table cell inline padding"
+    },
+    {
+      "token": "--cell-padding-block",
+      "fallback": "var(--space-xs)",
+      "use": "Table cell block padding"
+    },
+    {
+      "token": "--cell-border",
+      "fallback": "var(--border-weak)",
+      "use": "Rule under each table row"
+    }
+  ]
+}

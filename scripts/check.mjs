@@ -45,6 +45,7 @@ const GENERATED = [
   "dist/nowind.components.css",
   "dist/nowind.components.min.css",
   "nowind.components.manifest.json",
+  "nowind.defaults.manifest.json",
   ...readdirSync(join(repo, "site", "docs")).filter((n) => n.endsWith(".html")).map((n) => `site/docs/${n}`),
   "site/search.json",
   "components.manifest.json",
