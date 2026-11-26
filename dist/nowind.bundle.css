@@ -2073,8 +2073,10 @@
   @media (forced-colors: none) { :where(input[type="checkbox"], input[type="radio"]):is(:checked, :indeterminate) { background: var(--check-accent, var(--solid-accent-1)); border-color: var(--check-accent, var(--solid-accent-1)); } }
   :where(a:not([class])) { color: var(--link-color, var(--fg-accent-1-weak)); text-underline-offset: var(--link-underline-offset, 0.15em); }
   @media (hover: hover) { :where(a:not([class])):hover { color: var(--link-color-hover, var(--fg-accent-1)); } }
-  :where(label:not(:has(input[type="checkbox"], input[type="radio"])):not(:is(input[type="checkbox"], input[type="radio"]) + label)) { display: block; margin-block-end: var(--label-gap, var(--space-3xs)); font-size: var(--label-size, var(--text-sm)); line-height: var(--text-sm--line-height); font-weight: var(--label-weight, var(--font-weight-medium)); }
+  :where(label:not(:has(input[type="checkbox"], input[type="radio"])):not(:is(input[type="checkbox"], input[type="radio"]) + label)) { display: block; font-size: var(--label-size, var(--text-sm)); line-height: var(--text-sm--line-height); font-weight: var(--label-weight, var(--font-weight-medium)); }
+  :where(label:not([class]):not(:has(input[type="checkbox"], input[type="radio"])):not(:is(input[type="checkbox"], input[type="radio"]) + label)) { margin-block-end: var(--label-gap, var(--space-3xs)); }
   :where(th, td) { padding: var(--cell-padding-block, var(--space-xs)) var(--cell-padding, var(--space-sm)); border-block-end: var(--border-width) solid var(--cell-border, var(--border-weak)); text-align: start; }
+  :where(table > tr:last-child, tbody:last-child > tr:last-child, tfoot > tr:last-child) > :where(th, td) { border-block-end-width: 0; }
   :where(th) { font-size: var(--text-sm); font-weight: var(--font-weight-medium); color: var(--fg-weak); }
 }
 

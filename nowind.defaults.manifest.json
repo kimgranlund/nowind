@@ -151,7 +151,7 @@
     {
       "token": "--label-gap",
       "fallback": "var(--space-3xs)",
-      "use": "Space between a field label and its field"
+      "use": "Space below a field label that has no class (a classed label is spaced by its stack)"
     },
     {
       "token": "--cell-padding",
@@ -166,7 +166,7 @@
     {
       "token": "--cell-border",
       "fallback": "var(--border-weak)",
-      "use": "Rule under each table row"
+      "use": "Rule under each table row but the last"
     }
   ]
 }
