@@ -19,7 +19,8 @@ Nowind is directly derived from four systems, and brings its own math to tie the
 **It is built for agents and generative UI.** A model writing interface markup does best with a vocabulary it already knows, a small set of choices and defaults that look right without help. Nowind gives it exactly that: Tailwind names, a constrained scale, and no need to write CSS or `style=""`. Every class, token and component is also described as data, so an agent can look things up instead of guessing:
 
 - [`nowind.manifest.json`](nowind.manifest.json): every class group, variant and count
-- [`components.manifest.json`](components.manifest.json): every component's purpose, use, avoid and the classes its example uses
+- [`components.manifest.json`](components.manifest.json): every documented component (button, dialog, table…): its purpose, use, avoid and the utility classes its example uses
+- [`nowind.components.manifest.json`](nowind.components.manifest.json): every convenience class (`btn`, `field`, `badge`…) and the utility stack it stands for
 - `theme/*.manifest.json`: every token, what it is for and how it is derived
 
 **The defaults are the product.** Unstyled HTML already looks considered: the reset themes headings, links, fields, selects, checkboxes, radios, switches, sliders, file inputs, `progress`, `meter` and the dialog backdrop, with focus rings, transitions and reduced-motion handling built in. A button is one control tall and a card pads to nest its children's corners without anyone choosing a number. Smaller and larger sizes are there when a design asks for them (nested controls, tiers, `icon-sm`, `icon-lg`), but the default is always the sensible one.
@@ -57,7 +58,7 @@ The link pins release `v0.12.0`. Or copy `dist/nowind.min.css` into your project
 </article>
 ```
 
-Nowind declares the layers `reset, styles, nowind`. Put your own CSS in `@layer styles` and a utility class always wins over it:
+Nowind declares the layers `reset, styles, components, nowind` (`components` holds the optional convenience classes, and stays empty unless you link them). Put your own CSS in `@layer styles` and a utility class always wins over it:
 
 ```css
 @layer styles {
@@ -203,11 +204,11 @@ Every class and its declarations: [classes.md](classes.md), or browse them as [r
 
 ### Text sizes in practice
 
-Every example follows one size contract, enforced by the examples lint: controls, table cells and body copy are `text-base`; labels, table headers, supporting lines and badges `text-sm`; titles `text-base font-semibold` (`text-lg` in a dialog); and an icon takes the step of the text beside it. The [Type and space](https://kimgranlund.github.io/nowind/site/docs/type-space.html) page has the table.
+Leave a page's `h1` unsized: the reset gives it the heading role (`text-heading-xl` and its leading). Every example follows one size contract, enforced by the examples lint: controls, table cells and body copy are `text-base`; labels, table headers, supporting lines and badges `text-sm`; titles `text-base font-semibold` (`text-lg` in a dialog); and an icon takes the step of the text beside it. The [Type and space](https://kimgranlund.github.io/nowind/site/docs/type-space.html) page has the table.
 
 ### Buttons, fields and icons
 
-There is no button or field component: each is a stack of classes, and the docs show every pattern. Wrap a label in a `<span>`, so `px-control` can find an icon at either edge and pad it one margin less, and so the reset can trim it to its cap height and centre the letters (table cells keep their padding, so a cell lines up with its header).
+There is no button or field component: each is a stack of classes, and the docs show every pattern. Wrap a control's text in a `<span>` (`<button><i class="icon …"></i><span>Save</span></button>`), so `px-control` can find an icon at either edge and pad it one margin less, and so the reset can trim it to its cap height and centre the letters (table cells keep their padding, so a cell lines up with its header).
 
 ```html
 <button class="inline-flex items-center h-control px-control gap-gutter rounded-sm state border border-transparent bg-neutral-a2 fg-neutral-12 font-medium">
@@ -238,12 +239,13 @@ Each pattern is a stack of classes; the [component docs](https://kimgranlund.git
 |---|---|
 | Card | `p-md rounded-md border border-neutral-6 bg-neutral-1`; children with corners take `rounded-inner` |
 | Segmented control | Group `<div role="group">` with `inline-flex h-control rounded-sm border-2 border-transparent bg-neutral-a2`; each `<button aria-pressed>` is `h-full px-nested rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black font-medium`. Small controls (`h-nested`, `px-nested`, `size-nested`) sit only inside an inset group like this one, never beside full-size controls; badges and avatars are not controls and use them anywhere |
-| Avatar | `inline-flex items-center justify-center size-control shrink-0 rounded-full bg-accent-1-9 fg-accent-1-contrast text-sm font-medium` with the initials; `size-nested` for a small one |
+| Avatar | No padding (the size sets it): `inline-flex items-center justify-center size-control shrink-0 rounded-full bg-accent-1-9 fg-accent-1-contrast text-sm font-medium` with the initials; `size-nested` for a small one |
 | Badge | `inline-flex items-center h-nested px-nested rounded-full border bg-success-3 border-success-6 fg-success-11 text-sm font-medium`; an icon in it is `icon icon-sm` |
 | Alert | One line: `flex items-center gap-gutter py-xs ps-xs pe-sm rounded-md border border-info-6 bg-info-3`, icon `fg-info-11`, text `fg-info-12`. With a title: `flex flex-col gap-3xs p-xs`, the detail `text-sm fg-info-11` |
 | Select | `<select class="select-base h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 bg-neutral-1 w-full">`; `select-base` opts in to the styled picker, with its caret and check |
 | Switch | `<input type="checkbox" role="switch">`; the reset draws it |
-| Dialog | `<dialog class="m-auto p-lg rounded-lg bg-neutral-1 border-0 shadow-xl max-w-form w-full">`, title `text-lg font-semibold`, actions `flex justify-end gap-xs`. Open it with `commandfor` and `command="show-modal"` |
+| Form field | A stack `flex flex-col gap-2xs`: label `text-sm font-medium`, the field, then help or error text as `<span class="text-sm fg-neutral-11">`. A checkbox, radio or switch sits inside its label: `<label class="inline-flex items-center gap-xs text-base"><input type="checkbox"> Label</label>`; fields stack `gap-md` apart |
+| Dialog | `<dialog class="m-auto p-lg rounded-lg bg-neutral-1 border-0 shadow-xl max-w-form w-full">`, title `text-lg font-semibold`, actions `flex justify-end gap-xs`. Open it with `commandfor` and `command="show-modal"`; a button with `commandfor` and `command="close"` closes it |
 | Table | Wrapper `rounded-md border border-neutral-6 overflow-x-auto`; cells `h-control px-control`, headers add `text-sm font-medium fg-neutral-11`, rows `border-b border-neutral-6`, numbers `text-end tabular-nums` |
 
 Status colours follow one pattern across every palette: step 3 fills, 6 draws the border, 11 is text and icons, 12 is strong text, and 9 is the solid fill with `fg-{palette}-contrast` on it.
@@ -257,7 +259,7 @@ The most repeated stacks in the examples also come as single classes, in an opti
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.12.0/dist/nowind.components.min.css">
 
 <button class="btn btn-primary"><i class="icon ph ph-check"></i><span>Save</span></button>
-<span class="badge badge-success">Paid</span>
+<span class="badge badge-success"><span>Paid</span></span>
 ```
 
 | Class | Is the stack |
@@ -266,7 +268,7 @@ The most repeated stacks in the examples also come as single classes, in an opti
 | `btn-primary`, `btn-secondary`, `btn-soft`, `btn-ghost`, `btn-danger` | A tone for `btn`, `btn-sm` or `icon-btn` (`border-transparent bg-accent-1-9 fg-accent-1-contrast`, …) |
 | `btn-sm` | The small button, inside an inset container only |
 | `icon-btn` | A square, one-icon button |
-| `field` | A field box around a bare input |
+| `field` | `flex items-center gap-gutter h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition`, around a bare input (`grow min-w-0 self-stretch p-0 border-0 bg-transparent`) |
 | `badge`, `badge-{neutral, accent, success, warning, danger, info}` | A status pill and its tones |
 | `card` | `p-md rounded-md border border-neutral-6 bg-neutral-1` |
 | `segmented`, `segment` | A segmented control and its items (`aria-pressed`) |

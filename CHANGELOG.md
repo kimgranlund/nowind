@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **README, from a consumer test on 0.12.0** (a fresh agent with only the README and both stylesheets wrote 38% fewer classes than before, using the convenience classes): the layer list includes `components`; the two manifests are told apart; the `field` stack and a form-field recipe are given; a badge's text sits in a `span`; a dialog closes with `command="close"`; avatars take no padding; a page's `h1` stays unsized.
 - **Release script:** `node scripts/release.mjs X.Y.Z --reviewed` dates the changelog, moves the links to the new tag, regenerates, and runs the check, its self-test and the review gate before it commits and tags; any failure restores every file. It never pushes. AGENTS.md's release steps start with `/code-review` on the range since the last tag.
 ## 0.12.0 (2026-11-26)
 
