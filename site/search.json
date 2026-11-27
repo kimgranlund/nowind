@@ -287,6 +287,8 @@
 [".min-w-control", "docs/classes.html#class-min-w-control", "Class", "min-width: var(--control-height)"],
 [".min-w-nested", "docs/classes.html#class-min-w-nested", "Class", "min-width: var(--nested-height)"],
 [".px-control", "docs/classes.html#class-px-control", "Class", "padding-inline: var(--control-padding)"],
+[".ps-control", "docs/classes.html#class-ps-control", "Class", "padding-inline-start: var(--control-padding)"],
+[".pe-control", "docs/classes.html#class-pe-control", "Class", "padding-inline-end: var(--control-padding)"],
 [".px-nested", "docs/classes.html#class-px-nested", "Class", "padding-inline: var(--nested-padding)"],
 [".gap-gutter", "docs/classes.html#class-gap-gutter", "Class", "gap: var(--gutter)"],
 [".gap-gutter-half", "docs/classes.html#class-gap-gutter-half", "Class", "gap: calc(var(--gutter) / 2)"],

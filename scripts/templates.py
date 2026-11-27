@@ -712,7 +712,7 @@ SEMANTIC_WORDS = re.compile(r"-(surface|dialog|region|page|field|row|group|secti
 
 def is_semantic(cat, k):
     """Semantic classes name a role (p-surface, fg-weak, text-heading-md); regular ones a scale step or a property value (p-md, border-warning-7)."""
-    if k in ("icon", "icon-sm", "icon-md", "icon-lg") or re.fullmatch(r"(h|size|min-w|px)-(control|nested)|gap-gutter(-half)?", k):
+    if k in ("icon", "icon-sm", "icon-md", "icon-lg") or re.fullmatch(r"(h|size|min-w|px|ps|pe)-(control|nested)|gap-gutter(-half)?", k):
         return False  # icon sizes and control lengths are derived from the base size, like the space scale, not roles
     if cat in SEMANTIC_CATS or (cat != "Layout and misc" and SEMANTIC_WORDS.search(k)):
         return True

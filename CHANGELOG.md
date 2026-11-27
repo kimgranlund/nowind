@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Shared edges:** cards and tables stacked in one column now share a start edge. A table's first and last cells pad their outer side at the card padding (`ps-md pe-control`, `ps-control pe-md`; new `ps-control` and `pe-control`), with `px-control` between columns. The layout audit's new `shared-edge` rule checks it, looking through unpainted wrappers to the first card or table at each column's edge.
 ## 0.18.1 (2026-11-27)
 
 - **Review fixes:** a bare color input keeps its browser size (only a `size-*` one sizes to its square); `size-control` and `size-nested` centre themselves, so a square no longer stretches to a taller row; the reference no longer lists the retired `text-kicker-lg`; only a bare (`p-0`) select at a field's end pulls its end padding to the icon padding; the truncate allowance is a token, `--truncate-bleed`; and the docs say a lit raised part needs a border width and `h-header` content must fit one line.

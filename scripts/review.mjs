@@ -88,6 +88,7 @@ const SELF_TEST = `(async () => {
     "measure": () => add('<p style="width:1200px">' + "Long running text. ".repeat(20) + "</p>"),
     "double-edge": () => add('<div class="border rounded-md"><div class="border-b border-neutral-6 p-sm">Footer</div></div>'),
     "margin-gap": () => add('<div class="flex flex-col gap-xs"><p class="mb-xs">One</p><p>Two</p></div>'),
+    "shared-edge": () => add('<div class="flex flex-col gap-xs"><div class="p-md border rounded-md">Card one</div><div class="p-md border rounded-md">Card two</div><div class="border rounded-md"><table class="w-full"><tr><td class="px-xs py-xs">Row</td></tr></table></div></div>'),
   };
   const out = {};
   for (const [k, f] of Object.entries(breaks)) {

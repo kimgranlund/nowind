@@ -589,7 +589,7 @@
         "kind": "cell",
         "identify": "td, th",
         "height": "h-control",
-        "padding": "px-control",
+        "padding": "px-control between columns; the first and last cells pad their outer side at the card padding (ps-md pe-control, ps-control pe-md), so the table lines up with the cards stacked beside it",
         "gap": "none",
         "corner": "none",
         "status": "decided",
@@ -756,6 +756,11 @@
       {
         "id": "margin-gap",
         "rule": "A child of a flex or grid container with a gap carries no margin in that direction: the gap is the spacing, and a margin on top of it doubles up.",
+        "status": "decided"
+      },
+      {
+        "id": "shared-edge",
+        "rule": "Cards and tables stacked at one left edge inset their content alike: a card pads at --space-md, and a table's first and last cells pad their outer side at the same length. The audit looks through unpainted wrappers to the first card or table at the column's edge.",
         "status": "decided"
       }
     ]

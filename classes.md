@@ -8,7 +8,7 @@ Variants: `hover:` on the 136 role-colour, opacity and cursor classes (inside `@
 
 ## Controls and icons
 
-17 classes.
+19 classes.
 
 | Class | Declarations |
 |---|---|
@@ -19,6 +19,8 @@ Variants: `hover:` on the 136 role-colour, opacity and cursor classes (inside `@
 | `.min-w-control` | `min-width: var(--control-height)` |
 | `.min-w-nested` | `min-width: var(--nested-height)` |
 | `.px-control` | `padding-inline: var(--control-padding)` |
+| `.ps-control` | `padding-inline-start: var(--control-padding)` |
+| `.pe-control` | `padding-inline-end: var(--control-padding)` |
 | `.px-nested` | `padding-inline: var(--nested-padding)` |
 | `.gap-gutter` | `gap: var(--gutter)` |
 | `.gap-gutter-half` | `gap: calc(var(--gutter) / 2)` |

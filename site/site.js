@@ -472,6 +472,32 @@ window.nowindOwnCSS = () => !!document.querySelector("style[data-page-css]");
         const ch = ctx.measureText("0").width, w = r.width - px(c.paddingLeft) - px(c.paddingRight);
         if (w > 68 * ch + 2) out.push({ rule: "measure", where: where(e), detail: `${(w / ch).toFixed(0)}ch wide (max-w-text is 68ch)` });
       }
+      // shared-edge: sibling surfaces (cards, panels, a bordered table) inset their text alike, so a table's first column
+      // lines up with the cards beside it. It compares cards (padded at --space-md) and tables stacked at one left edge,
+      // looking through unpainted wrappers. A surface is a child with a border or a fill of its own; its inset is its border
+      // and start padding, or, for a table or a box holding one, the border and the first cell's start padding.
+      {
+        const surface = (k) => { const kc = cs(k); return visible(k) && !isControl(k) && kc.position !== "absolute" && !kc.display.startsWith("inline") && (px(kc.borderLeftWidth) > 0 || (kc.backgroundColor !== "rgba(0, 0, 0, 0)" && kc.backgroundColor !== "transparent")); };
+        const cardPad = (() => { const d = document.createElement("div"); d.style.paddingInlineStart = "var(--space-md)"; e.append(d); const v = px(cs(d).paddingInlineStart); d.remove(); return v; })();
+        const atEdge = (k, depth = 0) => { if (!visible(k)) return null; if (surface(k)) return k; if (depth >= 2 || cs(k).paddingInlineStart !== "0px") return null; const f = k.firstElementChild; return f && Math.abs(R(f).left - R(k).left) < 1 ? atEdge(f, depth + 1) : null; };
+        const insets = [...e.children].map((k) => atEdge(k)).filter((k) => k && !k.matches("figure, [data-example], details, dialog, pre")).map((k) => {
+          const kc = cs(k), table = k.matches("table") ? k : (k.firstElementChild && k.firstElementChild.matches("table") ? k.firstElementChild : null);
+          const cell = table && table.querySelector("th, td");
+          if (px(kc.borderLeftWidth) >= 3) return null;  // a callout's start rule sets it apart on purpose
+          const first = k.firstElementChild, item = first && !cell && isControl(first) && R(first).left - R(k).left < px(kc.borderLeftWidth) + px(kc.paddingInlineStart) + 2 ? first : null;
+          const x = px(kc.borderLeftWidth) + (cell ? px(cs(cell).paddingInlineStart) : px(kc.paddingInlineStart) + (item ? px(cs(item).paddingInlineStart) + px(cs(item).borderLeftWidth) : 0));
+          const card = Math.abs(px(kc.paddingInlineStart) - cardPad) < 1;  // a card pads at --space-md
+          return (cell || card) ? { k, x: Math.round(x), left: Math.round(R(k).left) } : null;
+        }).filter(Boolean);
+        const columns = {}; insets.forEach((x) => (columns[x.left] = columns[x.left] || []).push(x));
+        for (const col of Object.values(columns)) if (col.length >= 2) {
+          const insets = col;
+          const counts = {}; insets.forEach((x) => counts[x.x] = (counts[x.x] || 0) + 1);
+          const [mode, n] = Object.entries(counts).sort((a, b) => b[1] - a[1])[0];
+          const base = n >= 2 ? +mode : insets[0].x;
+          for (const x of insets) if (Math.abs(x.x - base) > 1.5 && Math.abs(x.x - base) < 40) out.push({ rule: "shared-edge", where: where(x.k), detail: `inset ${x.x}px, the surfaces stacked with it ${base}px` });
+        }
+      }
       // start-edge: block children in one column whose text starts off the column's shared edge.
       if ((c.display === "block" || (c.display.includes("flex") && c.flexDirection === "column")) && e.children.length >= 3 && !e.matches("ul, ol, table, tbody, thead, tr, nav")) {
         const textBlock = (k) => k.matches("p, h1, h2, h3, h4, h5, h6, span, label, legend, dt, dd, small, strong, em, a, li") && !k.querySelector("div, p, ul, ol, table, figure");

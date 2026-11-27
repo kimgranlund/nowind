@@ -285,6 +285,8 @@ add("size-nested", "min-width: var(--nested-height); min-height: var(--nested-he
 add("min-w-control", "min-width: var(--control-height)");
 add("min-w-nested", "min-width: var(--nested-height)");
 add("px-control", "padding-inline: var(--control-padding)");
+add("ps-control", "padding-inline-start: var(--control-padding)");
+add("pe-control", "padding-inline-end: var(--control-padding)");
 add("px-nested", "padding-inline: var(--nested-padding)");
 add("gap-gutter", "gap: var(--gutter)");
 
@@ -990,7 +992,7 @@ writeFileSync(join(root, "nowind.defaults.manifest.json"), JSON.stringify({
 
 // ---- classes.md: every base class and its declarations, for readers without a local server ----
 const GROUPS = [
-  ["Controls and icons", (c) => /^(icon|mark-|h-control|h-nested|size-control|size-nested|min-w-control|min-w-nested|px-control|px-nested|gap-gutter)/.test(c)],
+  ["Controls and icons", (c) => /^(icon|mark-|h-control|h-nested|size-control|size-nested|min-w-control|min-w-nested|px-control|px-nested|ps-control|pe-control|gap-gutter)/.test(c)],
   ["Levels and tiers", (c) => /^(p[xy]?-(surface|dialog|region|page)|gap-(field|row|group|section|page)|m[tb]-section|tier-)/.test(c)],
   ["Materials", (c) => /^(material|relief)-/.test(c)],
   ["Motion, anchors and select", (c) => /^(transition|duration-|ease-|animate-|anchor-|select-base|-?rotate-)/.test(c)],

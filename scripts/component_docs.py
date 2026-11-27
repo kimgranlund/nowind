@@ -511,11 +511,11 @@ COMPONENTS = [
         "html": """<div class="rounded-md bg-neutral-1 border border-neutral-6 overflow-x-auto">
   <table class="w-full">
     <thead class="bg-neutral-2">
-      <tr><th class="text-start h-control px-control text-sm font-medium fg-neutral-11 border-b border-neutral-6">Invoice</th><th class="text-start h-control px-control text-sm font-medium fg-neutral-11 border-b border-neutral-6">Status</th><th class="text-end h-control px-control text-sm font-medium fg-neutral-11 border-b border-neutral-6">Amount</th></tr>
+      <tr><th class="text-start h-control ps-md pe-control text-sm font-medium fg-neutral-11 border-b border-neutral-6">Invoice</th><th class="text-start h-control px-control text-sm font-medium fg-neutral-11 border-b border-neutral-6">Status</th><th class="text-end h-control ps-control pe-md text-sm font-medium fg-neutral-11 border-b border-neutral-6">Amount</th></tr>
     </thead>
     <tbody>
-      <tr class="transition state"><td class="h-control px-control font-mono border-b border-neutral-6">INV-1042</td><td class="h-control px-control border-b border-neutral-6">Paid</td><td class="h-control px-control text-end font-mono tabular-nums border-b border-neutral-6">$1,280.00</td></tr>
-      <tr class="transition state"><td class="h-control px-control font-mono">INV-1043</td><td class="h-control px-control">Pending</td><td class="h-control px-control text-end font-mono tabular-nums">$640.50</td></tr>
+      <tr class="transition state"><td class="h-control ps-md pe-control font-mono border-b border-neutral-6">INV-1042</td><td class="h-control px-control border-b border-neutral-6">Paid</td><td class="h-control ps-control pe-md text-end font-mono tabular-nums border-b border-neutral-6">$1,280.00</td></tr>
+      <tr class="transition state"><td class="h-control ps-md pe-control font-mono">INV-1043</td><td class="h-control px-control">Pending</td><td class="h-control ps-control pe-md text-end font-mono tabular-nums">$640.50</td></tr>
     </tbody>
   </table>
 </div>""",
@@ -577,14 +577,14 @@ COMPONENTS = [
   <table class="w-full">
     <thead class="bg-neutral-2">
       <tr>
-        <th aria-sort="ascending" class="text-start h-control px-control border-b border-neutral-6"><button class="inline-flex items-center gap-gutter-half min-h-0 p-0 border-0 bg-transparent fg-neutral-12 text-sm font-medium cursor-pointer"><span>Name</span><i class="icon icon-sm ph-bold ph-caret-up"></i></button></th>
-        <th aria-sort="none" class="text-end h-control px-control border-b border-neutral-6"><button class="inline-flex items-center gap-gutter-half min-h-0 p-0 border-0 bg-transparent fg-neutral-11 hover:fg-neutral-12 text-sm font-medium cursor-pointer"><span>Seats</span><i class="icon icon-sm ph-bold ph-caret-up-down"></i></button></th>
+        <th aria-sort="ascending" class="text-start h-control ps-md pe-control border-b border-neutral-6"><button class="inline-flex items-center gap-gutter-half min-h-0 p-0 border-0 bg-transparent fg-neutral-12 text-sm font-medium cursor-pointer"><span>Name</span><i class="icon icon-sm ph-bold ph-caret-up"></i></button></th>
+        <th aria-sort="none" class="text-end h-control ps-control pe-md border-b border-neutral-6"><button class="inline-flex items-center gap-gutter-half min-h-0 p-0 border-0 bg-transparent fg-neutral-11 hover:fg-neutral-12 text-sm font-medium cursor-pointer"><span>Seats</span><i class="icon icon-sm ph-bold ph-caret-up-down"></i></button></th>
       </tr>
     </thead>
     <tbody>
-      <tr class="transition state"><td class="h-control px-control border-b border-neutral-6">Contoso</td><td class="h-control px-control text-end font-mono tabular-nums border-b border-neutral-6">48</td></tr>
-      <tr class="transition state"><td class="h-control px-control border-b border-neutral-6">Fabrikam</td><td class="h-control px-control text-end font-mono tabular-nums border-b border-neutral-6">12</td></tr>
-      <tr class="transition state"><td class="h-control px-control">Northwind</td><td class="h-control px-control text-end font-mono tabular-nums">7</td></tr>
+      <tr class="transition state"><td class="h-control ps-md pe-control border-b border-neutral-6">Contoso</td><td class="h-control ps-control pe-md text-end font-mono tabular-nums border-b border-neutral-6">48</td></tr>
+      <tr class="transition state"><td class="h-control ps-md pe-control border-b border-neutral-6">Fabrikam</td><td class="h-control ps-control pe-md text-end font-mono tabular-nums border-b border-neutral-6">12</td></tr>
+      <tr class="transition state"><td class="h-control ps-md pe-control">Northwind</td><td class="h-control ps-control pe-md text-end font-mono tabular-nums">7</td></tr>
     </tbody>
   </table>
 </div>""",
