@@ -2,7 +2,7 @@
 (sign in, change a setting, filter a list). Same shape as component_docs.py, plus "components": the component slugs it
 is built from, linked from its page. Utility classes only."""
 
-from component_docs import BTN, BTN_PRIMARY, BTN_SECONDARY, BOX, BARE, CARD
+from component_docs import BTN, BTN_PRIMARY, BTN_SECONDARY, BOX, BARE, CARD, GHOST_ICON, response_actions, trace_step, composer
 
 LABEL = "text-sm font-medium"
 HELP = "text-sm fg-neutral-11"
@@ -123,21 +123,120 @@ def detail(term, value):
     return f'  <dt class="text-sm font-medium fg-neutral-11">{term}</dt>\n  <dd class="sm:col-span-2">{value}</dd>'
 
 
+LINK = "fg-accent-1-11 hover:fg-accent-1-12"
+
+
+def auth(fid, title, lead, body, form=True):
+    tag = "form" if form else "div"
+    return f"""<{tag} class="flex flex-col gap-md max-w-form {CARD}" aria-labelledby="{fid}-title">
+  <div class="flex flex-col gap-3xs"><h3 id="{fid}-title" class="text-lg font-semibold">{title}</h3><span class="{HELP}">{lead}</span></div>
+{body}
+</{tag}>"""
+
+
+def providers(passkey=False):
+    rows = [("ph-google-logo", "Google"), ("ph-apple-logo", "Apple"), ("ph-github-logo", "GitHub"), ("ph-windows-logo", "Microsoft")]
+    btns = "\n".join(f'    <button class="{BTN_SECONDARY} w-full" type="button"><i class="icon ph {i}"></i><span>Continue with {n}</span></button>' for i, n in rows)
+    if passkey:
+        btns += f'\n    <button class="{BTN_SECONDARY} w-full" type="button"><i class="icon ph ph-fingerprint"></i><span>Sign in with a passkey</span></button>'
+    return f"""  <div class="flex flex-col gap-xs">
+{btns}
+  </div>
+  <div class="flex items-center gap-sm {HELP}"><span class="grow border-t border-neutral-6" aria-hidden="true"></span><span>or continue with email</span><span class="grow border-t border-neutral-6" aria-hidden="true"></span></div>"""
+
+
+def code_field(fid, label):
+    return f"""  <div class="flex flex-col gap-2xs">
+    <label for="{fid}" class="{LABEL}">{label}</label>
+    <div class="{BOX}"><input id="{fid}" class="{BARE} text-center font-mono tracking-widest tabular-nums" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{{6}}" placeholder="000000"></div>
+  </div>"""
+
+
 PATTERNS = [
     {
         "slug": "sign-in", "name": "Sign in", "icon": "ph-sign-in", "group": "Account",
+        "components": ["card", "button", "text-field"],
+        "summary": "The first step of signing in: the providers as full-width buttons, a rule, then an email field and Continue. A link to create an account sits in the lead, single sign-on at the foot.",
+        "html": auth("pat-in", "Sign in", f'Welcome back. Don’t <a href="#" class="{LINK}">have an account</a>?', providers(True) + f"""
+{field("pat-in-email", "Email", "ph-envelope-simple", 'type="email" name="email" autocomplete="email" placeholder="ada@example.com"')}
+  <button class="{BTN_PRIMARY} w-full" type="submit"><span>Continue</span></button>
+  <span class="{HELP}">Signing in through work? <a href="#" class="{LINK}">Use single sign-on</a></span>"""),
+        "use": ["Ask for the email first; the next step depends on it (password, code or single sign-on).", "Set <code>autocomplete</code> on every field."],
+        "avoid": ["Asking for the password on the same screen as the providers."],
+    },
+    {
+        "slug": "sign-in-password", "name": "Sign in with a password", "icon": "ph-password", "group": "Account",
         "components": ["card", "text-field", "button"],
-        "summary": "A card with a title, two fields and one primary action the full width of the card, then a quieter second way in below a rule.",
-        "html": f"""<form class="flex flex-col gap-md max-w-form {CARD}">
-  <div class="flex flex-col gap-3xs"><h3 class="text-lg font-semibold">Sign in to Acme</h3><span class="{HELP}">Use the email you signed up with.</span></div>
-{field("pat-email", "Email", "ph-envelope-simple", 'type="email" autocomplete="email" placeholder="ada@example.com"')}
-{field("pat-password", "Password", "ph-lock-simple", 'type="password" autocomplete="current-password"', '<a href="#" class="fg-accent-1-11 hover:fg-accent-1-12">Forgot your password?</a>')}
+        "summary": "The second step: who is signing in, with a way back, the password field with a key to show it, and the other ways in below.",
+        "html": auth("pat-pw", "Enter your password", f'Signing in as ada@example.com. <a href="#" class="{LINK}">Not you?</a>', f"""  <div class="flex flex-col gap-2xs">
+    <label for="pat-pw-input" class="{LABEL}">Password</label>
+    <div class="{BOX}"><i class="icon ph ph-lock-key fg-neutral-11" aria-hidden="true"></i><input id="pat-pw-input" class="{BARE}" type="password" name="password" autocomplete="current-password" placeholder="Your password"><button class="inline-flex items-center justify-center size-nested shrink-0 rounded-xs state border border-transparent bg-transparent fg-neutral-11 cursor-pointer" type="button" aria-pressed="false" aria-label="Show password"><i class="icon icon-sm ph ph-eye"></i></button></div>
+  </div>
   <button class="{BTN_PRIMARY} w-full" type="submit"><span>Sign in</span></button>
-  <div class="flex items-center gap-sm {HELP}"><span class="grow border-t border-neutral-6" aria-hidden="true"></span><span>or</span><span class="grow border-t border-neutral-6" aria-hidden="true"></span></div>
-  <button class="{BTN_SECONDARY} w-full" type="button"><i class="icon ph ph-key"></i><span>Use single sign-on</span></button>
-</form>""",
-        "use": ["Set <code>autocomplete</code> on each field, so password managers fill them.", "Put the reset link under the password, where people look when it fails."],
-        "avoid": ["A sign-in form with a second primary button; one way in is the main one."],
+  <span class="{HELP}">No password? <a href="#" class="{LINK}">Email me a code</a> instead. Forgot it? <a href="#" class="{LINK}">Reset your password</a>.</span>"""),
+        "use": ["Show the email being signed in, with a link back to change it.", "A show key with <code>aria-pressed</code>, so people can check what they typed."],
+        "avoid": ["Saying whether the email or the password was wrong; say they don't match."],
+    },
+    {
+        "slug": "sign-in-code", "name": "Sign-in code", "icon": "ph-envelope-open", "group": "Account",
+        "components": ["card", "text-field", "button"],
+        "summary": "A code sent by email: one field for six digits that the platform can fill from the message, the address it went to, and a way to send another.",
+        "html": auth("pat-code", "Check your email", f'We sent a six-digit code to ada@example.com. <a href="#" class="{LINK}">Not you?</a>', code_field("pat-code-input", "Sign-in code") + f"""
+  <button class="{BTN_PRIMARY} w-full" type="submit"><span>Sign in</span></button>
+  <span class="{HELP}">Didn’t get it? <a href="#" class="{LINK}">Send another code</a>, or <a href="#" class="{LINK}">use your password</a>.</span>"""),
+        "use": ["One input with <code>inputmode=\"numeric\"</code> and <code>autocomplete=\"one-time-code\"</code>, so phones offer the code from the message.", "Pause the resend link for a while after each send, and say for how long."],
+        "avoid": ["Six separate inputs; pasting and the platform's autofill break."],
+    },
+    {
+        "slug": "sign-up", "name": "Create account", "icon": "ph-user-circle-plus", "group": "Account",
+        "components": ["card", "button", "text-field"],
+        "summary": "The first step of signing up, built like sign-in: what the plan costs in the lead, the providers, then the work email and Continue.",
+        "html": auth("pat-up", "Create your account", f'Free for teams of up to three. No card needed. Already <a href="#" class="{LINK}">have an account</a>?', providers() + f"""
+{field("pat-up-email", "Work email", "ph-envelope-simple", 'type="email" name="email" autocomplete="email" placeholder="Your work email"')}
+  <button class="{BTN_PRIMARY} w-full" type="submit"><span>Continue</span></button>"""),
+        "use": ["Say what it costs before anyone types."],
+        "avoid": ["Asking for name and password before the email is checked."],
+    },
+    {
+        "slug": "account-details", "name": "Account details", "icon": "ph-identification-badge", "group": "Account",
+        "components": ["card", "text-field", "progress", "button"],
+        "summary": "The second step of signing up: name and a new password, with a strength meter as the password's help line, and a way to skip the password.",
+        "html": auth("pat-det", "Set up your account", f'For ada@example.com. <a href="#" class="{LINK}">Not you?</a>', f"""{field("pat-det-name", "Full name", "ph-user", 'name="name" autocomplete="name" placeholder="Your full name"')}
+  <div class="flex flex-col gap-2xs">
+    <label for="pat-det-pw" class="{LABEL}">Password</label>
+    <div class="{BOX}"><i class="icon ph ph-lock-key fg-neutral-11" aria-hidden="true"></i><input id="pat-det-pw" class="{BARE}" type="password" name="new-password" autocomplete="new-password" placeholder="Choose a password" aria-describedby="pat-det-strength"></div>
+    <meter value="2" min="0" max="4" low="2" high="3" optimum="4" aria-label="Password strength">Fair</meter>
+    <span id="pat-det-strength" class="{HELP}">Fair. Add a number or a symbol.</span>
+  </div>
+  <button class="{BTN_PRIMARY} w-full" type="submit"><span>Create account</span></button>
+  <span class="{HELP}">Rather not choose a password now? <a href="#" class="{LINK}">Email me a sign-in link</a>. Creating an account means you agree to the <a href="#" class="{LINK}">terms of service</a>.</span>"""),
+        "use": ["<code>autocomplete=\"new-password\"</code>, so password managers offer to make one.", "Say what would make the password stronger, not only that it is weak."],
+        "avoid": ["A second field to repeat the password; the show key does the job."],
+    },
+    {
+        "slug": "verify-email", "name": "Verify email", "icon": "ph-envelope-simple-open", "group": "Account",
+        "components": ["card", "text-field", "button"],
+        "summary": "The last step of signing up: the code sent to the new address, how long it lasts, and a way to change the address.",
+        "html": auth("pat-ver", "Check your email", f'We sent a six-digit code to ada@example.com. It expires in 10 minutes. Wrong address? <a href="#" class="{LINK}">Change it</a>', code_field("pat-ver-input", "Verification code") + f"""
+  <button class="{BTN_PRIMARY} w-full" type="submit"><span>Verify email</span></button>
+  <span class="{HELP}">Didn’t get it? <a href="#" class="{LINK}">Send another code</a></span>"""),
+        "use": ["Say when the code expires."],
+        "avoid": ["Locking the account after one wrong code."],
+    },
+    {
+        "slug": "joined-workspace", "name": "Joined workspace", "icon": "ph-users-three", "group": "Account",
+        "components": ["card", "avatar", "button"],
+        "summary": "Where an invitation ends: who is already there as a group of avatars, the workspace and your role, and one button to go in.",
+        "html": auth("pat-join", "You’ve joined Grid Systems Co.", "Grace and 11 others are here. You’re an Editor.", f"""  <div class="flex items-center">
+    <span class="{AVATAR} border-2 border-neutral-1 bg-accent-1-9 fg-accent-1-contrast">GH</span>
+    <span class="{AVATAR} border-2 border-neutral-1 bg-accent-2-9 fg-accent-2-contrast -ms-2xs">KJ</span>
+    <span class="{AVATAR} border-2 border-neutral-1 bg-accent-3-9 fg-accent-3-contrast -ms-2xs">MH</span>
+    <span class="{AVATAR} border-2 border-neutral-1 bg-neutral-4 fg-neutral-11 -ms-2xs">+9</span>
+  </div>
+  <button class="{BTN_PRIMARY} w-full" type="button"><span>Open Grid Systems Co.</span><i class="icon ph ph-arrow-right"></i></button>
+  <span class="{HELP}">Not now? Your other workspaces stay as they were.</span>""", form=False),
+        "use": ["Show who is already there; it says the invitation was real."],
+        "avoid": ["A tour before people reach the workspace."],
     },
     {
         "slug": "settings-section", "name": "Settings section", "icon": "ph-sliders", "group": "Account",
@@ -427,5 +526,59 @@ PATTERNS = [
 </form>""",
         "use": ["Say how often, so people know what they agree to."],
         "avoid": ["Asking for more than an email."],
+    },
+    {
+        "slug": "agent-session", "name": "Agent session", "icon": "ph-chats-circle", "group": "Agent",
+        "components": ["card", "segmented", "rich-text", "trace", "response-actions", "composer"],
+        "summary": "A conversation with an agent in one card: a header with the thread choice, the messages (yours at the end edge on the accent, the agent's as rich text with its trace and actions), and the composer last.",
+        "html": f"""<section class="flex flex-col gap-md max-w-form {CARD}" aria-labelledby="pat-agent-title">
+  <div class="flex flex-wrap items-center gap-sm">
+    <h3 id="pat-agent-title" class="grow text-lg font-semibold">Release review</h3>
+    <div class="inline-flex items-center h-control rounded-sm border-2 border-transparent bg-neutral-a2" role="group" aria-label="Threads">
+      <button aria-pressed="true" class="inline-flex items-center h-full px-nested rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black text-base font-medium cursor-pointer"><span>Changes</span></button>
+      <button aria-pressed="false" class="inline-flex items-center h-full px-nested rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black text-base font-medium cursor-pointer"><span>Risks</span></button>
+    </div>
+  </div>
+  <div class="flex flex-col gap-md" role="log" aria-label="Release review messages">
+    <div class="self-end max-w-text px-sm py-xs rounded-md bg-accent-1-9 fg-accent-1-contrast" role="article" aria-label="You"><p class="text-base fg-accent-1-contrast">What changed in this release?</p></div>
+    <div class="flex flex-col gap-sm" role="article" aria-label="Agent">
+      <ol class="flex flex-col list-none p-0" role="list" aria-label="Agent trace">
+{trace_step("done", "Read the changelog", "0.4 s")}
+      </ol>
+      <div class="flex flex-col gap-xs max-w-text">
+        <p class="text-base">The release updates component guidance and examples:</p>
+        <ul class="flex flex-col gap-3xs ps-md list-disc text-base"><li>Five new components, from Trace to Composer.</li><li>Patterns as a section of their own.</li></ul>
+      </div>
+      {response_actions(versions=False)}
+    </div>
+  </div>
+  {composer(chips=False, ident="pat-agent-composer")}
+</section>""",
+        "use": ["The messages in a <code>role=\"log\"</code>, so new ones are announced.", "Actions only on the latest finished answer."],
+        "avoid": ["Bubbles for the agent's long answers; they read better as plain text the width of the column."],
+    },
+    {
+        "slug": "floating-agent-session", "name": "Floating agent session", "icon": "ph-chat-circle-dots", "group": "Agent",
+        "components": ["button", "card", "composer"],
+        "summary": "A round launcher that opens the chat as a popover over the page: a title bar with minimise and expand, the conversation, and the composer. The same draft stays when it closes.",
+        "html": f"""<div class="flex justify-end">
+  <button class="inline-flex items-center justify-center size-control shrink-0 rounded-full state border border-transparent bg-accent-1-9 fg-accent-1-contrast shadow-lg cursor-pointer" popovertarget="pat-float" aria-label="Open chat"><i class="icon ph ph-chat-circle-dots"></i></button>
+  <div id="pat-float" popover class="anchor-bottom-end w-full max-w-form p-inset rounded-md bg-neutral-1 border border-neutral-6 shadow-xl">
+    <div class="flex flex-col gap-xs">
+      <div class="flex items-center gap-3xs ps-control" role="toolbar" aria-label="Chat actions">
+        <span class="grow text-lg font-semibold">Chat</span>
+        <button class="{GHOST_ICON}" aria-label="Open as a page"><i class="icon ph ph-arrows-out-simple"></i></button>
+        <button class="{GHOST_ICON}" popovertarget="pat-float" popovertargetaction="hide" aria-label="Minimise"><i class="icon ph ph-minus"></i></button>
+      </div>
+      <div class="flex flex-col gap-sm px-control" role="log" aria-label="Chat messages">
+        <div class="self-end max-w-text px-sm py-xs rounded-md bg-accent-1-9 fg-accent-1-contrast" role="article" aria-label="You"><p class="text-base fg-accent-1-contrast">Which pages changed?</p></div>
+        <p class="text-base" role="article" aria-label="Agent">The component index, the site map and nine new pattern pages.</p>
+      </div>
+      {composer(chips=False, ident="pat-float-composer")}
+    </div>
+  </div>
+</div>""",
+        "use": ["A <code>popover</code> opened by <code>popovertarget</code>: it closes on Escape and outside clicks, with no script.", "Keep the draft when the panel closes."],
+        "avoid": ["Covering the page's own primary action with the launcher."],
     },
 ]

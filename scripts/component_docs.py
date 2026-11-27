@@ -52,6 +52,71 @@ CALENDAR_DAYS = """    <button class="inline-flex items-center justify-center si
     <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-8 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="4 April 2027"><span>4</span></button>"""
 
 
+GHOST_ICON = "inline-flex items-center justify-center size-control shrink-0 rounded-sm state border border-transparent bg-transparent fg-neutral-11 cursor-pointer"
+
+
+def response_actions(meta="Just now · 340 tokens", versions=True):
+    v = f"""
+    <div class="flex items-center gap-3xs" role="group" aria-label="Response versions">
+      <button class="{GHOST_ICON}" aria-label="Previous version"><i class="icon icon-sm ph-bold ph-caret-left"></i></button>
+      <span class="text-sm fg-neutral-11 tabular-nums whitespace-nowrap">2 / 3</span>
+      <button class="{GHOST_ICON}" aria-label="Next version"><i class="icon icon-sm ph-bold ph-caret-right"></i></button>
+    </div>""" if versions else ""
+    return f"""<div class="flex flex-wrap items-center gap-xs" role="group" aria-label="Response actions">
+  <div class="flex flex-wrap items-center gap-3xs" role="toolbar" aria-label="Response actions">
+    <button class="{GHOST_ICON}" aria-label="Copy"><i class="icon ph ph-copy"></i></button>
+    <button class="{GHOST_ICON} pressed:bg-neutral-4 pressed:fg-neutral-12" aria-pressed="true" aria-label="Helpful"><i class="icon ph ph-thumbs-up"></i></button>
+    <button class="{GHOST_ICON} pressed:bg-neutral-4 pressed:fg-neutral-12" aria-pressed="false" aria-label="Not helpful"><i class="icon ph ph-thumbs-down"></i></button>
+    <button class="{GHOST_ICON}" aria-label="Retry"><i class="icon ph ph-arrow-clockwise"></i></button>{v}
+  </div>
+  <span class="text-sm fg-neutral-11">{meta}</span>
+</div>"""
+
+
+def trace_step(status, label, note="", detail="", open_=False):
+    marks = {"done": ("bg-success-3 fg-success-11", "ph-check", ""),
+             "running": ("bg-accent-1-3 fg-accent-1-11", "ph-circle-notch", " animate-spin"),
+             "pending": ("bg-neutral-3 fg-neutral-11", "ph-dots-three", ""),
+             "failed": ("bg-danger-3 fg-danger-11", "ph-x", "")}
+    tone, icon, spin = marks[status]
+    words = {"done": note, "running": "Running", "pending": "Waiting", "failed": "Failed"}
+    ink = {"failed": "fg-danger-11"}.get(status, "fg-neutral-11")
+    body = f"""
+    <div class="flex flex-col gap-3xs ps-xl pe-control pb-xs"><p class="text-base fg-neutral-11">{detail}</p></div>""" if detail else ""
+    return f"""  <li>
+    <details class="group"{" open" if open_ else ""}>
+      <summary class="flex items-center gap-gutter h-control px-control rounded-sm state border border-transparent list-none text-base fg-neutral-12 cursor-pointer" aria-label="{label}, {words[status] or "done"}"><span class="inline-flex items-center justify-center size-nested shrink-0 rounded-full {tone}"><i class="icon icon-sm ph-bold {icon}{spin}"></i></span><span class="grow min-w-0">{label}</span><span class="text-sm {ink} tabular-nums whitespace-nowrap">{words[status]}</span><i class="icon icon-sm ph-bold ph-caret-right fg-neutral-11 transition group-open:rotate-90" aria-hidden="true"></i></summary>{body}
+    </details>
+  </li>"""
+
+
+TRACE = "\n".join([
+    '<ol class="flex flex-col list-none p-0 max-w-form" role="list" aria-label="Agent trace">',
+    trace_step("done", "Read configuration", "0.2 s", "Found nowind.config.json and three page templates."),
+    trace_step("running", "Build assets", detail="Bundling 34 stylesheets into dist/nowind.min.css.", open_=True),
+    trace_step("pending", "Review output"),
+    trace_step("failed", "Validate content", detail="One example is missing a label."),
+    "</ol>",
+])
+
+
+def composer(running=False, chips=True, ident="doc-composer"):
+    chip = """
+  <div class="flex flex-wrap items-center gap-2xs" role="toolbar" aria-label="Message context"><span class="inline-flex items-center gap-gutter-half h-nested px-nested rounded-xs bg-neutral-3 fg-neutral-12 text-sm font-medium"><i class="icon icon-sm ph ph-file-text"></i><span>Release notes</span></span></div>""" if chips else ""
+    send = ('<button class="inline-flex items-center justify-center size-nested shrink-0 rounded-xs state border border-transparent bg-neutral-12 fg-neutral-1 cursor-pointer" type="button" aria-label="Stop"><i class="icon icon-sm ph-bold ph-stop"></i></button>' if running
+            else '<button class="inline-flex items-center justify-center size-nested shrink-0 rounded-xs state border border-transparent bg-accent-1-9 fg-accent-1-contrast cursor-pointer" type="submit" aria-label="Send"><i class="icon icon-sm ph-bold ph-arrow-up"></i></button>')
+    return f"""<form class="flex flex-col gap-2xs p-inset rounded-sm border border-neutral-6 hover:border-neutral-7 focus-within:border-accent-1-8 bg-neutral-1 transition" role="group" aria-label="Message">{chip}
+  <textarea id="{ident}" rows="2" class="px-nested py-2xs border-0 bg-transparent resize-none field-sizing-content text-base w-full" aria-label="Message" placeholder="Ask anything">Summarize the changes in this release.</textarea>
+  <div class="flex flex-wrap items-center gap-3xs" role="toolbar" aria-label="Message actions">
+    <select class="{NESTED_SELECT} disabled:bg-transparent" aria-label="Model"{" disabled" if running else ""}><option>Balanced model</option><option>Fast model</option></select>
+    <select class="{NESTED_SELECT} disabled:bg-transparent" aria-label="Thinking"{" disabled" if running else ""}><option>Thinking off</option><option>Thinking on</option></select>
+    <span class="grow"></span>
+    <button class="{NESTED_ICON}" type="button" aria-label="Attach"><i class="icon icon-sm ph ph-paperclip"></i></button>
+    {send}
+  </div>
+</form>"""
+
+
 COMPONENTS = [
     {
         "slug": "button", "name": "Button", "icon": "ph-cursor-click", "group": "Actions",
@@ -988,6 +1053,131 @@ COMPONENTS = [
 </div>""",
         "use": ["Group results by kind, and keep each to one line.", "Keep focus in the field and move the selection with <code>aria-activedescendant</code>."],
         "avoid": ["A palette as the only way to reach a command; it is a shortcut, not the menu."],
+    },
+    {
+        "slug": "button-group", "name": "Button group", "icon": "ph-rows-plus-bottom", "group": "Actions",
+        "summary": "Related buttons in one run, a hairline apart. The outer ends keep the control corner; the corners that face each other drop to the small one, so the run reads as one object.",
+        "html": f"""<div class="flex flex-wrap items-center gap-md">
+  <div class="inline-flex items-center gap-3xs" role="group" aria-label="History">
+    <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-s-sm rounded-e-xs state border border-transparent bg-neutral-a2 fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon ph ph-arrow-counter-clockwise"></i><span>Undo</span></button>
+    <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-s-xs rounded-e-sm state border border-transparent bg-neutral-a2 fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon ph ph-arrow-clockwise"></i><span>Redo</span></button>
+  </div>
+  <div class="inline-flex items-center gap-3xs" role="group" aria-label="Zoom">
+    <button class="inline-flex items-center justify-center size-control shrink-0 rounded-s-sm rounded-e-xs state border border-transparent bg-neutral-a2 fg-neutral-12 cursor-pointer" aria-label="Zoom out"><i class="icon ph ph-minus"></i></button>
+    <button class="inline-flex items-center justify-center h-control px-control rounded-s-xs rounded-e-xs state border border-transparent bg-neutral-a2 fg-neutral-12 text-base font-medium tabular-nums cursor-pointer"><span>100%</span></button>
+    <button class="inline-flex items-center justify-center size-control shrink-0 rounded-s-xs rounded-e-sm state border border-transparent bg-neutral-a2 fg-neutral-12 cursor-pointer" aria-label="Zoom in"><i class="icon ph ph-plus"></i></button>
+  </div>
+</div>""",
+        "use": ["Two to four actions that belong together, such as Undo and Redo.", "<code>rounded-s-sm rounded-e-xs</code> on the first, <code>rounded-xs</code> between, <code>rounded-s-xs rounded-e-sm</code> on the last; logical sides, so the run mirrors in right-to-left text."],
+        "avoid": ["A group for options where one is chosen; use a segmented control."],
+    },
+    {
+        "slug": "split-button", "name": "Split button", "icon": "ph-caret-circle-down", "group": "Actions",
+        "summary": "The usual action and, joined to it, a square key that opens the other ways to do it in a menu. Both halves share a variant; the group has its own name.",
+        "html": f"""<div class="inline-flex items-center gap-3xs" role="group" aria-label="Save options">
+  <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-s-sm rounded-e-xs state border border-transparent bg-accent-1-9 fg-accent-1-contrast text-base font-medium cursor-pointer"><i class="icon ph ph-floppy-disk"></i><span>Save</span></button>
+  <button class="inline-flex items-center justify-center size-control shrink-0 rounded-s-xs rounded-e-sm state border border-transparent bg-accent-1-9 fg-accent-1-contrast cursor-pointer" popovertarget="doc-save-menu" aria-haspopup="menu" aria-label="More save options"><i class="icon icon-sm ph-bold ph-caret-down"></i></button>
+  <div id="doc-save-menu" popover class="anchor-bottom w-fit p-inset rounded-md bg-neutral-1 border border-neutral-6 shadow-lg">
+    <div class="flex flex-col" role="menu" aria-label="More save options">
+      <button class="flex items-center gap-gutter h-control px-control rounded-sm state border border-transparent bg-transparent fg-neutral-12 text-base cursor-pointer" role="menuitem"><i class="icon ph ph-copy"></i><span class="grow text-start">Save as copy</span></button>
+      <button class="flex items-center gap-gutter h-control px-control rounded-sm state border border-transparent bg-transparent fg-neutral-12 text-base cursor-pointer" role="menuitem"><i class="icon ph ph-file-arrow-down"></i><span class="grow text-start">Save and download</span></button>
+    </div>
+  </div>
+</div>""",
+        "use": ["When one action is the common one and the others are its variations.", "Name the key after what it opens (More save options)."],
+        "avoid": ["A split button whose menu holds unrelated actions; use an action menu."],
+    },
+    {
+        "slug": "tag", "name": "Tag", "icon": "ph-tag", "group": "Status",
+        "summary": "A label someone added, at the nested height on a full round, in a neutral, tinted, solid or draft (dashed) face. A removable tag ends in its own small round key.",
+        "html": f"""<div class="flex flex-wrap items-center gap-2xs">
+  <span class="inline-flex items-center h-nested px-nested rounded-full border border-neutral-6 bg-neutral-2 fg-neutral-12 text-sm font-medium"><span>Design</span></span>
+  <span class="inline-flex items-center h-nested px-nested rounded-full border border-accent-2-6 bg-accent-2-3 fg-accent-2-11 text-sm font-medium"><span>Research</span></span>
+  <span class="inline-flex items-center h-nested px-nested rounded-full border border-transparent bg-accent-3-9 fg-accent-3-contrast text-sm font-medium"><span>Launch</span></span>
+  <span class="inline-flex items-center h-nested px-nested rounded-full border border-dashed border-neutral-7 bg-transparent fg-neutral-11 text-sm font-medium"><span>Draft</span></span>
+  <span class="inline-flex items-center px-nested rounded-full border border-neutral-6 bg-neutral-2 fg-neutral-12 text-sm font-medium"><span>Tokens</span><button class="inline-flex items-center justify-center size-nested shrink-0 rounded-full state border-0 bg-transparent fg-neutral-11 cursor-pointer" aria-label="Remove Tokens"><i class="icon icon-sm ph-bold ph-x"></i></button></span>
+</div>""",
+        "use": ["Tags for what people file things under; badges for a status the system sets.", "Name each remove key after its tag (Remove Tokens)."],
+        "avoid": ["Colour as the only meaning of a tag; the label says it."],
+    },
+    {
+        "slug": "rich-text", "name": "Rich text", "icon": "ph-article", "group": "Data display",
+        "summary": "Formatted prose, such as rendered Markdown or an agent's answer: a heading, paragraphs, a list, a quote and code, each block a step apart in one column at a readable measure.",
+        "html": f"""<article class="flex flex-col gap-sm max-w-text">
+  <h3 class="text-lg font-semibold">Release summary</h3>
+  <p class="text-base">This release is a <strong>draft</strong>. It adds element defaults and a command palette, and changes one class name.</p>
+  <ul class="flex flex-col gap-3xs ps-md list-disc text-base">
+    <li>Buttons and fields are styled without classes.</li>
+    <li>Press <kbd class="{KBD}">⌘</kbd> <kbd class="{KBD}">K</kbd> to search every page.</li>
+    <li><code class="font-mono">text-sm-label</code> is now <code class="font-mono">text-label</code>.</li>
+  </ul>
+  <blockquote class="ps-md border-s-4 border-neutral-6 fg-neutral-11">Link one stylesheet and every class already exists.</blockquote>
+  <pre class="p-sm rounded-sm bg-neutral-2 overflow-x-auto"><code class="font-mono">&lt;link rel="stylesheet" href="nowind.min.css"&gt;</code></pre>
+</article>""",
+        "use": ["One column, <code>gap-sm</code> between blocks, at <code>max-w-text</code>.", "Let code scroll sideways rather than wrap."],
+        "avoid": ["Headings larger than the page's own; rich text sits inside a page."],
+    },
+    {
+        "slug": "color-picker", "name": "Colour picker", "icon": "ph-palette", "group": "Forms",
+        "summary": "The platform colour input as the swatch, a row of presets that are pressed when chosen, and the hue and lightness as labelled sliders with their values printed.",
+        "html": f"""<div class="flex flex-col gap-md max-w-form {CARD}" role="group" aria-labelledby="doc-colour-label">
+  <div class="flex items-center gap-sm">
+    <input id="doc-colour" type="color" value="#3e63dd" class="size-control shrink-0 rounded-sm border border-neutral-6 bg-neutral-1 cursor-pointer">
+    <div class="flex flex-col gap-3xs"><label id="doc-colour-label" for="doc-colour" class="text-sm font-medium">Accent colour</label><span class="text-sm fg-neutral-11 font-mono">#3e63dd</span></div>
+  </div>
+  <div class="flex flex-wrap items-center gap-xs" role="group" aria-label="Presets">
+    <button class="size-control shrink-0 rounded-full border-2 border-transparent hover:border-neutral-6 pressed:border-neutral-8 bg-accent-1-9 cursor-pointer" aria-pressed="true" aria-label="Blue"></button>
+    <button class="size-control shrink-0 rounded-full border-2 border-transparent hover:border-neutral-6 pressed:border-neutral-8 bg-accent-2-9 cursor-pointer" aria-pressed="false" aria-label="Violet"></button>
+    <button class="size-control shrink-0 rounded-full border-2 border-transparent hover:border-neutral-6 pressed:border-neutral-8 bg-accent-3-9 cursor-pointer" aria-pressed="false" aria-label="Plum"></button>
+    <button class="size-control shrink-0 rounded-full border-2 border-transparent hover:border-neutral-6 pressed:border-neutral-8 bg-success-9 cursor-pointer" aria-pressed="false" aria-label="Green"></button>
+    <button class="size-control shrink-0 rounded-full border-2 border-transparent hover:border-neutral-6 pressed:border-neutral-8 bg-warning-9 cursor-pointer" aria-pressed="false" aria-label="Amber"></button>
+  </div>
+  <div class="flex flex-col gap-2xs">
+    <div class="flex justify-between text-sm font-medium"><label for="doc-hue">Hue</label><span class="fg-neutral-11 tabular-nums">245°</span></div>
+    <input id="doc-hue" type="range" min="0" max="360" value="245" class="w-full">
+  </div>
+  <div class="flex flex-col gap-2xs">
+    <div class="flex justify-between text-sm font-medium"><label for="doc-light">Lightness</label><span class="fg-neutral-11 tabular-nums">65%</span></div>
+    <input id="doc-light" type="range" min="0" max="100" value="65" class="w-full">
+  </div>
+  <div class="flex justify-end gap-xs">
+    <button class="{BTN_SECONDARY}"><span>Cancel</span></button>
+    <button class="{BTN_PRIMARY}"><span>Apply</span></button>
+  </div>
+</div>""",
+        "use": ["The native colour input for the swatch: it brings the platform's picker.", "Name each preset by its colour, not its value."],
+        "avoid": ["Colour without a name or value beside it; not everyone can tell the swatches apart."],
+    },
+    {
+        "slug": "response-actions", "name": "Response actions", "icon": "ph-thumbs-up", "group": "Agent",
+        "summary": "The row under a generated answer: copy, helpful and not helpful as pressed toggles, retry, the version switcher, then a quiet line of when and how long.",
+        "html": response_actions(),
+        "examples": [
+            {"id": "history", "label": "An older answer",
+             "summary": "Only the line of when and what, with no actions, for an answer that can't be changed any more.",
+             "html": '<span class="text-sm fg-neutral-11">Yesterday · Archived response</span>'},
+        ],
+        "use": ["Helpful and Not helpful as <code>aria-pressed</code> toggles; pressing again clears it.", "Disable Previous and Next at the ends; hide the switcher with one version."],
+        "avoid": ["Labels on every action; the icons are common enough, and each has an <code>aria-label</code>."],
+    },
+    {
+        "slug": "trace", "name": "Trace", "icon": "ph-path", "group": "Agent",
+        "summary": "What an agent did, one step to a row: a round mark for its state (done, running, waiting, failed), its name, its time or status, and the detail behind a <code>&lt;details&gt;</code>.",
+        "html": TRACE,
+        "use": ["Each row's <code>aria-label</code> joins the name and the state, so it reads as one.", "Open the running step, closed the rest."],
+        "avoid": ["The trace instead of the answer; it explains how, the answer says what."],
+    },
+    {
+        "slug": "composer", "name": "Composer", "icon": "ph-chat-text", "group": "Agent",
+        "summary": "A message box: context chips, a text area that grows with what is typed (<code>field-sizing-content</code>), then the model and thinking selects and Attach and Send at the small size inside its inset.",
+        "html": composer(),
+        "examples": [
+            {"id": "running", "label": "While answering",
+             "summary": "Send turns into Stop, and the selects are disabled until the answer is done.",
+             "html": composer(running=True, chips=False, ident="doc-composer-running")},
+        ],
+        "use": ["A <code>&lt;form&gt;</code>, so Enter and the Send button submit without a script.", "Name Send and Stop in <code>aria-label</code>; they are icons."],
+        "avoid": ["A placeholder as the only label."],
     },
 ]
 
