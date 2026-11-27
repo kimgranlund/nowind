@@ -781,6 +781,8 @@ out.push("  :is([open] > summary, [aria-expanded=\"true\"]) .caret::before, .sel
 out.push("  :root[data-lens=\"on\"] .lens { -webkit-backdrop-filter: var(--_lens-filter, url(#nowind-lens)) saturate(1.8) brightness(1.05); backdrop-filter: var(--_lens-filter, url(#nowind-lens)) saturate(1.8) brightness(1.05); }");
 out.push("  .select-base option:checked { background: var(--component-accent-1-weak); color: var(--fg-accent-1-weak); }");
 for (const c of ["h-control", "h-nested", "h-header", "size-control", "size-nested"]) out.push(`  .${c} > .h-full { height: auto; align-self: stretch; }`);
+// A table cell ignores min-height, and its height is already a minimum (a cell grows to fit), so a cell takes height.
+for (const [c, v] of [["h-control", "--control-height"], ["h-nested", "--nested-height"]]) out.push(`  :where(td, th).${c} { height: var(${v}); }`);
 for (const c of ["size-control", "size-nested"]) out.push(`  .${c}:not(:has(> *)) { line-height: 1; }`);
 for (const c of ["h-nested", "size-nested"]) out.push(`  .${c} > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }`);
 for (const [cls, pad] of [["px-control", "--control-icon-padding"], ["px-nested", "--nested-icon-padding"]]) {

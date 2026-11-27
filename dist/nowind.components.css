@@ -30,6 +30,7 @@
   .btn:active::after { opacity: var(--state-active); }
   .btn:is(:disabled, [aria-disabled="true"])::after { opacity: 0; }
   .select-base.btn { padding-inline-end: var(--control-icon-padding); }
+  :where(td, th).btn { height: var(--control-height); }
   .btn:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--control-icon-padding); }
   .btn:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested, .select-base.p-0):last-child)) { padding-inline-end: var(--control-icon-padding); }
   .btn-primary { background-color: var(--accent-1-9); color: var(--accent-1-contrast); border-color: transparent; }
@@ -49,6 +50,7 @@
   .btn-sm:is(:disabled, [aria-disabled="true"])::after { opacity: 0; }
   .select-base.btn-sm::picker-icon { inline-size: calc(var(--nested-height) - 2 * var(--border-width)); block-size: calc(var(--nested-height) - 2 * var(--border-width)); }
   .select-base.btn-sm { padding-inline-end: var(--nested-icon-padding); }
+  :where(td, th).btn-sm { height: var(--nested-height); }
   .btn-sm:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--nested-icon-padding); }
   .btn-sm:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested, .select-base.p-0):last-child)) { padding-inline-end: var(--nested-icon-padding); }
   .icon-btn { display: inline-flex; justify-content: center; align-items: center; border-width: var(--border-width); --_bw: var(--border-width); border-radius: var(--radius-sm); --_nest: max(0px, calc(var(--radius-sm) - var(--_inset) - var(--_bw))); cursor: pointer; min-width: var(--control-height); min-height: var(--control-height); aspect-ratio: 1; align-self: center; padding: 0; isolation: isolate; }
@@ -65,6 +67,7 @@
   .field { display: flex; align-items: center; font-size: var(--text-base); line-height: var(--text-base--line-height); background-color: var(--neutral-1); border-color: var(--neutral-5); border-width: var(--border-width); --_bw: var(--border-width); border-radius: var(--radius-sm); --_nest: max(0px, calc(var(--radius-sm) - var(--_inset) - var(--_bw))); transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, translate, scale, rotate; transition-duration: var(--_duration, var(--motion-duration)); transition-timing-function: var(--_ease, var(--motion-easing)); cursor: text; min-height: var(--control-height); padding-inline: var(--control-padding); gap: var(--gutter); }
   .field:has(> .select-base) { anchor-name: --nw-field; anchor-scope: --nw-field; }
   .select-base.field { padding-inline-end: var(--control-icon-padding); }
+  :where(td, th).field { height: var(--control-height); }
   .field:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--control-icon-padding); }
   .field:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested, .select-base.p-0):last-child)) { padding-inline-end: var(--control-icon-padding); }
   @media (hover: hover) {
@@ -75,6 +78,7 @@
   .badge { display: inline-flex; align-items: center; font-size: var(--text-sm); line-height: var(--text-sm--line-height); font-weight: var(--font-weight-medium); border-width: var(--border-width); --_bw: var(--border-width); border-radius: 9999px; --_nest: max(0px, calc(9999px - var(--_inset) - var(--_bw))); min-height: var(--nested-height); padding-inline: var(--nested-padding); }
   .select-base.badge::picker-icon { inline-size: calc(var(--nested-height) - 2 * var(--border-width)); block-size: calc(var(--nested-height) - 2 * var(--border-width)); }
   .select-base.badge { padding-inline-end: var(--nested-icon-padding); }
+  :where(td, th).badge { height: var(--nested-height); }
   .badge:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--nested-icon-padding); }
   .badge:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested, .select-base.p-0):last-child)) { padding-inline-end: var(--nested-icon-padding); }
   .badge-neutral { background-color: var(--neutral-3); border-color: var(--neutral-6); color: var(--neutral-11); }
@@ -85,6 +89,7 @@
   .badge-info { background-color: var(--info-3); border-color: var(--info-6); color: var(--info-11); }
   .card { padding: var(--space-md); --_inset: var(--space-md); background-color: var(--neutral-1); border-color: var(--neutral-6); border-width: var(--border-width); --_bw: var(--border-width); border-radius: var(--radius-md); --_nest: max(0px, calc(var(--radius-md) - var(--_inset) - var(--_bw))); }
   .segmented { display: inline-flex; align-items: center; background-color: var(--neutral-a2); border-color: transparent; border-width: 2px; --_bw: 2px; border-radius: var(--radius-sm); --_nest: max(0px, calc(var(--radius-sm) - var(--_inset) - var(--_bw))); min-height: var(--control-height); }
+  :where(td, th).segmented { height: var(--control-height); }
   .segment { display: inline-flex; justify-content: center; align-items: center; align-self: stretch; font-size: var(--text-base); line-height: var(--text-base--line-height); font-weight: var(--font-weight-medium); color: var(--neutral-11); background-color: transparent; border-width: 0; --_bw: 0px; border-radius: var(--_nest, var(--radius-sm)); cursor: pointer; padding-inline: var(--nested-padding); gap: calc(var(--gutter) / 2); }
   .select-base.segment { padding-inline-end: var(--nested-icon-padding); }
   .segment:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--nested-icon-padding); }

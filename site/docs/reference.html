@@ -64,7 +64,7 @@
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Page grid</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-text break-words">Grid columns are <code>grid-cols-1</code> to <code>grid-cols-12</code> with <code>col-span-*</code>. These classes set the space between and around them.</p>
-          <div class="border border-weak overflow-x-auto">
+          <div class="rounded-md border border-weak overflow-x-auto">
             <table class="w-full text-body-md">
               <thead class="bg-strong"><tr><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Class</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Declaration</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Derived from</th></tr></thead>
               <tbody>
@@ -76,7 +76,7 @@
               </tbody>
             </table>
           </div>
-          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+          <figure class="flex flex-col min-w-0 rounded-md border border-weak bg-strong overflow-hidden">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">grid.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
             </figcaption>
@@ -91,7 +91,7 @@
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Shell lengths</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-text break-words">The app shell's lengths grow with the type, so a sidebar that fits its labels on a phone still fits them on a wide screen.</p>
-          <div class="border border-weak overflow-x-auto">
+          <div class="rounded-md border border-weak overflow-x-auto">
             <table class="w-full text-body-md">
               <thead class="bg-strong"><tr><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Class</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Declaration</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Derived from</th></tr></thead>
               <tbody>
@@ -116,7 +116,7 @@
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Container levels</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-text break-words">Pad a box by what it is, not by a size. The values are at a 16px base.</p>
-          <div class="border border-weak overflow-x-auto">
+          <div class="rounded-md border border-weak overflow-x-auto">
             <table class="w-full text-body-md">
               <thead class="bg-strong"><tr><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Class</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Use</th><th scope="col" class="text-end px-2xs md:px-sm py-xs border-b text-label fg-weak">At 16px</th></tr></thead>
               <tbody>
@@ -137,7 +137,7 @@
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Tiers</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-text break-words">A tier changes the rhythm of a whole region. Every length inside it recomputes.</p>
-          <div class="border border-weak overflow-x-auto">
+          <div class="rounded-md border border-weak overflow-x-auto">
             <table class="w-full text-body-md">
               <thead class="bg-strong"><tr><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Class</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Base size</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Page and section spacing</th></tr></thead>
               <tbody>
@@ -147,7 +147,7 @@
               </tbody>
             </table>
           </div>
-          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+          <figure class="flex flex-col min-w-0 rounded-md border border-weak bg-strong overflow-hidden">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">tier.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
             </figcaption>
@@ -159,7 +159,7 @@
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Radius and nesting</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-text break-words">After Affine UI, one unit runs the whole scale: each radius step is one margin (M) from the next (xs = control − M, sm = control, md = control + M, lg = control + 2M, xl = control + 3M), and the padding between levels is the inset (I = M − border). So a bordered container padded p-inset holds items one radius step down, concentrically: (r + M) − (M − B) − B = r. Pairs: rounded-md p-inset holds rounded-sm; rounded-lg p-inset holds rounded-md; rounded-sm p-inset holds rounded-xs. Any other padding uses rounded-inner (the parent&#x27;s radius minus its padding and border).</p>
-          <div class="border border-weak overflow-x-auto">
+          <div class="rounded-md border border-weak overflow-x-auto">
             <table class="w-full text-body-md">
               <thead class="bg-strong"><tr><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Class</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Value</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Use</th></tr></thead>
               <tbody>
@@ -171,7 +171,7 @@
               </tbody>
             </table>
           </div>
-          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+          <figure class="flex flex-col min-w-0 rounded-md border border-weak bg-strong overflow-hidden">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">nest.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
             </figcaption>
@@ -188,7 +188,7 @@
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Where each length goes</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-text break-words">Which height, padding, gap and corner each kind of part in an example takes, so every part of one kind is built the same way. The rows read the Affine geometry above: control height 4n − 26, margin M, inset M − border, radii one M apart. The examples lint enforces it, and <code>?audit=geometry</code> on any page measures the rules below.</p>
-          <div class="border border-weak overflow-x-auto">
+          <div class="rounded-md border border-weak overflow-x-auto">
             <table class="w-full text-body-md">
               <thead class="bg-strong"><tr><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Part</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Identified by</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Height</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Padding</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Gap</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Corner</th></tr></thead>
               <tbody>
@@ -215,7 +215,7 @@
         <section id="breakpoints" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Breakpoints</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
-          <div class="border border-weak overflow-x-auto">
+          <div class="rounded-md border border-weak overflow-x-auto">
             <table class="w-full text-body-md">
               <thead class="bg-strong"><tr><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Prefix</th><th scope="col" class="text-end px-2xs md:px-sm py-xs border-b text-label fg-weak">Min width</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">In these templates</th></tr></thead>
               <tbody>
@@ -230,11 +230,11 @@
           </div>
         </section>
         <nav aria-label="Previous and next page" class="col-span-12 grid grid-cols-2 gap-grid py-page border-t border-strong">
-          <a href="materials.html" class="flex flex-col gap-3xs min-w-0 p-surface border border-weak hover:border-strong no-underline transition-colors">
+          <a href="materials.html" class="flex flex-col gap-3xs min-w-0 p-surface rounded-md border border-weak hover:border-strong no-underline transition-colors">
             <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><i class="icon icon-sm ph-bold ph-arrow-left"></i><span>Previous</span></span>
             <span class="text-subtitle fg-accent-1-weak break-words max-w-full">Materials</span>
           </a>
-          <a href="resets.html" class="flex flex-col items-end gap-3xs min-w-0 p-surface border border-weak hover:border-strong no-underline text-end transition-colors">
+          <a href="resets.html" class="flex flex-col items-end gap-3xs min-w-0 p-surface rounded-md border border-weak hover:border-strong no-underline text-end transition-colors">
             <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><span>Next</span><i class="icon icon-sm ph-bold ph-arrow-right"></i></span>
             <span class="text-subtitle fg-accent-1-weak break-words max-w-full">Resets</span>
           </a>

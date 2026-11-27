@@ -185,14 +185,14 @@ def prev_next(path):
     nxt = ORDER[i + 1] if i < len(ORDER) - 1 else None
     cells = []
     if prev:
-        cells.append(f"""          <a href="{rel(prev, path)}" class="flex flex-col gap-3xs min-w-0 p-surface border border-weak hover:border-strong no-underline transition-colors">
+        cells.append(f"""          <a href="{rel(prev, path)}" class="flex flex-col gap-3xs min-w-0 p-surface rounded-md border border-weak hover:border-strong no-underline transition-colors">
             <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><i class="icon icon-sm ph-bold ph-arrow-left"></i><span>Previous</span></span>
             <span class="text-subtitle fg-accent-1-weak break-words max-w-full">{TITLES.get(prev, LABELS[prev])}</span>
           </a>""")
     else:
         cells.append('          <span></span>')
     if nxt:
-        cells.append(f"""          <a href="{rel(nxt, path)}" class="flex flex-col items-end gap-3xs min-w-0 p-surface border border-weak hover:border-strong no-underline text-end transition-colors">
+        cells.append(f"""          <a href="{rel(nxt, path)}" class="flex flex-col items-end gap-3xs min-w-0 p-surface rounded-md border border-weak hover:border-strong no-underline text-end transition-colors">
             <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><span>Next</span><i class="icon icon-sm ph-bold ph-arrow-right"></i></span>
             <span class="text-subtitle fg-accent-1-weak break-words max-w-full">{TITLES.get(nxt, LABELS[nxt])}</span>
           </a>""")
@@ -215,7 +215,7 @@ def callout(kind, body_html):
           </aside>"""
 
 def code(filename, lang, src):
-    return f"""<figure class="flex flex-col min-w-0 border border-weak bg-strong">
+    return f"""<figure class="flex flex-col min-w-0 rounded-md border border-weak bg-strong overflow-hidden">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">{E(filename)}</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">{lang}</span>
             </figcaption>
@@ -235,7 +235,7 @@ def table(headers, rows, align=None):
         r = [joint(c) if k == 0 else c.replace("<code>", '<code class="whitespace-normal break-all">') for k, c in enumerate(r)]
         tds = "".join(f'<td class="text-{a} align-top px-2xs md:px-sm py-xs break-words{b}">{c}</td>' for c, a in zip(r, align))
         trs.append(f"                <tr>{tds}</tr>")
-    return f"""<div class="border border-weak overflow-x-auto">
+    return f"""<div class="rounded-md border border-weak overflow-x-auto">
             <table class="w-full text-body-md">
               <thead class="bg-strong"><tr>{ths}</tr></thead>
               <tbody>
@@ -534,7 +534,7 @@ def docs_home():
         ("classes.html", "ph-list-bullets", "Classes", "Every class and what it declares, regular and semantic, with a filter."),
         ("components-index.html", "ph-squares-four", "Components", "Buttons, forms, tables and dialogs built only from utility classes."),
     ]
-    cards = "\n".join(f"""            <a href="{h}" class="flex flex-col gap-field p-surface border border-weak hover:border-strong no-underline fg transition-colors">
+    cards = "\n".join(f"""            <a href="{h}" class="flex flex-col gap-field p-surface rounded-md border border-weak hover:border-strong no-underline fg transition-colors">
               <i class="icon ph {i} fg-accent-1-weak"></i>
               <span class="text-subtitle">{t}</span>
               <span class="text-body-md fg-weak">{d}</span>
@@ -761,7 +761,7 @@ def classes_page(semantic=False):
                 cells.append(f'<span class="col-span-12 {span[2]}">{prev(k)}</span>')
             rows_html.append(f'            <li id="{class_id(k)}" data-row class="scroll-mt-3xl grid grid-cols-12 gap-x-grid gap-y-3xs px-sm py-xs border-t border-weak">{"".join(cells)}</li>')
         sections.append(block(sid, f'<h2 class="text-subtitle">{title}</h2><span class="text-caption fg-weak">{len(rows)} classes</span>',
-            f"""<ul role="list" class="border border-weak">
+            f"""<ul role="list" class="rounded-md border border-weak overflow-hidden">
             <li aria-hidden="true" class="hidden md:grid grid-cols-12 gap-x-grid px-sm py-xs bg-strong">{head_row}</li>
 {chr(10).join(rows_html)}
           </ul>""", attrs=" data-classes"))
@@ -775,7 +775,7 @@ def classes_page(semantic=False):
           <span id="class-count" data-all="{total} classes" aria-live="polite" class="text-caption fg-weak whitespace-nowrap">{total} classes</span>
         </div>"""
     cards = "\n".join(
-        f"""            <a href="#{sid}" class="flex items-baseline justify-between gap-row p-surface border border-weak hover:border-strong hover:bg-component-weak no-underline fg transition-colors">
+        f"""            <a href="#{sid}" class="flex items-baseline justify-between gap-row p-surface rounded-md border border-weak hover:border-strong hover:bg-component-weak no-underline fg transition-colors">
               <span class="text-subtitle">{title}</span><span class="text-caption fg-weak whitespace-nowrap">{len(rows)}</span>
             </a>""" for (sid, title), (_, rows) in zip(toc_items, cats))
     groups = section("groups", "Groups", f"""<nav aria-label="Class groups" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-grid">
@@ -1199,7 +1199,7 @@ def components_index():
     groups = []
     for g in dict.fromkeys(c["group"] for c in COMPONENTS):
         cards = "\n".join(
-            f"""            <a href="c-{c['slug']}.html" class="flex flex-col gap-3xs min-w-0 p-surface border border-weak hover:border-strong hover:bg-component-weak no-underline fg transition-colors">
+            f"""            <a href="c-{c['slug']}.html" class="flex flex-col gap-3xs min-w-0 p-surface rounded-md border border-weak hover:border-strong hover:bg-component-weak no-underline fg transition-colors">
               <span class="inline-flex items-center gap-gutter text-subtitle"><i class="icon ph {c['icon']} fg-accent-1-weak"></i><span>{c['name']}</span></span>
               <span class="text-body-sm fg-weak break-words">{c['summary']}</span>
             </a>""" for c in COMPONENTS if c["group"] == g)

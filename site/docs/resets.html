@@ -73,7 +73,7 @@
 <p><label><input type="checkbox" checked> Checkbox</label> <label><input type="radio" checked> Radio</label> <label><input type="checkbox" role="switch" checked> Switch</label></p>
 <p><input type="range" value="40" aria-label="Range"> <progress value="60" max="100">60%</progress> <meter value="0.8" min="0" max="1" low="0.3" high="0.7" optimum="0.2">80%</meter></p>
           </div>
-          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+          <figure class="flex flex-col min-w-0 rounded-md border border-weak bg-strong overflow-hidden">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">bare.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
             </figcaption>
@@ -128,7 +128,7 @@
   </div>
 </form>
           </div>
-          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+          <figure class="flex flex-col min-w-0 rounded-md border border-weak bg-strong overflow-hidden">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">defaults.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
             </figcaption>
@@ -199,7 +199,7 @@
   </section>
 </main></body></html>"></iframe>
           </div>
-          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+          <figure class="flex flex-col min-w-0 rounded-md border border-weak bg-strong overflow-hidden">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">page.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
             </figcaption>
@@ -245,7 +245,7 @@
   </div>
 </dialog>
           </div>
-          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+          <figure class="flex flex-col min-w-0 rounded-md border border-weak bg-strong overflow-hidden">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">dialog.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
             </figcaption>
@@ -265,7 +265,7 @@
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Default tokens</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-text break-words">No token is declared, so each one is free to set. Its fallback resolves at the element, so it follows the element's scope and tier.</p>
-          <div class="border border-weak overflow-x-auto">
+          <div class="rounded-md border border-weak overflow-x-auto">
             <table class="w-full text-body-md">
               <thead class="bg-strong"><tr><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Token</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Fallback</th><th scope="col" class="text-start px-2xs md:px-sm py-xs border-b text-label fg-weak">Use</th></tr></thead>
               <tbody>
@@ -334,7 +334,7 @@
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Override a default</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-text break-words">Four ways, from widest to narrowest. A token on <code>:root</code> changes every element; on a region, only that region; a rule in <code class="whitespace-normal"><span class="whitespace-nowrap">@layer</span> <span class="whitespace-nowrap">styles</span></code> beats the defaults outright; a utility class changes one element.</p>
-          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+          <figure class="flex flex-col min-w-0 rounded-md border border-weak bg-strong overflow-hidden">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">override.css</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">CSS</span>
             </figcaption>
@@ -342,7 +342,7 @@
 .settings { --field-border: var(--border); }       /* one region */
 @layer styles { button { font-weight: 600; } }     /* beats the defaults layer */</code></pre>
           </figure>
-          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+          <figure class="flex flex-col min-w-0 rounded-md border border-weak bg-strong overflow-hidden">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">override.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
             </figcaption>
@@ -354,7 +354,7 @@
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Layers</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <p class="text-body-md max-w-text break-words">Nowind declares <code class="whitespace-normal"><span class="whitespace-nowrap">@layer</span> <span class="whitespace-nowrap">reset,</span> <span class="whitespace-nowrap">defaults,</span> <span class="whitespace-nowrap">styles,</span> <span class="whitespace-nowrap">components,</span> <span class="whitespace-nowrap">nowind</span></code>. The reset sits in <code>reset</code> and the element defaults in <code>defaults</code>; put your own CSS in <code>styles</code>, where it beats both; the optional convenience classes fill <code>components</code>; the utilities in <code>nowind</code> win over all of them.</p>
-          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+          <figure class="flex flex-col min-w-0 rounded-md border border-weak bg-strong overflow-hidden">
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">layers.css</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">CSS</span>
             </figcaption>
@@ -365,11 +365,11 @@
           </div>
         </section>
         <nav aria-label="Previous and next page" class="col-span-12 grid grid-cols-2 gap-grid py-page border-t border-strong">
-          <a href="reference.html" class="flex flex-col gap-3xs min-w-0 p-surface border border-weak hover:border-strong no-underline transition-colors">
+          <a href="reference.html" class="flex flex-col gap-3xs min-w-0 p-surface rounded-md border border-weak hover:border-strong no-underline transition-colors">
             <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><i class="icon icon-sm ph-bold ph-arrow-left"></i><span>Previous</span></span>
             <span class="text-subtitle fg-accent-1-weak break-words max-w-full">Page grid and shell</span>
           </a>
-          <a href="convenience.html" class="flex flex-col items-end gap-3xs min-w-0 p-surface border border-weak hover:border-strong no-underline text-end transition-colors">
+          <a href="convenience.html" class="flex flex-col items-end gap-3xs min-w-0 p-surface rounded-md border border-weak hover:border-strong no-underline text-end transition-colors">
             <span class="inline-flex items-center gap-gutter-half text-kicker fg-weak"><span>Next</span><i class="icon icon-sm ph-bold ph-arrow-right"></i></span>
             <span class="text-subtitle fg-accent-1-weak break-words max-w-full">Convenience classes</span>
           </a>

@@ -3526,6 +3526,8 @@
   .h-header > .h-full { height: auto; align-self: stretch; }
   .size-control > .h-full { height: auto; align-self: stretch; }
   .size-nested > .h-full { height: auto; align-self: stretch; }
+  :where(td, th).h-control { height: var(--control-height); }
+  :where(td, th).h-nested { height: var(--nested-height); }
   .size-control:not(:has(> *)) { line-height: 1; }
   .size-nested:not(:has(> *)) { line-height: 1; }
   .h-nested > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }

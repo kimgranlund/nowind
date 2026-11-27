@@ -526,7 +526,7 @@ COMPONENTS = [
         "slug": "empty-state", "name": "Empty state", "icon": "ph-folder-open", "group": "Feedback",
         "summary": "What a view shows before it has content, with the action that fills it.",
         "html": f"""<div class="flex flex-col items-center justify-center text-center gap-xs p-2xl rounded-md border-2 border-dashed">
-  <span class="inline-flex items-center justify-center p-xs rounded-full bg-neutral-3 fg-neutral-11"><i class="icon ph ph-folder-open"></i></span>
+  <span class="inline-flex items-center justify-center size-control shrink-0 rounded-full bg-neutral-3 fg-neutral-11"><i class="icon icon-lg ph ph-folder-open"></i></span>
   <h3 class="text-lg font-semibold">No projects yet</h3>
   <p class="text-base fg-neutral-11 max-w-text">Create a project to collect designs, notes and feedback in one place.</p>
   <button class="{BTN_PRIMARY}"><i class="icon ph ph-plus"></i><span>New project</span></button>
@@ -577,8 +577,8 @@ COMPONENTS = [
   <table class="w-full">
     <thead class="bg-neutral-2">
       <tr>
-        <th aria-sort="ascending" class="text-start h-control ps-md pe-control border-b border-neutral-6"><button class="inline-flex items-center gap-gutter-half min-h-0 p-0 border-0 bg-transparent fg-neutral-12 text-sm font-medium cursor-pointer"><span>Name</span><i class="icon icon-sm ph-bold ph-caret-up"></i></button></th>
-        <th aria-sort="none" class="text-end h-control ps-control pe-md border-b border-neutral-6"><button class="inline-flex items-center gap-gutter-half min-h-0 p-0 border-0 bg-transparent fg-neutral-11 hover:fg-neutral-12 text-sm font-medium cursor-pointer"><span>Seats</span><i class="icon icon-sm ph-bold ph-caret-up-down"></i></button></th>
+        <th aria-sort="ascending" class="text-start h-control ps-md pe-control py-0 border-b border-neutral-6"><button class="inline-flex items-center gap-gutter-half min-h-0 p-0 border-0 bg-transparent fg-neutral-12 text-sm font-medium cursor-pointer"><span>Name</span><i class="icon icon-sm ph-bold ph-caret-up"></i></button></th>
+        <th aria-sort="none" class="text-end h-control ps-control pe-md py-0 border-b border-neutral-6"><button class="inline-flex items-center gap-gutter-half min-h-0 p-0 border-0 bg-transparent fg-neutral-11 hover:fg-neutral-12 text-sm font-medium cursor-pointer"><span>Seats</span><i class="icon icon-sm ph-bold ph-caret-up-down"></i></button></th>
       </tr>
     </thead>
     <tbody>
