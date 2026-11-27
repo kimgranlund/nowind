@@ -511,6 +511,12 @@
         "formula": "sidebar + measure + 2 × page margin",
         "at16": "1052px",
         "use": "The page width at which the sidebar docks beside the content."
+      },
+      {
+        "token": "--shell-command-height",
+        "formula": "600px",
+        "at16": "600px",
+        "use": "A command palette's height, fixed so it doesn't jump as its results change; class h-command, which also stops at the viewport below the header."
       }
     ]
   },

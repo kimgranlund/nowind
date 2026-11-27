@@ -1325,6 +1325,7 @@
   .top-header { top: var(--shell-header-height); }
   .scroll-pt-header { scroll-padding-block-start: var(--shell-header-height); }
   .h-below-header { height: calc(100dvh - var(--shell-header-height)); }
+  .h-command { height: min(var(--shell-command-height), calc(100dvh - var(--shell-header-height))); }
   .max-h-below-header { max-height: calc(100dvh - var(--shell-header-height)); }
   .max-w-measure { max-width: var(--shell-measure); }
   .text-chrome { font-size: var(--text-chrome); line-height: var(--leading-snug); }

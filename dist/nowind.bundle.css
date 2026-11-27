@@ -1502,6 +1502,7 @@
   --shell-sidebar-width: calc(var(--shell-sidebar-slope) * var(--F) + var(--shell-sidebar-offset));
   --shell-rail-width: calc(var(--control-height) + 2 * var(--slot));
   --shell-header-height: calc(var(--control-height) + var(--slot));
+  --shell-command-height: 600px;
   --shell-measure: calc(var(--shell-measure-factor) * var(--F));
   --shell-dock-width: calc(var(--shell-sidebar-width) + var(--shell-measure) + 2 * var(--page-margin));
 }
@@ -3444,6 +3445,7 @@
   .top-header { top: var(--shell-header-height); }
   .scroll-pt-header { scroll-padding-block-start: var(--shell-header-height); }
   .h-below-header { height: calc(100dvh - var(--shell-header-height)); }
+  .h-command { height: min(var(--shell-command-height), calc(100dvh - var(--shell-header-height))); }
   .max-h-below-header { max-height: calc(100dvh - var(--shell-header-height)); }
   .max-w-measure { max-width: var(--shell-measure); }
   .text-chrome { font-size: var(--text-chrome); line-height: var(--leading-snug); }

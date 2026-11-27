@@ -327,6 +327,7 @@ add("min-h-header", "min-height: var(--shell-header-height)");
 add("top-header", "top: var(--shell-header-height)");
 add("scroll-pt-header", "scroll-padding-block-start: var(--shell-header-height)");
 add("h-below-header", "height: calc(100dvh - var(--shell-header-height))");
+add("h-command", "height: min(var(--shell-command-height), calc(100dvh - var(--shell-header-height)))");
 add("max-h-below-header", "max-height: calc(100dvh - var(--shell-header-height))");
 add("max-w-measure", "max-width: var(--shell-measure)");
 
@@ -960,7 +961,7 @@ const manifest = {
     controls: "h-control, h-nested (an .icon inside it shrinks by the two borders so it fits), size-control, size-nested, min-w-control, min-w-nested, px-control and px-nested (padding steps in by one margin on a side whose first or last child is .icon; wrap the label in a <span>), gap-gutter, gap-gutter-half",
     levels: "p-surface, p-dialog (each minus the border), p-region, p-page, with px- and py- versions; gap-field, gap-row, gap-group, gap-section, gap-page; mt-section, mb-section. After Affine's container levels.",
     materials: "material-flat, -physical, -frosted, -glass, -outline set a region's material (nearest wins, by @scope); relief-raised, -raised-solid, -recessed, -field, -etched, -ground, -overlay say what a part is. After Massimo.",
-    grid: "gap-grid, gap-x-grid (2M), p-grid-inset (M), px-grid (slot), px-grid-compact; shell: w-sidebar (16F + 16), w-rail, h-header (a minimum height: keep its content on one line, since top-header and h-below-header assume that height), top-header (a sticky offset under the header), scroll-pt-header (on <html>, so in-page links land below a sticky header), h-below-header, max-h-below-header, max-w-measure (44F). After Affine.",
+    grid: "gap-grid, gap-x-grid (2M), p-grid-inset (M), px-grid (slot), px-grid-compact; shell: w-sidebar (16F + 16), w-rail, h-header (a minimum height: keep its content on one line, since top-header and h-below-header, h-command (a command palette: 600px, at most the viewport below the header) assume that height), top-header (a sticky offset under the header), scroll-pt-header (on <html>, so in-page links land below a sticky header), h-below-header, max-h-below-header, max-w-measure (44F). After Affine.",
     chrome: "text-chrome: a fixed 14px (--text-chrome) for a site's own settings panels; with scope, --F and every length inside are fixed too, whatever the root size or tier.",
     tiers: "tier-product (1×), tier-content (font +2px, spacing 1.5×), tier-brand (font +4px, spacing 2×). Each is a scope: it sets its font size to the base plus its own step (var(--text-base)), never to what it inherits, so a tier inside another tier replaces it rather than adding to it; --F and everything derived recompute inside it.",
     animation: "animate-spin, animate-pulse, animate-none (cut by the reset under reduced motion).",
@@ -998,7 +999,7 @@ const GROUPS = [
   ["Levels and tiers", (c) => /^(p[xy]?-(surface|dialog|region|page)|gap-(field|row|group|section|page)|m[tb]-section|tier-)/.test(c)],
   ["Materials", (c) => /^(material|relief)-/.test(c)],
   ["Motion, anchors and select", (c) => /^(transition|duration-|ease-|animate-|anchor-|select-base|-?rotate-)/.test(c)],
-  ["Page grid and shell", (c) => /^(gap-(x-)?grid|p-grid-inset|px-grid|w-sidebar|w-rail|(min-)?h-header|top-header|(max-)?h-below-header|max-w-measure)/.test(c)],
+  ["Page grid and shell", (c) => /^(gap-(x-)?grid|p-grid-inset|px-grid|w-sidebar|w-rail|(min-)?h-header|top-header|(max-)?h-below-header|h-command|max-w-measure)/.test(c)],
   ["Type", (c, d) => /font-size/.test(d)],
   ["Text color", (c, d) => /^color:/.test(d)],
   ["Background color", (c, d) => /^background-color:/.test(d)],

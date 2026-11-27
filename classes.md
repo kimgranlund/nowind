@@ -120,7 +120,7 @@ Variants: `hover:` on the 136 role-colour, opacity and cursor classes (inside `@
 
 ## Page grid and shell
 
-12 classes.
+13 classes.
 
 | Class | Declarations |
 |---|---|
@@ -134,6 +134,7 @@ Variants: `hover:` on the 136 role-colour, opacity and cursor classes (inside `@
 | `.h-header` | `min-height: var(--shell-header-height)` |
 | `.top-header` | `top: var(--shell-header-height)` |
 | `.h-below-header` | `height: calc(100dvh - var(--shell-header-height))` |
+| `.h-command` | `height: min(var(--shell-command-height), calc(100dvh - var(--shell-header-height)))` |
 | `.max-h-below-header` | `max-height: calc(100dvh - var(--shell-header-height))` |
 | `.max-w-measure` | `max-width: var(--shell-measure)` |
 

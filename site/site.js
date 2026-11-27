@@ -11,7 +11,7 @@
 
   const dialog = document.createElement("dialog");
   dialog.setAttribute("aria-label", "Search Nowind");
-  dialog.className = "w-full max-w-measure h-below-header m-auto p-0 rounded-lg bg fg border shadow-xl";
+  dialog.className = "w-full max-w-measure h-command m-auto p-0 rounded-lg bg fg border shadow-xl";
   dialog.innerHTML = `
     <div class="flex flex-col h-full">
       <div class="flex items-center gap-gutter ps-md pe-xs py-xs">

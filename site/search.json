@@ -375,6 +375,7 @@
 [".h-header", "docs/semantic.html#class-h-header", "Class", "min-height: var(--shell-header-height)"],
 [".top-header", "docs/semantic.html#class-top-header", "Class", "top: var(--shell-header-height)"],
 [".h-below-header", "docs/semantic.html#class-h-below-header", "Class", "height: calc(100dvh - var(--shell-header-height))"],
+[".h-command", "docs/semantic.html#class-h-command", "Class", "height: min(var(--shell-command-height), calc(100dvh - var(--shell-header-height)))"],
 [".max-h-below-header", "docs/semantic.html#class-max-h-below-header", "Class", "max-height: calc(100dvh - var(--shell-header-height))"],
 [".max-w-measure", "docs/semantic.html#class-max-w-measure", "Class", "max-width: var(--shell-measure)"],
 [".text-xs", "docs/classes.html#class-text-xs", "Class", "font-size: var(--text-xs); line-height: var(--text-xs--line-height)"],
