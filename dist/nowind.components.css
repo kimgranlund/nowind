@@ -80,12 +80,7 @@
   .badge-info { background-color: var(--info-3); border-color: var(--info-6); color: var(--info-11); }
   .card { padding: var(--space-md); --_inset: var(--space-md); background-color: var(--neutral-1); border-color: var(--neutral-6); border-width: var(--border-width); --_bw: var(--border-width); border-radius: var(--radius-md); --_nest: max(0px, calc(var(--radius-md) - var(--_inset) - var(--_bw))); }
   .segmented { display: inline-flex; align-items: center; background-color: var(--neutral-a2); border-color: transparent; border-width: 2px; --_bw: 2px; border-radius: var(--radius-sm); --_nest: max(0px, calc(var(--radius-sm) - var(--_inset) - var(--_bw))); min-height: var(--control-height); }
-  .segment { display: inline-flex; justify-content: center; align-items: center; font-size: var(--text-base); line-height: var(--text-base--line-height); font-weight: var(--font-weight-medium); color: var(--neutral-11); background-color: transparent; border-width: 0; --_bw: 0px; border-radius: var(--_nest, var(--radius-sm)); cursor: pointer; height: 100%; padding-inline: var(--nested-padding); gap: calc(var(--gutter) / 2); }
-  .h-control > .segment { height: auto; align-self: stretch; }
-  .h-nested > .segment { height: auto; align-self: stretch; }
-  .h-header > .segment { height: auto; align-self: stretch; }
-  .size-control > .segment { height: auto; align-self: stretch; }
-  .size-nested > .segment { height: auto; align-self: stretch; }
+  .segment { display: inline-flex; justify-content: center; align-items: center; align-self: stretch; font-size: var(--text-base); line-height: var(--text-base--line-height); font-weight: var(--font-weight-medium); color: var(--neutral-11); background-color: transparent; border-width: 0; --_bw: 0px; border-radius: var(--_nest, var(--radius-sm)); cursor: pointer; padding-inline: var(--nested-padding); gap: calc(var(--gutter) / 2); }
   .segment:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--nested-icon-padding); }
   .segment:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):last-child)) { padding-inline-end: var(--nested-icon-padding); }
   @media (hover: hover) {

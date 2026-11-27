@@ -235,7 +235,7 @@ async function vocabularyPage(send, sessionId) {
   await ev(`new Promise((r) => { const l = document.createElement("link"); l.rel = "stylesheet"; l.href = "/dist/nowind.components.css"; l.onload = r; document.head.append(l); })`);
   await ev(`(() => {
     const pairs = ${JSON.stringify(pairs)};
-    const box = document.createElement("div"); box.id = "nwv"; box.className = "flex flex-wrap gap-sm p-inset rounded-md border";
+    const box = document.createElement("div"); box.id = "nwv"; box.className = "flex flex-wrap items-start gap-sm p-inset rounded-md border";
     const inner = (p) => p.n.startsWith("icon-btn") ? '<i class="icon ph ph-gear"></i>' : p.tag === "div" ? '<span>Body</span>' : '<i class="icon icon-sm ph ph-check"></i><span>Label</span>';
     pairs.forEach((p, i) => {
       for (const [side, cls] of [["a", p.a], ["c", p.c]]) {
@@ -346,7 +346,8 @@ async function main() {
     {
       // Vocabulary: a convenience class that drifts from its stack is caught.
       await go(`${BASE}/site/components.html`);
-      const clean = (await vocabularyPage(send, sessionId)).length === 0;
+      const before = await vocabularyPage(send, sessionId), clean = before.length === 0;
+      if (!clean) console.error("vocabulary before the break:", JSON.stringify(before.slice(0, 3)));
       await ev(`(() => { const s = document.createElement("style"); s.id = "nwt-v"; s.textContent = "@layer components { .btn { padding-inline: 3px !important; } }"; document.head.append(s); return 1; })()`);
       const got = (await vocabularyPage(send, sessionId)).some((f) => f.rule === "equivalence");
       res.equivalence = !clean ? "already reported before the break" : got ? "caught" : "missed";

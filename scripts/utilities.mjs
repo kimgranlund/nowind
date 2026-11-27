@@ -366,6 +366,20 @@ add("appearance-none", "appearance: none");
 add("debug", "outline: 1px dashed red");
 add("revert", "all: revert");
 
+// The semantic set (the Medium set): a semantic class names a decision a raw step can't. Colour roles come for the
+// palettes with a job (neutral, accent-1 the brand, and the four statuses), one ladder each, with only the rungs a UI
+// reaches for; accent-2 to 4 are decorative and use raw steps. The tokens behind every retired class stay.
+const JOB = ["accent-1", "danger", "warning", "success", "info"];
+const RETIRED_RUNGS = JOB.flatMap((p) => [`bg-${p}-strong`, `bg-component-${p}-strong`, `fg-${p}-subtle`, `fg-${p}-strong`, `border-${p}-weak`, `border-${p}-strong`]);
+const RETIRED = new Set([
+  ...[...D.keys()].filter((c) => (ROLE_CLASSES.has(c) && /accent-[234]/.test(c) && !/-contrast$/.test(c)) || /^bg-.*-(surface|indicator|track)$/.test(c)),
+  ...RETIRED_RUNGS,
+  "text-display-lg", "text-display-md", "text-body-lg", "text-footnote", "text-quote", "text-mono", "text-kicker-lg",
+  ...["surface", "dialog", "region"].flatMap((l) => [`pt-${l}`, `pb-${l}`]),
+  "mt-section", "mb-section", "min-h-header",
+]);
+for (const c of RETIRED) { D.delete(c); ROLE_CLASSES.delete(c); }
+
 // ---- Variants (Prewind's rules) ----
 const esc = (c) => c.replace(/[:./@]/g, (ch) => `\\${ch}`).replace(/^(\d)/, (d) => `\\3${d} `);
 const rule = (sel, decl) => `  .${esc(sel)} { ${decl}; }`;

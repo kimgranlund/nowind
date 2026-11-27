@@ -459,9 +459,6 @@
   .text-6xl { font-size: var(--text-6xl); line-height: var(--text-6xl--line-height); }
   .text-kicker-sm { font-size: var(--kicker-sm); line-height: calc(var(--kicker-sm) * 1.5 - 3px); font-family: var(--kicker-font); font-weight: var(--kicker-weight); letter-spacing: var(--kicker-tracking); text-transform: var(--kicker-transform); }
   .text-kicker-md { font-size: var(--kicker-md); line-height: calc(var(--kicker-md) * 1.5 - 3px); font-family: var(--kicker-font); font-weight: var(--kicker-weight); letter-spacing: var(--kicker-tracking); text-transform: var(--kicker-transform); }
-  .text-kicker-lg { font-size: var(--kicker-lg); line-height: calc(var(--kicker-lg) * 1.5 - 3px); font-family: var(--kicker-font); font-weight: var(--kicker-weight); letter-spacing: var(--kicker-tracking); text-transform: var(--kicker-transform); }
-  .text-display-lg { font-size: var(--display-lg); line-height: var(--display-lg--line-height); font-weight: var(--display-lg--font-weight); font-family: var(--display-lg--font-family); letter-spacing: var(--display-lg--letter-spacing); }
-  .text-display-md { font-size: var(--display-md); line-height: var(--display-md--line-height); font-weight: var(--display-md--font-weight); font-family: var(--display-md--font-family); letter-spacing: var(--display-md--letter-spacing); }
   .text-display-sm { font-size: var(--display-sm); line-height: var(--display-sm--line-height); font-weight: var(--display-sm--font-weight); font-family: var(--display-sm--font-family); letter-spacing: var(--display-sm--letter-spacing); }
   .text-display { font-size: var(--display); line-height: var(--display--line-height); font-weight: var(--display--font-weight); font-family: var(--display--font-family); letter-spacing: var(--display--letter-spacing); }
   .text-heading-xl { font-size: var(--heading-xl); line-height: var(--heading-xl--line-height); font-weight: var(--heading-xl--font-weight); font-family: var(--heading-xl--font-family); letter-spacing: var(--heading-xl--letter-spacing); }
@@ -470,21 +467,17 @@
   .text-heading-sm { font-size: var(--heading-sm); line-height: var(--heading-sm--line-height); font-weight: var(--heading-sm--font-weight); font-family: var(--heading-sm--font-family); }
   .text-figure { font-size: var(--figure); line-height: var(--figure--line-height); font-weight: var(--figure--font-weight); font-family: var(--figure--font-family); letter-spacing: var(--figure--letter-spacing); font-variant-numeric: var(--figure--font-variant-numeric); }
   .text-lead { font-size: var(--lead); line-height: var(--lead--line-height); font-weight: var(--lead--font-weight); font-family: var(--lead--font-family); }
-  .text-quote { font-size: var(--quote); line-height: var(--quote--line-height); font-weight: var(--quote--font-weight); font-family: var(--quote--font-family); font-style: var(--quote--font-style); }
   .text-title { font-size: var(--title); line-height: var(--title--line-height); font-weight: var(--title--font-weight); font-family: var(--title--font-family); }
   .text-subtitle { font-size: var(--subtitle); line-height: var(--subtitle--line-height); font-weight: var(--subtitle--font-weight); font-family: var(--subtitle--font-family); }
-  .text-body-lg { font-size: var(--body-lg); line-height: var(--body-lg--line-height); font-weight: var(--body-lg--font-weight); font-family: var(--body-lg--font-family); }
   .text-body-md { font-size: var(--body-md); line-height: var(--body-md--line-height); font-weight: var(--body-md--font-weight); font-family: var(--body-md--font-family); }
   .text-body-sm { font-size: var(--body-sm); line-height: var(--body-sm--line-height); font-weight: var(--body-sm--font-weight); font-family: var(--body-sm--font-family); }
   .text-caption { font-size: var(--caption); line-height: var(--caption--line-height); font-weight: var(--caption--font-weight); font-family: var(--caption--font-family); }
-  .text-footnote { font-size: var(--footnote); line-height: var(--footnote--line-height); font-weight: var(--footnote--font-weight); font-family: var(--footnote--font-family); }
   .text-title-sm { font-size: var(--title-sm); line-height: var(--title-sm--line-height); font-weight: var(--title-sm--font-weight); font-family: var(--title-sm--font-family); }
   .text-control-md { font-size: var(--control-md); line-height: var(--control-md--line-height); font-weight: var(--control-md--font-weight); font-family: var(--control-md--font-family); }
   .text-data { font-size: var(--data); line-height: var(--data--line-height); font-weight: var(--data--font-weight); font-family: var(--data--font-family); font-variant-numeric: var(--data--font-variant-numeric); }
   .text-label { font-size: var(--label); line-height: var(--label--line-height); font-weight: var(--label--font-weight); font-family: var(--label--font-family); }
   .text-kicker { font-size: var(--kicker); line-height: var(--kicker--line-height); font-weight: var(--kicker--font-weight); font-family: var(--kicker--font-family); letter-spacing: var(--kicker--letter-spacing); text-transform: var(--kicker--text-transform); }
   .text-numeral { font-size: var(--numeral); line-height: var(--numeral--line-height); font-weight: var(--numeral--font-weight); font-family: var(--numeral--font-family); font-variant-numeric: var(--numeral--font-variant-numeric); }
-  .text-mono { font-size: var(--mono); line-height: var(--mono--line-height); font-weight: var(--mono--font-weight); font-family: var(--mono--font-family); font-variant-numeric: var(--mono--font-variant-numeric); }
   .text-mono-sm { font-size: var(--mono-sm); line-height: var(--mono-sm--line-height); font-weight: var(--mono-sm--font-weight); font-family: var(--mono-sm--font-family); font-variant-numeric: var(--mono-sm--font-variant-numeric); }
   .text-code { font-size: var(--code); line-height: var(--code--line-height); font-weight: var(--code--font-weight); font-family: var(--code--font-family); font-variant-numeric: var(--code--font-variant-numeric); font-variant-ligatures: var(--code--font-variant-ligatures); }
   .text-kbd { font-size: var(--kbd); line-height: var(--kbd--line-height); font-weight: var(--kbd--font-weight); font-family: var(--kbd--font-family); font-variant-numeric: var(--kbd--font-variant-numeric); }
@@ -967,9 +960,6 @@
   .bg-warning-a11 { background-color: var(--warning-a11); }
   .bg-warning-a12 { background-color: var(--warning-a12); }
   .fg-warning-contrast { color: var(--warning-contrast); }
-  .bg-neutral-surface { background-color: var(--neutral-surface); }
-  .bg-neutral-indicator { background-color: var(--neutral-indicator); }
-  .bg-neutral-track { background-color: var(--neutral-track); }
   .bg-scrim { background-color: var(--scrim); }
   .bg-inverse { background-color: var(--bg-inverse); }
   .fg-inverse { color: var(--fg-inverse); }
@@ -989,150 +979,51 @@
   .fg-weak { color: var(--fg-weak); }
   .fg { color: var(--fg); }
   .fg-strong { color: var(--fg-strong); }
-  .bg-accent-1-surface { background-color: var(--accent-1-surface); }
-  .bg-accent-1-indicator { background-color: var(--accent-1-indicator); }
-  .bg-accent-1-track { background-color: var(--accent-1-track); }
   .bg-accent-1 { background-color: var(--bg-accent-1); }
-  .bg-accent-1-strong { background-color: var(--bg-accent-1-strong); }
   .bg-component-accent-1-weak { background-color: var(--component-accent-1-weak); }
   .bg-component-accent-1 { background-color: var(--component-accent-1); }
-  .bg-component-accent-1-strong { background-color: var(--component-accent-1-strong); }
-  .border-accent-1-weak { border-color: var(--border-accent-1-weak); }
   .border-accent-1 { border-color: var(--border-accent-1); }
-  .border-accent-1-strong { border-color: var(--border-accent-1-strong); }
   .bg-solid-accent-1 { background-color: var(--solid-accent-1); }
   .bg-solid-accent-1-strong { background-color: var(--solid-accent-1-strong); }
   .fg-on-solid-accent-1 { color: var(--on-solid-accent-1); }
-  .fg-accent-1-subtle { color: var(--fg-accent-1-subtle); }
   .fg-accent-1-weak { color: var(--fg-accent-1-weak); }
   .fg-accent-1 { color: var(--fg-accent-1); }
-  .fg-accent-1-strong { color: var(--fg-accent-1-strong); }
-  .bg-accent-2-surface { background-color: var(--accent-2-surface); }
-  .bg-accent-2-indicator { background-color: var(--accent-2-indicator); }
-  .bg-accent-2-track { background-color: var(--accent-2-track); }
-  .bg-accent-2 { background-color: var(--bg-accent-2); }
-  .bg-accent-2-strong { background-color: var(--bg-accent-2-strong); }
-  .bg-component-accent-2-weak { background-color: var(--component-accent-2-weak); }
-  .bg-component-accent-2 { background-color: var(--component-accent-2); }
-  .bg-component-accent-2-strong { background-color: var(--component-accent-2-strong); }
-  .border-accent-2-weak { border-color: var(--border-accent-2-weak); }
-  .border-accent-2 { border-color: var(--border-accent-2); }
-  .border-accent-2-strong { border-color: var(--border-accent-2-strong); }
-  .bg-solid-accent-2 { background-color: var(--solid-accent-2); }
-  .bg-solid-accent-2-strong { background-color: var(--solid-accent-2-strong); }
-  .fg-on-solid-accent-2 { color: var(--on-solid-accent-2); }
-  .fg-accent-2-subtle { color: var(--fg-accent-2-subtle); }
-  .fg-accent-2-weak { color: var(--fg-accent-2-weak); }
-  .fg-accent-2 { color: var(--fg-accent-2); }
-  .fg-accent-2-strong { color: var(--fg-accent-2-strong); }
-  .bg-accent-3-surface { background-color: var(--accent-3-surface); }
-  .bg-accent-3-indicator { background-color: var(--accent-3-indicator); }
-  .bg-accent-3-track { background-color: var(--accent-3-track); }
-  .bg-accent-3 { background-color: var(--bg-accent-3); }
-  .bg-accent-3-strong { background-color: var(--bg-accent-3-strong); }
-  .bg-component-accent-3-weak { background-color: var(--component-accent-3-weak); }
-  .bg-component-accent-3 { background-color: var(--component-accent-3); }
-  .bg-component-accent-3-strong { background-color: var(--component-accent-3-strong); }
-  .border-accent-3-weak { border-color: var(--border-accent-3-weak); }
-  .border-accent-3 { border-color: var(--border-accent-3); }
-  .border-accent-3-strong { border-color: var(--border-accent-3-strong); }
-  .bg-solid-accent-3 { background-color: var(--solid-accent-3); }
-  .bg-solid-accent-3-strong { background-color: var(--solid-accent-3-strong); }
-  .fg-on-solid-accent-3 { color: var(--on-solid-accent-3); }
-  .fg-accent-3-subtle { color: var(--fg-accent-3-subtle); }
-  .fg-accent-3-weak { color: var(--fg-accent-3-weak); }
-  .fg-accent-3 { color: var(--fg-accent-3); }
-  .fg-accent-3-strong { color: var(--fg-accent-3-strong); }
-  .bg-accent-4-surface { background-color: var(--accent-4-surface); }
-  .bg-accent-4-indicator { background-color: var(--accent-4-indicator); }
-  .bg-accent-4-track { background-color: var(--accent-4-track); }
-  .bg-accent-4 { background-color: var(--bg-accent-4); }
-  .bg-accent-4-strong { background-color: var(--bg-accent-4-strong); }
-  .bg-component-accent-4-weak { background-color: var(--component-accent-4-weak); }
-  .bg-component-accent-4 { background-color: var(--component-accent-4); }
-  .bg-component-accent-4-strong { background-color: var(--component-accent-4-strong); }
-  .border-accent-4-weak { border-color: var(--border-accent-4-weak); }
-  .border-accent-4 { border-color: var(--border-accent-4); }
-  .border-accent-4-strong { border-color: var(--border-accent-4-strong); }
-  .bg-solid-accent-4 { background-color: var(--solid-accent-4); }
-  .bg-solid-accent-4-strong { background-color: var(--solid-accent-4-strong); }
-  .fg-on-solid-accent-4 { color: var(--on-solid-accent-4); }
-  .fg-accent-4-subtle { color: var(--fg-accent-4-subtle); }
-  .fg-accent-4-weak { color: var(--fg-accent-4-weak); }
-  .fg-accent-4 { color: var(--fg-accent-4); }
-  .fg-accent-4-strong { color: var(--fg-accent-4-strong); }
-  .bg-danger-surface { background-color: var(--danger-surface); }
-  .bg-danger-indicator { background-color: var(--danger-indicator); }
-  .bg-danger-track { background-color: var(--danger-track); }
   .bg-danger { background-color: var(--bg-danger); }
-  .bg-danger-strong { background-color: var(--bg-danger-strong); }
   .bg-component-danger-weak { background-color: var(--component-danger-weak); }
   .bg-component-danger { background-color: var(--component-danger); }
-  .bg-component-danger-strong { background-color: var(--component-danger-strong); }
-  .border-danger-weak { border-color: var(--border-danger-weak); }
   .border-danger { border-color: var(--border-danger); }
-  .border-danger-strong { border-color: var(--border-danger-strong); }
   .bg-solid-danger { background-color: var(--solid-danger); }
   .bg-solid-danger-strong { background-color: var(--solid-danger-strong); }
   .fg-on-solid-danger { color: var(--on-solid-danger); }
-  .fg-danger-subtle { color: var(--fg-danger-subtle); }
   .fg-danger-weak { color: var(--fg-danger-weak); }
   .fg-danger { color: var(--fg-danger); }
-  .fg-danger-strong { color: var(--fg-danger-strong); }
-  .bg-warning-surface { background-color: var(--warning-surface); }
-  .bg-warning-indicator { background-color: var(--warning-indicator); }
-  .bg-warning-track { background-color: var(--warning-track); }
   .bg-warning { background-color: var(--bg-warning); }
-  .bg-warning-strong { background-color: var(--bg-warning-strong); }
   .bg-component-warning-weak { background-color: var(--component-warning-weak); }
   .bg-component-warning { background-color: var(--component-warning); }
-  .bg-component-warning-strong { background-color: var(--component-warning-strong); }
-  .border-warning-weak { border-color: var(--border-warning-weak); }
   .border-warning { border-color: var(--border-warning); }
-  .border-warning-strong { border-color: var(--border-warning-strong); }
   .bg-solid-warning { background-color: var(--solid-warning); }
   .bg-solid-warning-strong { background-color: var(--solid-warning-strong); }
   .fg-on-solid-warning { color: var(--on-solid-warning); }
-  .fg-warning-subtle { color: var(--fg-warning-subtle); }
   .fg-warning-weak { color: var(--fg-warning-weak); }
   .fg-warning { color: var(--fg-warning); }
-  .fg-warning-strong { color: var(--fg-warning-strong); }
-  .bg-success-surface { background-color: var(--success-surface); }
-  .bg-success-indicator { background-color: var(--success-indicator); }
-  .bg-success-track { background-color: var(--success-track); }
   .bg-success { background-color: var(--bg-success); }
-  .bg-success-strong { background-color: var(--bg-success-strong); }
   .bg-component-success-weak { background-color: var(--component-success-weak); }
   .bg-component-success { background-color: var(--component-success); }
-  .bg-component-success-strong { background-color: var(--component-success-strong); }
-  .border-success-weak { border-color: var(--border-success-weak); }
   .border-success { border-color: var(--border-success); }
-  .border-success-strong { border-color: var(--border-success-strong); }
   .bg-solid-success { background-color: var(--solid-success); }
   .bg-solid-success-strong { background-color: var(--solid-success-strong); }
   .fg-on-solid-success { color: var(--on-solid-success); }
-  .fg-success-subtle { color: var(--fg-success-subtle); }
   .fg-success-weak { color: var(--fg-success-weak); }
   .fg-success { color: var(--fg-success); }
-  .fg-success-strong { color: var(--fg-success-strong); }
-  .bg-info-surface { background-color: var(--info-surface); }
-  .bg-info-indicator { background-color: var(--info-indicator); }
-  .bg-info-track { background-color: var(--info-track); }
   .bg-info { background-color: var(--bg-info); }
-  .bg-info-strong { background-color: var(--bg-info-strong); }
   .bg-component-info-weak { background-color: var(--component-info-weak); }
   .bg-component-info { background-color: var(--component-info); }
-  .bg-component-info-strong { background-color: var(--component-info-strong); }
-  .border-info-weak { border-color: var(--border-info-weak); }
   .border-info { border-color: var(--border-info); }
-  .border-info-strong { border-color: var(--border-info-strong); }
   .bg-solid-info { background-color: var(--solid-info); }
   .bg-solid-info-strong { background-color: var(--solid-info-strong); }
   .fg-on-solid-info { color: var(--on-solid-info); }
-  .fg-info-subtle { color: var(--fg-info-subtle); }
   .fg-info-weak { color: var(--fg-info-weak); }
   .fg-info { color: var(--fg-info); }
-  .fg-info-strong { color: var(--fg-info-strong); }
   .fg-inherit { color: inherit; }
   .fg-current { color: currentColor; }
   .fg-white { color: var(--neutral-contrast-white); }
@@ -1400,18 +1291,12 @@
   .p-surface { padding: calc(var(--surface-padding) - var(--border-width)); --_inset: calc(var(--surface-padding) - var(--border-width)); }
   .px-surface { padding-inline: calc(var(--surface-padding) - var(--border-width)); }
   .py-surface { padding-block: calc(var(--surface-padding) - var(--border-width)); }
-  .pt-surface { padding-top: calc(var(--surface-padding) - var(--border-width)); }
-  .pb-surface { padding-bottom: calc(var(--surface-padding) - var(--border-width)); }
   .p-dialog { padding: calc(var(--dialog-padding) - var(--border-width)); --_inset: calc(var(--dialog-padding) - var(--border-width)); }
   .px-dialog { padding-inline: calc(var(--dialog-padding) - var(--border-width)); }
   .py-dialog { padding-block: calc(var(--dialog-padding) - var(--border-width)); }
-  .pt-dialog { padding-top: calc(var(--dialog-padding) - var(--border-width)); }
-  .pb-dialog { padding-bottom: calc(var(--dialog-padding) - var(--border-width)); }
   .p-region { padding: var(--region-padding); --_inset: var(--region-padding); }
   .px-region { padding-inline: var(--region-padding); }
   .py-region { padding-block: var(--region-padding); }
-  .pt-region { padding-top: var(--region-padding); }
-  .pb-region { padding-bottom: var(--region-padding); }
   .p-page { padding: var(--page-margin); --_inset: var(--page-margin); }
   .px-page { padding-inline: var(--page-margin); }
   .py-page { padding-block: var(--page-margin); }
@@ -1427,8 +1312,6 @@
   .gap-group { gap: var(--group-gap); }
   .gap-section { gap: var(--section-gap); }
   .gap-page { gap: var(--page-margin); }
-  .mt-section { margin-top: var(--section-gap); }
-  .mb-section { margin-bottom: var(--section-gap); }
   .gap-grid { gap: var(--grid-gutter); }
   .gap-x-grid { column-gap: var(--grid-gutter); }
   .p-grid-inset { padding: var(--grid-inset); }
@@ -1437,7 +1320,6 @@
   .w-sidebar { width: var(--shell-sidebar-width); }
   .w-rail { width: var(--shell-rail-width); }
   .h-header { min-height: var(--shell-header-height); }
-  .min-h-header { min-height: var(--shell-header-height); }
   .top-header { top: var(--shell-header-height); }
   .scroll-pt-header { scroll-padding-block-start: var(--shell-header-height); }
   .h-below-header { height: calc(100dvh - var(--shell-header-height)); }
@@ -1636,125 +1518,50 @@
     .hover\:fg:hover { color: var(--fg); }
     .hover\:fg-strong:hover { color: var(--fg-strong); }
     .hover\:bg-accent-1:hover { background-color: var(--bg-accent-1); }
-    .hover\:bg-accent-1-strong:hover { background-color: var(--bg-accent-1-strong); }
     .hover\:bg-component-accent-1-weak:hover { background-color: var(--component-accent-1-weak); }
     .hover\:bg-component-accent-1:hover { background-color: var(--component-accent-1); }
-    .hover\:bg-component-accent-1-strong:hover { background-color: var(--component-accent-1-strong); }
-    .hover\:border-accent-1-weak:hover { border-color: var(--border-accent-1-weak); }
     .hover\:border-accent-1:hover { border-color: var(--border-accent-1); }
-    .hover\:border-accent-1-strong:hover { border-color: var(--border-accent-1-strong); }
     .hover\:bg-solid-accent-1:hover { background-color: var(--solid-accent-1); }
     .hover\:bg-solid-accent-1-strong:hover { background-color: var(--solid-accent-1-strong); }
     .hover\:fg-on-solid-accent-1:hover { color: var(--on-solid-accent-1); }
-    .hover\:fg-accent-1-subtle:hover { color: var(--fg-accent-1-subtle); }
     .hover\:fg-accent-1-weak:hover { color: var(--fg-accent-1-weak); }
     .hover\:fg-accent-1:hover { color: var(--fg-accent-1); }
-    .hover\:fg-accent-1-strong:hover { color: var(--fg-accent-1-strong); }
-    .hover\:bg-accent-2:hover { background-color: var(--bg-accent-2); }
-    .hover\:bg-accent-2-strong:hover { background-color: var(--bg-accent-2-strong); }
-    .hover\:bg-component-accent-2-weak:hover { background-color: var(--component-accent-2-weak); }
-    .hover\:bg-component-accent-2:hover { background-color: var(--component-accent-2); }
-    .hover\:bg-component-accent-2-strong:hover { background-color: var(--component-accent-2-strong); }
-    .hover\:border-accent-2-weak:hover { border-color: var(--border-accent-2-weak); }
-    .hover\:border-accent-2:hover { border-color: var(--border-accent-2); }
-    .hover\:border-accent-2-strong:hover { border-color: var(--border-accent-2-strong); }
-    .hover\:bg-solid-accent-2:hover { background-color: var(--solid-accent-2); }
-    .hover\:bg-solid-accent-2-strong:hover { background-color: var(--solid-accent-2-strong); }
-    .hover\:fg-on-solid-accent-2:hover { color: var(--on-solid-accent-2); }
-    .hover\:fg-accent-2-subtle:hover { color: var(--fg-accent-2-subtle); }
-    .hover\:fg-accent-2-weak:hover { color: var(--fg-accent-2-weak); }
-    .hover\:fg-accent-2:hover { color: var(--fg-accent-2); }
-    .hover\:fg-accent-2-strong:hover { color: var(--fg-accent-2-strong); }
-    .hover\:bg-accent-3:hover { background-color: var(--bg-accent-3); }
-    .hover\:bg-accent-3-strong:hover { background-color: var(--bg-accent-3-strong); }
-    .hover\:bg-component-accent-3-weak:hover { background-color: var(--component-accent-3-weak); }
-    .hover\:bg-component-accent-3:hover { background-color: var(--component-accent-3); }
-    .hover\:bg-component-accent-3-strong:hover { background-color: var(--component-accent-3-strong); }
-    .hover\:border-accent-3-weak:hover { border-color: var(--border-accent-3-weak); }
-    .hover\:border-accent-3:hover { border-color: var(--border-accent-3); }
-    .hover\:border-accent-3-strong:hover { border-color: var(--border-accent-3-strong); }
-    .hover\:bg-solid-accent-3:hover { background-color: var(--solid-accent-3); }
-    .hover\:bg-solid-accent-3-strong:hover { background-color: var(--solid-accent-3-strong); }
-    .hover\:fg-on-solid-accent-3:hover { color: var(--on-solid-accent-3); }
-    .hover\:fg-accent-3-subtle:hover { color: var(--fg-accent-3-subtle); }
-    .hover\:fg-accent-3-weak:hover { color: var(--fg-accent-3-weak); }
-    .hover\:fg-accent-3:hover { color: var(--fg-accent-3); }
-    .hover\:fg-accent-3-strong:hover { color: var(--fg-accent-3-strong); }
-    .hover\:bg-accent-4:hover { background-color: var(--bg-accent-4); }
-    .hover\:bg-accent-4-strong:hover { background-color: var(--bg-accent-4-strong); }
-    .hover\:bg-component-accent-4-weak:hover { background-color: var(--component-accent-4-weak); }
-    .hover\:bg-component-accent-4:hover { background-color: var(--component-accent-4); }
-    .hover\:bg-component-accent-4-strong:hover { background-color: var(--component-accent-4-strong); }
-    .hover\:border-accent-4-weak:hover { border-color: var(--border-accent-4-weak); }
-    .hover\:border-accent-4:hover { border-color: var(--border-accent-4); }
-    .hover\:border-accent-4-strong:hover { border-color: var(--border-accent-4-strong); }
-    .hover\:bg-solid-accent-4:hover { background-color: var(--solid-accent-4); }
-    .hover\:bg-solid-accent-4-strong:hover { background-color: var(--solid-accent-4-strong); }
-    .hover\:fg-on-solid-accent-4:hover { color: var(--on-solid-accent-4); }
-    .hover\:fg-accent-4-subtle:hover { color: var(--fg-accent-4-subtle); }
-    .hover\:fg-accent-4-weak:hover { color: var(--fg-accent-4-weak); }
-    .hover\:fg-accent-4:hover { color: var(--fg-accent-4); }
-    .hover\:fg-accent-4-strong:hover { color: var(--fg-accent-4-strong); }
     .hover\:bg-danger:hover { background-color: var(--bg-danger); }
-    .hover\:bg-danger-strong:hover { background-color: var(--bg-danger-strong); }
     .hover\:bg-component-danger-weak:hover { background-color: var(--component-danger-weak); }
     .hover\:bg-component-danger:hover { background-color: var(--component-danger); }
-    .hover\:bg-component-danger-strong:hover { background-color: var(--component-danger-strong); }
-    .hover\:border-danger-weak:hover { border-color: var(--border-danger-weak); }
     .hover\:border-danger:hover { border-color: var(--border-danger); }
-    .hover\:border-danger-strong:hover { border-color: var(--border-danger-strong); }
     .hover\:bg-solid-danger:hover { background-color: var(--solid-danger); }
     .hover\:bg-solid-danger-strong:hover { background-color: var(--solid-danger-strong); }
     .hover\:fg-on-solid-danger:hover { color: var(--on-solid-danger); }
-    .hover\:fg-danger-subtle:hover { color: var(--fg-danger-subtle); }
     .hover\:fg-danger-weak:hover { color: var(--fg-danger-weak); }
     .hover\:fg-danger:hover { color: var(--fg-danger); }
-    .hover\:fg-danger-strong:hover { color: var(--fg-danger-strong); }
     .hover\:bg-warning:hover { background-color: var(--bg-warning); }
-    .hover\:bg-warning-strong:hover { background-color: var(--bg-warning-strong); }
     .hover\:bg-component-warning-weak:hover { background-color: var(--component-warning-weak); }
     .hover\:bg-component-warning:hover { background-color: var(--component-warning); }
-    .hover\:bg-component-warning-strong:hover { background-color: var(--component-warning-strong); }
-    .hover\:border-warning-weak:hover { border-color: var(--border-warning-weak); }
     .hover\:border-warning:hover { border-color: var(--border-warning); }
-    .hover\:border-warning-strong:hover { border-color: var(--border-warning-strong); }
     .hover\:bg-solid-warning:hover { background-color: var(--solid-warning); }
     .hover\:bg-solid-warning-strong:hover { background-color: var(--solid-warning-strong); }
     .hover\:fg-on-solid-warning:hover { color: var(--on-solid-warning); }
-    .hover\:fg-warning-subtle:hover { color: var(--fg-warning-subtle); }
     .hover\:fg-warning-weak:hover { color: var(--fg-warning-weak); }
     .hover\:fg-warning:hover { color: var(--fg-warning); }
-    .hover\:fg-warning-strong:hover { color: var(--fg-warning-strong); }
     .hover\:bg-success:hover { background-color: var(--bg-success); }
-    .hover\:bg-success-strong:hover { background-color: var(--bg-success-strong); }
     .hover\:bg-component-success-weak:hover { background-color: var(--component-success-weak); }
     .hover\:bg-component-success:hover { background-color: var(--component-success); }
-    .hover\:bg-component-success-strong:hover { background-color: var(--component-success-strong); }
-    .hover\:border-success-weak:hover { border-color: var(--border-success-weak); }
     .hover\:border-success:hover { border-color: var(--border-success); }
-    .hover\:border-success-strong:hover { border-color: var(--border-success-strong); }
     .hover\:bg-solid-success:hover { background-color: var(--solid-success); }
     .hover\:bg-solid-success-strong:hover { background-color: var(--solid-success-strong); }
     .hover\:fg-on-solid-success:hover { color: var(--on-solid-success); }
-    .hover\:fg-success-subtle:hover { color: var(--fg-success-subtle); }
     .hover\:fg-success-weak:hover { color: var(--fg-success-weak); }
     .hover\:fg-success:hover { color: var(--fg-success); }
-    .hover\:fg-success-strong:hover { color: var(--fg-success-strong); }
     .hover\:bg-info:hover { background-color: var(--bg-info); }
-    .hover\:bg-info-strong:hover { background-color: var(--bg-info-strong); }
     .hover\:bg-component-info-weak:hover { background-color: var(--component-info-weak); }
     .hover\:bg-component-info:hover { background-color: var(--component-info); }
-    .hover\:bg-component-info-strong:hover { background-color: var(--component-info-strong); }
-    .hover\:border-info-weak:hover { border-color: var(--border-info-weak); }
     .hover\:border-info:hover { border-color: var(--border-info); }
-    .hover\:border-info-strong:hover { border-color: var(--border-info-strong); }
     .hover\:bg-solid-info:hover { background-color: var(--solid-info); }
     .hover\:bg-solid-info-strong:hover { background-color: var(--solid-info-strong); }
     .hover\:fg-on-solid-info:hover { color: var(--on-solid-info); }
-    .hover\:fg-info-subtle:hover { color: var(--fg-info-subtle); }
     .hover\:fg-info-weak:hover { color: var(--fg-info-weak); }
     .hover\:fg-info:hover { color: var(--fg-info); }
-    .hover\:fg-info-strong:hover { color: var(--fg-info-strong); }
     .hover\:fg-inherit:hover { color: inherit; }
     .hover\:fg-current:hover { color: currentColor; }
     .hover\:fg-white:hover { color: var(--neutral-contrast-white); }
@@ -1832,65 +1639,14 @@
   .active\:fg:active { color: var(--fg); }
   .active\:fg-strong:active { color: var(--fg-strong); }
   .active\:bg-accent-1:active { background-color: var(--bg-accent-1); }
-  .active\:bg-accent-1-strong:active { background-color: var(--bg-accent-1-strong); }
   .active\:bg-component-accent-1-weak:active { background-color: var(--component-accent-1-weak); }
   .active\:bg-component-accent-1:active { background-color: var(--component-accent-1); }
-  .active\:bg-component-accent-1-strong:active { background-color: var(--component-accent-1-strong); }
-  .active\:border-accent-1-weak:active { border-color: var(--border-accent-1-weak); }
   .active\:border-accent-1:active { border-color: var(--border-accent-1); }
-  .active\:border-accent-1-strong:active { border-color: var(--border-accent-1-strong); }
   .active\:bg-solid-accent-1:active { background-color: var(--solid-accent-1); }
   .active\:bg-solid-accent-1-strong:active { background-color: var(--solid-accent-1-strong); }
   .active\:fg-on-solid-accent-1:active { color: var(--on-solid-accent-1); }
-  .active\:fg-accent-1-subtle:active { color: var(--fg-accent-1-subtle); }
   .active\:fg-accent-1-weak:active { color: var(--fg-accent-1-weak); }
   .active\:fg-accent-1:active { color: var(--fg-accent-1); }
-  .active\:fg-accent-1-strong:active { color: var(--fg-accent-1-strong); }
-  .active\:bg-accent-2:active { background-color: var(--bg-accent-2); }
-  .active\:bg-accent-2-strong:active { background-color: var(--bg-accent-2-strong); }
-  .active\:bg-component-accent-2-weak:active { background-color: var(--component-accent-2-weak); }
-  .active\:bg-component-accent-2:active { background-color: var(--component-accent-2); }
-  .active\:bg-component-accent-2-strong:active { background-color: var(--component-accent-2-strong); }
-  .active\:border-accent-2-weak:active { border-color: var(--border-accent-2-weak); }
-  .active\:border-accent-2:active { border-color: var(--border-accent-2); }
-  .active\:border-accent-2-strong:active { border-color: var(--border-accent-2-strong); }
-  .active\:bg-solid-accent-2:active { background-color: var(--solid-accent-2); }
-  .active\:bg-solid-accent-2-strong:active { background-color: var(--solid-accent-2-strong); }
-  .active\:fg-on-solid-accent-2:active { color: var(--on-solid-accent-2); }
-  .active\:fg-accent-2-subtle:active { color: var(--fg-accent-2-subtle); }
-  .active\:fg-accent-2-weak:active { color: var(--fg-accent-2-weak); }
-  .active\:fg-accent-2:active { color: var(--fg-accent-2); }
-  .active\:fg-accent-2-strong:active { color: var(--fg-accent-2-strong); }
-  .active\:bg-accent-3:active { background-color: var(--bg-accent-3); }
-  .active\:bg-accent-3-strong:active { background-color: var(--bg-accent-3-strong); }
-  .active\:bg-component-accent-3-weak:active { background-color: var(--component-accent-3-weak); }
-  .active\:bg-component-accent-3:active { background-color: var(--component-accent-3); }
-  .active\:bg-component-accent-3-strong:active { background-color: var(--component-accent-3-strong); }
-  .active\:border-accent-3-weak:active { border-color: var(--border-accent-3-weak); }
-  .active\:border-accent-3:active { border-color: var(--border-accent-3); }
-  .active\:border-accent-3-strong:active { border-color: var(--border-accent-3-strong); }
-  .active\:bg-solid-accent-3:active { background-color: var(--solid-accent-3); }
-  .active\:bg-solid-accent-3-strong:active { background-color: var(--solid-accent-3-strong); }
-  .active\:fg-on-solid-accent-3:active { color: var(--on-solid-accent-3); }
-  .active\:fg-accent-3-subtle:active { color: var(--fg-accent-3-subtle); }
-  .active\:fg-accent-3-weak:active { color: var(--fg-accent-3-weak); }
-  .active\:fg-accent-3:active { color: var(--fg-accent-3); }
-  .active\:fg-accent-3-strong:active { color: var(--fg-accent-3-strong); }
-  .active\:bg-accent-4:active { background-color: var(--bg-accent-4); }
-  .active\:bg-accent-4-strong:active { background-color: var(--bg-accent-4-strong); }
-  .active\:bg-component-accent-4-weak:active { background-color: var(--component-accent-4-weak); }
-  .active\:bg-component-accent-4:active { background-color: var(--component-accent-4); }
-  .active\:bg-component-accent-4-strong:active { background-color: var(--component-accent-4-strong); }
-  .active\:border-accent-4-weak:active { border-color: var(--border-accent-4-weak); }
-  .active\:border-accent-4:active { border-color: var(--border-accent-4); }
-  .active\:border-accent-4-strong:active { border-color: var(--border-accent-4-strong); }
-  .active\:bg-solid-accent-4:active { background-color: var(--solid-accent-4); }
-  .active\:bg-solid-accent-4-strong:active { background-color: var(--solid-accent-4-strong); }
-  .active\:fg-on-solid-accent-4:active { color: var(--on-solid-accent-4); }
-  .active\:fg-accent-4-subtle:active { color: var(--fg-accent-4-subtle); }
-  .active\:fg-accent-4-weak:active { color: var(--fg-accent-4-weak); }
-  .active\:fg-accent-4:active { color: var(--fg-accent-4); }
-  .active\:fg-accent-4-strong:active { color: var(--fg-accent-4-strong); }
   .active\:fg-inherit:active { color: inherit; }
   .active\:fg-current:active { color: currentColor; }
   .active\:fg-white:active { color: var(--neutral-contrast-white); }
@@ -1907,18 +1663,7 @@
   .focus-visible\:border-weak:focus-visible { border-color: var(--border-weak); }
   .focus-visible\:border-default:focus-visible { border-color: var(--border); }
   .focus-visible\:border-strong:focus-visible { border-color: var(--border-strong); }
-  .focus-visible\:border-accent-1-weak:focus-visible { border-color: var(--border-accent-1-weak); }
   .focus-visible\:border-accent-1:focus-visible { border-color: var(--border-accent-1); }
-  .focus-visible\:border-accent-1-strong:focus-visible { border-color: var(--border-accent-1-strong); }
-  .focus-visible\:border-accent-2-weak:focus-visible { border-color: var(--border-accent-2-weak); }
-  .focus-visible\:border-accent-2:focus-visible { border-color: var(--border-accent-2); }
-  .focus-visible\:border-accent-2-strong:focus-visible { border-color: var(--border-accent-2-strong); }
-  .focus-visible\:border-accent-3-weak:focus-visible { border-color: var(--border-accent-3-weak); }
-  .focus-visible\:border-accent-3:focus-visible { border-color: var(--border-accent-3); }
-  .focus-visible\:border-accent-3-strong:focus-visible { border-color: var(--border-accent-3-strong); }
-  .focus-visible\:border-accent-4-weak:focus-visible { border-color: var(--border-accent-4-weak); }
-  .focus-visible\:border-accent-4:focus-visible { border-color: var(--border-accent-4); }
-  .focus-visible\:border-accent-4-strong:focus-visible { border-color: var(--border-accent-4-strong); }
   .focus-within\:border-accent-1-6:focus-within { border-color: var(--accent-1-6); }
   .focus-within\:border-accent-1-7:focus-within { border-color: var(--accent-1-7); }
   .focus-within\:border-accent-1-8:focus-within { border-color: var(--accent-1-8); }
@@ -1928,18 +1673,7 @@
   .focus-within\:border-weak:focus-within { border-color: var(--border-weak); }
   .focus-within\:border-default:focus-within { border-color: var(--border); }
   .focus-within\:border-strong:focus-within { border-color: var(--border-strong); }
-  .focus-within\:border-accent-1-weak:focus-within { border-color: var(--border-accent-1-weak); }
   .focus-within\:border-accent-1:focus-within { border-color: var(--border-accent-1); }
-  .focus-within\:border-accent-1-strong:focus-within { border-color: var(--border-accent-1-strong); }
-  .focus-within\:border-accent-2-weak:focus-within { border-color: var(--border-accent-2-weak); }
-  .focus-within\:border-accent-2:focus-within { border-color: var(--border-accent-2); }
-  .focus-within\:border-accent-2-strong:focus-within { border-color: var(--border-accent-2-strong); }
-  .focus-within\:border-accent-3-weak:focus-within { border-color: var(--border-accent-3-weak); }
-  .focus-within\:border-accent-3:focus-within { border-color: var(--border-accent-3); }
-  .focus-within\:border-accent-3-strong:focus-within { border-color: var(--border-accent-3-strong); }
-  .focus-within\:border-accent-4-weak:focus-within { border-color: var(--border-accent-4-weak); }
-  .focus-within\:border-accent-4:focus-within { border-color: var(--border-accent-4); }
-  .focus-within\:border-accent-4-strong:focus-within { border-color: var(--border-accent-4-strong); }
   .selected\:bg-accent-1-1[aria-selected="true"] { background-color: var(--accent-1-1); }
   .selected\:bg-accent-1-2[aria-selected="true"] { background-color: var(--accent-1-2); }
   .selected\:bg-accent-1-3[aria-selected="true"] { background-color: var(--accent-1-3); }
@@ -1989,65 +1723,14 @@
   .selected\:fg[aria-selected="true"] { color: var(--fg); }
   .selected\:fg-strong[aria-selected="true"] { color: var(--fg-strong); }
   .selected\:bg-accent-1[aria-selected="true"] { background-color: var(--bg-accent-1); }
-  .selected\:bg-accent-1-strong[aria-selected="true"] { background-color: var(--bg-accent-1-strong); }
   .selected\:bg-component-accent-1-weak[aria-selected="true"] { background-color: var(--component-accent-1-weak); }
   .selected\:bg-component-accent-1[aria-selected="true"] { background-color: var(--component-accent-1); }
-  .selected\:bg-component-accent-1-strong[aria-selected="true"] { background-color: var(--component-accent-1-strong); }
-  .selected\:border-accent-1-weak[aria-selected="true"] { border-color: var(--border-accent-1-weak); }
   .selected\:border-accent-1[aria-selected="true"] { border-color: var(--border-accent-1); }
-  .selected\:border-accent-1-strong[aria-selected="true"] { border-color: var(--border-accent-1-strong); }
   .selected\:bg-solid-accent-1[aria-selected="true"] { background-color: var(--solid-accent-1); }
   .selected\:bg-solid-accent-1-strong[aria-selected="true"] { background-color: var(--solid-accent-1-strong); }
   .selected\:fg-on-solid-accent-1[aria-selected="true"] { color: var(--on-solid-accent-1); }
-  .selected\:fg-accent-1-subtle[aria-selected="true"] { color: var(--fg-accent-1-subtle); }
   .selected\:fg-accent-1-weak[aria-selected="true"] { color: var(--fg-accent-1-weak); }
   .selected\:fg-accent-1[aria-selected="true"] { color: var(--fg-accent-1); }
-  .selected\:fg-accent-1-strong[aria-selected="true"] { color: var(--fg-accent-1-strong); }
-  .selected\:bg-accent-2[aria-selected="true"] { background-color: var(--bg-accent-2); }
-  .selected\:bg-accent-2-strong[aria-selected="true"] { background-color: var(--bg-accent-2-strong); }
-  .selected\:bg-component-accent-2-weak[aria-selected="true"] { background-color: var(--component-accent-2-weak); }
-  .selected\:bg-component-accent-2[aria-selected="true"] { background-color: var(--component-accent-2); }
-  .selected\:bg-component-accent-2-strong[aria-selected="true"] { background-color: var(--component-accent-2-strong); }
-  .selected\:border-accent-2-weak[aria-selected="true"] { border-color: var(--border-accent-2-weak); }
-  .selected\:border-accent-2[aria-selected="true"] { border-color: var(--border-accent-2); }
-  .selected\:border-accent-2-strong[aria-selected="true"] { border-color: var(--border-accent-2-strong); }
-  .selected\:bg-solid-accent-2[aria-selected="true"] { background-color: var(--solid-accent-2); }
-  .selected\:bg-solid-accent-2-strong[aria-selected="true"] { background-color: var(--solid-accent-2-strong); }
-  .selected\:fg-on-solid-accent-2[aria-selected="true"] { color: var(--on-solid-accent-2); }
-  .selected\:fg-accent-2-subtle[aria-selected="true"] { color: var(--fg-accent-2-subtle); }
-  .selected\:fg-accent-2-weak[aria-selected="true"] { color: var(--fg-accent-2-weak); }
-  .selected\:fg-accent-2[aria-selected="true"] { color: var(--fg-accent-2); }
-  .selected\:fg-accent-2-strong[aria-selected="true"] { color: var(--fg-accent-2-strong); }
-  .selected\:bg-accent-3[aria-selected="true"] { background-color: var(--bg-accent-3); }
-  .selected\:bg-accent-3-strong[aria-selected="true"] { background-color: var(--bg-accent-3-strong); }
-  .selected\:bg-component-accent-3-weak[aria-selected="true"] { background-color: var(--component-accent-3-weak); }
-  .selected\:bg-component-accent-3[aria-selected="true"] { background-color: var(--component-accent-3); }
-  .selected\:bg-component-accent-3-strong[aria-selected="true"] { background-color: var(--component-accent-3-strong); }
-  .selected\:border-accent-3-weak[aria-selected="true"] { border-color: var(--border-accent-3-weak); }
-  .selected\:border-accent-3[aria-selected="true"] { border-color: var(--border-accent-3); }
-  .selected\:border-accent-3-strong[aria-selected="true"] { border-color: var(--border-accent-3-strong); }
-  .selected\:bg-solid-accent-3[aria-selected="true"] { background-color: var(--solid-accent-3); }
-  .selected\:bg-solid-accent-3-strong[aria-selected="true"] { background-color: var(--solid-accent-3-strong); }
-  .selected\:fg-on-solid-accent-3[aria-selected="true"] { color: var(--on-solid-accent-3); }
-  .selected\:fg-accent-3-subtle[aria-selected="true"] { color: var(--fg-accent-3-subtle); }
-  .selected\:fg-accent-3-weak[aria-selected="true"] { color: var(--fg-accent-3-weak); }
-  .selected\:fg-accent-3[aria-selected="true"] { color: var(--fg-accent-3); }
-  .selected\:fg-accent-3-strong[aria-selected="true"] { color: var(--fg-accent-3-strong); }
-  .selected\:bg-accent-4[aria-selected="true"] { background-color: var(--bg-accent-4); }
-  .selected\:bg-accent-4-strong[aria-selected="true"] { background-color: var(--bg-accent-4-strong); }
-  .selected\:bg-component-accent-4-weak[aria-selected="true"] { background-color: var(--component-accent-4-weak); }
-  .selected\:bg-component-accent-4[aria-selected="true"] { background-color: var(--component-accent-4); }
-  .selected\:bg-component-accent-4-strong[aria-selected="true"] { background-color: var(--component-accent-4-strong); }
-  .selected\:border-accent-4-weak[aria-selected="true"] { border-color: var(--border-accent-4-weak); }
-  .selected\:border-accent-4[aria-selected="true"] { border-color: var(--border-accent-4); }
-  .selected\:border-accent-4-strong[aria-selected="true"] { border-color: var(--border-accent-4-strong); }
-  .selected\:bg-solid-accent-4[aria-selected="true"] { background-color: var(--solid-accent-4); }
-  .selected\:bg-solid-accent-4-strong[aria-selected="true"] { background-color: var(--solid-accent-4-strong); }
-  .selected\:fg-on-solid-accent-4[aria-selected="true"] { color: var(--on-solid-accent-4); }
-  .selected\:fg-accent-4-subtle[aria-selected="true"] { color: var(--fg-accent-4-subtle); }
-  .selected\:fg-accent-4-weak[aria-selected="true"] { color: var(--fg-accent-4-weak); }
-  .selected\:fg-accent-4[aria-selected="true"] { color: var(--fg-accent-4); }
-  .selected\:fg-accent-4-strong[aria-selected="true"] { color: var(--fg-accent-4-strong); }
   .selected\:fg-inherit[aria-selected="true"] { color: inherit; }
   .selected\:fg-current[aria-selected="true"] { color: currentColor; }
   .selected\:fg-white[aria-selected="true"] { color: var(--neutral-contrast-white); }
@@ -2107,65 +1790,14 @@
   .current\:fg:is([aria-current]:not([aria-current="false"])) { color: var(--fg); }
   .current\:fg-strong:is([aria-current]:not([aria-current="false"])) { color: var(--fg-strong); }
   .current\:bg-accent-1:is([aria-current]:not([aria-current="false"])) { background-color: var(--bg-accent-1); }
-  .current\:bg-accent-1-strong:is([aria-current]:not([aria-current="false"])) { background-color: var(--bg-accent-1-strong); }
   .current\:bg-component-accent-1-weak:is([aria-current]:not([aria-current="false"])) { background-color: var(--component-accent-1-weak); }
   .current\:bg-component-accent-1:is([aria-current]:not([aria-current="false"])) { background-color: var(--component-accent-1); }
-  .current\:bg-component-accent-1-strong:is([aria-current]:not([aria-current="false"])) { background-color: var(--component-accent-1-strong); }
-  .current\:border-accent-1-weak:is([aria-current]:not([aria-current="false"])) { border-color: var(--border-accent-1-weak); }
   .current\:border-accent-1:is([aria-current]:not([aria-current="false"])) { border-color: var(--border-accent-1); }
-  .current\:border-accent-1-strong:is([aria-current]:not([aria-current="false"])) { border-color: var(--border-accent-1-strong); }
   .current\:bg-solid-accent-1:is([aria-current]:not([aria-current="false"])) { background-color: var(--solid-accent-1); }
   .current\:bg-solid-accent-1-strong:is([aria-current]:not([aria-current="false"])) { background-color: var(--solid-accent-1-strong); }
   .current\:fg-on-solid-accent-1:is([aria-current]:not([aria-current="false"])) { color: var(--on-solid-accent-1); }
-  .current\:fg-accent-1-subtle:is([aria-current]:not([aria-current="false"])) { color: var(--fg-accent-1-subtle); }
   .current\:fg-accent-1-weak:is([aria-current]:not([aria-current="false"])) { color: var(--fg-accent-1-weak); }
   .current\:fg-accent-1:is([aria-current]:not([aria-current="false"])) { color: var(--fg-accent-1); }
-  .current\:fg-accent-1-strong:is([aria-current]:not([aria-current="false"])) { color: var(--fg-accent-1-strong); }
-  .current\:bg-accent-2:is([aria-current]:not([aria-current="false"])) { background-color: var(--bg-accent-2); }
-  .current\:bg-accent-2-strong:is([aria-current]:not([aria-current="false"])) { background-color: var(--bg-accent-2-strong); }
-  .current\:bg-component-accent-2-weak:is([aria-current]:not([aria-current="false"])) { background-color: var(--component-accent-2-weak); }
-  .current\:bg-component-accent-2:is([aria-current]:not([aria-current="false"])) { background-color: var(--component-accent-2); }
-  .current\:bg-component-accent-2-strong:is([aria-current]:not([aria-current="false"])) { background-color: var(--component-accent-2-strong); }
-  .current\:border-accent-2-weak:is([aria-current]:not([aria-current="false"])) { border-color: var(--border-accent-2-weak); }
-  .current\:border-accent-2:is([aria-current]:not([aria-current="false"])) { border-color: var(--border-accent-2); }
-  .current\:border-accent-2-strong:is([aria-current]:not([aria-current="false"])) { border-color: var(--border-accent-2-strong); }
-  .current\:bg-solid-accent-2:is([aria-current]:not([aria-current="false"])) { background-color: var(--solid-accent-2); }
-  .current\:bg-solid-accent-2-strong:is([aria-current]:not([aria-current="false"])) { background-color: var(--solid-accent-2-strong); }
-  .current\:fg-on-solid-accent-2:is([aria-current]:not([aria-current="false"])) { color: var(--on-solid-accent-2); }
-  .current\:fg-accent-2-subtle:is([aria-current]:not([aria-current="false"])) { color: var(--fg-accent-2-subtle); }
-  .current\:fg-accent-2-weak:is([aria-current]:not([aria-current="false"])) { color: var(--fg-accent-2-weak); }
-  .current\:fg-accent-2:is([aria-current]:not([aria-current="false"])) { color: var(--fg-accent-2); }
-  .current\:fg-accent-2-strong:is([aria-current]:not([aria-current="false"])) { color: var(--fg-accent-2-strong); }
-  .current\:bg-accent-3:is([aria-current]:not([aria-current="false"])) { background-color: var(--bg-accent-3); }
-  .current\:bg-accent-3-strong:is([aria-current]:not([aria-current="false"])) { background-color: var(--bg-accent-3-strong); }
-  .current\:bg-component-accent-3-weak:is([aria-current]:not([aria-current="false"])) { background-color: var(--component-accent-3-weak); }
-  .current\:bg-component-accent-3:is([aria-current]:not([aria-current="false"])) { background-color: var(--component-accent-3); }
-  .current\:bg-component-accent-3-strong:is([aria-current]:not([aria-current="false"])) { background-color: var(--component-accent-3-strong); }
-  .current\:border-accent-3-weak:is([aria-current]:not([aria-current="false"])) { border-color: var(--border-accent-3-weak); }
-  .current\:border-accent-3:is([aria-current]:not([aria-current="false"])) { border-color: var(--border-accent-3); }
-  .current\:border-accent-3-strong:is([aria-current]:not([aria-current="false"])) { border-color: var(--border-accent-3-strong); }
-  .current\:bg-solid-accent-3:is([aria-current]:not([aria-current="false"])) { background-color: var(--solid-accent-3); }
-  .current\:bg-solid-accent-3-strong:is([aria-current]:not([aria-current="false"])) { background-color: var(--solid-accent-3-strong); }
-  .current\:fg-on-solid-accent-3:is([aria-current]:not([aria-current="false"])) { color: var(--on-solid-accent-3); }
-  .current\:fg-accent-3-subtle:is([aria-current]:not([aria-current="false"])) { color: var(--fg-accent-3-subtle); }
-  .current\:fg-accent-3-weak:is([aria-current]:not([aria-current="false"])) { color: var(--fg-accent-3-weak); }
-  .current\:fg-accent-3:is([aria-current]:not([aria-current="false"])) { color: var(--fg-accent-3); }
-  .current\:fg-accent-3-strong:is([aria-current]:not([aria-current="false"])) { color: var(--fg-accent-3-strong); }
-  .current\:bg-accent-4:is([aria-current]:not([aria-current="false"])) { background-color: var(--bg-accent-4); }
-  .current\:bg-accent-4-strong:is([aria-current]:not([aria-current="false"])) { background-color: var(--bg-accent-4-strong); }
-  .current\:bg-component-accent-4-weak:is([aria-current]:not([aria-current="false"])) { background-color: var(--component-accent-4-weak); }
-  .current\:bg-component-accent-4:is([aria-current]:not([aria-current="false"])) { background-color: var(--component-accent-4); }
-  .current\:bg-component-accent-4-strong:is([aria-current]:not([aria-current="false"])) { background-color: var(--component-accent-4-strong); }
-  .current\:border-accent-4-weak:is([aria-current]:not([aria-current="false"])) { border-color: var(--border-accent-4-weak); }
-  .current\:border-accent-4:is([aria-current]:not([aria-current="false"])) { border-color: var(--border-accent-4); }
-  .current\:border-accent-4-strong:is([aria-current]:not([aria-current="false"])) { border-color: var(--border-accent-4-strong); }
-  .current\:bg-solid-accent-4:is([aria-current]:not([aria-current="false"])) { background-color: var(--solid-accent-4); }
-  .current\:bg-solid-accent-4-strong:is([aria-current]:not([aria-current="false"])) { background-color: var(--solid-accent-4-strong); }
-  .current\:fg-on-solid-accent-4:is([aria-current]:not([aria-current="false"])) { color: var(--on-solid-accent-4); }
-  .current\:fg-accent-4-subtle:is([aria-current]:not([aria-current="false"])) { color: var(--fg-accent-4-subtle); }
-  .current\:fg-accent-4-weak:is([aria-current]:not([aria-current="false"])) { color: var(--fg-accent-4-weak); }
-  .current\:fg-accent-4:is([aria-current]:not([aria-current="false"])) { color: var(--fg-accent-4); }
-  .current\:fg-accent-4-strong:is([aria-current]:not([aria-current="false"])) { color: var(--fg-accent-4-strong); }
   .current\:fg-inherit:is([aria-current]:not([aria-current="false"])) { color: inherit; }
   .current\:fg-current:is([aria-current]:not([aria-current="false"])) { color: currentColor; }
   .current\:fg-white:is([aria-current]:not([aria-current="false"])) { color: var(--neutral-contrast-white); }
@@ -2225,65 +1857,14 @@
   .pressed\:fg[aria-pressed="true"] { color: var(--fg); }
   .pressed\:fg-strong[aria-pressed="true"] { color: var(--fg-strong); }
   .pressed\:bg-accent-1[aria-pressed="true"] { background-color: var(--bg-accent-1); }
-  .pressed\:bg-accent-1-strong[aria-pressed="true"] { background-color: var(--bg-accent-1-strong); }
   .pressed\:bg-component-accent-1-weak[aria-pressed="true"] { background-color: var(--component-accent-1-weak); }
   .pressed\:bg-component-accent-1[aria-pressed="true"] { background-color: var(--component-accent-1); }
-  .pressed\:bg-component-accent-1-strong[aria-pressed="true"] { background-color: var(--component-accent-1-strong); }
-  .pressed\:border-accent-1-weak[aria-pressed="true"] { border-color: var(--border-accent-1-weak); }
   .pressed\:border-accent-1[aria-pressed="true"] { border-color: var(--border-accent-1); }
-  .pressed\:border-accent-1-strong[aria-pressed="true"] { border-color: var(--border-accent-1-strong); }
   .pressed\:bg-solid-accent-1[aria-pressed="true"] { background-color: var(--solid-accent-1); }
   .pressed\:bg-solid-accent-1-strong[aria-pressed="true"] { background-color: var(--solid-accent-1-strong); }
   .pressed\:fg-on-solid-accent-1[aria-pressed="true"] { color: var(--on-solid-accent-1); }
-  .pressed\:fg-accent-1-subtle[aria-pressed="true"] { color: var(--fg-accent-1-subtle); }
   .pressed\:fg-accent-1-weak[aria-pressed="true"] { color: var(--fg-accent-1-weak); }
   .pressed\:fg-accent-1[aria-pressed="true"] { color: var(--fg-accent-1); }
-  .pressed\:fg-accent-1-strong[aria-pressed="true"] { color: var(--fg-accent-1-strong); }
-  .pressed\:bg-accent-2[aria-pressed="true"] { background-color: var(--bg-accent-2); }
-  .pressed\:bg-accent-2-strong[aria-pressed="true"] { background-color: var(--bg-accent-2-strong); }
-  .pressed\:bg-component-accent-2-weak[aria-pressed="true"] { background-color: var(--component-accent-2-weak); }
-  .pressed\:bg-component-accent-2[aria-pressed="true"] { background-color: var(--component-accent-2); }
-  .pressed\:bg-component-accent-2-strong[aria-pressed="true"] { background-color: var(--component-accent-2-strong); }
-  .pressed\:border-accent-2-weak[aria-pressed="true"] { border-color: var(--border-accent-2-weak); }
-  .pressed\:border-accent-2[aria-pressed="true"] { border-color: var(--border-accent-2); }
-  .pressed\:border-accent-2-strong[aria-pressed="true"] { border-color: var(--border-accent-2-strong); }
-  .pressed\:bg-solid-accent-2[aria-pressed="true"] { background-color: var(--solid-accent-2); }
-  .pressed\:bg-solid-accent-2-strong[aria-pressed="true"] { background-color: var(--solid-accent-2-strong); }
-  .pressed\:fg-on-solid-accent-2[aria-pressed="true"] { color: var(--on-solid-accent-2); }
-  .pressed\:fg-accent-2-subtle[aria-pressed="true"] { color: var(--fg-accent-2-subtle); }
-  .pressed\:fg-accent-2-weak[aria-pressed="true"] { color: var(--fg-accent-2-weak); }
-  .pressed\:fg-accent-2[aria-pressed="true"] { color: var(--fg-accent-2); }
-  .pressed\:fg-accent-2-strong[aria-pressed="true"] { color: var(--fg-accent-2-strong); }
-  .pressed\:bg-accent-3[aria-pressed="true"] { background-color: var(--bg-accent-3); }
-  .pressed\:bg-accent-3-strong[aria-pressed="true"] { background-color: var(--bg-accent-3-strong); }
-  .pressed\:bg-component-accent-3-weak[aria-pressed="true"] { background-color: var(--component-accent-3-weak); }
-  .pressed\:bg-component-accent-3[aria-pressed="true"] { background-color: var(--component-accent-3); }
-  .pressed\:bg-component-accent-3-strong[aria-pressed="true"] { background-color: var(--component-accent-3-strong); }
-  .pressed\:border-accent-3-weak[aria-pressed="true"] { border-color: var(--border-accent-3-weak); }
-  .pressed\:border-accent-3[aria-pressed="true"] { border-color: var(--border-accent-3); }
-  .pressed\:border-accent-3-strong[aria-pressed="true"] { border-color: var(--border-accent-3-strong); }
-  .pressed\:bg-solid-accent-3[aria-pressed="true"] { background-color: var(--solid-accent-3); }
-  .pressed\:bg-solid-accent-3-strong[aria-pressed="true"] { background-color: var(--solid-accent-3-strong); }
-  .pressed\:fg-on-solid-accent-3[aria-pressed="true"] { color: var(--on-solid-accent-3); }
-  .pressed\:fg-accent-3-subtle[aria-pressed="true"] { color: var(--fg-accent-3-subtle); }
-  .pressed\:fg-accent-3-weak[aria-pressed="true"] { color: var(--fg-accent-3-weak); }
-  .pressed\:fg-accent-3[aria-pressed="true"] { color: var(--fg-accent-3); }
-  .pressed\:fg-accent-3-strong[aria-pressed="true"] { color: var(--fg-accent-3-strong); }
-  .pressed\:bg-accent-4[aria-pressed="true"] { background-color: var(--bg-accent-4); }
-  .pressed\:bg-accent-4-strong[aria-pressed="true"] { background-color: var(--bg-accent-4-strong); }
-  .pressed\:bg-component-accent-4-weak[aria-pressed="true"] { background-color: var(--component-accent-4-weak); }
-  .pressed\:bg-component-accent-4[aria-pressed="true"] { background-color: var(--component-accent-4); }
-  .pressed\:bg-component-accent-4-strong[aria-pressed="true"] { background-color: var(--component-accent-4-strong); }
-  .pressed\:border-accent-4-weak[aria-pressed="true"] { border-color: var(--border-accent-4-weak); }
-  .pressed\:border-accent-4[aria-pressed="true"] { border-color: var(--border-accent-4); }
-  .pressed\:border-accent-4-strong[aria-pressed="true"] { border-color: var(--border-accent-4-strong); }
-  .pressed\:bg-solid-accent-4[aria-pressed="true"] { background-color: var(--solid-accent-4); }
-  .pressed\:bg-solid-accent-4-strong[aria-pressed="true"] { background-color: var(--solid-accent-4-strong); }
-  .pressed\:fg-on-solid-accent-4[aria-pressed="true"] { color: var(--on-solid-accent-4); }
-  .pressed\:fg-accent-4-subtle[aria-pressed="true"] { color: var(--fg-accent-4-subtle); }
-  .pressed\:fg-accent-4-weak[aria-pressed="true"] { color: var(--fg-accent-4-weak); }
-  .pressed\:fg-accent-4[aria-pressed="true"] { color: var(--fg-accent-4); }
-  .pressed\:fg-accent-4-strong[aria-pressed="true"] { color: var(--fg-accent-4-strong); }
   .pressed\:fg-inherit[aria-pressed="true"] { color: inherit; }
   .pressed\:fg-current[aria-pressed="true"] { color: currentColor; }
   .pressed\:fg-white[aria-pressed="true"] { color: var(--neutral-contrast-white); }
@@ -2343,65 +1924,14 @@
   .expanded\:fg[aria-expanded="true"] { color: var(--fg); }
   .expanded\:fg-strong[aria-expanded="true"] { color: var(--fg-strong); }
   .expanded\:bg-accent-1[aria-expanded="true"] { background-color: var(--bg-accent-1); }
-  .expanded\:bg-accent-1-strong[aria-expanded="true"] { background-color: var(--bg-accent-1-strong); }
   .expanded\:bg-component-accent-1-weak[aria-expanded="true"] { background-color: var(--component-accent-1-weak); }
   .expanded\:bg-component-accent-1[aria-expanded="true"] { background-color: var(--component-accent-1); }
-  .expanded\:bg-component-accent-1-strong[aria-expanded="true"] { background-color: var(--component-accent-1-strong); }
-  .expanded\:border-accent-1-weak[aria-expanded="true"] { border-color: var(--border-accent-1-weak); }
   .expanded\:border-accent-1[aria-expanded="true"] { border-color: var(--border-accent-1); }
-  .expanded\:border-accent-1-strong[aria-expanded="true"] { border-color: var(--border-accent-1-strong); }
   .expanded\:bg-solid-accent-1[aria-expanded="true"] { background-color: var(--solid-accent-1); }
   .expanded\:bg-solid-accent-1-strong[aria-expanded="true"] { background-color: var(--solid-accent-1-strong); }
   .expanded\:fg-on-solid-accent-1[aria-expanded="true"] { color: var(--on-solid-accent-1); }
-  .expanded\:fg-accent-1-subtle[aria-expanded="true"] { color: var(--fg-accent-1-subtle); }
   .expanded\:fg-accent-1-weak[aria-expanded="true"] { color: var(--fg-accent-1-weak); }
   .expanded\:fg-accent-1[aria-expanded="true"] { color: var(--fg-accent-1); }
-  .expanded\:fg-accent-1-strong[aria-expanded="true"] { color: var(--fg-accent-1-strong); }
-  .expanded\:bg-accent-2[aria-expanded="true"] { background-color: var(--bg-accent-2); }
-  .expanded\:bg-accent-2-strong[aria-expanded="true"] { background-color: var(--bg-accent-2-strong); }
-  .expanded\:bg-component-accent-2-weak[aria-expanded="true"] { background-color: var(--component-accent-2-weak); }
-  .expanded\:bg-component-accent-2[aria-expanded="true"] { background-color: var(--component-accent-2); }
-  .expanded\:bg-component-accent-2-strong[aria-expanded="true"] { background-color: var(--component-accent-2-strong); }
-  .expanded\:border-accent-2-weak[aria-expanded="true"] { border-color: var(--border-accent-2-weak); }
-  .expanded\:border-accent-2[aria-expanded="true"] { border-color: var(--border-accent-2); }
-  .expanded\:border-accent-2-strong[aria-expanded="true"] { border-color: var(--border-accent-2-strong); }
-  .expanded\:bg-solid-accent-2[aria-expanded="true"] { background-color: var(--solid-accent-2); }
-  .expanded\:bg-solid-accent-2-strong[aria-expanded="true"] { background-color: var(--solid-accent-2-strong); }
-  .expanded\:fg-on-solid-accent-2[aria-expanded="true"] { color: var(--on-solid-accent-2); }
-  .expanded\:fg-accent-2-subtle[aria-expanded="true"] { color: var(--fg-accent-2-subtle); }
-  .expanded\:fg-accent-2-weak[aria-expanded="true"] { color: var(--fg-accent-2-weak); }
-  .expanded\:fg-accent-2[aria-expanded="true"] { color: var(--fg-accent-2); }
-  .expanded\:fg-accent-2-strong[aria-expanded="true"] { color: var(--fg-accent-2-strong); }
-  .expanded\:bg-accent-3[aria-expanded="true"] { background-color: var(--bg-accent-3); }
-  .expanded\:bg-accent-3-strong[aria-expanded="true"] { background-color: var(--bg-accent-3-strong); }
-  .expanded\:bg-component-accent-3-weak[aria-expanded="true"] { background-color: var(--component-accent-3-weak); }
-  .expanded\:bg-component-accent-3[aria-expanded="true"] { background-color: var(--component-accent-3); }
-  .expanded\:bg-component-accent-3-strong[aria-expanded="true"] { background-color: var(--component-accent-3-strong); }
-  .expanded\:border-accent-3-weak[aria-expanded="true"] { border-color: var(--border-accent-3-weak); }
-  .expanded\:border-accent-3[aria-expanded="true"] { border-color: var(--border-accent-3); }
-  .expanded\:border-accent-3-strong[aria-expanded="true"] { border-color: var(--border-accent-3-strong); }
-  .expanded\:bg-solid-accent-3[aria-expanded="true"] { background-color: var(--solid-accent-3); }
-  .expanded\:bg-solid-accent-3-strong[aria-expanded="true"] { background-color: var(--solid-accent-3-strong); }
-  .expanded\:fg-on-solid-accent-3[aria-expanded="true"] { color: var(--on-solid-accent-3); }
-  .expanded\:fg-accent-3-subtle[aria-expanded="true"] { color: var(--fg-accent-3-subtle); }
-  .expanded\:fg-accent-3-weak[aria-expanded="true"] { color: var(--fg-accent-3-weak); }
-  .expanded\:fg-accent-3[aria-expanded="true"] { color: var(--fg-accent-3); }
-  .expanded\:fg-accent-3-strong[aria-expanded="true"] { color: var(--fg-accent-3-strong); }
-  .expanded\:bg-accent-4[aria-expanded="true"] { background-color: var(--bg-accent-4); }
-  .expanded\:bg-accent-4-strong[aria-expanded="true"] { background-color: var(--bg-accent-4-strong); }
-  .expanded\:bg-component-accent-4-weak[aria-expanded="true"] { background-color: var(--component-accent-4-weak); }
-  .expanded\:bg-component-accent-4[aria-expanded="true"] { background-color: var(--component-accent-4); }
-  .expanded\:bg-component-accent-4-strong[aria-expanded="true"] { background-color: var(--component-accent-4-strong); }
-  .expanded\:border-accent-4-weak[aria-expanded="true"] { border-color: var(--border-accent-4-weak); }
-  .expanded\:border-accent-4[aria-expanded="true"] { border-color: var(--border-accent-4); }
-  .expanded\:border-accent-4-strong[aria-expanded="true"] { border-color: var(--border-accent-4-strong); }
-  .expanded\:bg-solid-accent-4[aria-expanded="true"] { background-color: var(--solid-accent-4); }
-  .expanded\:bg-solid-accent-4-strong[aria-expanded="true"] { background-color: var(--solid-accent-4-strong); }
-  .expanded\:fg-on-solid-accent-4[aria-expanded="true"] { color: var(--on-solid-accent-4); }
-  .expanded\:fg-accent-4-subtle[aria-expanded="true"] { color: var(--fg-accent-4-subtle); }
-  .expanded\:fg-accent-4-weak[aria-expanded="true"] { color: var(--fg-accent-4-weak); }
-  .expanded\:fg-accent-4[aria-expanded="true"] { color: var(--fg-accent-4); }
-  .expanded\:fg-accent-4-strong[aria-expanded="true"] { color: var(--fg-accent-4-strong); }
   .expanded\:fg-inherit[aria-expanded="true"] { color: inherit; }
   .expanded\:fg-current[aria-expanded="true"] { color: currentColor; }
   .expanded\:fg-white[aria-expanded="true"] { color: var(--neutral-contrast-white); }
@@ -2458,65 +1988,14 @@
   .open\:fg:is([open], :popover-open) { color: var(--fg); }
   .open\:fg-strong:is([open], :popover-open) { color: var(--fg-strong); }
   .open\:bg-accent-1:is([open], :popover-open) { background-color: var(--bg-accent-1); }
-  .open\:bg-accent-1-strong:is([open], :popover-open) { background-color: var(--bg-accent-1-strong); }
   .open\:bg-component-accent-1-weak:is([open], :popover-open) { background-color: var(--component-accent-1-weak); }
   .open\:bg-component-accent-1:is([open], :popover-open) { background-color: var(--component-accent-1); }
-  .open\:bg-component-accent-1-strong:is([open], :popover-open) { background-color: var(--component-accent-1-strong); }
-  .open\:border-accent-1-weak:is([open], :popover-open) { border-color: var(--border-accent-1-weak); }
   .open\:border-accent-1:is([open], :popover-open) { border-color: var(--border-accent-1); }
-  .open\:border-accent-1-strong:is([open], :popover-open) { border-color: var(--border-accent-1-strong); }
   .open\:bg-solid-accent-1:is([open], :popover-open) { background-color: var(--solid-accent-1); }
   .open\:bg-solid-accent-1-strong:is([open], :popover-open) { background-color: var(--solid-accent-1-strong); }
   .open\:fg-on-solid-accent-1:is([open], :popover-open) { color: var(--on-solid-accent-1); }
-  .open\:fg-accent-1-subtle:is([open], :popover-open) { color: var(--fg-accent-1-subtle); }
   .open\:fg-accent-1-weak:is([open], :popover-open) { color: var(--fg-accent-1-weak); }
   .open\:fg-accent-1:is([open], :popover-open) { color: var(--fg-accent-1); }
-  .open\:fg-accent-1-strong:is([open], :popover-open) { color: var(--fg-accent-1-strong); }
-  .open\:bg-accent-2:is([open], :popover-open) { background-color: var(--bg-accent-2); }
-  .open\:bg-accent-2-strong:is([open], :popover-open) { background-color: var(--bg-accent-2-strong); }
-  .open\:bg-component-accent-2-weak:is([open], :popover-open) { background-color: var(--component-accent-2-weak); }
-  .open\:bg-component-accent-2:is([open], :popover-open) { background-color: var(--component-accent-2); }
-  .open\:bg-component-accent-2-strong:is([open], :popover-open) { background-color: var(--component-accent-2-strong); }
-  .open\:border-accent-2-weak:is([open], :popover-open) { border-color: var(--border-accent-2-weak); }
-  .open\:border-accent-2:is([open], :popover-open) { border-color: var(--border-accent-2); }
-  .open\:border-accent-2-strong:is([open], :popover-open) { border-color: var(--border-accent-2-strong); }
-  .open\:bg-solid-accent-2:is([open], :popover-open) { background-color: var(--solid-accent-2); }
-  .open\:bg-solid-accent-2-strong:is([open], :popover-open) { background-color: var(--solid-accent-2-strong); }
-  .open\:fg-on-solid-accent-2:is([open], :popover-open) { color: var(--on-solid-accent-2); }
-  .open\:fg-accent-2-subtle:is([open], :popover-open) { color: var(--fg-accent-2-subtle); }
-  .open\:fg-accent-2-weak:is([open], :popover-open) { color: var(--fg-accent-2-weak); }
-  .open\:fg-accent-2:is([open], :popover-open) { color: var(--fg-accent-2); }
-  .open\:fg-accent-2-strong:is([open], :popover-open) { color: var(--fg-accent-2-strong); }
-  .open\:bg-accent-3:is([open], :popover-open) { background-color: var(--bg-accent-3); }
-  .open\:bg-accent-3-strong:is([open], :popover-open) { background-color: var(--bg-accent-3-strong); }
-  .open\:bg-component-accent-3-weak:is([open], :popover-open) { background-color: var(--component-accent-3-weak); }
-  .open\:bg-component-accent-3:is([open], :popover-open) { background-color: var(--component-accent-3); }
-  .open\:bg-component-accent-3-strong:is([open], :popover-open) { background-color: var(--component-accent-3-strong); }
-  .open\:border-accent-3-weak:is([open], :popover-open) { border-color: var(--border-accent-3-weak); }
-  .open\:border-accent-3:is([open], :popover-open) { border-color: var(--border-accent-3); }
-  .open\:border-accent-3-strong:is([open], :popover-open) { border-color: var(--border-accent-3-strong); }
-  .open\:bg-solid-accent-3:is([open], :popover-open) { background-color: var(--solid-accent-3); }
-  .open\:bg-solid-accent-3-strong:is([open], :popover-open) { background-color: var(--solid-accent-3-strong); }
-  .open\:fg-on-solid-accent-3:is([open], :popover-open) { color: var(--on-solid-accent-3); }
-  .open\:fg-accent-3-subtle:is([open], :popover-open) { color: var(--fg-accent-3-subtle); }
-  .open\:fg-accent-3-weak:is([open], :popover-open) { color: var(--fg-accent-3-weak); }
-  .open\:fg-accent-3:is([open], :popover-open) { color: var(--fg-accent-3); }
-  .open\:fg-accent-3-strong:is([open], :popover-open) { color: var(--fg-accent-3-strong); }
-  .open\:bg-accent-4:is([open], :popover-open) { background-color: var(--bg-accent-4); }
-  .open\:bg-accent-4-strong:is([open], :popover-open) { background-color: var(--bg-accent-4-strong); }
-  .open\:bg-component-accent-4-weak:is([open], :popover-open) { background-color: var(--component-accent-4-weak); }
-  .open\:bg-component-accent-4:is([open], :popover-open) { background-color: var(--component-accent-4); }
-  .open\:bg-component-accent-4-strong:is([open], :popover-open) { background-color: var(--component-accent-4-strong); }
-  .open\:border-accent-4-weak:is([open], :popover-open) { border-color: var(--border-accent-4-weak); }
-  .open\:border-accent-4:is([open], :popover-open) { border-color: var(--border-accent-4); }
-  .open\:border-accent-4-strong:is([open], :popover-open) { border-color: var(--border-accent-4-strong); }
-  .open\:bg-solid-accent-4:is([open], :popover-open) { background-color: var(--solid-accent-4); }
-  .open\:bg-solid-accent-4-strong:is([open], :popover-open) { background-color: var(--solid-accent-4-strong); }
-  .open\:fg-on-solid-accent-4:is([open], :popover-open) { color: var(--on-solid-accent-4); }
-  .open\:fg-accent-4-subtle:is([open], :popover-open) { color: var(--fg-accent-4-subtle); }
-  .open\:fg-accent-4-weak:is([open], :popover-open) { color: var(--fg-accent-4-weak); }
-  .open\:fg-accent-4:is([open], :popover-open) { color: var(--fg-accent-4); }
-  .open\:fg-accent-4-strong:is([open], :popover-open) { color: var(--fg-accent-4-strong); }
   .open\:fg-inherit:is([open], :popover-open) { color: inherit; }
   .open\:fg-current:is([open], :popover-open) { color: currentColor; }
   .open\:fg-white:is([open], :popover-open) { color: var(--neutral-contrast-white); }
@@ -2549,14 +2028,10 @@
   .invalid\:fg-weak:is([aria-invalid="true"], :user-invalid) { color: var(--fg-weak); }
   .invalid\:fg:is([aria-invalid="true"], :user-invalid) { color: var(--fg); }
   .invalid\:fg-strong:is([aria-invalid="true"], :user-invalid) { color: var(--fg-strong); }
-  .invalid\:border-danger-weak:is([aria-invalid="true"], :user-invalid) { border-color: var(--border-danger-weak); }
   .invalid\:border-danger:is([aria-invalid="true"], :user-invalid) { border-color: var(--border-danger); }
-  .invalid\:border-danger-strong:is([aria-invalid="true"], :user-invalid) { border-color: var(--border-danger-strong); }
   .invalid\:fg-on-solid-danger:is([aria-invalid="true"], :user-invalid) { color: var(--on-solid-danger); }
-  .invalid\:fg-danger-subtle:is([aria-invalid="true"], :user-invalid) { color: var(--fg-danger-subtle); }
   .invalid\:fg-danger-weak:is([aria-invalid="true"], :user-invalid) { color: var(--fg-danger-weak); }
   .invalid\:fg-danger:is([aria-invalid="true"], :user-invalid) { color: var(--fg-danger); }
-  .invalid\:fg-danger-strong:is([aria-invalid="true"], :user-invalid) { color: var(--fg-danger-strong); }
   .invalid\:fg-inherit:is([aria-invalid="true"], :user-invalid) { color: inherit; }
   .invalid\:fg-current:is([aria-invalid="true"], :user-invalid) { color: currentColor; }
   .invalid\:fg-white:is([aria-invalid="true"], :user-invalid) { color: var(--neutral-contrast-white); }
@@ -2583,14 +2058,10 @@
   .has-invalid\:fg-weak:has(:is([aria-invalid="true"], :user-invalid)) { color: var(--fg-weak); }
   .has-invalid\:fg:has(:is([aria-invalid="true"], :user-invalid)) { color: var(--fg); }
   .has-invalid\:fg-strong:has(:is([aria-invalid="true"], :user-invalid)) { color: var(--fg-strong); }
-  .has-invalid\:border-danger-weak:has(:is([aria-invalid="true"], :user-invalid)) { border-color: var(--border-danger-weak); }
   .has-invalid\:border-danger:has(:is([aria-invalid="true"], :user-invalid)) { border-color: var(--border-danger); }
-  .has-invalid\:border-danger-strong:has(:is([aria-invalid="true"], :user-invalid)) { border-color: var(--border-danger-strong); }
   .has-invalid\:fg-on-solid-danger:has(:is([aria-invalid="true"], :user-invalid)) { color: var(--on-solid-danger); }
-  .has-invalid\:fg-danger-subtle:has(:is([aria-invalid="true"], :user-invalid)) { color: var(--fg-danger-subtle); }
   .has-invalid\:fg-danger-weak:has(:is([aria-invalid="true"], :user-invalid)) { color: var(--fg-danger-weak); }
   .has-invalid\:fg-danger:has(:is([aria-invalid="true"], :user-invalid)) { color: var(--fg-danger); }
-  .has-invalid\:fg-danger-strong:has(:is([aria-invalid="true"], :user-invalid)) { color: var(--fg-danger-strong); }
   .has-invalid\:fg-inherit:has(:is([aria-invalid="true"], :user-invalid)) { color: inherit; }
   .has-invalid\:fg-current:has(:is([aria-invalid="true"], :user-invalid)) { color: currentColor; }
   .has-invalid\:fg-white:has(:is([aria-invalid="true"], :user-invalid)) { color: var(--neutral-contrast-white); }
@@ -2644,65 +2115,14 @@
   .has-checked\:fg:has(:checked) { color: var(--fg); }
   .has-checked\:fg-strong:has(:checked) { color: var(--fg-strong); }
   .has-checked\:bg-accent-1:has(:checked) { background-color: var(--bg-accent-1); }
-  .has-checked\:bg-accent-1-strong:has(:checked) { background-color: var(--bg-accent-1-strong); }
   .has-checked\:bg-component-accent-1-weak:has(:checked) { background-color: var(--component-accent-1-weak); }
   .has-checked\:bg-component-accent-1:has(:checked) { background-color: var(--component-accent-1); }
-  .has-checked\:bg-component-accent-1-strong:has(:checked) { background-color: var(--component-accent-1-strong); }
-  .has-checked\:border-accent-1-weak:has(:checked) { border-color: var(--border-accent-1-weak); }
   .has-checked\:border-accent-1:has(:checked) { border-color: var(--border-accent-1); }
-  .has-checked\:border-accent-1-strong:has(:checked) { border-color: var(--border-accent-1-strong); }
   .has-checked\:bg-solid-accent-1:has(:checked) { background-color: var(--solid-accent-1); }
   .has-checked\:bg-solid-accent-1-strong:has(:checked) { background-color: var(--solid-accent-1-strong); }
   .has-checked\:fg-on-solid-accent-1:has(:checked) { color: var(--on-solid-accent-1); }
-  .has-checked\:fg-accent-1-subtle:has(:checked) { color: var(--fg-accent-1-subtle); }
   .has-checked\:fg-accent-1-weak:has(:checked) { color: var(--fg-accent-1-weak); }
   .has-checked\:fg-accent-1:has(:checked) { color: var(--fg-accent-1); }
-  .has-checked\:fg-accent-1-strong:has(:checked) { color: var(--fg-accent-1-strong); }
-  .has-checked\:bg-accent-2:has(:checked) { background-color: var(--bg-accent-2); }
-  .has-checked\:bg-accent-2-strong:has(:checked) { background-color: var(--bg-accent-2-strong); }
-  .has-checked\:bg-component-accent-2-weak:has(:checked) { background-color: var(--component-accent-2-weak); }
-  .has-checked\:bg-component-accent-2:has(:checked) { background-color: var(--component-accent-2); }
-  .has-checked\:bg-component-accent-2-strong:has(:checked) { background-color: var(--component-accent-2-strong); }
-  .has-checked\:border-accent-2-weak:has(:checked) { border-color: var(--border-accent-2-weak); }
-  .has-checked\:border-accent-2:has(:checked) { border-color: var(--border-accent-2); }
-  .has-checked\:border-accent-2-strong:has(:checked) { border-color: var(--border-accent-2-strong); }
-  .has-checked\:bg-solid-accent-2:has(:checked) { background-color: var(--solid-accent-2); }
-  .has-checked\:bg-solid-accent-2-strong:has(:checked) { background-color: var(--solid-accent-2-strong); }
-  .has-checked\:fg-on-solid-accent-2:has(:checked) { color: var(--on-solid-accent-2); }
-  .has-checked\:fg-accent-2-subtle:has(:checked) { color: var(--fg-accent-2-subtle); }
-  .has-checked\:fg-accent-2-weak:has(:checked) { color: var(--fg-accent-2-weak); }
-  .has-checked\:fg-accent-2:has(:checked) { color: var(--fg-accent-2); }
-  .has-checked\:fg-accent-2-strong:has(:checked) { color: var(--fg-accent-2-strong); }
-  .has-checked\:bg-accent-3:has(:checked) { background-color: var(--bg-accent-3); }
-  .has-checked\:bg-accent-3-strong:has(:checked) { background-color: var(--bg-accent-3-strong); }
-  .has-checked\:bg-component-accent-3-weak:has(:checked) { background-color: var(--component-accent-3-weak); }
-  .has-checked\:bg-component-accent-3:has(:checked) { background-color: var(--component-accent-3); }
-  .has-checked\:bg-component-accent-3-strong:has(:checked) { background-color: var(--component-accent-3-strong); }
-  .has-checked\:border-accent-3-weak:has(:checked) { border-color: var(--border-accent-3-weak); }
-  .has-checked\:border-accent-3:has(:checked) { border-color: var(--border-accent-3); }
-  .has-checked\:border-accent-3-strong:has(:checked) { border-color: var(--border-accent-3-strong); }
-  .has-checked\:bg-solid-accent-3:has(:checked) { background-color: var(--solid-accent-3); }
-  .has-checked\:bg-solid-accent-3-strong:has(:checked) { background-color: var(--solid-accent-3-strong); }
-  .has-checked\:fg-on-solid-accent-3:has(:checked) { color: var(--on-solid-accent-3); }
-  .has-checked\:fg-accent-3-subtle:has(:checked) { color: var(--fg-accent-3-subtle); }
-  .has-checked\:fg-accent-3-weak:has(:checked) { color: var(--fg-accent-3-weak); }
-  .has-checked\:fg-accent-3:has(:checked) { color: var(--fg-accent-3); }
-  .has-checked\:fg-accent-3-strong:has(:checked) { color: var(--fg-accent-3-strong); }
-  .has-checked\:bg-accent-4:has(:checked) { background-color: var(--bg-accent-4); }
-  .has-checked\:bg-accent-4-strong:has(:checked) { background-color: var(--bg-accent-4-strong); }
-  .has-checked\:bg-component-accent-4-weak:has(:checked) { background-color: var(--component-accent-4-weak); }
-  .has-checked\:bg-component-accent-4:has(:checked) { background-color: var(--component-accent-4); }
-  .has-checked\:bg-component-accent-4-strong:has(:checked) { background-color: var(--component-accent-4-strong); }
-  .has-checked\:border-accent-4-weak:has(:checked) { border-color: var(--border-accent-4-weak); }
-  .has-checked\:border-accent-4:has(:checked) { border-color: var(--border-accent-4); }
-  .has-checked\:border-accent-4-strong:has(:checked) { border-color: var(--border-accent-4-strong); }
-  .has-checked\:bg-solid-accent-4:has(:checked) { background-color: var(--solid-accent-4); }
-  .has-checked\:bg-solid-accent-4-strong:has(:checked) { background-color: var(--solid-accent-4-strong); }
-  .has-checked\:fg-on-solid-accent-4:has(:checked) { color: var(--on-solid-accent-4); }
-  .has-checked\:fg-accent-4-subtle:has(:checked) { color: var(--fg-accent-4-subtle); }
-  .has-checked\:fg-accent-4-weak:has(:checked) { color: var(--fg-accent-4-weak); }
-  .has-checked\:fg-accent-4:has(:checked) { color: var(--fg-accent-4); }
-  .has-checked\:fg-accent-4-strong:has(:checked) { color: var(--fg-accent-4-strong); }
   .has-checked\:fg-inherit:has(:checked) { color: inherit; }
   .has-checked\:fg-current:has(:checked) { color: currentColor; }
   .has-checked\:fg-white:has(:checked) { color: var(--neutral-contrast-white); }
@@ -2779,38 +2199,16 @@
     .group:hover .group-hover\:fg-weak { color: var(--fg-weak); }
     .group:hover .group-hover\:fg { color: var(--fg); }
     .group:hover .group-hover\:fg-strong { color: var(--fg-strong); }
-    .group:hover .group-hover\:fg-accent-1-subtle { color: var(--fg-accent-1-subtle); }
     .group:hover .group-hover\:fg-accent-1-weak { color: var(--fg-accent-1-weak); }
     .group:hover .group-hover\:fg-accent-1 { color: var(--fg-accent-1); }
-    .group:hover .group-hover\:fg-accent-1-strong { color: var(--fg-accent-1-strong); }
-    .group:hover .group-hover\:fg-accent-2-subtle { color: var(--fg-accent-2-subtle); }
-    .group:hover .group-hover\:fg-accent-2-weak { color: var(--fg-accent-2-weak); }
-    .group:hover .group-hover\:fg-accent-2 { color: var(--fg-accent-2); }
-    .group:hover .group-hover\:fg-accent-2-strong { color: var(--fg-accent-2-strong); }
-    .group:hover .group-hover\:fg-accent-3-subtle { color: var(--fg-accent-3-subtle); }
-    .group:hover .group-hover\:fg-accent-3-weak { color: var(--fg-accent-3-weak); }
-    .group:hover .group-hover\:fg-accent-3 { color: var(--fg-accent-3); }
-    .group:hover .group-hover\:fg-accent-3-strong { color: var(--fg-accent-3-strong); }
-    .group:hover .group-hover\:fg-accent-4-subtle { color: var(--fg-accent-4-subtle); }
-    .group:hover .group-hover\:fg-accent-4-weak { color: var(--fg-accent-4-weak); }
-    .group:hover .group-hover\:fg-accent-4 { color: var(--fg-accent-4); }
-    .group:hover .group-hover\:fg-accent-4-strong { color: var(--fg-accent-4-strong); }
-    .group:hover .group-hover\:fg-danger-subtle { color: var(--fg-danger-subtle); }
     .group:hover .group-hover\:fg-danger-weak { color: var(--fg-danger-weak); }
     .group:hover .group-hover\:fg-danger { color: var(--fg-danger); }
-    .group:hover .group-hover\:fg-danger-strong { color: var(--fg-danger-strong); }
-    .group:hover .group-hover\:fg-warning-subtle { color: var(--fg-warning-subtle); }
     .group:hover .group-hover\:fg-warning-weak { color: var(--fg-warning-weak); }
     .group:hover .group-hover\:fg-warning { color: var(--fg-warning); }
-    .group:hover .group-hover\:fg-warning-strong { color: var(--fg-warning-strong); }
-    .group:hover .group-hover\:fg-success-subtle { color: var(--fg-success-subtle); }
     .group:hover .group-hover\:fg-success-weak { color: var(--fg-success-weak); }
     .group:hover .group-hover\:fg-success { color: var(--fg-success); }
-    .group:hover .group-hover\:fg-success-strong { color: var(--fg-success-strong); }
-    .group:hover .group-hover\:fg-info-subtle { color: var(--fg-info-subtle); }
     .group:hover .group-hover\:fg-info-weak { color: var(--fg-info-weak); }
     .group:hover .group-hover\:fg-info { color: var(--fg-info); }
-    .group:hover .group-hover\:fg-info-strong { color: var(--fg-info-strong); }
     .group:hover .group-hover\:opacity-0 { opacity: 0; }
     .group:hover .group-hover\:opacity-10 { opacity: 0.1; }
     .group:hover .group-hover\:opacity-20 { opacity: 0.2; }
@@ -2838,38 +2236,16 @@
   .group:focus-within .group-focus-within\:fg-weak { color: var(--fg-weak); }
   .group:focus-within .group-focus-within\:fg { color: var(--fg); }
   .group:focus-within .group-focus-within\:fg-strong { color: var(--fg-strong); }
-  .group:focus-within .group-focus-within\:fg-accent-1-subtle { color: var(--fg-accent-1-subtle); }
   .group:focus-within .group-focus-within\:fg-accent-1-weak { color: var(--fg-accent-1-weak); }
   .group:focus-within .group-focus-within\:fg-accent-1 { color: var(--fg-accent-1); }
-  .group:focus-within .group-focus-within\:fg-accent-1-strong { color: var(--fg-accent-1-strong); }
-  .group:focus-within .group-focus-within\:fg-accent-2-subtle { color: var(--fg-accent-2-subtle); }
-  .group:focus-within .group-focus-within\:fg-accent-2-weak { color: var(--fg-accent-2-weak); }
-  .group:focus-within .group-focus-within\:fg-accent-2 { color: var(--fg-accent-2); }
-  .group:focus-within .group-focus-within\:fg-accent-2-strong { color: var(--fg-accent-2-strong); }
-  .group:focus-within .group-focus-within\:fg-accent-3-subtle { color: var(--fg-accent-3-subtle); }
-  .group:focus-within .group-focus-within\:fg-accent-3-weak { color: var(--fg-accent-3-weak); }
-  .group:focus-within .group-focus-within\:fg-accent-3 { color: var(--fg-accent-3); }
-  .group:focus-within .group-focus-within\:fg-accent-3-strong { color: var(--fg-accent-3-strong); }
-  .group:focus-within .group-focus-within\:fg-accent-4-subtle { color: var(--fg-accent-4-subtle); }
-  .group:focus-within .group-focus-within\:fg-accent-4-weak { color: var(--fg-accent-4-weak); }
-  .group:focus-within .group-focus-within\:fg-accent-4 { color: var(--fg-accent-4); }
-  .group:focus-within .group-focus-within\:fg-accent-4-strong { color: var(--fg-accent-4-strong); }
-  .group:focus-within .group-focus-within\:fg-danger-subtle { color: var(--fg-danger-subtle); }
   .group:focus-within .group-focus-within\:fg-danger-weak { color: var(--fg-danger-weak); }
   .group:focus-within .group-focus-within\:fg-danger { color: var(--fg-danger); }
-  .group:focus-within .group-focus-within\:fg-danger-strong { color: var(--fg-danger-strong); }
-  .group:focus-within .group-focus-within\:fg-warning-subtle { color: var(--fg-warning-subtle); }
   .group:focus-within .group-focus-within\:fg-warning-weak { color: var(--fg-warning-weak); }
   .group:focus-within .group-focus-within\:fg-warning { color: var(--fg-warning); }
-  .group:focus-within .group-focus-within\:fg-warning-strong { color: var(--fg-warning-strong); }
-  .group:focus-within .group-focus-within\:fg-success-subtle { color: var(--fg-success-subtle); }
   .group:focus-within .group-focus-within\:fg-success-weak { color: var(--fg-success-weak); }
   .group:focus-within .group-focus-within\:fg-success { color: var(--fg-success); }
-  .group:focus-within .group-focus-within\:fg-success-strong { color: var(--fg-success-strong); }
-  .group:focus-within .group-focus-within\:fg-info-subtle { color: var(--fg-info-subtle); }
   .group:focus-within .group-focus-within\:fg-info-weak { color: var(--fg-info-weak); }
   .group:focus-within .group-focus-within\:fg-info { color: var(--fg-info); }
-  .group:focus-within .group-focus-within\:fg-info-strong { color: var(--fg-info-strong); }
   .group:focus-within .group-focus-within\:opacity-0 { opacity: 0; }
   .group:focus-within .group-focus-within\:opacity-10 { opacity: 0.1; }
   .group:focus-within .group-focus-within\:opacity-20 { opacity: 0.2; }
@@ -2896,38 +2272,16 @@
   .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-weak { color: var(--fg-weak); }
   .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg { color: var(--fg); }
   .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-strong { color: var(--fg-strong); }
-  .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-accent-1-subtle { color: var(--fg-accent-1-subtle); }
   .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-accent-1-weak { color: var(--fg-accent-1-weak); }
   .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-accent-1 { color: var(--fg-accent-1); }
-  .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-accent-1-strong { color: var(--fg-accent-1-strong); }
-  .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-accent-2-subtle { color: var(--fg-accent-2-subtle); }
-  .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-accent-2-weak { color: var(--fg-accent-2-weak); }
-  .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-accent-2 { color: var(--fg-accent-2); }
-  .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-accent-2-strong { color: var(--fg-accent-2-strong); }
-  .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-accent-3-subtle { color: var(--fg-accent-3-subtle); }
-  .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-accent-3-weak { color: var(--fg-accent-3-weak); }
-  .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-accent-3 { color: var(--fg-accent-3); }
-  .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-accent-3-strong { color: var(--fg-accent-3-strong); }
-  .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-accent-4-subtle { color: var(--fg-accent-4-subtle); }
-  .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-accent-4-weak { color: var(--fg-accent-4-weak); }
-  .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-accent-4 { color: var(--fg-accent-4); }
-  .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-accent-4-strong { color: var(--fg-accent-4-strong); }
-  .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-danger-subtle { color: var(--fg-danger-subtle); }
   .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-danger-weak { color: var(--fg-danger-weak); }
   .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-danger { color: var(--fg-danger); }
-  .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-danger-strong { color: var(--fg-danger-strong); }
-  .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-warning-subtle { color: var(--fg-warning-subtle); }
   .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-warning-weak { color: var(--fg-warning-weak); }
   .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-warning { color: var(--fg-warning); }
-  .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-warning-strong { color: var(--fg-warning-strong); }
-  .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-success-subtle { color: var(--fg-success-subtle); }
   .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-success-weak { color: var(--fg-success-weak); }
   .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-success { color: var(--fg-success); }
-  .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-success-strong { color: var(--fg-success-strong); }
-  .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-info-subtle { color: var(--fg-info-subtle); }
   .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-info-weak { color: var(--fg-info-weak); }
   .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-info { color: var(--fg-info); }
-  .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:fg-info-strong { color: var(--fg-info-strong); }
   .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:opacity-0 { opacity: 0; }
   .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:opacity-10 { opacity: 0.1; }
   .group:is([open], :popover-open, [aria-expanded="true"], :has(> :popover-open)) .group-open\:opacity-20 { opacity: 0.2; }

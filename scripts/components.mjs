@@ -32,7 +32,7 @@ export const RECIPES = [
   ...Object.entries(BADGE_TONES).map(([t, p]) => ({ name: `badge-${t}`, use: `The ${t} tone for badge.`, recipe: `bg-${p}-3 border-${p}-6 fg-${p}-11` })),
   { name: "card", use: "A card: surface padding and radius, border and fill.", recipe: "p-md rounded-md border border-neutral-6 bg-neutral-1" },
   { name: "segmented", use: "A segmented control's group: control height, inset border, soft fill. Holds segment buttons with aria-pressed.", recipe: "inline-flex items-center h-control rounded-sm border-2 border-transparent bg-neutral-a2" },
-  { name: "segment", use: "One segment in a segmented group: white when pressed (aria-pressed=true) in both modes.", recipe: "inline-flex items-center justify-center h-full px-nested gap-gutter-half rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black font-medium text-base cursor-pointer" },
+  { name: "segment", use: "One segment in a segmented group: white when pressed (aria-pressed=true) in both modes.", recipe: "inline-flex items-center justify-center self-stretch px-nested gap-gutter-half rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black font-medium text-base cursor-pointer" },
 ];
 
 // A small CSS reader: rules and at-rules with their children. Nowind's CSS has no comments and no braces in strings.

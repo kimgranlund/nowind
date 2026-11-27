@@ -912,7 +912,7 @@ STATE_DEMOS = {
     "groups": _stack([_snip("tooltip"), _snip("menu")]),
     "breakpoints": '<div class="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-sm">\n  '
                    + "\n  ".join(_STAT.format(label=l, value=v) for l, v in [("Visitors", "48,210"), ("Signups", "2,318"), ("Revenue", "$9,640"), ("Churn", "1.4%")]) + "\n</div>",
-    "containers": '<div class="grid grid-cols-1 md:grid-cols-3 gap-md">\n<div class="min-w-0">\n' + _snip("media-card") + '\n</div>\n<div class="min-w-0 md:col-span-2">\n' + _snip("media-card") + "\n</div>\n</div>",
+    "containers": '<div class="grid grid-cols-1 md:grid-cols-2 gap-md">\n<div class="min-w-0">\n' + _snip("media-card") + '\n</div>\n<div class="min-w-0">\n' + _snip("media-card") + "\n</div>\n</div>",
     "layer": _snip("button"),
     "motion": _snip("icon-button", "toolbar"),
     "indicators": _snip("accordion"),
@@ -1121,7 +1121,7 @@ def states_page():
                 table(["Variant", "When", "Classes"], grows), *live("groups.html", STATE_DEMOS["groups"])),
         section("breakpoints", "Breakpoints", p(_plain(nm["variants"]["responsive"])), p("Resize the window: one column, two from 640px, four from 1536px."),
                 *live("breakpoints.html", STATE_DEMOS["breakpoints"])),
-        section("containers", "Container queries", p(_plain(nm["variants"]["container"])), p("The same card twice: in the narrow column it stacks, in the wide one it turns into a row, at one window width."),
+        section("containers", "Container queries", p(_plain(nm["variants"]["container"])), p("The same card in two equal columns. Each reads its own column's width, not the window's: in two columns they stack, and in one wide column, on a narrower window, they turn into rows."),
                 *live("containers.html", STATE_DEMOS["containers"])),
         section("layer", "State layer", p(_plain(nm["categories"]["state"])), p("Hover and press each: one layer tints every fill, in its own text colour."),
                 *live("layer.html", STATE_DEMOS["layer"])),
@@ -1279,7 +1279,7 @@ def type_audit():
         if n.tag == "label" and n.has(lambda k: k.tag == "input" and k.attrs.get("type") in ("checkbox", "radio")): return "option label"
         if n.tag in ("label", "legend", "dt") and not n.text.strip(): return None  # a wrapper: its text children carry the kinds
         if n.tag in ("label", "legend", "dt") or (n.tag == "dl" and n.own): return "label"
-        if "rounded-full" in n.toks and "size-nested" in n.toks and "tabular-nums" in n.toks: return "count"
+        if "rounded-full" in n.toks and "size-nested" in n.toks and n.alltext().strip(): return "count"
         if "rounded-full" in n.toks and n.alltext().strip(): return "badge"
         if n.tag == "h1": return None  # a page heading takes the heading roles, not a surface title
         if n.tag in ("h2", "h3", "h4"):

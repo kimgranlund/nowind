@@ -101,7 +101,7 @@ After Radix, each palette is twelve steps plus twelve alpha steps, regenerated i
 Palettes: `neutral` (slate), `accent-1` (blue), `accent-2` (violet), `accent-3` (plum), `accent-4` (crimson), `danger`, `warning`, `success`, `info`.
 
 - **Steps** for direct use: `bg-neutral-3`, `fg-accent-1-11`, `border-danger-7`, `bg-neutral-a4`, `fg-accent-1-contrast` (text on step 9).
-- **Roles** by contrast, for your own CSS and semantic classes: `--bg`, `--component-weak` / `--component` / `--component-strong` (rest, hover, pressed), `--border-weak` / `--border` / `--border-strong`, `--solid` / `--solid-strong`, `--fg-subtle` / `--fg-weak` / `--fg` / `--fg-strong`, each with a palette suffix (`--border-danger`, `--fg-accent-1-weak`).
+- **Roles** by contrast, for your own CSS and semantic classes: `--bg`, `--component-weak` / `--component` / `--component-strong` (rest, hover, pressed), `--border-weak` / `--border` / `--border-strong`, `--solid` / `--solid-strong`, `--fg-subtle` / `--fg-weak` / `--fg` / `--fg-strong`, each with a palette suffix (`--border-danger`, `--fg-accent-1-weak`). Every role is a token; classes exist for the roles of neutral, `accent-1` and the four statuses (`fg-danger`, `bg-component-accent-1`), while `accent-2` to `accent-4` use their raw steps (`bg-accent-2-4`, `fg-accent-3-11`).
 
 A page follows the OS setting; `data-color-mode="dark"` (or `light`) on any element forces a mode inside it.
 

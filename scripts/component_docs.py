@@ -614,7 +614,7 @@ COMPONENTS = [
     <span class="text-xs font-mono uppercase tracking-widest fg-accent-2-11">Case study</span>
     <h3 class="text-base font-semibold">Rebuilding a design system in a week</h3>
     <div class="flex items-center gap-xs pt-2xs">
-      <span class="inline-flex items-center justify-center size-nested shrink-0 rounded-full bg-accent-3-9 fg-accent-3-contrast text-sm font-medium">GH</span>
+      <span class="inline-flex items-center justify-center size-nested shrink-0 rounded-full bg-accent-3-9 fg-accent-3-contrast text-xs font-medium">GH</span>
       <span class="text-sm fg-neutral-11">Grace Hopper · 6 min read</span>
     </div>
   </div>

@@ -439,8 +439,8 @@
       },
       {
         "kind": "count",
-        "identify": "a round number badge: size-nested rounded-full tabular-nums",
-        "size": "text-xs font-medium tabular-nums",
+        "identify": "a small round marker holding a number or initials: size-nested rounded-full (a count or a small avatar)",
+        "size": "text-xs font-medium (tabular-nums for a number)",
         "icon": "none",
         "status": "decided",
         "current": "text-xs"

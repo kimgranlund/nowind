@@ -95,7 +95,7 @@
     },
     {
       "class": "segment",
-      "recipe": "inline-flex items-center justify-center h-full px-nested gap-gutter-half rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black font-medium text-base cursor-pointer",
+      "recipe": "inline-flex items-center justify-center self-stretch px-nested gap-gutter-half rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black font-medium text-base cursor-pointer",
       "use": "One segment in a segmented group: white when pressed (aria-pressed=true) in both modes."
     }
   ]
