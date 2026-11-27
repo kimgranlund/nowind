@@ -584,6 +584,236 @@
       ]
     },
     {
+      "slug": "textarea",
+      "name": "Textarea",
+      "group": "Forms",
+      "page": "site/docs/c-textarea.html",
+      "summary": "A field for more than one line. It pads like a text field and grows with rows; the help line under it counts down.",
+      "use": [
+        "Set rows to the length you expect; the reset lets people resize it vertically.",
+        "Tie the help line to the field with aria-describedby."
+      ],
+      "avoid": [
+        "A textarea for one line of text; use a text field."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-neutral-1",
+        "border",
+        "border-neutral-5",
+        "fg-neutral-11",
+        "flex",
+        "flex-col",
+        "font-medium",
+        "gap-2xs",
+        "hover:border-neutral-7",
+        "max-w-form",
+        "px-control",
+        "py-xs",
+        "rounded-sm",
+        "text-base",
+        "text-sm",
+        "w-full"
+      ]
+    },
+    {
+      "slug": "slider",
+      "name": "Slider",
+      "group": "Forms",
+      "page": "site/docs/c-slider.html",
+      "summary": "A native range input, themed by the reset: track, fill and thumb in the accent. Its value prints beside the label in tabular figures.",
+      "use": [
+        "Print the value next to the label so the slider isn't the only way to read it.",
+        "Show the ends of the range when they mean something."
+      ],
+      "avoid": [
+        "A slider for an exact number; pair it with a number field or use one."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "fg-neutral-11",
+        "flex",
+        "flex-col",
+        "font-medium",
+        "gap-2xs",
+        "gap-md",
+        "gap-sm",
+        "grow",
+        "items-center",
+        "justify-between",
+        "max-w-form",
+        "tabular-nums",
+        "text-sm",
+        "w-full"
+      ]
+    },
+    {
+      "slug": "number-field",
+      "name": "Number field",
+      "group": "Forms",
+      "page": "site/docs/c-number-field.html",
+      "summary": "A field box with a step button at each end and a bare number input between, so people can type or step.",
+      "use": [
+        "Label each step button with what it does (Fewer seats, More seats), not with minus and plus."
+      ],
+      "avoid": [
+        "Step buttons for a value people mostly type, such as a year."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-neutral-1",
+        "bg-transparent",
+        "border",
+        "border-0",
+        "border-neutral-5",
+        "border-transparent",
+        "cursor-pointer",
+        "cursor-text",
+        "fg-neutral-11",
+        "fg-neutral-12",
+        "flex",
+        "flex-col",
+        "focus-within:border-accent-1-8",
+        "font-medium",
+        "gap-2xs",
+        "gap-gutter",
+        "grow",
+        "h-control",
+        "h-full",
+        "has-invalid:border-danger-7",
+        "hover:border-neutral-7",
+        "hover:fg-neutral-12",
+        "icon",
+        "icon-sm",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "min-w-0",
+        "p-0",
+        "px-control",
+        "rounded-sm",
+        "rounded-xs",
+        "size-nested",
+        "state",
+        "tabular-nums",
+        "text-base",
+        "text-center",
+        "text-sm",
+        "transition",
+        "w-fit"
+      ]
+    },
+    {
+      "slug": "file-upload",
+      "name": "File upload",
+      "group": "Forms",
+      "page": "site/docs/c-file-upload.html",
+      "summary": "A drop zone that is a label for a hidden file input, so a click opens the picker and the whole area is the target.",
+      "use": [
+        "Say which files it takes and how large, before anyone tries.",
+        "Keep the input in the label (sr-only), so keyboard and screen reader users get the native picker."
+      ],
+      "avoid": [
+        "A drop zone with no click fallback."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-neutral-1",
+        "bg-neutral-3",
+        "border-2",
+        "border-dashed",
+        "border-neutral-6",
+        "cursor-pointer",
+        "fg-neutral-11",
+        "flex",
+        "flex-col",
+        "font-semibold",
+        "gap-xs",
+        "hover:border-accent-1-8",
+        "icon",
+        "icon-lg",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "max-w-form",
+        "p-lg",
+        "p-sm",
+        "rounded-full",
+        "rounded-md",
+        "shrink-0",
+        "sr-only",
+        "text-center",
+        "text-lg",
+        "text-sm",
+        "transition"
+      ]
+    },
+    {
+      "slug": "tag-input",
+      "name": "Tag input",
+      "group": "Forms",
+      "page": "site/docs/c-tag-input.html",
+      "summary": "Chips inside a field box, each with its own remove button, then a bare input for the next one.",
+      "use": [
+        "Name each remove button after its chip (Remove design).",
+        "Inside a field box the chips take rounded-xs, the nested corner, as a nested select does."
+      ],
+      "avoid": [
+        "Chips for a single value; use a select."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-neutral-1",
+        "bg-neutral-3",
+        "bg-transparent",
+        "border",
+        "border-0",
+        "border-neutral-5",
+        "cursor-pointer",
+        "cursor-text",
+        "fg-neutral-11",
+        "fg-neutral-12",
+        "flex",
+        "flex-col",
+        "focus-within:border-accent-1-8",
+        "font-medium",
+        "gap-2xs",
+        "gap-gutter",
+        "grow",
+        "h-control",
+        "h-full",
+        "has-invalid:border-danger-7",
+        "hover:border-neutral-7",
+        "icon",
+        "icon-sm",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "max-w-form",
+        "min-w-0",
+        "p-0",
+        "px-control",
+        "px-nested",
+        "rounded-sm",
+        "rounded-xs",
+        "size-nested",
+        "state",
+        "text-base",
+        "text-sm",
+        "transition"
+      ]
+    },
+    {
       "slug": "card",
       "name": "Card",
       "group": "Layout",
@@ -801,6 +1031,175 @@
       ]
     },
     {
+      "slug": "sidebar-nav",
+      "name": "Sidebar navigation",
+      "group": "Navigation",
+      "page": "site/docs/c-sidebar-nav.html",
+      "summary": "A column of links at the control height, each an icon and a label. aria-current=\"page\" marks where you are, and current: paints it.",
+      "use": [
+        "In an app shell, w-sidebar gives it the shell's sidebar width.",
+        "A count sits at the end of its row, in a small round marker."
+      ],
+      "avoid": [
+        "More than about eight links without a heading between groups."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-accent-1-9",
+        "bg-neutral-1",
+        "border",
+        "border-neutral-6",
+        "border-transparent",
+        "current:bg-accent-1-3",
+        "current:fg-accent-1-11",
+        "fg-accent-1-contrast",
+        "fg-neutral-11",
+        "fg-neutral-12",
+        "flex",
+        "flex-col",
+        "font-medium",
+        "gap-3xs",
+        "gap-gutter",
+        "grow",
+        "h-control",
+        "hover:bg-neutral-3",
+        "icon",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "no-underline",
+        "p-inset",
+        "pb-3xs",
+        "pt-xs",
+        "px-control",
+        "rounded-full",
+        "rounded-md",
+        "rounded-sm",
+        "shrink-0",
+        "size-nested",
+        "tabular-nums",
+        "text-base",
+        "text-sm",
+        "text-xs",
+        "w-fit"
+      ]
+    },
+    {
+      "slug": "navbar",
+      "name": "Navbar",
+      "group": "Navigation",
+      "page": "site/docs/c-navbar.html",
+      "summary": "The app's top bar at the shell header height: a wordmark, the main links, then actions at the end.",
+      "use": [
+        "In an app shell give it h-header, and keep its content on one line: that is the height the rest of the shell assumes.",
+        "Hide the main links below lg and move them into a menu."
+      ],
+      "avoid": [
+        "More than one primary action in the bar."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-accent-2-9",
+        "bg-neutral-1",
+        "bg-transparent",
+        "border",
+        "border-b",
+        "border-neutral-6",
+        "border-transparent",
+        "current:bg-neutral-3",
+        "current:fg-neutral-12",
+        "cursor-pointer",
+        "fg-accent-1-9",
+        "fg-accent-2-contrast",
+        "fg-neutral-11",
+        "fg-neutral-12",
+        "flex",
+        "font-medium",
+        "font-semibold",
+        "gap-3xs",
+        "gap-gutter",
+        "gap-md",
+        "grow",
+        "h-control",
+        "hidden",
+        "hover:bg-neutral-3",
+        "hover:fg-accent-1-11",
+        "icon",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "lg:flex",
+        "no-underline",
+        "pe-xs",
+        "ps-md",
+        "px-control",
+        "py-xs",
+        "rounded-full",
+        "rounded-sm",
+        "shrink-0",
+        "size-control",
+        "state",
+        "text-base",
+        "text-lg",
+        "text-sm"
+      ]
+    },
+    {
+      "slug": "steps",
+      "name": "Steps",
+      "group": "Navigation",
+      "page": "site/docs/c-steps.html",
+      "summary": "A numbered row of the steps in a task: done steps show a check, the current one carries aria-current=\"step\", and a rule joins each to the next.",
+      "use": [
+        "Three to five steps; name each by what it collects."
+      ],
+      "avoid": [
+        "Steps for a single form people fill in one go."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-accent-1-9",
+        "border",
+        "border-accent-1-7",
+        "border-accent-1-8",
+        "border-neutral-6",
+        "border-t",
+        "fg-accent-1-11",
+        "fg-accent-1-contrast",
+        "fg-neutral-11",
+        "fg-neutral-12",
+        "flex",
+        "flex-col",
+        "font-medium",
+        "gap-xs",
+        "grow",
+        "hidden",
+        "icon",
+        "icon-sm",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "list-none",
+        "max-w-form",
+        "p-0",
+        "rounded-full",
+        "shrink-0",
+        "size-nested",
+        "sm:block",
+        "sm:flex-row",
+        "sm:items-center",
+        "tabular-nums",
+        "text-base",
+        "text-xs"
+      ]
+    },
+    {
       "slug": "menu",
       "name": "Popover menu",
       "group": "Overlays",
@@ -957,6 +1356,65 @@
         "transition-opacity",
         "whitespace-nowrap",
         "z-20"
+      ]
+    },
+    {
+      "slug": "drawer",
+      "name": "Drawer",
+      "group": "Overlays",
+      "page": "site/docs/c-drawer.html",
+      "summary": "A modal <dialog> that sits against the end edge, opened with command. For filters and settings that work on the page behind it.",
+      "use": [
+        "ms-auto pushes it to the end edge; my-xs me-xs keep it off the window's edges."
+      ],
+      "avoid": [
+        "A drawer for a short confirmation; use a dialog."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-accent-1-9",
+        "bg-neutral-1",
+        "bg-neutral-a2",
+        "bg-transparent",
+        "border",
+        "border-0",
+        "border-transparent",
+        "cursor-pointer",
+        "fg-accent-1-contrast",
+        "fg-neutral-11",
+        "fg-neutral-12",
+        "flex",
+        "flex-col",
+        "font-medium",
+        "font-semibold",
+        "gap-gutter",
+        "gap-md",
+        "gap-sm",
+        "gap-xs",
+        "h-control",
+        "icon",
+        "inline-flex",
+        "items-center",
+        "justify-between",
+        "justify-center",
+        "justify-end",
+        "max-w-form",
+        "me-xs",
+        "ms-auto",
+        "my-xs",
+        "p-lg",
+        "px-control",
+        "rounded-lg",
+        "rounded-sm",
+        "shadow-xl",
+        "shrink-0",
+        "size-control",
+        "state",
+        "text-base",
+        "text-lg",
+        "w-full"
       ]
     },
     {
@@ -1166,6 +1624,203 @@
       ]
     },
     {
+      "slug": "description-list",
+      "name": "Description list",
+      "group": "Data display",
+      "page": "site/docs/c-description-list.html",
+      "summary": "Terms and their values in a <dl>: one column on a phone, the term beside its value from sm up.",
+      "use": [
+        "Read-only facts about one thing: an account, an order, a file."
+      ],
+      "avoid": [
+        "A description list for data people compare across rows; use a table."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "fg-neutral-11",
+        "font-medium",
+        "gap-x-md",
+        "gap-y-xs",
+        "grid",
+        "grid-cols-1",
+        "max-w-form",
+        "sm:col-span-2",
+        "sm:grid-cols-3",
+        "tabular-nums",
+        "text-sm"
+      ]
+    },
+    {
+      "slug": "stat",
+      "name": "Stat",
+      "group": "Data display",
+      "page": "site/docs/c-stat.html",
+      "summary": "One figure in a card: what it counts, the value in tabular figures, and how it moved.",
+      "use": [
+        "Say what the change compares against.",
+        "Put the direction in an icon as well as the colour."
+      ],
+      "avoid": [
+        "More than four stats in a row; people stop reading them."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-neutral-1",
+        "border",
+        "border-neutral-6",
+        "fg-neutral-11",
+        "fg-success-11",
+        "flex",
+        "flex-col",
+        "flex-wrap",
+        "font-display",
+        "font-extrabold",
+        "gap-3xs",
+        "gap-xs",
+        "icon",
+        "icon-sm",
+        "inline-flex",
+        "items-baseline",
+        "max-w-form",
+        "p-md",
+        "rounded-md",
+        "tabular-nums",
+        "text-3xl",
+        "text-sm",
+        "tracking-tight"
+      ]
+    },
+    {
+      "slug": "timeline",
+      "name": "Timeline",
+      "group": "Data display",
+      "page": "site/docs/c-timeline.html",
+      "summary": "Events in order down a rule: a small round marker for each, its title and when it happened.",
+      "use": [
+        "Newest first, unless the order of steps matters more than recency."
+      ],
+      "avoid": [
+        "A timeline for events people need to filter or sort; use a table."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-neutral-3",
+        "bg-success-3",
+        "border-neutral-6",
+        "border-s",
+        "fg-neutral-11",
+        "fg-neutral-12",
+        "fg-success-11",
+        "flex",
+        "flex-col",
+        "gap-3xs",
+        "gap-sm",
+        "grow",
+        "icon",
+        "icon-sm",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "list-none",
+        "max-w-form",
+        "p-0",
+        "pb-md",
+        "rounded-full",
+        "shrink-0",
+        "size-nested",
+        "text-base",
+        "text-sm"
+      ]
+    },
+    {
+      "slug": "code-block",
+      "name": "Code block",
+      "group": "Data display",
+      "page": "site/docs/c-code-block.html",
+      "summary": "A <figure> with a caption naming the file and a copy button, over a <pre> that scrolls sideways rather than wrap.",
+      "use": [
+        "Name the file or language in the caption.",
+        "Let long lines scroll (overflow-x-auto) so the code keeps its shape."
+      ],
+      "avoid": [
+        "Wrapping code lines; it changes what the code looks like."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-neutral-1",
+        "bg-transparent",
+        "border",
+        "border-b",
+        "border-neutral-6",
+        "border-transparent",
+        "cursor-pointer",
+        "fg-neutral-11",
+        "flex",
+        "flex-col",
+        "font-mono",
+        "gap-sm",
+        "icon",
+        "inline-flex",
+        "items-center",
+        "justify-between",
+        "justify-center",
+        "max-w-form",
+        "overflow-hidden",
+        "overflow-x-auto",
+        "p-md",
+        "pe-xs",
+        "ps-md",
+        "py-3xs",
+        "rounded-md",
+        "rounded-sm",
+        "shrink-0",
+        "size-control",
+        "state",
+        "text-sm"
+      ]
+    },
+    {
+      "slug": "kbd",
+      "name": "Keyboard key",
+      "group": "Data display",
+      "page": "site/docs/c-kbd.html",
+      "summary": "A key in running text, at the nested height with the keycap's padding and corner, set in the mono face.",
+      "use": [
+        "One <kbd> per key, a space between the keys of a shortcut."
+      ],
+      "avoid": [
+        "Keycaps for words that aren't keys."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-neutral-2",
+        "border",
+        "border-neutral-6",
+        "fg-neutral-11",
+        "font-mono",
+        "h-nested",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "max-w-text",
+        "min-w-nested",
+        "px-2xs",
+        "rounded-xs",
+        "text-base",
+        "text-sm"
+      ]
+    },
+    {
       "slug": "empty-state",
       "name": "Empty state",
       "group": "Feedback",
@@ -1253,6 +1908,73 @@
         "text-sm",
         "w-1/2",
         "w-3/4"
+      ]
+    },
+    {
+      "slug": "banner",
+      "name": "Banner",
+      "group": "Feedback",
+      "page": "site/docs/c-banner.html",
+      "summary": "A message across the top of a page or region, on the accent's solid with its contrast text, and one link.",
+      "use": [
+        "One banner at a time, for news that concerns everyone on the page."
+      ],
+      "avoid": [
+        "A banner for an error in a form; put that next to the field."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-accent-1-9",
+        "fg-accent-1-contrast",
+        "flex",
+        "flex-wrap",
+        "font-medium",
+        "gap-gutter",
+        "grow",
+        "hover:opacity-70",
+        "icon",
+        "items-center",
+        "pe-sm",
+        "ps-xs",
+        "py-xs",
+        "rounded-md",
+        "text-base"
+      ]
+    },
+    {
+      "slug": "callout",
+      "name": "Callout",
+      "group": "Feedback",
+      "page": "site/docs/c-callout.html",
+      "summary": "A note set apart from the text around it by a start rule and a soft fill, with a title and its detail.",
+      "use": [
+        "Asides in long text: a tip, a caveat, a note on an older version."
+      ],
+      "avoid": [
+        "A callout for a status the reader must act on; use an alert."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-info-2",
+        "border-info-7",
+        "border-s-4",
+        "fg-info-11",
+        "fg-neutral-11",
+        "flex",
+        "flex-col",
+        "font-semibold",
+        "gap-3xs",
+        "gap-gutter",
+        "icon",
+        "max-w-form",
+        "p-md",
+        "rounded-md",
+        "text-base",
+        "text-lg"
       ]
     }
   ]

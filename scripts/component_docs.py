@@ -623,6 +623,231 @@ COMPONENTS = [
         "use": ["<code>aspect-video</code> keeps the media area's shape before the image loads.", "<code>@container</code> on the wrapper lets the card lay itself out by its own width: <code>@md:flex-row</code> puts the media beside the text once the card is 448px wide, wherever it sits."],
         "avoid": ["Text over the image without a scrim."],
     },
+    {
+        "slug": "textarea", "name": "Textarea", "icon": "ph-text-align-left", "group": "Forms",
+        "summary": "A field for more than one line. It pads like a text field and grows with <code>rows</code>; the help line under it counts down.",
+        "html": f"""<div class="flex flex-col gap-2xs max-w-form">
+  <label for="doc-bio" class="text-sm font-medium">Bio</label>
+  <textarea id="doc-bio" rows="4" class="px-control py-xs rounded-sm border border-neutral-5 hover:border-neutral-7 bg-neutral-1 text-base w-full" aria-describedby="doc-bio-help" placeholder="A few words about you"></textarea>
+  <span id="doc-bio-help" class="text-sm fg-neutral-11">Up to 280 characters.</span>
+</div>""",
+        "use": ["Set <code>rows</code> to the length you expect; the reset lets people resize it vertically.", "Tie the help line to the field with <code>aria-describedby</code>."],
+        "avoid": ["A textarea for one line of text; use a text field."],
+    },
+    {
+        "slug": "slider", "name": "Slider", "icon": "ph-sliders-horizontal", "group": "Forms",
+        "summary": "A native range input, themed by the reset: track, fill and thumb in the accent. Its value prints beside the label in tabular figures.",
+        "html": f"""<div class="flex flex-col gap-md max-w-form">
+  <div class="flex flex-col gap-2xs">
+    <div class="flex justify-between text-sm font-medium"><label for="doc-volume">Volume</label><span class="fg-neutral-11 tabular-nums">60%</span></div>
+    <input id="doc-volume" type="range" min="0" max="100" value="60" class="w-full">
+  </div>
+  <div class="flex flex-col gap-2xs">
+    <label for="doc-radius" class="text-sm font-medium">Corner radius</label>
+    <div class="flex items-center gap-sm">
+      <span class="text-sm fg-neutral-11 tabular-nums">0</span>
+      <input id="doc-radius" type="range" min="0" max="24" value="8" class="grow">
+      <span class="text-sm fg-neutral-11 tabular-nums">24</span>
+    </div>
+  </div>
+</div>""",
+        "use": ["Print the value next to the label so the slider isn't the only way to read it.", "Show the ends of the range when they mean something."],
+        "avoid": ["A slider for an exact number; pair it with a number field or use one."],
+    },
+    {
+        "slug": "number-field", "name": "Number field", "icon": "ph-plus-minus", "group": "Forms",
+        "summary": "A field box with a step button at each end and a bare number input between, so people can type or step.",
+        "html": f"""<div class="flex flex-col gap-2xs">
+  <label for="doc-seats" class="text-sm font-medium">Seats</label>
+  <div class="{BOX} w-fit">
+    <button class="{NESTED_ICON}" aria-label="Fewer seats"><i class="icon icon-sm ph ph-minus"></i></button>
+    <input id="doc-seats" type="number" min="1" max="50" value="5" inputmode="numeric" class="{BARE} text-center tabular-nums">
+    <button class="{NESTED_ICON}" aria-label="More seats"><i class="icon icon-sm ph ph-plus"></i></button>
+  </div>
+</div>""",
+        "use": ["Label each step button with what it does (Fewer seats, More seats), not with minus and plus."],
+        "avoid": ["Step buttons for a value people mostly type, such as a year."],
+    },
+    {
+        "slug": "file-upload", "name": "File upload", "icon": "ph-upload-simple", "group": "Forms",
+        "summary": "A drop zone that is a label for a hidden file input, so a click opens the picker and the whole area is the target.",
+        "html": f"""<label class="flex flex-col items-center justify-center text-center gap-xs p-lg rounded-md border-2 border-dashed border-neutral-6 hover:border-accent-1-8 bg-neutral-1 cursor-pointer max-w-form transition">
+  <span class="inline-flex items-center justify-center p-sm shrink-0 rounded-full bg-neutral-3 fg-neutral-11"><i class="icon icon-lg ph ph-upload-simple"></i></span>
+  <span class="text-lg font-semibold">Drop files to upload</span>
+  <span class="text-sm fg-neutral-11">or click to choose · PNG or JPG, up to 10 MB</span>
+  <input type="file" accept="image/png, image/jpeg" multiple class="sr-only">
+</label>""",
+        "use": ["Say which files it takes and how large, before anyone tries.", "Keep the input in the label (<code>sr-only</code>), so keyboard and screen reader users get the native picker."],
+        "avoid": ["A drop zone with no click fallback."],
+    },
+    {
+        "slug": "tag-input", "name": "Tag input", "icon": "ph-tag-simple", "group": "Forms",
+        "summary": "Chips inside a field box, each with its own remove button, then a bare input for the next one.",
+        "html": f"""<div class="flex flex-col gap-2xs max-w-form">
+  <label for="doc-topic" class="text-sm font-medium">Topics</label>
+  <div class="{BOX}">
+    <span class="inline-flex items-center px-nested rounded-xs bg-neutral-3 text-sm font-medium"><span>design</span><button class="inline-flex items-center justify-center size-nested rounded-xs state border-0 bg-transparent fg-neutral-11 cursor-pointer" aria-label="Remove design"><i class="icon icon-sm ph-bold ph-x"></i></button></span>
+    <span class="inline-flex items-center px-nested rounded-xs bg-neutral-3 text-sm font-medium"><span>tokens</span><button class="inline-flex items-center justify-center size-nested rounded-xs state border-0 bg-transparent fg-neutral-11 cursor-pointer" aria-label="Remove tokens"><i class="icon icon-sm ph-bold ph-x"></i></button></span>
+    <input id="doc-topic" class="{BARE}" placeholder="Add a topic">
+  </div>
+</div>""",
+        "use": ["Name each remove button after its chip (Remove design).", "Inside a field box the chips take <code>rounded-xs</code>, the nested corner, as a nested select does."],
+        "avoid": ["Chips for a single value; use a select."],
+    },
+    {
+        "slug": "sidebar-nav", "name": "Sidebar navigation", "icon": "ph-sidebar-simple", "group": "Navigation",
+        "summary": "A column of links at the control height, each an icon and a label. <code>aria-current=\"page\"</code> marks where you are, and <code>current:</code> paints it.",
+        "html": f"""<nav aria-label="Workspace" class="flex flex-col gap-3xs w-fit p-inset rounded-md bg-neutral-1 border border-neutral-6">
+  <span class="px-control pt-xs pb-3xs text-sm font-medium fg-neutral-11">Workspace</span>
+  <a href="#" aria-current="page" class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><i class="icon ph ph-house"></i><span class="grow">Home</span></a>
+  <a href="#" aria-current="false" class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><i class="icon ph ph-tray"></i><span class="grow">Inbox</span><span class="inline-flex items-center justify-center size-nested shrink-0 rounded-full bg-accent-1-9 fg-accent-1-contrast text-xs font-medium tabular-nums">3</span></a>
+  <a href="#" aria-current="false" class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><i class="icon ph ph-folder-simple"></i><span class="grow">Projects</span></a>
+  <a href="#" aria-current="false" class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><i class="icon ph ph-gear-six"></i><span class="grow">Settings</span></a>
+</nav>""",
+        "use": ["In an app shell, <code>w-sidebar</code> gives it the shell's sidebar width.", "A count sits at the end of its row, in a small round marker."],
+        "avoid": ["More than about eight links without a heading between groups."],
+    },
+    {
+        "slug": "navbar", "name": "Navbar", "icon": "ph-browser", "group": "Navigation",
+        "summary": "The app's top bar at the shell header height: a wordmark, the main links, then actions at the end.",
+        "html": f"""<header class="flex items-center gap-md ps-md pe-xs py-xs bg-neutral-1 border-b border-neutral-6">
+  <a href="#" class="inline-flex items-center gap-gutter no-underline fg-neutral-12 hover:fg-accent-1-11 text-lg font-semibold"><i class="icon ph-fill ph-wind fg-accent-1-9"></i><span>Acme</span></a>
+  <nav aria-label="Main" class="hidden lg:flex items-center gap-3xs">
+    <a href="#" aria-current="page" class="inline-flex items-center h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-11 hover:bg-neutral-3 current:bg-neutral-3 current:fg-neutral-12"><span>Projects</span></a>
+    <a href="#" aria-current="false" class="inline-flex items-center h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-11 hover:bg-neutral-3 current:bg-neutral-3 current:fg-neutral-12"><span>Reports</span></a>
+    <a href="#" aria-current="false" class="inline-flex items-center h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-11 hover:bg-neutral-3 current:bg-neutral-3 current:fg-neutral-12"><span>Team</span></a>
+  </nav>
+  <span class="grow"></span>
+  <button class="inline-flex items-center justify-center size-control shrink-0 rounded-sm state border border-transparent bg-transparent fg-neutral-11 cursor-pointer" aria-label="Notifications"><i class="icon ph ph-bell"></i></button>
+  <span class="inline-flex items-center justify-center size-control shrink-0 rounded-full bg-accent-2-9 fg-accent-2-contrast text-sm font-medium">AL</span>
+</header>""",
+        "use": ["In an app shell give it <code>h-header</code>, and keep its content on one line: that is the height the rest of the shell assumes.", "Hide the main links below <code>lg</code> and move them into a menu."],
+        "avoid": ["More than one primary action in the bar."],
+    },
+    {
+        "slug": "steps", "name": "Steps", "icon": "ph-list-numbers", "group": "Navigation",
+        "summary": "A numbered row of the steps in a task: done steps show a check, the current one carries <code>aria-current=\"step\"</code>, and a rule joins each to the next.",
+        "html": f"""<ol class="flex flex-col sm:flex-row sm:items-center gap-xs list-none p-0 max-w-form">
+  <li class="flex items-center gap-xs grow"><span class="inline-flex items-center justify-center size-nested shrink-0 rounded-full bg-accent-1-9 fg-accent-1-contrast"><i class="icon icon-sm ph-bold ph-check"></i></span><span class="text-base fg-neutral-12">Account</span><span class="hidden sm:block grow border-t border-accent-1-7" aria-hidden="true"></span></li>
+  <li class="flex items-center gap-xs grow" aria-current="step"><span class="inline-flex items-center justify-center size-nested shrink-0 rounded-full border border-accent-1-8 fg-accent-1-11 text-xs font-medium tabular-nums">2</span><span class="text-base fg-neutral-12">Team</span><span class="hidden sm:block grow border-t border-neutral-6" aria-hidden="true"></span></li>
+  <li class="flex items-center gap-xs"><span class="inline-flex items-center justify-center size-nested shrink-0 rounded-full border border-neutral-6 fg-neutral-11 text-xs font-medium tabular-nums">3</span><span class="text-base fg-neutral-12">Billing</span></li>
+</ol>""",
+        "use": ["Three to five steps; name each by what it collects."],
+        "avoid": ["Steps for a single form people fill in one go."],
+    },
+    {
+        "slug": "drawer", "name": "Drawer", "icon": "ph-sidebar", "group": "Overlays",
+        "summary": "A modal <code>&lt;dialog&gt;</code> that sits against the end edge, opened with <code>command</code>. For filters and settings that work on the page behind it.",
+        "html": f"""<button class="{BTN_SECONDARY}" commandfor="doc-drawer" command="show-modal"><i class="icon ph ph-funnel"></i><span>Filters</span></button>
+<dialog id="doc-drawer" class="ms-auto me-xs my-xs p-lg rounded-lg bg-neutral-1 border-0 shadow-xl max-w-form w-full" aria-labelledby="doc-drawer-title">
+  <div class="flex flex-col gap-md">
+    <div class="flex items-center justify-between gap-sm">
+      <h3 id="doc-drawer-title" class="text-lg font-semibold">Filters</h3>
+      <button class="inline-flex items-center justify-center size-control shrink-0 rounded-sm state border border-transparent bg-transparent fg-neutral-11 cursor-pointer" commandfor="doc-drawer" command="close" aria-label="Close filters"><i class="icon ph ph-x"></i></button>
+    </div>
+    <label class="flex items-center gap-xs text-base"><input type="checkbox" checked><span>Assigned to me</span></label>
+    <label class="flex items-center gap-xs text-base"><input type="checkbox"><span>Has attachments</span></label>
+    <div class="flex justify-end gap-xs">
+      <button class="{BTN_SECONDARY}" commandfor="doc-drawer" command="close"><span>Reset</span></button>
+      <button class="{BTN_PRIMARY}" commandfor="doc-drawer" command="close"><span>Apply</span></button>
+    </div>
+  </div>
+</dialog>""",
+        "use": ["<code>ms-auto</code> pushes it to the end edge; <code>my-xs me-xs</code> keep it off the window's edges."],
+        "avoid": ["A drawer for a short confirmation; use a dialog."],
+    },
+    {
+        "slug": "description-list", "name": "Description list", "icon": "ph-list-dashes", "group": "Data display",
+        "summary": "Terms and their values in a <code>&lt;dl&gt;</code>: one column on a phone, the term beside its value from <code>sm</code> up.",
+        "html": f"""<dl class="grid grid-cols-1 sm:grid-cols-3 gap-x-md gap-y-xs max-w-form">
+  <dt class="text-sm font-medium fg-neutral-11">Plan</dt>
+  <dd class="sm:col-span-2">Team, billed yearly</dd>
+  <dt class="text-sm font-medium fg-neutral-11">Seats</dt>
+  <dd class="sm:col-span-2 tabular-nums">7 of 10</dd>
+  <dt class="text-sm font-medium fg-neutral-11">Renews</dt>
+  <dd class="sm:col-span-2">2 March 2027</dd>
+</dl>""",
+        "use": ["Read-only facts about one thing: an account, an order, a file."],
+        "avoid": ["A description list for data people compare across rows; use a table."],
+    },
+    {
+        "slug": "stat", "name": "Stat", "icon": "ph-chart-line-up", "group": "Data display",
+        "summary": "One figure in a card: what it counts, the value in tabular figures, and how it moved.",
+        "html": f"""<div class="flex flex-col gap-3xs p-md rounded-md bg-neutral-1 border border-neutral-6 max-w-form">
+  <span class="text-sm fg-neutral-11">Monthly revenue</span>
+  <div class="flex flex-wrap items-baseline gap-xs">
+    <span class="text-3xl font-display font-extrabold tracking-tight tabular-nums">$48,210</span>
+    <span class="inline-flex items-baseline text-sm fg-success-11"><i class="icon icon-sm ph-bold ph-trend-up"></i><span>12%</span></span>
+  </div>
+  <span class="text-sm fg-neutral-11">vs. last month</span>
+</div>""",
+        "use": ["Say what the change compares against.", "Put the direction in an icon as well as the colour."],
+        "avoid": ["More than four stats in a row; people stop reading them."],
+    },
+    {
+        "slug": "timeline", "name": "Timeline", "icon": "ph-git-commit", "group": "Data display",
+        "summary": "Events in order down a rule: a small round marker for each, its title and when it happened.",
+        "html": f"""<ol class="flex flex-col list-none p-0 max-w-form">
+  <li class="flex gap-sm">
+    <div class="flex flex-col items-center"><span class="inline-flex items-center justify-center size-nested shrink-0 rounded-full bg-success-3 fg-success-11"><i class="icon icon-sm ph-bold ph-check"></i></span><span class="grow border-s border-neutral-6" aria-hidden="true"></span></div>
+    <div class="flex flex-col gap-3xs pb-md"><span class="text-base fg-neutral-12">Deployed to production</span><span class="text-sm fg-neutral-11">Today, 14:02</span></div>
+  </li>
+  <li class="flex gap-sm">
+    <div class="flex flex-col items-center"><span class="inline-flex items-center justify-center size-nested shrink-0 rounded-full bg-neutral-3 fg-neutral-11"><i class="icon icon-sm ph-bold ph-git-pull-request"></i></span><span class="grow border-s border-neutral-6" aria-hidden="true"></span></div>
+    <div class="flex flex-col gap-3xs pb-md"><span class="text-base fg-neutral-12">Pull request merged</span><span class="text-sm fg-neutral-11">Today, 13:48</span></div>
+  </li>
+  <li class="flex gap-sm">
+    <div class="flex flex-col items-center"><span class="inline-flex items-center justify-center size-nested shrink-0 rounded-full bg-neutral-3 fg-neutral-11"><i class="icon icon-sm ph-bold ph-chat-circle"></i></span></div>
+    <div class="flex flex-col gap-3xs"><span class="text-base fg-neutral-12">Review requested</span><span class="text-sm fg-neutral-11">Yesterday, 17:20</span></div>
+  </li>
+</ol>""",
+        "use": ["Newest first, unless the order of steps matters more than recency."],
+        "avoid": ["A timeline for events people need to filter or sort; use a table."],
+    },
+    {
+        "slug": "code-block", "name": "Code block", "icon": "ph-code", "group": "Data display",
+        "summary": "A <code>&lt;figure&gt;</code> with a caption naming the file and a copy button, over a <code>&lt;pre&gt;</code> that scrolls sideways rather than wrap.",
+        "html": f"""<figure class="flex flex-col rounded-md bg-neutral-1 border border-neutral-6 overflow-hidden max-w-form">
+  <figcaption class="flex items-center justify-between gap-sm ps-md pe-xs py-3xs border-b border-neutral-6">
+    <span class="text-sm font-mono fg-neutral-11">index.html</span>
+    <button class="inline-flex items-center justify-center size-control shrink-0 rounded-sm state border border-transparent bg-transparent fg-neutral-11 cursor-pointer" aria-label="Copy code"><i class="icon ph ph-copy"></i></button>
+  </figcaption>
+  <pre class="p-md overflow-x-auto"><code class="font-mono">&lt;link rel="stylesheet" href="nowind.min.css"&gt;</code></pre>
+</figure>""",
+        "use": ["Name the file or language in the caption.", "Let long lines scroll (<code>overflow-x-auto</code>) so the code keeps its shape."],
+        "avoid": ["Wrapping code lines; it changes what the code looks like."],
+    },
+    {
+        "slug": "kbd", "name": "Keyboard key", "icon": "ph-keyboard", "group": "Data display",
+        "summary": "A key in running text, at the nested height with the keycap's padding and corner, set in the mono face.",
+        "html": f"""<p class="text-base max-w-text">Press <kbd class="{KBD}">⌘</kbd> <kbd class="{KBD}">K</kbd> to search, or <kbd class="{KBD}">/</kbd> from anywhere on the page.</p>""",
+        "use": ["One <code>&lt;kbd&gt;</code> per key, a space between the keys of a shortcut."],
+        "avoid": ["Keycaps for words that aren't keys."],
+    },
+    {
+        "slug": "banner", "name": "Banner", "icon": "ph-megaphone", "group": "Feedback",
+        "summary": "A message across the top of a page or region, on the accent's solid with its contrast text, and one link.",
+        "html": f"""<div role="status" class="flex flex-wrap items-center gap-gutter py-xs ps-xs pe-sm rounded-md bg-accent-1-9 fg-accent-1-contrast">
+  <i class="icon ph ph-megaphone"></i>
+  <span class="grow text-base">Element defaults and a new command palette are out.</span>
+  <a href="#" class="hover:opacity-70 text-base font-medium fg-accent-1-contrast">Read the release notes</a>
+</div>""",
+        "use": ["One banner at a time, for news that concerns everyone on the page."],
+        "avoid": ["A banner for an error in a form; put that next to the field."],
+    },
+    {
+        "slug": "callout", "name": "Callout", "icon": "ph-lightbulb", "group": "Feedback",
+        "summary": "A note set apart from the text around it by a start rule and a soft fill, with a title and its detail.",
+        "html": f"""<aside class="flex gap-gutter p-md rounded-md border-s-4 border-info-7 bg-info-2 max-w-form">
+  <i class="icon ph ph-lightbulb fg-info-11"></i>
+  <div class="flex flex-col gap-3xs">
+    <span class="text-lg font-semibold">Tip</span>
+    <p class="text-base fg-neutral-11">Wrap a control's label in a span, so the reset can trim it to its cap height.</p>
+  </div>
+</aside>""",
+        "use": ["Asides in long text: a tip, a caveat, a note on an older version."],
+        "avoid": ["A callout for a status the reader must act on; use an alert."],
+    },
 ]
 
 
