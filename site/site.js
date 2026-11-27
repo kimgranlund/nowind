@@ -1,27 +1,41 @@
-// Site search: ⌘K or Ctrl+K (or "/") opens a dialog over every page, block heading, component and class.
-// The index, search.json beside this script, is written by scripts/templates.py and loaded on first open.
+// Site search: ⌘K or Ctrl+K (or "/") opens a command palette over every page, block heading, component and class.
+// The index, search.json beside this script, is written by scripts/templates.py and loaded on first open. Results come
+// in groups (pages, components, sections, classes), one line each; Tab cycles the filter, ↑↓ move, Enter opens.
 (() => {
   const base = new URL(".", document.currentScript.src);
   const KINDS = { Page: "ph-file-text", Section: "ph-hash", Component: "ph-squares-four", Class: "ph-brackets-curly" };
-  let rows = null, hits = [], active = 0;
+  const GROUPS = [["Page", "Pages"], ["Component", "Components"], ["Section", "Sections"], ["Class", "Classes"]];
+  const FILTERS = [["", "All"], ...GROUPS.map(([k, n]) => [k, n])];
+  const KEY = "inline-flex items-center justify-center h-nested min-w-nested px-2xs rounded-xs border text-mono-sm";
+  let rows = null, hits = [], active = 0, filter = "";
 
   const dialog = document.createElement("dialog");
   dialog.setAttribute("aria-label", "Search Nowind");
-  dialog.className = "w-full max-w-form max-h-below-header mt-3xl mx-auto p-0 rounded-md bg fg border shadow-xl";
+  dialog.className = "w-full max-w-measure max-h-below-header m-auto p-0 rounded-lg bg fg border shadow-xl";
   dialog.innerHTML = `
     <div class="flex flex-col max-h-below-header">
-      <div class="flex items-center gap-gutter px-control border-b">
+      <div class="flex items-center gap-gutter ps-md pe-xs py-xs">
         <i class="icon ph ph-magnifying-glass fg-weak"></i>
         <input type="text" role="combobox" aria-expanded="true" aria-controls="search-results" aria-autocomplete="list"
           placeholder="Search pages, components and classes" aria-label="Search"
-          class="grow min-w-0 h-control bg-transparent border-0 fg text-control-md">
-        <kbd class="text-mono-sm fg-weak">Esc</kbd>
+          class="grow min-w-0 p-0 border-0 bg-transparent fg text-lg outline-0">
+        <button type="button" aria-label="Close" class="inline-flex items-center justify-center size-control shrink-0 rounded-sm border border-transparent bg-transparent state fg-weak cursor-pointer"><i class="icon ph ph-x"></i></button>
       </div>
-      <ul id="search-results" role="listbox" aria-label="Results" class="list-none ps-0 flex flex-col min-h-0 overflow-y-auto"></ul>
-      <p class="px-control py-2xs border-t text-caption fg-weak" aria-live="polite"></p>
+      <div role="group" aria-label="Filter" class="flex flex-wrap items-center gap-3xs px-md pb-xs border-b">
+        ${FILTERS.map(([k, n]) => `<button type="button" data-filter="${k}" aria-pressed="${k === ""}" class="inline-flex items-center h-nested px-nested rounded-sm border border-transparent bg-transparent state text-sm fg-weak pressed:bg-component pressed:fg cursor-pointer"><span>${n}</span></button>`).join("")}
+      </div>
+      <ul id="search-results" role="listbox" aria-label="Results" class="list-none p-inset flex flex-col min-h-0 overflow-y-auto"></ul>
+      <div class="flex flex-wrap items-center gap-md px-md py-xs border-t text-sm fg-weak">
+        <span class="inline-flex items-center gap-3xs"><kbd class="${KEY}">↑</kbd><kbd class="${KEY}">↓</kbd><span>Navigate</span></span>
+        <span class="inline-flex items-center gap-3xs"><kbd class="${KEY}">↵</kbd><span>Open</span></span>
+        <span class="inline-flex items-center gap-3xs"><kbd class="${KEY}">Tab</kbd><span>Filter</span></span>
+        <span class="inline-flex items-center gap-3xs"><kbd class="${KEY}">Esc</kbd><span>Close</span></span>
+        <span class="ms-auto" aria-live="polite"></span>
+      </div>
     </div>`;
   document.body.append(dialog);
-  const input = dialog.querySelector("input"), list = dialog.querySelector("ul"), status = dialog.querySelector("p");
+  const input = dialog.querySelector("input"), list = dialog.querySelector("ul"), status = dialog.querySelector("[aria-live]");
+  const filters = [...dialog.querySelectorAll("[data-filter]")];
 
   const esc = (t) => t.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 
@@ -36,34 +50,51 @@
     return s - t.length / 100;
   }
 
+  const row = (r, i, sub) => `<li role="option" id="search-${i}" aria-selected="${i === active}">
+      <a href="${new URL(r[1], base)}" tabindex="-1" aria-selected="${i === active}" class="flex items-center gap-gutter h-control px-control rounded-sm no-underline fg hover:bg-component-weak selected:bg-component">
+        <i class="icon ph ${KINDS[r[2]]} fg-weak"></i>
+        <span class="grow min-w-0 truncate ${r[2] === "Class" ? "text-mono-sm" : "text-body-md"}">${esc(r[0])}</span>
+        ${sub ? `<span class="shrink-0 truncate text-sm fg-weak">${esc(sub)}</span>` : ""}
+        <i class="icon icon-sm ph ph-arrow-elbow-down-left fg-weak ${i === active ? "" : "invisible"}" aria-hidden="true"></i>
+      </a></li>`;
+
   function render() {
     const q = input.value.trim().toLowerCase();
-    if (!rows) { status.textContent = "Loading the index…"; return; }
-    if (!q) hits = rows.filter((r) => r[2] === "Page");
-    else {
+    if (!rows) { status.textContent = "Loading…"; return; }
+    const pool = filter ? rows.filter((r) => r[2] === filter) : rows;
+    // No query: the site map, pages grouped by section. A query: hits grouped by kind, in the order each kind's best hit
+    // ranks, keeping the ranking inside a group.
+    let groups;
+    if (!q && !filter) {
+      const pages = rows.filter((r) => r[2] === "Page");
+      groups = [...new Set(pages.map((r) => r[3]))].map((g) => [g, pages.filter((r) => r[3] === g), () => ""]);
+    } else {
       const words = q.split(/\s+/);
-      hits = rows.map((r) => [score(r, q, words), r]).filter(([s]) => s > 0).sort((a, b) => b[0] - a[0]).slice(0, 60).map(([, r]) => r);
+      const found = !q ? pool.slice(0, 60) : pool.map((r) => [score(r, q, words), r]).filter(([sc]) => sc > 0).sort((a, b) => b[0] - a[0]).slice(0, 60).map(([, r]) => r);
+      groups = [...new Set(found.map((r) => r[2]))].map((k) => [GROUPS.find(([g]) => g === k)[1], found.filter((r) => r[2] === k), (r) => r[2] === "Component" ? "" : r[3]]);
     }
+    hits = groups.flatMap(([, rs]) => rs);
     active = 0;
-    list.innerHTML = hits.map((r, i) => `<li role="option" id="search-${i}" aria-selected="${i === 0}">
-      <a href="${new URL(r[1], base)}" tabindex="-1" class="flex items-center gap-gutter px-control py-2xs no-underline fg selected:bg-component-accent-1-weak hover:bg-component-weak">
-        <i class="icon ph ${KINDS[r[2]]} fg-weak"></i>
-        <span class="flex flex-col grow min-w-0"><span class="truncate ${r[2] ==="Class" ? "text-mono-sm" : "text-title-sm"}">${esc(r[0])}</span><span class="truncate text-caption fg-weak">${esc(r[3] || "")}</span></span>
-        <span class="text-kicker fg-subtle">${r[2]}</span>
-      </a></li>`).join("");
-    list.querySelectorAll("li").forEach((li) => li.firstElementChild.setAttribute("aria-selected", li.getAttribute("aria-selected")));
+    let i = 0;
+    list.innerHTML = groups.map(([name, rs, sub]) => (filter ? "" : `<li role="presentation" class="px-control pt-xs pb-3xs text-sm fg-weak">${esc(name)}</li>`) + rs.map((r) => row(r, i++, sub(r))).join("")).join("")
+      || `<li role="presentation" class="px-control py-md text-body-md fg-weak">No results for “${esc(input.value.trim())}”</li>`;
     input.setAttribute("aria-activedescendant", hits.length ? "search-0" : "");
-    status.textContent = q ? `${hits.length === 60 ? "First 60" : hits.length} results · ↑↓ to move · Enter to open` : `${rows.length} entries · type to search`;
+    status.textContent = q ? `${hits.length === 60 ? "First 60" : hits.length} results` : `${rows.length} entries`;
   }
 
   function move(d) {
     if (!hits.length) return;
-    const items = list.querySelectorAll("li");
-    items[active].setAttribute("aria-selected", "false"); items[active].firstElementChild.setAttribute("aria-selected", "false");
+    const set = (n, on) => { const li = list.querySelector(`#search-${n}`); li.setAttribute("aria-selected", on); li.firstElementChild.setAttribute("aria-selected", on); li.querySelector(".ph-arrow-elbow-down-left").classList.toggle("invisible", !on); return li; };
+    set(active, false);
     active = (active + d + hits.length) % hits.length;
-    items[active].setAttribute("aria-selected", "true"); items[active].firstElementChild.setAttribute("aria-selected", "true");
-    items[active].scrollIntoView({ block: "nearest" });
+    set(active, true).scrollIntoView({ block: "nearest" });
     input.setAttribute("aria-activedescendant", `search-${active}`);
+  }
+
+  function setFilter(k) {
+    filter = k;
+    filters.forEach((b) => b.setAttribute("aria-pressed", b.dataset.filter === k));
+    render();
   }
 
   async function open() {
@@ -82,8 +113,11 @@
   input.addEventListener("keydown", (e) => {
     if (e.key === "ArrowDown") { e.preventDefault(); move(1); }
     else if (e.key === "ArrowUp") { e.preventDefault(); move(-1); }
+    else if (e.key === "Tab") { e.preventDefault(); const n = FILTERS.findIndex(([k]) => k === filter); setFilter(FILTERS[(n + (e.shiftKey ? -1 : 1) + FILTERS.length) % FILTERS.length][0]); }
     else if (e.key === "Enter" && hits[active]) { e.preventDefault(); location.href = new URL(hits[active][1], base); dialog.close(); }
   });
+  filters.forEach((b) => b.addEventListener("click", () => { setFilter(b.dataset.filter); input.focus(); }));
+  dialog.querySelector('[aria-label="Close"]').addEventListener("click", () => dialog.close());
   dialog.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
   document.addEventListener("keydown", (e) => {
     const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName) || document.activeElement?.isContentEditable;
