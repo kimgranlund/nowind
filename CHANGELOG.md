@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Initials avatars grow to fit:** a round marker holding initials stays square and grows when its text needs more room than the control (at a 12px root on a narrow screen), and the geometry audit no longer asks an avatar group to share one size.
 - **Physical bevels sit on the edge:** a lit raised part paints its own border (the light on top, the shade below, the sides clear) instead of drawing inset lines, which landed a pixel inside the border and read as a second contour. Its face gradient now starts under the border, and pressing clears the bevel. No length changes.
 - **Small round markers take `text-xs`:** the size contract's count kind now covers any `size-nested rounded-full` marker, initials included, so a small avatar's initials fit. The container-query demo shows the card in two equal columns. The `segment` convenience class stretches with `self-stretch`, so it matches its stack inside a segmented group.
 - **A smaller semantic set (breaking).** Semantic classes now name only decisions a raw step can't: 149, down from 267. Every token stays; only these classes go. Use the raw step or the kept role instead:

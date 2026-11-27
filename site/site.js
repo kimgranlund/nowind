@@ -354,7 +354,7 @@ window.nowindOwnCSS = () => !!document.querySelector("style[data-page-css]");
       }
       // Heights: full-size controls side by side.
       if (c.display.includes("flex") && c.flexDirection === "row" && !e.matches(".flex-wrap")) {
-        const ctrls = [...e.children].filter((k) => k.matches(".h-control, .size-control"));
+        const ctrls = [...e.children].filter((k) => k.matches(".h-control, .size-control") && !k.matches(".rounded-full.size-control:not(button, a, input)"));  // an avatar holding initials grows to fit them, so a group may differ
         const hs = [...new Set(ctrls.map((k) => Math.round(R(k).height)))];
         if (hs.length > 1) out.push({ rule: "heights", where: where(e), detail: `controls at ${hs.join(", ")}px` });
       }
