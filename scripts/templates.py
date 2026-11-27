@@ -160,8 +160,7 @@ def top(path):
 </div>
 <div class="flex items-center gap-xs px-grid py-2xs border-b-2 border-strong bg">
   <button type="button" popovertarget="site-map" class="inline-flex items-center gap-gutter-half min-w-0 h-control px-control rounded-sm border hover:bg-component-weak bg text-title-sm cursor-pointer transition-colors" aria-label="Site map: {cur or "all pages"}">{where}<i class="icon caret fg-weak" aria-hidden="true"></i></button>
-  <button type="button" data-search-open class="inline-flex items-center gap-gutter grow min-w-0 max-w-form h-control px-control rounded-sm border hover:border-strong bg-strong fg-subtle text-control-md cursor-text transition-colors" aria-label="Search the site"><i class="icon ph ph-magnifying-glass"></i><span class="grow truncate text-start">Search pages, components and classes</span><kbd class="hidden sm:inline text-mono-sm">⌘K</kbd></button>
-  <span class="flex-1 hidden lg:block"></span>
+  <button type="button" data-search-open class="inline-flex items-center gap-gutter grow min-w-0 h-control px-control rounded-sm border hover:border-strong bg-strong fg-subtle text-control-md cursor-text transition-colors" aria-label="Search the site"><i class="icon ph ph-magnifying-glass"></i><span class="grow truncate text-start">Search pages, components and classes</span><kbd class="hidden sm:inline text-mono-sm">⌘K</kbd></button>
   {step}
 </div>
 </div>

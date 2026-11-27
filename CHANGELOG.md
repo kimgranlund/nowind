@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- **The bar's search field fills the width** between the site-map button and the page arrows.
+
 ## 0.19.0 (2026-11-27)
 
 - **A new command palette (⌘K):** a borderless search field with a close button, filter chips (All, Pages, Components, Sections, Classes; Tab cycles them), results on one line each in labelled groups (the site map by section when the field is empty, hits by kind when it isn't), a neutral rounded highlight with an Enter mark, and a footer of key hints and the result count. The dialog centres on the page.
