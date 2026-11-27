@@ -50,7 +50,7 @@
     },
     {
       "class": "badge",
-      "recipe": "inline-flex items-center h-nested px-nested gap-gutter-half rounded-full border text-sm font-medium",
+      "recipe": "inline-flex items-center h-nested px-nested rounded-full border text-sm font-medium",
       "use": "A status pill: small height, pill radius, label size. Add a tone."
     },
     {

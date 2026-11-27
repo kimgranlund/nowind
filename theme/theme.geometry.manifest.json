@@ -620,7 +620,7 @@
         "identify": "status pill, tag, label",
         "height": "h-nested, or no fixed height when it holds a remove button",
         "padding": "px-nested",
-        "gap": "gap-gutter-half",
+        "gap": "none: the nested icon box already leaves the glyph a bearing on each side, so a gap would push the label further from the icon than the icon sits from the edge",
         "corner": "rounded-full",
         "status": "decided",
         "current": "21, all on the contract"

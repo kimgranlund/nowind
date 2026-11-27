@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- **Titles are the next size up from the body:** a title in a card, list, alert, toast or dialog is `text-lg font-semibold` (was `text-base`), in the size contract, the examples and the docs. A one-line message stays at the body size.
+- **Badges drop their icon gap:** the nested icon box already leaves the glyph about 3px on each side, so the extra `gap-gutter-half` set the label twice as far from the icon as the icon sits from the edge. The `badge` convenience class and the geometry contract follow.
 - **Colour page swatches are square**, and step 9, each palette's solid, is a circle.
 - **The bar's search field fills the width** between the site-map button and the page arrows.
 

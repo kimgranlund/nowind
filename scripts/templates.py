@@ -965,7 +965,7 @@ CONV_DEMOS = [
     ("fields", "Fields and badges", "<code>field</code> is the box; the input inside stays bare. Wrap a badge's text in a <code>span</code>.",
      '<div class="flex flex-col gap-md max-w-form">\n  <div class="flex flex-col gap-2xs">\n    <label for="cv-email" class="text-sm font-medium">Email</label>\n    <div class="field">\n      <i class="icon ph ph-envelope-simple fg-neutral-11" aria-hidden="true"></i>\n      <input id="cv-email" type="email" class="grow min-w-0 h-full p-0 border-0 bg-transparent fg-neutral-12" placeholder="ada@example.com">\n    </div>\n  </div>\n  <div class="flex flex-wrap gap-2xs">\n    <span class="badge badge-neutral"><span>Draft</span></span>\n    <span class="badge badge-success"><i class="icon icon-sm ph-bold ph-check"></i><span>Paid</span></span>\n    <span class="badge badge-warning"><span>Pending</span></span>\n    <span class="badge badge-danger"><span>Failed</span></span>\n    <span class="badge badge-info"><span>New</span></span>\n  </div>\n</div>'),
     ("cards", "Cards", "<code>card</code> pads and rounds; lay its content out with utilities.",
-     '<div class="card flex flex-col gap-xs max-w-form">\n  <h3 class="text-base font-semibold">Weekly report</h3>\n  <p class="fg-neutral-11">Six pages changed and two components were added.</p>\n  <div class="flex gap-xs pt-xs">\n    <button class="btn btn-primary"><span>Open</span></button>\n    <button class="btn btn-ghost"><span>Later</span></button>\n  </div>\n</div>'),
+     '<div class="card flex flex-col gap-xs max-w-form">\n  <h3 class="text-lg font-semibold">Weekly report</h3>\n  <p class="fg-neutral-11">Six pages changed and two components were added.</p>\n  <div class="flex gap-xs pt-xs">\n    <button class="btn btn-primary"><span>Open</span></button>\n    <button class="btn btn-ghost"><span>Later</span></button>\n  </div>\n</div>'),
 ]
 
 
@@ -1239,7 +1239,7 @@ def type_audit():
     text-* class, else the nearest ancestor's, else text-base) must be the kind's size. Returns (findings, unclassified)."""
     VOID = {"input", "img", "br", "hr", "meta", "link", "source", "wbr", "col"}
     WANT = {"inline": set(), "navigation": {"base"}, "control": {"base"}, "option label": {"base"}, "cell": {"base"}, "header": {"sm"}, "label": {"sm"}, "supporting": {"sm"},
-            "body": {"base"}, "title": {"base"}, "dialog title": {"lg"}, "badge": {"sm"}, "count": {"xs"}, "keycap": {"sm"}, "kicker": {"xs"}, "figure": {"3xl"}}
+            "body": {"base"}, "title": {"lg"}, "dialog title": {"lg"}, "badge": {"sm"}, "count": {"xs"}, "keycap": {"sm"}, "kicker": {"xs"}, "figure": {"3xl"}}
 
     class Node:
         def __init__(self, tag, attrs, parent):
@@ -1490,7 +1490,7 @@ def geometry_audit():
         "small control": ({"h-nested", "size-nested"}, {"px-nested"}, {"gap-gutter-half"}, {"rounded-inner", "rounded-xs", "rounded-full"}),
         "item in a control box": ({"h-full"}, {"px-nested"}, {"gap-gutter-half"}, {"rounded-inner"}),
         "control box": ({"h-control"}, set(), set(), {"rounded-sm"}),
-        "badge": ({"h-nested"}, {"px-nested"}, {"gap-gutter-half"}, {"rounded-full"}),
+        "badge": ({"h-nested"}, {"px-nested"}, set(), {"rounded-full"}),
         "round marker": ({"size-nested", "size-control"}, {"p-0"}, None, {"rounded-full"}),
         "keycap": ({"h-nested"}, {"px-2xs"}, set(), {"rounded-xs"}),
         "card": (None, {"p-md", "p-0"}, None, {"rounded-md"}),

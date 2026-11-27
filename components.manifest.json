@@ -206,7 +206,6 @@
         "flex-wrap",
         "font-medium",
         "gap-2xs",
-        "gap-gutter-half",
         "h-nested",
         "icon",
         "icon-sm",
@@ -283,6 +282,7 @@
         "rounded-md",
         "state",
         "text-base",
+        "text-lg",
         "text-sm"
       ]
     },
@@ -340,6 +340,7 @@
         "size-nested",
         "state",
         "text-base",
+        "text-lg",
         "text-sm",
         "w-fit"
       ]
@@ -628,6 +629,7 @@
         "shadow-sm",
         "state",
         "text-base",
+        "text-lg",
         "text-xs",
         "tracking-widest",
         "uppercase"
@@ -681,7 +683,7 @@
         "rounded-md",
         "shrink-0",
         "size-nested",
-        "text-base",
+        "text-lg",
         "text-sm",
         "text-xs",
         "tracking-widest",
@@ -1207,7 +1209,8 @@
         "rounded-sm",
         "state",
         "text-base",
-        "text-center"
+        "text-center",
+        "text-lg"
       ]
     },
     {

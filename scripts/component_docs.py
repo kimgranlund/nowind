@@ -72,9 +72,9 @@ COMPONENTS = [
         "slug": "badge", "name": "Badge", "icon": "ph-tag", "group": "Status",
         "summary": "A short label for a status or category, at the nested control size.",
         "html": """<div class="flex flex-wrap items-center gap-2xs">
-  <span class="inline-flex items-center h-nested px-nested rounded-full border gap-gutter-half bg-neutral-3 border-neutral-6 fg-neutral-11 text-sm font-medium"><span>Draft</span></span>
-  <span class="inline-flex items-center h-nested px-nested rounded-full border gap-gutter-half bg-success-3 border-success-6 fg-success-11 text-sm font-medium"><i class="icon icon-sm ph-bold ph-check"></i><span>Paid</span></span>
-  <span class="inline-flex items-center h-nested px-nested rounded-full border gap-gutter-half bg-warning-3 border-warning-6 fg-warning-11 text-sm font-medium"><i class="icon icon-sm ph-bold ph-clock"></i><span>Pending</span></span>
+  <span class="inline-flex items-center h-nested px-nested rounded-full border bg-neutral-3 border-neutral-6 fg-neutral-11 text-sm font-medium"><span>Draft</span></span>
+  <span class="inline-flex items-center h-nested px-nested rounded-full border bg-success-3 border-success-6 fg-success-11 text-sm font-medium"><i class="icon icon-sm ph-bold ph-check"></i><span>Paid</span></span>
+  <span class="inline-flex items-center h-nested px-nested rounded-full border bg-warning-3 border-warning-6 fg-warning-11 text-sm font-medium"><i class="icon icon-sm ph-bold ph-clock"></i><span>Pending</span></span>
   <span class="inline-flex items-center h-nested px-nested rounded-full border border-transparent bg-info-9 fg-info-contrast text-sm font-medium"><span>New</span></span>
 </div>""",
         "use": ["Pair a status color with its word, never color alone."],
@@ -91,7 +91,7 @@ COMPONENTS = [
   <div class="flex flex-col gap-3xs p-xs rounded-md border border-warning-6 bg-warning-3" role="status">
     <div class="flex items-center gap-xs">
       <i class="icon icon-lg ph ph-warning fg-warning-11"></i>
-      <span class="text-base font-semibold fg-warning-12">Your trial ends in 3 days</span>
+      <span class="text-lg font-semibold fg-warning-12">Your trial ends in 3 days</span>
     </div>
     <span class="text-sm fg-warning-11">Add a payment method to keep your projects active.</span>
   </div>
@@ -108,7 +108,7 @@ COMPONENTS = [
              "html": """<div class="flex flex-col gap-3xs p-xs rounded-md border border-danger-6 bg-danger-3 max-w-form" role="alert">
   <div class="flex items-center gap-xs">
     <i class="icon icon-lg ph ph-warning-octagon fg-danger-11"></i>
-    <span class="text-base font-semibold fg-danger-12">Deployment failed</span>
+    <span class="text-lg font-semibold fg-danger-12">Deployment failed</span>
   </div>
   <span class="text-sm fg-danger-11">The build stopped at step 4 of 6.</span>
   <div class="flex gap-2xs pt-2xs">
@@ -135,7 +135,7 @@ COMPONENTS = [
   <div class="flex items-start gap-gutter p-xs rounded-md bg-neutral-12 fg-neutral-1 shadow-lg" role="status">
     <i class="icon ph ph-check-circle fg-success-9"></i>
     <div class="grow min-w-0 flex flex-col gap-3xs">
-      <span class="text-base font-medium fg-neutral-1">Invite sent</span>
+      <span class="text-lg font-medium fg-neutral-1">Invite sent</span>
       <span class="text-sm fg-neutral-8">grace@example.com can now join the workspace.</span>
       <div class="flex gap-3xs pt-3xs"><button class="inline-flex items-center h-nested px-nested rounded-inner state border-0 bg-neutral-1 fg-neutral-12 text-base font-medium cursor-pointer"><span>Undo</span></button></div>
     </div>
@@ -144,7 +144,7 @@ COMPONENTS = [
   <div class="flex items-start gap-gutter p-xs rounded-md bg-neutral-12 fg-neutral-1 shadow-lg" role="status">
     <i class="icon ph ph-x-circle fg-danger-9"></i>
     <div class="grow min-w-0 flex flex-col gap-3xs">
-      <span class="text-base font-medium fg-neutral-1">Upload failed</span>
+      <span class="text-lg font-medium fg-neutral-1">Upload failed</span>
       <span class="text-sm fg-neutral-8">report.pdf is over the 10 MB limit.</span>
       <div class="flex gap-3xs pt-3xs"><button class="inline-flex items-center h-nested px-nested rounded-inner state border-0 bg-neutral-1 fg-neutral-12 text-base font-medium cursor-pointer"><span>Retry</span></button></div>
     </div>
@@ -377,7 +377,7 @@ COMPONENTS = [
         "summary": "A surface that groups related content, padded at the surface level.",
         "html": f"""<article class="flex flex-col gap-2xs {CARD} shadow-sm max-w-form">
   <span class="text-xs font-mono uppercase tracking-widest fg-accent-1-11">Guide</span>
-  <h3 class="text-base font-semibold">Designing with fluid type</h3>
+  <h3 class="text-lg font-semibold">Designing with fluid type</h3>
   <p class="text-base fg-neutral-11">Sizes that grow with the screen, without a single media query.</p>
   <div class="flex gap-sm pt-xs"><button class="{BTN_SECONDARY}"><span>Read</span></button></div>
 </article>""",
@@ -527,7 +527,7 @@ COMPONENTS = [
         "summary": "What a view shows before it has content, with the action that fills it.",
         "html": f"""<div class="flex flex-col items-center justify-center text-center gap-xs p-2xl rounded-md border-2 border-dashed">
   <span class="inline-flex items-center justify-center p-xs rounded-full bg-neutral-3 fg-neutral-11"><i class="icon ph ph-folder-open"></i></span>
-  <h3 class="text-base font-semibold">No projects yet</h3>
+  <h3 class="text-lg font-semibold">No projects yet</h3>
   <p class="text-base fg-neutral-11 max-w-text">Create a project to collect designs, notes and feedback in one place.</p>
   <button class="{BTN_PRIMARY}"><i class="icon ph ph-plus"></i><span>New project</span></button>
 </div>""",
@@ -612,7 +612,7 @@ COMPONENTS = [
   <div class="aspect-video @md:basis-1/3 shrink-0 flex items-center justify-center bg-accent-2-a4 fg-accent-2-11"><i class="icon icon-lg ph-light ph-mountains"></i></div>
   <div class="flex flex-col gap-2xs p-md">
     <span class="text-xs font-mono uppercase tracking-widest fg-accent-2-11">Case study</span>
-    <h3 class="text-base font-semibold">Rebuilding a design system in a week</h3>
+    <h3 class="text-lg font-semibold">Rebuilding a design system in a week</h3>
     <div class="flex items-center gap-xs pt-2xs">
       <span class="inline-flex items-center justify-center size-nested shrink-0 rounded-full bg-accent-3-9 fg-accent-3-contrast text-xs font-medium">GH</span>
       <span class="text-sm fg-neutral-11">Grace Hopper · 6 min read</span>

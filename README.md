@@ -220,7 +220,7 @@ Every class and its declarations: [classes.md](classes.md), or browse them as [r
 
 ### Text sizes in practice
 
-Leave a page's headings unsized where they head the page or a section: the reset gives `h1`–`h6` the heading roles (`text-heading-xl` and down). A title inside a card, list, alert or dialog is smaller than a section heading, so size it from the contract below (`text-base font-semibold`); a classless `dialog` sizes its own heading. Every example follows one size contract, enforced by the examples lint: controls, table cells and body copy are `text-base`; labels, table headers, supporting lines and badges `text-sm`; titles `text-base font-semibold` (`text-lg` in a dialog); and an icon takes the step of the text beside it. The [Type and space](https://kimgranlund.github.io/nowind/site/docs/type-space.html) page has the table.
+Leave a page's headings unsized where they head the page or a section: the reset gives `h1`–`h6` the heading roles (`text-heading-xl` and down). A title inside a card, list, alert or dialog is smaller than a section heading, so size it from the contract below (`text-lg font-semibold`, the next size up from the body); a classless `dialog` sizes its own heading. Every example follows one size contract, enforced by the examples lint: controls, table cells and body copy are `text-base`; labels, table headers, supporting lines and badges `text-sm`; titles `text-lg font-semibold`, the next size up from the body; and an icon takes the step of the text beside it. The [Type and space](https://kimgranlund.github.io/nowind/site/docs/type-space.html) page has the table.
 
 ### Buttons, fields and icons
 

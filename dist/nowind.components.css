@@ -72,7 +72,7 @@
   }
   .field:focus-within { border-color: var(--accent-1-8); }
   .field:has(:is([aria-invalid="true"], :user-invalid)) { border-color: var(--danger-7); }
-  .badge { display: inline-flex; align-items: center; font-size: var(--text-sm); line-height: var(--text-sm--line-height); font-weight: var(--font-weight-medium); border-width: var(--border-width); --_bw: var(--border-width); border-radius: 9999px; --_nest: max(0px, calc(9999px - var(--_inset) - var(--_bw))); min-height: var(--nested-height); padding-inline: var(--nested-padding); gap: calc(var(--gutter) / 2); }
+  .badge { display: inline-flex; align-items: center; font-size: var(--text-sm); line-height: var(--text-sm--line-height); font-weight: var(--font-weight-medium); border-width: var(--border-width); --_bw: var(--border-width); border-radius: 9999px; --_nest: max(0px, calc(9999px - var(--_inset) - var(--_bw))); min-height: var(--nested-height); padding-inline: var(--nested-padding); }
   .select-base.badge::picker-icon { inline-size: calc(var(--nested-height) - 2 * var(--border-width)); block-size: calc(var(--nested-height) - 2 * var(--border-width)); }
   .select-base.badge { padding-inline-end: var(--nested-icon-padding); }
   .badge:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--nested-icon-padding); }

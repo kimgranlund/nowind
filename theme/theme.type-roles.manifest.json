@@ -424,10 +424,10 @@
       {
         "kind": "surface title",
         "identify": "h2/h3 heading a surface",
-        "size": "text-lg font-semibold in a dialog; text-base font-semibold everywhere else (cards, lists, alerts, toasts)",
+        "size": "text-lg font-semibold: the next size up from the body (text-base), in a card, list, alert, toast or dialog",
         "icon": "icon-lg on a title row",
         "status": "decided",
-        "current": "19 text-base, 3 text-lg"
+        "current": "all text-lg"
       },
       {
         "kind": "badge",
