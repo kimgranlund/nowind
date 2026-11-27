@@ -771,8 +771,10 @@ out.push("  .select-base option::checkmark { content: \"\"; flex: none; inline-s
 out.push("  .select-base option:hover, .select-base option:focus-visible { background: var(--component-weak); outline: none; }");
 out.push("  .caret::before, .select-base::picker-icon { content: \"\"; flex: none; inline-size: var(--icon-sm); block-size: var(--icon-sm); background: currentColor; mask: var(--glyph-caret) center / contain no-repeat; transition: rotate var(--motion-duration) var(--motion-easing); }");
 out.push("  .select-base { min-inline-size: 0; }");
-out.push("  .select-base::picker-icon { color: var(--fg-weak); margin-inline: auto calc((var(--icon-box) - var(--icon-sm)) / 2); }");
+out.push("  .select-base::picker-icon { color: var(--fg-weak); inline-size: var(--icon-box); block-size: var(--icon-box); mask-size: var(--icon-sm); margin-inline: auto 0; }");
+out.push("  .select-base.h-nested::picker-icon { inline-size: calc(var(--nested-height) - 2 * var(--border-width)); block-size: calc(var(--nested-height) - 2 * var(--border-width)); }");
 out.push("  .select-base.px-control { padding-inline-end: var(--control-icon-padding); }");
+out.push("  .select-base.px-nested { padding-inline-end: var(--nested-icon-padding); }");
 out.push("  :is([open] > summary, [aria-expanded=\"true\"]) .caret::before, .select-base:open::picker-icon { rotate: 180deg; }");
 out.push("  :root[data-lens=\"on\"] .lens { -webkit-backdrop-filter: var(--_lens-filter, url(#nowind-lens)) saturate(1.8) brightness(1.05); backdrop-filter: var(--_lens-filter, url(#nowind-lens)) saturate(1.8) brightness(1.05); }");
 out.push("  .select-base option:checked { background: var(--component-accent-1-weak); color: var(--fg-accent-1-weak); }");
@@ -781,7 +783,7 @@ for (const c of ["size-control", "size-nested"]) out.push(`  .${c}:not(:has(> *)
 for (const c of ["h-nested", "size-nested"]) out.push(`  .${c} > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }`);
 for (const [cls, pad] of [["px-control", "--control-icon-padding"], ["px-nested", "--nested-icon-padding"]]) {
   out.push(`  .${cls}:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(${pad}); }`);
-  out.push(`  .${cls}:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):last-child)) { padding-inline-end: var(${pad}); }`);
+  out.push(`  .${cls}:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested, .select-base):last-child)) { padding-inline-end: var(${pad}); }`);
 }
 // ---- Materials (after massimo-v4): a region's material paints the reliefs inside it. The nearest material wins:
 // each block is an @scope that stops at a nested material region. Flat is the default and paints nothing but casts.
