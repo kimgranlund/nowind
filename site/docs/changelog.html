@@ -17,7 +17,7 @@
 <div class="sticky top-0 z-30">
 <header class="light bg-inverse fg-inverse">
   <div class="flex items-center gap-lg h-header px-grid">
-    <a href="../index.html" class="inline-flex items-center gap-gutter-half no-underline fg-inverse hover:fg-inverse-weak transition-colors"><i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-inverse-weak">0.17.0</span></a>
+    <a href="../index.html" class="inline-flex items-center gap-gutter-half no-underline fg-inverse hover:fg-inverse-weak transition-colors"><i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-inverse-weak">0.18.0</span></a>
     <nav aria-label="Sections" class="hidden md:flex items-center gap-lg"><a href="docs-home.html" aria-current="true" class="inline-flex items-center h-header border-b-2 border-accent-1 no-underline fg-inverse text-title-sm">Docs</a><a href="components-index.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Components</a><a href="../specimen.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Specimen</a><a href="classes.html" class="inline-flex items-center h-header border-b-2 border-transparent no-underline fg-inverse-weak hover:fg-inverse text-title-sm transition-colors">Classes</a></nav>
     <button type="button" popovertarget="site-settings" class="inline-flex items-center justify-center size-nested ms-auto rounded-xs border border-transparent bg-transparent fg-inverse-weak hover:fg-inverse cursor-pointer transition-colors" aria-label="Display settings"><i class="icon ph ph-sliders-horizontal"></i></button>
     <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center size-nested no-underline fg-inverse-weak hover:fg-inverse transition-colors" aria-label="Nowind on GitHub"><i class="icon ph ph-github-logo"></i></a>
@@ -67,14 +67,34 @@
             <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
               <span class="text-mono-sm fg-weak truncate">index.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
             </figcaption>
-            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.17.0/dist/nowind.min.css&quot;&gt;</code></pre>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.18.0/dist/nowind.min.css&quot;&gt;</code></pre>
           </figure>
+          </div>
+        </section>
+        <section id="v0-18-0" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle">0.18.0</h2>
+              <time datetime="2026-11-27" class="text-caption fg-weak">2026-11-27</time>
+              <span class="inline-flex items-center w-fit h-nested px-nested bg-solid-accent-1 fg-on-solid-accent-1 text-label">Latest</span></div>
+          <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
+          <p class="text-body-md max-w-text break-words">- <code>accent-2</code> to <code>accent-4</code> role classes (<code>bg-accent-2</code>, <code>bg-component-accent-3</code>, <code>bg-solid-accent-4</code>, <code>fg-accent-2-weak</code>, <code>border-accent-3</code>, <code>fg-on-solid-accent-4</code>, …) → the raw steps they alias: <code>bg-accent-N-1</code>, <code>bg-accent-N-4</code>, <code>bg-accent-N-9</code>, <code>fg-accent-N-11</code>, <code>border-accent-N-7</code>, <code>fg-accent-N-contrast</code> (weak and strong rungs one step down or up).</p>
+          <p class="text-body-md max-w-text break-words">- <code>bg-*-surface</code> → <code>bg-{palette}-a2</code>; <code>bg-*-indicator</code> and <code>bg-*-track</code> → <code>bg-{palette}-9</code>.</p>
+          <p class="text-body-md max-w-text break-words">- The rarely used rungs of accent-1 and the statuses: <code>bg-{p}-strong</code> → <code>bg-{p}-2</code>; <code>bg-component-{p}-strong</code> → <code>bg-{p}-5</code>; <code>fg-{p}-subtle</code> → <code>fg-{p}-8</code>; <code>fg-{p}-strong</code> → <code>fg-{p}-12</code>; <code>border-{p}-weak</code> → <code>border-{p}-6</code>; <code>border-{p}-strong</code> → <code>border-{p}-8</code>.</p>
+          <p class="text-body-md max-w-text break-words">- <code>text-display-lg</code>, <code>text-display-md</code> → <code>text-display</code>; <code>text-body-lg</code> → <code>text-lead</code>; <code>text-footnote</code> → <code>text-caption</code>; <code>text-quote</code> → <code>text-lead</code> with <code>italic</code>; <code>text-mono</code> → <code>text-mono-sm</code> or <code>font-mono</code>; <code>text-kicker-lg</code> → <code>text-kicker</code>.</p>
+          <p class="text-body-md max-w-text break-words">- <code>pt-</code>/<code>pb-</code> for surface, dialog and region → <code>py-*</code> or the space scale; <code>mt-section</code>, <code>mb-section</code> → <code>gap-section</code> on the parent; <code>min-h-header</code> → <code>h-header</code> (a minimum now).</p>
+          <ul role="list" class="flex flex-col gap-group">
+                <li class="flex flex-col gap-3xs max-w-text"><span class="text-label fg-weak">Initials avatars grow to fit</span><p class="text-body-md break-words">A round marker holding initials stays square and grows when its text needs more room than the control (at a 12px root on a narrow screen), and the geometry audit no longer asks an avatar group to share one size.</p></li>
+                <li class="flex flex-col gap-3xs max-w-text"><span class="text-label fg-weak">Physical bevels sit on the edge</span><p class="text-body-md break-words">A lit raised part paints its own border (the light on top, the shade below, the sides clear) instead of drawing inset lines, which landed a pixel inside the border and read as a second contour. Its face gradient now starts under the border, and pressing clears the bevel. No length changes.</p></li>
+                <li class="flex flex-col gap-3xs max-w-text"><span class="text-label fg-weak">Small round markers take `text-xs`</span><p class="text-body-md break-words">The size contract's count kind now covers any <code class="whitespace-normal"><span class="whitespace-nowrap">size-nested</span> <span class="whitespace-nowrap">rounded-full</span></code> marker, initials included, so a small avatar's initials fit. The container-query demo shows the card in two equal columns. The <code>segment</code> convenience class stretches with <code>self-stretch</code>, so it matches its stack inside a segmented group.</p></li>
+                <li class="flex flex-col gap-3xs max-w-text"><span class="text-label fg-weak">A smaller semantic set (breaking).</span><p class="text-body-md break-words">Semantic classes now name only decisions a raw step can't: 149, down from 267. Every token stays; only these classes go. Use the raw step or the kept role instead:</p></li>
+                <li class="flex flex-col gap-3xs max-w-text"><span class="text-label fg-weak">Fixes from the docs</span><p class="text-body-md break-words">The selected tab no longer shows a border on its top and sides; a select in a field's slot keeps its own width instead of sharing the row; a sortable table's header matches a plain table's; and a meter's value fills its track in Chromium, with no ring. A new examples-lint check fails a button or field whose utilities set part of a property the defaults layer fills: a border on some sides, a field in a row with no width, a button in a table cell.</p></li>
+                <li class="flex flex-col gap-3xs max-w-text"><span class="text-label fg-weak">No fixed heights</span><p class="text-body-md break-words"><code>h-control</code>, <code>h-nested</code>, <code>h-header</code>, <code>size-control</code> and <code>size-nested</code> now set a minimum height (and the squares a minimum width), as do the element defaults for buttons, fields and segmented groups, so a label that wraps or a larger text size grows its control instead of overflowing it. Inside a control, <code>h-full</code> stretches the item to the control's height. The site map's links wrap inside their highlight.</p></li>
+                <li class="flex flex-col gap-3xs max-w-text"><span class="text-label fg-weak">Truncated labels keep their descenders</span><p class="text-body-md break-words">A <code>truncate</code> label in a control is trimmed to cap height like any label, and its clip now reaches below the baseline, so a “p” or “g” isn't cut off.</p></li>
+              </ul>
           </div>
         </section>
         <section id="v0-17-0" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-subtitle">0.17.0</h2>
-              <time datetime="2026-11-27" class="text-caption fg-weak">2026-11-27</time>
-              <span class="inline-flex items-center w-fit h-nested px-nested bg-solid-accent-1 fg-on-solid-accent-1 text-label">Latest</span></div>
+              <time datetime="2026-11-27" class="text-caption fg-weak">2026-11-27</time></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <ul role="list" class="flex flex-col gap-group">
                 <li class="flex flex-col gap-3xs max-w-text"><span class="text-label fg-weak">README, from a classless test page built with no classes at all</span><p class="text-body-md break-words">A <code>div</code> of label, field and <code>small</code> is one field; wrap a header's actions in a <code>div</code>; name a segmented group with <code>aria-label</code>; an icon button holds a lone <code>i</code> or <code>svg</code>; <code>data-tone</code> gives any tone; the form example wraps its buttons in a row; and how to open a dialog where <code>commandfor</code> isn't supported.</p></li>
@@ -449,7 +469,7 @@
   </div>
 </main>
 <footer class="flex flex-col md:flex-row md:items-center justify-between gap-field px-grid py-surface border-t-2 border-strong text-caption fg-weak">
-  <span>Nowind 0.17.0. Every page here is built from Nowind utility classes only.</span>
+  <span>Nowind 0.18.0. Every page here is built from Nowind utility classes only.</span>
   <span class="flex flex-wrap gap-row">
     <a href="changelog.html" class="no-underline fg-weak hover:fg transition-colors">Changelog</a>
     <a href="index.html" class="no-underline fg-weak hover:fg transition-colors">About these templates</a>
