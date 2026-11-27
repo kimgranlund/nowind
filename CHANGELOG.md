@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Classless table scroll and icon buttons:** a classless `div` holding only a table scrolls sideways when narrow, and a button with an `aria-label` holding only an icon (`i` or `svg`) is square with its glyph at icon size. Two new tokens: `--icon-button-size`, `--icon-button-glyph`. The Resets page shows a classless page: header row, sections, a scrolling table and an icon button.
 ## 0.16.0 (2026-11-26)
 
 - **More classless structure:** a `header` in `body` or `main` is a row (title at the start, actions at the end), a classless `main` spaces its sections a section gap apart, and a classless `table` is full width. Three new tokens: `--header-gap`, `--section-gap`, `--table-width`.

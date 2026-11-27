@@ -175,6 +175,7 @@
 ["Recipes", "docs/convenience.html#recipes", "Section", "Convenience classes"],
 ["The reset", "docs/resets.html#reset", "Section", "Resets"],
 ["Element defaults", "docs/resets.html#defaults", "Section", "Resets"],
+["Pages", "docs/resets.html#page", "Section", "Resets"],
 ["Dialogs", "docs/resets.html#dialog", "Section", "Resets"],
 ["Default tokens", "docs/resets.html#tokens", "Section", "Resets"],
 ["Override a default", "docs/resets.html#override", "Section", "Resets"],

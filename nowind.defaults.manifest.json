@@ -184,6 +184,16 @@
       "use": "Space between the parts of a classless page header"
     },
     {
+      "token": "--icon-button-size",
+      "fallback": "var(--control-height)",
+      "use": "Side of a square icon button (a labelled button holding only an icon)"
+    },
+    {
+      "token": "--icon-button-glyph",
+      "fallback": "var(--icon-md)",
+      "use": "Glyph size in a square icon button"
+    },
+    {
       "token": "--page-width",
       "fallback": "var(--container-max)",
       "use": "Widest a classless main region grows"

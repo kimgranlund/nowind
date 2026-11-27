@@ -886,6 +886,20 @@ def live(name, html_, semantic=False, frame=""):
           </div>""", code(name, "HTML", html_))
 
 
+def live_page(name, html_, height):
+    """A whole classless page, rendered in its own document (a page's main can't sit inside the docs page's main),
+    linking the same stylesheets and following the docs page's colour mode and root size."""
+    doc = ('<!doctype html><html><head><meta charset="utf-8">'
+           + "".join(f'<link rel="stylesheet" href="../../{f}">' for f in ("theme.css", "reset.css", "defaults.css"))
+           + '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">'
+           + '<script>(function(){var p=parent.document.documentElement,d=document.documentElement;function s(){if(p.dataset.colorMode)d.dataset.colorMode=p.dataset.colorMode;else delete d.dataset.colorMode;d.style.fontSize=p.style.fontSize}s();new MutationObserver(s).observe(p,{attributes:true})})()</script>'
+           + '</head><body>' + html_ + '</body></html>')
+    srcdoc = doc.replace("&", "&amp;").replace('"', "&quot;")
+    return (f"""<div class="rounded-md border border-weak overflow-hidden">
+<iframe title="{name}" class="block w-full border-0" height="{height}" srcdoc="{srcdoc}"></iframe>
+          </div>""", code(name, "HTML", html_))
+
+
 def _stack(html_):
     """Several snippets in one example, a section gap apart, each in a full-width block so it keeps its own width."""
     return '<div class="flex flex-col gap-md">\n' + "\n".join(f"<div>\n{h}\n</div>" for h in html_) + "\n</div>"
@@ -991,6 +1005,31 @@ DEFAULTS_DEMO = """<form onsubmit="return false">
   </div>
 </form>"""
 
+PAGE_DEMO = """<main>
+  <header>
+    <h1>Members</h1>
+    <div>
+      <button type="button" aria-label="More"><i class="ph ph-dots-three"></i></button>
+      <button type="submit">Invite</button>
+    </div>
+  </header>
+  <section>
+    <h2>Active</h2>
+    <p>People who signed in this month.</p>
+    <div>
+      <table>
+        <tr><th>Member</th><th>Role</th><th>Last seen</th><th>Seats</th></tr>
+        <tr><td>Ada Lovelace</td><td>Owner</td><td>Today</td><td>3</td></tr>
+        <tr><td>Jun Okafor</td><td>Admin</td><td>Yesterday</td><td>1</td></tr>
+      </table>
+    </div>
+  </section>
+  <section>
+    <h2>Invited</h2>
+    <p role="note">No pending invitations.</p>
+  </section>
+</main>"""
+
 DIALOG_DEMO = """<button type="button" data-tone="danger" commandfor="df-dialog" command="show-modal">Delete team…</button>
 <dialog id="df-dialog" aria-labelledby="df-dialog-title">
   <h2 id="df-dialog-title">Delete team?</h2>
@@ -1024,6 +1063,8 @@ def resets_page():
                 p("The <code>defaults</code> layer gives bare elements a finished look: buttons, text fields, selects, textareas, checkboxes, radios, switches, sliders, links, labels and table cells. Structure does the rest, with no class anywhere: a <code>form</code> stacks its parts; a <code>div</code> of buttons becomes a row; <code>small</code> after a field is its help text; <code>role=\"status\"</code>, <code>\"alert\"</code> and <code>\"note\"</code> become info, danger and neutral notes; a <code>role=\"group\"</code> of <code>aria-pressed</code> buttons becomes a segmented control; and a classless <code>main</code> centres the page. <code>data-tone</code> (danger, accent, success, warning, info) tints a button or a note. A button with <code>type=\"submit\"</code> takes the primary fill. Nothing below carries a class."),
                 p("The defaults fill only what an element's classes leave unset, so a utility class still wins, and a utility-built control picks up a default for any property it doesn't set."),
                 *live("defaults.html", DEFAULTS_DEMO)),
+        section("page", "Pages", p("A classless <code>main</code> centres the page and spaces its sections; a <code>header</code> in it is a row, title at the start and actions at the end; a <code>div</code> holding only a table scrolls sideways when narrow; and a button with an <code>aria-label</code> holding only an icon is square."),
+                *live_page("page.html", PAGE_DEMO, 520)),
         section("dialog", "Dialogs", p("A bare <code>dialog</code> takes the dialog padding, corner, width and shadow, its heading takes the dialog title size, and its row of buttons sits at the end. Open this one."),
                 *live("dialog.html", DIALOG_DEMO)),
         section("tokens", "Default tokens", p("No token is declared, so each one is free to set. Its fallback resolves at the element, so it follows the element's scope and tier."),

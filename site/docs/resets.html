@@ -170,6 +170,67 @@
           </figure>
           </div>
         </section>
+        <section id="page" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
+          <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Pages</h2></div>
+          <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
+          <p class="text-body-md max-w-text break-words">A classless <code>main</code> centres the page and spaces its sections; a <code>header</code> in it is a row, title at the start and actions at the end; a <code>div</code> holding only a table scrolls sideways when narrow; and a button with an <code>aria-label</code> holding only an icon is square.</p>
+          <div class="rounded-md border border-weak overflow-hidden">
+<iframe title="page.html" class="block w-full border-0" height="520" srcdoc="<!doctype html><html><head><meta charset=&quot;utf-8&quot;><link rel=&quot;stylesheet&quot; href=&quot;../../theme.css&quot;><link rel=&quot;stylesheet&quot; href=&quot;../../reset.css&quot;><link rel=&quot;stylesheet&quot; href=&quot;../../defaults.css&quot;><link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css&quot;><script>(function(){var p=parent.document.documentElement,d=document.documentElement;function s(){if(p.dataset.colorMode)d.dataset.colorMode=p.dataset.colorMode;else delete d.dataset.colorMode;d.style.fontSize=p.style.fontSize}s();new MutationObserver(s).observe(p,{attributes:true})})()</script></head><body><main>
+  <header>
+    <h1>Members</h1>
+    <div>
+      <button type=&quot;button&quot; aria-label=&quot;More&quot;><i class=&quot;ph ph-dots-three&quot;></i></button>
+      <button type=&quot;submit&quot;>Invite</button>
+    </div>
+  </header>
+  <section>
+    <h2>Active</h2>
+    <p>People who signed in this month.</p>
+    <div>
+      <table>
+        <tr><th>Member</th><th>Role</th><th>Last seen</th><th>Seats</th></tr>
+        <tr><td>Ada Lovelace</td><td>Owner</td><td>Today</td><td>3</td></tr>
+        <tr><td>Jun Okafor</td><td>Admin</td><td>Yesterday</td><td>1</td></tr>
+      </table>
+    </div>
+  </section>
+  <section>
+    <h2>Invited</h2>
+    <p role=&quot;note&quot;>No pending invitations.</p>
+  </section>
+</main></body></html>"></iframe>
+          </div>
+          <figure class="flex flex-col min-w-0 border border-weak bg-strong">
+            <figcaption class="flex items-center justify-between gap-row px-surface py-2xs border-b border-weak">
+              <span class="text-mono-sm fg-weak truncate">page.html</span><span class="text-mono-sm uppercase tracking-widest fg-subtle">HTML</span>
+            </figcaption>
+            <pre class="p-surface overflow-x-auto whitespace-pre text-mono-sm"><code>&lt;main&gt;
+  &lt;header&gt;
+    &lt;h1&gt;Members&lt;/h1&gt;
+    &lt;div&gt;
+      &lt;button type=&quot;button&quot; aria-label=&quot;More&quot;&gt;&lt;i class=&quot;ph ph-dots-three&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;button type=&quot;submit&quot;&gt;Invite&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+  &lt;section&gt;
+    &lt;h2&gt;Active&lt;/h2&gt;
+    &lt;p&gt;People who signed in this month.&lt;/p&gt;
+    &lt;div&gt;
+      &lt;table&gt;
+        &lt;tr&gt;&lt;th&gt;Member&lt;/th&gt;&lt;th&gt;Role&lt;/th&gt;&lt;th&gt;Last seen&lt;/th&gt;&lt;th&gt;Seats&lt;/th&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Ada Lovelace&lt;/td&gt;&lt;td&gt;Owner&lt;/td&gt;&lt;td&gt;Today&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;Jun Okafor&lt;/td&gt;&lt;td&gt;Admin&lt;/td&gt;&lt;td&gt;Yesterday&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+  &lt;section&gt;
+    &lt;h2&gt;Invited&lt;/h2&gt;
+    &lt;p role=&quot;note&quot;&gt;No pending invitations.&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/main&gt;</code></pre>
+          </figure>
+          </div>
+        </section>
         <section id="dialog" class="col-span-12 grid grid-cols-12 gap-x-grid gap-y-2xs pt-sm pb-xl border-t border-strong">
           <div class="col-span-12 md:col-span-3 flex flex-col gap-3xs"><h2 class="text-heading-md text-balance">Dialogs</h2></div>
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
@@ -245,6 +306,8 @@
                 <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>table-<wbr>width</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">100%</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Width of a classless table</td></tr>
                 <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>section-<wbr>gap</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--space-xl)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Space before each section of a classless main after the first</td></tr>
                 <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>header-<wbr>gap</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--space-sm)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Space between the parts of a classless page header</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>icon-<wbr>button-<wbr>size</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--control-height)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Side of a square icon button (a labelled button holding only an icon)</td></tr>
+                <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>icon-<wbr>button-<wbr>glyph</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--icon-md)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Glyph size in a square icon button</td></tr>
                 <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>page-<wbr>width</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--container-max)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Widest a classless main region grows</td></tr>
                 <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>page-<wbr>padding</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--page-margin)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Padding around a classless main region</td></tr>
                 <tr><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal">-<wbr>-<wbr>flow-<wbr>gap</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak"><code class="whitespace-normal break-all">var(--space-md)</code></td><td class="text-start align-top px-2xs md:px-sm py-xs break-words border-b border-weak">Space between blocks in a classless main, article, section or dialog</td></tr>
