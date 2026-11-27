@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.18.1 (2026-11-27)
+
 - **Review fixes:** a bare color input keeps its browser size (only a `size-*` one sizes to its square); `size-control` and `size-nested` centre themselves, so a square no longer stretches to a taller row; the reference no longer lists the retired `text-kicker-lg`; only a bare (`p-0`) select at a field's end pulls its end padding to the icon padding; the truncate allowance is a token, `--truncate-bleed`; and the docs say a lit raised part needs a border width and `h-header` content must fit one line.
 - **The select caret sits in an icon box:** `select-base`'s picker icon is an icon-box square (the nested box in an `h-nested` select) holding the glyph at `icon-sm`, like a trailing icon; a `px-nested` select pads its end at the nested icon padding, and a field box ending in a bare select pads at the icon padding, so the caret lines up with trailing icons.
 - **Site map on the specimen:** the specimen's own `.grid` rule overrode the site map's `grid` utility (its columns and gap), so the menu spread out there; it is `.spec-grid` now, and `check.mjs` fails a page stylesheet that redefines a Nowind class. The site map's links are back to the nested height, growing only when a name wraps.

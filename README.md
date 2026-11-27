@@ -42,23 +42,23 @@ Markup drives state, too: set `aria-pressed`, `aria-selected`, `aria-current`, `
 Link one file:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.18.0/dist/nowind.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.18.1/dist/nowind.min.css">
 ```
 
-The link pins release `v0.18.0`. Or copy `dist/nowind.min.css` into your project. Releases are in [CHANGELOG.md](CHANGELOG.md). Browse the [component docs](https://kimgranlund.github.io/nowind/site/docs/components-index.html), the [showcase](https://kimgranlund.github.io/nowind/site/components.html), the [specimen](https://kimgranlund.github.io/nowind/site/specimen.html) and the [class list](https://kimgranlund.github.io/nowind/site/docs/classes.html) on GitHub Pages.
+The link pins release `v0.18.1`. Or copy `dist/nowind.min.css` into your project. Releases are in [CHANGELOG.md](CHANGELOG.md). Browse the [component docs](https://kimgranlund.github.io/nowind/site/docs/components-index.html), the [showcase](https://kimgranlund.github.io/nowind/site/components.html), the [specimen](https://kimgranlund.github.io/nowind/site/specimen.html) and the [class list](https://kimgranlund.github.io/nowind/site/docs/classes.html) on GitHub Pages.
 
 Most pages want that one link. Nowind also ships each layer on its own, for pages that need only some:
 
 ```html
 <!-- Classless: plain HTML looks finished (theme, reset, element defaults; about 19 KiB gzipped) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.18.0/dist/nowind.theme.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.18.0/dist/nowind.reset.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.18.0/dist/nowind.defaults.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.18.1/dist/nowind.theme.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.18.1/dist/nowind.reset.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.18.1/dist/nowind.defaults.min.css">
 
 <!-- With your own components: tokens and utilities, no element defaults to fight your buttons -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.18.0/dist/nowind.theme.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.18.0/dist/nowind.reset.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.18.0/dist/nowind.utilities.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.18.1/dist/nowind.theme.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.18.1/dist/nowind.reset.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.18.1/dist/nowind.utilities.min.css">
 ```
 
 Always include the theme, or your own replacement for it: every other part reads its tokens. Each layer file declares the same layer order, so the parts can come in any order after it.
@@ -315,8 +315,8 @@ The `defaults` layer sits after `reset` and before `styles`, so your own CSS in 
 The most repeated stacks in the examples also come as single classes, in an optional second file:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.18.0/dist/nowind.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.18.0/dist/nowind.components.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.18.1/dist/nowind.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v0.18.1/dist/nowind.components.min.css">
 
 <button class="btn btn-primary"><i class="icon ph ph-check"></i><span>Save</span></button>
 <span class="badge badge-success"><span>Paid</span></span>

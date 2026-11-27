@@ -82,6 +82,7 @@
 ["Where each length goes", "docs/reference.html#lengths", "Section", "Page grid and shell"],
 ["Breakpoints", "docs/reference.html#breakpoints", "Section", "Page grid and shell"],
 ["Pin a release", "docs/changelog.html#pin", "Section", "Changelog"],
+["0.18.1", "docs/changelog.html#v0-18-1", "Section", "Changelog"],
 ["0.18.0", "docs/changelog.html#v0-18-0", "Section", "Changelog"],
 ["0.17.0", "docs/changelog.html#v0-17-0", "Section", "Changelog"],
 ["0.16.0", "docs/changelog.html#v0-16-0", "Section", "Changelog"],
