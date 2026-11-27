@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.17.0 (2026-11-27)
+
 - **README, from a classless test page built with no classes at all:** a `div` of label, field and `small` is one field; wrap a header's actions in a `div`; name a segmented group with `aria-label`; an icon button holds a lone `i` or `svg`; `data-tone` gives any tone; the form example wraps its buttons in a row; and how to open a dialog where `commandfor` isn't supported.
 - **Classless table scroll and icon buttons:** a classless `div` holding only a table scrolls sideways when narrow, and a button with an `aria-label` holding only an icon (`i` or `svg`) is square with its glyph at icon size. Two new tokens: `--icon-button-size`, `--icon-button-glyph`. The Resets page shows a classless page: header row, sections, a scrolling table and an icon button.
 ## 0.16.0 (2026-11-26)
