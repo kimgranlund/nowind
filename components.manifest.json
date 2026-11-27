@@ -814,6 +814,62 @@
       ]
     },
     {
+      "slug": "calendar",
+      "name": "Calendar",
+      "group": "Forms",
+      "page": "site/docs/c-calendar.html",
+      "summary": "A month as a seven-column grid of day buttons. The chosen day is aria-pressed, today carries aria-current=\"date\", and days from the next month are quieter.",
+      "use": [
+        "Label each day with the full date, so a screen reader doesn't read a bare number.",
+        "Prefer the native date field (see Date range) unless people need to see the month."
+      ],
+      "avoid": [
+        "A calendar for a date years away, such as a birthday; let people type it."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-neutral-1",
+        "bg-transparent",
+        "border",
+        "border-neutral-6",
+        "border-transparent",
+        "cursor-pointer",
+        "fg-accent-1-11",
+        "fg-neutral-11",
+        "fg-neutral-12",
+        "fg-neutral-8",
+        "flex",
+        "flex-col",
+        "font-semibold",
+        "gap-3xs",
+        "gap-sm",
+        "grid",
+        "grid-cols-7",
+        "icon",
+        "icon-sm",
+        "inline-flex",
+        "items-center",
+        "justify-between",
+        "justify-center",
+        "p-md",
+        "pressed:bg-accent-1-9",
+        "pressed:fg-accent-1-contrast",
+        "rounded-md",
+        "rounded-sm",
+        "shrink-0",
+        "size-control",
+        "state",
+        "tabular-nums",
+        "text-base",
+        "text-center",
+        "text-lg",
+        "text-sm",
+        "w-fit"
+      ]
+    },
+    {
       "slug": "card",
       "name": "Card",
       "group": "Layout",
@@ -1060,6 +1116,7 @@
         "flex",
         "flex-col",
         "font-medium",
+        "font-mono",
         "gap-3xs",
         "gap-gutter",
         "grow",
@@ -1081,8 +1138,9 @@
         "size-nested",
         "tabular-nums",
         "text-base",
-        "text-sm",
         "text-xs",
+        "tracking-widest",
+        "uppercase",
         "w-fit"
       ]
     },
@@ -1091,10 +1149,10 @@
       "name": "Navbar",
       "group": "Navigation",
       "page": "site/docs/c-navbar.html",
-      "summary": "The app's top bar at the shell header height: a wordmark, the main links, then actions at the end.",
+      "summary": "The app's top bar: a wordmark, the main links, then actions at the end. Below lg the links move into a menu behind a button at the start.",
       "use": [
         "In an app shell give it h-header, and keep its content on one line: that is the height the rest of the shell assumes.",
-        "Hide the main links below lg and move them into a menu."
+        "The same links twice: hidden lg:flex in the bar, and in a popover behind a lg:hidden menu button."
       ],
       "avoid": [
         "More than one primary action in the bar."
@@ -1103,6 +1161,7 @@
         "example"
       ],
       "classes": [
+        "anchor-bottom",
         "bg-accent-2-9",
         "bg-neutral-1",
         "bg-transparent",
@@ -1118,6 +1177,7 @@
         "fg-neutral-11",
         "fg-neutral-12",
         "flex",
+        "flex-col",
         "font-medium",
         "font-semibold",
         "gap-3xs",
@@ -1133,19 +1193,24 @@
         "items-center",
         "justify-center",
         "lg:flex",
+        "lg:hidden",
         "no-underline",
-        "pe-xs",
-        "ps-md",
+        "p-inset",
+        "ps-xs",
         "px-control",
+        "px-xs",
         "py-xs",
         "rounded-full",
+        "rounded-md",
         "rounded-sm",
+        "shadow-lg",
         "shrink-0",
         "size-control",
         "state",
         "text-base",
         "text-lg",
-        "text-sm"
+        "text-sm",
+        "w-fit"
       ]
     },
     {
@@ -1197,6 +1262,54 @@
         "tabular-nums",
         "text-base",
         "text-xs"
+      ]
+    },
+    {
+      "slug": "tree",
+      "name": "Tree",
+      "group": "Navigation",
+      "page": "site/docs/c-tree.html",
+      "summary": "Folders as <details>, each a row at the control height whose caret turns when it opens, and its files indented one step. aria-current=\"page\" marks the open file.",
+      "use": [
+        "One level of folders; deeper trees need a script for the arrow keys a tree role promises."
+      ],
+      "avoid": [
+        "A tree for fewer than a dozen items; a list is quicker to scan."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-neutral-1",
+        "border",
+        "border-neutral-6",
+        "border-transparent",
+        "current:bg-accent-1-3",
+        "current:fg-accent-1-11",
+        "cursor-pointer",
+        "fg-neutral-12",
+        "flex",
+        "flex-col",
+        "gap-gutter",
+        "group",
+        "group-open:rotate-90",
+        "grow",
+        "h-control",
+        "hover:bg-neutral-3",
+        "icon",
+        "icon-sm",
+        "items-center",
+        "list-none",
+        "no-underline",
+        "p-inset",
+        "ps-md",
+        "px-control",
+        "rounded-md",
+        "rounded-sm",
+        "state",
+        "text-base",
+        "transition",
+        "w-fit"
       ]
     },
     {
@@ -1415,6 +1528,174 @@
         "text-base",
         "text-lg",
         "w-full"
+      ]
+    },
+    {
+      "slug": "action-menu",
+      "name": "Action menu",
+      "group": "Overlays",
+      "page": "site/docs/c-action-menu.html",
+      "summary": "The actions for one item, behind an icon button: a role=\"menu\" popover with a rule between groups and the destructive action last, in the danger colour. A script can open the same menu on right-click with showPopover().",
+      "use": [
+        "Name the button after its item (Actions for Q3 report), since its icon says nothing.",
+        "Put the destructive action last, after a rule."
+      ],
+      "avoid": [
+        "An action menu for the one action most people take; show that as a button."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "anchor-bottom",
+        "bg-neutral-1",
+        "bg-neutral-a2",
+        "bg-transparent",
+        "border",
+        "border-neutral-6",
+        "border-t",
+        "border-transparent",
+        "cursor-pointer",
+        "fg-danger-11",
+        "fg-neutral-12",
+        "flex",
+        "flex-col",
+        "gap-gutter",
+        "grow",
+        "h-control",
+        "icon",
+        "inline-block",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "my-3xs",
+        "p-inset",
+        "px-control",
+        "rounded-md",
+        "rounded-sm",
+        "shadow-lg",
+        "size-control",
+        "state",
+        "text-base",
+        "text-start",
+        "w-fit"
+      ]
+    },
+    {
+      "slug": "popover-card",
+      "name": "Popover card",
+      "group": "Overlays",
+      "page": "site/docs/c-popover-card.html",
+      "summary": "A preview of a person or a thing, opened from its name with popovertarget and placed with anchor-bottom. A hover card is the same card, shown by a script on hover and focus.",
+      "use": [
+        "Facts that help people decide whether to open the full page."
+      ],
+      "avoid": [
+        "Anything people need to finish a task; a card that only shows on hover is easy to miss."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "anchor-bottom",
+        "bg-accent-2-9",
+        "bg-neutral-1",
+        "bg-transparent",
+        "border",
+        "border-0",
+        "border-neutral-6",
+        "cursor-pointer",
+        "fg-accent-1-11",
+        "fg-accent-2-contrast",
+        "fg-neutral-11",
+        "flex",
+        "flex-col",
+        "font-medium",
+        "font-semibold",
+        "gap-3xs",
+        "gap-sm",
+        "hover:fg-accent-1-12",
+        "inline",
+        "inline-flex",
+        "items-center",
+        "justify-center",
+        "max-w-form",
+        "max-w-text",
+        "p-0",
+        "p-inset",
+        "p-xs",
+        "rounded-full",
+        "rounded-md",
+        "shadow-lg",
+        "shrink-0",
+        "size-control",
+        "text-base",
+        "text-lg",
+        "text-sm",
+        "underline",
+        "w-fit"
+      ]
+    },
+    {
+      "slug": "command-palette",
+      "name": "Command palette",
+      "group": "Overlays",
+      "page": "site/docs/c-command-palette.html",
+      "summary": "A search field over grouped results, one line each, with the active result aria-selected and the keys in a footer. Shown here in place; on a page it is a modal <dialog> opened with ⌘K.",
+      "use": [
+        "Group results by kind, and keep each to one line.",
+        "Keep focus in the field and move the selection with aria-activedescendant."
+      ],
+      "avoid": [
+        "A palette as the only way to reach a command; it is a shortcut, not the menu."
+      ],
+      "examples": [
+        "example"
+      ],
+      "classes": [
+        "bg-neutral-1",
+        "bg-transparent",
+        "border",
+        "border-0",
+        "border-b",
+        "border-neutral-6",
+        "border-t",
+        "cursor-pointer",
+        "fg-neutral-11",
+        "fg-neutral-12",
+        "flex",
+        "flex-col",
+        "flex-wrap",
+        "font-mono",
+        "gap-gutter",
+        "gap-md",
+        "grow",
+        "h-control",
+        "hover:bg-neutral-3",
+        "icon",
+        "items-center",
+        "list-none",
+        "max-w-form",
+        "min-w-0",
+        "outline-0",
+        "p-0",
+        "p-inset",
+        "pb-3xs",
+        "pt-xs",
+        "px-control",
+        "px-md",
+        "py-xs",
+        "rounded-md",
+        "rounded-sm",
+        "selected:bg-accent-1-3",
+        "selected:fg-accent-1-11",
+        "shadow-lg",
+        "text-base",
+        "text-sm",
+        "text-xs",
+        "tracking-widest",
+        "transition",
+        "uppercase"
       ]
     },
     {

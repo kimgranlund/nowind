@@ -15,6 +15,43 @@ MENU_ITEM = "flex items-center gap-gutter h-control px-control border border-tra
 
 
 
+CALENDAR_DAYS = """    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="1 March 2027"><span>1</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="2 March 2027"><span>2</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-accent-1-11 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer font-semibold" aria-pressed="false" aria-current="date" aria-label="3 March 2027"><span>3</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="4 March 2027"><span>4</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="true" aria-label="5 March 2027"><span>5</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="6 March 2027"><span>6</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="7 March 2027"><span>7</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="8 March 2027"><span>8</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="9 March 2027"><span>9</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="10 March 2027"><span>10</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="11 March 2027"><span>11</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="12 March 2027"><span>12</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="13 March 2027"><span>13</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="14 March 2027"><span>14</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="15 March 2027"><span>15</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="16 March 2027"><span>16</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="17 March 2027"><span>17</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="18 March 2027"><span>18</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="19 March 2027"><span>19</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="20 March 2027"><span>20</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="21 March 2027"><span>21</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="22 March 2027"><span>22</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="23 March 2027"><span>23</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="24 March 2027"><span>24</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="25 March 2027"><span>25</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="26 March 2027"><span>26</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="27 March 2027"><span>27</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="28 March 2027"><span>28</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="29 March 2027"><span>29</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="30 March 2027"><span>30</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-12 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="31 March 2027"><span>31</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-8 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="1 April 2027"><span>1</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-8 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="2 April 2027"><span>2</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-8 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="3 April 2027"><span>3</span></button>
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-transparent pressed:bg-accent-1-9 fg-neutral-8 pressed:fg-accent-1-contrast text-base tabular-nums cursor-pointer" aria-pressed="false" aria-label="4 April 2027"><span>4</span></button>"""
+
+
 COMPONENTS = [
     {
         "slug": "button", "name": "Button", "icon": "ph-cursor-click", "group": "Actions",
@@ -698,7 +735,7 @@ COMPONENTS = [
         "slug": "sidebar-nav", "name": "Sidebar navigation", "icon": "ph-sidebar-simple", "group": "Navigation",
         "summary": "A column of links at the control height, each an icon and a label. <code>aria-current=\"page\"</code> marks where you are, and <code>current:</code> paints it.",
         "html": f"""<nav aria-label="Workspace" class="flex flex-col gap-3xs w-fit p-inset rounded-md bg-neutral-1 border border-neutral-6">
-  <span class="px-control pt-xs pb-3xs text-sm font-medium fg-neutral-11">Workspace</span>
+  <span class="px-control pt-xs pb-3xs text-xs font-mono uppercase tracking-widest fg-neutral-11">Workspace</span>
   <a href="#" aria-current="page" class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><i class="icon ph ph-house"></i><span class="grow">Home</span></a>
   <a href="#" aria-current="false" class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><i class="icon ph ph-tray"></i><span class="grow">Inbox</span><span class="inline-flex items-center justify-center size-nested shrink-0 rounded-full bg-accent-1-9 fg-accent-1-contrast text-xs font-medium tabular-nums">3</span></a>
   <a href="#" aria-current="false" class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><i class="icon ph ph-folder-simple"></i><span class="grow">Projects</span></a>
@@ -709,9 +746,19 @@ COMPONENTS = [
     },
     {
         "slug": "navbar", "name": "Navbar", "icon": "ph-browser", "group": "Navigation",
-        "summary": "The app's top bar at the shell header height: a wordmark, the main links, then actions at the end.",
-        "html": f"""<header class="flex items-center gap-md ps-md pe-xs py-xs bg-neutral-1 border-b border-neutral-6">
-  <a href="#" class="inline-flex items-center gap-gutter no-underline fg-neutral-12 hover:fg-accent-1-11 text-lg font-semibold"><i class="icon ph-fill ph-wind fg-accent-1-9"></i><span>Acme</span></a>
+        "summary": "The app's top bar: a wordmark, the main links, then actions at the end. Below <code>lg</code> the links move into a menu behind a button at the start.",
+        "html": f"""<header class="flex items-center gap-md px-xs py-xs bg-neutral-1 border-b border-neutral-6">
+  <div class="lg:hidden">
+    <button class="inline-flex items-center justify-center size-control shrink-0 rounded-sm state border border-transparent bg-transparent fg-neutral-12 cursor-pointer" popovertarget="doc-nav-menu" aria-label="Menu"><i class="icon ph ph-list"></i></button>
+    <div id="doc-nav-menu" popover class="anchor-bottom w-fit p-inset rounded-md bg-neutral-1 border border-neutral-6 shadow-lg">
+      <nav aria-label="Main" class="flex flex-col">
+        <a href="#" aria-current="page" class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-12 hover:bg-neutral-3 current:bg-neutral-3"><span>Projects</span></a>
+        <a href="#" aria-current="false" class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-12 hover:bg-neutral-3 current:bg-neutral-3"><span>Reports</span></a>
+        <a href="#" aria-current="false" class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-12 hover:bg-neutral-3 current:bg-neutral-3"><span>Team</span></a>
+      </nav>
+    </div>
+  </div>
+  <a href="#" class="inline-flex items-center gap-gutter ps-xs no-underline fg-neutral-12 hover:fg-accent-1-11 text-lg font-semibold"><i class="icon ph-bold ph-wind fg-accent-1-9"></i><span>Acme</span></a>
   <nav aria-label="Main" class="hidden lg:flex items-center gap-3xs">
     <a href="#" aria-current="page" class="inline-flex items-center h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-11 hover:bg-neutral-3 current:bg-neutral-3 current:fg-neutral-12"><span>Projects</span></a>
     <a href="#" aria-current="false" class="inline-flex items-center h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-11 hover:bg-neutral-3 current:bg-neutral-3 current:fg-neutral-12"><span>Reports</span></a>
@@ -721,7 +768,7 @@ COMPONENTS = [
   <button class="inline-flex items-center justify-center size-control shrink-0 rounded-sm state border border-transparent bg-transparent fg-neutral-11 cursor-pointer" aria-label="Notifications"><i class="icon ph ph-bell"></i></button>
   <span class="inline-flex items-center justify-center size-control shrink-0 rounded-full bg-accent-2-9 fg-accent-2-contrast text-sm font-medium">AL</span>
 </header>""",
-        "use": ["In an app shell give it <code>h-header</code>, and keep its content on one line: that is the height the rest of the shell assumes.", "Hide the main links below <code>lg</code> and move them into a menu."],
+        "use": ["In an app shell give it <code>h-header</code>, and keep its content on one line: that is the height the rest of the shell assumes.", "The same links twice: <code>hidden lg:flex</code> in the bar, and in a popover behind a <code>lg:hidden</code> menu button."],
         "avoid": ["More than one primary action in the bar."],
     },
     {
@@ -847,6 +894,100 @@ COMPONENTS = [
 </aside>""",
         "use": ["Asides in long text: a tip, a caveat, a note on an older version."],
         "avoid": ["A callout for a status the reader must act on; use an alert."],
+    },
+    {
+        "slug": "action-menu", "name": "Action menu", "icon": "ph-dots-three-vertical", "group": "Overlays",
+        "summary": "The actions for one item, behind an icon button: a <code>role=\"menu\"</code> popover with a rule between groups and the destructive action last, in the danger colour. A script can open the same menu on right-click with <code>showPopover()</code>.",
+        "html": f"""<div class="inline-block">
+<button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-neutral-a2 fg-neutral-12 cursor-pointer" popovertarget="doc-actions" aria-label="Actions for Q3 report"><i class="icon ph-bold ph-dots-three-vertical"></i></button>
+<div id="doc-actions" popover class="anchor-bottom w-fit p-inset rounded-md bg-neutral-1 border border-neutral-6 shadow-lg">
+  <div class="flex flex-col" role="menu" aria-label="Actions for Q3 report">
+    <button class="flex items-center gap-gutter h-control px-control rounded-sm state border border-transparent bg-transparent fg-neutral-12 text-base cursor-pointer" role="menuitem"><i class="icon ph ph-pencil-simple"></i><span class="grow text-start">Rename</span></button>
+    <button class="flex items-center gap-gutter h-control px-control rounded-sm state border border-transparent bg-transparent fg-neutral-12 text-base cursor-pointer" role="menuitem"><i class="icon ph ph-copy"></i><span class="grow text-start">Duplicate</span></button>
+    <button class="flex items-center gap-gutter h-control px-control rounded-sm state border border-transparent bg-transparent fg-neutral-12 text-base cursor-pointer" role="menuitem"><i class="icon ph ph-share-network"></i><span class="grow text-start">Share</span></button>
+    <div class="my-3xs border-t border-neutral-6" role="separator"></div>
+    <button class="flex items-center gap-gutter h-control px-control rounded-sm state border border-transparent bg-transparent fg-danger-11 text-base cursor-pointer" role="menuitem"><i class="icon ph ph-trash"></i><span class="grow text-start">Delete</span></button>
+  </div>
+</div>
+</div>""",
+        "use": ["Name the button after its item (Actions for Q3 report), since its icon says nothing.", "Put the destructive action last, after a rule."],
+        "avoid": ["An action menu for the one action most people take; show that as a button."],
+    },
+    {
+        "slug": "popover-card", "name": "Popover card", "icon": "ph-identification-card", "group": "Overlays",
+        "summary": "A preview of a person or a thing, opened from its name with <code>popovertarget</code> and placed with <code>anchor-bottom</code>. A hover card is the same card, shown by a script on hover and focus.",
+        "html": f"""<p class="text-base max-w-text">Reviewed by <button class="inline p-0 border-0 bg-transparent fg-accent-1-11 hover:fg-accent-1-12 font-medium underline cursor-pointer" popovertarget="doc-person">Ada Lovelace</button> on Monday.</p>
+<div id="doc-person" popover class="anchor-bottom w-fit max-w-form p-inset rounded-md bg-neutral-1 border border-neutral-6 shadow-lg text-sm">
+  <div class="flex gap-sm p-xs">
+    <span class="inline-flex items-center justify-center size-control shrink-0 rounded-full bg-accent-2-9 fg-accent-2-contrast text-sm font-medium">AL</span>
+    <div class="flex flex-col gap-3xs">
+      <span class="text-lg font-semibold">Ada Lovelace</span>
+      <span class="text-sm fg-neutral-11">Analyst · London</span>
+      <p class="text-base">Reviews the quarterly reports and owns the forecasting model.</p>
+    </div>
+  </div>
+</div>""",
+        "use": ["Facts that help people decide whether to open the full page."],
+        "avoid": ["Anything people need to finish a task; a card that only shows on hover is easy to miss."],
+    },
+    {
+        "slug": "tree", "name": "Tree", "icon": "ph-tree-structure", "group": "Navigation",
+        "summary": "Folders as <code>&lt;details&gt;</code>, each a row at the control height whose caret turns when it opens, and its files indented one step. <code>aria-current=\"page\"</code> marks the open file.",
+        "html": f"""<nav aria-label="Files" class="flex flex-col w-fit p-inset rounded-md bg-neutral-1 border border-neutral-6">
+  <details open class="group">
+    <summary class="flex items-center gap-gutter h-control px-control rounded-sm state border border-transparent list-none text-base fg-neutral-12 cursor-pointer"><i class="icon icon-sm ph-bold ph-caret-right transition group-open:rotate-90" aria-hidden="true"></i><i class="icon ph ph-folder-simple"></i><span class="grow">theme</span></summary>
+    <div class="flex flex-col ps-md">
+      <a href="#" aria-current="page" class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><i class="icon ph ph-file-css"></i><span class="grow">colors.css</span></a>
+      <a href="#" aria-current="false" class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><i class="icon ph ph-file-css"></i><span class="grow">geometry.css</span></a>
+    </div>
+  </details>
+  <details class="group">
+    <summary class="flex items-center gap-gutter h-control px-control rounded-sm state border border-transparent list-none text-base fg-neutral-12 cursor-pointer"><i class="icon icon-sm ph-bold ph-caret-right transition group-open:rotate-90" aria-hidden="true"></i><i class="icon ph ph-folder-simple"></i><span class="grow">scripts</span></summary>
+    <div class="flex flex-col ps-md">
+      <a href="#" aria-current="false" class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><i class="icon ph ph-file-js"></i><span class="grow">bundle.mjs</span></a>
+    </div>
+  </details>
+</nav>""",
+        "use": ["One level of folders; deeper trees need a script for the arrow keys a tree role promises."],
+        "avoid": ["A tree for fewer than a dozen items; a list is quicker to scan."],
+    },
+    {
+        "slug": "calendar", "name": "Calendar", "icon": "ph-calendar", "group": "Forms",
+        "summary": "A month as a seven-column grid of day buttons. The chosen day is <code>aria-pressed</code>, today carries <code>aria-current=\"date\"</code>, and days from the next month are quieter.",
+        "html": f"""<div class="flex flex-col gap-sm w-fit p-md rounded-md bg-neutral-1 border border-neutral-6">
+  <div class="flex items-center justify-between gap-sm">
+    <button class="inline-flex items-center justify-center size-control shrink-0 rounded-sm state border border-transparent bg-transparent fg-neutral-11 cursor-pointer" aria-label="Previous month"><i class="icon icon-sm ph-bold ph-caret-left"></i></button>
+    <span class="text-lg font-semibold">March 2027</span>
+    <button class="inline-flex items-center justify-center size-control shrink-0 rounded-sm state border border-transparent bg-transparent fg-neutral-11 cursor-pointer" aria-label="Next month"><i class="icon icon-sm ph-bold ph-caret-right"></i></button>
+  </div>
+  <div class="grid grid-cols-7 gap-3xs text-center text-sm fg-neutral-11" aria-hidden="true"><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span></div>
+  <div class="grid grid-cols-7 gap-3xs" role="group" aria-label="March 2027">
+{CALENDAR_DAYS}
+  </div>
+</div>""",
+        "use": ["Label each day with the full date, so a screen reader doesn't read a bare number.", "Prefer the native date field (see Date range) unless people need to see the month."],
+        "avoid": ["A calendar for a date years away, such as a birthday; let people type it."],
+    },
+    {
+        "slug": "command-palette", "name": "Command palette", "icon": "ph-command", "group": "Overlays",
+        "summary": "A search field over grouped results, one line each, with the active result <code>aria-selected</code> and the keys in a footer. Shown here in place; on a page it is a modal <code>&lt;dialog&gt;</code> opened with ⌘K.",
+        "html": f"""<div class="flex flex-col max-w-form rounded-md bg-neutral-1 border border-neutral-6 shadow-lg" role="dialog" aria-label="Command menu">
+  <div class="flex items-center gap-gutter px-md py-xs border-b border-neutral-6">
+    <i class="icon ph ph-magnifying-glass fg-neutral-11"></i><input class="grow min-w-0 p-0 border-0 bg-transparent fg-neutral-12 text-base outline-0" role="combobox" aria-expanded="true" aria-controls="doc-cmd-results" aria-label="Search commands" placeholder="Search commands" value="new">
+  </div>
+  <ul id="doc-cmd-results" role="listbox" class="flex flex-col p-inset list-none">
+    <li role="presentation" class="px-control pt-xs pb-3xs text-xs font-mono uppercase tracking-widest fg-neutral-11">Create</li>
+    <li role="option" aria-selected="true" class="flex items-center gap-gutter h-control px-control rounded-sm text-base fg-neutral-12 hover:bg-neutral-3 selected:bg-accent-1-3 selected:fg-accent-1-11 cursor-pointer transition"><i class="icon ph ph-file-plus"></i><span class="grow">New document</span></li>
+    <li role="option" aria-selected="false" class="flex items-center gap-gutter h-control px-control rounded-sm text-base fg-neutral-12 hover:bg-neutral-3 selected:bg-accent-1-3 selected:fg-accent-1-11 cursor-pointer transition"><i class="icon ph ph-folder-plus"></i><span class="grow">New folder</span></li>
+    <li role="presentation" class="px-control pt-xs pb-3xs text-xs font-mono uppercase tracking-widest fg-neutral-11">Team</li>
+    <li role="option" aria-selected="false" class="flex items-center gap-gutter h-control px-control rounded-sm text-base fg-neutral-12 hover:bg-neutral-3 selected:bg-accent-1-3 selected:fg-accent-1-11 cursor-pointer transition"><i class="icon ph ph-user-plus"></i><span class="grow">Invite a new member</span></li>
+  </ul>
+  <div class="flex flex-wrap items-center gap-md px-md py-xs border-t border-neutral-6 text-sm fg-neutral-11">
+    <span>↑ ↓ to move</span><span>↵ to open</span><span>Esc to close</span>
+  </div>
+</div>""",
+        "use": ["Group results by kind, and keep each to one line.", "Keep focus in the field and move the selection with <code>aria-activedescendant</code>."],
+        "avoid": ["A palette as the only way to reach a command; it is a shortcut, not the menu."],
     },
 ]
 

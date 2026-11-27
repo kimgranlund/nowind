@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Components: five more pages, Action menu, Popover card, Tree, Calendar and Command palette. The navbar now moves its links into a menu behind a button below `lg`, and its wordmark icon renders (it named a Phosphor weight the site does not load). Group headings in the sidebar navigation and the command palette use the kicker style.
+
 - Site: every page has a meta description (the docs pages take their intro line), and the band's site map and search buttons are named by their visible text, so their accessible names match what they show.
 
 - **Sixteen new components,** each with its own docs page, built from utilities and held to the geometry, size and paint contracts: textarea, slider, number field, file upload and tag input (Forms); sidebar navigation, navbar and steps (Navigation); drawer (Overlays); description list, stat, timeline, code block and keyboard key (Data display); banner and callout (Feedback).
