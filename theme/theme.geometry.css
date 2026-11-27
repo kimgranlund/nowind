@@ -75,6 +75,7 @@
   --control-icon-padding: calc(var(--control-padding) - var(--margin));
   --nested-padding: var(--margin);
   --nested-icon-padding: max(0px, calc(var(--nested-padding) - var(--margin)));
+  --truncate-bleed: 0.3em;
   --icon-box: var(--slot);
   --icon-sm: calc(var(--F) * 0.875);
   --icon-md: calc(var(--F) + var(--icon-md-blend) * (var(--slot) - var(--F)));

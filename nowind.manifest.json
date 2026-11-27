@@ -21,7 +21,7 @@
     "group": 108,
     "responsive": 940,
     "container": 333,
-    "bytes": 260576
+    "bytes": 260698
   },
   "naming": "property-value, as Prewind and Tailwind: p-md, gap-lg, bg-solid-accent-1. Colour classes take the token name without --; text-color roles are the token name alone (fg-weak, fg-accent-1).",
   "variants": {
@@ -42,7 +42,7 @@
   "categories": {
     "spacing": "p-, px-, py-, pt-, pr-, pb-, pl-, m-*, -m-*, m*-auto, gap-, gap-x-, gap-y- with 0 and 3xs, 2xs, xs, sm, md, lg, xl, 2xl, 3xl, 4xl; p-inset (margin − border, the padding between radius levels); scroll-mt-*, scroll-pt-* (where a linked element stops under sticky bars) with the same steps, no 0",
     "typeScale": "text-{xs, sm, base, lg, xl, 2xl, 3xl, 4xl, 5xl, 6xl} (sets size and line height)",
-    "kicker": "text-{kicker-sm, kicker-md, kicker-lg} (size and the kicker style)",
+    "kicker": "text-{kicker-sm, kicker-md} (size and the kicker style)",
     "typeRoles": "text-{display-lg, display-md, display-sm, display, heading-xl, heading-lg, heading-md, heading-sm, figure, lead, quote, title, subtitle, body-lg, body-md, body-sm, caption, footnote, title-sm, control-md, data, label, kicker, numeral, mono, mono-sm, code, kbd} (every role companion)",
     "colors": "A colour class is the property prefix plus the token name, minus the role group when it matches the prefix (fg-weak, bg-accent-1, border-weak; bg-component-accent-1 keeps its group). --border is border-default, because border is the width class; the reset draws every border in --border. Each property takes only its own roles: fg- with fg-*, on-solid-* and each palette's contrast (fg-accent-1-contrast, the primitive for text on a solid); bg- with bg-*, component-*, solid-*, surface, indicator and track; border- with border-*. Raw palette steps (fg-accent-1-9, bg-accent-1-9, border-accent-1-9) work with all three; alpha steps (neutral-a4) with bg- only. No outline colour classes: the reset sets the focus ring.",
     "weights": "font-normal, font-medium, font-semibold, font-bold",
@@ -56,7 +56,7 @@
     "controls": "h-control, h-nested (an .icon inside it shrinks by the two borders so it fits), size-control, size-nested, min-w-control, min-w-nested, px-control and px-nested (padding steps in by one margin on a side whose first or last child is .icon; wrap the label in a <span>), gap-gutter, gap-gutter-half",
     "levels": "p-surface, p-dialog (each minus the border), p-region, p-page, with px- and py- versions; gap-field, gap-row, gap-group, gap-section, gap-page; mt-section, mb-section. After Affine's container levels.",
     "materials": "material-flat, -physical, -frosted, -glass, -outline set a region's material (nearest wins, by @scope); relief-raised, -raised-solid, -recessed, -field, -etched, -ground, -overlay say what a part is. After Massimo.",
-    "grid": "gap-grid, gap-x-grid (2M), p-grid-inset (M), px-grid (slot), px-grid-compact; shell: w-sidebar (16F + 16), w-rail, h-header, min-h-header, top-header (a sticky offset under the header), scroll-pt-header (on <html>, so in-page links land below a sticky header), h-below-header, max-h-below-header, max-w-measure (44F). After Affine.",
+    "grid": "gap-grid, gap-x-grid (2M), p-grid-inset (M), px-grid (slot), px-grid-compact; shell: w-sidebar (16F + 16), w-rail, h-header (a minimum height: keep its content on one line, since top-header and h-below-header assume that height), top-header (a sticky offset under the header), scroll-pt-header (on <html>, so in-page links land below a sticky header), h-below-header, max-h-below-header, max-w-measure (44F). After Affine.",
     "chrome": "text-chrome: a fixed 14px (--text-chrome) for a site's own settings panels; with scope, --F and every length inside are fixed too, whatever the root size or tier.",
     "tiers": "tier-product (1×), tier-content (font +2px, spacing 1.5×), tier-brand (font +4px, spacing 2×). Each is a scope: it sets its font size to the base plus its own step (var(--text-base)), never to what it inherits, so a tier inside another tier replaces it rather than adding to it; --F and everything derived recompute inside it.",
     "animation": "animate-spin, animate-pulse, animate-none (cut by the reset under reduced motion).",

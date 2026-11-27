@@ -280,8 +280,8 @@ add("h-control", "min-height: var(--control-height)");
 // Controls and icons (after Affine UI's button and icon): heights, square sizes, padding that steps in by one margin on a
 // side that holds an icon (the :has() rules below), the gutter gap, and an S-square icon box with its glyph size.
 add("h-nested", "min-height: var(--nested-height)");
-add("size-control", "min-width: var(--control-height); min-height: var(--control-height); aspect-ratio: 1; padding: 0");
-add("size-nested", "min-width: var(--nested-height); min-height: var(--nested-height); aspect-ratio: 1; padding: 0");
+add("size-control", "min-width: var(--control-height); min-height: var(--control-height); aspect-ratio: 1; align-self: center; padding: 0");
+add("size-nested", "min-width: var(--nested-height); min-height: var(--nested-height); aspect-ratio: 1; align-self: center; padding: 0");
 add("min-w-control", "min-width: var(--control-height)");
 add("min-w-nested", "min-width: var(--nested-height)");
 add("px-control", "padding-inline: var(--control-padding)");
@@ -532,7 +532,7 @@ const reset = `@layer reset {
   :where(button) { padding: 0; background-color: transparent; }
   :where(legend) { padding: 0; }
   :where(:not(select):is(.h-control, .h-nested, .size-control, .size-nested)) > :where(:not(.icon, input, select, textarea)), :where(td, th):where(.h-control, .h-nested):not(:has(> *)) { text-box: trim-both cap alphabetic; }
-  :where(:not(select):is(.h-control, .h-nested, .size-control, .size-nested)) > :where(.truncate) { padding-block: 0.3em; margin-block: -0.3em; }
+  :where(:not(select):is(.h-control, .h-nested, .size-control, .size-nested)) > :where(.truncate) { padding-block: var(--truncate-bleed); margin-block: calc(-1 * var(--truncate-bleed)); }
 
   :where(html) {
     color-scheme: light dark;
@@ -668,7 +668,7 @@ const reset = `@layer reset {
   }
   :where(textarea) { field-sizing: content; resize: vertical; }
   :where(textarea:not([rows])) { min-block-size: 6lh; }
-  :where(input[type="color"]) { inline-size: auto; block-size: auto; }
+  :where(input[type="color"]:is(.size-nested, .size-control)) { inline-size: auto; block-size: auto; }
   :where(input[type="file"]) { max-inline-size: 100%; color: var(--fg-weak); }
   :where(input[type="file"])::file-selector-button { font: inherit; font-weight: var(--title-sm--font-weight); color: var(--fg); min-block-size: var(--control-height); padding-inline: var(--control-padding); margin-inline-end: var(--gutter); border: var(--border-width) solid transparent; border-radius: var(--radius-control); background: var(--neutral-a2); cursor: pointer; transition: background-color var(--motion-duration) var(--motion-easing); }
   :where(input[type="file"])::file-selector-button:hover { background: var(--neutral-a3); }
@@ -783,7 +783,7 @@ for (const c of ["size-control", "size-nested"]) out.push(`  .${c}:not(:has(> *)
 for (const c of ["h-nested", "size-nested"]) out.push(`  .${c} > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }`);
 for (const [cls, pad] of [["px-control", "--control-icon-padding"], ["px-nested", "--nested-icon-padding"]]) {
   out.push(`  .${cls}:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(${pad}); }`);
-  out.push(`  .${cls}:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested, .select-base):last-child)) { padding-inline-end: var(${pad}); }`);
+  out.push(`  .${cls}:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested, .select-base.p-0):last-child)) { padding-inline-end: var(${pad}); }`);
 }
 // ---- Materials (after massimo-v4): a region's material paints the reliefs inside it. The nearest material wins:
 // each block is an @scope that stops at a nested material region. Flat is the default and paints nothing but casts.
@@ -942,7 +942,7 @@ const manifest = {
   categories: {
     spacing: `p-, px-, py-, pt-, pr-, pb-, pl-, m-*, -m-*, m*-auto, gap-, gap-x-, gap-y- with 0 and ${SPACE.join(", ")}; p-inset (margin − border, the padding between radius levels); scroll-mt-*, scroll-pt-* (where a linked element stops under sticky bars) with the same steps, no 0`,
     typeScale: `text-{${SIZES.join(", ")}} (sets size and line height)`,
-    kicker: `text-{${KICKERS.join(", ")}} (size and the kicker style)`,
+    kicker: `text-{${KICKERS.filter((k) => D.has(`text-${k}`)).join(", ")}} (size and the kicker style)`,
     typeRoles: `text-{${ROLES.filter((r) => !KICKERS.includes(r)).join(", ")}} (every role companion)`,
     colors: "A colour class is the property prefix plus the token name, minus the role group when it matches the prefix (fg-weak, bg-accent-1, border-weak; bg-component-accent-1 keeps its group). --border is border-default, because border is the width class; the reset draws every border in --border. Each property takes only its own roles: fg- with fg-*, on-solid-* and each palette's contrast (fg-accent-1-contrast, the primitive for text on a solid); bg- with bg-*, component-*, solid-*, surface, indicator and track; border- with border-*. Raw palette steps (fg-accent-1-9, bg-accent-1-9, border-accent-1-9) work with all three; alpha steps (neutral-a4) with bg- only. No outline colour classes: the reset sets the focus ring.",
     weights: "font-normal, font-medium, font-semibold, font-bold",
@@ -956,7 +956,7 @@ const manifest = {
     controls: "h-control, h-nested (an .icon inside it shrinks by the two borders so it fits), size-control, size-nested, min-w-control, min-w-nested, px-control and px-nested (padding steps in by one margin on a side whose first or last child is .icon; wrap the label in a <span>), gap-gutter, gap-gutter-half",
     levels: "p-surface, p-dialog (each minus the border), p-region, p-page, with px- and py- versions; gap-field, gap-row, gap-group, gap-section, gap-page; mt-section, mb-section. After Affine's container levels.",
     materials: "material-flat, -physical, -frosted, -glass, -outline set a region's material (nearest wins, by @scope); relief-raised, -raised-solid, -recessed, -field, -etched, -ground, -overlay say what a part is. After Massimo.",
-    grid: "gap-grid, gap-x-grid (2M), p-grid-inset (M), px-grid (slot), px-grid-compact; shell: w-sidebar (16F + 16), w-rail, h-header, min-h-header, top-header (a sticky offset under the header), scroll-pt-header (on <html>, so in-page links land below a sticky header), h-below-header, max-h-below-header, max-w-measure (44F). After Affine.",
+    grid: "gap-grid, gap-x-grid (2M), p-grid-inset (M), px-grid (slot), px-grid-compact; shell: w-sidebar (16F + 16), w-rail, h-header (a minimum height: keep its content on one line, since top-header and h-below-header assume that height), top-header (a sticky offset under the header), scroll-pt-header (on <html>, so in-page links land below a sticky header), h-below-header, max-h-below-header, max-w-measure (44F). After Affine.",
     chrome: "text-chrome: a fixed 14px (--text-chrome) for a site's own settings panels; with scope, --F and every length inside are fixed too, whatever the root size or tier.",
     tiers: "tier-product (1×), tier-content (font +2px, spacing 1.5×), tier-brand (font +4px, spacing 2×). Each is a scope: it sets its font size to the base plus its own step (var(--text-base)), never to what it inherits, so a tier inside another tier replaces it rather than adding to it; --F and everything derived recompute inside it.",
     animation: "animate-spin, animate-pulse, animate-none (cut by the reset under reduced motion).",

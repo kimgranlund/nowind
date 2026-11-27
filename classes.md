@@ -14,8 +14,8 @@ Variants: `hover:` on the 136 role-colour, opacity and cursor classes (inside `@
 |---|---|
 | `.h-control` | `min-height: var(--control-height)` |
 | `.h-nested` | `min-height: var(--nested-height)` |
-| `.size-control` | `min-width: var(--control-height); min-height: var(--control-height); aspect-ratio: 1; padding: 0` |
-| `.size-nested` | `min-width: var(--nested-height); min-height: var(--nested-height); aspect-ratio: 1; padding: 0` |
+| `.size-control` | `min-width: var(--control-height); min-height: var(--control-height); aspect-ratio: 1; align-self: center; padding: 0` |
+| `.size-nested` | `min-width: var(--nested-height); min-height: var(--nested-height); aspect-ratio: 1; align-self: center; padding: 0` |
 | `.min-w-control` | `min-width: var(--control-height)` |
 | `.min-w-nested` | `min-width: var(--nested-height)` |
 | `.px-control` | `padding-inline: var(--control-padding)` |

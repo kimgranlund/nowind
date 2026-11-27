@@ -286,7 +286,7 @@ COMPONENTS = [
       <i class="icon ph ph-palette fg-neutral-11" aria-hidden="true"></i>
       <span class="fg-neutral-11" aria-hidden="true">#</span>
       <input id="doc-hex" type="text" class="{BARE} tabular-nums" spellcheck="false" maxlength="6" value="0090FF">
-      <input type="color" class="size-nested shrink-0 self-center rounded-xs border-0 bg-transparent cursor-pointer" value="#0090ff" aria-label="Pick a colour">
+      <input type="color" class="size-nested shrink-0 rounded-xs border-0 bg-transparent cursor-pointer" value="#0090ff" aria-label="Pick a colour">
     </div>
   </div>
   <div class="flex flex-col gap-2xs">

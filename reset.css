@@ -10,7 +10,7 @@
   :where(button) { padding: 0; background-color: transparent; }
   :where(legend) { padding: 0; }
   :where(:not(select):is(.h-control, .h-nested, .size-control, .size-nested)) > :where(:not(.icon, input, select, textarea)), :where(td, th):where(.h-control, .h-nested):not(:has(> *)) { text-box: trim-both cap alphabetic; }
-  :where(:not(select):is(.h-control, .h-nested, .size-control, .size-nested)) > :where(.truncate) { padding-block: 0.3em; margin-block: -0.3em; }
+  :where(:not(select):is(.h-control, .h-nested, .size-control, .size-nested)) > :where(.truncate) { padding-block: var(--truncate-bleed); margin-block: calc(-1 * var(--truncate-bleed)); }
 
   :where(html) {
     color-scheme: light dark;
@@ -146,7 +146,7 @@
   }
   :where(textarea) { field-sizing: content; resize: vertical; }
   :where(textarea:not([rows])) { min-block-size: 6lh; }
-  :where(input[type="color"]) { inline-size: auto; block-size: auto; }
+  :where(input[type="color"]:is(.size-nested, .size-control)) { inline-size: auto; block-size: auto; }
   :where(input[type="file"]) { max-inline-size: 100%; color: var(--fg-weak); }
   :where(input[type="file"])::file-selector-button { font: inherit; font-weight: var(--title-sm--font-weight); color: var(--fg); min-block-size: var(--control-height); padding-inline: var(--control-padding); margin-inline-end: var(--gutter); border: var(--border-width) solid transparent; border-radius: var(--radius-control); background: var(--neutral-a2); cursor: pointer; transition: background-color var(--motion-duration) var(--motion-easing); }
   :where(input[type="file"])::file-selector-button:hover { background: var(--neutral-a3); }

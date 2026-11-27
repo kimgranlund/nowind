@@ -1281,8 +1281,8 @@
   .max-w-container { max-width: var(--container-max); }
   .h-control { min-height: var(--control-height); }
   .h-nested { min-height: var(--nested-height); }
-  .size-control { min-width: var(--control-height); min-height: var(--control-height); aspect-ratio: 1; padding: 0; }
-  .size-nested { min-width: var(--nested-height); min-height: var(--nested-height); aspect-ratio: 1; padding: 0; }
+  .size-control { min-width: var(--control-height); min-height: var(--control-height); aspect-ratio: 1; align-self: center; padding: 0; }
+  .size-nested { min-width: var(--nested-height); min-height: var(--nested-height); aspect-ratio: 1; align-self: center; padding: 0; }
   .min-w-control { min-width: var(--control-height); }
   .min-w-nested { min-width: var(--nested-height); }
   .px-control { padding-inline: var(--control-padding); }
@@ -1410,9 +1410,9 @@
   .h-nested > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }
   .size-nested > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }
   .px-control:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--control-icon-padding); }
-  .px-control:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested, .select-base):last-child)) { padding-inline-end: var(--control-icon-padding); }
+  .px-control:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested, .select-base.p-0):last-child)) { padding-inline-end: var(--control-icon-padding); }
   .px-nested:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--nested-icon-padding); }
-  .px-nested:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested, .select-base):last-child)) { padding-inline-end: var(--nested-icon-padding); }
+  .px-nested:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested, .select-base.p-0):last-child)) { padding-inline-end: var(--nested-icon-padding); }
   @scope (.material-physical) to (.material-flat, .material-frosted, .material-glass, .material-outline) {
     .relief-raised, :scope.relief-raised { background-image: linear-gradient(var(--paint-face-top), transparent, transparent, var(--paint-face-bottom)); border-color: var(--paint-bevel-top) transparent var(--paint-bevel-bottom); background-origin: border-box; box-shadow: 0 0 0 0.5px var(--paint-bevel-ring), var(--shadow-sm); }
     .relief-raised:active, :scope.relief-raised:active { background-image: none; border-color: transparent; box-shadow: var(--inset-shadow-xs), inset 0 0 0 0.5px var(--paint-recess-ring), 0 1px 0 var(--paint-recess-lip); }
