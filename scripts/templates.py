@@ -892,7 +892,7 @@ def live_page(name, html_, height):
     doc = ('<!doctype html><html><head><meta charset="utf-8">'
            + "".join(f'<link rel="stylesheet" href="../../{f}">' for f in ("theme.css", "reset.css", "defaults.css"))
            + '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">'
-           + '<script>(function(){var p=parent.document.documentElement,d=document.documentElement;function s(){if(p.dataset.colorMode)d.dataset.colorMode=p.dataset.colorMode;else delete d.dataset.colorMode;d.style.fontSize=p.style.fontSize}s();new MutationObserver(s).observe(p,{attributes:true})})()</script>'
+           + '<script>(function(){try{var p=parent.document.documentElement,d=document.documentElement;function s(){if(p.dataset.colorMode)d.dataset.colorMode=p.dataset.colorMode;else delete d.dataset.colorMode;d.style.fontSize=p.style.fontSize}s();new MutationObserver(s).observe(p,{attributes:true})}catch(e){}})()</script>'
            + '</head><body>' + html_ + '</body></html>')
     srcdoc = doc.replace("&", "&amp;").replace('"', "&quot;")
     return (f"""<div class="rounded-md border border-weak overflow-hidden">
