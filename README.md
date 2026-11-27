@@ -220,7 +220,7 @@ Every class and its declarations: [classes.md](classes.md), or browse them as [r
 
 ### Text sizes in practice
 
-Leave a page's headings unsized where they head the page or a section: the reset gives `h1`–`h6` the heading roles (`text-heading-xl` and down). A title inside a card, list, alert or dialog is smaller than a section heading, so size it from the contract below (`text-base font-semibold`). Every example follows one size contract, enforced by the examples lint: controls, table cells and body copy are `text-base`; labels, table headers, supporting lines and badges `text-sm`; titles `text-base font-semibold` (`text-lg` in a dialog); and an icon takes the step of the text beside it. The [Type and space](https://kimgranlund.github.io/nowind/site/docs/type-space.html) page has the table.
+Leave a page's headings unsized where they head the page or a section: the reset gives `h1`–`h6` the heading roles (`text-heading-xl` and down). A title inside a card, list, alert or dialog is smaller than a section heading, so size it from the contract below (`text-base font-semibold`); a classless `dialog` sizes its own heading. Every example follows one size contract, enforced by the examples lint: controls, table cells and body copy are `text-base`; labels, table headers, supporting lines and badges `text-sm`; titles `text-base font-semibold` (`text-lg` in a dialog); and an icon takes the step of the text beside it. The [Type and space](https://kimgranlund.github.io/nowind/site/docs/type-space.html) page has the table.
 
 ### Buttons, fields and icons
 
@@ -276,14 +276,15 @@ Plain structure does the rest, where the element has no class:
 |---|---|
 | `<main>` | A centred page with page padding |
 | `<main>`, `<article>`, `<section>`, `<dialog>` | Their children spaced a flow gap apart, and a main's sections a section gap |
-| `<header>` in `body` or `main` | A row: title at the start, actions at the end |
+| `<header>` in `body` or `main` | A row: title at the start, actions at the end (wrap two or more actions in a `<div>`, which becomes a button row) |
 | `<table>` | Full width; in a `<div>` of its own, it scrolls sideways when narrow |
-| `<button aria-label="…">` with no class, holding only an icon | A square icon button |
+| `<button aria-label="…">` with no class, holding only an `<i>` or `<svg>` | A square icon button |
 | `<form>` | Its parts stacked a field gap apart, up to the form width |
+| `<div>` holding a label, a field and an optional `<small>` | One field: label, field and help text, each on its own line |
 | `<div>` of buttons | A button row (at the end, in a dialog) |
 | `<small>` after a field | Help text |
 | `role="status"`, `"alert"`, `"note"` | An info, danger or neutral note |
-| `<div role="group">` of `aria-pressed` buttons | A segmented control |
+| `<div role="group">` of `aria-pressed` buttons | A segmented control; name it with `aria-label` on the group |
 | `data-tone="danger"` (or accent, success, warning, info, neutral) on a button or note | That tone, so a destructive button needs no class |
 
 The element looks (buttons, fields, checks, links, labels, table cells) apply whether or not an element has classes: a class replaces only the properties it sets. The structure rules in this table apply only to an element with no class, so classing a `section`, `form` or `div` turns off its spacing or row; give it the utilities you want instead.
@@ -293,8 +294,10 @@ The element looks (buttons, fields, checks, links, labels, table cells) apply wh
   <label for="email">Email</label>
   <input id="email" type="email">
   <label><input type="checkbox"> Send me updates</label>
-  <button type="button">Cancel</button>
-  <button type="submit">Save</button>
+  <div>
+    <button type="button">Cancel</button>
+    <button type="submit">Save</button>
+  </div>
 </form>
 ```
 
@@ -305,7 +308,7 @@ Every value reads a token with a fallback, and the tokens aren't declared anywhe
 .toolbar  { --button-height: var(--nested-height); } /* one region */
 ```
 
-The `defaults` layer sits after `reset` and before `styles`, so your own CSS in `@layer styles` beats it, and so does any utility class. The defaults fill only what an element's classes leave unset: a utility-built button that sets no padding gets the default padding, so set the properties a stack depends on. Only an explicit `type="submit"` makes a button primary; an untyped `<button>` in a form submits but stays neutral, and a submit button outside its form takes `form="id"`. Any other tone, such as a destructive button, takes a class: `btn-danger` from the convenience classes, or `bg-danger-9 fg-danger-contrast`. [`nowind.defaults.manifest.json`](nowind.defaults.manifest.json) lists all the tokens and their fallbacks.
+The `defaults` layer sits after `reset` and before `styles`, so your own CSS in `@layer styles` beats it, and so does any utility class. The defaults fill only what an element's classes leave unset: a utility-built button that sets no padding gets the default padding, so set the properties a stack depends on. Only an explicit `type="submit"` makes a button primary; an untyped `<button>` in a form submits but stays neutral, and a submit button outside its form takes `form="id"`. Any other tone, such as a destructive button, takes `data-tone="danger"` (or accent, success, warning, info, neutral), or a class: `btn-danger` from the convenience classes, or `bg-danger-9 fg-danger-contrast`. [`nowind.defaults.manifest.json`](nowind.defaults.manifest.json) lists all the tokens and their fallbacks.
 
 ## Convenience classes
 
@@ -415,7 +418,7 @@ The scripts need Node 18 or later and have no dependencies. People who use Nowin
 
 ## Browser support
 
-Nowind uses `light-dark()`, `@layer`, `@property`, `@container`, `clamp()` and `:where()`, which every current browser supports. Some features are progressive and fall back cleanly: CSS typed arithmetic (the root-scaled fluid term), anchor positioning, invoker commands (`commandfor`, which opens a dialog without script), the customizable `select`, `field-sizing`, `interpolate-size` and the glass lens (Chromium only).
+Nowind uses `light-dark()`, `@layer`, `@property`, `@container`, `clamp()` and `:where()`, which every current browser supports. Some features are progressive and fall back cleanly: CSS typed arithmetic (the root-scaled fluid term), anchor positioning, invoker commands (`commandfor`, which opens a dialog without script; where it isn't supported, call `dialog.showModal()` from the button's click handler), the customizable `select`, `field-sizing`, `interpolate-size` and the glass lens (Chromium only).
 
 ## Credits
 
