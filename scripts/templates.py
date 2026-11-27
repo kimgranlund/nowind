@@ -798,7 +798,7 @@ def colour_page():
     nm = _m("nowind.manifest.json")
     ramps = []
     for name, pal in cm["palettes"].items():
-        sw = "".join(f'<span class="block py-sm rounded-xs bg-{name}-{n}" title="--{name}-{n}"></span>' for n in range(1, 13))
+        sw = "".join(f'<span class="block aspect-square {"rounded-full" if n == 9 else "rounded-xs"} bg-{name}-{n}" title="--{name}-{n}"></span>' for n in range(1, 13))
         light = "contrast-white" in pal["contrast"] and "light-dark" not in pal["contrast"]
         ramps.append(f"""<div class="flex flex-col gap-3xs">
             <div class="flex flex-wrap items-baseline justify-between gap-xs"><span class="text-subtitle"><code>{name}</code> · {E(pal['family'])}</span><span class="text-caption fg-weak">{E(pal['use'])}</span></div>

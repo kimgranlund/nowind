@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Colour page swatches are square**, and step 9, each palette's solid, is a circle.
 - **The bar's search field fills the width** between the site-map button and the page arrows.
 
 ## 0.19.0 (2026-11-27)
