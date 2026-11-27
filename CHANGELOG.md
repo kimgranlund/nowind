@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **A sortable end-aligned column puts its sort icon before the label,** so the label lines up with the numbers below instead of the icon box's bearing leaving a ragged edge. The empty state's icon sits in a larger circle (`p-sm` around `icon-lg`).
 - **Table cells keep the control height:** a cell ignores `min-height`, so `h-control` and `h-nested` on a `td` or `th` set `height`, which a cell already treats as a minimum.
 - **Site fixes:** the site's cards, code figures, tables and lists take `rounded-md`; the home page's link cards align their icon and arrow with the title; a sortable table's header row is as tall as a plain one (its cells drop the default block padding, `py-0`); and the empty state's icon is `icon-lg` in a `size-control` marker.
 - **Titles are the next size up from the body:** a title in a card, list, alert, toast or dialog is `text-lg font-semibold` (was `text-base`), in the size contract, the examples and the docs. A one-line message stays at the body size.
