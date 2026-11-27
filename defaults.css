@@ -28,8 +28,8 @@
   :where(body, main):where(:not([class])) > :where(header:not([class])) { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--header-gap, var(--space-sm)); }
   :where(table:not([class])) { inline-size: var(--table-width, 100%); }
   :where(div:not([class]):has(> table:only-child)) { overflow-x: auto; }
-  :where(button[aria-label]:has(> :is(i, svg):only-child)) { inline-size: var(--icon-button-size, var(--control-height)); padding-inline: 0; }
-  :where(button[aria-label]) > :where(i:only-child) { font-size: var(--icon-button-glyph, var(--icon-md)); line-height: 1; }
+  :where(button[aria-label]:not([class]):has(> :is(i, svg):only-child)) { inline-size: var(--icon-button-size, var(--control-height)); padding-inline: 0; }
+  :where(button[aria-label]:not([class])) > :where(i:only-child) { font-size: var(--icon-button-glyph, var(--icon-md)); line-height: 1; }
   :where(form:not([class])) { display: grid; justify-items: start; gap: var(--form-gap, var(--space-sm)); max-inline-size: var(--form-width, var(--max-w-form)); }
   :where(form:not([class])) > :where(*) { margin-block-start: 0; }
   :where(form:not([class])) > :where(div:not([class], [role]), [role="alert"], [role="status"], [role="note"]) { justify-self: stretch; }

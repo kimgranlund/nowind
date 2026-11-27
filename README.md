@@ -278,7 +278,7 @@ Plain structure does the rest, where the element has no class:
 | `<main>`, `<article>`, `<section>`, `<dialog>` | Their children spaced a flow gap apart, and a main's sections a section gap |
 | `<header>` in `body` or `main` | A row: title at the start, actions at the end |
 | `<table>` | Full width; in a `<div>` of its own, it scrolls sideways when narrow |
-| `<button aria-label="…">` holding only an icon | A square icon button |
+| `<button aria-label="…">` with no class, holding only an icon | A square icon button |
 | `<form>` | Its parts stacked a field gap apart, up to the form width |
 | `<div>` of buttons | A button row (at the end, in a dialog) |
 | `<small>` after a field | Help text |
