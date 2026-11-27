@@ -48,6 +48,7 @@ HEAD = """<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} · Nowind</title>
+<meta name="description" content="{description}">
 <link rel="icon" href="data:,">
 {head_extra}<link rel="stylesheet" href="../../theme.css">
 <link rel="stylesheet" href="../../reset.css">
@@ -159,8 +160,8 @@ def top(path):
   </div>
 </div>
 <div class="flex items-center gap-xs px-grid py-2xs border-b-2 border-strong bg">
-  <button type="button" popovertarget="site-map" class="inline-flex items-center gap-gutter-half min-w-0 h-control px-control rounded-sm border hover:bg-component-weak bg text-title-sm cursor-pointer transition-colors" aria-label="Site map: {cur or "all pages"}">{where}<i class="icon caret fg-weak" aria-hidden="true"></i></button>
-  <button type="button" data-search-open class="inline-flex items-center gap-gutter grow min-w-0 h-control px-control rounded-sm border hover:border-strong bg-strong fg-subtle text-control-md cursor-text transition-colors" aria-label="Search the site"><i class="icon ph ph-magnifying-glass"></i><span class="grow truncate text-start">Search pages, components and classes</span><kbd class="hidden sm:inline text-mono-sm">⌘K</kbd></button>
+  <button type="button" popovertarget="site-map" class="inline-flex items-center gap-gutter-half min-w-0 h-control px-control rounded-sm border hover:bg-component-weak bg text-title-sm cursor-pointer transition-colors">{where}<span class="sr-only">, site map</span><i class="icon caret fg-weak" aria-hidden="true"></i></button>
+  <button type="button" data-search-open class="inline-flex items-center gap-gutter grow min-w-0 h-control px-control rounded-sm border hover:border-strong bg-strong fg-subtle text-control-md cursor-text transition-colors"><i class="icon ph ph-magnifying-glass"></i><span class="grow truncate text-start">Search pages, components and classes</span><kbd class="hidden sm:inline text-mono-sm">⌘K</kbd></button>
   {step}
 </div>
 </div>
@@ -279,7 +280,11 @@ def ul(items):
 def doc_page(current, title, article_html, toc_items=None, wide=False, sidebar_on=True, head_extra=""):
     """Every generated page: band and section row, the twelve-column grid of blocks, previous and next, footer."""
     path = "docs/" + current
-    return (HEAD.format(title=E(title), head_extra=HEAD_EXTRA + head_extra) + top(path) +
+    first = re.search(r"<p\b[^>]*>(.*?)</p>", article_html, re.S)
+    desc = html.unescape(re.sub(r"<[^>]+>", "", first.group(1))).strip() if first else ""
+    desc = re.sub(r"\s+", " ", desc) or f"{html.unescape(title)}: part of Nowind, a plain-CSS design system."
+    if len(desc) > 160: desc = desc[:157].rsplit(" ", 1)[0] + "…"
+    return (HEAD.format(title=E(title), description=E(desc), head_extra=HEAD_EXTRA + head_extra) + top(path) +
 f"""<main id="content" class="tier-content px-grid">
   <div class="grid grid-cols-12 gap-x-grid">
         {article_html}

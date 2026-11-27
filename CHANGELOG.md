@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Site: every page has a meta description (the docs pages take their intro line), and the band's site map and search buttons are named by their visible text, so their accessible names match what they show.
+
 - **Sixteen new components,** each with its own docs page, built from utilities and held to the geometry, size and paint contracts: textarea, slider, number field, file upload and tag input (Forms); sidebar navigation, navbar and steps (Navigation); drawer (Overlays); description list, stat, timeline, code block and keyboard key (Data display); banner and callout (Feedback).
 - **The command palette keeps one height,** 600px (new `--shell-command-height` and `h-command`, which stops at the viewport below the header), whatever the results, and its list scrolls inside it.
 - **A sortable end-aligned column puts its sort icon before the label,** so the label lines up with the numbers below instead of the icon box's bearing leaving a ragged edge. The empty state's icon sits in a larger circle (`p-sm` around `icon-lg`).
