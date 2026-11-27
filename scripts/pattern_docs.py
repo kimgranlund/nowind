@@ -67,6 +67,62 @@ def comment(initials, tone, name, when, text):
     </li>"""
 
 
+def check_row(id_, label, done, files):
+    return f"""    <tr class="border-t border-neutral-6 transition state">
+      <td class="h-control px-control"><input type="checkbox" aria-label="Select {label}"{" checked" if done else ""}></td>
+      <td class="h-control px-control">{label}</td>
+      <td class="h-control ps-control pe-md text-end tabular-nums">{files}</td>
+    </tr>"""
+
+
+def task(done, title, detail, action=None):
+    mark = ('<span class="inline-flex items-center justify-center size-nested shrink-0 rounded-full bg-success-9 fg-success-contrast"><i class="icon icon-sm ph-bold ph-check"></i></span>' if done
+            else '<span class="inline-flex items-center justify-center size-nested shrink-0 rounded-full border border-neutral-7" aria-hidden="true"></span>')
+    act = f'\n      <button class="{BTN_SECONDARY}"><span>{action}</span></button>' if action else ""
+    return f"""    <li class="flex flex-wrap items-center gap-sm py-sm border-t border-neutral-6">
+      {mark}
+      <div class="grow min-w-0 flex flex-col gap-3xs"><span class="text-base{" line-through" if done else ""}">{title}</span><span class="{HELP}">{detail}</span></div>{act}
+    </li>"""
+
+
+def upload(name, size, pct, state):
+    if state == "done":
+        tail = '<i class="icon ph ph-check-circle fg-success-11" role="img" aria-label="Uploaded"></i>'
+        bar = f'\n        <span class="{HELP} tabular-nums">{size}</span>'
+    elif state == "error":
+        tail = f'<button class="{ICON_BTN}" aria-label="Retry {name}"><i class="icon ph ph-arrow-clockwise"></i></button>'
+        bar = f'\n        <span class="text-sm fg-danger-11">Upload failed. The file is over 10 MB.</span>'
+    else:
+        tail = f'<button class="{ICON_BTN}" aria-label="Cancel {name}"><i class="icon ph ph-x"></i></button>'
+        bar = f'\n        <progress value="{pct}" max="100" aria-label="{name}">{pct}%</progress>\n        <span class="{HELP} tabular-nums">{pct}% uploaded</span>'
+    return f"""    <li class="flex items-center gap-sm py-xs border-t border-neutral-6">
+      <i class="icon ph ph-file-image fg-neutral-11"></i>
+      <div class="grow min-w-0 flex flex-col gap-2xs">
+        <span class="text-base truncate">{name}</span>{bar}
+      </div>
+      {tail}
+    </li>"""
+
+
+def faq(q, a, open_=False):
+    return f"""  <details class="group border-b border-neutral-6"{" open" if open_ else ""}>
+    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-base font-semibold hover:fg-accent-1-11">{q}<i class="icon icon-sm ph ph-caret-down fg-neutral-11 transition group-open:rotate-180" aria-hidden="true"></i></summary>
+    <p class="text-base fg-neutral-11 pb-sm">{a}</p>
+  </details>"""
+
+
+def feature(icon, title, text):
+    return f"""  <div class="flex flex-col gap-xs">
+    <span class="inline-flex items-center justify-center size-control shrink-0 rounded-sm bg-accent-1-3 fg-accent-1-11"><i class="icon ph {icon}"></i></span>
+    <span class="text-lg font-semibold">{title}</span>
+    <p class="text-base fg-neutral-11">{text}</p>
+  </div>"""
+
+
+def detail(term, value):
+    return f'  <dt class="text-sm font-medium fg-neutral-11">{term}</dt>\n  <dd class="sm:col-span-2">{value}</dd>'
+
+
 PATTERNS = [
     {
         "slug": "sign-in", "name": "Sign in", "icon": "ph-sign-in", "group": "Account",
@@ -220,5 +276,156 @@ PATTERNS = [
 </section>""",
         "use": ["Times relative while recent, a date once older than a week."],
         "avoid": ["Nesting replies more than one level; long threads read better flat."],
+    },
+    {
+        "slug": "page-header", "name": "Page header", "icon": "ph-text-h", "group": "Navigation",
+        "components": ["breadcrumbs", "button", "action-menu"],
+        "summary": "Where the page sits, its title and one supporting line, with the page's actions at the end of the title row; on a phone the actions wrap under the title.",
+        "html": f"""<header class="flex flex-col gap-sm pb-md border-b border-neutral-6">
+  <nav aria-label="Breadcrumb">
+    <ol role="list" class="flex flex-wrap items-center gap-2xs text-base fg-neutral-11">
+      <li><a href="#" class="fg-neutral-11 hover:fg-neutral-12 no-underline">Projects</a></li>
+      <li class="inline-flex" aria-hidden="true"><i class="icon icon-sm ph-bold ph-caret-right fg-neutral-8"></i></li>
+      <li class="fg-neutral-12" aria-current="page">Q3 report</li>
+    </ol>
+  </nav>
+  <div class="flex flex-wrap items-center gap-sm">
+    <div class="grow min-w-0 flex flex-col gap-3xs"><h2 class="text-lg font-semibold">Q3 report</h2><span class="{HELP}">Edited 2 hours ago by Ada Lovelace</span></div>
+    <div class="flex items-center gap-xs">
+      <button class="{BTN_SECONDARY}"><i class="icon ph ph-share-network"></i><span>Share</span></button>
+      <button class="{BTN_PRIMARY}"><span>Publish</span></button>
+      <button class="inline-flex items-center justify-center size-control shrink-0 rounded-sm state border border-transparent bg-neutral-a2 fg-neutral-12 cursor-pointer" aria-label="More actions for Q3 report"><i class="icon ph-bold ph-dots-three"></i></button>
+    </div>
+  </div>
+</header>""",
+        "use": ["One primary action; the rest in secondary buttons or the menu."],
+        "avoid": ["Breadcrumbs on a page one level down; the back link is enough."],
+    },
+    {
+        "slug": "bulk-actions", "name": "Bulk actions", "icon": "ph-check-square", "group": "Data",
+        "components": ["table", "form-controls", "button"],
+        "summary": "A table with a checkbox on each row. While rows are selected a bar across the top of the table says how many, and holds what can be done to all of them.",
+        "html": f"""<div class="overflow-x-auto rounded-md border border-neutral-6">
+  <div class="flex flex-wrap items-center gap-sm p-inset bg-accent-1-3 border-b border-neutral-6" role="region" aria-label="Selection">
+    <span class="grow ps-control text-base fg-accent-1-12 tabular-nums" role="status">2 folders selected</span>
+    <button class="{BTN_SECONDARY}"><i class="icon ph ph-archive"></i><span>Archive</span></button>
+    <button class="{BTN_DANGER}"><i class="icon ph ph-trash"></i><span>Delete</span></button>
+  </div>
+  <table class="w-full">
+    <thead class="bg-neutral-2"><tr><td class="h-control px-control"><input type="checkbox" aria-label="Select all folders"></td><th class="h-control px-control text-start text-sm font-medium fg-neutral-11">Folder</th><th class="h-control ps-control pe-md text-end text-sm font-medium fg-neutral-11">Files</th></tr></thead>
+    <tbody>
+{check_row("a", "Invoices", True, "128")}
+{check_row("b", "Contracts", True, "42")}
+{check_row("c", "Receipts", False, "311")}
+    </tbody>
+  </table>
+</div>""",
+        "use": ["Put the count in a <code>role=\"status\"</code> line, so it is announced as it changes.", "A select-all checkbox in the header."],
+        "avoid": ["Showing the bar before anything is selected."],
+    },
+    {
+        "slug": "details-panel", "name": "Details panel", "icon": "ph-info", "group": "Data",
+        "components": ["card", "description-list", "badge"],
+        "summary": "One record's facts in a card: its name and status, then terms and values that stack on a phone and sit side by side from <code>sm</code> up.",
+        "html": f"""<section class="flex flex-col gap-md max-w-form {CARD}" aria-labelledby="pat-inv">
+  <div class="flex flex-wrap items-center gap-sm"><h3 id="pat-inv" class="grow text-lg font-semibold">Invoice 1042</h3><span class="{BADGE} bg-success-3 border-success-6 fg-success-11"><i class="icon icon-sm ph-bold ph-check"></i><span>Paid</span></span></div>
+  <dl class="grid grid-cols-1 sm:grid-cols-3 gap-x-md gap-y-xs">
+{detail("Client", "Northwind Traders")}
+{detail("Issued", "2 March 2027")}
+{detail("Amount", '<span class="tabular-nums">€1,200.00</span>')}
+  </dl>
+</section>""",
+        "use": ["Status at the top, next to the name, where it is read first."],
+        "avoid": ["Editing in place in a details panel; open a form."],
+    },
+    {
+        "slug": "onboarding-checklist", "name": "Onboarding checklist", "icon": "ph-list-checks", "group": "Account",
+        "components": ["card", "progress", "button"],
+        "summary": "The first things to do, with how far along you are: done steps checked and struck through, the next one with its button.",
+        "html": f"""<section class="flex flex-col gap-sm max-w-form {CARD}" aria-labelledby="pat-start">
+  <div class="flex flex-col gap-2xs">
+    <div class="flex items-baseline justify-between gap-sm"><h3 id="pat-start" class="text-lg font-semibold">Get started</h3><span class="{HELP} tabular-nums">1 of 3 done</span></div>
+    <progress value="1" max="3" aria-labelledby="pat-start">1 of 3</progress>
+  </div>
+  <ul class="flex flex-col list-none p-0">
+{task(True, "Create your workspace", "Done on Monday.")}
+{task(False, "Invite your team", "People you invite can see every project.", "Invite")}
+{task(False, "Import your files", "From a folder or another tool.", "Import")}
+  </ul>
+</section>""",
+        "use": ["Three to five steps, each finished by one action."],
+        "avoid": ["Hiding the product until the list is done."],
+    },
+    {
+        "slug": "upload-list", "name": "Upload list", "icon": "ph-upload", "group": "Feedback",
+        "components": ["file-upload", "progress", "icon-button"],
+        "summary": "Files below the drop zone, one to a row: a bar while uploading with a way to cancel, the size once done, and the reason and a retry when it fails.",
+        "html": f"""<section class="flex flex-col max-w-form" aria-label="Uploads">
+  <ul class="flex flex-col list-none p-0">
+{upload("cover.png", "2.4 MB", 100, "done")}
+{upload("team-photo.jpg", "", 45, "progress")}
+{upload("poster.tiff", "", 0, "error")}
+  </ul>
+</section>""",
+        "use": ["Say why an upload failed, next to the file."],
+        "avoid": ["One bar for the whole batch; people need to see which file is stuck."],
+    },
+    {
+        "slug": "invite-form", "name": "Invite form", "icon": "ph-user-plus", "group": "Account",
+        "components": ["text-field", "select", "button"],
+        "summary": "An email field and a role on one row from <code>sm</code> up, the button at the end, and a line on what the role can do.",
+        "html": f"""<form class="flex flex-col gap-2xs max-w-form">
+  <label for="pat-invite" class="{LABEL}">Invite by email</label>
+  <div class="flex flex-col sm:flex-row gap-xs">
+    <div class="{BOX} grow min-w-0"><i class="icon ph ph-envelope-simple fg-neutral-11" aria-hidden="true"></i><input id="pat-invite" class="{BARE}" type="email" autocomplete="off" placeholder="name@example.com"></div>
+    <select class="select-base h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 bg-neutral-1 text-base w-full sm:w-fit" aria-label="Role"><option>Editor</option><option>Viewer</option><option>Owner</option></select>
+    <button class="{BTN_PRIMARY}" type="submit"><span>Send invite</span></button>
+  </div>
+  <span class="{HELP}">Editors can change every project, but not billing.</span>
+</form>""",
+        "use": ["Default the role to the one most people get."],
+        "avoid": ["Asking for a name; the person adds it when they join."],
+    },
+    {
+        "slug": "faq", "name": "FAQ", "icon": "ph-question", "group": "Marketing",
+        "components": ["accordion"],
+        "summary": "Questions as an accordion under a title, the first answer open, and a way to ask something the list doesn't cover.",
+        "html": f"""<section class="flex flex-col gap-md max-w-form" aria-labelledby="pat-faq">
+  <h3 id="pat-faq" class="text-lg font-semibold">Questions</h3>
+  <div class="flex flex-col">
+{faq("Do I need a build step?", "No. Link one stylesheet and every class already exists.", True)}
+{faq("Does it work in a CMS?", "Yes. Any class works in any HTML, including what an editor writes.")}
+{faq("Can I change the colours?", "Set the palette tokens in your own stylesheet; every class follows.")}
+  </div>
+  <p class="text-base fg-neutral-11">Something else? <a href="#" class="fg-accent-1-11 hover:fg-accent-1-12">Ask us</a>.</p>
+</section>""",
+        "use": ["Questions in the words people ask them."],
+        "avoid": ["An FAQ for things the product should explain where they happen."],
+    },
+    {
+        "slug": "feature-grid", "name": "Feature grid", "icon": "ph-grid-nine", "group": "Marketing",
+        "components": ["card"],
+        "summary": "What a product does, three to a row from <code>lg</code> up: an icon in a tinted square, a title and one sentence each.",
+        "html": f"""<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-lg">
+{feature("ph-lightning", "No build step", "Link one stylesheet; every class is already there.")}
+{feature("ph-moon", "Light and dark", "Every colour is a pair, so both modes come for free.")}
+{feature("ph-text-aa", "Fluid type", "Sizes grow with the screen, without a media query.")}
+</div>""",
+        "use": ["One sentence per feature, about what it does for the reader."],
+        "avoid": ["More than six features; the rest belong on their own page."],
+    },
+    {
+        "slug": "newsletter", "name": "Newsletter sign-up", "icon": "ph-envelope", "group": "Marketing",
+        "components": ["text-field", "button"],
+        "summary": "A title, what people get and how often, and an email field with its button on one row from <code>sm</code> up.",
+        "html": f"""<form class="flex flex-col gap-sm max-w-form {CARD}">
+  <div class="flex flex-col gap-3xs"><h3 class="text-lg font-semibold">Release notes by email</h3><span class="{HELP}">One email when a version ships, about once a month.</span></div>
+  <div class="flex flex-col sm:flex-row gap-xs">
+    <div class="{BOX} grow min-w-0"><i class="icon ph ph-envelope-simple fg-neutral-11" aria-hidden="true"></i><input class="{BARE}" type="email" autocomplete="email" aria-label="Email" placeholder="ada@example.com"></div>
+    <button class="{BTN_PRIMARY}" type="submit"><span>Subscribe</span></button>
+  </div>
+</form>""",
+        "use": ["Say how often, so people know what they agree to."],
+        "avoid": ["Asking for more than an email."],
     },
 ]

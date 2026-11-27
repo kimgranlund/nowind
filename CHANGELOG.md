@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Patterns: nine more, Page header, Bulk actions, Details panel, Onboarding checklist, Upload list, Invite form, FAQ, Feature grid and Newsletter sign-up.
+
 - Patterns: a new section of the site, with nine patterns that put components together for one task: Sign in, Settings section, Filter bar, Member list, No results, Notification list, Confirm delete, Pricing and Comment thread. Each page links the components it is built from; the site map, the ⌘K search (a Patterns filter) and `components.manifest.json` list them. With five sections the band shows its section links from `lg` up; below that they are in the site map.
 
 - Components: five more pages, Action menu, Popover card, Tree, Calendar and Command palette. The navbar now moves its links into a menu behind a button below `lg`, and its wordmark icon renders (it named a Phosphor weight the site does not load). Group headings in the sidebar navigation and the command palette use the kicker style.
