@@ -11,9 +11,9 @@
 
   const dialog = document.createElement("dialog");
   dialog.setAttribute("aria-label", "Search Nowind");
-  dialog.className = "w-full max-w-measure max-h-below-header m-auto p-0 rounded-lg bg fg border shadow-xl";
+  dialog.className = "w-full max-w-measure h-below-header m-auto p-0 rounded-lg bg fg border shadow-xl";
   dialog.innerHTML = `
-    <div class="flex flex-col max-h-below-header">
+    <div class="flex flex-col h-full">
       <div class="flex items-center gap-gutter ps-md pe-xs py-xs">
         <i class="icon ph ph-magnifying-glass fg-weak"></i>
         <input type="text" role="combobox" aria-expanded="true" aria-controls="search-results" aria-autocomplete="list"
@@ -24,7 +24,7 @@
       <div role="group" aria-label="Filter" class="flex flex-wrap items-center gap-3xs px-md pb-xs border-b">
         ${FILTERS.map(([k, n]) => `<button type="button" data-filter="${k}" aria-pressed="${k === ""}" class="inline-flex items-center h-nested px-nested rounded-sm border border-transparent bg-transparent state text-sm fg-weak pressed:bg-component pressed:fg cursor-pointer"><span>${n}</span></button>`).join("")}
       </div>
-      <ul id="search-results" role="listbox" aria-label="Results" class="list-none p-inset flex flex-col min-h-0 overflow-y-auto"></ul>
+      <ul id="search-results" role="listbox" aria-label="Results" class="list-none p-inset flex flex-col grow min-h-0 overflow-y-auto"></ul>
       <div class="flex flex-wrap items-center gap-md px-md py-xs border-t text-sm fg-weak">
         <span class="inline-flex items-center gap-3xs"><kbd class="${KEY}">↑</kbd><kbd class="${KEY}">↓</kbd><span>Navigate</span></span>
         <span class="inline-flex items-center gap-3xs"><kbd class="${KEY}">↵</kbd><span>Open</span></span>
