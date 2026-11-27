@@ -123,10 +123,12 @@ function check(root) {
     const page = (inner) => `<!doctype html><html><body><main class="flex flex-col gap-md p-md">${inner}</main></body></html>`;
     const good = page('<button class="btn btn-primary rounded-full"><span>Save</span></button><span class="badge badge-success"><span>Paid</span></span><div class="card"><p>Body</p></div>');
     const bad = page('<button class="btn btn-primary h-nested"><span>Save</span></button>');
-    writeFileSync(join(dir, "good.html"), good); writeFileSync(join(dir, "bad.html"), bad);
+    const gap = page('<div class="flex border-b border-neutral-6" role="tablist"><button role="tab" aria-selected="true" class="inline-flex items-center h-control px-control gap-gutter border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-12 text-base font-medium rounded-none"><span>Profile</span></button></div>');
+    writeFileSync(join(dir, "good.html"), good); writeFileSync(join(dir, "bad.html"), bad); writeFileSync(join(dir, "gap.html"), gap);
     const lint = (f) => { try { execFileSync("python3", [join(root, "scripts", "templates.py"), "--lint-file", join(dir, f)], { cwd: root, encoding: "utf8", stdio: "pipe" }); return ""; } catch (e) { return (e.stdout || "") + (e.stderr || "") || "failed"; } };
     const g = lint("good.html"), b = lint("bad.html");
     if (g) errors.push(`templates.py --lint-file: rejects a correct page with convenience classes: ${g.split("\n")[0].slice(0, 200)}. Fix: expand_convenience in scripts/templates.py.`);
+    if (!/some sides only/.test(lint("gap.html"))) errors.push("templates.py --lint-file: passes a tab whose border-b-2 leaves the default border on its other sides. Fix: defaults_gap_audit in scripts/templates.py must see the author's own classes.");
     if (!b) errors.push("templates.py --lint-file: passes a page whose btn also carries h-nested. Fix: the page lint must expand convenience classes before the geometry rules run.");
     rmSync(dir, { recursive: true, force: true });
   }

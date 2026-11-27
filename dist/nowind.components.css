@@ -2,17 +2,23 @@
 
 @layer reset {
   :where(:not(select):is(.btn, .h-nested, .size-control, .size-nested)) > :where(:not(.icon, input, select, textarea)), :where(td, th):where(.btn, .h-nested):not(:has(> *)) { text-box: trim-both cap alphabetic; }
+  :where(:not(select):is(.btn, .h-nested, .size-control, .size-nested)) > :where(.truncate) { padding-block: 0.3em; margin-block: -0.3em; }
   :where(:not(select):is(.h-control, .btn-sm, .size-control, .size-nested)) > :where(:not(.icon, input, select, textarea)), :where(td, th):where(.h-control, .btn-sm):not(:has(> *)) { text-box: trim-both cap alphabetic; }
+  :where(:not(select):is(.h-control, .btn-sm, .size-control, .size-nested)) > :where(.truncate) { padding-block: 0.3em; margin-block: -0.3em; }
   :where(:not(select):is(.h-control, .h-nested, .icon-btn, .size-nested)) > :where(:not(.icon, input, select, textarea)) { text-box: trim-both cap alphabetic; }
+  :where(:not(select):is(.h-control, .h-nested, .icon-btn, .size-nested)) > :where(.truncate) { padding-block: 0.3em; margin-block: -0.3em; }
   :where(:not(select):is(.field, .h-nested, .size-control, .size-nested)) > :where(:not(.icon, input, select, textarea)), :where(td, th):where(.field, .h-nested):not(:has(> *)) { text-box: trim-both cap alphabetic; }
+  :where(:not(select):is(.field, .h-nested, .size-control, .size-nested)) > :where(.truncate) { padding-block: 0.3em; margin-block: -0.3em; }
   :where(.field:focus-within) { outline: 2px solid var(--border-accent-1-strong); outline-offset: -1px; }
   :where(.field) :where(input, select, textarea):focus-visible { outline: none; }
   :where(:not(select):is(.h-control, .badge, .size-control, .size-nested)) > :where(:not(.icon, input, select, textarea)), :where(td, th):where(.h-control, .badge):not(:has(> *)) { text-box: trim-both cap alphabetic; }
+  :where(:not(select):is(.h-control, .badge, .size-control, .size-nested)) > :where(.truncate) { padding-block: 0.3em; margin-block: -0.3em; }
   :where(:not(select):is(.segmented, .h-nested, .size-control, .size-nested)) > :where(:not(.icon, input, select, textarea)), :where(td, th):where(.segmented, .h-nested):not(:has(> *)) { text-box: trim-both cap alphabetic; }
+  :where(:not(select):is(.segmented, .h-nested, .size-control, .size-nested)) > :where(.truncate) { padding-block: 0.3em; margin-block: -0.3em; }
 }
 
 @layer components {
-  .btn { display: inline-flex; justify-content: center; align-items: center; font-size: var(--text-base); line-height: var(--text-base--line-height); font-weight: var(--font-weight-medium); border-width: var(--border-width); --_bw: var(--border-width); border-radius: var(--radius-sm); --_nest: max(0px, calc(var(--radius-sm) - var(--_inset) - var(--_bw))); cursor: pointer; height: var(--control-height); padding-inline: var(--control-padding); gap: var(--gutter); isolation: isolate; }
+  .btn { display: inline-flex; justify-content: center; align-items: center; font-size: var(--text-base); line-height: var(--text-base--line-height); font-weight: var(--font-weight-medium); border-width: var(--border-width); --_bw: var(--border-width); border-radius: var(--radius-sm); --_nest: max(0px, calc(var(--radius-sm) - var(--_inset) - var(--_bw))); cursor: pointer; min-height: var(--control-height); padding-inline: var(--control-padding); gap: var(--gutter); isolation: isolate; }
   :where(.btn) { position: relative; }
   .btn::after { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background-color: currentColor; opacity: 0; pointer-events: none; transition-property: opacity; transition-duration: var(--_duration, var(--motion-duration)); transition-timing-function: var(--_ease, var(--motion-easing)); }
   @media (hover: hover) {
@@ -30,7 +36,7 @@
   .btn-soft { background-color: var(--accent-1-3); color: var(--accent-1-11); border-color: transparent; }
   .btn-ghost { color: var(--neutral-12); background-color: transparent; border-color: transparent; }
   .btn-danger { background-color: var(--danger-9); color: var(--danger-contrast); border-color: transparent; }
-  .btn-sm { display: inline-flex; justify-content: center; align-items: center; font-size: var(--text-base); line-height: var(--text-base--line-height); font-weight: var(--font-weight-medium); border-width: var(--border-width); --_bw: var(--border-width); border-radius: var(--_nest, var(--radius-sm)); cursor: pointer; height: var(--nested-height); padding-inline: var(--nested-padding); gap: calc(var(--gutter) / 2); isolation: isolate; }
+  .btn-sm { display: inline-flex; justify-content: center; align-items: center; font-size: var(--text-base); line-height: var(--text-base--line-height); font-weight: var(--font-weight-medium); border-width: var(--border-width); --_bw: var(--border-width); border-radius: var(--_nest, var(--radius-sm)); cursor: pointer; min-height: var(--nested-height); padding-inline: var(--nested-padding); gap: calc(var(--gutter) / 2); isolation: isolate; }
   :where(.btn-sm) { position: relative; }
   .btn-sm::after { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background-color: currentColor; opacity: 0; pointer-events: none; transition-property: opacity; transition-duration: var(--_duration, var(--motion-duration)); transition-timing-function: var(--_ease, var(--motion-easing)); }
   @media (hover: hover) {
@@ -42,7 +48,7 @@
   .btn-sm:is(:disabled, [aria-disabled="true"])::after { opacity: 0; }
   .btn-sm:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--nested-icon-padding); }
   .btn-sm:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):last-child)) { padding-inline-end: var(--nested-icon-padding); }
-  .icon-btn { display: inline-flex; justify-content: center; align-items: center; border-width: var(--border-width); --_bw: var(--border-width); border-radius: var(--radius-sm); --_nest: max(0px, calc(var(--radius-sm) - var(--_inset) - var(--_bw))); cursor: pointer; width: var(--control-height); height: var(--control-height); padding: 0; isolation: isolate; }
+  .icon-btn { display: inline-flex; justify-content: center; align-items: center; border-width: var(--border-width); --_bw: var(--border-width); border-radius: var(--radius-sm); --_nest: max(0px, calc(var(--radius-sm) - var(--_inset) - var(--_bw))); cursor: pointer; min-width: var(--control-height); min-height: var(--control-height); aspect-ratio: 1; padding: 0; isolation: isolate; }
   :where(.icon-btn) { position: relative; }
   .icon-btn::after { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background-color: currentColor; opacity: 0; pointer-events: none; transition-property: opacity; transition-duration: var(--_duration, var(--motion-duration)); transition-timing-function: var(--_ease, var(--motion-easing)); }
   @media (hover: hover) {
@@ -52,7 +58,8 @@
   .icon-btn:is([aria-selected="true"], [aria-pressed="true"], [aria-expanded="true"], [aria-current]:not([aria-current="false"]), :has(:checked))::after { opacity: var(--state-selected); }
   .icon-btn:active::after { opacity: var(--state-active); }
   .icon-btn:is(:disabled, [aria-disabled="true"])::after { opacity: 0; }
-  .field { display: flex; align-items: center; font-size: var(--text-base); line-height: var(--text-base--line-height); background-color: var(--neutral-1); border-color: var(--neutral-5); border-width: var(--border-width); --_bw: var(--border-width); border-radius: var(--radius-sm); --_nest: max(0px, calc(var(--radius-sm) - var(--_inset) - var(--_bw))); transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, translate, scale, rotate; transition-duration: var(--_duration, var(--motion-duration)); transition-timing-function: var(--_ease, var(--motion-easing)); cursor: text; height: var(--control-height); padding-inline: var(--control-padding); gap: var(--gutter); }
+  .icon-btn:not(:has(> *)) { line-height: 1; }
+  .field { display: flex; align-items: center; font-size: var(--text-base); line-height: var(--text-base--line-height); background-color: var(--neutral-1); border-color: var(--neutral-5); border-width: var(--border-width); --_bw: var(--border-width); border-radius: var(--radius-sm); --_nest: max(0px, calc(var(--radius-sm) - var(--_inset) - var(--_bw))); transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, translate, scale, rotate; transition-duration: var(--_duration, var(--motion-duration)); transition-timing-function: var(--_ease, var(--motion-easing)); cursor: text; min-height: var(--control-height); padding-inline: var(--control-padding); gap: var(--gutter); }
   .field:has(> .select-base) { anchor-name: --nw-field; anchor-scope: --nw-field; }
   .select-base.field { padding-inline-end: var(--control-icon-padding); }
   .field:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--control-icon-padding); }
@@ -62,7 +69,7 @@
   }
   .field:focus-within { border-color: var(--accent-1-8); }
   .field:has(:is([aria-invalid="true"], :user-invalid)) { border-color: var(--danger-7); }
-  .badge { display: inline-flex; align-items: center; font-size: var(--text-sm); line-height: var(--text-sm--line-height); font-weight: var(--font-weight-medium); border-width: var(--border-width); --_bw: var(--border-width); border-radius: 9999px; --_nest: max(0px, calc(9999px - var(--_inset) - var(--_bw))); height: var(--nested-height); padding-inline: var(--nested-padding); gap: calc(var(--gutter) / 2); }
+  .badge { display: inline-flex; align-items: center; font-size: var(--text-sm); line-height: var(--text-sm--line-height); font-weight: var(--font-weight-medium); border-width: var(--border-width); --_bw: var(--border-width); border-radius: 9999px; --_nest: max(0px, calc(9999px - var(--_inset) - var(--_bw))); min-height: var(--nested-height); padding-inline: var(--nested-padding); gap: calc(var(--gutter) / 2); }
   .badge:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--nested-icon-padding); }
   .badge:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):last-child)) { padding-inline-end: var(--nested-icon-padding); }
   .badge-neutral { background-color: var(--neutral-3); border-color: var(--neutral-6); color: var(--neutral-11); }
@@ -72,8 +79,13 @@
   .badge-danger { background-color: var(--danger-3); border-color: var(--danger-6); color: var(--danger-11); }
   .badge-info { background-color: var(--info-3); border-color: var(--info-6); color: var(--info-11); }
   .card { padding: var(--space-md); --_inset: var(--space-md); background-color: var(--neutral-1); border-color: var(--neutral-6); border-width: var(--border-width); --_bw: var(--border-width); border-radius: var(--radius-md); --_nest: max(0px, calc(var(--radius-md) - var(--_inset) - var(--_bw))); }
-  .segmented { display: inline-flex; align-items: center; background-color: var(--neutral-a2); border-color: transparent; border-width: 2px; --_bw: 2px; border-radius: var(--radius-sm); --_nest: max(0px, calc(var(--radius-sm) - var(--_inset) - var(--_bw))); height: var(--control-height); }
+  .segmented { display: inline-flex; align-items: center; background-color: var(--neutral-a2); border-color: transparent; border-width: 2px; --_bw: 2px; border-radius: var(--radius-sm); --_nest: max(0px, calc(var(--radius-sm) - var(--_inset) - var(--_bw))); min-height: var(--control-height); }
   .segment { display: inline-flex; justify-content: center; align-items: center; font-size: var(--text-base); line-height: var(--text-base--line-height); font-weight: var(--font-weight-medium); color: var(--neutral-11); background-color: transparent; border-width: 0; --_bw: 0px; border-radius: var(--_nest, var(--radius-sm)); cursor: pointer; height: 100%; padding-inline: var(--nested-padding); gap: calc(var(--gutter) / 2); }
+  .h-control > .segment { height: auto; align-self: stretch; }
+  .h-nested > .segment { height: auto; align-self: stretch; }
+  .h-header > .segment { height: auto; align-self: stretch; }
+  .size-control > .segment { height: auto; align-self: stretch; }
+  .size-nested > .segment { height: auto; align-self: stretch; }
   .segment:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--nested-icon-padding); }
   .segment:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):last-child)) { padding-inline-end: var(--nested-icon-padding); }
   @media (hover: hover) {
@@ -83,7 +95,13 @@
 }
 
 @layer nowind {
+  .btn > .h-full { height: auto; align-self: stretch; }
+  .btn-sm > .h-full { height: auto; align-self: stretch; }
   .btn-sm > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }
+  .icon-btn > .h-full { height: auto; align-self: stretch; }
   .field > .select-base::picker(select) { position-anchor: --nw-field; }
+  .field > .h-full { height: auto; align-self: stretch; }
+  .badge > .h-full { height: auto; align-self: stretch; }
   .badge > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }
+  .segmented > .h-full { height: auto; align-self: stretch; }
 }

@@ -1388,10 +1388,10 @@
   .max-w-prose { max-width: var(--max-w-text); }
   .max-w-form { max-width: var(--max-w-form); }
   .max-w-container { max-width: var(--container-max); }
-  .h-control { height: var(--control-height); }
-  .h-nested { height: var(--nested-height); }
-  .size-control { width: var(--control-height); height: var(--control-height); padding: 0; }
-  .size-nested { width: var(--nested-height); height: var(--nested-height); padding: 0; }
+  .h-control { min-height: var(--control-height); }
+  .h-nested { min-height: var(--nested-height); }
+  .size-control { min-width: var(--control-height); min-height: var(--control-height); aspect-ratio: 1; padding: 0; }
+  .size-nested { min-width: var(--nested-height); min-height: var(--nested-height); aspect-ratio: 1; padding: 0; }
   .min-w-control { min-width: var(--control-height); }
   .min-w-nested { min-width: var(--nested-height); }
   .px-control { padding-inline: var(--control-padding); }
@@ -1436,7 +1436,7 @@
   .px-grid-compact { padding-inline: var(--grid-margin-compact); }
   .w-sidebar { width: var(--shell-sidebar-width); }
   .w-rail { width: var(--shell-rail-width); }
-  .h-header { height: var(--shell-header-height); }
+  .h-header { min-height: var(--shell-header-height); }
   .min-h-header { min-height: var(--shell-header-height); }
   .top-header { top: var(--shell-header-height); }
   .scroll-pt-header { scroll-padding-block-start: var(--shell-header-height); }
@@ -1516,7 +1516,15 @@
   :is([open] > summary, [aria-expanded="true"]) .caret::before, .select-base:open::picker-icon { rotate: 180deg; }
   :root[data-lens="on"] .lens { -webkit-backdrop-filter: var(--_lens-filter, url(#nowind-lens)) saturate(1.8) brightness(1.05); backdrop-filter: var(--_lens-filter, url(#nowind-lens)) saturate(1.8) brightness(1.05); }
   .select-base option:checked { background: var(--component-accent-1-weak); color: var(--fg-accent-1-weak); }
+  .h-control > .h-full { height: auto; align-self: stretch; }
+  .h-nested > .h-full { height: auto; align-self: stretch; }
+  .h-header > .h-full { height: auto; align-self: stretch; }
+  .size-control > .h-full { height: auto; align-self: stretch; }
+  .size-nested > .h-full { height: auto; align-self: stretch; }
+  .size-control:not(:has(> *)) { line-height: 1; }
+  .size-nested:not(:has(> *)) { line-height: 1; }
   .h-nested > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }
+  .size-nested > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }
   .px-control:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--control-icon-padding); }
   .px-control:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):last-child)) { padding-inline-end: var(--control-icon-padding); }
   .px-nested:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--nested-icon-padding); }

@@ -275,13 +275,13 @@ add("max-w-text", "max-width: var(--max-w-text)");
 add("max-w-prose", "max-width: var(--max-w-text)");
 add("max-w-form", "max-width: var(--max-w-form)");
 add("max-w-container", "max-width: var(--container-max)");
-add("h-control", "height: var(--control-height)");
+add("h-control", "min-height: var(--control-height)");
 
 // Controls and icons (after Affine UI's button and icon): heights, square sizes, padding that steps in by one margin on a
 // side that holds an icon (the :has() rules below), the gutter gap, and an S-square icon box with its glyph size.
-add("h-nested", "height: var(--nested-height)");
-add("size-control", "width: var(--control-height); height: var(--control-height); padding: 0");
-add("size-nested", "width: var(--nested-height); height: var(--nested-height); padding: 0");
+add("h-nested", "min-height: var(--nested-height)");
+add("size-control", "min-width: var(--control-height); min-height: var(--control-height); aspect-ratio: 1; padding: 0");
+add("size-nested", "min-width: var(--nested-height); min-height: var(--nested-height); aspect-ratio: 1; padding: 0");
 add("min-w-control", "min-width: var(--control-height)");
 add("min-w-nested", "min-width: var(--nested-height)");
 add("px-control", "padding-inline: var(--control-padding)");
@@ -320,7 +320,7 @@ add("px-grid", "padding-inline: var(--grid-margin-regular)");
 add("px-grid-compact", "padding-inline: var(--grid-margin-compact)");
 add("w-sidebar", "width: var(--shell-sidebar-width)");
 add("w-rail", "width: var(--shell-rail-width)");
-add("h-header", "height: var(--shell-header-height)");
+add("h-header", "min-height: var(--shell-header-height)");
 add("min-h-header", "min-height: var(--shell-header-height)");
 add("top-header", "top: var(--shell-header-height)");
 add("scroll-pt-header", "scroll-padding-block-start: var(--shell-header-height)");
@@ -450,14 +450,14 @@ const DR = "";  // the defaults apply everywhere; each selector is :where(), so 
 const TEXT_INPUT = 'input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"], [type="hidden"])';
 const BUTTONS = 'button:not(select > button), input[type="button"], input[type="submit"], input[type="reset"]';  // a select's own button belongs to the select
 const DEFAULTS_CSS = [
-  `:where(${BUTTONS}) { display: inline-flex; align-items: center; justify-content: center; gap: ${DT["button-gap"]}; block-size: ${DT["button-height"]}; padding-inline: ${DT["button-padding"]}; border: var(--border-width) solid ${DT["button-border"]}; border-radius: ${DT["button-radius"]}; background-color: ${DT["button-bg"]}; color: ${DT["button-fg"]}; font-weight: ${DT["button-weight"]}; }`,
+  `:where(${BUTTONS}) { display: inline-flex; align-items: center; justify-content: center; gap: ${DT["button-gap"]}; min-block-size: ${DT["button-height"]}; padding-inline: ${DT["button-padding"]}; border: var(--border-width) solid ${DT["button-border"]}; border-radius: ${DT["button-radius"]}; background-color: ${DT["button-bg"]}; color: ${DT["button-fg"]}; font-weight: ${DT["button-weight"]}; }`,
   `@media (hover: hover) { :where(${BUTTONS}):where(:not(:disabled)):hover { background-color: ${DT["button-bg-hover"]}; } }`,
   `:where(${BUTTONS}):where(:not(:disabled)):active { background-color: ${DT["button-bg-active"]}; }`,
   `:where(button[type="submit"], input[type="submit"]) { background-color: ${DT["button-primary-bg"]}; color: ${DT["button-primary-fg"]}; }`,
   `@media (hover: hover) { :where(button[type="submit"], input[type="submit"]):where(:not(:disabled)):hover { background-color: ${DT["button-primary-bg-hover"]}; } }`,
   `:where(button[type="submit"], input[type="submit"]):where(:not(:disabled)):active { background-color: ${DT["button-primary-bg-hover"]}; }`,
   `:where(${BUTTONS}):disabled { opacity: 0.5; cursor: not-allowed; }`,
-  `:where(${TEXT_INPUT}, select:not([multiple], [size])) { block-size: ${DT["field-height"]}; padding-inline: ${DT["field-padding"]}; }`,
+  `:where(${TEXT_INPUT}, select:not([multiple], [size])) { min-block-size: ${DT["field-height"]}; padding-inline: ${DT["field-padding"]}; }`,
   `:where(textarea) { padding: ${DT["field-padding-block"]} ${DT["field-padding"]}; }`,
   `:where(${TEXT_INPUT}, select, textarea) { inline-size: ${DT["field-width"]}; border-radius: ${DT["field-radius"]}; border-color: ${DT["field-border"]}; background-color: ${DT["field-bg"]}; }`,
   `@media (hover: hover) { :where(${TEXT_INPUT}, select, textarea):where(:not(:disabled)):hover { border-color: ${DT["field-border-hover"]}; } }`,
@@ -493,8 +493,8 @@ const DEFAULTS_CSS = [
   `:where([role="note"]:not([class])) { --_tone-soft: var(--neutral-2); --_tone-border: var(--neutral-6); }`,
   `:where(small:not([class])) { font-size: ${DT["help-size"]}; line-height: var(--text-sm--line-height); color: ${DT["help-color"]}; }`,
   `:where(div:not([class])) > :where(input, select, textarea) + :where(small:not([class])) { display: block; margin-block-start: var(--space-3xs); }`,
-  `:where([role="group"]:not([class]):has(> button[aria-pressed])) { display: inline-flex; align-items: center; block-size: var(--control-height); border: 2px solid transparent; border-radius: var(--radius-sm); background-color: ${DT["segment-bg"]}; }`,
-  `:where([role="group"]:not([class])) > :where(button[aria-pressed]) { block-size: 100%; padding-inline: var(--nested-padding); border: 0; border-radius: max(0px, calc(var(--radius-sm) - 2px)); background-color: transparent; color: var(--fg-weak); }`,
+  `:where([role="group"]:not([class]):has(> button[aria-pressed])) { display: inline-flex; align-items: center; min-block-size: var(--control-height); border: 2px solid transparent; border-radius: var(--radius-sm); background-color: ${DT["segment-bg"]}; }`,
+  `:where([role="group"]:not([class])) > :where(button[aria-pressed]) { align-self: stretch; min-block-size: 0; padding-inline: var(--nested-padding); border: 0; border-radius: max(0px, calc(var(--radius-sm) - 2px)); background-color: transparent; color: var(--fg-weak); }`,
   `:where([role="group"]:not([class])) > :where(button[aria-pressed="true"]) { background-color: ${DT["segment-pressed-bg"]}; color: ${DT["segment-pressed-fg"]}; }`,
   `@media (hover: hover) { :where([role="group"]:not([class])) > :where(button[aria-pressed="false"]):hover { background-color: var(--neutral-a3); } }`,
   `:where(button, [role="alert"], [role="status"], [role="note"])[data-tone="danger"] { --_tone-solid: var(--danger-9); --_tone-solid-hover: var(--danger-10); --_tone-on: var(--danger-contrast); --_tone-soft: var(--danger-3); --_tone-border: var(--danger-6); }`,
@@ -518,6 +518,7 @@ const reset = `@layer reset {
   :where(button) { padding: 0; background-color: transparent; }
   :where(legend) { padding: 0; }
   :where(:not(select):is(.h-control, .h-nested, .size-control, .size-nested)) > :where(:not(.icon, input, select, textarea)), :where(td, th):where(.h-control, .h-nested):not(:has(> *)) { text-box: trim-both cap alphabetic; }
+  :where(:not(select):is(.h-control, .h-nested, .size-control, .size-nested)) > :where(.truncate) { padding-block: 0.3em; margin-block: -0.3em; }
 
   :where(html) {
     color-scheme: light dark;
@@ -653,13 +654,15 @@ const reset = `@layer reset {
   }
   :where(textarea) { field-sizing: content; resize: vertical; }
   :where(textarea:not([rows])) { min-block-size: 6lh; }
+  :where(input[type="color"]) { inline-size: auto; block-size: auto; }
   :where(input[type="file"]) { max-inline-size: 100%; color: var(--fg-weak); }
-  :where(input[type="file"])::file-selector-button { font: inherit; font-weight: var(--title-sm--font-weight); color: var(--fg); block-size: var(--control-height); padding-inline: var(--control-padding); margin-inline-end: var(--gutter); border: var(--border-width) solid transparent; border-radius: var(--radius-control); background: var(--neutral-a2); cursor: pointer; transition: background-color var(--motion-duration) var(--motion-easing); }
+  :where(input[type="file"])::file-selector-button { font: inherit; font-weight: var(--title-sm--font-weight); color: var(--fg); min-block-size: var(--control-height); padding-inline: var(--control-padding); margin-inline-end: var(--gutter); border: var(--border-width) solid transparent; border-radius: var(--radius-control); background: var(--neutral-a2); cursor: pointer; transition: background-color var(--motion-duration) var(--motion-easing); }
   :where(input[type="file"])::file-selector-button:hover { background: var(--neutral-a3); }
   :where(progress, meter) { appearance: none; display: inline-block; inline-size: 100%; block-size: calc(var(--space-3xs) * 2); border: 0; border-radius: 9999px; background: var(--component-strong); overflow: hidden; vertical-align: middle; }
   :where(progress)::-webkit-progress-bar { background: var(--component-strong); border-radius: 9999px; }
   :where(progress)::-webkit-progress-value { background: var(--solid-accent-1); border-radius: 9999px; transition: inline-size var(--motion-duration) var(--motion-easing); }
   :where(progress)::-moz-progress-bar { background: var(--solid-accent-1); border-radius: 9999px; }
+  @supports selector(::-webkit-meter-bar) { :where(meter) { background: none; } }
   :where(meter)::-webkit-meter-bar { block-size: 100%; border: 0; border-radius: 9999px; background: var(--component-strong); }
   :where(meter)::-webkit-meter-optimum-value { background: var(--solid-success); border-radius: 9999px; }
   :where(meter)::-webkit-meter-suboptimum-value { background: var(--solid-warning); border-radius: 9999px; }
@@ -759,7 +762,9 @@ out.push("  .select-base.px-control { padding-inline-end: var(--control-icon-pad
 out.push("  :is([open] > summary, [aria-expanded=\"true\"]) .caret::before, .select-base:open::picker-icon { rotate: 180deg; }");
 out.push("  :root[data-lens=\"on\"] .lens { -webkit-backdrop-filter: var(--_lens-filter, url(#nowind-lens)) saturate(1.8) brightness(1.05); backdrop-filter: var(--_lens-filter, url(#nowind-lens)) saturate(1.8) brightness(1.05); }");
 out.push("  .select-base option:checked { background: var(--component-accent-1-weak); color: var(--fg-accent-1-weak); }");
-out.push("  .h-nested > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }");
+for (const c of ["h-control", "h-nested", "h-header", "size-control", "size-nested"]) out.push(`  .${c} > .h-full { height: auto; align-self: stretch; }`);
+for (const c of ["size-control", "size-nested"]) out.push(`  .${c}:not(:has(> *)) { line-height: 1; }`);
+for (const c of ["h-nested", "size-nested"]) out.push(`  .${c} > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }`);
 for (const [cls, pad] of [["px-control", "--control-icon-padding"], ["px-nested", "--nested-icon-padding"]]) {
   out.push(`  .${cls}:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(${pad}); }`);
   out.push(`  .${cls}:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):last-child)) { padding-inline-end: var(${pad}); }`);

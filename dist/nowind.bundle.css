@@ -1851,6 +1851,7 @@
   :where(button) { padding: 0; background-color: transparent; }
   :where(legend) { padding: 0; }
   :where(:not(select):is(.h-control, .h-nested, .size-control, .size-nested)) > :where(:not(.icon, input, select, textarea)), :where(td, th):where(.h-control, .h-nested):not(:has(> *)) { text-box: trim-both cap alphabetic; }
+  :where(:not(select):is(.h-control, .h-nested, .size-control, .size-nested)) > :where(.truncate) { padding-block: 0.3em; margin-block: -0.3em; }
 
   :where(html) {
     color-scheme: light dark;
@@ -1986,13 +1987,15 @@
   }
   :where(textarea) { field-sizing: content; resize: vertical; }
   :where(textarea:not([rows])) { min-block-size: 6lh; }
+  :where(input[type="color"]) { inline-size: auto; block-size: auto; }
   :where(input[type="file"]) { max-inline-size: 100%; color: var(--fg-weak); }
-  :where(input[type="file"])::file-selector-button { font: inherit; font-weight: var(--title-sm--font-weight); color: var(--fg); block-size: var(--control-height); padding-inline: var(--control-padding); margin-inline-end: var(--gutter); border: var(--border-width) solid transparent; border-radius: var(--radius-control); background: var(--neutral-a2); cursor: pointer; transition: background-color var(--motion-duration) var(--motion-easing); }
+  :where(input[type="file"])::file-selector-button { font: inherit; font-weight: var(--title-sm--font-weight); color: var(--fg); min-block-size: var(--control-height); padding-inline: var(--control-padding); margin-inline-end: var(--gutter); border: var(--border-width) solid transparent; border-radius: var(--radius-control); background: var(--neutral-a2); cursor: pointer; transition: background-color var(--motion-duration) var(--motion-easing); }
   :where(input[type="file"])::file-selector-button:hover { background: var(--neutral-a3); }
   :where(progress, meter) { appearance: none; display: inline-block; inline-size: 100%; block-size: calc(var(--space-3xs) * 2); border: 0; border-radius: 9999px; background: var(--component-strong); overflow: hidden; vertical-align: middle; }
   :where(progress)::-webkit-progress-bar { background: var(--component-strong); border-radius: 9999px; }
   :where(progress)::-webkit-progress-value { background: var(--solid-accent-1); border-radius: 9999px; transition: inline-size var(--motion-duration) var(--motion-easing); }
   :where(progress)::-moz-progress-bar { background: var(--solid-accent-1); border-radius: 9999px; }
+  @supports selector(::-webkit-meter-bar) { :where(meter) { background: none; } }
   :where(meter)::-webkit-meter-bar { block-size: 100%; border: 0; border-radius: 9999px; background: var(--component-strong); }
   :where(meter)::-webkit-meter-optimum-value { background: var(--solid-success); border-radius: 9999px; }
   :where(meter)::-webkit-meter-suboptimum-value { background: var(--solid-warning); border-radius: 9999px; }
@@ -2057,14 +2060,14 @@
 }
 
 @layer defaults {
-  :where(button:not(select > button), input[type="button"], input[type="submit"], input[type="reset"]) { display: inline-flex; align-items: center; justify-content: center; gap: var(--button-gap, var(--gutter)); block-size: var(--button-height, var(--control-height)); padding-inline: var(--button-padding, var(--control-padding)); border: var(--border-width) solid var(--button-border, transparent); border-radius: var(--button-radius, var(--radius-sm)); background-color: var(--button-bg, var(--neutral-a2)); color: var(--button-fg, var(--fg)); font-weight: var(--button-weight, var(--font-weight-medium)); }
+  :where(button:not(select > button), input[type="button"], input[type="submit"], input[type="reset"]) { display: inline-flex; align-items: center; justify-content: center; gap: var(--button-gap, var(--gutter)); min-block-size: var(--button-height, var(--control-height)); padding-inline: var(--button-padding, var(--control-padding)); border: var(--border-width) solid var(--button-border, transparent); border-radius: var(--button-radius, var(--radius-sm)); background-color: var(--button-bg, var(--neutral-a2)); color: var(--button-fg, var(--fg)); font-weight: var(--button-weight, var(--font-weight-medium)); }
   @media (hover: hover) { :where(button:not(select > button), input[type="button"], input[type="submit"], input[type="reset"]):where(:not(:disabled)):hover { background-color: var(--button-bg-hover, var(--neutral-a3)); } }
   :where(button:not(select > button), input[type="button"], input[type="submit"], input[type="reset"]):where(:not(:disabled)):active { background-color: var(--button-bg-active, var(--neutral-a4)); }
   :where(button[type="submit"], input[type="submit"]) { background-color: var(--button-primary-bg, var(--solid-accent-1)); color: var(--button-primary-fg, var(--on-solid-accent-1)); }
   @media (hover: hover) { :where(button[type="submit"], input[type="submit"]):where(:not(:disabled)):hover { background-color: var(--button-primary-bg-hover, var(--solid-accent-1-strong)); } }
   :where(button[type="submit"], input[type="submit"]):where(:not(:disabled)):active { background-color: var(--button-primary-bg-hover, var(--solid-accent-1-strong)); }
   :where(button:not(select > button), input[type="button"], input[type="submit"], input[type="reset"]):disabled { opacity: 0.5; cursor: not-allowed; }
-  :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"], [type="hidden"]), select:not([multiple], [size])) { block-size: var(--field-height, var(--control-height)); padding-inline: var(--field-padding, var(--control-padding)); }
+  :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"], [type="hidden"]), select:not([multiple], [size])) { min-block-size: var(--field-height, var(--control-height)); padding-inline: var(--field-padding, var(--control-padding)); }
   :where(textarea) { padding: var(--field-padding-block, var(--margin)) var(--field-padding, var(--control-padding)); }
   :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"], [type="hidden"]), select, textarea) { inline-size: var(--field-width, 100%); border-radius: var(--field-radius, var(--radius-sm)); border-color: var(--field-border, var(--border-weak)); background-color: var(--field-bg, var(--bg)); }
   @media (hover: hover) { :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="button"], [type="submit"], [type="reset"], [type="image"], [type="hidden"]), select, textarea):where(:not(:disabled)):hover { border-color: var(--field-border-hover, var(--border)); } }
@@ -2100,8 +2103,8 @@
   :where([role="note"]:not([class])) { --_tone-soft: var(--neutral-2); --_tone-border: var(--neutral-6); }
   :where(small:not([class])) { font-size: var(--help-size, var(--text-sm)); line-height: var(--text-sm--line-height); color: var(--help-color, var(--fg-weak)); }
   :where(div:not([class])) > :where(input, select, textarea) + :where(small:not([class])) { display: block; margin-block-start: var(--space-3xs); }
-  :where([role="group"]:not([class]):has(> button[aria-pressed])) { display: inline-flex; align-items: center; block-size: var(--control-height); border: 2px solid transparent; border-radius: var(--radius-sm); background-color: var(--segment-bg, var(--neutral-a2)); }
-  :where([role="group"]:not([class])) > :where(button[aria-pressed]) { block-size: 100%; padding-inline: var(--nested-padding); border: 0; border-radius: max(0px, calc(var(--radius-sm) - 2px)); background-color: transparent; color: var(--fg-weak); }
+  :where([role="group"]:not([class]):has(> button[aria-pressed])) { display: inline-flex; align-items: center; min-block-size: var(--control-height); border: 2px solid transparent; border-radius: var(--radius-sm); background-color: var(--segment-bg, var(--neutral-a2)); }
+  :where([role="group"]:not([class])) > :where(button[aria-pressed]) { align-self: stretch; min-block-size: 0; padding-inline: var(--nested-padding); border: 0; border-radius: max(0px, calc(var(--radius-sm) - 2px)); background-color: transparent; color: var(--fg-weak); }
   :where([role="group"]:not([class])) > :where(button[aria-pressed="true"]) { background-color: var(--segment-pressed-bg, var(--neutral-contrast-white)); color: var(--segment-pressed-fg, var(--neutral-contrast-black)); }
   @media (hover: hover) { :where([role="group"]:not([class])) > :where(button[aria-pressed="false"]):hover { background-color: var(--neutral-a3); } }
   :where(button, [role="alert"], [role="status"], [role="note"])[data-tone="danger"] { --_tone-solid: var(--danger-9); --_tone-solid-hover: var(--danger-10); --_tone-on: var(--danger-contrast); --_tone-soft: var(--danger-3); --_tone-border: var(--danger-6); }
@@ -3503,10 +3506,10 @@
   .max-w-prose { max-width: var(--max-w-text); }
   .max-w-form { max-width: var(--max-w-form); }
   .max-w-container { max-width: var(--container-max); }
-  .h-control { height: var(--control-height); }
-  .h-nested { height: var(--nested-height); }
-  .size-control { width: var(--control-height); height: var(--control-height); padding: 0; }
-  .size-nested { width: var(--nested-height); height: var(--nested-height); padding: 0; }
+  .h-control { min-height: var(--control-height); }
+  .h-nested { min-height: var(--nested-height); }
+  .size-control { min-width: var(--control-height); min-height: var(--control-height); aspect-ratio: 1; padding: 0; }
+  .size-nested { min-width: var(--nested-height); min-height: var(--nested-height); aspect-ratio: 1; padding: 0; }
   .min-w-control { min-width: var(--control-height); }
   .min-w-nested { min-width: var(--nested-height); }
   .px-control { padding-inline: var(--control-padding); }
@@ -3551,7 +3554,7 @@
   .px-grid-compact { padding-inline: var(--grid-margin-compact); }
   .w-sidebar { width: var(--shell-sidebar-width); }
   .w-rail { width: var(--shell-rail-width); }
-  .h-header { height: var(--shell-header-height); }
+  .h-header { min-height: var(--shell-header-height); }
   .min-h-header { min-height: var(--shell-header-height); }
   .top-header { top: var(--shell-header-height); }
   .scroll-pt-header { scroll-padding-block-start: var(--shell-header-height); }
@@ -3631,7 +3634,15 @@
   :is([open] > summary, [aria-expanded="true"]) .caret::before, .select-base:open::picker-icon { rotate: 180deg; }
   :root[data-lens="on"] .lens { -webkit-backdrop-filter: var(--_lens-filter, url(#nowind-lens)) saturate(1.8) brightness(1.05); backdrop-filter: var(--_lens-filter, url(#nowind-lens)) saturate(1.8) brightness(1.05); }
   .select-base option:checked { background: var(--component-accent-1-weak); color: var(--fg-accent-1-weak); }
+  .h-control > .h-full { height: auto; align-self: stretch; }
+  .h-nested > .h-full { height: auto; align-self: stretch; }
+  .h-header > .h-full { height: auto; align-self: stretch; }
+  .size-control > .h-full { height: auto; align-self: stretch; }
+  .size-nested > .h-full { height: auto; align-self: stretch; }
+  .size-control:not(:has(> *)) { line-height: 1; }
+  .size-nested:not(:has(> *)) { line-height: 1; }
   .h-nested > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }
+  .size-nested > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }
   .px-control:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--control-icon-padding); }
   .px-control:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):last-child)) { padding-inline-end: var(--control-icon-padding); }
   .px-nested:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--nested-icon-padding); }

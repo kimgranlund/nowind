@@ -10,6 +10,7 @@
   :where(button) { padding: 0; background-color: transparent; }
   :where(legend) { padding: 0; }
   :where(:not(select):is(.h-control, .h-nested, .size-control, .size-nested)) > :where(:not(.icon, input, select, textarea)), :where(td, th):where(.h-control, .h-nested):not(:has(> *)) { text-box: trim-both cap alphabetic; }
+  :where(:not(select):is(.h-control, .h-nested, .size-control, .size-nested)) > :where(.truncate) { padding-block: 0.3em; margin-block: -0.3em; }
 
   :where(html) {
     color-scheme: light dark;
@@ -145,13 +146,15 @@
   }
   :where(textarea) { field-sizing: content; resize: vertical; }
   :where(textarea:not([rows])) { min-block-size: 6lh; }
+  :where(input[type="color"]) { inline-size: auto; block-size: auto; }
   :where(input[type="file"]) { max-inline-size: 100%; color: var(--fg-weak); }
-  :where(input[type="file"])::file-selector-button { font: inherit; font-weight: var(--title-sm--font-weight); color: var(--fg); block-size: var(--control-height); padding-inline: var(--control-padding); margin-inline-end: var(--gutter); border: var(--border-width) solid transparent; border-radius: var(--radius-control); background: var(--neutral-a2); cursor: pointer; transition: background-color var(--motion-duration) var(--motion-easing); }
+  :where(input[type="file"])::file-selector-button { font: inherit; font-weight: var(--title-sm--font-weight); color: var(--fg); min-block-size: var(--control-height); padding-inline: var(--control-padding); margin-inline-end: var(--gutter); border: var(--border-width) solid transparent; border-radius: var(--radius-control); background: var(--neutral-a2); cursor: pointer; transition: background-color var(--motion-duration) var(--motion-easing); }
   :where(input[type="file"])::file-selector-button:hover { background: var(--neutral-a3); }
   :where(progress, meter) { appearance: none; display: inline-block; inline-size: 100%; block-size: calc(var(--space-3xs) * 2); border: 0; border-radius: 9999px; background: var(--component-strong); overflow: hidden; vertical-align: middle; }
   :where(progress)::-webkit-progress-bar { background: var(--component-strong); border-radius: 9999px; }
   :where(progress)::-webkit-progress-value { background: var(--solid-accent-1); border-radius: 9999px; transition: inline-size var(--motion-duration) var(--motion-easing); }
   :where(progress)::-moz-progress-bar { background: var(--solid-accent-1); border-radius: 9999px; }
+  @supports selector(::-webkit-meter-bar) { :where(meter) { background: none; } }
   :where(meter)::-webkit-meter-bar { block-size: 100%; border: 0; border-radius: 9999px; background: var(--component-strong); }
   :where(meter)::-webkit-meter-optimum-value { background: var(--solid-success); border-radius: 9999px; }
   :where(meter)::-webkit-meter-suboptimum-value { background: var(--solid-warning); border-radius: 9999px; }

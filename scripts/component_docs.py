@@ -8,7 +8,7 @@ FIELD = "h-control px-control rounded-sm border border-neutral-5 hover:border-ne
 BOX = "flex items-center gap-gutter h-control px-control rounded-sm border border-neutral-5 hover:border-neutral-7 focus-within:border-accent-1-8 has-invalid:border-danger-7 bg-neutral-1 text-base cursor-text transition"
 BARE = "grow min-w-0 h-full p-0 border-0 bg-transparent fg-neutral-12"
 KBD = "inline-flex items-center justify-center h-nested min-w-nested px-2xs rounded-xs border border-neutral-6 bg-neutral-2 fg-neutral-11 text-sm font-mono"
-NESTED_SELECT = "select-base h-nested px-nested rounded-xs border border-transparent bg-transparent hover:bg-neutral-3 fg-neutral-12 text-base cursor-pointer"
+NESTED_SELECT = "select-base w-fit shrink-0 h-nested px-nested rounded-xs border border-transparent bg-transparent hover:bg-neutral-3 fg-neutral-12 text-base cursor-pointer"
 NESTED_ICON = "inline-flex items-center justify-center size-nested rounded-xs state border border-transparent bg-transparent fg-neutral-11 hover:fg-neutral-12 cursor-pointer"
 CARD = "p-md rounded-md bg-neutral-1 border border-neutral-6"
 MENU_ITEM = "flex items-center gap-gutter h-control px-control border border-transparent rounded-sm no-underline fg-neutral-12 hover:bg-neutral-3 selected:bg-accent-1-3 selected:fg-accent-1-11"
@@ -388,9 +388,9 @@ COMPONENTS = [
         "slug": "tabs", "name": "Tabs", "icon": "ph-tabs", "group": "Navigation",
         "summary": "Switches between views of the same thing. The selected tab is styled by <code>aria-selected</code>.",
         "html": """<div class="flex gap-md border-b border-neutral-6 overflow-x-auto" role="tablist">
-  <button role="tab" aria-selected="true" class="inline-flex items-center gap-gutter h-control px-control border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none"><i class="icon ph ph-user"></i><span>Profile</span></button>
-  <button role="tab" aria-selected="false" class="inline-flex items-center gap-gutter h-control px-control border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none"><i class="icon ph ph-credit-card"></i><span>Billing</span></button>
-  <button role="tab" aria-selected="false" class="inline-flex items-center gap-gutter h-control px-control border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none"><i class="icon ph ph-users"></i><span>Members</span></button>
+  <button role="tab" aria-selected="true" class="inline-flex items-center gap-gutter h-control px-control border-t-0 border-x-0 border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none"><i class="icon ph ph-user"></i><span>Profile</span></button>
+  <button role="tab" aria-selected="false" class="inline-flex items-center gap-gutter h-control px-control border-t-0 border-x-0 border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none"><i class="icon ph ph-credit-card"></i><span>Billing</span></button>
+  <button role="tab" aria-selected="false" class="inline-flex items-center gap-gutter h-control px-control border-t-0 border-x-0 border-b-2 border-transparent selected:border-accent-1-8 bg-transparent fg-neutral-11 hover:fg-neutral-12 selected:fg-neutral-12 text-base font-medium cursor-pointer rounded-none"><i class="icon ph ph-users"></i><span>Members</span></button>
 </div>""",
         "use": ["Moving <code>aria-selected</code> is all the script a tab needs for its look."],
         "avoid": ["More than six tabs; use a sidebar."],
@@ -577,8 +577,8 @@ COMPONENTS = [
   <table class="w-full">
     <thead class="bg-neutral-2">
       <tr>
-        <th aria-sort="ascending" class="text-start h-control px-control border-b border-neutral-6"><button class="inline-flex items-center gap-gutter-half border-0 bg-transparent fg-neutral-12 text-sm font-medium cursor-pointer">Name<i class="icon icon-sm ph-bold ph-caret-up"></i></button></th>
-        <th aria-sort="none" class="text-end h-control px-control border-b border-neutral-6"><button class="inline-flex items-center gap-gutter-half border-0 bg-transparent fg-neutral-11 hover:fg-neutral-12 text-sm font-medium cursor-pointer">Seats<i class="icon icon-sm ph-bold ph-caret-up-down"></i></button></th>
+        <th aria-sort="ascending" class="text-start h-control px-control border-b border-neutral-6"><button class="inline-flex items-center gap-gutter-half min-h-0 p-0 border-0 bg-transparent fg-neutral-12 text-sm font-medium cursor-pointer"><span>Name</span><i class="icon icon-sm ph-bold ph-caret-up"></i></button></th>
+        <th aria-sort="none" class="text-end h-control px-control border-b border-neutral-6"><button class="inline-flex items-center gap-gutter-half min-h-0 p-0 border-0 bg-transparent fg-neutral-11 hover:fg-neutral-12 text-sm font-medium cursor-pointer"><span>Seats</span><i class="icon icon-sm ph-bold ph-caret-up-down"></i></button></th>
       </tr>
     </thead>
     <tbody>

@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- **Fixes from the docs:** the selected tab no longer shows a border on its top and sides; a select in a field's slot keeps its own width instead of sharing the row; a sortable table's header matches a plain table's; and a meter's value fills its track in Chromium, with no ring. A new examples-lint check fails a button or field whose utilities set part of a property the defaults layer fills: a border on some sides, a field in a row with no width, a button in a table cell.
+- **No fixed heights:** `h-control`, `h-nested`, `h-header`, `size-control` and `size-nested` now set a minimum height (and the squares a minimum width), as do the element defaults for buttons, fields and segmented groups, so a label that wraps or a larger text size grows its control instead of overflowing it. Inside a control, `h-full` stretches the item to the control's height. The site map's links wrap inside their highlight.
+- **Truncated labels keep their descenders:** a `truncate` label in a control is trimmed to cap height like any label, and its clip now reaches below the baseline, so a “p” or “g” isn't cut off.
 ## 0.17.0 (2026-11-27)
 
 - **README, from a classless test page built with no classes at all:** a `div` of label, field and `small` is one field; wrap a header's actions in a `div`; name a segmented group with `aria-label`; an icon button holds a lone `i` or `svg`; `data-tone` gives any tone; the form example wraps its buttons in a row; and how to open a dialog where `commandfor` isn't supported.

@@ -430,6 +430,7 @@
         "text-lg",
         "text-sm",
         "transition",
+        "w-fit",
         "w-full",
         "whitespace-nowrap"
       ]
@@ -708,7 +709,9 @@
         "border-b",
         "border-b-2",
         "border-neutral-6",
+        "border-t-0",
         "border-transparent",
+        "border-x-0",
         "cursor-pointer",
         "fg-neutral-11",
         "flex",
@@ -1139,7 +1142,9 @@
         "icon-sm",
         "inline-flex",
         "items-center",
+        "min-h-0",
         "overflow-x-auto",
+        "p-0",
         "px-control",
         "rounded-md",
         "state",

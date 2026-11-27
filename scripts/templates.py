@@ -84,7 +84,7 @@ def site_map(path):
     """The popover behind the bar's menu button: every section and its pages, the current page marked."""
     def links(pages, two=False):
         lis = "".join(
-            f'<li><a href="{rel(pp, path)}"{CUR_PAGE if pp == path else ""} class="inline-flex items-center w-fit h-nested px-nested rounded-xs no-underline text-body-sm {"bg-component-accent-1 fg-accent-1 font-medium" if pp == path else "state fg-weak hover:fg"}">{label}</a></li>'
+            f'<li><a href="{rel(pp, path)}"{CUR_PAGE if pp == path else ""} class="inline-flex items-center w-fit h-nested py-3xs px-nested rounded-xs no-underline text-body-sm {"bg-component-accent-1 fg-accent-1 font-medium" if pp == path else "state fg-weak hover:fg"}">{label}</a></li>'
             for pp, label in pages)
         return f'<ul role="list" class="grid {"grid-cols-2 gap-x-md" if two else "grid-cols-1"}">{lis}</ul>'
     def col(name, pages, two=False, span=""):
@@ -1215,6 +1215,7 @@ def components_index():
 SIZE_RE = re.compile(r"text-(xs|sm|base|lg|xl|[2-6]xl)")
 
 
+_RAW_SOURCES = None  # set by --lint-file: the pages before the defaults are expanded, for defaults_gap_audit
 _FILE_SOURCES = None  # set by --lint-file: (path, html) pairs checked in place of the examples
 
 
@@ -1627,6 +1628,7 @@ def lint_examples():
         for t in sorted({t for c in re.findall(r'class="([^"]*)"', h) for t in c.split()}):
             if t not in defined and not re.match(r"ph(-|$)", t):
                 errors.append(f"{w}: class {t} is not in the bundle, so it does nothing. Fix: use a class Nowind defines (classes.md lists them; variants cover the steps in AGENTS.md).")
+    errors += defaults_gap_audit()
     findings, unclassified = type_audit()
     errors += [f"{w}: {k} text is text-{eff}; the size contract wants text-{want}. Fix: the contract's size (sizeContract in theme/theme.type-roles.manifest.json). {lab}" for w, k, eff, want, lab in findings]
     errors += [f"{w}: {lab} sets text-{own} but has no kind in the size contract. Fix: give it a kind's classes, or let it inherit." for w, own, lab in unclassified]
@@ -1730,6 +1732,35 @@ if "--type-report" in sys.argv:
     for f in findings: print(f"OFF  {f[0]}: {f[1]} is text-{f[2]}, want text-{f[3]}  {f[4]}")
     for u in unclassified: print(f"KIND {u[0]}: text-{u[1]}  {u[2]}")
     sys.exit(0)
+def defaults_gap_audit(srcs=None):
+    """Failures where a utility stack sets part of a property and the defaults layer fills the rest: a button or field
+    given a border on some sides (the default border stays on the others), and a field in a flex row with no width of
+    its own (the default inline-size: 100% makes it share the row with its neighbour)."""
+    props = {k: {d.split(":")[0].strip() for d in v.strip("`").split(";") if ":" in d} for _, rows in read_classes() for k, v in rows}
+    SIDES = {"border-width": "TBSE", "border": "TBSE", "border-block-width": "TB", "border-inline-width": "SE",
+             "border-top-width": "T", "border-block-start-width": "T", "border-bottom-width": "B", "border-block-end-width": "B",
+             "border-left-width": "S", "border-inline-start-width": "S", "border-right-width": "E", "border-inline-end-width": "E"}
+    NOT_FIELD = ("checkbox", "radio", "range", "color", "file", "hidden", "submit", "button", "reset", "image")
+    WIDTH = ("width", "inline-size", "flex-grow", "flex", "flex-basis", "max-width", "max-inline-size")
+    out = []
+    for where, html_ in (srcs if srcs is not None else _RAW_SOURCES if _RAW_SOURCES is not None else example_sources()):
+        for n in parse_tree(html_):
+            button = n.tag == "button" and not (n.parent and n.parent.tag == "select")
+            field = n.tag in ("select", "textarea") or (n.tag == "input" and n.attrs.get("type") not in NOT_FIELD)
+            if not (button or field) or not n.toks:
+                continue
+            got = set().union(*(props.get(t, set()) for t in n.toks if ":" not in t))
+            sides = set("".join(SIDES[p] for p in got if p in SIDES))
+            if sides and sides != set("TBSE"):
+                out.append(f"{where}: <{n.tag} class=\"{' '.join(n.toks)[:60]}\"> sets a border on some sides only, so the default border shows on the others. Fix: set the other sides too (border-t-0 border-x-0 beside border-b-2).")
+            ptoks = n.parent.toks if n.parent else []
+            if button and n.parent and n.parent.tag in ("th", "td") and not ({"min-height", "height"} & got and any(p.startswith("padding") for p in got)):
+                out.append(f"{where}: <button class=\"{' '.join(n.toks)[:60]}\"> in a table cell takes the default button height and padding, so its row grows past the others. Fix: min-h-0 p-0, or the height and padding it needs.")
+            if field and n.tag != "textarea" and any(t in ("flex", "inline-flex") for t in ptoks) and "flex-col" not in ptoks and not any(p in got for p in WIDTH):
+                out.append(f"{where}: <{n.tag} class=\"{' '.join(n.toks)[:60]}\"> sits in a flex row with no width of its own, so the default width (100%) makes it share the row. Fix: give it a width (w-fit shrink-0, or grow).")
+    return out
+
+
 def default_notes(srcs):
     """Notes, not failures: a button or field styled partly with utilities takes the element defaults (the defaults
     layer) for every part of its box its classes leave unset. Name those parts, so an author sees what they inherit."""
@@ -1842,13 +1873,14 @@ if "--lint-file" in sys.argv:
     paths = [a for a in sys.argv[sys.argv.index("--lint-file") + 1:] if not a.startswith("--")]
     if not paths:
         print("usage: python3 scripts/templates.py --lint-file page.html [more.html …]"); sys.exit(2)
-    srcs = []
+    srcs, raw = [], []
     for path in paths:
         text = open(path).read()
         body = text[text.index("<body"):] if "<body" in text else text
         body = re.sub(r"class='([^']*)'", r'class="\1"', body)  # one quote style for the rules below
         srcs.append((path, expand_defaults(expand_convenience(body))))
-    _FILE_SOURCES = srcs
+        raw.append((path, expand_convenience(body)))
+    _FILE_SOURCES, _RAW_SOURCES = srcs, raw
     problems = lint_examples()
     notes = default_notes(srcs)
     if problems: print("\n".join(problems))

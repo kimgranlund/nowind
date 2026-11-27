@@ -12,10 +12,10 @@ Variants: `hover:` on the 211 role-colour, opacity and cursor classes (inside `@
 
 | Class | Declarations |
 |---|---|
-| `.h-control` | `height: var(--control-height)` |
-| `.h-nested` | `height: var(--nested-height)` |
-| `.size-control` | `width: var(--control-height); height: var(--control-height); padding: 0` |
-| `.size-nested` | `width: var(--nested-height); height: var(--nested-height); padding: 0` |
+| `.h-control` | `min-height: var(--control-height)` |
+| `.h-nested` | `min-height: var(--nested-height)` |
+| `.size-control` | `min-width: var(--control-height); min-height: var(--control-height); aspect-ratio: 1; padding: 0` |
+| `.size-nested` | `min-width: var(--nested-height); min-height: var(--nested-height); aspect-ratio: 1; padding: 0` |
 | `.min-w-control` | `min-width: var(--control-height)` |
 | `.min-w-nested` | `min-width: var(--nested-height)` |
 | `.px-control` | `padding-inline: var(--control-padding)` |
@@ -131,7 +131,7 @@ Variants: `hover:` on the 211 role-colour, opacity and cursor classes (inside `@
 | `.px-grid-compact` | `padding-inline: var(--grid-margin-compact)` |
 | `.w-sidebar` | `width: var(--shell-sidebar-width)` |
 | `.w-rail` | `width: var(--shell-rail-width)` |
-| `.h-header` | `height: var(--shell-header-height)` |
+| `.h-header` | `min-height: var(--shell-header-height)` |
 | `.min-h-header` | `min-height: var(--shell-header-height)` |
 | `.top-header` | `top: var(--shell-header-height)` |
 | `.h-below-header` | `height: calc(100dvh - var(--shell-header-height))` |
