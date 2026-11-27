@@ -6,6 +6,7 @@ from html.parser import HTMLParser
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from component_docs import COMPONENTS  # noqa: E402
+from pattern_docs import PATTERNS  # noqa: E402
 
 OUT = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("--") else os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "site", "docs")
 E = html.escape
@@ -21,6 +22,8 @@ SECTIONS = [
               ("docs/changelog.html", "Changelog"), ("docs/index.html", "Templates")]),
     ("Components", [("docs/components-index.html", "All components"), ("components.html", "Showcase")] +
                    [(f"docs/c-{c['slug']}.html", c["name"]) for c in BY_GROUP]),
+    ("Patterns", [("docs/patterns-index.html", "All patterns")] +
+                 [(f"docs/p-{x['slug']}.html", x["name"]) for x in PATTERNS]),
     ("Specimen", [("specimen.html", "Tokens"), ("utilities.html", "Utilities demo")]),
     ("Classes", [("docs/classes.html", "Regular"), ("docs/semantic.html", "Semantic")]),
 ]
@@ -33,6 +36,10 @@ TITLES = {"docs/colour.html": "Colour", "docs/type-space.html": "Type and space"
           "components.html": "Showcase", "specimen.html": "Specimen", "utilities.html": "Utilities demo",
           "docs/classes.html": "Classes", "docs/semantic.html": "Semantic classes"}
 TITLES.update({f"docs/c-{c['slug']}.html": c["name"] for c in COMPONENTS})
+TITLES.update({f"docs/p-{x['slug']}.html": x["name"] for x in PATTERNS})
+TITLES["docs/patterns-index.html"] = "Patterns"
+# Every documented snippet: (entry, page prefix, its source file).
+ITEMS = [(c, "c", "scripts/component_docs.py") for c in COMPONENTS] + [(x, "p", "scripts/pattern_docs.py") for x in PATTERNS]
 
 def rel(target, frm):
     """A link from the page at site path frm to site path target."""
@@ -110,7 +117,7 @@ def site_map(path):
   <nav aria-label="Site map" class="grid grid-cols-1 md:grid-cols-4 gap-group">
     {col("Docs", sec["Docs"])}
     {components}
-    <div class="flex flex-col gap-group">{col("Specimen", sec["Specimen"])}{col("Classes", sec["Classes"])}</div>
+    <div class="flex flex-col gap-group">{col("Patterns", sec["Patterns"])}{col("Specimen", sec["Specimen"])}{col("Classes", sec["Classes"])}</div>
   </nav>
 </div>
 """
@@ -138,7 +145,7 @@ def top(path):
 <header class="light bg-inverse fg-inverse">
   <div class="flex items-center gap-lg h-header px-grid">
     <a href="{rel("index.html", path)}" class="inline-flex items-center gap-gutter-half no-underline fg-inverse hover:fg-inverse-weak transition-colors"><i class="icon ph-bold ph-wind"></i><span class="text-subtitle">Nowind</span><span class="text-kicker fg-inverse-weak">__VERSION__</span></a>
-    <nav aria-label="Sections" class="hidden md:flex items-center gap-lg">{secs}</nav>
+    <nav aria-label="Sections" class="hidden lg:flex items-center gap-lg">{secs}</nav>
     <button type="button" popovertarget="site-settings" class="inline-flex items-center justify-center size-nested ms-auto rounded-xs border border-transparent bg-transparent fg-inverse-weak hover:fg-inverse cursor-pointer transition-colors" aria-label="Display settings"><i class="icon ph ph-sliders-horizontal"></i></button>
     <a href="https://github.com/kimgranlund/nowind" class="inline-flex items-center justify-center size-nested no-underline fg-inverse-weak hover:fg-inverse transition-colors" aria-label="Nowind on GitHub"><i class="icon ph ph-github-logo"></i></a>
   </div>
@@ -538,6 +545,7 @@ def docs_home():
         ("reference.html", "ph-grid-four", "Reference", "Every grid, shell, level and tier class with its declaration and where it comes from."),
         ("classes.html", "ph-list-bullets", "Classes", "Every class and what it declares, regular and semantic, with a filter."),
         ("components-index.html", "ph-squares-four", "Components", "Buttons, forms, tables and dialogs built only from utility classes."),
+        ("patterns-index.html", "ph-stack", "Patterns", "Tasks put together from the components: sign in, settings, filtering, confirming."),
     ]
     cards = "\n".join(f"""            <a href="{h}" class="flex flex-col gap-field p-surface rounded-md border border-weak hover:border-strong no-underline fg transition-colors">
               <i class="icon ph {i} fg-accent-1-weak"></i>
@@ -1164,9 +1172,10 @@ def classes_of(snippet):
     return sorted(found)
 
 
-def component_page(c):
-    name = f"c-{c['slug']}.html"
-    toc_items = [("example", "Example"), ("usage", "Usage"), ("classes", "Classes")]
+def component_page(c, prefix="c"):
+    name = f"{prefix}-{c['slug']}.html"
+    built = c.get("components", [])
+    toc_items = [("example", "Example"), ("usage", "Usage")] + ([("built-from", "Built from")] if built else []) + [("classes", "Classes")]
     extras = c.get("examples", [])
     all_html = c["html"] + "".join(x["html"] for x in extras)
     chips = " ".join(f'<a href="{class_page_of(k.split(":")[-1])}#{class_id(k.split(":")[-1])}" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">{E(k)}</a>' for k in classes_of(all_html))
@@ -1192,12 +1201,34 @@ def component_page(c):
             </ul></div>
           </div>""",
         ),
+        *([section("built-from", "Built from",
+            p("The components this pattern puts together. Each page has the parts on their own, with what to use them for."),
+            '<div class="flex flex-wrap gap-2xs">' + " ".join(
+                f'<a href="c-{s}.html" class="inline-flex items-center gap-gutter-half h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-body-sm whitespace-nowrap transition-colors"><i class="icon icon-sm ph {cc["icon"]} fg-accent-1-weak"></i><span>{cc["name"]}</span></a>'
+                for s in built for cc in COMPONENTS if cc["slug"] == s) + "</div>")] if built else []),
         section("classes", "Classes",
             p(f"Every class in the examples, {len(classes_of(all_html))} in all. Each one links to its declarations in <a href=\"classes.html\">Classes</a> or <a href=\"semantic.html\">Semantic classes</a>."),
             f'<div class="flex flex-wrap gap-2xs">{chips}</div>',
         ),
     ])
     return doc_page(name, c["name"], art, toc_items)
+
+
+def patterns_index():
+    groups = []
+    for g in dict.fromkeys(x["group"] for x in PATTERNS):
+        cards = "\n".join(
+            f"""            <a href="p-{x['slug']}.html" class="flex flex-col gap-3xs min-w-0 p-surface rounded-md border border-weak hover:border-strong hover:bg-component-weak no-underline fg transition-colors">
+              <span class="inline-flex items-center gap-gutter text-subtitle"><i class="icon ph {x['icon']} fg-accent-1-weak"></i><span>{x['name']}</span></span>
+              <span class="text-body-sm fg-weak break-words">{x['summary']}</span>
+            </a>""" for x in PATTERNS if x["group"] == g)
+        sid = g.lower().replace(" ", "-")
+        groups.append((sid, g, f'<div class="grid grid-cols-1 md:grid-cols-2 gap-grid">\n{cards}\n          </div>'))
+    art = "\n        ".join(
+        [page_head("Patterns", "Patterns",
+                   f"{len(PATTERNS)} patterns, each a task (sign in, change a setting, filter a list) put together from the components, in one snippet of HTML built only from Nowind utility classes. Every page links the components it uses.")]
+        + [section(sid, g, body) for sid, g, body in groups])
+    return doc_page("patterns-index.html", "Patterns", art, [(sid, g) for sid, g, _ in groups], wide=True)
 
 
 def components_index():
@@ -1227,7 +1258,7 @@ def example_sources():
     """(where, html) for every component snippet and every showcase block that is not a semantic demo."""
     if _FILE_SOURCES is not None:
         return _FILE_SOURCES
-    out = [(f"scripts/component_docs.py {c['slug']} {x['id']}", x["html"]) for c in COMPONENTS for x in [{"id": "example", "html": c["html"]}] + c.get("examples", [])]
+    out = [(f"{src} {c['slug']} {x['id']}", x["html"]) for c, _, src in ITEMS for x in [{"id": "example", "html": c["html"]}] + c.get("examples", [])]
     out += [(f"scripts/templates.py states {k}", STATE_DEMOS[k]) for k in ("breakpoints", "containers")]
     page = open(os.path.join(OUT, "..", "components.html")).read()
     body = 'md:col-span-9 min-w-0 flex flex-col gap-group">'
@@ -1612,9 +1643,9 @@ def lint_examples():
         for w, h in _FILE_SOURCES:
             errors += bad(h, w)
     else:
-        for c in COMPONENTS:
+        for c, _, src in ITEMS:
             for x in [{"id": "example", "html": c["html"]}] + c.get("examples", []):
-                errors += bad(x["html"], f"scripts/component_docs.py {c['slug']} {x['id']}")
+                errors += bad(x["html"], f"{src} {c['slug']} {x['id']}")
         page = open(os.path.join(OUT, "..", "components.html")).read()
         body = 'md:col-span-9 min-w-0 flex flex-col gap-group">'
         for m in re.finditer(r'<section id="([^"]+)"(.*?)\n  </section>', page, flags=re.S):
@@ -1651,9 +1682,10 @@ def wrap_code(text):
 def main():
     os.makedirs(OUT, exist_ok=True)
     files = {"guide.html": guide(), "reference.html": reference(), "changelog.html": changelog(),
-             "docs-home.html": docs_home(), "index.html": index(), "components-index.html": components_index(), "classes.html": classes_page(), "semantic.html": classes_page(True),
+             "docs-home.html": docs_home(), "index.html": index(), "components-index.html": components_index(), "patterns-index.html": patterns_index(), "classes.html": classes_page(), "semantic.html": classes_page(True),
              "colour.html": colour_page(), "type-space.html": type_space_page(), "states.html": states_page(), "materials.html": materials_page(), "convenience.html": convenience_page(), "resets.html": resets_page()}
     files.update({f"c-{c['slug']}.html": component_page(c) for c in COMPONENTS})
+    files.update({f"p-{x['slug']}.html": component_page(x, "p") for x in PATTERNS})
     for name, text in files.items():
         text = text.replace("<code>--", '<code class="whitespace-nowrap">--')
         text = text.replace("__VERSION__", VERSION)
@@ -1678,6 +1710,8 @@ def main():
     rows = [[TITLES.get(pp, label), pp, "Page", sec] for sec, pages in SECTIONS for pp, label in pages]
     for c in COMPONENTS:
         rows.append([c["name"], f"docs/c-{c['slug']}.html", "Component", html.unescape(re.sub(r"<[^>]+>", "", c["summary"]))])
+    for x in PATTERNS:
+        rows.append([x["name"], f"docs/p-{x['slug']}.html", "Pattern", html.unescape(re.sub(r"<[^>]+>", "", x["summary"]))])
     for name, text in files.items():
         path = os.path.normpath(os.path.join("docs", name)).replace(os.sep, "/")
         page = TITLES.get(path, path)
@@ -1691,14 +1725,20 @@ def main():
     print("wrote search.json", len(rows), "entries")
     # The component manifest: each component's contract as data, from the same source as its pages.
     comp = {"file": "site/docs/c-*.html", "generated": "scripts/templates.py from scripts/component_docs.py",
-            "description": "Every component Nowind documents: where its page is, what it is for, when to use it and not, and the classes its examples use. Examples use regular classes only.",
+            "description": "Every component and pattern Nowind documents: where its page is, what it is for, when to use it and not, and the classes its examples use; a pattern also lists the components it is built from. Examples use regular classes only.",
             "components": [{"slug": c["slug"], "name": c["name"], "group": c["group"], "page": f"site/docs/c-{c['slug']}.html",
                             "summary": html.unescape(re.sub(r"<[^>]+>", "", c["summary"])),
                             "use": [html.unescape(re.sub(r"<[^>]+>", "", t)) for t in c["use"]],
                             "avoid": [html.unescape(re.sub(r"<[^>]+>", "", t)) for t in c["avoid"]],
                             "examples": ["example"] + [x["id"] for x in c.get("examples", [])],
                             "classes": classes_of(c["html"] + "".join(x["html"] for x in c.get("examples", [])))}
-                           for c in BY_GROUP]}
+                           for c in BY_GROUP],
+            "patterns": [{"slug": x["slug"], "name": x["name"], "group": x["group"], "page": f"site/docs/p-{x['slug']}.html",
+                          "summary": html.unescape(re.sub(r"<[^>]+>", "", x["summary"])),
+                          "components": x["components"],
+                          "use": [html.unescape(re.sub(r"<[^>]+>", "", t)) for t in x["use"]],
+                          "avoid": [html.unescape(re.sub(r"<[^>]+>", "", t)) for t in x["avoid"]],
+                          "classes": classes_of(x["html"])} for x in PATTERNS]}
     with open(os.path.join(site, "..", "components.manifest.json"), "w") as f:
         f.write(json.dumps(comp, indent=2, ensure_ascii=False) + "\n")
     print("wrote components.manifest.json", len(comp["components"]), "components")

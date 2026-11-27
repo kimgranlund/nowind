@@ -3,8 +3,8 @@
 // in groups (pages, components, sections, classes), one line each; Tab cycles the filter, ↑↓ move, Enter opens.
 (() => {
   const base = new URL(".", document.currentScript.src);
-  const KINDS = { Page: "ph-file-text", Section: "ph-hash", Component: "ph-squares-four", Class: "ph-brackets-curly" };
-  const GROUPS = [["Page", "Pages"], ["Component", "Components"], ["Section", "Sections"], ["Class", "Classes"]];
+  const KINDS = { Page: "ph-file-text", Section: "ph-hash", Component: "ph-squares-four", Pattern: "ph-stack", Class: "ph-brackets-curly" };
+  const GROUPS = [["Page", "Pages"], ["Component", "Components"], ["Pattern", "Patterns"], ["Section", "Sections"], ["Class", "Classes"]];
   const FILTERS = [["", "All"], ...GROUPS.map(([k, n]) => [k, n])];
   const KEY = "inline-flex items-center justify-center h-nested min-w-nested px-2xs rounded-xs border text-mono-sm";
   let rows = null, hits = [], active = 0, filter = "";
@@ -46,7 +46,7 @@
     if (t === q || t === "." + q) s += 100;
     else if (t.startsWith(q) || t.startsWith("." + q)) s += 50;
     else if (t.includes(q)) s += 20;
-    s += { Page: 8, Component: 6, Section: 4, Class: 0 }[r[2]];
+    s += { Page: 8, Component: 6, Pattern: 6, Section: 4, Class: 0 }[r[2]];
     return s - t.length / 100;
   }
 
@@ -71,7 +71,7 @@
     } else {
       const words = q.split(/\s+/);
       const found = !q ? pool.slice(0, 60) : pool.map((r) => [score(r, q, words), r]).filter(([sc]) => sc > 0).sort((a, b) => b[0] - a[0]).slice(0, 60).map(([, r]) => r);
-      groups = [...new Set(found.map((r) => r[2]))].map((k) => [GROUPS.find(([g]) => g === k)[1], found.filter((r) => r[2] === k), (r) => r[2] === "Component" ? "" : r[3]]);
+      groups = [...new Set(found.map((r) => r[2]))].map((k) => [GROUPS.find(([g]) => g === k)[1], found.filter((r) => r[2] === k), (r) => r[2] === "Component" || r[2] === "Pattern" ? "" : r[3]]);
     }
     hits = groups.flatMap(([, rs]) => rs);
     active = 0;
