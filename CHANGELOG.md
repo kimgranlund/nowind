@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Site map on the specimen:** the specimen's own `.grid` rule overrode the site map's `grid` utility (its columns and gap), so the menu spread out there; it is `.spec-grid` now, and `check.mjs` fails a page stylesheet that redefines a Nowind class. The site map's links are back to the nested height, growing only when a name wraps.
 ## 0.18.0 (2026-11-27)
 
 - **Initials avatars grow to fit:** a round marker holding initials stays square and grows when its text needs more room than the control (at a 12px root on a narrow screen), and the geometry audit no longer asks an avatar group to share one size.

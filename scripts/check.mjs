@@ -67,6 +67,19 @@ function check(root) {
   const errors = [];
   const rel = (p) => relative(root, p);
 
+  // 0. A page's own stylesheet (data-page-css) names no Nowind class: its rules are unlayered, so they would beat the
+  // utility of the same name wherever the site's chrome uses it (the site map's grid, for one).
+  {
+    const bundle = readFileSync(join(root, "dist", "nowind.min.css"), "utf8");
+    const nowindClasses = new Set([...bundle.matchAll(/\.([a-zA-Z][\w-]*)(?![\w\\-])/g)].map((m) => m[1]));
+    for (const file of ["site/specimen.html", "site/utilities.html", "site/components.html", "site/index.html"].map((f) => join(root, f)).filter(existsSync)) {
+      const style = (readFileSync(file, "utf8").match(/<style data-page-css>([\s\S]*?)<\/style>/) || [, ""])[1];
+      const selectors = [...style.matchAll(/([^{}]+)\{[^}]*\}/g)].flatMap((m) => m[1].split(",").map((x) => x.trim()));
+      const clash = [...new Set(selectors.map((x) => (x.match(/^\.([a-zA-Z][\w-]*)$/) || [])[1]).filter((c) => c && nowindClasses.has(c)))];
+      if (clash.length) errors.push(`${rel(file)}: its page stylesheet redefines ${clash.map((c) => "." + c).join(", ")}, which Nowind also defines, so the page's rule beats the utility everywhere on the page. Fix: give the page's class its own name (spec-grid).`);
+    }
+  }
+
   // 1. No comments in the CSS. 2. No color-mix().
   for (const file of ownCss(root)) {
     const css = readFileSync(file, "utf8");
@@ -199,6 +212,7 @@ if (process.argv.includes("--self-test")) {
     ["control gap from the space scale", "site/components.html", (s) => s.replace(/(md:col-span-9 min-w-0 flex flex-col gap-group">[\s\S]*?class="[^"]*?h-control px-control )gap-gutter\b/, "$1gap-xs")],
     ["control sized by padding", "site/components.html", (s) => s.replace(/(md:col-span-9 min-w-0 flex flex-col gap-group">[\s\S]*?<button class="[^"]*?)\bh-control px-control\b/, "$1py-xs px-sm")],
     ["text padding at an icon edge", "site/components.html", (s) => s.replace(/(md:col-span-9 min-w-0 flex flex-col gap-group">[\s\S]*?class="[^"]*?)\bps-xs pe-sm\b/, "$1px-sm")],
+    ["page CSS reusing a Nowind class", "site/specimen.html", (s) => s.replace(".spec-grid {", ".grid {")],
     ["hover tint in place of state", "site/components.html", (s) => s.replace(/(md:col-span-9 min-w-0 flex flex-col gap-group">[\s\S]*?class="[^"]*?)\bstate\b/, "$1hover:bg-neutral-4")],
   ];
   let ok = true;
