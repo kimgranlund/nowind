@@ -33,6 +33,8 @@
   :where(td, th).btn { height: var(--control-height); }
   .btn:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--control-icon-padding); }
   .btn:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested, .select-base.p-0):last-child)) { padding-inline-end: var(--control-icon-padding); }
+  .btn:where(:not(td, th):has(> .h-full:last-child)) { padding-inline-end: 0; }
+  .btn:where(:not(td, th):has(> input:is([type=date], [type=time], [type=datetime-local], [type=month], [type=week]):last-child)) { padding-inline-end: var(--control-icon-padding); }
   .btn-primary { background-color: var(--accent-1-9); color: var(--accent-1-contrast); border-color: transparent; }
   .btn-secondary { color: var(--neutral-12); background-color: var(--neutral-a2); border-color: transparent; }
   .btn-soft { background-color: var(--accent-1-3); color: var(--accent-1-11); border-color: transparent; }
@@ -53,7 +55,9 @@
   :where(td, th).btn-sm { height: var(--nested-height); }
   .btn-sm:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--nested-icon-padding); }
   .btn-sm:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested, .select-base.p-0):last-child)) { padding-inline-end: var(--nested-icon-padding); }
-  .icon-btn { display: inline-flex; justify-content: center; align-items: center; border-width: var(--border-width); --_bw: var(--border-width); border-radius: var(--radius-sm); --_nest: max(0px, calc(var(--radius-sm) - var(--_inset) - var(--_bw))); cursor: pointer; min-width: var(--control-height); min-height: var(--control-height); aspect-ratio: 1; align-self: center; padding: 0; isolation: isolate; }
+  .btn-sm:where(:not(td, th):has(> .h-full:last-child)) { padding-inline-end: 0; }
+  .btn-sm:where(:not(td, th):has(> input:is([type=date], [type=time], [type=datetime-local], [type=month], [type=week]):last-child)) { padding-inline-end: var(--nested-icon-padding); }
+  .icon-btn { display: inline-flex; justify-content: center; align-items: center; border-width: var(--border-width); --_bw: var(--border-width); border-radius: var(--radius-sm); --_nest: max(0px, calc(var(--radius-sm) - var(--_inset) - var(--_bw))); cursor: pointer; min-width: var(--control-height); min-height: var(--control-height); aspect-ratio: 1; padding: 0; isolation: isolate; }
   :where(.icon-btn) { position: relative; }
   .icon-btn::after { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background-color: currentColor; opacity: 0; pointer-events: none; transition-property: opacity; transition-duration: var(--_duration, var(--motion-duration)); transition-timing-function: var(--_ease, var(--motion-easing)); }
   @media (hover: hover) {
@@ -63,6 +67,7 @@
   .icon-btn:is([aria-selected="true"], [aria-pressed="true"], [aria-expanded="true"], [aria-current]:not([aria-current="false"]), :has(:checked))::after { opacity: var(--state-selected); }
   .icon-btn:active::after { opacity: var(--state-active); }
   .icon-btn:is(:disabled, [aria-disabled="true"])::after { opacity: 0; }
+  :where(.icon-btn, .size-nested) { align-self: center; }
   .icon-btn:not(:has(> *)) { line-height: 1; }
   .field { display: flex; align-items: center; font-size: var(--text-base); line-height: var(--text-base--line-height); background-color: var(--neutral-1); border-color: var(--neutral-5); border-width: var(--border-width); --_bw: var(--border-width); border-radius: var(--radius-sm); --_nest: max(0px, calc(var(--radius-sm) - var(--_inset) - var(--_bw))); transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, translate, scale, rotate; transition-duration: var(--_duration, var(--motion-duration)); transition-timing-function: var(--_ease, var(--motion-easing)); cursor: text; min-height: var(--control-height); padding-inline: var(--control-padding); gap: var(--gutter); }
   .field:has(> .select-base) { anchor-name: --nw-field; anchor-scope: --nw-field; }
@@ -70,6 +75,8 @@
   :where(td, th).field { height: var(--control-height); }
   .field:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--control-icon-padding); }
   .field:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested, .select-base.p-0):last-child)) { padding-inline-end: var(--control-icon-padding); }
+  .field:where(:not(td, th):has(> .h-full:last-child)) { padding-inline-end: 0; }
+  .field:where(:not(td, th):has(> input:is([type=date], [type=time], [type=datetime-local], [type=month], [type=week]):last-child)) { padding-inline-end: var(--control-icon-padding); }
   @media (hover: hover) {
     .field:hover { border-color: var(--neutral-7); }
   }
@@ -81,6 +88,8 @@
   :where(td, th).badge { height: var(--nested-height); }
   .badge:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--nested-icon-padding); }
   .badge:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested, .select-base.p-0):last-child)) { padding-inline-end: var(--nested-icon-padding); }
+  .badge:where(:not(td, th):has(> .h-full:last-child)) { padding-inline-end: 0; }
+  .badge:where(:not(td, th):has(> input:is([type=date], [type=time], [type=datetime-local], [type=month], [type=week]):last-child)) { padding-inline-end: var(--nested-icon-padding); }
   .badge-neutral { background-color: var(--neutral-3); border-color: var(--neutral-6); color: var(--neutral-11); }
   .badge-accent { background-color: var(--accent-1-3); border-color: var(--accent-1-6); color: var(--accent-1-11); }
   .badge-success { background-color: var(--success-3); border-color: var(--success-6); color: var(--success-11); }
@@ -94,6 +103,8 @@
   .select-base.segment { padding-inline-end: var(--nested-icon-padding); }
   .segment:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(--nested-icon-padding); }
   .segment:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested, .select-base.p-0):last-child)) { padding-inline-end: var(--nested-icon-padding); }
+  .segment:where(:not(td, th):has(> .h-full:last-child)) { padding-inline-end: 0; }
+  .segment:where(:not(td, th):has(> input:is([type=date], [type=time], [type=datetime-local], [type=month], [type=week]):last-child)) { padding-inline-end: var(--nested-icon-padding); }
   @media (hover: hover) {
     .segment:hover { background-color: var(--neutral-4); }
   }

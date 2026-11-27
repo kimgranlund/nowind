@@ -2,6 +2,23 @@
 
 ## Unreleased
 
+- **OpenType numerals, after Tailwind v4:** `normal-nums`, `ordinal`, `slashed-zero`, `lining-nums`, `oldstyle-nums`, `proportional-nums`, `tabular-nums`, `diagonal-fractions` and `stacked-fractions` each fill one slot and combine on one element; table cells take tabular figures the same way. `antialiased` and `subpixel-antialiased` join them. Each face has `--font-{face}--font-feature-settings` and `--font-variation-settings` tokens (default `normal`), set by its `font-*` class and read by the reset on the body and on code. Google Fonts serves Inter and Plex Mono with most features removed, so only tabular, proportional and fractions take effect as served; the rest work with self-hosted faces.
+- **Composer:** one round key at the end, Dictate while the box is empty and Send once something is typed (a short script swaps them). **Trace:** a rule joins each step's mark to the next, solid after a finished step and dashed after one still to come.
+- **Labels are semibold:** field labels (the defaults layer's `--label-weight`, the examples, the size contract) and the `text-label` role move to `--font-weight-semibold`.
+- **`gap-px`,** one border width, for the hairline between joined buttons; Button group and Split button use it in place of `gap-3xs`.
+- **Date and time fields:** the browser's picker key takes the icon box and the icon size, and a field box ending in a date or time input pads that end like a trailing icon. A field box ending in an `h-full` item meets the edge (its 2px border is the inset).
+- **A select's caret sits closer to its value:** `select-base` sets half the gutter between them, in place of the browser's 0.5em, since the icon box already holds the glyph off the text.
+- **`appearance-none` on a number input** hides the browser's spin buttons; the Number field uses it.
+- Sidebar navigation shows groups with dividers, expanding groups (`<details>` with a turning caret and a start rule) and an icon rail. Drawer shows start, bottom-sheet and full-height layouts; Tooltip shows its four placements.
+- The composer has round keys, more padding and no focus ring on its textarea; one-time code cells fill the row at `text-xl` (a new "code cell" kind in the size contract); auth fields drop their visible labels and providers sit in a 2×2 grid under "Continue with".
+- Tighter gaps in the navbar, breadcrumbs and ⌘K list padding; tag chips in a tag input take the nested height so the field pads them as nested items; the trace and command palette examples fill their width; the changelog's Latest badge and the docs' class chips are round, as tags are.
+
+- One-time code: a component with six cells in two groups of three, and a few lines of script that move between cells and spread a pasted or autofilled code. The Sign-in code and Verify email patterns use it.
+- Patterns: Connections (linked services with a check on each connected mark). Newsletter sign-up holds Subscribe inside its field; the composer's model and thinking selects read as quiet text triggers; selected table rows take a light accent tint; upload rows align their icons with the file name; small accordion carets are bold.
+- `size-control` and `size-nested` centre themselves on the cross axis from a zero-specificity rule, so a `self-*` class on the square wins (a square in a column takes `self-start`).
+
+- Blocks: a new section of the site, with whole sections of a page built from the components and patterns: Hero, Feature section, Stats band, Testimonials, Call to action, Pricing section, Site footer, App shell and Dashboard. They are in the site map, the ⌘K search (a Blocks filter) and `components.manifest.json`.
+
 - Components: Button group, Split button, Tag, Rich text and Colour picker, and an Agent group with Response actions, Trace and Composer.
 - Patterns: Agent session and Floating agent session; the sign-in and registration flow as seven screens (Sign in, Sign in with a password, Sign-in code, Create account, Account details, Verify email, Joined workspace), replacing the single Sign in card.
 

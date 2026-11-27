@@ -263,7 +263,7 @@
       "role": "--label",
       "size": "var(--text-sm)",
       "lineK": 1,
-      "weight": 450,
+      "weight": 600,
       "family": "var(--font-control)",
       "letterSpacing": null,
       "use": "A field's or a stat's name",
@@ -374,6 +374,14 @@
         "current": "99 text-base, 86 inherit (inherit resolves to text-base)"
       },
       {
+        "kind": "code cell",
+        "identify": "an input with aspect-square: one digit of a one-time code",
+        "size": "text-xl",
+        "icon": "none",
+        "status": "decided",
+        "current": "text-xl, two steps above the control text so each digit reads at a glance"
+      },
+      {
         "kind": "cell",
         "identify": "td",
         "size": "text-base (inherited)",
@@ -400,7 +408,7 @@
       {
         "kind": "field label",
         "identify": "label, legend",
-        "size": "text-sm font-medium",
+        "size": "text-sm font-semibold",
         "icon": "icon-sm",
         "status": "decided",
         "current": "35 text-sm, 9 text-base, 4 inherit"

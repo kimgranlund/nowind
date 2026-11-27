@@ -103,15 +103,20 @@ add("underline", "text-decoration-line: underline");
 add("line-through", "text-decoration-line: line-through");
 add("no-underline", "text-decoration-line: none");
 for (const w of ["normal", "medium", "semibold", "bold", "extrabold"]) add(`font-${w}`, `font-weight: var(--font-weight-${w})`);
-for (const f of ["body", "heading", "display", "mono", "control"]) add(`font-${f}`, `font-family: var(--font-${f})`);
-add("font-sans", "font-family: var(--font-body)");
+for (const f of ["body", "heading", "display", "mono"]) add(`font-${f}`, `font-family: var(--font-${f}); font-feature-settings: var(--font-${f}--font-feature-settings); font-variation-settings: var(--font-${f}--font-variation-settings)`);
+add("font-control", "font-family: var(--font-control)");
+add("font-sans", "font-family: var(--font-body); font-feature-settings: var(--font-body--font-feature-settings); font-variation-settings: var(--font-body--font-variation-settings)");
 for (const l of ["none", "tight", "snug", "normal", "relaxed"]) add(`leading-${l}`, `line-height: var(--leading-${l})`);
 for (const t of ["tight", "normal", "wide", "widest"]) add(`tracking-${t}`, `letter-spacing: var(--tracking-${t})`);
 add("uppercase", "text-transform: uppercase");
 add("lowercase", "text-transform: lowercase");
 add("capitalize", "text-transform: capitalize");
 add("normal-case", "text-transform: none");
-add("tabular-nums", "font-variant-numeric: tabular-nums");
+add("normal-nums", "font-variant-numeric: normal");
+for (const [c, slot, v] of [["ordinal", "ordinal", "ordinal"], ["slashed-zero", "zero", "slashed-zero"], ["lining-nums", "figure", "lining-nums"], ["oldstyle-nums", "figure", "oldstyle-nums"], ["proportional-nums", "spacing", "proportional-nums"], ["tabular-nums", "spacing", "tabular-nums"], ["diagonal-fractions", "fraction", "diagonal-fractions"], ["stacked-fractions", "fraction", "stacked-fractions"]])
+  add(c, `--_nums-${slot}: ${v}; font-variant-numeric: var(--_nums-ordinal, ) var(--_nums-zero, ) var(--_nums-figure, ) var(--_nums-spacing, ) var(--_nums-fraction, )`);
+add("antialiased", "-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale");
+add("subpixel-antialiased", "-webkit-font-smoothing: auto; -moz-osx-font-smoothing: auto");
 add("text-balance", "text-wrap: balance");
 add("text-pretty", "text-wrap: pretty");
 
@@ -280,8 +285,8 @@ add("h-control", "min-height: var(--control-height)");
 // Controls and icons (after Affine UI's button and icon): heights, square sizes, padding that steps in by one margin on a
 // side that holds an icon (the :has() rules below), the gutter gap, and an S-square icon box with its glyph size.
 add("h-nested", "min-height: var(--nested-height)");
-add("size-control", "min-width: var(--control-height); min-height: var(--control-height); aspect-ratio: 1; align-self: center; padding: 0");
-add("size-nested", "min-width: var(--nested-height); min-height: var(--nested-height); aspect-ratio: 1; align-self: center; padding: 0");
+add("size-control", "min-width: var(--control-height); min-height: var(--control-height); aspect-ratio: 1; padding: 0");
+add("size-nested", "min-width: var(--nested-height); min-height: var(--nested-height); aspect-ratio: 1; padding: 0");
 add("min-w-control", "min-width: var(--control-height)");
 add("min-w-nested", "min-width: var(--nested-height)");
 add("px-control", "padding-inline: var(--control-padding)");
@@ -337,6 +342,7 @@ add("tier-product", "--tier: 1; --tier-text: 0px; font-size: var(--text-base)");
 add("tier-content", "--tier: var(--tier-content); --tier-text: var(--tier-content-text); font-size: var(--text-base)");
 add("tier-brand", "--tier: var(--tier-brand); --tier-text: var(--tier-brand-text); font-size: var(--text-base)");
 add("gap-gutter-half", "gap: calc(var(--gutter) / 2)");
+add("gap-px", "gap: var(--border-width)");
 add("icon", "display: inline-flex; align-items: center; justify-content: center; flex: none; width: var(--icon-box); height: var(--icon-box); font-size: var(--icon-md); line-height: 1");
 add("caret", "font-size: var(--icon-sm)");
 add("icon-sm", "font-size: var(--icon-sm)");
@@ -433,7 +439,7 @@ const DEFAULT_TOKENS = [
   ["link-color-hover", "var(--fg-accent-1)", "Link text on hover"],
   ["link-underline-offset", "0.15em", "Link underline offset"],
   ["label-size", "var(--text-sm)", "Field label size"],
-  ["label-weight", "var(--font-weight-medium)", "Field label weight"],
+  ["label-weight", "var(--font-weight-semibold)", "Field label weight"],
   ["label-gap", "var(--space-3xs)", "Space below a field label that has no class (a classed label is spaced by its stack)"],
   ["cell-padding", "var(--space-sm)", "Table cell inline padding"],
   ["cell-padding-block", "var(--space-xs)", "Table cell block padding"],
@@ -557,6 +563,8 @@ const reset = `@layer reset {
     background: var(--bg);
     color: var(--fg);
     font-family: var(--font-body);
+    font-feature-settings: var(--font-body--font-feature-settings);
+    font-variation-settings: var(--font-body--font-variation-settings);
     font-size: var(--text-base);
     line-height: var(--text-base--line-height);
     font-synthesis: none;
@@ -676,6 +684,7 @@ const reset = `@layer reset {
   :where(input[type="file"])::file-selector-button { font: inherit; font-weight: var(--title-sm--font-weight); color: var(--fg); min-block-size: var(--control-height); padding-inline: var(--control-padding); margin-inline-end: var(--gutter); border: var(--border-width) solid transparent; border-radius: var(--radius-control); background: var(--neutral-a2); cursor: pointer; transition: background-color var(--motion-duration) var(--motion-easing); }
   :where(input[type="file"])::file-selector-button:hover { background: var(--neutral-a3); }
   :where(progress, meter) { appearance: none; display: inline-block; inline-size: 100%; block-size: calc(var(--space-3xs) * 2); border: 0; border-radius: 9999px; background: var(--component-strong); overflow: hidden; vertical-align: middle; }
+  :where(input)::-webkit-calendar-picker-indicator { box-sizing: border-box; inline-size: var(--icon-box); block-size: var(--icon-box); margin: 0; padding: calc((var(--icon-box) - var(--icon-md)) / 2); opacity: 0.7; cursor: pointer; }
   :where(progress)::-webkit-progress-bar { background: var(--component-strong); border-radius: 9999px; }
   :where(progress)::-webkit-progress-value { background: var(--solid-accent-1); border-radius: 9999px; transition: inline-size var(--motion-duration) var(--motion-easing); }
   :where(progress)::-moz-progress-bar { background: var(--solid-accent-1); border-radius: 9999px; }
@@ -702,8 +711,8 @@ const reset = `@layer reset {
 
   :where(ul, ol)[role="list"] { list-style: none; padding: 0; }
   :where(table) { border-collapse: collapse; }
-  :where(td, th) { font-variant-numeric: tabular-nums; }
-  :where(code, kbd, samp, pre) { font-family: var(--font-mono); font-size: var(--code); }
+  :where(td, th) { --_nums-spacing: tabular-nums; font-variant-numeric: var(--_nums-ordinal, ) var(--_nums-zero, ) var(--_nums-figure, ) var(--_nums-spacing, ) var(--_nums-fraction, ); }
+  :where(code, kbd, samp, pre) { font-family: var(--font-mono); font-feature-settings: var(--font-mono--font-feature-settings); font-variation-settings: var(--font-mono--font-variation-settings); font-size: var(--code); }
   :where(pre) { white-space: pre-wrap; }
   :where(:not(pre) > code) { white-space: nowrap; }
 
@@ -774,6 +783,8 @@ out.push("  .select-base option::checkmark { content: \"\"; flex: none; inline-s
 out.push("  .select-base option:hover, .select-base option:focus-visible { background: var(--component-weak); outline: none; }");
 out.push("  .caret::before, .select-base::picker-icon { content: \"\"; flex: none; inline-size: var(--icon-sm); block-size: var(--icon-sm); background: currentColor; mask: var(--glyph-caret) center / contain no-repeat; transition: rotate var(--motion-duration) var(--motion-easing); }");
 out.push("  .select-base { min-inline-size: 0; }");
+// The browser sets 0.5em between a base select's value and its picker icon; the icon box already holds the glyph off the text, so the gap is half the gutter.
+out.push("  .select-base { gap: calc(var(--gutter) / 2); }");
 out.push("  .select-base::picker-icon { color: var(--fg-weak); inline-size: var(--icon-box); block-size: var(--icon-box); mask-size: var(--icon-sm); margin-inline: auto 0; }");
 out.push("  .select-base.h-nested::picker-icon { inline-size: calc(var(--nested-height) - 2 * var(--border-width)); block-size: calc(var(--nested-height) - 2 * var(--border-width)); }");
 out.push("  .select-base.px-control { padding-inline-end: var(--control-icon-padding); }");
@@ -781,14 +792,22 @@ out.push("  .select-base.px-nested { padding-inline-end: var(--nested-icon-paddi
 out.push("  :is([open] > summary, [aria-expanded=\"true\"]) .caret::before, .select-base:open::picker-icon { rotate: 180deg; }");
 out.push("  :root[data-lens=\"on\"] .lens { -webkit-backdrop-filter: var(--_lens-filter, url(#nowind-lens)) saturate(1.8) brightness(1.05); backdrop-filter: var(--_lens-filter, url(#nowind-lens)) saturate(1.8) brightness(1.05); }");
 out.push("  .select-base option:checked { background: var(--component-accent-1-weak); color: var(--fg-accent-1-weak); }");
+// A square sits centred on the cross axis rather than stretching, at zero specificity so any self-* on it wins (a square in a column takes self-start).
+out.push("  :where(.size-control, .size-nested) { align-self: center; }");
 for (const c of ["h-control", "h-nested", "h-header", "size-control", "size-nested"]) out.push(`  .${c} > .h-full { height: auto; align-self: stretch; }`);
 // A table cell ignores min-height, and its height is already a minimum (a cell grows to fit), so a cell takes height.
 for (const [c, v] of [["h-control", "--control-height"], ["h-nested", "--nested-height"]]) out.push(`  :where(td, th).${c} { height: var(${v}); }`);
 for (const c of ["size-control", "size-nested"]) out.push(`  .${c}:not(:has(> *)) { line-height: 1; }`);
 for (const c of ["h-nested", "size-nested"]) out.push(`  .${c} > .icon { width: calc(var(--nested-height) - 2 * var(--border-width)); height: calc(var(--nested-height) - 2 * var(--border-width)); }`);
+out.push("  input.appearance-none::-webkit-inner-spin-button, input.appearance-none::-webkit-outer-spin-button { appearance: none; margin: 0; }");
+out.push("  input.appearance-none[type=\"number\"] { -moz-appearance: textfield; }");
 for (const [cls, pad] of [["px-control", "--control-icon-padding"], ["px-nested", "--nested-icon-padding"]]) {
   out.push(`  .${cls}:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(${pad}); }`);
   out.push(`  .${cls}:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested, .select-base.p-0):last-child)) { padding-inline-end: var(${pad}); }`);
+  // An item that fills the box's height at its end (h-full, in a border-2 control box) meets the edge; the 2px border is its inset.
+  out.push(`  .${cls}:where(:not(td, th):has(> .h-full:last-child)) { padding-inline-end: 0; }`);
+  // A date or time input ends in the browser's picker key, an icon-sized box: the edge takes the icon padding, as at a trailing icon.
+  out.push(`  .${cls}:where(:not(td, th):has(> input:is([type=date], [type=time], [type=datetime-local], [type=month], [type=week]):last-child)) { padding-inline-end: var(${pad}); }`);
 }
 // ---- Materials (after massimo-v4): a region's material paints the reliefs inside it. The nearest material wins:
 // each block is an @scope that stops at a nested material region. Flat is the default and paints nothing but casts.
@@ -951,14 +970,16 @@ const manifest = {
     typeRoles: `text-{${ROLES.filter((r) => !KICKERS.includes(r)).join(", ")}} (every role companion)`,
     colors: "A colour class is the property prefix plus the token name, minus the role group when it matches the prefix (fg-weak, bg-accent-1, border-weak; bg-component-accent-1 keeps its group). --border is border-default, because border is the width class; the reset draws every border in --border. Each property takes only its own roles: fg- with fg-*, on-solid-* and each palette's contrast (fg-accent-1-contrast, the primitive for text on a solid); bg- with bg-*, component-*, solid-*, surface, indicator and track; border- with border-*. Raw palette steps (fg-accent-1-9, bg-accent-1-9, border-accent-1-9) work with all three; alpha steps (neutral-a4) with bg- only. No outline colour classes: the reset sets the focus ring.",
     weights: "font-normal, font-medium, font-semibold, font-bold",
-    faces: "font-body (alias font-sans), font-heading, font-display (Inter Tight, for figures; a face, so a regular class), font-mono, font-control; weights font-normal to font-extrabold (800, Inter Tight only)",
+    faces: "font-body (alias font-sans), font-heading, font-display (Inter Tight, for figures; a face, so a regular class), font-mono (each also sets the face's feature and variation settings tokens, as Tailwind v4 does), font-control; weights font-normal to font-extrabold (800, Inter Tight only)",
+    numerals: "Tailwind v4's font-variant-numeric classes: normal-nums, ordinal, slashed-zero, lining-nums, oldstyle-nums, proportional-nums, tabular-nums, diagonal-fractions, stacked-fractions. Each fills one slot (ordinal, zero, figure, spacing, fraction) and writes all five, so they combine on one element (tabular-nums slashed-zero). With Google-served faces only tabular, proportional and the fractions take effect.",
+    smoothing: "antialiased (the body default), subpixel-antialiased",
     leading: "leading-none, tight, snug, normal, relaxed",
     tracking: "tracking-tight, normal, wide, widest",
     radius: "rounded-none, rounded-xs (control − margin), rounded-sm (control), rounded-md (control + margin: cards, popovers), rounded-lg (+2 margins: dialogs), rounded-xl (+3), rounded-full. One name per value. rounded-s-* and rounded-e-* round one inline side (logical). After Affine, one margin per step and p-inset (margin − border) between levels, so rounded-md p-inset border holds rounded-sm items concentrically. rounded-inner gives any item its parent's radius minus the parent's padding and border.",
     shadows: "shadow-xs, shadow-sm (and bare shadow), shadow-md, shadow-lg, shadow-xl, shadow-none; inset-shadow-xs, inset-shadow-sm, inset-shadow-none. Compound shadows after Massimo (theme.shadows.css); a cast and a recess on one element compose, as in Tailwind v4.",
     borders: "border, border-0, -2, -4, with sides t r b l x y; border-solid/dashed/dotted/none",
     layout: "container, display, grid-cols-1…12, col-span-1…12 and -full, flex, basis-0, basis fractions, position, inset, z-",
-    controls: "h-control, h-nested (an .icon inside it shrinks by the two borders so it fits), size-control, size-nested, min-w-control, min-w-nested, px-control and px-nested (padding steps in by one margin on a side whose first or last child is .icon; wrap the label in a <span>), gap-gutter, gap-gutter-half",
+    controls: "h-control, h-nested (an .icon inside it shrinks by the two borders so it fits), size-control, size-nested, min-w-control, min-w-nested, px-control and px-nested (padding steps in by one margin on a side whose first or last child is .icon; wrap the label in a <span>), gap-gutter, gap-gutter-half, gap-px (one border width: the hairline between the buttons of a group or a split button)",
     levels: "p-surface, p-dialog (each minus the border), p-region, p-page, with px- and py- versions; gap-field, gap-row, gap-group, gap-section, gap-page; mt-section, mb-section. After Affine's container levels.",
     materials: "material-flat, -physical, -frosted, -glass, -outline set a region's material (nearest wins, by @scope); relief-raised, -raised-solid, -recessed, -field, -etched, -ground, -overlay say what a part is. After Massimo.",
     grid: "gap-grid, gap-x-grid (2M), p-grid-inset (M), px-grid (slot), px-grid-compact; shell: w-sidebar (16F + 16), w-rail, h-header (a minimum height: keep its content on one line, since top-header and h-below-header, h-command (a command palette: 600px, at most the viewport below the header) assume that height), top-header (a sticky offset under the header), scroll-pt-header (on <html>, so in-page links land below a sticky header), h-below-header, max-h-below-header, max-w-measure (44F). After Affine.",
@@ -995,7 +1016,7 @@ writeFileSync(join(root, "nowind.defaults.manifest.json"), JSON.stringify({
 
 // ---- classes.md: every base class and its declarations, for readers without a local server ----
 const GROUPS = [
-  ["Controls and icons", (c) => /^(icon|mark-|h-control|h-nested|size-control|size-nested|min-w-control|min-w-nested|px-control|px-nested|ps-control|pe-control|gap-gutter)/.test(c)],
+  ["Controls and icons", (c) => /^(icon|mark-|h-control|h-nested|size-control|size-nested|min-w-control|min-w-nested|px-control|px-nested|ps-control|pe-control|gap-gutter|gap-px)/.test(c)],
   ["Levels and tiers", (c) => /^(p[xy]?-(surface|dialog|region|page)|gap-(field|row|group|section|page)|m[tb]-section|tier-)/.test(c)],
   ["Materials", (c) => /^(material|relief)-/.test(c)],
   ["Motion, anchors and select", (c) => /^(transition|duration-|ease-|animate-|anchor-|select-base|-?rotate-)/.test(c)],

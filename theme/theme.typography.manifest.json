@@ -149,6 +149,14 @@
       "use": "Kicker, code and figures: IBM Plex Mono 400 and 500, loaded by theme.css."
     }
   ],
+  "features": {
+    "tokens": [
+      "--font-{body,heading,display,mono}--font-feature-settings",
+      "--font-{body,heading,display,mono}--font-variation-settings"
+    ],
+    "rule": "Tailwind v4's per-face hooks: each face's font-* class sets its feature and variation settings with its family; the reset reads body's on html and mono's on code, kbd, samp and pre. Both default to normal.",
+    "served": "Google Fonts serves Inter and Inter Tight with only calt, ccmp, dnom, frac, locl, numr, pnum and tnum, and IBM Plex Mono with only ccmp, dnom, frac and numr: cv*, ss*, case and zero do nothing unless the faces are self-hosted. tabular-nums, proportional-nums and the fractions work as served."
+  },
   "weights": [
     "--font-weight-normal: 400",
     "--font-weight-medium: 500",

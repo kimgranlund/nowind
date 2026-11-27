@@ -145,7 +145,7 @@
     },
     {
       "token": "--label-weight",
-      "fallback": "var(--font-weight-medium)",
+      "fallback": "var(--font-weight-semibold)",
       "use": "Field label weight"
     },
     {

@@ -19,7 +19,7 @@ Nowind is directly derived from four systems, and brings its own math to tie the
 **It is built for agents and generative UI.** A model writing interface markup does best with a vocabulary it already knows, a small set of choices and defaults that look right without help. Nowind gives it exactly that: Tailwind names, a constrained scale, and no need to write CSS or `style=""`. Every class, token and component is also described as data, so an agent can look things up instead of guessing:
 
 - [`nowind.manifest.json`](nowind.manifest.json): every class group, variant and count
-- [`components.manifest.json`](components.manifest.json): every documented component (button, dialog, table…) and pattern (sign in, settings section, filter bar…): its purpose, use, avoid and the utility classes its example uses
+- [`components.manifest.json`](components.manifest.json): every documented component (button, dialog, table…) pattern (sign in, settings section, filter bar…) and block (hero, footer, app shell…): its purpose, use, avoid and the utility classes its example uses
 - [`nowind.components.manifest.json`](nowind.components.manifest.json): every convenience class (`btn`, `field`, `badge`…) and the utility stack it stands for
 - `theme/*.manifest.json`: every token, what it is for and how it is derived
 

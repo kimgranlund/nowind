@@ -3,6 +3,14 @@
   --font-heading: "Inter Tight", "Inter", "Segoe UI", system-ui, sans-serif;
   --font-display: "Inter Tight", "Inter", "Segoe UI", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-body--font-feature-settings: normal;
+  --font-body--font-variation-settings: normal;
+  --font-heading--font-feature-settings: normal;
+  --font-heading--font-variation-settings: normal;
+  --font-display--font-feature-settings: normal;
+  --font-display--font-variation-settings: normal;
+  --font-mono--font-feature-settings: normal;
+  --font-mono--font-variation-settings: normal;
 
   --font-weight-normal: 400;
   --font-weight-medium: 500;

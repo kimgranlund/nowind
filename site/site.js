@@ -3,8 +3,8 @@
 // in groups (pages, components, sections, classes), one line each; Tab cycles the filter, ↑↓ move, Enter opens.
 (() => {
   const base = new URL(".", document.currentScript.src);
-  const KINDS = { Page: "ph-file-text", Section: "ph-hash", Component: "ph-squares-four", Pattern: "ph-stack", Class: "ph-brackets-curly" };
-  const GROUPS = [["Page", "Pages"], ["Component", "Components"], ["Pattern", "Patterns"], ["Section", "Sections"], ["Class", "Classes"]];
+  const KINDS = { Page: "ph-file-text", Section: "ph-hash", Component: "ph-squares-four", Pattern: "ph-stack", Block: "ph-layout", Class: "ph-brackets-curly" };
+  const GROUPS = [["Page", "Pages"], ["Component", "Components"], ["Pattern", "Patterns"], ["Block", "Blocks"], ["Section", "Sections"], ["Class", "Classes"]];
   const FILTERS = [["", "All"], ...GROUPS.map(([k, n]) => [k, n])];
   const KEY = "inline-flex items-center justify-center h-nested min-w-nested px-2xs rounded-xs border text-mono-sm";
   let rows = null, hits = [], active = 0, filter = "";
@@ -24,7 +24,7 @@
       <div role="group" aria-label="Filter" class="flex flex-wrap items-center gap-3xs px-md pb-xs border-b">
         ${FILTERS.map(([k, n]) => `<button type="button" data-filter="${k}" aria-pressed="${k === ""}" class="inline-flex items-center h-nested px-nested rounded-sm border border-transparent bg-transparent state text-sm fg-weak pressed:bg-component pressed:fg cursor-pointer"><span>${n}</span></button>`).join("")}
       </div>
-      <ul id="search-results" role="listbox" aria-label="Results" class="list-none p-inset flex flex-col grow min-h-0 overflow-y-auto"></ul>
+      <ul id="search-results" role="listbox" aria-label="Results" class="list-none px-xs py-inset flex flex-col grow min-h-0 overflow-y-auto"></ul>
       <div class="flex flex-wrap items-center gap-md px-md py-xs border-t text-sm fg-weak">
         <span class="inline-flex items-center gap-3xs"><kbd class="${KEY}">↑</kbd><kbd class="${KEY}">↓</kbd><span>Navigate</span></span>
         <span class="inline-flex items-center gap-3xs"><kbd class="${KEY}">↵</kbd><span>Open</span></span>
@@ -46,7 +46,7 @@
     if (t === q || t === "." + q) s += 100;
     else if (t.startsWith(q) || t.startsWith("." + q)) s += 50;
     else if (t.includes(q)) s += 20;
-    s += { Page: 8, Component: 6, Pattern: 6, Section: 4, Class: 0 }[r[2]];
+    s += { Page: 8, Component: 6, Pattern: 6, Block: 6, Section: 4, Class: 0 }[r[2]];
     return s - t.length / 100;
   }
 
@@ -71,7 +71,7 @@
     } else {
       const words = q.split(/\s+/);
       const found = !q ? pool.slice(0, 60) : pool.map((r) => [score(r, q, words), r]).filter(([sc]) => sc > 0).sort((a, b) => b[0] - a[0]).slice(0, 60).map(([, r]) => r);
-      groups = [...new Set(found.map((r) => r[2]))].map((k) => [GROUPS.find(([g]) => g === k)[1], found.filter((r) => r[2] === k), (r) => r[2] === "Component" || r[2] === "Pattern" ? "" : r[3]]);
+      groups = [...new Set(found.map((r) => r[2]))].map((k) => [GROUPS.find(([g]) => g === k)[1], found.filter((r) => r[2] === k), (r) => r[2] === "Component" || r[2] === "Pattern" || r[2] === "Block" ? "" : r[3]]);
     }
     hits = groups.flatMap(([, rs]) => rs);
     active = 0;
@@ -341,7 +341,7 @@ window.nowindOwnCSS = () => !!document.querySelector("style[data-page-css]");
     for (const e of all) {
       const c = cs(e), r = R(e);
       // Nesting: e tucked into the corner of its nearest painted, rounded ancestor.
-      if (radius(e) > 0 && painted(e)) {
+      if (radius(e) > 0 && painted(e) && !(Math.abs(r.width - r.height) < 1 && radius(e) >= r.width / 2 - 0.5)) {
         let a = e.parentElement;
         while (a && !(radius(a) > 0 && painted(a))) a = a.parentElement;
         if (a && inScope(a)) {
@@ -446,7 +446,7 @@ window.nowindOwnCSS = () => !!document.querySelector("style[data-page-css]");
       if (bg && Math.abs(ps - pe) > 1.5 && !e.matches("input, textarea, select, option, td, th, html, body, main, header, footer")) {
         const kids = [...e.children].filter(visible);
         const shortStart = ps < pe, edge = shortStart ? kids[0] : kids[kids.length - 1];
-        const explained = edge && (edge.matches(".icon, .h-nested, .size-nested, .size-control, .rounded-full, input, kbd, img, svg") || !!edge.querySelector(":scope > .icon:only-child"));
+        const explained = edge && (edge.matches(".icon, .h-nested, .size-nested, .size-control, .h-full, .rounded-full, input, kbd, img, svg") || !!edge.querySelector(":scope > .icon:only-child"));
         if (!explained) out.push({ rule: "padding-symmetry", where: where(e), detail: `start ${ps.toFixed(1)}px, end ${pe.toFixed(1)}px` });
       }
       // baseline: text children side by side in a row, centred rather than baseline-aligned.

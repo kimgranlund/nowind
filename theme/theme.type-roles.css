@@ -119,7 +119,7 @@
 
   --label: var(--text-sm);
   --label--line-height: calc(var(--label) * 1.5 - 3px);
-  --label--font-weight: 450;
+  --label--font-weight: var(--font-weight-semibold);
   --label--font-family: var(--font-control);
 
   --kicker: var(--kicker-md);

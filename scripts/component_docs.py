@@ -73,7 +73,7 @@ def response_actions(meta="Just now · 340 tokens", versions=True):
 </div>"""
 
 
-def trace_step(status, label, note="", detail="", open_=False):
+def trace_step(status, label, note="", detail="", open_=False, first=False, last=False, prev="done"):
     marks = {"done": ("bg-success-3 fg-success-11", "ph-check", ""),
              "running": ("bg-accent-1-3 fg-accent-1-11", "ph-circle-notch", " animate-spin"),
              "pending": ("bg-neutral-3 fg-neutral-11", "ph-dots-three", ""),
@@ -81,40 +81,109 @@ def trace_step(status, label, note="", detail="", open_=False):
     tone, icon, spin = marks[status]
     words = {"done": note, "running": "Running", "pending": "Waiting", "failed": "Failed"}
     ink = {"failed": "fg-danger-11"}.get(status, "fg-neutral-11")
+    rule = lambda st: "border-s border-neutral-7" if st == "done" else "border-s border-dashed border-neutral-6"
+    after = rule(status)
+    seg = lambda on, cls: f'<span class="grow{" " + cls if on else ""}" aria-hidden="true"></span>'
     body = f"""
-    <div class="flex flex-col gap-3xs ps-xl pe-control pb-xs"><p class="text-base fg-neutral-11">{detail}</p></div>""" if detail else ""
-    return f"""  <li>
-    <details class="group"{" open" if open_ else ""}>
-      <summary class="flex items-center gap-gutter h-control px-control rounded-sm state border border-transparent list-none text-base fg-neutral-12 cursor-pointer" aria-label="{label}, {words[status] or "done"}"><span class="inline-flex items-center justify-center size-nested shrink-0 rounded-full {tone}"><i class="icon icon-sm ph-bold {icon}{spin}"></i></span><span class="grow min-w-0">{label}</span><span class="text-sm {ink} tabular-nums whitespace-nowrap">{words[status]}</span><i class="icon icon-sm ph-bold ph-caret-right fg-neutral-11 transition group-open:rotate-90" aria-hidden="true"></i></summary>{body}
+      <div class="flex flex-col gap-3xs px-control pb-xs"><p class="text-base fg-neutral-11">{detail}</p></div>""" if detail else ""
+    return f"""  <li class="flex gap-3xs">
+    <div class="flex flex-col items-center shrink-0"><span class="flex flex-col items-center h-control">{seg(not first, rule(prev))}<span class="inline-flex items-center justify-center size-nested shrink-0 rounded-full {tone}"><i class="icon icon-sm ph-bold {icon}{spin}"></i></span>{seg(not last, after)}</span>{seg(not last, after)}</div>
+    <details class="group grow min-w-0"{" open" if open_ else ""}>
+      <summary class="flex items-center gap-gutter h-control px-control rounded-sm state border border-transparent list-none text-base fg-neutral-12 cursor-pointer" aria-label="{label}, {words[status] or "done"}"><span class="grow min-w-0">{label}</span><span class="text-sm {ink} tabular-nums whitespace-nowrap">{words[status]}</span><i class="icon icon-sm ph-bold ph-caret-right fg-neutral-11 transition group-open:rotate-90" aria-hidden="true"></i></summary>{body}
     </details>
   </li>"""
 
 
 TRACE = "\n".join([
-    '<ol class="flex flex-col list-none p-0 max-w-form" role="list" aria-label="Agent trace">',
-    trace_step("done", "Read configuration", "0.2 s", "Found nowind.config.json and three page templates."),
+    '<ol class="flex flex-col list-none p-0" role="list" aria-label="Agent trace">',
+    trace_step("done", "Read configuration", "0.2 s", "Found nowind.config.json and three page templates.", first=True),
     trace_step("running", "Build assets", detail="Bundling 34 stylesheets into dist/nowind.min.css.", open_=True),
-    trace_step("pending", "Review output"),
-    trace_step("failed", "Validate content", detail="One example is missing a label."),
+    trace_step("pending", "Review output", prev="running"),
+    trace_step("failed", "Validate content", detail="One example is missing a label.", last=True, prev="pending"),
     "</ol>",
 ])
 
 
-def composer(running=False, chips=True, ident="doc-composer"):
+COMPOSER_SCRIPT = """<script>
+document.querySelectorAll("[data-composer]:not([data-composer-ready])").forEach((form) => {
+  form.dataset.composerReady = "";
+  const text = form.querySelector("textarea");
+  const dictate = form.querySelector("[data-when=empty]");
+  const send = form.querySelector("[data-when=text]");
+  if (!text || !dictate || !send) return;
+  const sync = () => { const empty = !text.value.trim(); dictate.hidden = !empty; send.hidden = empty; };
+  text.addEventListener("input", sync);
+  sync();
+});
+</script>"""
+
+
+def composer(running=False, chips=True, ident="doc-composer", value="", script=True):
     chip = """
-  <div class="flex flex-wrap items-center gap-2xs" role="toolbar" aria-label="Message context"><span class="inline-flex items-center gap-gutter-half h-nested px-nested rounded-xs bg-neutral-3 fg-neutral-12 text-sm font-medium"><i class="icon icon-sm ph ph-file-text"></i><span>Release notes</span></span></div>""" if chips else ""
-    send = ('<button class="inline-flex items-center justify-center size-nested shrink-0 rounded-xs state border border-transparent bg-neutral-12 fg-neutral-1 cursor-pointer" type="button" aria-label="Stop"><i class="icon icon-sm ph-bold ph-stop"></i></button>' if running
-            else '<button class="inline-flex items-center justify-center size-nested shrink-0 rounded-xs state border border-transparent bg-accent-1-9 fg-accent-1-contrast cursor-pointer" type="submit" aria-label="Send"><i class="icon icon-sm ph-bold ph-arrow-up"></i></button>')
-    return f"""<form class="flex flex-col gap-2xs p-inset rounded-sm border border-neutral-6 hover:border-neutral-7 focus-within:border-accent-1-8 bg-neutral-1 transition" role="group" aria-label="Message">{chip}
-  <textarea id="{ident}" rows="2" class="px-nested py-2xs border-0 bg-transparent resize-none field-sizing-content text-base w-full" aria-label="Message" placeholder="Ask anything">Summarize the changes in this release.</textarea>
+  <div class="flex flex-wrap items-center gap-2xs px-xs" role="toolbar" aria-label="Message context"><span class="inline-flex items-center h-nested px-nested rounded-full bg-neutral-3 fg-neutral-12 text-sm font-medium"><i class="icon icon-sm ph ph-file-text"></i><span>Release notes</span></span></div>""" if chips else ""
+    round_ = "inline-flex items-center justify-center size-control shrink-0 rounded-full state border border-transparent cursor-pointer"
+    empty = not value
+    if running:
+        end = f'<button class="{round_} bg-neutral-12 fg-neutral-1" type="button" aria-label="Stop"><i class="icon ph-bold ph-stop"></i></button>'
+    else:
+        end = (f'<button class="{round_} bg-transparent fg-neutral-11" type="button" aria-label="Dictate" data-when="empty"{"" if empty else " hidden"}><i class="icon ph ph-microphone"></i></button>\n'
+               f'    <button class="{round_} bg-accent-1-9 fg-accent-1-contrast" type="submit" aria-label="Send" data-when="text"{" hidden" if empty else ""}><i class="icon ph-bold ph-arrow-up"></i></button>')
+    off = " disabled" if running else ""
+    tail = "\n" + COMPOSER_SCRIPT if script and not running else ""
+    return f"""<form class="flex flex-col gap-xs p-sm rounded-lg border border-neutral-6 hover:border-neutral-7 focus-within:border-accent-1-8 bg-neutral-1 transition" role="group" aria-label="Message" data-composer>{chip}
+  <textarea id="{ident}" rows="2" class="px-xs py-2xs border-0 bg-transparent resize-none field-sizing-content outline-0 text-base w-full" aria-label="Message" placeholder="How can I help you today?"{off}>{value}</textarea>
   <div class="flex flex-wrap items-center gap-3xs" role="toolbar" aria-label="Message actions">
-    <select class="{NESTED_SELECT} disabled:bg-transparent" aria-label="Model"{" disabled" if running else ""}><option>Balanced model</option><option>Fast model</option></select>
-    <select class="{NESTED_SELECT} disabled:bg-transparent" aria-label="Thinking"{" disabled" if running else ""}><option>Thinking off</option><option>Thinking on</option></select>
+    <button class="{round_} bg-transparent fg-neutral-11" type="button" aria-label="Attach"><i class="icon ph ph-plus"></i></button>
     <span class="grow"></span>
-    <button class="{NESTED_ICON}" type="button" aria-label="Attach"><i class="icon icon-sm ph ph-paperclip"></i></button>
-    {send}
+    <select class="select-base w-fit shrink-0 h-control px-control rounded-full border border-transparent bg-transparent fg-neutral-11 hover:fg-neutral-12 disabled:fg-neutral-11 text-base cursor-pointer" aria-label="Model"{off}><option>Balanced model</option><option>Fast model</option></select>
+    {end}
   </div>
-</form>"""
+</form>{tail}"""
+
+
+OTP_CELL = "w-full min-w-0 h-auto min-h-0 aspect-square p-0 rounded-sm border border-neutral-5 hover:border-neutral-7 focus-visible:border-accent-1-8 invalid:border-danger-7 bg-neutral-1 fg-neutral-12 text-center text-xl font-mono tabular-nums transition"
+OTP_SCRIPT = """<script>
+document.querySelectorAll("[data-otp]:not([data-otp-ready])").forEach((group) => {
+  group.dataset.otpReady = "";
+  const cells = [...group.querySelectorAll("input")];
+  cells.forEach((cell, i) => {
+    cell.addEventListener("input", () => {
+      const digits = cell.value.replace(/\\D/g, "");
+      if (digits.length > 1) {
+        [...digits].slice(0, cells.length - i).forEach((d, j) => { cells[i + j].value = d; });
+        cells[Math.min(i + digits.length, cells.length - 1)].focus();
+        return;
+      }
+      cell.value = digits;
+      if (digits && cells[i + 1]) cells[i + 1].focus();
+    });
+    cell.addEventListener("keydown", (e) => {
+      if (e.key === "Backspace" && !cell.value && cells[i - 1]) cells[i - 1].focus();
+      if (e.key === "ArrowLeft" && cells[i - 1]) cells[i - 1].focus();
+      if (e.key === "ArrowRight" && cells[i + 1]) cells[i + 1].focus();
+    });
+  });
+});
+</script>"""
+
+
+def otp(fid, label, value="", invalid=False, script=True):
+    vals = (list(value) + [""] * 6)[:6]
+    def cell(n):
+        auto = ' autocomplete="one-time-code"' if n == 0 else ' autocomplete="off"'
+        bad = ' aria-invalid="true"' if invalid else ""
+        v = f' value="{vals[n]}"' if vals[n] else ""
+        first = f' id="{fid}"' if n == 0 else ""
+        return f'<input{first} class="{OTP_CELL}" inputmode="numeric" pattern="[0-9]*"{auto}{bad}{v} aria-label="Digit {n + 1} of 6">'
+    group = lambda a, b: f'<div class="grow grid grid-cols-3 gap-2xs">{"".join(cell(n) for n in range(a, b))}</div>'
+    return f"""<div class="flex flex-col gap-2xs">
+  <label for="{fid}" class="text-sm font-semibold">{label}</label>
+  <div class="flex items-center gap-xs" role="group" aria-label="{label}" data-otp>
+    {group(0, 3)}
+    <span class="text-sm fg-neutral-8" aria-hidden="true">–</span>
+    {group(3, 6)}
+  </div>
+</div>""" + ("\n" + OTP_SCRIPT if script else "")
 
 
 COMPONENTS = [
@@ -262,7 +331,7 @@ COMPONENTS = [
         "summary": "A labelled field built from slots: a leading icon that says what kind of value it takes, a prefix, the input, a suffix and a trailing action. The box is the control; the input inside is bare.",
         "html": f"""<div class="flex flex-col gap-md max-w-form">
   <div class="flex flex-col gap-2xs">
-    <label for="doc-name" class="text-sm font-medium">Full name</label>
+    <label for="doc-name" class="text-sm font-semibold">Full name</label>
     <div class="{BOX}">
       <i class="icon ph ph-user-circle fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-name" class="{BARE}" autocomplete="name" placeholder="Ada Lovelace">
@@ -270,7 +339,7 @@ COMPONENTS = [
     <span class="text-sm fg-neutral-11">Shown on your profile.</span>
   </div>
   <div class="flex flex-col gap-2xs">
-    <label for="doc-email" class="text-sm font-medium">Email</label>
+    <label for="doc-email" class="text-sm font-semibold">Email</label>
     <div class="{BOX}">
       <i class="icon ph ph-envelope-simple fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-email" type="email" class="{BARE}" autocomplete="email" value="ada@" aria-invalid="true" aria-describedby="doc-email-error">
@@ -279,7 +348,7 @@ COMPONENTS = [
     <span id="doc-email-error" class="text-sm fg-danger-11">Enter a complete email address.</span>
   </div>
   <div class="flex flex-col gap-2xs">
-    <label for="doc-photo" class="text-sm font-medium">Photo</label>
+    <label for="doc-photo" class="text-sm font-semibold">Photo</label>
     <input id="doc-photo" type="file" accept="image/*">
     <span class="text-sm fg-neutral-11">PNG or JPEG, up to 5 MB. The reset themes the button.</span>
   </div>
@@ -289,21 +358,21 @@ COMPONENTS = [
              "summary": "Five slots, always in this order: leading icon, prefix, input, suffix, trailing. Any of them can be left out. An icon or a nested control at either end sits one margin from the edge, the same as in a button.",
              "html": f"""<div class="flex flex-col gap-md max-w-form">
   <div class="flex flex-col gap-2xs">
-    <label for="doc-user" class="text-sm font-medium">Username <span class="fg-neutral-11">· leading icon</span></label>
+    <label for="doc-user" class="text-sm font-semibold">Username <span class="fg-neutral-11">· leading icon</span></label>
     <div class="{BOX}">
       <i class="icon ph ph-at fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-user" class="{BARE}" autocomplete="username" spellcheck="false" placeholder="ada">
     </div>
   </div>
   <div class="flex flex-col gap-2xs">
-    <label for="doc-site" class="text-sm font-medium">Website <span class="fg-neutral-11">· prefix</span></label>
+    <label for="doc-site" class="text-sm font-semibold">Website <span class="fg-neutral-11">· prefix</span></label>
     <div class="{BOX}">
       <span class="fg-neutral-11 whitespace-nowrap" aria-hidden="true">https://</span>
       <input id="doc-site" type="text" inputmode="url" class="{BARE}" autocomplete="url" spellcheck="false" placeholder="yoursite.com">
     </div>
   </div>
   <div class="flex flex-col gap-2xs">
-    <label for="doc-find" class="text-sm font-medium">Search <span class="fg-neutral-11">· leading icon and trailing key</span></label>
+    <label for="doc-find" class="text-sm font-semibold">Search <span class="fg-neutral-11">· leading icon and trailing key</span></label>
     <div class="{BOX}">
       <i class="icon ph ph-magnifying-glass fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-find" type="search" class="{BARE}" placeholder="Search…">
@@ -311,7 +380,7 @@ COMPONENTS = [
     </div>
   </div>
   <div class="flex flex-col gap-2xs">
-    <label for="doc-amount" class="text-sm font-medium">Amount <span class="fg-neutral-11">· prefix and trailing select</span></label>
+    <label for="doc-amount" class="text-sm font-semibold">Amount <span class="fg-neutral-11">· prefix and trailing select</span></label>
     <div class="{BOX}">
       <span class="fg-neutral-11" aria-hidden="true">$</span>
       <input id="doc-amount" type="text" inputmode="decimal" class="{BARE} tabular-nums" placeholder="0.00">
@@ -319,7 +388,7 @@ COMPONENTS = [
     </div>
   </div>
   <div class="flex flex-col gap-2xs">
-    <label for="doc-phone" class="text-sm font-medium">Phone <span class="fg-neutral-11">· leading select</span></label>
+    <label for="doc-phone" class="text-sm font-semibold">Phone <span class="fg-neutral-11">· leading select</span></label>
     <div class="{BOX}">
       <select class="{NESTED_SELECT}" aria-label="Country code"><option>US +1</option><option>FI +358</option><option>GB +44</option></select>
       <input id="doc-phone" type="tel" class="{BARE} tabular-nums" autocomplete="tel-national" placeholder="Phone number">
@@ -330,7 +399,7 @@ COMPONENTS = [
              "summary": "The leading icon names the kind of value; <code>type</code>, <code>inputmode</code> and <code>autocomplete</code> give the right keyboard and autofill. Units sit in the suffix, never in the value.",
              "html": f"""<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
   <div class="flex flex-col gap-2xs">
-    <label for="doc-pass" class="text-sm font-medium">Password</label>
+    <label for="doc-pass" class="text-sm font-semibold">Password</label>
     <div class="{BOX}">
       <i class="icon ph ph-lock-simple fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-pass" type="password" class="{BARE}" autocomplete="new-password" value="correct horse">
@@ -338,28 +407,28 @@ COMPONENTS = [
     </div>
   </div>
   <div class="flex flex-col gap-2xs">
-    <label for="doc-card" class="text-sm font-medium">Card number</label>
+    <label for="doc-card" class="text-sm font-semibold">Card number</label>
     <div class="{BOX}">
       <i class="icon ph ph-credit-card fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-card" type="text" inputmode="numeric" class="{BARE} tabular-nums" autocomplete="cc-number" placeholder="1234 5678 9012 3456">
     </div>
   </div>
   <div class="flex flex-col gap-2xs">
-    <label for="doc-start" class="text-sm font-medium">Start date</label>
+    <label for="doc-start" class="text-sm font-semibold">Start date</label>
     <div class="{BOX}">
       <i class="icon ph ph-calendar-blank fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-start" type="date" class="{BARE} tabular-nums" value="2027-03-01">
     </div>
   </div>
   <div class="flex flex-col gap-2xs">
-    <label for="doc-time" class="text-sm font-medium">Meeting time</label>
+    <label for="doc-time" class="text-sm font-semibold">Meeting time</label>
     <div class="{BOX}">
       <i class="icon ph ph-clock fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-time" type="time" class="{BARE} tabular-nums" value="09:30">
     </div>
   </div>
   <div class="flex flex-col gap-2xs">
-    <label for="doc-weight" class="text-sm font-medium">Weight</label>
+    <label for="doc-weight" class="text-sm font-semibold">Weight</label>
     <div class="{BOX}">
       <i class="icon ph ph-scales fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-weight" type="text" inputmode="decimal" class="{BARE} tabular-nums" value="72.5">
@@ -367,7 +436,7 @@ COMPONENTS = [
     </div>
   </div>
   <div class="flex flex-col gap-2xs">
-    <label for="doc-discount" class="text-sm font-medium">Discount</label>
+    <label for="doc-discount" class="text-sm font-semibold">Discount</label>
     <div class="{BOX}">
       <i class="icon ph ph-percent fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-discount" type="number" min="0" max="100" step="5" class="{BARE} tabular-nums" value="15">
@@ -375,7 +444,7 @@ COMPONENTS = [
     </div>
   </div>
   <div class="flex flex-col gap-2xs">
-    <label for="doc-quantity" class="text-sm font-medium">Quantity</label>
+    <label for="doc-quantity" class="text-sm font-semibold">Quantity</label>
     <div class="{BOX}">
       <i class="icon ph ph-hash fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-quantity" type="number" min="1" step="1" class="{BARE} tabular-nums" value="3">
@@ -383,7 +452,7 @@ COMPONENTS = [
     </div>
   </div>
   <div class="flex flex-col gap-2xs">
-    <label for="doc-hex" class="text-sm font-medium">Brand colour</label>
+    <label for="doc-hex" class="text-sm font-semibold">Brand colour</label>
     <div class="{BOX}">
       <i class="icon ph ph-palette fg-neutral-11" aria-hidden="true"></i>
       <span class="fg-neutral-11" aria-hidden="true">#</span>
@@ -392,14 +461,14 @@ COMPONENTS = [
     </div>
   </div>
   <div class="flex flex-col gap-2xs">
-    <label for="doc-zip" class="text-sm font-medium">Postal code</label>
+    <label for="doc-zip" class="text-sm font-semibold">Postal code</label>
     <div class="{BOX}">
       <i class="icon ph ph-map-pin fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-zip" type="text" inputmode="numeric" class="{BARE} tabular-nums" autocomplete="postal-code" placeholder="00100">
     </div>
   </div>
   <div class="flex flex-col gap-2xs">
-    <label for="doc-duration" class="text-sm font-medium">Duration</label>
+    <label for="doc-duration" class="text-sm font-semibold">Duration</label>
     <div class="{BOX}">
       <i class="icon ph ph-timer fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-duration" type="number" min="0" step="15" class="{BARE} tabular-nums" value="45">
@@ -411,7 +480,7 @@ COMPONENTS = [
              "summary": "The box shows every state of the input inside it: <code>focus-within:</code> turns the border accent, <code>has-invalid:</code> turns it danger. A disabled or read-only field says so with its fill as well as its text.",
              "html": f"""<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
   <div class="flex flex-col gap-2xs">
-    <label for="doc-handle" class="text-sm font-medium">Handle</label>
+    <label for="doc-handle" class="text-sm font-semibold">Handle</label>
     <div class="{BOX}">
       <i class="icon ph ph-at fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-handle" class="{BARE}" value="ada lovelace" pattern="[a-z0-9_]+" aria-invalid="true" aria-describedby="doc-handle-error">
@@ -419,7 +488,7 @@ COMPONENTS = [
     <span id="doc-handle-error" class="text-sm fg-danger-11">Use lowercase letters, numbers and underscores.</span>
   </div>
   <div class="flex flex-col gap-2xs">
-    <label for="doc-title" class="text-sm font-medium">Title</label>
+    <label for="doc-title" class="text-sm font-semibold">Title</label>
     <div class="{BOX}">
       <i class="icon ph ph-text-t fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-title" class="{BARE}" maxlength="40" value="Analytical Engine notes" aria-describedby="doc-title-count">
@@ -427,7 +496,7 @@ COMPONENTS = [
     </div>
   </div>
   <div class="flex flex-col gap-2xs">
-    <label for="doc-id" class="text-sm font-medium">Account ID</label>
+    <label for="doc-id" class="text-sm font-semibold">Account ID</label>
     <div class="{BOX.replace("bg-neutral-1", "bg-neutral-2")}">
       <i class="icon ph ph-identification-card fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-id" class="{BARE.replace("fg-neutral-12", "fg-neutral-11")} tabular-nums" value="AC-20481" readonly>
@@ -435,7 +504,7 @@ COMPONENTS = [
     </div>
   </div>
   <div class="flex flex-col gap-2xs">
-    <label for="doc-seat" class="text-sm font-medium fg-neutral-11">Seat</label>
+    <label for="doc-seat" class="text-sm font-semibold fg-neutral-11">Seat</label>
     <div class="{BOX.replace("bg-neutral-1", "bg-neutral-3").replace("cursor-text", "cursor-not-allowed")} opacity-50">
       <i class="icon ph ph-armchair fg-neutral-11" aria-hidden="true"></i>
       <input id="doc-seat" class="{BARE}" value="14C" disabled>
@@ -450,7 +519,7 @@ COMPONENTS = [
         "slug": "select", "name": "Select", "icon": "ph-list-dashes", "group": "Forms",
         "summary": "A native select. <code>select-base</code> turns on the customizable select, so the picker takes the theme; a <code>&lt;button&gt;</code> holding <code>&lt;selectedcontent&gt;</code> lets a long value end in an ellipsis instead of wrapping.",
         "html": f"""<div class="flex flex-col gap-2xs max-w-form">
-  <label for="doc-tz" class="text-sm font-medium">Time zone</label>
+  <label for="doc-tz" class="text-sm font-semibold">Time zone</label>
   <select id="doc-tz" class="select-base {FIELD}">
     <button class="grow min-w-0 p-0 border-0 bg-transparent text-start"><selectedcontent class="block truncate"></selectedcontent></button>
     <option>Europe/Helsinki (UTC+2)</option>
@@ -501,7 +570,7 @@ COMPONENTS = [
         "slug": "breadcrumbs", "name": "Breadcrumbs", "icon": "ph-caret-right", "group": "Navigation",
         "summary": "Shows where a page sits in the hierarchy.",
         "html": """<nav aria-label="Breadcrumb">
-  <ol role="list" class="flex flex-wrap items-center gap-2xs text-base fg-neutral-11">
+  <ol role="list" class="flex flex-wrap items-center gap-3xs text-base fg-neutral-11">
     <li><a href="#" class="fg-neutral-11 hover:fg-neutral-12 no-underline">Projects</a></li>
     <li class="inline-flex" aria-hidden="true"><i class="icon icon-sm ph-bold ph-caret-right fg-neutral-8"></i></li>
     <li><a href="#" class="fg-neutral-11 hover:fg-neutral-12 no-underline">Nowind</a></li>
@@ -562,11 +631,11 @@ COMPONENTS = [
         "summary": "Sections that open and close, built from <code>&lt;details&gt;</code>.",
         "html": """<div class="max-w-form">
   <details class="group border-b border-neutral-6" open>
-    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-base font-semibold hover:fg-accent-1-11">Do I need a build step?<i class="icon icon-sm ph ph-caret-down fg-neutral-11 transition group-open:rotate-180" aria-hidden="true"></i></summary>
+    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-base font-semibold hover:fg-accent-1-11">Do I need a build step?<i class="icon icon-sm ph-bold ph-caret-down fg-neutral-11 transition group-open:rotate-180" aria-hidden="true"></i></summary>
     <p class="text-base fg-neutral-11 pb-sm">No. Link one stylesheet; every class already exists.</p>
   </details>
   <details class="group border-b border-neutral-6">
-    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-base font-semibold hover:fg-accent-1-11">Does it work in a CMS?<i class="icon icon-sm ph ph-caret-down fg-neutral-11 transition group-open:rotate-180" aria-hidden="true"></i></summary>
+    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-base font-semibold hover:fg-accent-1-11">Does it work in a CMS?<i class="icon icon-sm ph-bold ph-caret-down fg-neutral-11 transition group-open:rotate-180" aria-hidden="true"></i></summary>
     <p class="text-base fg-neutral-11 pb-sm">Yes. Any class works in any HTML.</p>
   </details>
 </div>""",
@@ -656,6 +725,28 @@ COMPONENTS = [
   <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-neutral-a2 fg-neutral-12 cursor-pointer" aria-label="Copy link" aria-describedby="doc-tip"><i class="icon ph ph-link"></i></button>
   <span id="doc-tip" role="tooltip" class="absolute top-full start-0 z-20 mt-3xs px-xs py-3xs rounded-xs bg-neutral-12 fg-neutral-1 text-sm whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity">Copy link</span>
 </span>""",
+        "examples": [
+            {"id": "placement", "label": "Placement",
+             "summary": "Above, below, start and end. The wrapper is a flex box that centres its children, and the tip is absolute on one axis only (<code>bottom-full</code>, <code>top-full</code>, <code>end-full</code>, <code>start-full</code>), so on the other axis it keeps its centred static position: centred on its trigger without a script.",
+             "html": """<div class="flex flex-wrap items-center justify-center gap-3xl py-xl">
+  <span class="group relative inline-flex items-center justify-center">
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-neutral-a2 fg-neutral-12 cursor-pointer" aria-label="Above" aria-describedby="doc-tip-top"><i class="icon ph ph-arrow-up"></i></button>
+    <span id="doc-tip-top" role="tooltip" class="absolute bottom-full mb-3xs z-20 px-xs py-3xs rounded-xs bg-neutral-12 fg-neutral-1 text-sm whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity">Above</span>
+  </span>
+  <span class="group relative inline-flex items-center justify-center">
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-neutral-a2 fg-neutral-12 cursor-pointer" aria-label="Below" aria-describedby="doc-tip-bottom"><i class="icon ph ph-arrow-down"></i></button>
+    <span id="doc-tip-bottom" role="tooltip" class="absolute top-full mt-3xs z-20 px-xs py-3xs rounded-xs bg-neutral-12 fg-neutral-1 text-sm whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity">Below</span>
+  </span>
+  <span class="group relative inline-flex items-center justify-center">
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-neutral-a2 fg-neutral-12 cursor-pointer" aria-label="Start" aria-describedby="doc-tip-start"><i class="icon ph ph-arrow-left"></i></button>
+    <span id="doc-tip-start" role="tooltip" class="absolute end-full me-3xs z-20 px-xs py-3xs rounded-xs bg-neutral-12 fg-neutral-1 text-sm whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity">Start</span>
+  </span>
+  <span class="group relative inline-flex items-center justify-center">
+    <button class="inline-flex items-center justify-center size-control rounded-sm state border border-transparent bg-neutral-a2 fg-neutral-12 cursor-pointer" aria-label="End" aria-describedby="doc-tip-end"><i class="icon ph ph-arrow-right"></i></button>
+    <span id="doc-tip-end" role="tooltip" class="absolute start-full ms-3xs z-20 px-xs py-3xs rounded-xs bg-neutral-12 fg-neutral-1 text-sm whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-opacity">End</span>
+  </span>
+</div>"""},
+        ],
         "use": ["A short label for an icon-only button, also given as its <code>aria-label</code>.", "<code>group-focus-within:</code> as well as <code>group-hover:</code>, so keyboard users see it."],
         "avoid": ["Anything people need to read to finish a task; put it on the page."],
     },
@@ -663,7 +754,7 @@ COMPONENTS = [
         "slug": "combobox", "name": "Combobox", "icon": "ph-magnifying-glass", "group": "Forms",
         "summary": "A text field with suggestions, using the native <code>list</code> attribute and a <code>&lt;datalist&gt;</code>.",
         "html": f"""<div class="flex flex-col gap-2xs max-w-form">
-  <label for="doc-country" class="text-sm font-medium">Country</label>
+  <label for="doc-country" class="text-sm font-semibold">Country</label>
   <input id="doc-country" list="doc-countries" class="{FIELD}" placeholder="Start typing">
   <datalist id="doc-countries">
     <option value="Finland"></option><option value="France"></option><option value="Germany"></option><option value="Japan"></option>
@@ -729,7 +820,7 @@ COMPONENTS = [
         "slug": "textarea", "name": "Textarea", "icon": "ph-text-align-left", "group": "Forms",
         "summary": "A field for more than one line. It pads like a text field and grows with <code>rows</code>; the help line under it counts down.",
         "html": f"""<div class="flex flex-col gap-2xs max-w-form">
-  <label for="doc-bio" class="text-sm font-medium">Bio</label>
+  <label for="doc-bio" class="text-sm font-semibold">Bio</label>
   <textarea id="doc-bio" rows="4" class="px-control py-xs rounded-sm border border-neutral-5 hover:border-neutral-7 bg-neutral-1 text-base w-full" aria-describedby="doc-bio-help" placeholder="A few words about you"></textarea>
   <span id="doc-bio-help" class="text-sm fg-neutral-11">Up to 280 characters.</span>
 </div>""",
@@ -745,7 +836,7 @@ COMPONENTS = [
     <input id="doc-volume" type="range" min="0" max="100" value="60" class="w-full">
   </div>
   <div class="flex flex-col gap-2xs">
-    <label for="doc-radius" class="text-sm font-medium">Corner radius</label>
+    <label for="doc-radius" class="text-sm font-semibold">Corner radius</label>
     <div class="flex items-center gap-sm">
       <span class="text-sm fg-neutral-11 tabular-nums">0</span>
       <input id="doc-radius" type="range" min="0" max="24" value="8" class="grow">
@@ -760,10 +851,10 @@ COMPONENTS = [
         "slug": "number-field", "name": "Number field", "icon": "ph-plus-minus", "group": "Forms",
         "summary": "A field box with a step button at each end and a bare number input between, so people can type or step.",
         "html": f"""<div class="flex flex-col gap-2xs">
-  <label for="doc-seats" class="text-sm font-medium">Seats</label>
+  <label for="doc-seats" class="text-sm font-semibold">Seats</label>
   <div class="{BOX} w-fit">
     <button class="{NESTED_ICON}" aria-label="Fewer seats"><i class="icon icon-sm ph ph-minus"></i></button>
-    <input id="doc-seats" type="number" min="1" max="50" value="5" inputmode="numeric" class="{BARE} text-center tabular-nums">
+    <input id="doc-seats" type="number" min="1" max="50" value="5" inputmode="numeric" class="{BARE} appearance-none text-center tabular-nums">
     <button class="{NESTED_ICON}" aria-label="More seats"><i class="icon icon-sm ph ph-plus"></i></button>
   </div>
 </div>""",
@@ -786,10 +877,10 @@ COMPONENTS = [
         "slug": "tag-input", "name": "Tag input", "icon": "ph-tag-simple", "group": "Forms",
         "summary": "Chips inside a field box, each with its own remove button, then a bare input for the next one.",
         "html": f"""<div class="flex flex-col gap-2xs max-w-form">
-  <label for="doc-topic" class="text-sm font-medium">Topics</label>
+  <label for="doc-topic" class="text-sm font-semibold">Topics</label>
   <div class="{BOX}">
-    <span class="inline-flex items-center px-nested rounded-xs bg-neutral-3 text-sm font-medium"><span>design</span><button class="inline-flex items-center justify-center size-nested rounded-xs state border-0 bg-transparent fg-neutral-11 cursor-pointer" aria-label="Remove design"><i class="icon icon-sm ph-bold ph-x"></i></button></span>
-    <span class="inline-flex items-center px-nested rounded-xs bg-neutral-3 text-sm font-medium"><span>tokens</span><button class="inline-flex items-center justify-center size-nested rounded-xs state border-0 bg-transparent fg-neutral-11 cursor-pointer" aria-label="Remove tokens"><i class="icon icon-sm ph-bold ph-x"></i></button></span>
+    <span class="inline-flex items-center h-nested px-nested rounded-xs bg-neutral-3 text-sm font-medium"><span>design</span><button class="inline-flex items-center justify-center size-nested rounded-xs state border-0 bg-transparent fg-neutral-11 cursor-pointer" aria-label="Remove design"><i class="icon icon-sm ph-bold ph-x"></i></button></span>
+    <span class="inline-flex items-center h-nested px-nested rounded-xs bg-neutral-3 text-sm font-medium"><span>tokens</span><button class="inline-flex items-center justify-center size-nested rounded-xs state border-0 bg-transparent fg-neutral-11 cursor-pointer" aria-label="Remove tokens"><i class="icon icon-sm ph-bold ph-x"></i></button></span>
     <input id="doc-topic" class="{BARE}" placeholder="Add a topic">
   </div>
 </div>""",
@@ -808,11 +899,56 @@ COMPONENTS = [
 </nav>""",
         "use": ["In an app shell, <code>w-sidebar</code> gives it the shell's sidebar width.", "A count sits at the end of its row, in a small round marker."],
         "avoid": ["More than about eight links without a heading between groups."],
+        "examples": [
+            {"id": "groups", "label": "Groups and dividers",
+             "summary": "A heading names each group, and an <code>&lt;hr&gt;</code> (<code>border-t border-neutral-6</code>, spaced by the list's own gap) sets a last group apart without one.",
+             "html": """<nav aria-label="Workspace, grouped" class="flex flex-col gap-3xs w-fit p-inset rounded-md bg-neutral-1 border border-neutral-6">
+  <span class="px-control pt-xs pb-3xs text-xs font-mono uppercase tracking-widest fg-neutral-11">Workspace</span>
+  <a href="#" aria-current="page" class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><i class="icon ph ph-house"></i><span class="grow">Home</span></a>
+  <a href="#" aria-current="false" class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><i class="icon ph ph-tray"></i><span class="grow">Inbox</span></a>
+  <hr class="border-0 border-t border-neutral-6">
+  <span class="px-control pt-xs pb-3xs text-xs font-mono uppercase tracking-widest fg-neutral-11">Library</span>
+  <a href="#" aria-current="false" class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><i class="icon ph ph-folder-simple"></i><span class="grow">Projects</span></a>
+  <a href="#" aria-current="false" class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><i class="icon ph ph-file-text"></i><span class="grow">Documents</span></a>
+  <hr class="border-0 border-t border-neutral-6">
+  <a href="#" aria-current="false" class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><i class="icon ph ph-gear-six"></i><span class="grow">Settings</span></a>
+</nav>"""},
+            {"id": "nested", "label": "Expanding groups",
+             "summary": "A <code>&lt;details&gt;</code> per group: its summary is a row at the control height with a caret that turns when it opens, and its links sit under a start rule, one step in. Open the group that holds the current page.",
+             "html": """<nav aria-label="Workspace, nested" class="flex flex-col gap-3xs w-fit p-inset rounded-md bg-neutral-1 border border-neutral-6">
+  <a href="#" aria-current="false" class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><i class="icon ph ph-house"></i><span class="grow">Home</span></a>
+  <details class="group" open>
+    <summary class="flex items-center gap-gutter h-control px-control rounded-sm state border border-transparent list-none cursor-pointer text-base fg-neutral-12"><i class="icon ph ph-folder-simple"></i><span class="grow">Projects</span><i class="icon icon-sm ph-bold ph-caret-down fg-neutral-11 transition group-open:rotate-180" aria-hidden="true"></i></summary>
+    <div class="flex flex-col gap-3xs mt-3xs ms-md ps-3xs border-s border-neutral-6">
+      <a href="#" aria-current="page" class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><span class="grow">Nowind</span></a>
+      <a href="#" aria-current="false" class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><span class="grow">Massimo</span></a>
+      <a href="#" aria-current="false" class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><span class="grow">Archive</span></a>
+    </div>
+  </details>
+  <details class="group">
+    <summary class="flex items-center gap-gutter h-control px-control rounded-sm state border border-transparent list-none cursor-pointer text-base fg-neutral-12"><i class="icon ph ph-users"></i><span class="grow">Team</span><i class="icon icon-sm ph-bold ph-caret-down fg-neutral-11 transition group-open:rotate-180" aria-hidden="true"></i></summary>
+    <div class="flex flex-col gap-3xs mt-3xs ms-md ps-3xs border-s border-neutral-6">
+      <a href="#" aria-current="false" class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><span class="grow">Members</span></a>
+      <a href="#" aria-current="false" class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><span class="grow">Roles</span></a>
+    </div>
+  </details>
+  <a href="#" aria-current="false" class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><i class="icon ph ph-gear-six"></i><span class="grow">Settings</span></a>
+</nav>"""},
+            {"id": "rail", "label": "Rail",
+             "summary": "Icons only, as <code>size-control</code> squares, for a collapsed sidebar. Each link keeps its name in <code>aria-label</code> and <code>title</code>.",
+             "html": """<nav aria-label="Workspace, rail" class="inline-flex flex-col gap-3xs p-inset rounded-md bg-neutral-1 border border-neutral-6">
+  <a href="#" aria-current="page" aria-label="Home" title="Home" class="inline-flex items-center justify-center size-control shrink-0 rounded-sm border border-transparent no-underline fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><i class="icon ph ph-house"></i></a>
+  <a href="#" aria-current="false" aria-label="Inbox" title="Inbox" class="inline-flex items-center justify-center size-control shrink-0 rounded-sm border border-transparent no-underline fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><i class="icon ph ph-tray"></i></a>
+  <a href="#" aria-current="false" aria-label="Projects" title="Projects" class="inline-flex items-center justify-center size-control shrink-0 rounded-sm border border-transparent no-underline fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><i class="icon ph ph-folder-simple"></i></a>
+  <hr class="border-0 border-t border-neutral-6">
+  <a href="#" aria-current="false" aria-label="Settings" title="Settings" class="inline-flex items-center justify-center size-control shrink-0 rounded-sm border border-transparent no-underline fg-neutral-12 hover:bg-neutral-3 current:bg-accent-1-3 current:fg-accent-1-11"><i class="icon ph ph-gear-six"></i></a>
+</nav>"""},
+        ],
     },
     {
         "slug": "navbar", "name": "Navbar", "icon": "ph-browser", "group": "Navigation",
         "summary": "The app's top bar: a wordmark, the main links, then actions at the end. Below <code>lg</code> the links move into a menu behind a button at the start.",
-        "html": f"""<header class="flex items-center gap-md px-xs py-xs bg-neutral-1 border-b border-neutral-6">
+        "html": f"""<header class="flex items-center gap-xs px-xs py-xs bg-neutral-1 border-b border-neutral-6">
   <div class="lg:hidden">
     <button class="inline-flex items-center justify-center size-control shrink-0 rounded-sm state border border-transparent bg-transparent fg-neutral-12 cursor-pointer" popovertarget="doc-nav-menu" aria-label="Menu"><i class="icon ph ph-list"></i></button>
     <div id="doc-nav-menu" popover class="anchor-bottom w-fit p-inset rounded-md bg-neutral-1 border border-neutral-6 shadow-lg">
@@ -823,7 +959,7 @@ COMPONENTS = [
       </nav>
     </div>
   </div>
-  <a href="#" class="inline-flex items-center gap-gutter ps-xs no-underline fg-neutral-12 hover:fg-accent-1-11 text-lg font-semibold"><i class="icon ph-bold ph-wind fg-accent-1-9"></i><span>Acme</span></a>
+  <a href="#" class="inline-flex items-center gap-gutter px-xs no-underline fg-neutral-12 hover:fg-accent-1-11 text-lg font-semibold"><i class="icon ph-bold ph-wind fg-accent-1-9"></i><span>Acme</span></a>
   <nav aria-label="Main" class="hidden lg:flex items-center gap-3xs">
     <a href="#" aria-current="page" class="inline-flex items-center h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-11 hover:bg-neutral-3 current:bg-neutral-3 current:fg-neutral-12"><span>Projects</span></a>
     <a href="#" aria-current="false" class="inline-flex items-center h-control px-control rounded-sm border border-transparent no-underline text-base fg-neutral-11 hover:bg-neutral-3 current:bg-neutral-3 current:fg-neutral-12"><span>Reports</span></a>
@@ -865,6 +1001,53 @@ COMPONENTS = [
     </div>
   </div>
 </dialog>""",
+        "examples": [
+            {"id": "start", "label": "From the start edge",
+             "summary": "<code>me-auto ms-xs</code> instead of <code>ms-auto me-xs</code>: navigation and outlines open from the side they belong to.",
+             "html": f"""<button class="{BTN_SECONDARY}" commandfor="doc-drawer-start" command="show-modal"><i class="icon ph ph-list"></i><span>Navigation</span></button>
+<dialog id="doc-drawer-start" class="me-auto ms-xs my-xs p-lg rounded-lg bg-neutral-1 border-0 shadow-xl max-w-form w-full" aria-labelledby="doc-drawer-start-title">
+  <div class="flex flex-col gap-md">
+    <div class="flex items-center justify-between gap-sm">
+      <h3 id="doc-drawer-start-title" class="text-lg font-semibold">Navigation</h3>
+      <button class="inline-flex items-center justify-center size-control shrink-0 rounded-sm state border border-transparent bg-transparent fg-neutral-11 cursor-pointer" commandfor="doc-drawer-start" command="close" aria-label="Close"><i class="icon ph ph-x"></i></button>
+    </div>
+    <p class="text-base fg-neutral-11">The same drawer, placed by its margins.</p>
+    <div class="flex justify-end gap-xs">
+      <button class="{BTN_PRIMARY}" commandfor="doc-drawer-start" command="close"><span>Done</span></button>
+    </div>
+  </div>
+</dialog>"""},
+            {"id": "sheet", "label": "Bottom sheet",
+             "summary": "<code>mt-auto mb-xs mx-auto</code> sets it on the bottom edge, centred: the phone's sheet, for a few choices close to the thumb.",
+             "html": f"""<button class="{BTN_SECONDARY}" commandfor="doc-drawer-sheet" command="show-modal"><i class="icon ph ph-share-network"></i><span>Share</span></button>
+<dialog id="doc-drawer-sheet" class="mt-auto mb-xs mx-auto p-lg rounded-lg bg-neutral-1 border-0 shadow-xl max-w-form w-full" aria-labelledby="doc-drawer-sheet-title">
+  <div class="flex flex-col gap-md">
+    <div class="flex items-center justify-between gap-sm">
+      <h3 id="doc-drawer-sheet-title" class="text-lg font-semibold">Share</h3>
+      <button class="inline-flex items-center justify-center size-control shrink-0 rounded-sm state border border-transparent bg-transparent fg-neutral-11 cursor-pointer" commandfor="doc-drawer-sheet" command="close" aria-label="Close"><i class="icon ph ph-x"></i></button>
+    </div>
+    <p class="text-base fg-neutral-11">The same drawer, placed by its margins.</p>
+    <div class="flex justify-end gap-xs">
+      <button class="{BTN_PRIMARY}" commandfor="doc-drawer-sheet" command="close"><span>Done</span></button>
+    </div>
+  </div>
+</dialog>"""},
+            {"id": "full", "label": "Full height",
+             "summary": "<code>h-dvh max-h-dvh my-0 me-0</code> runs it the height of the window against the end edge, and <code>justify-between</code> keeps its actions at the foot: for long settings.",
+             "html": f"""<button class="{BTN_SECONDARY}" commandfor="doc-drawer-full" command="show-modal"><i class="icon ph ph-gear-six"></i><span>Settings</span></button>
+<dialog id="doc-drawer-full" class="ms-auto me-0 my-0 h-dvh max-h-dvh p-lg rounded-lg bg-neutral-1 border-0 shadow-xl max-w-form w-full" aria-labelledby="doc-drawer-full-title">
+  <div class="flex flex-col gap-md h-full justify-between">
+    <div class="flex items-center justify-between gap-sm">
+      <h3 id="doc-drawer-full-title" class="text-lg font-semibold">Settings</h3>
+      <button class="inline-flex items-center justify-center size-control shrink-0 rounded-sm state border border-transparent bg-transparent fg-neutral-11 cursor-pointer" commandfor="doc-drawer-full" command="close" aria-label="Close"><i class="icon ph ph-x"></i></button>
+    </div>
+    <p class="text-base fg-neutral-11">The same drawer, placed by its margins.</p>
+    <div class="flex justify-end gap-xs">
+      <button class="{BTN_PRIMARY}" commandfor="doc-drawer-full" command="close"><span>Done</span></button>
+    </div>
+  </div>
+</dialog>"""},
+        ],
         "use": ["<code>ms-auto</code> pushes it to the end edge; <code>my-xs me-xs</code> keep it off the window's edges."],
         "avoid": ["A drawer for a short confirmation; use a dialog."],
     },
@@ -984,7 +1167,7 @@ COMPONENTS = [
         "html": f"""<p class="text-base max-w-text">Reviewed by <button class="inline p-0 border-0 bg-transparent fg-accent-1-11 hover:fg-accent-1-12 font-medium underline cursor-pointer" popovertarget="doc-person">Ada Lovelace</button> on Monday.</p>
 <div id="doc-person" popover class="anchor-bottom w-fit max-w-form p-inset rounded-md bg-neutral-1 border border-neutral-6 shadow-lg text-sm">
   <div class="flex gap-sm p-xs">
-    <span class="inline-flex items-center justify-center size-control shrink-0 rounded-full bg-accent-2-9 fg-accent-2-contrast text-sm font-medium">AL</span>
+    <span class="inline-flex items-center justify-center size-control shrink-0 self-start rounded-full bg-accent-2-9 fg-accent-2-contrast text-sm font-medium">AL</span>
     <div class="flex flex-col gap-3xs">
       <span class="text-lg font-semibold">Ada Lovelace</span>
       <span class="text-sm fg-neutral-11">Analyst · London</span>
@@ -1036,7 +1219,7 @@ COMPONENTS = [
     {
         "slug": "command-palette", "name": "Command palette", "icon": "ph-command", "group": "Overlays",
         "summary": "A search field over grouped results, one line each, with the active result <code>aria-selected</code> and the keys in a footer. Shown here in place; on a page it is a modal <code>&lt;dialog&gt;</code> opened with ⌘K.",
-        "html": f"""<div class="flex flex-col max-w-form rounded-md bg-neutral-1 border border-neutral-6 shadow-lg" role="dialog" aria-label="Command menu">
+        "html": f"""<div class="flex flex-col rounded-md bg-neutral-1 border border-neutral-6 shadow-lg" role="dialog" aria-label="Command menu">
   <div class="flex items-center gap-gutter px-md py-xs border-b border-neutral-6">
     <i class="icon ph ph-magnifying-glass fg-neutral-11"></i><input class="grow min-w-0 p-0 border-0 bg-transparent fg-neutral-12 text-base outline-0" role="combobox" aria-expanded="true" aria-controls="doc-cmd-results" aria-label="Search commands" placeholder="Search commands" value="new">
   </div>
@@ -1056,13 +1239,13 @@ COMPONENTS = [
     },
     {
         "slug": "button-group", "name": "Button group", "icon": "ph-rows-plus-bottom", "group": "Actions",
-        "summary": "Related buttons in one run, a hairline apart. The outer ends keep the control corner; the corners that face each other drop to the small one, so the run reads as one object.",
+        "summary": "Related buttons in one run, a hairline (<code>gap-px</code>) apart. The outer ends keep the control corner; the corners that face each other drop to the small one, so the run reads as one object.",
         "html": f"""<div class="flex flex-wrap items-center gap-md">
-  <div class="inline-flex items-center gap-3xs" role="group" aria-label="History">
+  <div class="inline-flex items-center gap-px" role="group" aria-label="History">
     <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-s-sm rounded-e-xs state border border-transparent bg-neutral-a2 fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon ph ph-arrow-counter-clockwise"></i><span>Undo</span></button>
     <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-s-xs rounded-e-sm state border border-transparent bg-neutral-a2 fg-neutral-12 text-base font-medium cursor-pointer"><i class="icon ph ph-arrow-clockwise"></i><span>Redo</span></button>
   </div>
-  <div class="inline-flex items-center gap-3xs" role="group" aria-label="Zoom">
+  <div class="inline-flex items-center gap-px" role="group" aria-label="Zoom">
     <button class="inline-flex items-center justify-center size-control shrink-0 rounded-s-sm rounded-e-xs state border border-transparent bg-neutral-a2 fg-neutral-12 cursor-pointer" aria-label="Zoom out"><i class="icon ph ph-minus"></i></button>
     <button class="inline-flex items-center justify-center h-control px-control rounded-s-xs rounded-e-xs state border border-transparent bg-neutral-a2 fg-neutral-12 text-base font-medium tabular-nums cursor-pointer"><span>100%</span></button>
     <button class="inline-flex items-center justify-center size-control shrink-0 rounded-s-xs rounded-e-sm state border border-transparent bg-neutral-a2 fg-neutral-12 cursor-pointer" aria-label="Zoom in"><i class="icon ph ph-plus"></i></button>
@@ -1074,7 +1257,7 @@ COMPONENTS = [
     {
         "slug": "split-button", "name": "Split button", "icon": "ph-caret-circle-down", "group": "Actions",
         "summary": "The usual action and, joined to it, a square key that opens the other ways to do it in a menu. Both halves share a variant; the group has its own name.",
-        "html": f"""<div class="inline-flex items-center gap-3xs" role="group" aria-label="Save options">
+        "html": f"""<div class="inline-flex items-center gap-px" role="group" aria-label="Save options">
   <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-s-sm rounded-e-xs state border border-transparent bg-accent-1-9 fg-accent-1-contrast text-base font-medium cursor-pointer"><i class="icon ph ph-floppy-disk"></i><span>Save</span></button>
   <button class="inline-flex items-center justify-center size-control shrink-0 rounded-s-xs rounded-e-sm state border border-transparent bg-accent-1-9 fg-accent-1-contrast cursor-pointer" popovertarget="doc-save-menu" aria-haspopup="menu" aria-label="More save options"><i class="icon icon-sm ph-bold ph-caret-down"></i></button>
   <div id="doc-save-menu" popover class="anchor-bottom w-fit p-inset rounded-md bg-neutral-1 border border-neutral-6 shadow-lg">
@@ -1123,7 +1306,7 @@ COMPONENTS = [
         "html": f"""<div class="flex flex-col gap-md max-w-form {CARD}" role="group" aria-labelledby="doc-colour-label">
   <div class="flex items-center gap-sm">
     <input id="doc-colour" type="color" value="#3e63dd" class="size-control shrink-0 rounded-sm border border-neutral-6 bg-neutral-1 cursor-pointer">
-    <div class="flex flex-col gap-3xs"><label id="doc-colour-label" for="doc-colour" class="text-sm font-medium">Accent colour</label><span class="text-sm fg-neutral-11 font-mono">#3e63dd</span></div>
+    <div class="flex flex-col gap-3xs"><label id="doc-colour-label" for="doc-colour" class="text-sm font-semibold">Accent colour</label><span class="text-sm fg-neutral-11 font-mono">#3e63dd</span></div>
   </div>
   <div class="flex flex-wrap items-center gap-xs" role="group" aria-label="Presets">
     <button class="size-control shrink-0 rounded-full border-2 border-transparent hover:border-neutral-6 pressed:border-neutral-8 bg-accent-1-9 cursor-pointer" aria-pressed="true" aria-label="Blue"></button>
@@ -1162,22 +1345,34 @@ COMPONENTS = [
     },
     {
         "slug": "trace", "name": "Trace", "icon": "ph-path", "group": "Agent",
-        "summary": "What an agent did, one step to a row: a round mark for its state (done, running, waiting, failed), its name, its time or status, and the detail behind a <code>&lt;details&gt;</code>.",
+        "summary": "What an agent did, one step to a row: a round mark for its state (done, running, waiting, failed), its name, its time or status, and the detail behind a <code>&lt;details&gt;</code>. A rule joins each mark to the next: solid after a finished step, dashed after one still to come.",
         "html": TRACE,
         "use": ["Each row's <code>aria-label</code> joins the name and the state, so it reads as one.", "Open the running step, closed the rest."],
         "avoid": ["The trace instead of the answer; it explains how, the answer says what."],
     },
     {
         "slug": "composer", "name": "Composer", "icon": "ph-chat-text", "group": "Agent",
-        "summary": "A message box: context chips, a text area that grows with what is typed (<code>field-sizing-content</code>), then the model and thinking selects and Attach and Send at the small size inside its inset.",
+        "summary": "A message box: context chips, a text area that grows with what is typed (<code>field-sizing-content</code>), then one row with Attach at the start and, at the end, the model as a quiet text trigger and one round key at the full control size: Dictate while the box is empty, Send once something is typed (a few lines of script swap their <code>hidden</code>).",
         "html": composer(),
         "examples": [
             {"id": "running", "label": "While answering",
-             "summary": "Send turns into Stop, and the selects are disabled until the answer is done.",
-             "html": composer(running=True, chips=False, ident="doc-composer-running")},
+             "summary": "The end key turns into Stop, and the text area and the model are disabled until the answer is done.",
+             "html": composer(running=True, chips=False, ident="doc-composer-running", value="Summarize the changes in this release.")},
         ],
         "use": ["A <code>&lt;form&gt;</code>, so Enter and the Send button submit without a script.", "Name Send and Stop in <code>aria-label</code>; they are icons."],
         "avoid": ["A placeholder as the only label."],
+    },
+    {
+        "slug": "otp", "name": "One-time code", "icon": "ph-password", "group": "Forms",
+        "summary": "Six square cells in two groups of three, one digit each. A few lines of script move to the next cell as you type, back on Backspace, and spread a pasted or autofilled code across the cells. The first cell takes <code>autocomplete=\"one-time-code\"</code>, so a phone offers the code from the message.",
+        "html": otp("doc-otp", "Verification code", "482"),
+        "examples": [
+            {"id": "invalid", "label": "Wrong code",
+             "summary": "<code>aria-invalid</code> on every cell paints the border in the danger colour; the reason goes under the cells.",
+             "html": otp("doc-otp-bad", "Verification code", "482913", invalid=True, script=False).replace("</div>\n</div>", "</div>\n  <span class=\"text-sm fg-danger-11\">That code doesn’t match. Check the latest email, or send a new one.</span>\n</div>")},
+        ],
+        "use": ["<code>inputmode=\"numeric\"</code> on every cell, so phones show the number pad.", "Without the script the cells still work one by one; the script only moves focus and spreads a paste."],
+        "avoid": ["Clearing every cell on a wrong code; let people fix the digit they got wrong."],
     },
 ]
 

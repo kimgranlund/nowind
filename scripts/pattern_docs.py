@@ -2,7 +2,7 @@
 (sign in, change a setting, filter a list). Same shape as component_docs.py, plus "components": the component slugs it
 is built from, linked from its page. Utility classes only."""
 
-from component_docs import BTN, BTN_PRIMARY, BTN_SECONDARY, BOX, BARE, CARD, GHOST_ICON, response_actions, trace_step, composer
+from component_docs import BTN, BTN_PRIMARY, BTN_SECONDARY, BOX, BARE, CARD, GHOST_ICON, response_actions, trace_step, composer, otp
 
 LABEL = "text-sm font-medium"
 HELP = "text-sm fg-neutral-11"
@@ -12,11 +12,12 @@ BADGE = "inline-flex items-center h-nested px-nested rounded-full border text-sm
 BTN_DANGER = f"{BTN} state border border-transparent bg-danger-9 fg-danger-contrast text-base font-medium cursor-pointer"
 
 
-def field(fid, label, icon, attrs, help_=None):
+def field(fid, label, icon, attrs, help_=None, visible=True):
     h = f'\n    <span class="{HELP}">{help_}</span>' if help_ else ""
-    return f"""  <div class="flex flex-col gap-2xs">
-    <label for="{fid}" class="{LABEL}">{label}</label>
-    <div class="{BOX}"><i class="icon ph {icon} fg-neutral-11" aria-hidden="true"></i><input id="{fid}" class="{BARE}" {attrs}></div>{h}
+    lab = f'\n    <label for="{fid}" class="{LABEL}">{label}</label>' if visible else ""
+    named = "" if visible else f' aria-label="{label}"'
+    return f"""  <div class="flex flex-col gap-2xs">{lab}
+    <div class="{BOX}"><i class="icon ph {icon} fg-neutral-11" aria-hidden="true"></i><input id="{fid}" class="{BARE}" {attrs}{named}></div>{h}
   </div>"""
 
 
@@ -68,7 +69,7 @@ def comment(initials, tone, name, when, text):
 
 
 def check_row(id_, label, done, files):
-    return f"""    <tr class="border-t border-neutral-6 transition state">
+    return f"""    <tr class="border-t border-neutral-6 hover:bg-neutral-2 has-checked:bg-accent-1-2 transition">
       <td class="h-control px-control"><input type="checkbox" aria-label="Select {label}"{" checked" if done else ""}></td>
       <td class="h-control px-control">{label}</td>
       <td class="h-control ps-control pe-md text-end tabular-nums">{files}</td>
@@ -95,7 +96,7 @@ def upload(name, size, pct, state):
     else:
         tail = f'<button class="{ICON_BTN}" aria-label="Cancel {name}"><i class="icon ph ph-x"></i></button>'
         bar = f'\n        <progress value="{pct}" max="100" aria-label="{name}">{pct}%</progress>\n        <span class="{HELP} tabular-nums">{pct}% uploaded</span>'
-    return f"""    <li class="flex items-center gap-sm py-xs border-t border-neutral-6">
+    return f"""    <li class="flex items-start gap-sm py-xs border-t border-neutral-6">
       <i class="icon ph ph-file-image fg-neutral-11"></i>
       <div class="grow min-w-0 flex flex-col gap-2xs">
         <span class="text-base truncate">{name}</span>{bar}
@@ -106,14 +107,14 @@ def upload(name, size, pct, state):
 
 def faq(q, a, open_=False):
     return f"""  <details class="group border-b border-neutral-6"{" open" if open_ else ""}>
-    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-base font-semibold hover:fg-accent-1-11">{q}<i class="icon icon-sm ph ph-caret-down fg-neutral-11 transition group-open:rotate-180" aria-hidden="true"></i></summary>
+    <summary class="flex items-center justify-between gap-sm py-sm list-none cursor-pointer text-base font-semibold hover:fg-accent-1-11">{q}<i class="icon icon-sm ph-bold ph-caret-down fg-neutral-11 transition group-open:rotate-180" aria-hidden="true"></i></summary>
     <p class="text-base fg-neutral-11 pb-sm">{a}</p>
   </details>"""
 
 
 def feature(icon, title, text):
     return f"""  <div class="flex flex-col gap-xs">
-    <span class="inline-flex items-center justify-center size-control shrink-0 rounded-sm bg-accent-1-3 fg-accent-1-11"><i class="icon ph {icon}"></i></span>
+    <span class="inline-flex items-center justify-center size-control shrink-0 self-start rounded-sm bg-accent-1-3 fg-accent-1-11"><i class="icon ph {icon}"></i></span>
     <span class="text-lg font-semibold">{title}</span>
     <p class="text-base fg-neutral-11">{text}</p>
   </div>"""
@@ -136,20 +137,29 @@ def auth(fid, title, lead, body, form=True):
 
 def providers(passkey=False):
     rows = [("ph-google-logo", "Google"), ("ph-apple-logo", "Apple"), ("ph-github-logo", "GitHub"), ("ph-windows-logo", "Microsoft")]
-    btns = "\n".join(f'    <button class="{BTN_SECONDARY} w-full" type="button"><i class="icon ph {i}"></i><span>Continue with {n}</span></button>' for i, n in rows)
-    if passkey:
-        btns += f'\n    <button class="{BTN_SECONDARY} w-full" type="button"><i class="icon ph ph-fingerprint"></i><span>Sign in with a passkey</span></button>'
-    return f"""  <div class="flex flex-col gap-xs">
+    rule = lambda t: f'<div class="flex items-center gap-sm {HELP}"><span class="grow border-t border-neutral-6" aria-hidden="true"></span><span>{t}</span><span class="grow border-t border-neutral-6" aria-hidden="true"></span></div>'
+    btns = "\n".join(f'    <button class="{BTN_SECONDARY} w-full" type="button" aria-label="Continue with {n}"><i class="icon ph {i}"></i><span>{n}</span></button>' for i, n in rows)
+    key = f'\n  <button class="{BTN_SECONDARY} w-full" type="button"><i class="icon ph ph-fingerprint"></i><span>Sign in with a passkey</span></button>' if passkey else ""
+    return f"""  {rule("Continue with")}
+  <div class="grid grid-cols-2 gap-xs">
 {btns}
-  </div>
-  <div class="flex items-center gap-sm {HELP}"><span class="grow border-t border-neutral-6" aria-hidden="true"></span><span>or continue with email</span><span class="grow border-t border-neutral-6" aria-hidden="true"></span></div>"""
-
+  </div>{key}
+  {rule("or")}"""
 
 def code_field(fid, label):
-    return f"""  <div class="flex flex-col gap-2xs">
-    <label for="{fid}" class="{LABEL}">{label}</label>
-    <div class="{BOX}"><input id="{fid}" class="{BARE} text-center font-mono tracking-widest tabular-nums" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{{6}}" placeholder="000000"></div>
-  </div>"""
+    return "\n".join("  " + line for line in otp(fid, label).split("\n"))
+
+
+
+def connection(icon, tone, name, connected):
+    badge = ('<span class="absolute bottom-0 end-0 inline-flex items-center justify-center rounded-full border-2 border-neutral-1 bg-success-9 fg-success-contrast" aria-hidden="true"><i class="icon icon-sm ph-bold ph-check"></i></span>' if connected else "")
+    state = (f'<span class="text-sm fg-success-11">Connected</span>' if connected else f'<span class="{HELP}">Not connected</span>')
+    btn = (f'<button class="{BTN_SECONDARY}"><span>Use</span></button>' if connected else f'<button class="{BTN_PRIMARY}"><span>Connect</span></button>')
+    return f"""    <li class="flex items-center gap-sm px-md py-sm border-t border-neutral-6">
+      <span class="relative inline-block shrink-0 pe-2xs pb-2xs"><span class="inline-flex items-center justify-center size-control rounded-sm {tone}"><i class="icon ph-bold {icon}"></i></span>{badge}</span>
+      <div class="grow min-w-0 flex flex-col gap-3xs"><span class="text-base">{name}</span>{state}</div>
+      {btn}
+    </li>"""
 
 
 PATTERNS = [
@@ -158,7 +168,7 @@ PATTERNS = [
         "components": ["card", "button", "text-field"],
         "summary": "The first step of signing in: the providers as full-width buttons, a rule, then an email field and Continue. A link to create an account sits in the lead, single sign-on at the foot.",
         "html": auth("pat-in", "Sign in", f'Welcome back. Don’t <a href="#" class="{LINK}">have an account</a>?', providers(True) + f"""
-{field("pat-in-email", "Email", "ph-envelope-simple", 'type="email" name="email" autocomplete="email" placeholder="ada@example.com"')}
+{field("pat-in-email", "Email", "ph-envelope-simple", 'type="email" name="email" autocomplete="email" placeholder="ada@example.com"', visible=False)}
   <button class="{BTN_PRIMARY} w-full" type="submit"><span>Continue</span></button>
   <span class="{HELP}">Signing in through work? <a href="#" class="{LINK}">Use single sign-on</a></span>"""),
         "use": ["Ask for the email first; the next step depends on it (password, code or single sign-on).", "Set <code>autocomplete</code> on every field."],
@@ -169,8 +179,7 @@ PATTERNS = [
         "components": ["card", "text-field", "button"],
         "summary": "The second step: who is signing in, with a way back, the password field with a key to show it, and the other ways in below.",
         "html": auth("pat-pw", "Enter your password", f'Signing in as ada@example.com. <a href="#" class="{LINK}">Not you?</a>', f"""  <div class="flex flex-col gap-2xs">
-    <label for="pat-pw-input" class="{LABEL}">Password</label>
-    <div class="{BOX}"><i class="icon ph ph-lock-key fg-neutral-11" aria-hidden="true"></i><input id="pat-pw-input" class="{BARE}" type="password" name="password" autocomplete="current-password" placeholder="Your password"><button class="inline-flex items-center justify-center size-nested shrink-0 rounded-xs state border border-transparent bg-transparent fg-neutral-11 cursor-pointer" type="button" aria-pressed="false" aria-label="Show password"><i class="icon icon-sm ph ph-eye"></i></button></div>
+    <div class="{BOX}"><i class="icon ph ph-lock-key fg-neutral-11" aria-hidden="true"></i><input id="pat-pw-input" class="{BARE}" aria-label="Password" type="password" name="password" autocomplete="current-password" placeholder="Your password"><button class="inline-flex items-center justify-center size-nested shrink-0 rounded-xs state border border-transparent bg-transparent fg-neutral-11 cursor-pointer" type="button" aria-pressed="false" aria-label="Show password"><i class="icon icon-sm ph ph-eye"></i></button></div>
   </div>
   <button class="{BTN_PRIMARY} w-full" type="submit"><span>Sign in</span></button>
   <span class="{HELP}">No password? <a href="#" class="{LINK}">Email me a code</a> instead. Forgot it? <a href="#" class="{LINK}">Reset your password</a>.</span>"""),
@@ -179,20 +188,20 @@ PATTERNS = [
     },
     {
         "slug": "sign-in-code", "name": "Sign-in code", "icon": "ph-envelope-open", "group": "Account",
-        "components": ["card", "text-field", "button"],
-        "summary": "A code sent by email: one field for six digits that the platform can fill from the message, the address it went to, and a way to send another.",
+        "components": ["card", "otp", "button"],
+        "summary": "A code sent by email: six cells that the platform can fill from the message, the address it went to, and a way to send another.",
         "html": auth("pat-code", "Check your email", f'We sent a six-digit code to ada@example.com. <a href="#" class="{LINK}">Not you?</a>', code_field("pat-code-input", "Sign-in code") + f"""
   <button class="{BTN_PRIMARY} w-full" type="submit"><span>Sign in</span></button>
   <span class="{HELP}">Didn’t get it? <a href="#" class="{LINK}">Send another code</a>, or <a href="#" class="{LINK}">use your password</a>.</span>"""),
-        "use": ["One input with <code>inputmode=\"numeric\"</code> and <code>autocomplete=\"one-time-code\"</code>, so phones offer the code from the message.", "Pause the resend link for a while after each send, and say for how long."],
-        "avoid": ["Six separate inputs; pasting and the platform's autofill break."],
+        "use": ["The one-time code component: six cells, the first with <code>autocomplete=\"one-time-code\"</code>, so phones offer the code from the message.", "Pause the resend link for a while after each send, and say for how long."],
+        "avoid": ["Six cells without the script that spreads a paste across them."],
     },
     {
         "slug": "sign-up", "name": "Create account", "icon": "ph-user-circle-plus", "group": "Account",
         "components": ["card", "button", "text-field"],
         "summary": "The first step of signing up, built like sign-in: what the plan costs in the lead, the providers, then the work email and Continue.",
         "html": auth("pat-up", "Create your account", f'Free for teams of up to three. No card needed. Already <a href="#" class="{LINK}">have an account</a>?', providers() + f"""
-{field("pat-up-email", "Work email", "ph-envelope-simple", 'type="email" name="email" autocomplete="email" placeholder="Your work email"')}
+{field("pat-up-email", "Work email", "ph-envelope-simple", 'type="email" name="email" autocomplete="email" placeholder="Your work email"', visible=False)}
   <button class="{BTN_PRIMARY} w-full" type="submit"><span>Continue</span></button>"""),
         "use": ["Say what it costs before anyone types."],
         "avoid": ["Asking for name and password before the email is checked."],
@@ -201,10 +210,9 @@ PATTERNS = [
         "slug": "account-details", "name": "Account details", "icon": "ph-identification-badge", "group": "Account",
         "components": ["card", "text-field", "progress", "button"],
         "summary": "The second step of signing up: name and a new password, with a strength meter as the password's help line, and a way to skip the password.",
-        "html": auth("pat-det", "Set up your account", f'For ada@example.com. <a href="#" class="{LINK}">Not you?</a>', f"""{field("pat-det-name", "Full name", "ph-user", 'name="name" autocomplete="name" placeholder="Your full name"')}
+        "html": auth("pat-det", "Set up your account", f'For ada@example.com. <a href="#" class="{LINK}">Not you?</a>', f"""{field("pat-det-name", "Full name", "ph-user", 'name="name" autocomplete="name" placeholder="Your full name"', visible=False)}
   <div class="flex flex-col gap-2xs">
-    <label for="pat-det-pw" class="{LABEL}">Password</label>
-    <div class="{BOX}"><i class="icon ph ph-lock-key fg-neutral-11" aria-hidden="true"></i><input id="pat-det-pw" class="{BARE}" type="password" name="new-password" autocomplete="new-password" placeholder="Choose a password" aria-describedby="pat-det-strength"></div>
+    <div class="{BOX}"><i class="icon ph ph-lock-key fg-neutral-11" aria-hidden="true"></i><input id="pat-det-pw" class="{BARE}" aria-label="Password" type="password" name="new-password" autocomplete="new-password" placeholder="Choose a password" aria-describedby="pat-det-strength"></div>
     <meter value="2" min="0" max="4" low="2" high="3" optimum="4" aria-label="Password strength">Fair</meter>
     <span id="pat-det-strength" class="{HELP}">Fair. Add a number or a symbol.</span>
   </div>
@@ -215,7 +223,7 @@ PATTERNS = [
     },
     {
         "slug": "verify-email", "name": "Verify email", "icon": "ph-envelope-simple-open", "group": "Account",
-        "components": ["card", "text-field", "button"],
+        "components": ["card", "otp", "button"],
         "summary": "The last step of signing up: the code sent to the new address, how long it lasts, and a way to change the address.",
         "html": auth("pat-ver", "Check your email", f'We sent a six-digit code to ada@example.com. It expires in 10 minutes. Wrong address? <a href="#" class="{LINK}">Change it</a>', code_field("pat-ver-input", "Verification code") + f"""
   <button class="{BTN_PRIMARY} w-full" type="submit"><span>Verify email</span></button>
@@ -516,13 +524,10 @@ PATTERNS = [
     {
         "slug": "newsletter", "name": "Newsletter sign-up", "icon": "ph-envelope", "group": "Marketing",
         "components": ["text-field", "button"],
-        "summary": "A title, what people get and how often, and an email field with its button on one row from <code>sm</code> up.",
+        "summary": "A title, what people get and how often, and an email field that holds its own Subscribe button, at the small size in the field's trailing slot.",
         "html": f"""<form class="flex flex-col gap-sm max-w-form {CARD}">
   <div class="flex flex-col gap-3xs"><h3 class="text-lg font-semibold">Release notes by email</h3><span class="{HELP}">One email when a version ships, about once a month.</span></div>
-  <div class="flex flex-col sm:flex-row gap-xs">
-    <div class="{BOX} grow min-w-0"><i class="icon ph ph-envelope-simple fg-neutral-11" aria-hidden="true"></i><input class="{BARE}" type="email" autocomplete="email" aria-label="Email" placeholder="ada@example.com"></div>
-    <button class="{BTN_PRIMARY}" type="submit"><span>Subscribe</span></button>
-  </div>
+  <div class="flex items-center gap-gutter h-control px-control rounded-sm border-2 border-transparent focus-within:border-accent-1-8 bg-neutral-3 text-base transition"><i class="icon ph ph-envelope-simple fg-neutral-11" aria-hidden="true"></i><input class="{BARE}" type="email" autocomplete="email" aria-label="Email" placeholder="ada@example.com"><button class="inline-flex items-center h-full px-nested shrink-0 rounded-inner state border border-transparent bg-accent-1-9 fg-accent-1-contrast text-base font-medium cursor-pointer" type="submit"><span>Subscribe</span></button></div>
 </form>""",
         "use": ["Say how often, so people know what they agree to."],
         "avoid": ["Asking for more than an email."],
@@ -543,7 +548,7 @@ PATTERNS = [
     <div class="self-end max-w-text px-sm py-xs rounded-md bg-accent-1-9 fg-accent-1-contrast" role="article" aria-label="You"><p class="text-base fg-accent-1-contrast">What changed in this release?</p></div>
     <div class="flex flex-col gap-sm" role="article" aria-label="Agent">
       <ol class="flex flex-col list-none p-0" role="list" aria-label="Agent trace">
-{trace_step("done", "Read the changelog", "0.4 s")}
+{trace_step("done", "Read the changelog", "0.4 s", first=True, last=True)}
       </ol>
       <div class="flex flex-col gap-xs max-w-text">
         <p class="text-base">The release updates component guidance and examples:</p>
@@ -580,5 +585,24 @@ PATTERNS = [
 </div>""",
         "use": ["A <code>popover</code> opened by <code>popovertarget</code>: it closes on Escape and outside clicks, with no script.", "Keep the draft when the panel closes."],
         "avoid": ["Covering the page's own primary action with the launcher."],
+    },
+    {
+        "slug": "connections", "name": "Connections", "icon": "ph-plugs-connected", "group": "Account",
+        "components": ["card", "button", "icon-button"],
+        "summary": "The services an account is linked to, one per row: the service's mark with a check on its corner once connected, its name and state, and one action, Use or Connect.",
+        "html": f"""<section class="flex flex-col max-w-form rounded-md bg-neutral-1 border border-neutral-6" aria-labelledby="pat-conn">
+  <div class="flex items-center gap-3xs ps-md pe-xs py-xs">
+    <h3 id="pat-conn" class="grow text-lg font-semibold">Your connectors</h3>
+    <button class="{GHOST_ICON}" aria-label="Browse connectors"><i class="icon ph ph-squares-four"></i></button>
+    <button class="{GHOST_ICON}" aria-label="Close"><i class="icon ph ph-x"></i></button>
+  </div>
+  <ul class="flex flex-col list-none p-0">
+{connection("ph-images", "bg-neutral-12 fg-neutral-1", "Unsplash", True)}
+{connection("ph-camera", "bg-accent-4-9 fg-accent-4-contrast", "Getty Images", True)}
+{connection("ph-cloud", "bg-accent-1-9 fg-accent-1-contrast", "Dropbox", False)}
+  </ul>
+</section>""",
+        "use": ["Say the state in words as well as with the check; the check is <code>aria-hidden</code>.", "The primary button only where something is still to do (Connect)."],
+        "avoid": ["Disconnecting from this list without a confirm; put that in the service's settings."],
     },
 ]

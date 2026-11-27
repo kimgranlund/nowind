@@ -7,6 +7,7 @@ from html.parser import HTMLParser
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from component_docs import COMPONENTS  # noqa: E402
 from pattern_docs import PATTERNS  # noqa: E402
+from block_docs import BLOCKS  # noqa: E402
 
 OUT = sys.argv[1] if len(sys.argv) > 1 and not sys.argv[1].startswith("--") else os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "site", "docs")
 E = html.escape
@@ -24,6 +25,8 @@ SECTIONS = [
                    [(f"docs/c-{c['slug']}.html", c["name"]) for c in BY_GROUP]),
     ("Patterns", [("docs/patterns-index.html", "All patterns")] +
                  [(f"docs/p-{x['slug']}.html", x["name"]) for x in PATTERNS]),
+    ("Blocks", [("docs/blocks-index.html", "All blocks")] +
+               [(f"docs/b-{x['slug']}.html", x["name"]) for x in BLOCKS]),
     ("Specimen", [("specimen.html", "Tokens"), ("utilities.html", "Utilities demo")]),
     ("Classes", [("docs/classes.html", "Regular"), ("docs/semantic.html", "Semantic")]),
 ]
@@ -38,8 +41,10 @@ TITLES = {"docs/colour.html": "Colour", "docs/type-space.html": "Type and space"
 TITLES.update({f"docs/c-{c['slug']}.html": c["name"] for c in COMPONENTS})
 TITLES.update({f"docs/p-{x['slug']}.html": x["name"] for x in PATTERNS})
 TITLES["docs/patterns-index.html"] = "Patterns"
+TITLES.update({f"docs/b-{x['slug']}.html": x["name"] for x in BLOCKS})
+TITLES["docs/blocks-index.html"] = "Blocks"
 # Every documented snippet: (entry, page prefix, its source file).
-ITEMS = [(c, "c", "scripts/component_docs.py") for c in COMPONENTS] + [(x, "p", "scripts/pattern_docs.py") for x in PATTERNS]
+ITEMS = [(c, "c", "scripts/component_docs.py") for c in COMPONENTS] + [(x, "p", "scripts/pattern_docs.py") for x in PATTERNS] + [(x, "b", "scripts/block_docs.py") for x in BLOCKS]
 
 def rel(target, frm):
     """A link from the page at site path frm to site path target."""
@@ -117,7 +122,7 @@ def site_map(path):
   <nav aria-label="Site map" class="grid grid-cols-1 md:grid-cols-4 gap-group">
     {col("Docs", sec["Docs"])}
     {components}
-    <div class="flex flex-col gap-group">{col("Patterns", sec["Patterns"])}{col("Specimen", sec["Specimen"])}{col("Classes", sec["Classes"])}</div>
+    <div class="flex flex-col gap-group">{col("Patterns", sec["Patterns"])}{col("Blocks", sec["Blocks"])}{col("Specimen", sec["Specimen"])}{col("Classes", sec["Classes"])}</div>
   </nav>
 </div>
 """
@@ -520,7 +525,7 @@ def changelog():
     blocks.append(section("pin", "Pin a release", code("index.html", "HTML", """
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimgranlund/nowind@v__VERSION__/dist/nowind.min.css">""")))
     for v, date, latest, intro, groups in RELEASES:
-        badge = '\n              <span class="inline-flex items-center w-fit h-nested px-nested bg-solid-accent-1 fg-on-solid-accent-1 text-label">Latest</span>' if latest else ""
+        badge = '\n              <span class="inline-flex items-center w-fit h-nested px-nested rounded-full border border-transparent bg-solid-accent-1 fg-on-solid-accent-1 text-label"><span>Latest</span></span>' if latest else ""
         body = [p(t) for t in intro]
         for g, entries in groups:
             if g:
@@ -546,6 +551,7 @@ def docs_home():
         ("classes.html", "ph-list-bullets", "Classes", "Every class and what it declares, regular and semantic, with a filter."),
         ("components-index.html", "ph-squares-four", "Components", "Buttons, forms, tables and dialogs built only from utility classes."),
         ("patterns-index.html", "ph-stack", "Patterns", "Tasks put together from the components: sign in, settings, filtering, confirming."),
+        ("blocks-index.html", "ph-layout", "Blocks", "Whole sections of a page: heroes, headers, footers, app shells and dashboards."),
     ]
     cards = "\n".join(f"""            <a href="{h}" class="flex flex-col gap-field p-surface rounded-md border border-weak hover:border-strong no-underline fg transition-colors">
               <i class="icon ph {i} fg-accent-1-weak"></i>
@@ -724,7 +730,7 @@ SEMANTIC_WORDS = re.compile(r"-(surface|dialog|region|page|field|row|group|secti
 
 def is_semantic(cat, k):
     """Semantic classes name a role (p-surface, fg-weak, text-heading-md); regular ones a scale step or a property value (p-md, border-warning-7)."""
-    if k in ("icon", "icon-sm", "icon-md", "icon-lg") or re.fullmatch(r"(h|size|min-w|px|ps|pe)-(control|nested)|gap-gutter(-half)?", k):
+    if k in ("icon", "icon-sm", "icon-md", "icon-lg") or re.fullmatch(r"(h|size|min-w|px|ps|pe)-(control|nested)|gap-gutter(-half)?|gap-px", k):
         return False  # icon sizes and control lengths are derived from the base size, like the space scale, not roles
     if cat in SEMANTIC_CATS or (cat != "Layout and misc" and SEMANTIC_WORDS.search(k)):
         return True
@@ -1178,7 +1184,7 @@ def component_page(c, prefix="c"):
     toc_items = [("example", "Example"), ("usage", "Usage")] + ([("built-from", "Built from")] if built else []) + [("classes", "Classes")]
     extras = c.get("examples", [])
     all_html = c["html"] + "".join(x["html"] for x in extras)
-    chips = " ".join(f'<a href="{class_page_of(k.split(":")[-1])}#{class_id(k.split(":")[-1])}" class="inline-flex items-center h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">{E(k)}</a>' for k in classes_of(all_html))
+    chips = " ".join(f'<a href="{class_page_of(k.split(":")[-1])}#{class_id(k.split(":")[-1])}" class="inline-flex items-center h-nested px-nested rounded-full bg-strong border border-weak hover:border-strong no-underline fg text-mono-sm whitespace-nowrap transition-colors">{E(k)}</a>' for k in classes_of(all_html))
     def example(sid, label, html_, summary=None):
         return section(sid, label, *([p(summary)] if summary else []),
             f"""<div data-example class="tier-product p-surface rounded-md border border-weak bg-strong">
@@ -1202,10 +1208,12 @@ def component_page(c, prefix="c"):
           </div>""",
         ),
         *([section("built-from", "Built from",
-            p("The components this pattern puts together. Each page has the parts on their own, with what to use them for."),
+            p(f"The components{' and patterns' if c.get('patterns') else ''} this {'block' if prefix == 'b' else 'pattern'} puts together. Each page has the parts on their own, with what to use them for."),
             '<div class="flex flex-wrap gap-2xs">' + " ".join(
-                f'<a href="c-{s}.html" class="inline-flex items-center gap-gutter-half h-nested px-nested rounded-xs bg-strong border border-weak hover:border-strong no-underline fg text-body-sm whitespace-nowrap transition-colors"><i class="icon icon-sm ph {cc["icon"]} fg-accent-1-weak"></i><span>{cc["name"]}</span></a>'
-                for s in built for cc in COMPONENTS if cc["slug"] == s) + "</div>")] if built else []),
+                f'<a href="c-{s}.html" class="inline-flex items-center gap-gutter-half h-nested px-nested rounded-full bg-strong border border-weak hover:border-strong no-underline fg text-body-sm whitespace-nowrap transition-colors"><i class="icon icon-sm ph {cc["icon"]} fg-accent-1-weak"></i><span>{cc["name"]}</span></a>'
+                for s in built for cc in COMPONENTS if cc["slug"] == s) + " ".join(
+                f'<a href="p-{s}.html" class="inline-flex items-center gap-gutter-half h-nested px-nested rounded-full bg-strong border border-weak hover:border-strong no-underline fg text-body-sm whitespace-nowrap transition-colors"><i class="icon icon-sm ph {pp["icon"]} fg-accent-1-weak"></i><span>{pp["name"]}</span></a>'
+                for s in c.get("patterns", []) for pp in PATTERNS if pp["slug"] == s) + "</div>")] if built else []),
         section("classes", "Classes",
             p(f"Every class in the examples, {len(classes_of(all_html))} in all. Each one links to its declarations in <a href=\"classes.html\">Classes</a> or <a href=\"semantic.html\">Semantic classes</a>."),
             f'<div class="flex flex-wrap gap-2xs">{chips}</div>',
@@ -1214,21 +1222,27 @@ def component_page(c, prefix="c"):
     return doc_page(name, c["name"], art, toc_items)
 
 
-def patterns_index():
+def kind_index(items, prefix, name, intro):
     groups = []
-    for g in dict.fromkeys(x["group"] for x in PATTERNS):
+    for g in dict.fromkeys(x["group"] for x in items):
         cards = "\n".join(
-            f"""            <a href="p-{x['slug']}.html" class="flex flex-col gap-3xs min-w-0 p-surface rounded-md border border-weak hover:border-strong hover:bg-component-weak no-underline fg transition-colors">
+            f"""            <a href="{prefix}-{x['slug']}.html" class="flex flex-col gap-3xs min-w-0 p-surface rounded-md border border-weak hover:border-strong hover:bg-component-weak no-underline fg transition-colors">
               <span class="inline-flex items-center gap-gutter text-subtitle"><i class="icon ph {x['icon']} fg-accent-1-weak"></i><span>{x['name']}</span></span>
               <span class="text-body-sm fg-weak break-words">{x['summary']}</span>
-            </a>""" for x in PATTERNS if x["group"] == g)
+            </a>""" for x in items if x["group"] == g)
         sid = g.lower().replace(" ", "-")
         groups.append((sid, g, f'<div class="grid grid-cols-1 md:grid-cols-2 gap-grid">\n{cards}\n          </div>'))
-    art = "\n        ".join(
-        [page_head("Patterns", "Patterns",
-                   f"{len(PATTERNS)} patterns, each a task (sign in, change a setting, filter a list) put together from the components, in one snippet of HTML built only from Nowind utility classes. Every page links the components it uses.")]
-        + [section(sid, g, body) for sid, g, body in groups])
-    return doc_page("patterns-index.html", "Patterns", art, [(sid, g) for sid, g, _ in groups], wide=True)
+    page = f"{name.lower()}-index.html"
+    art = "\n        ".join([page_head(name, name, intro)] + [section(sid, g, body) for sid, g, body in groups])
+    return doc_page(page, name, art, [(sid, g) for sid, g, _ in groups], wide=True)
+
+
+def patterns_index():
+    return kind_index(PATTERNS, "p", "Patterns", f"{len(PATTERNS)} patterns, each a task (sign in, change a setting, filter a list) put together from the components, in one snippet of HTML built only from Nowind utility classes. Every page links the components it uses.")
+
+
+def blocks_index():
+    return kind_index(BLOCKS, "b", "Blocks", f"{len(BLOCKS)} blocks, each a whole section of a page (a hero, a footer, an app shell) built from the components and patterns, in one snippet of HTML built only from Nowind utility classes. Every page links what it is built from.")
 
 
 def components_index():
@@ -1274,7 +1288,7 @@ def type_audit():
     (sizeContract). Each element gets a kind from its tag, role, classes and content; its effective size (its own
     text-* class, else the nearest ancestor's, else text-base) must be the kind's size. Returns (findings, unclassified)."""
     VOID = {"input", "img", "br", "hr", "meta", "link", "source", "wbr", "col"}
-    WANT = {"inline": set(), "navigation": {"base"}, "control": {"base"}, "option label": {"base"}, "cell": {"base"}, "header": {"sm"}, "label": {"sm"}, "supporting": {"sm"},
+    WANT = {"inline": set(), "navigation": {"base"}, "control": {"base"}, "code cell": {"xl"}, "option label": {"base"}, "cell": {"base"}, "header": {"sm"}, "label": {"sm"}, "supporting": {"sm"},
             "body": {"base"}, "title": {"lg"}, "dialog title": {"lg"}, "badge": {"sm"}, "count": {"xs"}, "keycap": {"sm"}, "kicker": {"xs"}, "figure": {"3xl"}}
 
     class Node:
@@ -1303,6 +1317,7 @@ def type_audit():
         if n.tag == "kbd": return "keycap"
         if any(a.tag == "th" for a in n.ancestors()) and is_control(n): return "header"  # a sort button is the header's text
         if n.tag == "th" and not n.text.strip() and n.has(is_control): return None  # its button carries the kind
+        if n.tag == "input" and "aspect-square" in n.toks: return "code cell"  # one digit of a one-time code, read at a glance
         if "font-display" in n.toks: return "figure"
         if "uppercase" in n.toks: return "kicker"
         if is_control(n):
@@ -1682,10 +1697,11 @@ def wrap_code(text):
 def main():
     os.makedirs(OUT, exist_ok=True)
     files = {"guide.html": guide(), "reference.html": reference(), "changelog.html": changelog(),
-             "docs-home.html": docs_home(), "index.html": index(), "components-index.html": components_index(), "patterns-index.html": patterns_index(), "classes.html": classes_page(), "semantic.html": classes_page(True),
+             "docs-home.html": docs_home(), "index.html": index(), "components-index.html": components_index(), "patterns-index.html": patterns_index(), "blocks-index.html": blocks_index(), "classes.html": classes_page(), "semantic.html": classes_page(True),
              "colour.html": colour_page(), "type-space.html": type_space_page(), "states.html": states_page(), "materials.html": materials_page(), "convenience.html": convenience_page(), "resets.html": resets_page()}
     files.update({f"c-{c['slug']}.html": component_page(c) for c in COMPONENTS})
     files.update({f"p-{x['slug']}.html": component_page(x, "p") for x in PATTERNS})
+    files.update({f"b-{x['slug']}.html": component_page(x, "b") for x in BLOCKS})
     for name, text in files.items():
         text = text.replace("<code>--", '<code class="whitespace-nowrap">--')
         text = text.replace("__VERSION__", VERSION)
@@ -1712,6 +1728,8 @@ def main():
         rows.append([c["name"], f"docs/c-{c['slug']}.html", "Component", html.unescape(re.sub(r"<[^>]+>", "", c["summary"]))])
     for x in PATTERNS:
         rows.append([x["name"], f"docs/p-{x['slug']}.html", "Pattern", html.unescape(re.sub(r"<[^>]+>", "", x["summary"]))])
+    for x in BLOCKS:
+        rows.append([x["name"], f"docs/b-{x['slug']}.html", "Block", html.unescape(re.sub(r"<[^>]+>", "", x["summary"]))])
     for name, text in files.items():
         path = os.path.normpath(os.path.join("docs", name)).replace(os.sep, "/")
         page = TITLES.get(path, path)
@@ -1725,7 +1743,7 @@ def main():
     print("wrote search.json", len(rows), "entries")
     # The component manifest: each component's contract as data, from the same source as its pages.
     comp = {"file": "site/docs/c-*.html", "generated": "scripts/templates.py from scripts/component_docs.py",
-            "description": "Every component and pattern Nowind documents: where its page is, what it is for, when to use it and not, and the classes its examples use; a pattern also lists the components it is built from. Examples use regular classes only.",
+            "description": "Every component, pattern and block Nowind documents: where its page is, what it is for, when to use it and not, and the classes its examples use; a pattern or block also lists the components (and patterns) it is built from. Examples use regular classes only.",
             "components": [{"slug": c["slug"], "name": c["name"], "group": c["group"], "page": f"site/docs/c-{c['slug']}.html",
                             "summary": html.unescape(re.sub(r"<[^>]+>", "", c["summary"])),
                             "use": [html.unescape(re.sub(r"<[^>]+>", "", t)) for t in c["use"]],
@@ -1738,7 +1756,13 @@ def main():
                           "components": x["components"],
                           "use": [html.unescape(re.sub(r"<[^>]+>", "", t)) for t in x["use"]],
                           "avoid": [html.unescape(re.sub(r"<[^>]+>", "", t)) for t in x["avoid"]],
-                          "classes": classes_of(x["html"])} for x in PATTERNS]}
+                          "classes": classes_of(x["html"])} for x in PATTERNS],
+            "blocks": [{"slug": x["slug"], "name": x["name"], "group": x["group"], "page": f"site/docs/b-{x['slug']}.html",
+                        "summary": html.unescape(re.sub(r"<[^>]+>", "", x["summary"])),
+                        "components": x["components"], "patterns": x.get("patterns", []),
+                        "use": [html.unescape(re.sub(r"<[^>]+>", "", t)) for t in x["use"]],
+                        "avoid": [html.unescape(re.sub(r"<[^>]+>", "", t)) for t in x["avoid"]],
+                        "classes": classes_of(x["html"])} for x in BLOCKS]}
     with open(os.path.join(site, "..", "components.manifest.json"), "w") as f:
         f.write(json.dumps(comp, indent=2, ensure_ascii=False) + "\n")
     print("wrote components.manifest.json", len(comp["components"]), "components")

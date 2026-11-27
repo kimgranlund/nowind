@@ -65,6 +65,14 @@ const typeCss = `${header}:root {
   --font-heading: "Inter Tight", "Inter", "Segoe UI", system-ui, sans-serif;
   --font-display: "Inter Tight", "Inter", "Segoe UI", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-body--font-feature-settings: normal;
+  --font-body--font-variation-settings: normal;
+  --font-heading--font-feature-settings: normal;
+  --font-heading--font-variation-settings: normal;
+  --font-display--font-feature-settings: normal;
+  --font-display--font-variation-settings: normal;
+  --font-mono--font-feature-settings: normal;
+  --font-mono--font-variation-settings: normal;
 
   --font-weight-normal: 400;
   --font-weight-medium: 500;
@@ -142,6 +150,11 @@ const typeManifest = {
     { token: "--font-display", use: "Display figures and numerals (prices, metrics): Inter Tight, the face that carries 800. Pair with font-extrabold and tracking-tight." },
     { token: "--font-mono", use: "Kicker, code and figures: IBM Plex Mono 400 and 500, loaded by theme.css." },
   ],
+  features: {
+    tokens: ["--font-{body,heading,display,mono}--font-feature-settings", "--font-{body,heading,display,mono}--font-variation-settings"],
+    rule: "Tailwind v4's per-face hooks: each face's font-* class sets its feature and variation settings with its family; the reset reads body's on html and mono's on code, kbd, samp and pre. Both default to normal.",
+    served: "Google Fonts serves Inter and Inter Tight with only calt, ccmp, dnom, frac, locl, numr, pnum and tnum, and IBM Plex Mono with only ccmp, dnom, frac and numr: cv*, ss*, case and zero do nothing unless the faces are self-hosted. tabular-nums, proportional-nums and the fractions work as served.",
+  },
   weights: ["--font-weight-normal: 400", "--font-weight-medium: 500", "--font-weight-semibold: 600", "--font-weight-bold: 700", "--font-weight-extrabold: 800 (Inter Tight only: Inter loads 400–700)"],
   tracking: ["--tracking-tight: -0.01em", "--tracking-normal: 0em", "--tracking-wide: 0.025em", "--tracking-widest: 0.16em"],
   leading: ["--leading-none: 1", "--leading-tight: 1.25", "--leading-snug: 1.375", "--leading-normal: 1.5", "--leading-relaxed: 1.625"],
