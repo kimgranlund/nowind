@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Physical bevels sit on the edge:** a lit raised part paints its own border (the light on top, the shade below, the sides clear) instead of drawing inset lines, which landed a pixel inside the border and read as a second contour. Its face gradient now starts under the border, and pressing clears the bevel. No length changes.
 - **Small round markers take `text-xs`:** the size contract's count kind now covers any `size-nested rounded-full` marker, initials included, so a small avatar's initials fit. The container-query demo shows the card in two equal columns. The `segment` convenience class stretches with `self-stretch`, so it matches its stack inside a segmented group.
 - **A smaller semantic set (breaking).** Semantic classes now name only decisions a raw step can't: 149, down from 267. Every token stays; only these classes go. Use the raw step or the kept role instead:
   - `accent-2` to `accent-4` role classes (`bg-accent-2`, `bg-component-accent-3`, `bg-solid-accent-4`, `fg-accent-2-weak`, `border-accent-3`, `fg-on-solid-accent-4`, …) → the raw steps they alias: `bg-accent-N-1`, `bg-accent-N-4`, `bg-accent-N-9`, `fg-accent-N-11`, `border-accent-N-7`, `fg-accent-N-contrast` (weak and strong rungs one step down or up).

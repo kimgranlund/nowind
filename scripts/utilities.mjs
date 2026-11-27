@@ -788,19 +788,22 @@ for (const [cls, pad] of [["px-control", "--control-icon-padding"], ["px-nested"
 const MATERIALS = ["flat", "physical", "frosted", "glass", "outline"];
 const RELIEFS = ["raised", "raised-solid", "recessed", "field", "etched", "ground", "overlay"];
 const shading = (top, bottom) => `linear-gradient(var(--paint-${top}), transparent, transparent, var(--paint-${bottom}))`;
-const BEVEL = "inset 0 1px 0 var(--paint-bevel-top), inset 0 -1px 0 var(--paint-bevel-bottom), 0 0 0 0.5px var(--paint-bevel-ring)";
-const BEVEL_SOLID = "inset 0 1px 0 var(--paint-bevel-top-solid), inset 0 -1px 0 var(--paint-bevel-bottom)";
+// The bevel sits on the part's own edge: the border takes the light on top and the shade below (sides clear, so the
+// colours meet in a crescent at each corner), and a hairline ring outside closes the contour. Every control already
+// has a border width, so painting it changes no length; an inset shadow would draw a second line inside the border.
+const EDGE = (top) => `border-color: var(--paint-${top}) transparent var(--paint-bevel-bottom); background-origin: border-box`;
+const BEVEL = "0 0 0 0.5px var(--paint-bevel-ring)";
 const RECESS = (lv) => `var(--inset-shadow-${lv}), inset 0 0 0 0.5px var(--paint-recess-ring), 0 1px 0 var(--paint-recess-lip)`;
 const rim = (k) => `inset 0 1px 0 var(--paint-rim-${k}-top), inset 0 -1px 0 var(--paint-rim-${k}-bottom), inset 0 0 0 0.5px var(--paint-rim-${k}-ring), inset 0 0 var(--q) 0 var(--paint-rim-${k}-glow), 0 0 0 0.5px var(--paint-rim-${k}-outer)`;
 const LIT = {
-  "raised": `background-image: ${shading("face-top", "face-bottom")}; box-shadow: ${BEVEL}, var(--shadow-sm)`,
-  "raised:active": `background-image: none; box-shadow: ${RECESS("xs")}`,
-  "raised-solid": `background-image: ${shading("face-top-solid", "face-bottom-solid")}; box-shadow: ${BEVEL_SOLID}, var(--shadow-sm)`,
-  "raised-solid:active": `background-image: none; box-shadow: ${RECESS("xs")}`,
+  "raised": `background-image: ${shading("face-top", "face-bottom")}; ${EDGE("bevel-top")}; box-shadow: ${BEVEL}, var(--shadow-sm)`,
+  "raised:active": `background-image: none; border-color: transparent; box-shadow: ${RECESS("xs")}`,
+  "raised-solid": `background-image: ${shading("face-top-solid", "face-bottom-solid")}; ${EDGE("bevel-top-solid")}; box-shadow: var(--shadow-sm)`,
+  "raised-solid:active": `background-image: none; border-color: transparent; box-shadow: ${RECESS("xs")}`,
   "recessed": `box-shadow: ${RECESS("sm")}`,
   "field": `box-shadow: ${RECESS("sm")}`,
   "etched": "box-shadow: inset 0 1px 0 var(--paint-etch-top), inset 0 -1px 0 var(--paint-etch-ledge)",
-  "ground": "box-shadow: inset 0 1px 0 var(--paint-bevel-top), var(--shadow-md)",
+  "ground": "border-block-start-color: var(--paint-bevel-top); box-shadow: var(--shadow-md)",
   "overlay": "box-shadow: var(--shadow-lg)",
 };
 // Clear glass after Apple's Liquid Glass: no gloss band, and the light catches the rim as two thin crescents on opposite
