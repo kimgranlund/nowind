@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- **Phone fixes from a visual pass:** the bar keeps the page's name (the section drops below `sm`) and its search becomes an icon at the end; the App shell block puts its links in a menu behind a button below `md`.
+- **Section headings:** the Feature section, Call to action and Pricing section blocks head their section at `text-3xl font-semibold tracking-tight`, a new "section heading" kind in the size contract (an `h2` that its `section` is labelled by).
+
 ## 0.20.0 (2026-11-27)
 
 - **Review fixes:** a field box ending in a bare input keeps its end padding (only a flush button at the end meets the edge); type roles with figures (`text-data` and the rest) combine with the numeral classes; `normal-nums` clears them; the composer sends on Enter and clears instead of reloading the page.

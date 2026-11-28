@@ -166,7 +166,7 @@ PATTERNS = [
     {
         "slug": "sign-in", "name": "Sign in", "icon": "ph-sign-in", "group": "Account",
         "components": ["card", "button", "text-field"],
-        "summary": "The first step of signing in: the providers as full-width buttons, a rule, then an email field and Continue. A link to create an account sits in the lead, single sign-on at the foot.",
+        "summary": "The first step of signing in: a \"Continue with\" rule over the providers in a 2×2 grid, then an email field and Continue. A link to create an account sits in the lead, single sign-on at the foot.",
         "html": auth("pat-in", "Sign in", f'Welcome back. Don’t <a href="#" class="{LINK}">have an account</a>?', providers(True) + f"""
 {field("pat-in-email", "Email", "ph-envelope-simple", 'type="email" name="email" autocomplete="email" placeholder="ada@example.com"', visible=False)}
   <button class="{BTN_PRIMARY} w-full" type="submit"><span>Continue</span></button>

@@ -50,7 +50,7 @@ BLOCKS = [
         "components": ["button", "badge"],
         "summary": "The top of a landing page: a kicker, a headline at the display size, one sentence of what it is, and two actions, the primary first. Centred, at a readable measure.",
         "html": f"""<section class="flex flex-col items-center text-center gap-md py-2xl px-md" aria-labelledby="blk-hero-title">
-  <span class="{BADGE} bg-accent-1-3 border-accent-1-6 fg-accent-1-11"><span>New in 0.19</span></span>
+  <span class="{BADGE} bg-accent-1-3 border-accent-1-6 fg-accent-1-11"><span>New in 0.20</span></span>
   <h2 id="blk-hero-title" class="{HEADLINE} max-w-text">Design tokens and utilities in one plain CSS file</h2>
   <p class="text-base fg-neutral-11 max-w-text">Link one stylesheet and every class already exists. No build step, in any HTML.</p>
   <div class="flex flex-wrap justify-center gap-xs">
@@ -68,7 +68,7 @@ BLOCKS = [
         "html": f"""<section class="flex flex-col gap-xl py-xl px-md" aria-labelledby="blk-feat-title">
   <div class="flex flex-col gap-xs max-w-text">
     <span class="{KICKER}">Why Nowind</span>
-    <h2 id="blk-feat-title" class="text-lg font-semibold">Everything a page needs, nothing to install</h2>
+    <h2 id="blk-feat-title" class="text-3xl font-semibold tracking-tight">Everything a page needs, nothing to install</h2>
     <p class="text-base fg-neutral-11">The classes read tokens, so changing a token changes every page.</p>
   </div>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-lg">
@@ -110,7 +110,7 @@ BLOCKS = [
         "summary": "The last section of a landing page, on the accent's solid: one line of what to do, one sentence of why, and the action.",
         "html": f"""<section class="flex flex-col md:flex-row md:items-center gap-md p-xl rounded-lg bg-accent-1-9 fg-accent-1-contrast" aria-labelledby="blk-cta-title">
   <div class="grow flex flex-col gap-xs">
-    <h2 id="blk-cta-title" class="text-lg font-semibold fg-accent-1-contrast">Start with one stylesheet</h2>
+    <h2 id="blk-cta-title" class="text-3xl font-semibold tracking-tight fg-accent-1-contrast">Start with one stylesheet</h2>
     <p class="text-base fg-accent-1-contrast">Free and open source. Link it from the CDN and start writing classes.</p>
   </div>
   <button class="inline-flex items-center justify-center h-control px-control gap-gutter rounded-sm state border border-transparent bg-white fg-black text-base font-medium cursor-pointer"><span>Get started</span><i class="icon ph ph-arrow-right"></i></button>
@@ -125,7 +125,7 @@ BLOCKS = [
         "html": f"""<section class="flex flex-col gap-xl py-xl px-md" aria-labelledby="blk-price-title">
   <div class="flex flex-col items-center text-center gap-xs">
     <span class="{KICKER}">Pricing</span>
-    <h2 id="blk-price-title" class="text-lg font-semibold">Pay per seat, cancel any time</h2>
+    <h2 id="blk-price-title" class="text-3xl font-semibold tracking-tight">Pay per seat, cancel any time</h2>
     <p class="text-base fg-neutral-11 max-w-text">Every plan has every class. Plans differ in support and sign-in.</p>
   </div>
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-md">
@@ -163,10 +163,21 @@ BLOCKS = [
     {
         "slug": "app-shell", "name": "App shell", "icon": "ph-app-window", "group": "Application",
         "components": ["navbar", "sidebar-nav", "button"], "patterns": ["page-header"],
-        "summary": "The frame of an app: the navbar across the top, the sidebar from <code>md</code> up, and the page in the rest, starting with its header.",
-        "html": f"""<div class="flex flex-col border border-neutral-6 bg-neutral-1 overflow-hidden">
-  <header class="flex items-center gap-md px-xs py-xs border-b border-neutral-6">
-    <a href="#" class="inline-flex items-center gap-gutter ps-xs no-underline fg-neutral-12 hover:fg-accent-1-11 text-lg font-semibold"><i class="icon ph-bold ph-wind fg-accent-1-9"></i><span>Acme</span></a>
+        "summary": "The frame of an app: the navbar across the top, the sidebar from <code>md</code> up (below that, the same links in a menu behind a button), and the page in the rest, starting with its header.",
+        "html": f"""<div class="flex flex-col border border-neutral-6 bg-neutral-1">
+  <header class="flex items-center gap-xs px-xs py-xs border-b border-neutral-6">
+    <div class="md:hidden">
+      <button class="{GHOST_ICON}" popovertarget="blk-shell-menu" aria-label="Menu"><i class="icon ph ph-list"></i></button>
+      <div id="blk-shell-menu" popover class="anchor-bottom w-fit p-inset rounded-md bg-neutral-1 border border-neutral-6 shadow-lg">
+        <nav aria-label="Workspace" class="flex flex-col gap-3xs">
+          {nav_item("ph-house", "Home", True)}
+          {nav_item("ph-folder-simple", "Projects")}
+          {nav_item("ph-users", "Team")}
+          {nav_item("ph-gear-six", "Settings")}
+        </nav>
+      </div>
+    </div>
+    <a href="#" class="inline-flex items-center gap-gutter px-xs no-underline fg-neutral-12 hover:fg-accent-1-11 text-lg font-semibold"><i class="icon ph-bold ph-wind fg-accent-1-9"></i><span>Acme</span></a>
     <span class="grow"></span>
     <button class="{GHOST_ICON}" aria-label="Notifications"><i class="icon ph ph-bell"></i></button>
     <span class="{AVATAR} bg-accent-2-9 fg-accent-2-contrast">AL</span>

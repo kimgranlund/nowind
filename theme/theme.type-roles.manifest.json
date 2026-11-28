@@ -484,6 +484,14 @@
         "icon": "matches its text",
         "status": "review",
         "current": "~250 elements, mostly wrappers that inherit; about 50 set text-sm or text-base and need a kind"
+      },
+      {
+        "kind": "section heading",
+        "identify": "an h2 that names a whole section of a page (its section's aria-labelledby): a feature, pricing or call-to-action block",
+        "size": "text-3xl font-semibold tracking-tight",
+        "icon": "none",
+        "status": "decided",
+        "current": "text-3xl"
       }
     ],
     "rules": [

@@ -135,7 +135,7 @@ def top(path):
     secs = "".join(
         f'<a href="{rel(pages[0][0], path)}"{CUR_SEC if name == cur else ""} class="{band_on if name == cur else band_off}">{name}</a>'
         for name, pages in SECTIONS)
-    where = (f'<span class="fg-weak">{cur}</span><span class="fg-subtle">/</span><span class="truncate">{LABELS[path]}</span>'
+    where = (f'<span class="hidden sm:inline fg-weak">{cur}</span><span class="hidden sm:inline fg-subtle">/</span><span class="truncate">{LABELS[path]}</span>'
              if cur else '<span>Site map</span>')
     step = ""
     if cur:
@@ -173,7 +173,7 @@ def top(path):
 </div>
 <div class="flex items-center gap-xs px-grid py-2xs border-b-2 border-strong bg">
   <button type="button" popovertarget="site-map" class="inline-flex items-center gap-gutter-half min-w-0 h-control px-control rounded-sm border hover:bg-component-weak bg text-title-sm cursor-pointer transition-colors">{where}<span class="sr-only">, site map</span><i class="icon caret fg-weak" aria-hidden="true"></i></button>
-  <button type="button" data-search-open class="inline-flex items-center gap-gutter grow min-w-0 h-control px-control rounded-sm border hover:border-strong bg-strong fg-subtle text-control-md cursor-text transition-colors"><i class="icon ph ph-magnifying-glass"></i><span class="grow truncate text-start">Search pages, components and classes</span><kbd class="hidden sm:inline text-mono-sm">⌘K</kbd></button>
+  <button type="button" data-search-open class="inline-flex items-center gap-gutter ms-auto sm:ms-0 sm:grow min-w-0 h-control px-control rounded-sm border hover:border-strong bg-strong fg-subtle text-control-md cursor-text transition-colors"><i class="icon ph ph-magnifying-glass"></i><span class="sr-only sm:hidden">Search</span><span class="hidden sm:inline grow truncate text-start">Search pages, components and classes</span><kbd class="hidden sm:inline text-mono-sm">⌘K</kbd></button>
   {step}
 </div>
 </div>
@@ -1289,7 +1289,7 @@ def type_audit():
     text-* class, else the nearest ancestor's, else text-base) must be the kind's size. Returns (findings, unclassified)."""
     VOID = {"input", "img", "br", "hr", "meta", "link", "source", "wbr", "col"}
     WANT = {"inline": set(), "navigation": {"base"}, "control": {"base"}, "code cell": {"xl"}, "option label": {"base"}, "cell": {"base"}, "header": {"sm"}, "label": {"sm"}, "supporting": {"sm"},
-            "body": {"base"}, "title": {"lg"}, "dialog title": {"lg"}, "badge": {"sm"}, "count": {"xs"}, "keycap": {"sm"}, "kicker": {"xs"}, "figure": {"3xl"}}
+            "body": {"base"}, "title": {"lg"}, "section heading": {"3xl"}, "dialog title": {"lg"}, "badge": {"sm"}, "count": {"xs"}, "keycap": {"sm"}, "kicker": {"xs"}, "figure": {"3xl"}}
 
     class Node:
         def __init__(self, tag, attrs, parent):
@@ -1332,6 +1332,7 @@ def type_audit():
         if "rounded-full" in n.toks and "size-nested" in n.toks and n.alltext().strip(): return "count"
         if "rounded-full" in n.toks and n.alltext().strip(): return "badge"
         if n.tag == "h1": return None  # a page heading takes the heading roles, not a surface title
+        if n.tag == "h2" and n.attrs.get("id") and any(a.tag == "section" and a.attrs.get("aria-labelledby") == n.attrs["id"] for a in n.ancestors()): return "section heading"  # names a whole section of a page
         if n.tag in ("h2", "h3", "h4"):
             return "dialog title" if any(a.tag == "dialog" or a.attrs.get("role") == "dialog" for a in n.ancestors()) else "title"
         if n.tag == "p": return "body"

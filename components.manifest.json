@@ -2804,7 +2804,7 @@
       "name": "Sign in",
       "group": "Account",
       "page": "site/docs/p-sign-in.html",
-      "summary": "The first step of signing in: the providers as full-width buttons, a rule, then an email field and Continue. A link to create an account sits in the lead, single sign-on at the foot.",
+      "summary": "The first step of signing in: a \"Continue with\" rule over the providers in a 2×2 grid, then an email field and Continue. A link to create an account sits in the lead, single sign-on at the foot.",
       "components": [
         "card",
         "button",
@@ -4700,9 +4700,11 @@
         "shrink-0",
         "size-control",
         "sm:grid-cols-2",
+        "text-3xl",
         "text-base",
         "text-lg",
         "text-xs",
+        "tracking-tight",
         "tracking-widest",
         "uppercase"
       ]
@@ -4847,8 +4849,9 @@
         "rounded-lg",
         "rounded-sm",
         "state",
+        "text-3xl",
         "text-base",
-        "text-lg"
+        "tracking-tight"
       ]
     },
     {
@@ -4992,7 +4995,7 @@
       "name": "App shell",
       "group": "Application",
       "page": "site/docs/b-app-shell.html",
-      "summary": "The frame of an app: the navbar across the top, the sidebar from md up, and the page in the rest, starting with its header.",
+      "summary": "The frame of an app: the navbar across the top, the sidebar from md up (below that, the same links in a menu behind a button), and the page in the rest, starting with its header.",
       "components": [
         "navbar",
         "sidebar-nav",
@@ -5009,6 +5012,7 @@
         "A second sidebar on the other side; put that detail in a drawer."
       ],
       "classes": [
+        "anchor-bottom",
         "bg-accent-1-9",
         "bg-accent-2-9",
         "bg-neutral-1",
@@ -5048,26 +5052,27 @@
         "items-center",
         "justify-center",
         "md:flex",
+        "md:hidden",
         "min-w-0",
         "no-underline",
-        "overflow-hidden",
         "p-inset",
         "p-md",
         "p-xl",
-        "ps-xs",
         "px-control",
         "px-xs",
         "py-xs",
         "rounded-full",
         "rounded-md",
         "rounded-sm",
+        "shadow-lg",
         "shrink-0",
         "size-control",
         "state",
         "text-base",
         "text-center",
         "text-lg",
-        "text-sm"
+        "text-sm",
+        "w-fit"
       ]
     },
     {
