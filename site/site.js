@@ -21,9 +21,9 @@
           class="grow min-w-0 p-0 border-0 bg-transparent fg text-lg outline-0">
         <button type="button" aria-label="Close" class="inline-flex items-center justify-center size-control shrink-0 rounded-sm border border-transparent bg-transparent state fg-weak cursor-pointer"><i class="icon ph ph-x"></i></button>
       </div>
-      <div role="group" aria-label="Filter" class="flex flex-wrap items-center gap-3xs px-md pb-xs border-b">
-        ${FILTERS.map(([k, n]) => `<button type="button" data-filter="${k}" aria-pressed="${k === ""}" class="inline-flex items-center h-nested px-nested rounded-sm border border-transparent bg-transparent state text-sm fg-weak pressed:bg-component pressed:fg cursor-pointer"><span>${n}</span></button>`).join("")}
-      </div>
+      <div class="px-md pb-xs border-b overflow-x-auto"><div role="group" aria-label="Filter" class="inline-flex items-center h-control rounded-sm border-2 border-transparent bg-neutral-a2">
+        ${FILTERS.map(([k, n]) => `<button type="button" data-filter="${k}" aria-pressed="${k === ""}" class="inline-flex items-center h-full px-nested rounded-inner border-0 bg-transparent hover:bg-neutral-4 pressed:bg-white fg-neutral-11 pressed:fg-black text-base font-medium whitespace-nowrap cursor-pointer"><span>${n}</span></button>`).join("")}
+      </div></div>
       <ul id="search-results" role="listbox" aria-label="Results" class="list-none px-xs py-inset flex flex-col grow min-h-0 overflow-y-auto"></ul>
       <div class="flex flex-wrap items-center gap-md px-md py-xs border-t text-sm fg-weak">
         <span class="inline-flex items-center gap-3xs"><kbd class="${KEY}">↑</kbd><kbd class="${KEY}">↓</kbd><span>Navigate</span></span>
@@ -53,8 +53,8 @@
   const row = (r, i, sub) => `<li role="option" id="search-${i}" aria-selected="${i === active}">
       <a href="${new URL(r[1], base)}" tabindex="-1" aria-selected="${i === active}" class="flex items-center gap-gutter h-control px-control rounded-sm no-underline fg hover:bg-component-weak selected:bg-component">
         <i class="icon ph ${KINDS[r[2]]} fg-weak"></i>
-        <span class="grow min-w-0 truncate ${r[2] === "Class" ? "text-mono-sm" : "text-body-md"}">${esc(r[0])}</span>
-        ${sub ? `<span class="shrink-0 truncate text-sm fg-weak">${esc(sub)}</span>` : ""}
+        <span class="grow shrink-0 max-w-full truncate ${r[2] === "Class" ? "text-mono-sm" : "text-body-md"}">${esc(r[0])}</span>
+        ${sub ? `<span class="min-w-0 truncate text-sm fg-weak">${esc(sub)}</span>` : ""}
         <i class="icon icon-sm ph ph-arrow-elbow-down-left fg-weak ${i === active ? "" : "invisible"}" aria-hidden="true"></i>
       </a></li>`;
 
@@ -76,7 +76,7 @@
     hits = groups.flatMap(([, rs]) => rs);
     active = 0;
     let i = 0;
-    list.innerHTML = groups.map(([name, rs, sub]) => (filter ? "" : `<li role="presentation" class="px-control pt-xs pb-3xs text-sm fg-weak">${esc(name)}</li>`) + rs.map((r) => row(r, i++, sub(r))).join("")).join("")
+    list.innerHTML = groups.map(([name, rs, sub]) => (filter ? "" : `<li role="presentation" class="px-control pt-xs pb-3xs text-kicker-sm fg-weak">${esc(name)}</li>`) + rs.map((r) => row(r, i++, sub(r))).join("")).join("")
       || `<li role="presentation" class="px-control py-md text-body-md fg-weak">No results for “${esc(input.value.trim())}”</li>`;
     input.setAttribute("aria-activedescendant", hits.length ? "search-0" : "");
     status.textContent = q ? `${hits.length === 60 ? "First 60" : hits.length} results` : `${rows.length} entries`;
