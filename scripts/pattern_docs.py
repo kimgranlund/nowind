@@ -431,6 +431,59 @@ PATTERNS = [
         "avoid": ["Showing the bar before anything is selected."],
     },
     {
+        "slug": "data-table", "name": "Data table", "icon": "ph-table", "group": "Data",
+        "components": ["text-field", "button", "sortable-table", "form-controls", "badge", "pagination"],
+        "summary": "A table people work through: a search and a filter above it, sortable headers, a checkbox on each row, a status badge, and the count and pages below.",
+        "html": f"""<div class="flex flex-col rounded-md border border-neutral-6 bg-neutral-1">
+  <div class="flex flex-wrap items-center gap-xs p-inset border-b border-neutral-6">
+    <div class="flex items-center gap-gutter h-control px-control rounded-sm border border-transparent hover:border-neutral-7 focus-within:border-accent-1-8 bg-neutral-3 text-base cursor-text transition grow min-w-0"><i class="icon ph ph-magnifying-glass fg-neutral-11" aria-hidden="true"></i><input class="{BARE}" type="search" placeholder="Search customers" aria-label="Search customers"></div>
+    <button class="{BTN_SECONDARY}"><i class="icon ph ph-funnel"></i><span>Filter</span></button>
+  </div>
+  <div class="overflow-x-auto">
+    <table class="w-full">
+      <thead class="bg-neutral-2"><tr>
+        <td class="h-control px-control"><input type="checkbox" aria-label="Select all customers"></td>
+        <th aria-sort="ascending" class="h-control px-control py-0 text-start"><button class="inline-flex items-center gap-gutter-half min-h-0 p-0 border-0 bg-transparent fg-neutral-12 text-sm font-medium cursor-pointer"><span>Customer</span><i class="icon icon-sm ph-bold ph-caret-up"></i></button></th>
+        <th class="h-control px-control text-start text-sm font-medium fg-neutral-11">Status</th>
+        <th aria-sort="none" class="h-control ps-control pe-md py-0 text-end"><button class="inline-flex items-center gap-gutter-half min-h-0 p-0 border-0 bg-transparent fg-neutral-11 hover:fg-neutral-12 text-sm font-medium cursor-pointer"><i class="icon icon-sm ph-bold ph-caret-up-down"></i><span>Seats</span></button></th>
+      </tr></thead>
+      <tbody>
+      <tr class="border-t border-neutral-6 hover:bg-neutral-2 has-checked:bg-accent-1-2 transition">
+        <td class="h-control px-control"><input type="checkbox" aria-label="Select Contoso" checked></td>
+        <td class="h-control px-control">Contoso</td>
+        <td class="h-control px-control"><span class="{BADGE} bg-success-3 border-success-6 fg-success-11"><span>Active</span></span></td>
+        <td class="h-control ps-control pe-md text-end tabular-nums">48</td>
+      </tr>
+      <tr class="border-t border-neutral-6 hover:bg-neutral-2 has-checked:bg-accent-1-2 transition">
+        <td class="h-control px-control"><input type="checkbox" aria-label="Select Fabrikam"></td>
+        <td class="h-control px-control">Fabrikam</td>
+        <td class="h-control px-control"><span class="{BADGE} bg-info-3 border-info-6 fg-info-11"><span>Trial</span></span></td>
+        <td class="h-control ps-control pe-md text-end tabular-nums">12</td>
+      </tr>
+      <tr class="border-t border-neutral-6 hover:bg-neutral-2 has-checked:bg-accent-1-2 transition">
+        <td class="h-control px-control"><input type="checkbox" aria-label="Select Northwind"></td>
+        <td class="h-control px-control">Northwind</td>
+        <td class="h-control px-control"><span class="{BADGE} bg-danger-3 border-danger-6 fg-danger-11"><span>Overdue</span></span></td>
+        <td class="h-control ps-control pe-md text-end tabular-nums">7</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="flex flex-wrap items-center justify-between gap-sm p-inset border-t border-neutral-6">
+    <span class="ps-control text-sm fg-neutral-11 tabular-nums">1–3 of 48</span>
+    <nav aria-label="Pagination" class="inline-flex items-center gap-3xs">
+      <a href="#" class="inline-flex items-center justify-center size-control state border border-transparent rounded-sm fg-neutral-11 no-underline" aria-label="Previous"><i class="icon icon-sm ph ph-caret-left"></i></a>
+      <a href="#" aria-current="page" class="inline-flex items-center justify-center size-control border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums">1</a>
+      <a href="#" class="inline-flex items-center justify-center size-control border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums">2</a>
+      <a href="#" class="inline-flex items-center justify-center size-control border border-transparent rounded-sm fg-neutral-11 hover:bg-neutral-3 current:bg-accent-1-9 current:fg-accent-1-contrast no-underline text-base font-medium tabular-nums">3</a>
+      <a href="#" class="inline-flex items-center justify-center size-control state border border-transparent rounded-sm fg-neutral-11 no-underline" aria-label="Next"><i class="icon icon-sm ph ph-caret-right"></i></a>
+    </nav>
+  </div>
+</div>""",
+        "use": ["Say how many rows match, and which of them are shown, beside the pages.", "Sort and filter on the server for anything past a few hundred rows, and keep the search in the URL."],
+        "avoid": ["Paging a list short enough to show whole.", "Sorting by a column whose header doesn't say which way it is sorted (<code>aria-sort</code>)."],
+    },
+    {
         "slug": "details-panel", "name": "Details panel", "icon": "ph-info", "group": "Data",
         "components": ["card", "description-list", "badge"],
         "summary": "One record's facts in a card: its name and status, then terms and values that stack on a phone and sit side by side from <code>sm</code> up.",

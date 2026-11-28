@@ -302,6 +302,24 @@ COMPONENTS = [
   <button class="inline-flex items-center h-nested px-nested rounded-inner state border-0 bg-neutral-1 fg-neutral-12 text-base font-medium cursor-pointer"><span>Undo</span></button>
 </div>""",
         "examples": [
+            {"id": "stack", "label": "A stack",
+             "summary": "Several toasts at once sit in one list at the end edge, newest at the bottom, a small gap apart (<code>gap-2xs</code>), each its own width. An error takes <code>role=\"alert\"</code>; the others stay <code>status</code>.",
+             "html": """<ol role="list" aria-label="Notifications" class="flex flex-col items-end gap-2xs">
+    <li class="flex items-center gap-gutter p-2xs w-fit rounded-md bg-neutral-12 fg-neutral-1 shadow-lg" role="alert">
+      <i class="icon ph ph-x-circle fg-danger-9"></i>
+      <span class="text-base fg-neutral-1">Upload failed</span>
+      <button class="inline-flex items-center h-nested px-nested rounded-inner state border-0 bg-neutral-1 fg-neutral-12 text-base font-medium cursor-pointer"><span>Retry</span></button>
+    </li>
+    <li class="flex items-center gap-gutter p-2xs w-fit rounded-md bg-neutral-12 fg-neutral-1 shadow-lg" role="status">
+      <i class="icon ph ph-info fg-info-9"></i>
+      <span class="text-base fg-neutral-1">Export started</span>
+    </li>
+    <li class="flex items-center gap-gutter p-2xs w-fit rounded-md bg-neutral-12 fg-neutral-1 shadow-lg" role="status">
+      <i class="icon ph ph-check-circle fg-success-9"></i>
+      <span class="text-base fg-neutral-1">Changes saved</span>
+      <button class="inline-flex items-center h-nested px-nested rounded-inner state border-0 bg-neutral-1 fg-neutral-12 text-base font-medium cursor-pointer"><span>Undo</span></button>
+    </li>
+</ol>"""},
             {"id": "detail", "label": "Title, detail and action",
              "summary": "Fixed slots: icon, a text column (title, detail, actions) and dismiss. <code>items-start</code> keeps the icon and dismiss on the title's line however the text wraps (the icon box and the title's line are both one slot tall). The toast pads <code>p-xs</code> on every side and the dismiss nests its corner with <code>rounded-inner</code>.",
              "html": """<div class="flex flex-col gap-2xs max-w-form">
@@ -1144,6 +1162,47 @@ COMPONENTS = [
 </aside>""",
         "use": ["Asides in long text: a tip, a caveat, a note on an older version."],
         "avoid": ["A callout for a status the reader must act on; use an alert."],
+    },
+    {
+        "slug": "context-menu", "name": "Context menu", "icon": "ph-cursor-click", "group": "Actions",
+        "summary": "The menu a right-click opens, at the pointer: the same items as an action menu, each with its shortcut. The area is focusable, so Shift+F10 or the menu key opens it too, at the area's centre.",
+        "html": """<div tabindex="0" data-context-menu="doc-context" class="flex items-center justify-center p-xl rounded-md border-2 border-dashed border-neutral-6 text-center select-none" aria-label="Design canvas, right-click for actions"><p class="text-base fg-neutral-11">Right-click here, or focus it and press Shift+F10.</p></div>
+<div id="doc-context" popover class="w-fit p-inset rounded-md bg-neutral-1 border border-neutral-6 shadow-lg">
+  <div class="flex flex-col" role="menu" aria-label="Canvas actions">
+    <button class="flex items-center gap-gutter h-control px-control rounded-sm state border border-transparent bg-transparent text-base cursor-pointer fg-neutral-12" role="menuitem"><i class="icon ph ph-scissors"></i><span class="grow text-start">Cut</span><span class="ps-md text-sm fg-neutral-11 font-mono">⌘X</span></button>
+    <button class="flex items-center gap-gutter h-control px-control rounded-sm state border border-transparent bg-transparent text-base cursor-pointer fg-neutral-12" role="menuitem"><i class="icon ph ph-copy"></i><span class="grow text-start">Copy</span><span class="ps-md text-sm fg-neutral-11 font-mono">⌘C</span></button>
+    <button class="flex items-center gap-gutter h-control px-control rounded-sm state border border-transparent bg-transparent text-base cursor-pointer fg-neutral-12" role="menuitem"><i class="icon ph ph-clipboard-text"></i><span class="grow text-start">Paste</span><span class="ps-md text-sm fg-neutral-11 font-mono">⌘V</span></button>
+    <div class="my-3xs border-t border-neutral-6" role="separator"></div>
+    <button class="flex items-center gap-gutter h-control px-control rounded-sm state border border-transparent bg-transparent text-base cursor-pointer fg-danger-11" role="menuitem"><i class="icon ph ph-trash"></i><span class="grow text-start">Delete</span><span class="ps-md text-sm fg-neutral-11 font-mono">⌫</span></button>
+  </div>
+</div>
+<script>
+document.querySelectorAll("[data-context-menu]:not([data-context-ready])").forEach((area) => {
+  area.dataset.contextReady = "";
+  const menu = document.getElementById(area.dataset.contextMenu);
+  if (!menu) return;
+  area.addEventListener("contextmenu", (e) => {
+    e.preventDefault();
+    const r = area.getBoundingClientRect();
+    const x = e.clientX || r.left + r.width / 2, y = e.clientY || r.top + r.height / 2;
+    menu.style.margin = "0";
+    menu.style.inset = "auto";
+    menu.showPopover();
+    const w = menu.offsetWidth, h = menu.offsetHeight;
+    menu.style.left = Math.min(x, innerWidth - w - 8) + "px";
+    menu.style.top = Math.min(y, innerHeight - h - 8) + "px";
+    menu.querySelector("[role=menuitem]")?.focus();
+  });
+  menu.addEventListener("keydown", (e) => {
+    const items = [...menu.querySelectorAll("[role=menuitem]")], i = items.indexOf(document.activeElement);
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); items[(i + (e.key === "ArrowDown" ? 1 : items.length - 1)) % items.length].focus(); }
+  });
+  menu.addEventListener("click", (e) => { if (e.target.closest("[role=menuitem]")) menu.hidePopover(); });
+  menu.addEventListener("toggle", (e) => { if (e.newState === "closed") area.focus(); });
+});
+</script>""",
+        "use": ["Every item a context menu holds must also be reachable another way (a toolbar, an action menu, a shortcut): people don't know to right-click.", "Shortcuts at the end of each row, in the mono face."],
+        "avoid": ["Replacing the browser's own menu on text people may want to copy or look up."],
     },
     {
         "slug": "action-menu", "name": "Action menu", "icon": "ph-dots-three-vertical", "group": "Overlays",

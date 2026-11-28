@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- **Context menu:** a new component, the action menu opened by a right-click at the pointer (or Shift+F10 at the area's centre), with each item's shortcut; a short script places it and moves focus with the arrow keys.
+- **Data table:** a new pattern, with a search and a filter, sortable headers, row checkboxes, status badges, and the count and pages below.
+- **Toast** shows a stack: several toasts in one list at the end edge, the error as an alert.
+
 - **The site uses its own components:** the ⌘K palette's filter is the segmented control and its group headings are kickers, as in the Command palette component; a result's name stays whole and its detail truncates.
 
 - **Phone fixes from a visual pass:** the bar keeps the page's name (the section drops below `sm`) and its search becomes an icon at the end; the App shell block puts its links in a menu behind a button below `md`.
