@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.20.0 (2026-11-27)
+
 - **Review fixes:** a field box ending in a bare input keeps its end padding (only a flush button at the end meets the edge); type roles with figures (`text-data` and the rest) combine with the numeral classes; `normal-nums` clears them; the composer sends on Enter and clears instead of reloading the page.
 - **OpenType numerals, after Tailwind v4:** `normal-nums`, `ordinal`, `slashed-zero`, `lining-nums`, `oldstyle-nums`, `proportional-nums`, `tabular-nums`, `diagonal-fractions` and `stacked-fractions` each fill one slot and combine on one element; table cells take tabular figures the same way. `antialiased` and `subpixel-antialiased` join them. Each face has a feature-settings and a variation-settings token (default `normal`), set by its `font-*` class and read by the reset on the body and on code. Google Fonts serves Inter and Plex Mono with most features removed, so only tabular, proportional and fractions take effect as served; the rest work with self-hosted faces.
 - **Composer:** one round key at the end, Dictate while the box is empty and Send once something is typed (a short script swaps them). **Trace:** a rule joins each step's mark to the next, solid after a finished step and dashed after one still to come.
