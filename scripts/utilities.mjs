@@ -24,6 +24,8 @@ const KICKERS = typeProps.filter((p) => /^--kicker-(sm|md|lg)$/.test(p)).map((p)
 const roleProps = props(read("theme/theme.type-roles.css"));
 const ROLES = roleProps.filter((p) => p.endsWith("--font-family")).map((p) => p.slice(2, -"--font-family".length));
 const roleHas = (r, prop) => roleProps.includes(`--${r}--${prop}`);
+const NUM_SLOTS = ["ordinal", "zero", "figure", "spacing", "fraction"];
+const NUMS = NUM_SLOTS.map((n) => `var(--_nums-${n}, )`).join(" ");
 const SPACE = props(read("theme/theme.space.css")).map((p) => p.slice(8));
 
 // ---- Class table ----
@@ -93,7 +95,9 @@ for (const k of KICKERS) add(`text-${k}`, `font-size: var(--${k}); line-height: 
 for (const r of ROLES) {
   if (KICKERS.includes(r)) continue;
   const decl = [`font-size: var(--${r})`, `line-height: var(--${r}--line-height)`, `font-weight: var(--${r}--font-weight)`, `font-family: var(--${r}--font-family)`];
-  for (const p of ["letter-spacing", "font-variant-numeric", "text-transform", "font-style", "font-variant-ligatures"]) if (roleHas(r, p)) decl.push(`${p}: var(--${r}--${p})`);
+  for (const p of ["letter-spacing", "text-transform", "font-style", "font-variant-ligatures"]) if (roleHas(r, p)) decl.push(`${p}: var(--${r}--${p})`);
+  // A role's figures fill the spacing slot, so a numeral class beside it (text-data slashed-zero) adds to them rather than replacing them.
+  if (roleHas(r, "font-variant-numeric")) decl.push(`--_nums-spacing: var(--${r}--font-variant-numeric)`, `font-variant-numeric: ${NUMS}`);
   add(`text-${r}`, decl.join("; "));
 }
 for (const a of ["left", "center", "right", "justify", "start", "end"]) add(`text-${a}`, `text-align: ${a}`);
@@ -112,9 +116,9 @@ add("uppercase", "text-transform: uppercase");
 add("lowercase", "text-transform: lowercase");
 add("capitalize", "text-transform: capitalize");
 add("normal-case", "text-transform: none");
-add("normal-nums", "font-variant-numeric: normal");
+add("normal-nums", `${NUM_SLOTS.map((n) => `--_nums-${n}: initial`).join("; ")}; font-variant-numeric: normal`);
 for (const [c, slot, v] of [["ordinal", "ordinal", "ordinal"], ["slashed-zero", "zero", "slashed-zero"], ["lining-nums", "figure", "lining-nums"], ["oldstyle-nums", "figure", "oldstyle-nums"], ["proportional-nums", "spacing", "proportional-nums"], ["tabular-nums", "spacing", "tabular-nums"], ["diagonal-fractions", "fraction", "diagonal-fractions"], ["stacked-fractions", "fraction", "stacked-fractions"]])
-  add(c, `--_nums-${slot}: ${v}; font-variant-numeric: var(--_nums-ordinal, ) var(--_nums-zero, ) var(--_nums-figure, ) var(--_nums-spacing, ) var(--_nums-fraction, )`);
+  add(c, `--_nums-${slot}: ${v}; font-variant-numeric: ${NUMS}`);
 add("antialiased", "-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale");
 add("subpixel-antialiased", "-webkit-font-smoothing: auto; -moz-osx-font-smoothing: auto");
 add("text-balance", "text-wrap: balance");
@@ -805,7 +809,7 @@ for (const [cls, pad] of [["px-control", "--control-icon-padding"], ["px-nested"
   out.push(`  .${cls}:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested):first-child)) { padding-inline-start: var(${pad}); }`);
   out.push(`  .${cls}:where(:not(td, th):has(> :is(.icon, .h-nested, .size-nested, .select-base.p-0):last-child)) { padding-inline-end: var(${pad}); }`);
   // An item that fills the box's height at its end (h-full, in a border-2 control box) meets the edge; the 2px border is its inset.
-  out.push(`  .${cls}:where(:not(td, th):has(> .h-full:last-child)) { padding-inline-end: 0; }`);
+  out.push(`  .${cls}:where(:not(td, th):has(> .h-full:not(input, textarea, select):last-child)) { padding-inline-end: 0; }`);
   // A date or time input ends in the browser's picker key, an icon-sized box: the edge takes the icon padding, as at a trailing icon.
   out.push(`  .${cls}:where(:not(td, th):has(> input:is([type=date], [type=time], [type=datetime-local], [type=month], [type=week]):last-child)) { padding-inline-end: var(${pad}); }`);
 }

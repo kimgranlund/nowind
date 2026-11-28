@@ -84,6 +84,8 @@ document.querySelectorAll("[data-composer]:not([data-composer-ready])").forEach(
   if (!text || !dictate || !send) return;
   const sync = () => { const empty = !text.value.trim(); dictate.hidden = !empty; send.hidden = empty; };
   text.addEventListener("input", sync);
+  form.addEventListener("submit", (e) => { e.preventDefault(); text.value = ""; sync(); text.focus(); });
+  text.addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey && text.value.trim()) { e.preventDefault(); form.requestSubmit(send); } });
   sync();
 });
 </script>
@@ -112,6 +114,8 @@ document.querySelectorAll(&quot;[data-composer]:not([data-composer-ready])&quot;
   if (!text || !dictate || !send) return;
   const sync = () =&gt; { const empty = !text.value.trim(); dictate.hidden = !empty; send.hidden = empty; };
   text.addEventListener(&quot;input&quot;, sync);
+  form.addEventListener(&quot;submit&quot;, (e) =&gt; { e.preventDefault(); text.value = &quot;&quot;; sync(); text.focus(); });
+  text.addEventListener(&quot;keydown&quot;, (e) =&gt; { if (e.key === &quot;Enter&quot; &amp;&amp; !e.shiftKey &amp;&amp; text.value.trim()) { e.preventDefault(); form.requestSubmit(send); } });
   sync();
 });
 &lt;/script&gt;</code></pre>
@@ -154,7 +158,7 @@ document.querySelectorAll(&quot;[data-composer]:not([data-composer-ready])&quot;
           <div class="col-span-12 md:col-span-9 min-w-0 flex flex-col gap-group">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-grid">
             <div class="flex flex-col gap-field"><span class="text-label fg-success-weak">Use</span><ul role="list" class="flex flex-col gap-xs text-body-md max-w-text">
-            <li class="flex gap-gutter"><i class="icon ph ph-check fg-success-weak"></i><span>A <code>&lt;form&gt;</code>, so Enter and the Send button submit without a script.</span></li>
+            <li class="flex gap-gutter"><i class="icon ph ph-check fg-success-weak"></i><span>A <code>&lt;form&gt;</code>, so Send submits it; the script adds Enter to send and keeps Shift+Enter for a new line.</span></li>
             <li class="flex gap-gutter"><i class="icon ph ph-check fg-success-weak"></i><span>Name Send and Stop in <code>aria-label</code>; they are icons.</span></li>
             </ul></div>
             <div class="flex flex-col gap-field"><span class="text-label fg-danger-weak">Avoid</span><ul role="list" class="flex flex-col gap-xs text-body-md max-w-text">

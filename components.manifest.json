@@ -2732,7 +2732,7 @@
       "page": "site/docs/c-composer.html",
       "summary": "A message box: context chips, a text area that grows with what is typed (field-sizing-content), then one row with Attach at the start and, at the end, the model as a quiet text trigger and one round key at the full control size: Dictate while the box is empty, Send once something is typed (a few lines of script swap their hidden).",
       "use": [
-        "A <form>, so Enter and the Send button submit without a script.",
+        "A <form>, so Send submits it; the script adds Enter to send and keeps Shift+Enter for a new line.",
         "Name Send and Stop in aria-label; they are icons."
       ],
       "avoid": [

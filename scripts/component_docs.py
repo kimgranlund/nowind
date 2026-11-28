@@ -113,6 +113,8 @@ document.querySelectorAll("[data-composer]:not([data-composer-ready])").forEach(
   if (!text || !dictate || !send) return;
   const sync = () => { const empty = !text.value.trim(); dictate.hidden = !empty; send.hidden = empty; };
   text.addEventListener("input", sync);
+  form.addEventListener("submit", (e) => { e.preventDefault(); text.value = ""; sync(); text.focus(); });
+  text.addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey && text.value.trim()) { e.preventDefault(); form.requestSubmit(send); } });
   sync();
 });
 </script>"""
@@ -1359,7 +1361,7 @@ COMPONENTS = [
              "summary": "The end key turns into Stop, and the text area and the model are disabled until the answer is done.",
              "html": composer(running=True, chips=False, ident="doc-composer-running", value="Summarize the changes in this release.")},
         ],
-        "use": ["A <code>&lt;form&gt;</code>, so Enter and the Send button submit without a script.", "Name Send and Stop in <code>aria-label</code>; they are icons."],
+        "use": ["A <code>&lt;form&gt;</code>, so Send submits it; the script adds Enter to send and keeps Shift+Enter for a new line.", "Name Send and Stop in <code>aria-label</code>; they are icons."],
         "avoid": ["A placeholder as the only label."],
     },
     {

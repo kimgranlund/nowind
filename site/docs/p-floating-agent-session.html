@@ -96,6 +96,8 @@ document.querySelectorAll("[data-composer]:not([data-composer-ready])").forEach(
   if (!text || !dictate || !send) return;
   const sync = () => { const empty = !text.value.trim(); dictate.hidden = !empty; send.hidden = empty; };
   text.addEventListener("input", sync);
+  form.addEventListener("submit", (e) => { e.preventDefault(); text.value = ""; sync(); text.focus(); });
+  text.addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey && text.value.trim()) { e.preventDefault(); form.requestSubmit(send); } });
   sync();
 });
 </script>
@@ -139,6 +141,8 @@ document.querySelectorAll(&quot;[data-composer]:not([data-composer-ready])&quot;
   if (!text || !dictate || !send) return;
   const sync = () =&gt; { const empty = !text.value.trim(); dictate.hidden = !empty; send.hidden = empty; };
   text.addEventListener(&quot;input&quot;, sync);
+  form.addEventListener(&quot;submit&quot;, (e) =&gt; { e.preventDefault(); text.value = &quot;&quot;; sync(); text.focus(); });
+  text.addEventListener(&quot;keydown&quot;, (e) =&gt; { if (e.key === &quot;Enter&quot; &amp;&amp; !e.shiftKey &amp;&amp; text.value.trim()) { e.preventDefault(); form.requestSubmit(send); } });
   sync();
 });
 &lt;/script&gt;

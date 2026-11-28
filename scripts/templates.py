@@ -535,7 +535,7 @@ def changelog():
                 if name:
                     lis.append(f"""                <li class="flex flex-col gap-3xs max-w-text"><span class="text-label fg-weak">{name}</span><p class="text-body-md break-words">{text}</p></li>""")
                 else:
-                    lis.append(f"""                <li><p class="text-body-md max-w-text break-words">{text}</p></li>""")
+                    lis.append(f"""                <li class="max-w-text"><p class="text-body-md break-words">{text}</p></li>""")
             body.append('<ul role="list" class="flex flex-col gap-group">\n' + "\n".join(lis) + "\n              </ul>")
         label = f"""<h2 class="text-subtitle">{v}</h2>
               <time datetime="{date}" class="text-caption fg-weak">{date}</time>{badge}"""
@@ -1180,7 +1180,7 @@ def classes_of(snippet):
 
 def component_page(c, prefix="c"):
     name = f"{prefix}-{c['slug']}.html"
-    built = c.get("components", [])
+    built = c.get("components", []) or c.get("patterns", [])
     toc_items = [("example", "Example"), ("usage", "Usage")] + ([("built-from", "Built from")] if built else []) + [("classes", "Classes")]
     extras = c.get("examples", [])
     all_html = c["html"] + "".join(x["html"] for x in extras)
@@ -1211,7 +1211,7 @@ def component_page(c, prefix="c"):
             p(f"The components{' and patterns' if c.get('patterns') else ''} this {'block' if prefix == 'b' else 'pattern'} puts together. Each page has the parts on their own, with what to use them for."),
             '<div class="flex flex-wrap gap-2xs">' + " ".join(
                 f'<a href="c-{s}.html" class="inline-flex items-center gap-gutter-half h-nested px-nested rounded-full bg-strong border border-weak hover:border-strong no-underline fg text-body-sm whitespace-nowrap transition-colors"><i class="icon icon-sm ph {cc["icon"]} fg-accent-1-weak"></i><span>{cc["name"]}</span></a>'
-                for s in built for cc in COMPONENTS if cc["slug"] == s) + " ".join(
+                for s in c.get("components", []) for cc in COMPONENTS if cc["slug"] == s) + " ".join(
                 f'<a href="p-{s}.html" class="inline-flex items-center gap-gutter-half h-nested px-nested rounded-full bg-strong border border-weak hover:border-strong no-underline fg text-body-sm whitespace-nowrap transition-colors"><i class="icon icon-sm ph {pp["icon"]} fg-accent-1-weak"></i><span>{pp["name"]}</span></a>'
                 for s in c.get("patterns", []) for pp in PATTERNS if pp["slug"] == s) + "</div>")] if built else []),
         section("classes", "Classes",

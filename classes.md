@@ -163,7 +163,7 @@ Variants: `hover:` on the 136 role-colour, opacity and cursor classes (inside `@
 | `.text-heading-lg` | `font-size: var(--heading-lg); line-height: var(--heading-lg--line-height); font-weight: var(--heading-lg--font-weight); font-family: var(--heading-lg--font-family); letter-spacing: var(--heading-lg--letter-spacing)` |
 | `.text-heading-md` | `font-size: var(--heading-md); line-height: var(--heading-md--line-height); font-weight: var(--heading-md--font-weight); font-family: var(--heading-md--font-family); letter-spacing: var(--heading-md--letter-spacing)` |
 | `.text-heading-sm` | `font-size: var(--heading-sm); line-height: var(--heading-sm--line-height); font-weight: var(--heading-sm--font-weight); font-family: var(--heading-sm--font-family)` |
-| `.text-figure` | `font-size: var(--figure); line-height: var(--figure--line-height); font-weight: var(--figure--font-weight); font-family: var(--figure--font-family); letter-spacing: var(--figure--letter-spacing); font-variant-numeric: var(--figure--font-variant-numeric)` |
+| `.text-figure` | `font-size: var(--figure); line-height: var(--figure--line-height); font-weight: var(--figure--font-weight); font-family: var(--figure--font-family); letter-spacing: var(--figure--letter-spacing); --_nums-spacing: var(--figure--font-variant-numeric); font-variant-numeric: var(--_nums-ordinal, ) var(--_nums-zero, ) var(--_nums-figure, ) var(--_nums-spacing, ) var(--_nums-fraction, )` |
 | `.text-lead` | `font-size: var(--lead); line-height: var(--lead--line-height); font-weight: var(--lead--font-weight); font-family: var(--lead--font-family)` |
 | `.text-title` | `font-size: var(--title); line-height: var(--title--line-height); font-weight: var(--title--font-weight); font-family: var(--title--font-family)` |
 | `.text-subtitle` | `font-size: var(--subtitle); line-height: var(--subtitle--line-height); font-weight: var(--subtitle--font-weight); font-family: var(--subtitle--font-family)` |
@@ -172,13 +172,13 @@ Variants: `hover:` on the 136 role-colour, opacity and cursor classes (inside `@
 | `.text-caption` | `font-size: var(--caption); line-height: var(--caption--line-height); font-weight: var(--caption--font-weight); font-family: var(--caption--font-family)` |
 | `.text-title-sm` | `font-size: var(--title-sm); line-height: var(--title-sm--line-height); font-weight: var(--title-sm--font-weight); font-family: var(--title-sm--font-family)` |
 | `.text-control-md` | `font-size: var(--control-md); line-height: var(--control-md--line-height); font-weight: var(--control-md--font-weight); font-family: var(--control-md--font-family)` |
-| `.text-data` | `font-size: var(--data); line-height: var(--data--line-height); font-weight: var(--data--font-weight); font-family: var(--data--font-family); font-variant-numeric: var(--data--font-variant-numeric)` |
+| `.text-data` | `font-size: var(--data); line-height: var(--data--line-height); font-weight: var(--data--font-weight); font-family: var(--data--font-family); --_nums-spacing: var(--data--font-variant-numeric); font-variant-numeric: var(--_nums-ordinal, ) var(--_nums-zero, ) var(--_nums-figure, ) var(--_nums-spacing, ) var(--_nums-fraction, )` |
 | `.text-label` | `font-size: var(--label); line-height: var(--label--line-height); font-weight: var(--label--font-weight); font-family: var(--label--font-family)` |
 | `.text-kicker` | `font-size: var(--kicker); line-height: var(--kicker--line-height); font-weight: var(--kicker--font-weight); font-family: var(--kicker--font-family); letter-spacing: var(--kicker--letter-spacing); text-transform: var(--kicker--text-transform)` |
-| `.text-numeral` | `font-size: var(--numeral); line-height: var(--numeral--line-height); font-weight: var(--numeral--font-weight); font-family: var(--numeral--font-family); font-variant-numeric: var(--numeral--font-variant-numeric)` |
-| `.text-mono-sm` | `font-size: var(--mono-sm); line-height: var(--mono-sm--line-height); font-weight: var(--mono-sm--font-weight); font-family: var(--mono-sm--font-family); font-variant-numeric: var(--mono-sm--font-variant-numeric)` |
-| `.text-code` | `font-size: var(--code); line-height: var(--code--line-height); font-weight: var(--code--font-weight); font-family: var(--code--font-family); font-variant-numeric: var(--code--font-variant-numeric); font-variant-ligatures: var(--code--font-variant-ligatures)` |
-| `.text-kbd` | `font-size: var(--kbd); line-height: var(--kbd--line-height); font-weight: var(--kbd--font-weight); font-family: var(--kbd--font-family); font-variant-numeric: var(--kbd--font-variant-numeric)` |
+| `.text-numeral` | `font-size: var(--numeral); line-height: var(--numeral--line-height); font-weight: var(--numeral--font-weight); font-family: var(--numeral--font-family); --_nums-spacing: var(--numeral--font-variant-numeric); font-variant-numeric: var(--_nums-ordinal, ) var(--_nums-zero, ) var(--_nums-figure, ) var(--_nums-spacing, ) var(--_nums-fraction, )` |
+| `.text-mono-sm` | `font-size: var(--mono-sm); line-height: var(--mono-sm--line-height); font-weight: var(--mono-sm--font-weight); font-family: var(--mono-sm--font-family); --_nums-spacing: var(--mono-sm--font-variant-numeric); font-variant-numeric: var(--_nums-ordinal, ) var(--_nums-zero, ) var(--_nums-figure, ) var(--_nums-spacing, ) var(--_nums-fraction, )` |
+| `.text-code` | `font-size: var(--code); line-height: var(--code--line-height); font-weight: var(--code--font-weight); font-family: var(--code--font-family); font-variant-ligatures: var(--code--font-variant-ligatures); --_nums-spacing: var(--code--font-variant-numeric); font-variant-numeric: var(--_nums-ordinal, ) var(--_nums-zero, ) var(--_nums-figure, ) var(--_nums-spacing, ) var(--_nums-fraction, )` |
+| `.text-kbd` | `font-size: var(--kbd); line-height: var(--kbd--line-height); font-weight: var(--kbd--font-weight); font-family: var(--kbd--font-family); --_nums-spacing: var(--kbd--font-variant-numeric); font-variant-numeric: var(--_nums-ordinal, ) var(--_nums-zero, ) var(--_nums-figure, ) var(--_nums-spacing, ) var(--_nums-fraction, )` |
 | `.text-chrome` | `font-size: var(--text-chrome); line-height: var(--leading-snug)` |
 | `.caret` | `font-size: var(--icon-sm)` |
 
@@ -1189,7 +1189,7 @@ Variants: `hover:` on the 136 role-colour, opacity and cursor classes (inside `@
 | `.lowercase` | `text-transform: lowercase` |
 | `.capitalize` | `text-transform: capitalize` |
 | `.normal-case` | `text-transform: none` |
-| `.normal-nums` | `font-variant-numeric: normal` |
+| `.normal-nums` | `--_nums-ordinal: initial; --_nums-zero: initial; --_nums-figure: initial; --_nums-spacing: initial; --_nums-fraction: initial; font-variant-numeric: normal` |
 | `.ordinal` | `--_nums-ordinal: ordinal; font-variant-numeric: var(--_nums-ordinal, ) var(--_nums-zero, ) var(--_nums-figure, ) var(--_nums-spacing, ) var(--_nums-fraction, )` |
 | `.slashed-zero` | `--_nums-zero: slashed-zero; font-variant-numeric: var(--_nums-ordinal, ) var(--_nums-zero, ) var(--_nums-figure, ) var(--_nums-spacing, ) var(--_nums-fraction, )` |
 | `.lining-nums` | `--_nums-figure: lining-nums; font-variant-numeric: var(--_nums-ordinal, ) var(--_nums-zero, ) var(--_nums-figure, ) var(--_nums-spacing, ) var(--_nums-fraction, )` |

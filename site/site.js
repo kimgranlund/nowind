@@ -446,7 +446,7 @@ window.nowindOwnCSS = () => !!document.querySelector("style[data-page-css]");
       if (bg && Math.abs(ps - pe) > 1.5 && !e.matches("input, textarea, select, option, td, th, html, body, main, header, footer")) {
         const kids = [...e.children].filter(visible);
         const shortStart = ps < pe, edge = shortStart ? kids[0] : kids[kids.length - 1];
-        const explained = edge && (edge.matches(".icon, .h-nested, .size-nested, .size-control, .h-full, .rounded-full, input, kbd, img, svg") || !!edge.querySelector(":scope > .icon:only-child"));
+        const explained = edge && (edge.matches(".icon, .h-nested, .size-nested, .size-control, .h-full:not(input, textarea, select), .rounded-full, input, kbd, img, svg") || !!edge.querySelector(":scope > .icon:only-child"));
         if (!explained) out.push({ rule: "padding-symmetry", where: where(e), detail: `start ${ps.toFixed(1)}px, end ${pe.toFixed(1)}px` });
       }
       // baseline: text children side by side in a row, centred rather than baseline-aligned.
